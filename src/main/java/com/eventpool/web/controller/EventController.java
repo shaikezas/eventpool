@@ -28,12 +28,13 @@ public class EventController {
 
     @RequestMapping("eventslist.json")
     public @ResponseBody List<Event> getEventList() {
-    	System.out.println("Getting events");
+    	System.out.println("Getting events "+eventService.getAllEvents().size());
         return eventService.getAllEvents();
     }
 
     @RequestMapping(value = "/addEvent", method = RequestMethod.POST)
     public @ResponseBody void addEvent(@RequestBody Event event) {
+    	System.out.println("Adding event");
         eventService.addEvent(event);
     }
 

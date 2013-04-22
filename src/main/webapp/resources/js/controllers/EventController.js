@@ -7,7 +7,10 @@
 var EventController = function($scope, $http) {
     $scope.event = {};
     $scope.editMode = false;
-
+    $scope.panes = [
+                    { title:"Dynamic Title 1", content:"Dynamic content 1" },
+                    { title:"Dynamic Title 2", content:"Dynamic content 2" }
+                  ];
     $scope.fetchEventsList = function() {
         $http.get('events/eventslist.json').success(function(eventList){
             $scope.events = eventList;

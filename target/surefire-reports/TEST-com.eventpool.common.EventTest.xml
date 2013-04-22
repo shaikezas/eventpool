@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="3.178" errors="0" skipped="0" tests="1" name="com.eventpool.common.EventTest">
+<testsuite failures="0" time="3.399" errors="0" skipped="0" tests="1" name="com.eventpool.common.EventTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_35\jre\bin"/>
@@ -25,7 +25,7 @@
     <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="D:\Ezas\Personal\KnowledgeHut\workspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf1490316067599455042.tmp"/>
+    <property name="classworlds.conf" value="D:\Ezas\Personal\KnowledgeHut\workspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf6282926396198104176.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.6.0_35\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;%CommonProgramFiles%\Microsoft Shared\Windows Live;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\Roxio Shared\DLLShared\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;;C:\Program Files\Broadcom\Broadcom 802.11;C:\Program Files (x86)\Common Files\Roxio Shared\OEM\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\OEM\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\OEM\12.0\DLLShared\;C:\Program Files (x86)\Roxio\OEM\AudioCore\;C:\Program Files (x86)\Intel\Services\IPT\;C:\Program Files\Java\jdk1.6.0_35/bin;D:\Dev\apache-maven-3.0.4/bin;C:\Program Files\Mercurial\bin;D:\Ezas\Softwares\Axis\axis2-1.6.1/bin;C:\Program Files (x86)\Hewlett-Packard\HP ProtectTools Security Manager\Bin\;D:\Ezas\grails-2.2.0\bin;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -59,5 +59,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="2.811" classname="com.eventpool.common.EventTest" name="addEvent"/>
+  <testcase time="3.037" classname="com.eventpool.common.EventTest" name="addEvent"/>
 </testsuite>
