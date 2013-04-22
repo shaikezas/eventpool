@@ -17,7 +17,7 @@ public abstract class BaseTest {
 	public static void beforeClass() {
 		String profile = "dev";
 		System.setProperty("profile", profile);
-		log.info("Setting Profile to  :{}", profile);
+		log.info("Setting Profile to :{}", profile);
 	}
 
 }
