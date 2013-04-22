@@ -2,18 +2,13 @@
 
 var EventPool = {};
 
-var App = angular.module('EventPool', ['EventPool.filters', 'EventPool.services', 'EventPool.directives']);
+var App = angular.module('EventPool', ['EventPool.filters', 'EventPool.services', 'EventPool.directives','ui.bootstrap']);
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/events', {
         templateUrl: 'events/layout',
         controller: EventController
-    });
-
-    $routeProvider.when('/orders', {
-        templateUrl: 'orders/layout',
-        controller: OrderController
     });
 
     $routeProvider.otherwise({redirectTo: '/events'});
