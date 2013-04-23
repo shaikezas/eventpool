@@ -31,8 +31,6 @@ public class Order extends AuditableIdEntity {
 	@Embedded
 	private Address billingAddress;
 	
-	@Embedded
-	private CardInfo cardInfo;
 	
 	@Column(name="gross_amount")
 	private Double grossAmount;
@@ -81,13 +79,6 @@ public class Order extends AuditableIdEntity {
 		this.billingAddress = billingAddress;
 	}
 
-	public CardInfo getCardInfo() {
-		return cardInfo;
-	}
-
-	public void setCardInfo(CardInfo cardInfo) {
-		this.cardInfo = cardInfo;
-	}
 
 	public Double getGrossAmount() {
 		return grossAmount;

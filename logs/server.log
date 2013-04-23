@@ -544,3 +544,166 @@
 2013-04-22 18:00:50,170 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
 2013-04-22 18:00:50,235 [main] INFO  o.s.w.s.v.v.VelocityConfigurer - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
 2013-04-22 18:00:50,414 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'DispatcherServlet': initialization completed in 1180 ms
+2013-04-23 21:47:44,707 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-04-23 21:47:44,807 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [D:\Ezas\Personal\KnowledgeHut\workspace\eventpool\target\classes\META-INF\eventpool\applicationContext-common-data.xml]
+2013-04-23 21:47:45,120 [main] INFO  o.s.c.s.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@1c701a27: startup date [Tue Apr 23 21:47:45 IST 2013]; root of context hierarchy
+2013-04-23 21:47:45,243 [main] INFO  o.s.b.f.c.PropertyPlaceholderConfigurer - Loading properties file from URL [file:/D:/Ezas/Personal/KnowledgeHut/workspace/eventpool/target/classes/META-INF/properties/dev/eventpool.properties]
+2013-04-23 21:47:45,330 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#66bcb23e' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-04-23 21:47:45,710 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'pooledDataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-04-23 21:47:45,714 [main] INFO  o.s.jndi.JndiObjectFactoryBean - JNDI lookup failed - returning specified default object instead: javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+2013-04-23 21:47:45,715 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class org.springframework.jndi.JndiObjectFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-04-23 21:47:45,715 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-04-23 21:47:45,732 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-04-23 21:47:45,844 [main] INFO  o.h.annotations.common.Version - Hibernate Commons Annotations 3.2.0.Final
+2013-04-23 21:47:45,849 [main] INFO  org.hibernate.cfg.Environment - Hibernate 3.6.8.Final
+2013-04-23 21:47:45,850 [main] INFO  org.hibernate.cfg.Environment - hibernate.properties not found
+2013-04-23 21:47:45,852 [main] INFO  org.hibernate.cfg.Environment - Bytecode provider name : javassist
+2013-04-23 21:47:45,854 [main] INFO  org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+2013-04-23 21:47:45,899 [main] INFO  org.hibernate.ejb.Version - Hibernate EntityManager 3.6.8.Final
+2013-04-23 21:47:45,914 [main] INFO  org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: eventpool-persistence-unit
+	...]
+2013-04-23 21:47:46,029 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Event
+2013-04-23 21:47:46,055 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Event on table event
+2013-04-23 21:47:46,148 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Ticket
+2013-04-23 21:47:46,148 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Ticket on table Ticket
+2013-04-23 21:47:46,152 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Order
+2013-04-23 21:47:46,153 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Order on table order
+2013-04-23 21:47:46,161 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Suborder
+2013-04-23 21:47:46,162 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Suborder on table suborder
+2013-04-23 21:47:46,175 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Registration
+2013-04-23 21:47:46,175 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Registration on table registration
+2013-04-23 21:47:46,185 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Suborder.registrations -> registration
+2013-04-23 21:47:46,187 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Event.tickets -> Ticket
+2013-04-23 21:47:46,187 [main] INFO  org.hibernate.cfg.Configuration - Hibernate Validator not found: ignoring
+2013-04-23 21:47:46,216 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.0.Final
+2013-04-23 21:47:46,535 [main] INFO  o.h.c.s.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2013-04-23 21:47:46,574 [main] INFO  o.h.c.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+2013-04-23 21:47:46,577 [main] INFO  o.h.e.c.InjectedDataSourceConnectionProvider - Using provided datasource
+2013-04-23 21:47:48,842 [main] INFO  org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.MySQLDialect
+2013-04-23 21:47:48,864 [main] INFO  o.h.engine.jdbc.JdbcSupportLoader - Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2013-04-23 21:47:48,865 [main] INFO  org.hibernate.cfg.SettingsFactory - Database ->
+       name : MySQL
+    version : 5.5.21
+      major : 5
+      minor : 5
+2013-04-23 21:47:48,865 [main] INFO  org.hibernate.cfg.SettingsFactory - Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.6 ( Revision: ${svn.Revision} )
+      major : 5
+      minor : 1
+2013-04-23 21:47:48,871 [main] INFO  o.h.t.TransactionFactoryFactory - Using default transaction strategy (direct JDBC transactions)
+2013-04-23 21:47:48,875 [main] INFO  o.h.t.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2013-04-23 21:47:48,875 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+2013-04-23 21:47:48,877 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+2013-04-23 21:47:48,877 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch size: 15
+2013-04-23 21:47:48,878 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+2013-04-23 21:47:48,879 [main] INFO  org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+2013-04-23 21:47:48,879 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): enabled
+2013-04-23 21:47:48,880 [main] INFO  org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+2013-04-23 21:47:48,882 [main] INFO  org.hibernate.cfg.SettingsFactory - Maximum outer join fetch depth: 2
+2013-04-23 21:47:48,882 [main] INFO  org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+2013-04-23 21:47:48,882 [main] INFO  org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+2013-04-23 21:47:48,883 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+2013-04-23 21:47:48,883 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+2013-04-23 21:47:48,883 [main] INFO  org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2013-04-23 21:47:48,886 [main] INFO  o.h.h.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+2013-04-23 21:47:48,886 [main] INFO  org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+2013-04-23 21:47:48,886 [main] INFO  org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+2013-04-23 21:47:48,886 [main] INFO  org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+2013-04-23 21:47:48,886 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache: disabled
+2013-04-23 21:47:48,886 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2013-04-23 21:47:48,887 [main] INFO  org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: disabled
+2013-04-23 21:47:48,888 [main] INFO  org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: disabled
+2013-04-23 21:47:48,891 [main] INFO  org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+2013-04-23 21:47:48,892 [main] INFO  org.hibernate.cfg.SettingsFactory - Statistics: disabled
+2013-04-23 21:47:48,892 [main] INFO  org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+2013-04-23 21:47:48,892 [main] INFO  org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+2013-04-23 21:47:48,893 [main] INFO  org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+2013-04-23 21:47:48,893 [main] INFO  org.hibernate.cfg.SettingsFactory - Check Nullability in Core (should be disabled when Bean Validation is on): disabled
+2013-04-23 21:47:48,906 [main] INFO  o.hibernate.impl.SessionFactoryImpl - building session factory
+2013-04-23 21:47:48,911 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@55d4ee7e
+2013-04-23 21:47:48,912 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@e75be38
+2013-04-23 21:47:48,912 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@541b55f2
+2013-04-23 21:47:48,912 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@4ea7ae01
+2013-04-23 21:47:48,912 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [blob] overrides previous : org.hibernate.type.BlobType@6290ebfe
+2013-04-23 21:47:48,912 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@6290ebfe
+2013-04-23 21:47:48,912 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [clob] overrides previous : org.hibernate.type.ClobType@1875a340
+2013-04-23 21:47:48,912 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@1875a340
+2013-04-23 21:47:48,913 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@5330cb4b
+2013-04-23 21:47:49,097 [main] INFO  o.h.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+2013-04-23 21:47:49,104 [main] INFO  o.h.tool.hbm2ddl.SchemaUpdate - Running hbm2ddl schema update
+2013-04-23 21:47:49,104 [main] INFO  o.h.tool.hbm2ddl.SchemaUpdate - fetching database metadata
+2013-04-23 21:47:49,105 [main] INFO  o.h.tool.hbm2ddl.SchemaUpdate - updating schema
+2013-04-23 21:47:49,657 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - table found: eventpooldb.ticket
+2013-04-23 21:47:49,658 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - columns: [created_date, max_quantity, sale_start, modified_date, event_id, createdby, type, min_quantity, modifieddby, id, price, description, name, sale_end, quantity]
+2013-04-23 21:47:49,659 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - foreign keys: [fk954d572ce8cefeab]
+2013-04-23 21:47:49,659 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - indexes: [fk954d572ce8cefeab, primary]
+2013-04-23 21:47:49,780 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - table found: eventpooldb.event
+2013-04-23 21:47:49,781 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - columns: [venue_name, modified_date, event_type, state, address1, address2, modifieddby, image_orientation, city, id, banner_size, end_date, title, mobilenumber, image_size, image_url, description, banner_orientation, created_date, phonenumber, fax, zipcode, organizer_name, createdby, country, contact_details, banner_url, categoryid, event_info_type, email, sub_category_id, organizer_description, start_date]
+2013-04-23 21:47:49,782 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - foreign keys: []
+2013-04-23 21:47:49,782 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - indexes: [primary]
+2013-04-23 21:47:49,785 [main] INFO  o.h.tool.hbm2ddl.DatabaseMetadata - table not found: order
+2013-04-23 21:47:49,828 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - table found: eventpooldb.registration
+2013-04-23 21:47:49,828 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - columns: [created_date, id, phone, email, modified_date, name, company, suborder_id, createdby, modifieddby]
+2013-04-23 21:47:49,829 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - foreign keys: [fkaf83e8b91e67ca29]
+2013-04-23 21:47:49,829 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - indexes: [fkaf83e8b91e67ca29, primary]
+2013-04-23 21:47:49,922 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - table found: eventpooldb.suborder
+2013-04-23 21:47:49,922 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - columns: [created_date, ticket_id, net_amount, modified_date, status, organizer_name, createdby, order_id, modifieddby, discount_amount, id, gross_amount, categoryid, ticket_price, discount_coupon, sub_category_id, quantity]
+2013-04-23 21:47:49,923 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - foreign keys: [fk84ecb10e43cfa129]
+2013-04-23 21:47:49,923 [main] INFO  o.h.tool.hbm2ddl.TableMetadata - indexes: [primary, fk84ecb10e43cfa129]
+2013-04-23 21:47:49,925 [main] INFO  o.h.tool.hbm2ddl.DatabaseMetadata - table not found: order
+2013-04-23 21:47:49,987 [main] ERROR o.h.tool.hbm2ddl.SchemaUpdate - Unsuccessful: create table order (id bigint not null auto_increment, createdby bigint, created_date datetime not null, modifieddby bigint, modified_date datetime not null, address1 varchar(255), address2 varchar(255), city varchar(255), country varchar(255), email varchar(255), fax varchar(255), mobilenumber varchar(255), phonenumber varchar(255), state varchar(255), zipcode bigint, bank_name varchar(255), card_expire_date varchar(255), card_number varchar(255), card_type varchar(255), discount_coupon integer, discount_amount double precision, buyer_email varchar(255) not null, buyer_first_name varchar(255) not null, gross_amount double precision, net_amount double precision, payment_currency varchar(255), buyer_second_name varchar(255) not null, primary key (id))
+2013-04-23 21:47:49,988 [main] ERROR o.h.tool.hbm2ddl.SchemaUpdate - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id bigint not null auto_increment, createdby bigint, created_date datetim' at line 1
+2013-04-23 21:47:49,990 [main] ERROR o.h.tool.hbm2ddl.SchemaUpdate - Unsuccessful: alter table suborder add index FK84ECB10E2258522B (order_id), add constraint FK84ECB10E2258522B foreign key (order_id) references order (id)
+2013-04-23 21:47:49,990 [main] ERROR o.h.tool.hbm2ddl.SchemaUpdate - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order (id)' at line 1
+2013-04-23 21:47:49,990 [main] INFO  o.h.tool.hbm2ddl.SchemaUpdate - schema update complete
+2013-04-23 21:47:50,051 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-04-23 21:47:50,080 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-04-23 21:47:50,083 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-04-23 21:47:50,090 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@21e1962d: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,eventRepository,orderRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-04-23 21:47:50,300 [main] INFO  o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+2013-04-23 21:47:50,351 [Thread-6] INFO  o.s.c.s.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@1c701a27: startup date [Tue Apr 23 21:47:45 IST 2013]; root of context hierarchy
+2013-04-23 21:47:50,352 [Thread-6] INFO  o.s.b.f.s.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@21e1962d: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,eventRepository,orderRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-04-23 21:47:50,353 [Thread-6] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-04-23 21:47:50,354 [Thread-6] INFO  o.hibernate.impl.SessionFactoryImpl - closing
+2013-04-23 21:58:39,869 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization started
+2013-04-23 21:58:39,942 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Tue Apr 23 21:58:39 IST 2013]; root of context hierarchy
+2013-04-23 21:58:39,984 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/app-config.xml]
+2013-04-23 21:58:40,069 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@560dd7a7: defining beans []; root of factory hierarchy
+2013-04-23 21:58:40,071 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 200 ms
+2013-04-23 21:58:40,158 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'DispatcherServlet': initialization started
+2013-04-23 21:58:40,162 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'DispatcherServlet-servlet': startup date [Tue Apr 23 21:58:40 IST 2013]; parent: Root WebApplicationContext
+2013-04-23 21:58:40,164 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/webapp-config.xml]
+2013-04-23 21:58:40,466 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@65a7dd7b: defining beans [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,eventController,EventService,indexController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,velocityConfig,viewResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@560dd7a7
+2013-04-23 21:58:40,554 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/eventslist.json],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.util.List<com.eventpool.common.entities.Event> com.eventpool.web.controller.EventController.getEventList()
+2013-04-23 21:58:40,555 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/addEvent],methods=[POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.addEvent(com.eventpool.common.entities.Event)
+2013-04-23 21:58:40,555 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/updateEvent],methods=[PUT],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.updateEvent(com.eventpool.common.entities.Event)
+2013-04-23 21:58:40,556 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/removeEvent/{id}],methods=[DELETE],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.removeEvent(java.lang.Long)
+2013-04-23 21:58:40,556 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/removeAllEvents],methods=[DELETE],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.removeAllEvents()
+2013-04-23 21:58:40,556 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/layout],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.EventController.getEventPartialPage(org.springframework.ui.ModelMap)
+2013-04-23 21:58:40,558 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.IndexController.getIndexPage()
+2013-04-23 21:58:40,595 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.0.Final
+2013-04-23 21:58:41,499 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2013-04-23 21:58:41,545 [main] INFO  o.s.w.s.v.v.VelocityConfigurer - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2013-04-23 21:58:41,690 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'DispatcherServlet': initialization completed in 1532 ms
+2013-04-23 21:59:46,212 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization started
+2013-04-23 21:59:46,272 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Tue Apr 23 21:59:46 IST 2013]; root of context hierarchy
+2013-04-23 21:59:46,313 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/app-config.xml]
+2013-04-23 21:59:46,397 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@58dca3ed: defining beans []; root of factory hierarchy
+2013-04-23 21:59:46,399 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 183 ms
+2013-04-23 21:59:46,457 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'DispatcherServlet': initialization started
+2013-04-23 21:59:46,463 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'DispatcherServlet-servlet': startup date [Tue Apr 23 21:59:46 IST 2013]; parent: Root WebApplicationContext
+2013-04-23 21:59:46,464 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/webapp-config.xml]
+2013-04-23 21:59:46,749 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6ec44aaf: defining beans [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,eventController,EventService,indexController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,velocityConfig,viewResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@58dca3ed
+2013-04-23 21:59:46,832 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/eventslist.json],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.util.List<com.eventpool.common.entities.Event> com.eventpool.web.controller.EventController.getEventList()
+2013-04-23 21:59:46,833 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/addEvent],methods=[POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.addEvent(com.eventpool.common.entities.Event)
+2013-04-23 21:59:46,834 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/updateEvent],methods=[PUT],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.updateEvent(com.eventpool.common.entities.Event)
+2013-04-23 21:59:46,834 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/removeEvent/{id}],methods=[DELETE],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.removeEvent(java.lang.Long)
+2013-04-23 21:59:46,835 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/removeAllEvents],methods=[DELETE],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.removeAllEvents()
+2013-04-23 21:59:46,835 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/layout],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.EventController.getEventPartialPage(org.springframework.ui.ModelMap)
+2013-04-23 21:59:46,838 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.IndexController.getIndexPage()
+2013-04-23 21:59:46,875 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.0.Final
+2013-04-23 21:59:47,352 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2013-04-23 21:59:47,406 [main] INFO  o.s.w.s.v.v.VelocityConfigurer - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2013-04-23 21:59:47,573 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'DispatcherServlet': initialization completed in 1115 ms
