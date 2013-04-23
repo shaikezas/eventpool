@@ -1,1 +1,22 @@
-/test.file
+syntax: glob
+
+.classpath
+.settings
+.project
+target
+bin
+.idea
+*.iml
+
+syntax: regexp
+^src/main/resources/application_dev\.properties$
+syntax: regexp
+^src/main/resources/META-INF/properties/dev/identity-shiro\.properties$
+syntax: regexp
+^src/main/resources/META-INF/properties/sajith$
+syntax: regexp
+^src/main/resources/rebel\.xml$
+syntax: regexp
+^src/main/deployment/logs$
+syntax: regexp
+^src/main/deployment/logs\.txt$
