@@ -7,7 +7,7 @@ target
 bin
 .idea
 *.iml
-
+logs
 syntax: regexp
 ^src/main/resources/application_dev\.properties$
 syntax: regexp
