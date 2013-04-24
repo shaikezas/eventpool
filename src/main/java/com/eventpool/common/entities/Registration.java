@@ -11,7 +11,7 @@ import com.eventpool.common.annotation.EmailAddressValidation;
 
 
 @Entity
-@Table(name = "registration")
+@Table(name = "REGISTRATION")
 public class Registration extends AuditableIdEntity {
 
 	

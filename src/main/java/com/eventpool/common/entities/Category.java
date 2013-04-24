@@ -10,28 +10,27 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "category")
+@Table(name = "CATEGORY")
 public class Category extends AuditableIdEntity {
 
 	@NotNull(message = "Can't be Empty")
-	@Column(name = "name")
+	@Column(name = "NAME")
 	private String name;
 	
 	@NotNull(message = "Can't be Empty")
-	@Column(name = "description")
+	@Column(name = "DESCRIPTION")
 	private String description;
 	
 	
-	@Column(name="isActive",nullable=false)
+	@Column(name="ACTIVE",nullable=false)
 	@Type(type = "yes_no")
 	private Boolean isActive;
-	
-	@Column(name = "keyDescription")
-	private String keyDescription;
-	
-	
+
+	@Column(name = "CODE")
+	private String code;
+
 	@ManyToOne
-	@JoinColumn(name = "parent_category", insertable = false, updatable = false)
+	@JoinColumn(name = "PARENT_CATEGORYID", insertable = false, updatable = false)
 	private Category parentCategory;
 	
 
@@ -66,16 +65,6 @@ public class Category extends AuditableIdEntity {
 	}
 
 
-	public String getKeyDescription() {
-		return keyDescription;
-	}
-
-
-	public void setKeyDescription(String keyDescription) {
-		this.keyDescription = keyDescription;
-	}
-
-
 	public Category getParentCategory() {
 		return parentCategory;
 	}
@@ -83,6 +72,16 @@ public class Category extends AuditableIdEntity {
 
 	public void setParentCategory(Category parentCategory) {
 		this.parentCategory = parentCategory;
+	}
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	

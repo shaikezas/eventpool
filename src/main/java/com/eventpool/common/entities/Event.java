@@ -24,51 +24,53 @@ import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 
 @Entity
-@Table(name = "event")
+@Table(name = "EVENT")
 public class Event extends AuditableIdEntity {
 
 	@NotNull(message = "Can't be Empty")
-	@Column(name = "title")
+	@Column(name = "TITLE")
 	private String title;
 
-	@Column(name = "start_date", nullable = false)
+	@Column(name = "START_DATE", nullable = false)
 	Date startDate;
 
-	@Column(name = "end_date", nullable = false)
+	@Column(name = "END_DATE", nullable = false)
 	Date endDate;
 	
 	
-	@Column(name="isActive",nullable=false)
+	@Column(name="ACTIVE",nullable=false)
 	@Type(type = "yes_no")
 	private Boolean isActive;
 	
-	@Column(name="status")
+	@Column(name="STATUS")
 	@Enumerated(EnumType.STRING)
 	private EventStatus status;
 
-	@Column(name = "description", length = 15000)
+	@Column(name = "DESCRIPTION", length = 15000)
 	private String description;
 
-	@Column(name="event_type")
+	@Column(name="PAY_TYPE")
 	@Enumerated(EnumType.STRING)
 	private EventType eventType;
 
 	@NotNull(message = "Can't be Empty")
-	@Column(name = "sub_category_id")
+	@Column(name = "SUBCATEGORY_ID")
 	private Integer subCategoryId;
 	
-	@Column(name = "company_logo_url")
+	//@Column(name = "company_logo_url")
 	private String companyLogoUrl;
 
-	@Column(name = "banner_url")
+	//@Column(name = "banner_url")
 	private String bannerUrl;
 
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	private Media media; 
 
-	@Column(name = "venue_name")
+	@Column(name = "VENUE_NAME")
 	private String venueName;
 	
 	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="address_id")
+	@JoinColumn(name="VENUE_ADDRESS_ID")
 	private Address venueAddress;
 	
 	@Column(name = "organizer_name")
@@ -80,7 +82,7 @@ public class Event extends AuditableIdEntity {
 	@Column(name = "contact_details",length=1000)
 	private String contactDetails;
 	
-	@Column(name="event_info_type")
+	@Column(name="ATTEND_TYPE")
 	@Enumerated(EnumType.STRING)
 	private EventInfoType infoType;
 	
@@ -88,7 +90,7 @@ public class Event extends AuditableIdEntity {
 	@JoinColumn(name="event_id",referencedColumnName="id")
 	private List<Ticket> tickets;
 	
-	@Column(name="terms_conditions",length=1500)
+	@Column(name="TERMS_CONDITIONS",length=1500)
 	private String termsAndConditions;
 
 	public String getTitle() {
@@ -254,6 +256,14 @@ public class Event extends AuditableIdEntity {
 				ticket.setEnventId(this.getId());
 			}
 		}
+	}
+
+	public Media getMedia() {
+		return media;
+	}
+
+	public void setMedia(Media media) {
+		this.media = media;
 	}
 	
 	

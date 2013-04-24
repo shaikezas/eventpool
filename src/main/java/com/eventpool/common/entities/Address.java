@@ -8,27 +8,27 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "address")
+@Table(name = "ADDRESS")
 public class Address extends IdEntity{
 
 
 	@NotNull
-	@Column(name="address1")
+	@Column(name="ADDR_LINE1")
 	private String address1;
 	
 	@NotNull
-	@Column(name="address2")
+	@Column(name="ADDR_LINE2")
 	private String address2;
 	
 	@NotNull
-	@Column(name = "cityId")
+	@Column(name = "CITYID")
 	private Long cityId;
 	
-	@Column(name="mapUrl")
+	@Column(name="MAP_URL")
 	private String mapUrl;
 	
 	@NotNull
-	@Column(name="zipcode")
+	@Column(name="ZIP")
 	@Min(value=100000l,message="Zipcode should be minimum 100000")
 	@Max(value=999999l,message="Zipcode should be maximum 999999")
 	private Long zipCode;
@@ -41,6 +41,12 @@ public class Address extends IdEntity{
 	
 	@Column(name="mobilenumber")
 	private String mobileNumber;
+
+	@Column(name="STATE")
+	private String state;
+
+	@Column(name="COUNTRYID")
+	private String country;
 
 	public String getAddress1() {
 		return address1;
@@ -106,6 +112,22 @@ public class Address extends IdEntity{
 
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
 

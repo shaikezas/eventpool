@@ -14,40 +14,39 @@ import org.hibernate.annotations.Type;
 import com.eventpool.common.type.TicketType;
 
 @Entity
-@Table(name = "Ticket")
+@Table(name = "EVENT_TICKET")
 public class Ticket extends AuditableIdEntity{
 	
 	@NotNull(message = "Can't be Empty")
-	@Column(name = "name")
+	@Column(name = "NAME")
 	private String name;
 	
-	@Column(name = "description",length=1000)
+	@Column(name = "DESCRIPTION",length=1000)
 	private String description;
 	
-	@Column(name = "sale_start", nullable = false)
+	@Column(name = "SALE_STARTDATE", nullable = false)
 	Date saleStart;
 	
-	@Column(name = "sale_end", nullable = false)
+	@Column(name = "SALE_ENDDATE", nullable = false)
 	Date saleEnd;
 	
-	
-	@Column(name="isActive",nullable=false)
+	@Column(name="ACTIVE",nullable=false)
 	@Type(type = "yes_no")
 	private Boolean isActive;
 	
-	@Column(name = "quantity")
+	@Column(name = "QUANTITY")
 	private Integer quantity;
 	
-	@Column(name="event_id")
+	@Column(name="EVENT_ID")
 	private Long enventId;
 	
-	@Column(name="price")
+	@Column(name="PRICE")
 	private Double price;
 	
-	@Column(name="min_quantity")
+	@Column(name="MIN_QTY")
 	private Integer minQty;
 	
-	@Column(name="max_quantity")
+	@Column(name="MAX_QTY")
 	private Integer maxQty;
 
 	public String getName() {

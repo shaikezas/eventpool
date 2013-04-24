@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import com.eventpool.common.type.OrderStatus;
 
 @Entity
-@Table(name = "suborder")
+@Table(name = "SUBORDER")
 public class Suborder extends AuditableIdEntity {
 
 	@OneToOne(fetch = FetchType.EAGER)

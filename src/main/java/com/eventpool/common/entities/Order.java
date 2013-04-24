@@ -22,20 +22,20 @@ import com.eventpool.common.type.CurrencyType;
 
 
 @Entity
-@Table(name = "order")
+@Table(name = "TICKET_ORDER")
 public class Order extends AuditableIdEntity {
 
 	@NotNull
-	@Column(name="buyer_first_name")
+	@Column(name="BUYER_FNAME")
 	private String firstName;
 	
 	@NotNull
-	@Column(name="buyer_last_name")
+	@Column(name="BUYER_LNAME")
 	private String lastName;
 	
 	@NotNull
 	@EmailAddressValidation
-	@Column(name="buyer_email")
+	@Column(name="BUYER_EMAIL")
 	@Size(max=255)
 	private String email;
 	
@@ -54,7 +54,7 @@ public class Order extends AuditableIdEntity {
 	private Double discountAmount;
 	
 	@Column(name="discount_coupon")
-	private Integer dicountCoupon;
+	private String dicountCoupon;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="payment_currency")
@@ -113,14 +113,6 @@ public class Order extends AuditableIdEntity {
 		this.discountAmount = discountAmount;
 	}
 
-	public Integer getDicountCoupon() {
-		return dicountCoupon;
-	}
-
-	public void setDicountCoupon(Integer dicountCoupon) {
-		this.dicountCoupon = dicountCoupon;
-	}
-
 	public String getLastName() {
 		return lastName;
 	}
@@ -144,6 +136,14 @@ public class Order extends AuditableIdEntity {
 	public void setSuborders(List<Suborder> suborders) {
 		this.suborders = suborders;
 	}
+
+	public String getDicountCoupon() {
+		return dicountCoupon;
+	}
+
+	public void setDicountCoupon(String dicountCoupon) {
+		this.dicountCoupon = dicountCoupon;
+	}
 	
 	@PostUpdate
 	@PostPersist
@@ -155,5 +155,6 @@ public class Order extends AuditableIdEntity {
 			}
 		}
 	}
-	
+
+
 }
