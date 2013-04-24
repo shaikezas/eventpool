@@ -1,8 +1,10 @@
 syntax: glob
 
-.classpath
+
 .settings
+.classpath
 .project
+
 target
 bin
 .idea
