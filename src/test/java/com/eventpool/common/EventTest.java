@@ -4,17 +4,19 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
-import com.eventpool.common.repositories.OrderRepository;
+import com.eventpool.common.entities.Event;
+import com.eventpool.common.repositories.EventRepository;
 
 public class EventTest extends BaseTest{
 	
 	@Resource
-	OrderRepository orderRepository;
+	EventRepository eventRepository;
+	
 	 
     @Test
     public void addEvent() {
-    System.out.println("Testing..");
-//    orderRepository.findAll();
+    	Event event = new Event();
+//    	event.setCategoryId(categoryId);
     }
     
 

@@ -5,19 +5,22 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PostPersist;
 import javax.persistence.PostUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
+
 import com.eventpool.common.type.EventInfoType;
+import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 
 @Entity
@@ -33,6 +36,15 @@ public class Event extends AuditableIdEntity {
 
 	@Column(name = "end_date", nullable = false)
 	Date endDate;
+	
+	
+	@Column(name="isActive",nullable=false)
+	@Type(type = "yes_no")
+	private Boolean isActive;
+	
+	@Column(name="status")
+	@Enumerated(EnumType.STRING)
+	private EventStatus status;
 
 	@Column(name = "description", length = 15000)
 	private String description;
@@ -42,37 +54,22 @@ public class Event extends AuditableIdEntity {
 	private EventType eventType;
 
 	@NotNull(message = "Can't be Empty")
-	@Column(name = "categoryId")
-	private Integer categoryId;
-
-	@NotNull(message = "Can't be Empty")
 	@Column(name = "sub_category_id")
 	private Integer subCategoryId;
 	
-	@Column(name = "image_url")
-	private String imageUrl;
+	@Column(name = "company_logo_url")
+	private String companyLogoUrl;
 
-	@Column(name = "image_size")
-	private Integer imageSize;
-
-	@Column(name = "image_orientation")
-	private String imageOrientation;
-	
 	@Column(name = "banner_url")
 	private String bannerUrl;
 
-	@Column(name = "banner_size")
-	private Integer bannerSize;
 
-	@Column(name = "banner_orientation")
-	private String bannerOrientation;
-	
 	@Column(name = "venue_name")
 	private String venueName;
 	
-	@Embedded
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="address_id")
 	private Address venueAddress;
-	
 	
 	@Column(name = "organizer_name")
 	private String organizerName;
@@ -80,7 +77,7 @@ public class Event extends AuditableIdEntity {
 	@Column(name = "organizer_description", length = 15000)
 	private String organizerDescription;
 	
-	@Column(name = "contact_details")
+	@Column(name = "contact_details",length=1000)
 	private String contactDetails;
 	
 	@Column(name="event_info_type")
@@ -91,6 +88,8 @@ public class Event extends AuditableIdEntity {
 	@JoinColumn(name="event_id",referencedColumnName="id")
 	private List<Ticket> tickets;
 	
+	@Column(name="terms_conditions",length=1500)
+	private String termsAndConditions;
 
 	public String getTitle() {
 		return title;
@@ -126,13 +125,6 @@ public class Event extends AuditableIdEntity {
 
 
 
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
 
 	public Integer getSubCategoryId() {
 		return subCategoryId;
@@ -142,29 +134,6 @@ public class Event extends AuditableIdEntity {
 		this.subCategoryId = subCategoryId;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-	public Integer getImageSize() {
-		return imageSize;
-	}
-
-	public void setImageSize(Integer imageSize) {
-		this.imageSize = imageSize;
-	}
-
-	public String getImageOrientation() {
-		return imageOrientation;
-	}
-
-	public void setImageOrientation(String imageOrientation) {
-		this.imageOrientation = imageOrientation;
-	}
 
 	public String getBannerUrl() {
 		return bannerUrl;
@@ -174,20 +143,21 @@ public class Event extends AuditableIdEntity {
 		this.bannerUrl = bannerUrl;
 	}
 
-	public Integer getBannerSize() {
-		return bannerSize;
+
+	public String getCompanyLogoUrl() {
+		return companyLogoUrl;
 	}
 
-	public void setBannerSize(Integer bannerSize) {
-		this.bannerSize = bannerSize;
+	public void setCompanyLogoUrl(String companyLogoUrl) {
+		this.companyLogoUrl = companyLogoUrl;
 	}
 
-	public String getBannerOrientation() {
-		return bannerOrientation;
+	public String getTermsAndConditions() {
+		return termsAndConditions;
 	}
 
-	public void setBannerOrientation(String bannerOrientation) {
-		this.bannerOrientation = bannerOrientation;
+	public void setTermsAndConditions(String termsAndConditions) {
+		this.termsAndConditions = termsAndConditions;
 	}
 
 	public String getVenueName() {
@@ -255,6 +225,24 @@ public class Event extends AuditableIdEntity {
 
 	public void setInfoType(EventInfoType infoType) {
 		this.infoType = infoType;
+	}
+	
+	
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public EventStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(EventStatus status) {
+		this.status = status;
 	}
 
 	@PostUpdate

@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
+
 import com.eventpool.common.type.TicketType;
 
 @Entity
@@ -19,7 +21,7 @@ public class Ticket extends AuditableIdEntity{
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "description")
+	@Column(name = "description",length=1000)
 	private String description;
 	
 	@Column(name = "sale_start", nullable = false)
@@ -28,8 +30,10 @@ public class Ticket extends AuditableIdEntity{
 	@Column(name = "sale_end", nullable = false)
 	Date saleEnd;
 	
-	@Column(name = "type")
-    private String type;
+	
+	@Column(name="isActive",nullable=false)
+	@Type(type = "yes_no")
+	private Boolean isActive;
 	
 	@Column(name = "quantity")
 	private Integer quantity;
@@ -79,13 +83,6 @@ public class Ticket extends AuditableIdEntity{
 	}
 
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
 
 	public Integer getQuantity() {
 		return quantity;
@@ -127,5 +124,14 @@ public class Ticket extends AuditableIdEntity{
 		this.maxQty = maxQty;
 	}
 
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	
 	
 }

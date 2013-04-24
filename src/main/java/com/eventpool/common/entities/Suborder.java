@@ -33,8 +33,6 @@ public class Suborder extends AuditableIdEntity {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 	
-	@Column(name = "categoryId")
-	private Integer categoryId;
 
 	@Column(name = "sub_category_id")
 	private Integer subCategoryId;
@@ -81,12 +79,13 @@ public class Suborder extends AuditableIdEntity {
 		this.quantity = quantity;
 	}
 
-	public Integer getCategoryId() {
-		return categoryId;
+
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public Integer getSubCategoryId() {

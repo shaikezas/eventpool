@@ -1,20 +1,15 @@
 package com.eventpool.common.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-import com.eventpool.common.annotation.EmailAddressValidation;
-
-@Embeddable
-@MappedSuperclass
-public class Address implements Serializable{
+@Entity
+@Table(name = "address")
+public class Address extends IdEntity{
 
 
 	@NotNull
@@ -26,16 +21,11 @@ public class Address implements Serializable{
 	private String address2;
 	
 	@NotNull
-	@Column(name = "city")
-	private String city;
+	@Column(name = "cityId")
+	private Long cityId;
 	
-	@NotNull
-	@Column(name = "state")
-	private String state;
-	
-	@NotNull
-	@Column(name = "country")
-	private String country;
+	@Column(name="mapUrl")
+	private String mapUrl;
 	
 	@NotNull
 	@Column(name="zipcode")
@@ -45,12 +35,6 @@ public class Address implements Serializable{
 
 	@Column(name="phonenumber")
 	private String phoneNumber;
-	
-	@NotNull
-	@EmailAddressValidation
-	@Column(name="email")
-	@Size(max=255)
-	private String email;
 	
 	@Column(name="fax")
 	private String fax;
@@ -75,30 +59,6 @@ public class Address implements Serializable{
 	}
 
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
 	public Long getZipCode() {
 		return zipCode;
 	}
@@ -116,14 +76,6 @@ public class Address implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getFax() {
 		return fax;
 	}
@@ -139,6 +91,24 @@ public class Address implements Serializable{
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+
+	public Long getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getMapUrl() {
+		return mapUrl;
+	}
+
+	public void setMapUrl(String mapUrl) {
+		this.mapUrl = mapUrl;
+	}
 	
 
+	
+	
 }

@@ -1,13 +1,24 @@
 package com.eventpool.common.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.eventpool.common.annotation.EmailAddressValidation;
+import com.eventpool.common.type.CurrencyType;
 
 
 @Entity
@@ -19,8 +30,8 @@ public class Order extends AuditableIdEntity {
 	private String firstName;
 	
 	@NotNull
-	@Column(name="buyer_second_name")
-	private String secondName;
+	@Column(name="buyer_last_name")
+	private String lastName;
 	
 	@NotNull
 	@EmailAddressValidation
@@ -28,7 +39,8 @@ public class Order extends AuditableIdEntity {
 	@Size(max=255)
 	private String email;
 	
-	@Embedded
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="address_id")
 	private Address billingAddress;
 	
 	
@@ -44,8 +56,13 @@ public class Order extends AuditableIdEntity {
 	@Column(name="discount_coupon")
 	private Integer dicountCoupon;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name="payment_currency")
-	private String paymentCurrency;
+	private CurrencyType paymentCurrency;
+	
+	@OneToMany(fetch = FetchType.EAGER,cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name="order_id",referencedColumnName="id")
+	private List<Suborder> suborders;
 
 	public String getFirstName() {
 		return firstName;
@@ -53,14 +70,6 @@ public class Order extends AuditableIdEntity {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-
-	public String getSecondName() {
-		return secondName;
-	}
-
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
 	}
 
 	public String getEmail() {
@@ -112,13 +121,39 @@ public class Order extends AuditableIdEntity {
 		this.dicountCoupon = dicountCoupon;
 	}
 
-	public String getPaymentCurrency() {
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public CurrencyType getPaymentCurrency() {
 		return paymentCurrency;
 	}
 
-	public void setPaymentCurrency(String paymentCurrency) {
+	public void setPaymentCurrency(CurrencyType paymentCurrency) {
 		this.paymentCurrency = paymentCurrency;
 	}
+
+	public List<Suborder> getSuborders() {
+		return suborders;
+	}
 	
+	public void setSuborders(List<Suborder> suborders) {
+		this.suborders = suborders;
+	}
+	
+	@PostUpdate
+	@PostPersist
+	public void onPersist(){
+		List<Suborder> listOfSuborders = this.getSuborders();
+		if ( listOfSuborders!= null && listOfSuborders.size()>0){
+			for ( Suborder suborder : listOfSuborders){
+				suborder.setOrder(this);
+			}
+		}
+	}
 	
 }
