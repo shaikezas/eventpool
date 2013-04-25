@@ -14,9 +14,6 @@ public abstract class AuditableIdEntity extends IdEntity {
 	@Column(name = "CREATEDBY", length = 10)
 	private Long createdBy;
 	
-	@Column(name = "MODIFIEDDBY", length = 10)
-	private Long modifiedBy;
-
 	@Column(name = "CREATED_DATE", nullable = false)
 	private Date createdDate = new Date();
 
@@ -58,12 +55,4 @@ public abstract class AuditableIdEntity extends IdEntity {
 		this.createdBy = createdBy;
 	}
 	
-	public Long getModifiedBy() {
-		return modifiedBy;
-	}
-	
-	public void setModifiedBy(Long modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-
 }
