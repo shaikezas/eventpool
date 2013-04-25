@@ -1,4 +1,4 @@
-package com.eventpool.common.entities;
+package com.eventpool.common.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,39 +7,24 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "ADDRESS")
-public class Address extends IdEntity{
+public class AddressDTO extends IdDTO{
 
 
-	@NotNull
-	@Column(name="ADDR_LINE1")
 	private String address1;
 	
-	@NotNull
-	@Column(name="ADDR_LINE2")
 	private String address2;
 	
-	@NotNull
-	@Column(name = "CITYID")
 	private Long cityId;
 	
-	@Column(name="MAP_URL")
 	private String mapUrl;
 	
-	@NotNull
-	@Column(name="ZIP")
 	private Long zipCode;
 
-	@Column(name="PHONENUMBER")
 	private String phoneNumber;
 	
-	@Column(name="FAX")
 	private String fax;
 	
-	@Column(name="MOBILENUMBER")
 	private String mobileNumber;
-
 
 	public String getAddress1() {
 		return address1;
@@ -106,7 +91,7 @@ public class Address extends IdEntity{
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
 	}
-
+	
 
 	
 	

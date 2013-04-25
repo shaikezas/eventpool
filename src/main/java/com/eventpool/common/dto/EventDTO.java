@@ -1,91 +1,50 @@
-package com.eventpool.common.entities;
+package com.eventpool.common.dto;
 
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PostPersist;
-import javax.persistence.PostUpdate;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Type;
 
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 
-@Entity
-@Table(name = "EVENT")
-public class Event extends AuditableIdEntity {
+public class EventDTO extends AuditableIdDTO {
 
-	@NotNull(message = "Can't be Empty")
-	@Column(name = "TITLE")
 	private String title;
 
-	@Column(name = "START_DATE", nullable = false)
 	Date startDate;
 
-	@Column(name = "END_DATE", nullable = false)
 	Date endDate;
 	
-	
-	@Column(name="ACTIVE",nullable=false)
-	@Type(type = "yes_no")
 	private Boolean isActive;
 	
-	@Column(name="STATUS")
-	@Enumerated(EnumType.STRING)
 	private EventStatus status;
 
-	@Column(name = "DESCRIPTION", length = 15000)
 	private String description;
 
-	@Column(name="PAY_TYPE")
-	@Enumerated(EnumType.STRING)
 	private EventType eventType;
 
-	@NotNull(message = "Can't be Empty")
-	@Column(name = "SUBCATEGORY_ID")
 	private Integer subCategoryId;
 	
-	
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="event")
-	private Media media; 
+
+	private MediaDTO media; 
 
 	@Column(name = "VENUE_NAME")
 	private String venueName;
 	
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="VENUE_ADDRESS_ID",referencedColumnName="ID")
-	private Address venueAddress;
+	private AddressDTO venueAddress;
 	
-	@Column(name = "ORGANIZER_NAME")
 	private String organizerName;
 	
-	@Column(name = "ORGANIZER_DESCRIPTION", length = 15000)
 	private String organizerDescription;
 	
-	@Column(name = "CONTACT_DETAILS",length=1000)
 	private String contactDetails;
 	
-	@Column(name="ATTEND_TYPE")
-	@Enumerated(EnumType.STRING)
 	private EventInfoType infoType;
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name="EVENT_ID",referencedColumnName="ID")
-	private List<Ticket> tickets;
+	private List<TicketDTO> tickets;
 	
-	@Column(name="TERMS_CONDITIONS",length=1500)
 	private String termsAndConditions;
 
 	public String getTitle() {
@@ -149,11 +108,11 @@ public class Event extends AuditableIdEntity {
 	}
 
 	
-	public Address getVenueAddress() {
+	public AddressDTO getVenueAddress() {
 		return venueAddress;
 	}
 
-	public void setVenueAddress(Address venueAddress) {
+	public void setVenueAddress(AddressDTO venueAddress) {
 		this.venueAddress = venueAddress;
 	}
 
@@ -181,11 +140,11 @@ public class Event extends AuditableIdEntity {
 		this.contactDetails = contactDetails;
 	}
 
-	public List<Ticket> getTickets() {
+	public List<TicketDTO> getTickets() {
 		return tickets;
 	}
 
-	public void setTickets(List<Ticket> tickets) {
+	public void setTickets(List<TicketDTO> tickets) {
 		this.tickets = tickets;
 	}
 
@@ -225,22 +184,13 @@ public class Event extends AuditableIdEntity {
 		this.status = status;
 	}
 
-	@PostUpdate
-	@PostPersist
-	public void onPersist(){
-		List<Ticket> listOfTickets = this.getTickets();
-		if ( listOfTickets!= null && listOfTickets.size()>0){
-			for ( Ticket ticket : listOfTickets){
-				ticket.setEnventId(this.getId());
-			}
-		}
-	}
 
-	public Media getMedia() {
+
+	public MediaDTO getMedia() {
 		return media;
 	}
 
-	public void setMedia(Media media) {
+	public void setMedia(MediaDTO media) {
 		this.media = media;
 	}
 	

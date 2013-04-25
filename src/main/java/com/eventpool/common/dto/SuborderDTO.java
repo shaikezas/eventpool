@@ -1,4 +1,4 @@
-package com.eventpool.common.entities;
+package com.eventpool.common.dto;
 
 import java.util.List;
 
@@ -18,56 +18,38 @@ import javax.persistence.Table;
 
 import com.eventpool.common.type.OrderStatus;
 
-@Entity
-@Table(name = "SUBORDER")
-public class Suborder extends AuditableIdEntity {
+public class SuborderDTO extends AuditableIdDTO {
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="TICKET_ID",nullable = false)
-	private Ticket ticket;
+	private TicketDTO ticket;
 	
-	@Column(name = "QUANTITY", length = 11)
 	private Integer quantity;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_ID", nullable = false)
-    private Order order;
+    private OrderDTO order;
 	
 
-	@Column(name = "SUB_CATEGORY_ID")
 	private Integer subCategoryId;
 	
-	@Column(name="TICKET_PRICE")
 	private Double ticketPrice;
 
-	@Column(name="GROSS_AMOUNT")
 	private Double grossAmount;
 	
-	@Column(name="NET_AMOUNT")
 	private Double netAmount;
 	
-	@Column(name="DISCOUNT_AMOUNT")
 	private Double discountAmount;
 	
-	@Column(name="DISCOUNT_COUPON")
 	private Integer dicountCoupon;
 	
-	@Column(name="STATUS")
-	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
 	
-	@Column(name = "ORGANIZER_NAME")
 	private String organizerName;
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="SUBORDER_ID",referencedColumnName="ID")
-	private List<Registration> registrations;
+	private List<RegistrationDTO> registrations;
 
-	public Ticket getTicket() {
+	public TicketDTO getTicket() {
 		return ticket;
 	}
 
-	public void setTicket(Ticket ticket) {
+	public void setTicket(TicketDTO ticket) {
 		this.ticket = ticket;
 	}
 
@@ -80,11 +62,11 @@ public class Suborder extends AuditableIdEntity {
 	}
 
 
-	public Order getOrder() {
+	public OrderDTO getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(OrderDTO order) {
 		this.order = order;
 	}
 
@@ -152,23 +134,13 @@ public class Suborder extends AuditableIdEntity {
 		this.organizerName = organizerName;
 	}
 
-	public List<Registration> getRegistrations() {
+	public List<RegistrationDTO> getRegistrations() {
 		return registrations;
 	}
 
-	public void setRegistrations(List<Registration> registrations) {
+	public void setRegistrations(List<RegistrationDTO> registrations) {
 		this.registrations = registrations;
 	}
 	
-	@PostUpdate
-	@PostPersist
-	public void onPersist(){
-		List<Registration> listOfRegistrations = this.getRegistrations();
-		if ( listOfRegistrations!= null && listOfRegistrations.size()>0){
-			for ( Registration registration : listOfRegistrations){
-				registration.setSuborderId(this.getId());
-			}
-		}
-	}
 	
 }

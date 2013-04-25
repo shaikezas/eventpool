@@ -1,48 +1,26 @@
-package com.eventpool.common.entities;
+package com.eventpool.common.dto;
 
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.FetchMode;
+public class MediaDTO implements Serializable{
 
-@Entity
-@Table(name = "EVENT_MEDIA")
-public class Media implements Serializable{
-
-	
-	@Id
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="EVENT_ID",insertable=false,updatable=false)
-	private Event event;
-	
-
-	@Id
-	@Column(name = "EVENT_ID")
 	private Long eventId;
 
-	@Column(name = "COMPANY_LOGO_URL")
 	private String companyLogoUrl;
 
-	@Column(name = "BANNER_URL")
 	private String bannerUrl;
 	
-	@Column(name = "VIDEO_URL")
 	private String videoUrl;
 
-	@Column(name = "FACEBOOK_URL")
 	private String faceBookUrl;
 	
-	@Column(name = "OTHER_URL1")
 	private String otherUrl1;
 
-	@Column(name = "OTHER_URL2")
 	private String otherUrl2;
 
 	public Long getEventId() {
@@ -53,15 +31,6 @@ public class Media implements Serializable{
 		this.eventId = eventId;
 	}
 
-	
-
-	public Event getEvent() {
-		return event;
-	}
-
-	public void setEvent(Event event) {
-		this.event = event;
-	}
 	public String getCompanyLogoUrl() {
 		return companyLogoUrl;
 	}

@@ -1,4 +1,4 @@
-package com.eventpool.common.entities;
+package com.eventpool.common.dto;
 
 import java.util.List;
 
@@ -21,48 +21,30 @@ import com.eventpool.common.annotation.EmailAddressValidation;
 import com.eventpool.common.type.CurrencyType;
 
 
-@Entity
-@Table(name = "ORDER")
-public class Order extends AuditableIdEntity {
+public class OrderDTO extends AuditableIdDTO {
 
-	@NotNull
-	@Column(name="BUYER_FNAME")
 	private String firstName;
 	
-	@NotNull
-	@Column(name="BUYER_LNAME")
 	private String lastName;
 	
-	@NotNull
 	@EmailAddressValidation
-	@Column(name="BUYER_EMAIL")
 	@Size(max=255)
 	private String email;
 	
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="ADDRESS_ID")
-	private Address billingAddress;
+	private AddressDTO billingAddress;
 	
 	
-	@Column(name="GROSS_AMOUNT")
 	private Double grossAmount;
 	
-	@Column(name="NET_AMOUNT")
 	private Double netAmount;
 	
-	@Column(name="DISCOUNT_AMOUNT")
 	private Double discountAmount;
 	
-	@Column(name="DISCOUNT_COUPON")
 	private String dicountCoupon;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="PAYMENT_CURRENCY")
 	private CurrencyType paymentCurrency;
 	
-	@OneToMany(fetch = FetchType.EAGER,cascade={CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name="ORDER_ID",referencedColumnName="ID")
-	private List<Suborder> suborders;
+	private List<SuborderDTO> suborders;
 
 	public String getFirstName() {
 		return firstName;
@@ -80,11 +62,11 @@ public class Order extends AuditableIdEntity {
 		this.email = email;
 	}
 
-	public Address getBillingAddress() {
+	public AddressDTO getBillingAddress() {
 		return billingAddress;
 	}
 
-	public void setBillingAddress(Address billingAddress) {
+	public void setBillingAddress(AddressDTO billingAddress) {
 		this.billingAddress = billingAddress;
 	}
 
@@ -129,11 +111,11 @@ public class Order extends AuditableIdEntity {
 		this.paymentCurrency = paymentCurrency;
 	}
 
-	public List<Suborder> getSuborders() {
+	public List<SuborderDTO> getSuborders() {
 		return suborders;
 	}
 	
-	public void setSuborders(List<Suborder> suborders) {
+	public void setSuborders(List<SuborderDTO> suborders) {
 		this.suborders = suborders;
 	}
 
@@ -145,16 +127,5 @@ public class Order extends AuditableIdEntity {
 		this.dicountCoupon = dicountCoupon;
 	}
 	
-	@PostUpdate
-	@PostPersist
-	public void onPersist(){
-		List<Suborder> listOfSuborders = this.getSuborders();
-		if ( listOfSuborders!= null && listOfSuborders.size()>0){
-			for ( Suborder suborder : listOfSuborders){
-				suborder.setOrder(this);
-			}
-		}
-	}
-
 
 }

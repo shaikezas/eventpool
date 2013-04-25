@@ -1,37 +1,20 @@
-package com.eventpool.common.entities;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+package com.eventpool.common.dto;
 
 import com.eventpool.common.annotation.EmailAddressValidation;
 
 
-@Entity
-@Table(name = "REGISTRATION")
-public class Registration extends AuditableIdEntity {
+public class RegistrationDTO extends AuditableIdDTO {
 
 	
-	@NotNull
-	@Column(name="NAME")
 	private String name;
 	
-	@Column(name="COMPANY")
 	private String company;
 	
-	@NotNull
 	@EmailAddressValidation
-	@Column(name="EMAIL")
-	@Size(max=255)
 	private String email;
 	
-	@Column(name="PHONE")
 	private String phone;
 	
-	@Column(name="SUBORDER_ID")
 	private Long suborderId;
 
 	public String getName() {

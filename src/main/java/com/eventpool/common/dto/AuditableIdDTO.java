@@ -1,4 +1,4 @@
-package com.eventpool.common.entities;
+package com.eventpool.common.dto;
 
 import java.util.Date;
 
@@ -8,19 +8,14 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 
-@MappedSuperclass
-public abstract class AuditableIdEntity extends IdEntity {
+public abstract class AuditableIdDTO extends IdDTO {
 
-	@Column(name = "CREATEDBY", length = 10)
 	private Long createdBy;
 	
-	@Column(name = "MODIFIEDDBY", length = 10)
 	private Long modifiedBy;
 
-	@Column(name = "CREATED_DATE", nullable = false)
 	private Date createdDate = new Date();
 
-	@Column(name = "MODIFIED_DATE", nullable = false)
 	private Date modifiedDate = new Date();
 
 	@PreUpdate

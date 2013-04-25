@@ -11,7 +11,7 @@ public abstract class IdEntity extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name="ID")
 	private Long id;
 
 	
