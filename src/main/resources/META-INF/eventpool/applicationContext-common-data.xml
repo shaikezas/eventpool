@@ -49,16 +49,17 @@
 		<property name="persistenceXmlLocation" value="classpath:/META-INF/eventpool/persistence.xml" />
 
 
-		<!-- <property name="jpaProperties">
+		 <property name="jpaProperties">
 			<props>
-				<prop key="hibernate.ejb.naming_strategy">$EVENT_POOL{hibernate.naming_strategy}</prop> <prop key="hibernate.naming_strategy">$EVENT_POOL{hibernate.naming_strategy}</prop>
+				<!-- <prop key="hibernate.ejb.naming_strategy">$EVENT_POOL{hibernate.naming_strategy}</prop> --> 
+				<!-- <prop key="hibernate.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>  -->
 				<prop key="hibernate.dialect">$EVENT_POOL{hibernate.dialect}</prop>
 				<prop key="hibernate.generate_statistics">$EVENT_POOL{hibernate.generate_statistics}</prop>
 				<prop key="hibernate.cache.use_structured_entries">$EVENT_POOL{hibernate.cache.use_structured_entries}</prop>
 				<prop key="hibernate.show_sql">$EVENT_POOL{hibernate.show_sql}</prop>
 				 <prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">$EVENT_POOL{hibernate.format_sql}</prop>
-				 <prop key="hibernate.hbm2ddl.auto">$EVENT_POOL{hibernate.hbm2ddl.auto}</prop>
+				 <!-- <prop key="hibernate.hbm2ddl.auto">$EVENT_POOL{hibernate.hbm2ddl.auto}</prop> -->
 				<prop key="hibernate.cache.use_second_level_cache">$EVENT_POOL{hibernate.cache.use_second_level_cache}</prop>
 				<prop key="hibernate.cache.use_query_cache">$EVENT_POOL{hibernate.cache.use_query_cache}</prop>
 				<prop key="hibernate.cache.provider_class">$EVENT_POOL{hibernate.cache.provider_class}</prop>
@@ -73,7 +74,7 @@
 				<prop key="hibernate.connection.password">$EVENT_POOL{hibernate.connection.password}</prop>
 				<prop key="hibernate.connection.isolation">2</prop> 
 			</props>
-		</property> -->
+		</property> 
 	</bean>
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">

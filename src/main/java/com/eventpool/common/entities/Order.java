@@ -22,7 +22,7 @@ import com.eventpool.common.type.CurrencyType;
 
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "`ORDER`")
 public class Order extends AuditableIdEntity {
 
 	@NotNull
