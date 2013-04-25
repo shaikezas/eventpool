@@ -12,8 +12,6 @@ public abstract class AuditableIdDTO extends IdDTO {
 
 	private Long createdBy;
 	
-	private Long modifiedBy;
-
 	private Date createdDate = new Date();
 
 	private Date modifiedDate = new Date();
@@ -53,12 +51,5 @@ public abstract class AuditableIdDTO extends IdDTO {
 		this.createdBy = createdBy;
 	}
 	
-	public Long getModifiedBy() {
-		return modifiedBy;
-	}
-	
-	public void setModifiedBy(Long modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
 
 }

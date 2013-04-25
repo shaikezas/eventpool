@@ -35,7 +35,10 @@
                 <a href="#">Home</a>
               </li>
               <li class="active">
-                <a href="#">Create Event</a>
+                <a href="#/createevent">Create Event</a>
+              </li>
+              <li class="">
+                <a href="#/eventlist">My Events</a>
               </li>
               <li class="">
                 <a href="#">Attendee View</a>
@@ -64,196 +67,11 @@
    
 
 
-
+<div ng-view></div>
         	
         	
         	
-          <div class="tabBody">
-      
-            <h1>Create Event</h1>
-            
-            <ul id="myTab" class="nav nav-tabs">
-              <li class="active">	<a href="#eventInformation" data-toggle="tab">	Event Information	</a></li>
-              <li>					<a href="#venueInformation" data-toggle="tab">	Venue Information	</a></li>
-              <li>					<a href="#contactInformation" data-toggle="tab">Contact Information	</a></li>
-              <li>					<a href="#ticketInformation" data-toggle="tab">	Ticket Information	</a></li>
-              
-            </ul>
-            
-            <div id="myTabContent" class="tab-content">
-              <div class="tab-pane fade in active" id="eventInformation">
-                
-                
-                
-                
-                
-				<form class="form-horizontal">
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Event Title :</label>
-				    <div class="controls">
-				      <input type="text" id="inputEmail" >
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Start Date & Time :</label>
-				    <div class="controls">
-				      <input type="text" id="inputEmail" >
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">End Date & Time :</label>
-				    <div class="controls">
-				      <input type="text" id="inputEmail" >
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Description :</label>
-				    <div class="controls">
-				      <textarea rows="3" ></textarea>
-				    </div>
-				  </div>
-				  
-				  <div class="control-group ">
-				    <div class="controls">
-				      <label class="checkbox">
-				        <input type="checkbox">Is Event Private <br>
-				        <span class="info">(If Checked Event will not be available in search, You can directly give Event link for registration.)!</span>
-				      </label>
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Event Type :</label>
-				    <div class="controls">
-						<label class="radio">
-						  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Paid Event
-						</label>  
-						 <label class="radio">
-						  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" >		Free Event
-						 </label> 
-						  
-						 <label class="radio">
-						  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" >		No Registration
-						</label>
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Category :</label>
-				    <div class="controls">
-						  <select>
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-						  </select>
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Sub Category :</label>
-				    <div class="controls">
-				      	<select>
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-						  </select>
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Upload Banner :</label>
-				    <div class="controls">
-				      
-				       <input type="file" />
-				      
-				      
-				      
-				      
-				      
-				      
-				    </div>
-				  </div>
-				  
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Upload Thumbnail :</label>
-				    <div class="controls">
-				       <input type="file" />
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">URL :</label>
-				    <div class="controls">
-				      <input type="text" id="inputEmail" >
-				    </div>
-				  </div>
-				  
-				  
-				  
-				 
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  <div class="control-group">
-				    <div class="controls">
-				      <button type="submit" class="btn">Save & Exit</button> <button type="submit" class="btn">Next</button>
-				    </div>
-				  </div>
-				</form>
-				        
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-               
-              </div>
-              <div class="tab-pane fade" id="venueInformation">
-                <p>Venue Information</p>
-              </div>
-              
-              <div class="tab-pane fade" id="contactInformation">
-                <p>Contact Information</p>
-              </div>
-              <div class="tab-pane fade" id="ticketInformation">
-                <p>Ticket Information</p>
-              </div>
-              
-              
-            </div>
-          </div>
+          
 
 
 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
@@ -30,7 +32,6 @@ public class EventDTO extends AuditableIdDTO {
 
 	private MediaDTO media; 
 
-	@Column(name = "VENUE_NAME")
 	private String venueName;
 	
 	private AddressDTO venueAddress;
@@ -195,5 +196,8 @@ public class EventDTO extends AuditableIdDTO {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
+	}
 }

@@ -34,7 +34,8 @@ public class EventController {
 
     @RequestMapping(value = "/addEvent", method = RequestMethod.POST)
     public @ResponseBody void addEvent(@RequestBody Event event) {
-    	System.out.println("Adding event");
+    	System.out.println("Event name :"+event.getTitle());
+    	System.out.println("Adding event  :"+event.toString());
         eventService.addEvent(event);
     }
 
@@ -53,9 +54,13 @@ public class EventController {
         eventService.deleteAll();
     }
 
-    @RequestMapping("/layout")
-    public String getEventPartialPage(ModelMap modelMap) {
-    	System.out.println("Testing1");
-        return "events/layout";
+    @RequestMapping("/createevent")
+    public String getCreateEventPartialPage(ModelMap modelMap) {
+        return "events/createevent";
+    }
+    
+    @RequestMapping("/eventlist")
+    public String getEventListPartialPage(ModelMap modelMap) {
+        return "events/eventlist";
     }
 }
