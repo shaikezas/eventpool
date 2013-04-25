@@ -21,7 +21,7 @@ public class Address extends IdEntity{
 	private String address2;
 	
 	@NotNull
-	@Column(name = "CITYID")
+	@Column(name = "CITY_ID")
 	private Long cityId;
 	
 	@Column(name="MAP_URL")

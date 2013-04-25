@@ -4,8 +4,8 @@ package com.eventpool.common.type;
 public enum EventInfoType {
   
 
-  BASIC("Basic Information"),
-  ATTENDEE("Attendee Information");
+  BASIC("BASIC"),
+  ATTENDEE("ATTEND");
   
 
   private String description;

@@ -71,7 +71,7 @@ public class Event extends AuditableIdEntity {
 	@Column(name = "ORGANIZER_NAME")
 	private String organizerName;
 	
-	@Column(name = "ORGANIZER_DESCRIPTION", length = 15000)
+	@Column(name = "ORGANIZER_DESC", length = 15000)
 	private String organizerDescription;
 	
 	@Column(name = "CONTACT_DETAILS",length=1000)
