@@ -88,6 +88,9 @@ public class Event extends AuditableIdEntity {
 	@Column(name="TERMS_CONDITIONS",length=1500)
 	private String termsAndConditions;
 
+	@Column(name="KEY_WORDS",length=256)
+	private String keyWords;
+
 	public String getTitle() {
 		return title;
 	}
@@ -242,6 +245,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setMedia(Media media) {
 		this.media = media;
+	}
+
+	public String getKeyWords() {
+		return keyWords;
+	}
+
+	public void setKeyWords(String keyWords) {
+		this.keyWords = keyWords;
 	}
 	
 	
