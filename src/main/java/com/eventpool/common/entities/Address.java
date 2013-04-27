@@ -22,7 +22,7 @@ public class Address extends IdEntity{
 	
 	@NotNull
 	@Column(name = "CITY_ID")
-	private Long cityId;
+	private Integer cityId;
 	
 	@Column(name="MAP_URL")
 	private String mapUrl;
@@ -91,20 +91,20 @@ public class Address extends IdEntity{
 		this.mobileNumber = mobileNumber;
 	}
 
-	public Long getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(Long cityId) {
-		this.cityId = cityId;
-	}
-
 	public String getMapUrl() {
 		return mapUrl;
 	}
 
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
+	}
+
+	public Integer getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
 	}
 
 

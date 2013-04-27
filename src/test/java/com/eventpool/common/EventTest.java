@@ -1,6 +1,8 @@
 package com.eventpool.common;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
@@ -45,7 +48,7 @@ public class EventTest extends BaseTest{
     	Address venueAddress = new Address();
     	venueAddress.setAddress1("adr1");
     	venueAddress.setAddress2("addr2");
-    	venueAddress.setCityId(1L);
+    	venueAddress.setCityId(1);
     	venueAddress.setFax("fax");
     	venueAddress.setMapUrl("mapUrl");
     	venueAddress.setMobileNumber("molenumbe");
@@ -53,6 +56,24 @@ public class EventTest extends BaseTest{
     	venueAddress.setZipCode(12345L);
     	event.setVenueAddress(venueAddress);
     	event.setVenueName("venue name");
+    	
+    	Ticket ticket = new Ticket();
+    	ticket.setCreatedBy(0L);
+    	ticket.setCreatedDate(new Date());
+    	ticket.setDescription("descriptions");
+    	ticket.setIsActive(true);
+    	ticket.setMaxQty(10);
+    	ticket.setMinQty(2);
+    	ticket.setModifiedDate(new Date());
+    	ticket.setName("name");
+    	ticket.setPrice(2.3d);
+    	ticket.setQuantity(100);
+    	ticket.setSaleEnd(new Date());
+    	ticket.setSaleStart(new Date());
+
+    	List<Ticket> tickets = new ArrayList<Ticket>();
+    	tickets.add(ticket);
+    	event.setTickets(tickets);
     	eventRepository.save(event);
     }
     
