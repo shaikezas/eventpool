@@ -64,7 +64,7 @@ public class Event extends AuditableIdEntity {
 	@Column(name = "VENUE_NAME")
 	private String venueName;
 	
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
 	@JoinColumn(name="VENUE_ADDRESS_ID",referencedColumnName="ID")
 	private Address venueAddress;
 	

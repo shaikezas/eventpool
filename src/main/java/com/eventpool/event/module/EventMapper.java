@@ -46,4 +46,32 @@ public class EventMapper {
 			eventDTO.setTickets(ticketDTOs);
 		}
 	}
+	
+	@Transactional()
+	public void mapEvent(EventDTO eventDTO,Event event){
+		mapper.map(eventDTO,event);
+		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
+		if(ticketDTOs!=null && ticketDTOs.size()>0){
+			List<Ticket> tickets = event.getTickets();
+			for(TicketDTO ticketDTO:ticketDTOs){
+				boolean found = false;
+				if(tickets!=null && tickets.size()>0){
+					for(Ticket ticket:tickets){
+						if(ticket.getId()!=null && ticket.getId().compareTo(ticketDTO.getId())==0){
+							mapper.map(ticketDTO, ticket);
+							found = true;
+						}
+					}
+				}else{
+					tickets = new ArrayList<Ticket>();
+					event.setTickets(tickets);
+				}
+				if(!found){
+					Ticket ticket = new Ticket();
+					mapper.map(ticketDTO, ticket);
+					tickets.add(ticket);
+				}
+			}
+		}
+	}
 }
