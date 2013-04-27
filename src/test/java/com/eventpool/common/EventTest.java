@@ -7,9 +7,12 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Ticket;
@@ -17,12 +20,15 @@ import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.event.module.EventMapper;
 
 public class EventTest extends BaseTest{
 	
 	@Resource
 	EventRepository eventRepository;
 	
+	@Resource
+	EventMapper eventMapper;
 	 
     @Test
     @Transactional
@@ -77,5 +83,13 @@ public class EventTest extends BaseTest{
     	eventRepository.save(event);
     }
     
+    @Test
+    @Transactional(readOnly=true)
+    public void getEventDTO(){
+    	Event event = eventRepository.findOne(1L);
+    	EventDTO eventDTO = new EventDTO();
+    	eventMapper.mapEventDTO(event, eventDTO);
+    	log.info(eventDTO.toString());
+    }
 
 }

@@ -17,7 +17,6 @@ import org.hibernate.annotations.FetchMode;
 public class Media implements Serializable{
 
 	
-	@Id
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="EVENT_ID",insertable=false,updatable=false)
 	private Event event;

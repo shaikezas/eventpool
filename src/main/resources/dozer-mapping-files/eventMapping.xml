@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+    <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Event</class-a>
+        <class-b>com.eventpool.common.dto.EventDTO</class-b>
+  			<field><a>title</a><b>title</b></field>
+			<field><a>startDate</a><b>startDate</b></field>
+			<field><a>endDate</a><b>endDate</b></field>
+			<field><a>isActive</a><b>isActive</b></field>
+			<field><a>status</a><b>status</b></field>
+			<field><a>description</a><b>description</b></field>
+			<field><a>eventType</a><b>eventType</b></field>
+			<field><a>subCategoryId</a><b>subCategoryId</b></field>
+			<field><a>media</a><b>media</b></field>
+			<field><a>venueName</a><b>venueName</b></field>
+			<field><a>venueAddress</a><b>venueAddress</b></field>
+			<field><a>organizerName</a><b>organizerName</b></field>
+			<field><a>organizerDescription</a><b>organizerDescription</b></field>
+			<field><a>contactDetails</a><b>contactDetails</b></field>
+			<field><a>infoType</a><b>infoType</b></field>
+			<field><a>termsAndConditions</a><b>termsAndConditions</b></field>
+			<field><a>keyWords</a><b>keyWords</b></field>
+    </mapping>
+
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Media</class-a>
+        <class-b>com.eventpool.common.dto.MediaDTO</class-b>
+  			<field><a>eventId        </a><b>eventId       </b></field>
+			<field><a>companyLogoUrl </a><b>companyLogoUrl</b></field>
+			<field><a>bannerUrl      </a><b>bannerUrl     </b></field>
+			<field><a>videoUrl       </a><b>videoUrl      </b></field>
+			<field><a>faceBookUrl    </a><b>faceBookUrl   </b></field>
+			<field><a>otherUrl1      </a><b>otherUrl1     </b></field>
+			<field><a>otherUrl2      </a><b>otherUrl2     </b></field>
+    </mapping>
+
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Ticket</class-a>
+        <class-b>com.eventpool.common.dto.TicketDTO</class-b>
+  			<field><a>name        </a><b>name        </b></field>
+			<field><a>description </a><b>description </b></field>
+			<field><a>saleStart    </a><b>saleStart   </b></field>
+			<field><a>saleEnd      </a><b>saleEnd     </b></field>
+			<field><a>isActive    </a><b>isActive    </b></field>
+			<field><a>quantity    </a><b>quantity    </b></field>
+			<field><a>enventId    </a><b>enventId    </b></field>
+			<field><a>price       </a><b>price       </b></field>
+			<field><a>minQty      </a><b>minQty      </b></field>
+			<field><a>maxQty      </a><b>maxQty      </b></field>
+    </mapping>
+
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Address</class-a>
+        <class-b>com.eventpool.common.dto.AddressDTO</class-b>
+			<field><a>address1    </a><b>address1    </b></field>
+			<field><a>address2    </a><b>address2    </b></field>
+			<field><a>cityId      </a><b>cityId      </b></field>
+			<field><a>mapUrl      </a><b>mapUrl      </b></field>
+			<field><a>zipCode     </a><b>zipCode     </b></field>
+			<field><a>phoneNumber </a><b>phoneNumber </b></field>
+			<field><a>fax         </a><b>fax         </b></field>
+			<field><a>mobileNumber</a><b>mobileNumber</b></field>
+	</mapping>
+</mappings>

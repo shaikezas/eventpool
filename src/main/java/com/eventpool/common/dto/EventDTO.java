@@ -47,7 +47,7 @@ public class EventDTO extends AuditableIdDTO {
 	private List<TicketDTO> tickets;
 	
 	private String termsAndConditions;
-
+	private String keyWords;
 	public String getTitle() {
 		return title;
 	}
@@ -199,5 +199,13 @@ public class EventDTO extends AuditableIdDTO {
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
+	}
+
+	public String getKeyWords() {
+		return keyWords;
+	}
+
+	public void setKeyWords(String keyWords) {
+		this.keyWords = keyWords;
 	}
 }
