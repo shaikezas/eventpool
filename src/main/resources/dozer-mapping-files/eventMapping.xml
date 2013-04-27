@@ -24,6 +24,7 @@
 			<field><a>infoType</a><b>infoType</b></field>
 			<field><a>termsAndConditions</a><b>termsAndConditions</b></field>
 			<field><a>keyWords</a><b>keyWords</b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">
@@ -52,6 +53,7 @@
 			<field><a>price       </a><b>price       </b></field>
 			<field><a>minQty      </a><b>minQty      </b></field>
 			<field><a>maxQty      </a><b>maxQty      </b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">

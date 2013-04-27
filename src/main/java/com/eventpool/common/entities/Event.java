@@ -2,6 +2,7 @@ package com.eventpool.common.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -184,15 +185,7 @@ public class Event extends AuditableIdEntity {
 		this.contactDetails = contactDetails;
 	}
 
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
 
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
-	}
-
-	
 	
 	public EventType getEventType() {
 		return eventType;
@@ -253,6 +246,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setKeyWords(String keyWords) {
 		this.keyWords = keyWords;
+	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
 	
 	

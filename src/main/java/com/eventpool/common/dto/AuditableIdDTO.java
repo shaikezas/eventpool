@@ -16,17 +16,6 @@ public abstract class AuditableIdDTO extends IdDTO {
 
 	private Date modifiedDate = new Date();
 
-	@PreUpdate
-	public void onUpdate(){
-		this.setModifiedDate(new Date());
-	}
-
-	@PrePersist
-	public void onPersist(){
-		setCreatedDate(new Date());
-		onUpdate();
-	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}

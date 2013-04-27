@@ -37,6 +37,7 @@ public class Ticket extends AuditableIdEntity{
 	@Column(name = "QUANTITY")
 	private Integer quantity;
 	
+	@NotNull
 	@Column(name="EVENT_ID")
 	private Long enventId;
 	

@@ -14,7 +14,7 @@ public class AddressDTO extends IdDTO{
 	
 	private String address2;
 	
-	private Long cityId;
+	private Integer cityId;
 	
 	private String mapUrl;
 	
@@ -76,20 +76,20 @@ public class AddressDTO extends IdDTO{
 		this.mobileNumber = mobileNumber;
 	}
 
-	public Long getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(Long cityId) {
-		this.cityId = cityId;
-	}
-
 	public String getMapUrl() {
 		return mapUrl;
 	}
 
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
+	}
+
+	public Integer getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
 	}
 	
 

@@ -1,7 +1,9 @@
 package com.eventpool.event.module;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
@@ -47,7 +49,6 @@ public class EventMapper {
 		}
 	}
 	
-	@Transactional()
 	public void mapEvent(EventDTO eventDTO,Event event){
 		mapper.map(eventDTO,event);
 		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
