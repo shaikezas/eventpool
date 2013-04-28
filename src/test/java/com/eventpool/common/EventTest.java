@@ -24,7 +24,9 @@ import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.event.module.EventApi;
 import com.eventpool.event.module.EventMapper;
+import com.eventpool.web.controller.EventController;
 
 public class EventTest extends BaseTest{
 	
@@ -33,7 +35,13 @@ public class EventTest extends BaseTest{
 	
 	@Resource
 	EventMapper eventMapper;
-	 
+	
+	@Resource
+	EventApi eventApi;
+	
+	@Resource
+	EventController evEventController;
+	
     @Test
     @Transactional
     @Rollback(false)
@@ -147,10 +155,11 @@ public class EventTest extends BaseTest{
     	tickets.add(ticket);
     	event.setTickets(tickets);
     	
-    	Event eventEntity = new Event();
+/*    	Event eventEntity = new Event();
     	eventMapper.mapEvent(event, eventEntity);
     	eventRepository.save(eventEntity);
-
-    	
+*/
+    	//eventApi.saveEventDTO(event);
+    	evEventController.addEvent(event);
     }
 }

@@ -2,6 +2,8 @@ package com.eventpool.web.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
 
 /**
@@ -23,24 +26,24 @@ import com.eventpool.common.entities.Event;
 @RequestMapping("/events")
 public class EventController {
 
-    @Autowired
+    @Resource(name="EventService")
     private EventService eventService;
 
     @RequestMapping("eventslist.json")
-    public @ResponseBody List<Event> getEventList() {
+    public @ResponseBody List<EventDTO> getEventList() {
     	System.out.println("Getting events "+eventService.getAllEvents().size());
         return eventService.getAllEvents();
     }
 
     @RequestMapping(value = "/addEvent", method = RequestMethod.POST)
-    public @ResponseBody void addEvent(@RequestBody Event event) {
+    public @ResponseBody void addEvent(@RequestBody EventDTO event) {
     	System.out.println("Event name :"+event.getTitle());
     	System.out.println("Adding event  :"+event.toString());
         eventService.addEvent(event);
     }
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
-    public @ResponseBody void updateEvent(@RequestBody Event event) {
+    public @ResponseBody void updateEvent(@RequestBody EventDTO event) {
         eventService.updateEvent(event);
     }
 

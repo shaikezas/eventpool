@@ -2,6 +2,7 @@ package com.eventpool.web.controller;
 
 import java.util.List;
 
+import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
 
 /**
@@ -11,15 +12,15 @@ import com.eventpool.common.entities.Event;
  * Time: 12:20 AM
  */
 public interface EventService {
-    public List<Event> getAllEvents();
+    public List<EventDTO> getAllEvents();
 
-    public Event getEventById(Long id);
+    public EventDTO getEventById(Long id);
 
-    public void addEvent(Event Event);
+    public void addEvent(EventDTO Event);
 
     public void deleteEventById(Long id);
 
     public void deleteAll();
 
-    public void updateEvent(Event Event);
+    public void updateEvent(EventDTO Event);
 }

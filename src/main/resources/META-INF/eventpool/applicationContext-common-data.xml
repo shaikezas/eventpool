@@ -25,11 +25,12 @@
 	</bean>
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.eventpool.common,com.eventpool.event" />
+	<context:component-scan base-package="com.eventpool" /> 
 
 	<jpa:repositories base-package="com.eventpool.common.repositories"
 		entity-manager-factory-ref="entityManagerFactory"
 		transaction-manager-ref="transactionManager" >
+		
 	</jpa:repositories>
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>

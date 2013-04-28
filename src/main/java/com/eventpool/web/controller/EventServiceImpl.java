@@ -3,9 +3,17 @@ package com.eventpool.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.repositories.EventRepository;
+import com.eventpool.event.module.EventApi;
+import com.eventpool.event.module.EventMapper;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,24 +23,28 @@ import com.eventpool.common.entities.Event;
  */
 @Service("EventService")
 public class EventServiceImpl implements EventService {
-    private static List<Event> eventList = new ArrayList<Event>();
+    private static List<EventDTO> eventList = new ArrayList<EventDTO>();
     private static Long id = 0L;
 
-    public List<Event> getAllEvents() {
+    @Resource
+    private EventApi eventApi;
+    
+    public List<EventDTO> getAllEvents() {
         return eventList;
     }
 
-    public Event getEventById(Long id) {
+    public EventDTO getEventById(Long id) {
         return findEventById(id);
     }
 
-    public void addEvent(Event Event) {
-        Event.setId(++id);
-        eventList.add(Event);
+    public void addEvent(EventDTO event) {
+    	eventList.add(event);
+    	id++;
+    	//eventApi.saveEventDTO(event);
     }
 
     public void deleteEventById(Long id) {
-        Event foundEvent = findEventById(id);
+        EventDTO foundEvent = findEventById(id);
         if (foundEvent != null) {
             eventList.remove(foundEvent);
             id--;
@@ -44,18 +56,18 @@ public class EventServiceImpl implements EventService {
         id = 0L;
     }
 
-    public void updateEvent(Event Event) {
-        Event foundEvent = findEventById(Event.getId());
+    public void updateEvent(EventDTO event) {
+        EventDTO foundEvent = findEventById(event.getId());
         if (foundEvent != null) {
             eventList.remove(foundEvent);
-            eventList.add(Event);
+            eventList.add(event);
         }
     }
 
-    private Event findEventById(Long id) {
-        for (Event Event : eventList) {
-            if (Event.getId() == id) {
-                return Event;
+    private EventDTO findEventById(Long id) {
+        for (EventDTO event : eventList) {
+            if (event.getId() == id) {
+                return event;
             }
         }
 
