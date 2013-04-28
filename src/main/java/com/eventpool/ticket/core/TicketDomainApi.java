@@ -1,11 +1,11 @@
 package com.eventpool.ticket.core;
 
 import com.eventpool.common.entities.TicketInventoryDetails;
-import com.eventpool.ticket.commands.TicketSoldCommand;
+import com.eventpool.ticket.commands.TicketOrderCommand;
 
 public interface TicketDomainApi {
 	
 	
-	 TicketInventoryDetails updateTicketSold(TicketSoldCommand cmd);
+	 TicketInventoryDetails updateTicketOrder(TicketOrderCommand cmd);
 }
 

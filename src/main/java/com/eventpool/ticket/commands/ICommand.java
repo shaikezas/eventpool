@@ -3,7 +3,7 @@ package com.eventpool.ticket.commands;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlSeeAlso({TicketSoldCommand.class})
+@XmlSeeAlso({TicketOrderCommand.class})
 //@XmlRootElement
 public interface ICommand {
 

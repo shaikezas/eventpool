@@ -14,7 +14,7 @@ import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
-import com.eventpool.ticket.commands.TicketSoldCommand;
+import com.eventpool.ticket.commands.TicketOrderCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 
 public class TicketServiceTest extends BaseTest{
@@ -24,7 +24,7 @@ public class TicketServiceTest extends BaseTest{
 	
 	@Test
     public void updateTicketInventory() throws Exception {
-		inventoryService.executeCommand(new TicketSoldCommand());
+		inventoryService.executeCommand(new TicketOrderCommand());
 	}
     
 
