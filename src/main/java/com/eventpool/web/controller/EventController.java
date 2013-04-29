@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.EventDTO;
-import com.eventpool.common.entities.Event;
 
 /**
  * Created with IntelliJ IDEA.
@@ -59,11 +57,33 @@ public class EventController {
 
     @RequestMapping("/createevent")
     public String getCreateEventPartialPage(ModelMap modelMap) {
+    	System.out.println("Create Eent");
         return "events/createevent";
     }
     
     @RequestMapping("/eventlist")
     public String getEventListPartialPage(ModelMap modelMap) {
+    	System.out.println("Event list");
         return "events/eventlist";
     }
+    
+    @RequestMapping("/myevents")
+    public String getMyEventListPartialPage(ModelMap modelMap) {
+    	System.out.println("My Events");
+        return "events/myevents";
+    }
+    
+
+    @RequestMapping("/findevent")
+    public String getFindEventPartialPage(ModelMap modelMap) {
+    	System.out.println("Find event");
+        return "events/findevent";
+    }
+    
+    @RequestMapping("/mytickets")
+    public String getMyTicketsPartialPage(ModelMap modelMap) {
+    	System.out.println("My tickets");
+        return "ticket/mytickets";
+    }
+    
 }

@@ -1,7 +1,8 @@
 <div class="alert alert-error" ng-show="error">
     {{errorMessage}}
 </div>
-<div class="tabBody">
+
+          <div class="tabBody">
       
             <h1>Create Event</h1>
             
@@ -20,7 +21,7 @@
 				  <div class="control-group">
 				    <label class="control-label" for="inputEmail">Event Title :</label>
 				    <div class="controls">
-				      <input type="text" id="inputEmail" ng-model="event.title" placeholder="Title" required min="2" >
+				       <input type="text" id="inputEmail" ng-model="event.title" placeholder="Title" required min="2" >
 				    </div>
 				  </div>
 				  
@@ -42,13 +43,6 @@
 				    <label class="control-label" for="inputEmail">Description :</label>
 				    <div class="controls">
 				      <textarea rows="3"   ng-model="event.description" placeholder="Description" required min="2"></textarea>
-				    </div>
-				  </div>
-				  
-				   <div class="control-group">
-				    <label class="control-label" for="inputEmail">Venue Name :</label>
-				    <div class="controls">
-				      <textarea rows="3"   ng-model="event.venueName" placeholder="Venue Name" required min="2"></textarea>
 				    </div>
 				  </div>
 				  
@@ -131,29 +125,277 @@
 				    </div>
 				  </div>
 				  
+				  
+				  
+				 
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
 				  <div class="control-group">
 				    <div class="controls">
-				      <button type="submit" class="btn">Save & Exit</button> <button type="button" class="btn" ng-disabled="!event.title || !event.description" ng-hide="editMode" ng-click="addNewEvent(event)">Next</button>
+				      <button type="submit" class="btn">Save & Exit</button>
+				       <button type="button" class="btn" ng-disabled="!event.title || !event.description" ng-hide="editMode" ng-click="addNewEvent(event)">Next</button>
 				    </div>
 				  </div>
 				</form>
 				        
-                
-                
-                
-               
-              </div>
+               </div>
               <div class="tab-pane fade" id="venueInformation">
-                <p>Venue Information</p>
+                
+
+				<form class="form-horizontal">
+				  
+				  <div class="control-group ">
+				    <div class="controls">
+				      <label class="checkbox">
+				        <input type="checkbox">Is Webinar <br>
+				        
+				      </label>
+				    </div>
+				  </div>
+				  
+				   <div class="control-group">
+				    <label class="control-label" for="inputEmail">Venue Name :</label>
+				    <div class="controls">
+				      <textarea rows="3"   ng-model="event.venueName" placeholder="Venue Name" required min="2"></textarea>
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Venue Address :*</label>
+				    <div class="controls">
+				      <textarea rows="3" ></textarea>
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Country :*</label>
+				    <div class="controls">
+						  <select>
+							  <option>Select Country</option>
+						  </select>
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">State :*</label>
+				    <div class="controls">
+						  <select>
+							  <option>Select State</option>
+						  </select>
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">City :*</label>
+				    <div class="controls">
+						  <select>
+							  <option>Select City</option>
+						  </select>
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Locality :</label>
+				    <div class="controls">
+						  <select>
+							  <option>Select Locality</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+						  </select>
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Pincode  :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <div class="controls">
+				      <button type="submit" class="btn">Save & Exit</button>
+				       <button type="button" class="btn" ng-disabled="!event.title || !event.description" ng-hide="editMode" ng-click="addNewEvent(event)">Next</button>
+				    </div>
+				  </div>
+				  
+				</form>
+
+
+
+
               </div>
               
               <div class="tab-pane fade" id="contactInformation">
-                <p>Contact Information</p>
+                
+					<form class="form-horizontal">
+				  
+				  
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Enter Name(s), Phone or Email:*</label>
+				    <div class="controls">
+				      <textarea rows="3" ></textarea>
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">More Email Id`s for Reports :</label>
+				    <div class="controls">
+						  <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Event Website URL :</label>
+				    <div class="controls">
+						  <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Event Facebook Link :</label>
+				    <div class="controls">
+						  <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  
+				  
+				  
+				 
+				  
+				  <div class="control-group">
+				    <div class="controls">
+				      <button type="submit" class="btn">Save & Exit</button>
+				       <button type="button" class="btn" ng-disabled="!event.title || !event.description" ng-hide="editMode" ng-click="addNewEvent(event)">Next</button>
+				    </div>
+				  </div>
+				  
+				</form>
+
+
+
+
               </div>
               <div class="tab-pane fade" id="ticketInformation">
-                <p>Ticket Information</p>
+                
+				<form class="form-horizontal">
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Ticket Name :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Description :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Sale Start on :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Sale End on :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Price :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >Enter the Price value without "," or "Rs" For eg. 1000 , Enter 0 for free tickets,
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Add Service Tax :</label>
+				    <div class="controls">
+				      <label class="checkbox">
+				        <input type="checkbox">
+				        
+				      </label>
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Maximum Quantity on Sale :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >Enter total number of Registrations allowed
+				    </div>
+				  </div>
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Minimum Quantity :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Maximum Quantity :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >Setup limitations on quantity per sale
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="control-group">
+				    <label class="control-label" for="inputEmail">Display Order :</label>
+				    <div class="controls">
+				      <input type="text" id="inputEmail" >Display Order of Tickets
+				    </div>
+				  </div>
+				  
+				 
+				  
+				  <div class="control-group">
+				    <div class="controls">
+				      <button type="submit" class="btn">Save & Exit</button>
+				       <button type="button" class="btn" ng-disabled="!event.title || !event.description" ng-hide="editMode" ng-click="addNewEvent(event)">Next</button>
+				    </div>
+				  </div>
+				  
+				</form>
+
+
               </div>
               
               
             </div>
           </div>
+
+
+
+
+
+
+  </body>
+</html>
