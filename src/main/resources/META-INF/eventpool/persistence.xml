@@ -12,6 +12,7 @@
 		<class>com.eventpool.common.entities.Address</class>
 		<class>com.eventpool.common.entities.Category</class>
 		<class>com.eventpool.common.entities.Ticket</class>
+		<class>com.eventpool.common.entities.TicketInventory</class>
 		<class>com.eventpool.common.entities.Event</class>
 		<class>com.eventpool.common.entities.Order</class>
 		<class>com.eventpool.common.entities.Suborder</class>

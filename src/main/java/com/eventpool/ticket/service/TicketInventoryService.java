@@ -6,6 +6,8 @@ public interface TicketInventoryService {
 	
 	public int getTicketInventory(Long ticketId);
 	
-	Boolean executeCommand(ICommand cmd) throws Exception;
+	public int getSellableTicketInventory(Long ticketId);
+	
+	Object executeCommand(ICommand cmd) throws Exception;
 
 }
