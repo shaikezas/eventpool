@@ -1,5 +1,4 @@
 package com.eventpool.common;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -20,6 +19,7 @@ import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
@@ -100,10 +100,21 @@ public class EventTest extends BaseTest{
     public void getEventDTO(){
     	Event event = eventRepository.findOne(1L);
     	EventDTO eventDTO = new EventDTO();
-    	eventMapper.mapEventDTO(event, eventDTO);
-    	log.info(eventDTO.toString());
+    	if(event!=null){
+	    	eventMapper.mapEventDTO(event, eventDTO);
+	    	log.info(eventDTO.toString());
+    	}
     }
 
+    @Resource
+    IPLocation ipLocation; 
+    
+    @Test
+    public void testIpLocation(){
+    	//ipLocation.getLocation("14.99.224.122");
+    }
+
+    
     @Test
     @Transactional
     @Rollback(false)
