@@ -1,7 +1,7 @@
 package com.eventpool.common.type;
 
 
-public enum GENDER {
+public enum Gender {
   
 
   MALE("Male"),
@@ -10,7 +10,7 @@ public enum GENDER {
 
   private String description;
   
-  private GENDER(String description)
+  private Gender(String description)
   {
     this.description = description;
   }
@@ -24,7 +24,7 @@ public enum GENDER {
     return name();
   }
 
-  public static GENDER fromValue(String v) {
+  public static Gender fromValue(String v) {
     return valueOf(v);
   }
   

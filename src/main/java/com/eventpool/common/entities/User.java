@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
-import com.eventpool.common.type.GENDER;
+import com.eventpool.common.type.Gender;
 import com.eventpool.common.type.TicketType;
 
 @Entity
@@ -53,7 +53,7 @@ public class User extends IdEntity{
 	private String shippingAddress;
 
 	@Column(name = "GENDER")
-	private GENDER geneder;
+	private Gender geneder;
 
 	@Column(name = "DOB")
 	private Date dob;
@@ -187,11 +187,11 @@ public class User extends IdEntity{
 		this.modifiedDate = modifiedDate;
 	}
 
-	public GENDER getGeneder() {
+	public Gender getGeneder() {
 		return geneder;
 	}
 
-	public void setGeneder(GENDER geneder) {
+	public void setGeneder(Gender geneder) {
 		this.geneder = geneder;
 	}
 	
