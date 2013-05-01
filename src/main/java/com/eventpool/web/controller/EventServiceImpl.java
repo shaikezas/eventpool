@@ -6,20 +6,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.TicketDTO;
-import com.eventpool.common.entities.Event;
-import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.event.module.EventApi;
-import com.eventpool.event.module.EventMapper;
 
 /**
  * Created with IntelliJ IDEA.

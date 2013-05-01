@@ -6,7 +6,6 @@ var App = angular.module('EventPool', ['EventPool.filters', 'EventPool.services'
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
-	alert("loading..");
     $routeProvider.when('/createevent', {
         templateUrl: 'events/createevent',
         controller: EventController

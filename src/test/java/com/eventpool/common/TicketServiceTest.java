@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.eventpool.ticket.commands.TicketBlockedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
+import com.eventpool.ticket.commands.TicketUnBlockedCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 
 public class TicketServiceTest extends BaseTest{
@@ -25,6 +26,10 @@ public class TicketServiceTest extends BaseTest{
 		cmd.setQty(1);
 		cmd.setTicketId(101L);
 		
+		TicketUnBlockedCommand unblockcmd = new TicketUnBlockedCommand();
+		unblockcmd.setBlockingQty(1);
+		unblockcmd.setTicketId(101L);
+		
 		//Thread 1
 		
 		inventoryService.executeCommand(blockcmd);
@@ -34,7 +39,7 @@ public class TicketServiceTest extends BaseTest{
 		// Thread 2
 		inventoryService.executeCommand(blockcmd);
 		
-		inventoryService.executeCommand(cmd);
+		inventoryService.executeCommand(unblockcmd);
 		
 	}
     

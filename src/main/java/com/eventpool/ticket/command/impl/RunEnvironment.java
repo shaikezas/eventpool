@@ -41,8 +41,6 @@ public class RunEnvironment {
 //	@Resource
 //	EvictCacheUtil evictCacheUtil;
 
-	// @Transactional(value = "inventoryApiTransactionManager")
-	// @RetryingTransaction(repeatCount = 10)
 	public Object run(Object command) throws Exception {
 		Object result = null;
 		Exception failureException = null;

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+    <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Order</class-a>
+        <class-b>com.eventpool.common.dto.OrderDTO</class-b>
+  			<field><a>firstName</a><b>firstName</b></field>
+			<field><a>lastName</a><b>lastName</b></field>
+			<field><a>email</a><b>email</b></field>
+			<field><a>grossAmount</a><b>grossAmount</b></field>
+			<field><a>netAmount</a><b>netAmount</b></field>
+			<field><a>discountAmount</a><b>discountAmount</b></field>
+			<field><a>dicountCoupon</a><b>dicountCoupon</b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
+			<field><a>createdDate</a><b>createdDate</b></field>
+			<field><a>modifiedDate</a><b>modifiedDate</b></field>
+			<field><a>id</a><b>id</b></field>
+			
+    </mapping>
+    
+    <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Suborder</class-a>
+        <class-b>com.eventpool.common.dto.SuborderDTO</class-b>
+  			<field><a>quantity</a><b>quantity</b></field>
+			<field><a>subCategoryId</a><b>subCategoryId</b></field>
+			<field><a>ticketPrice</a><b>ticketPrice</b></field>
+			<field><a>organizerName</a><b>organizerName</b></field>
+			<field><a>grossAmount</a><b>grossAmount</b></field>
+			<field><a>netAmount</a><b>netAmount</b></field>
+			<field><a>discountAmount</a><b>discountAmount</b></field>
+			<field><a>dicountCoupon</a><b>dicountCoupon</b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
+			<field><a>createdDate</a><b>createdDate</b></field>
+			<field><a>modifiedDate</a><b>modifiedDate</b></field>
+			<field><a>id</a><b>id</b></field>
+    </mapping>
+    
+    <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Registration</class-a>
+        <class-b>com.eventpool.common.dto.RegistrationDTO</class-b>
+  			<field><a>name</a><b>name</b></field>
+			<field><a>company</a><b>company</b></field>
+			<field><a>email</a><b>email</b></field>
+			<field><a>phone</a><b>phone</b></field>
+			<field><a>suborderId</a><b>suborderId</b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
+			<field><a>createdDate</a><b>createdDate</b></field>
+			<field><a>modifiedDate</a><b>modifiedDate</b></field>
+			<field><a>id</a><b>id</b></field>
+    </mapping>
+
+  
+</mappings>
