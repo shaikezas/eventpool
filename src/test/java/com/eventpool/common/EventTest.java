@@ -1,15 +1,11 @@
 package com.eventpool.common;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +21,7 @@ import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.event.module.EventApi;
-import com.eventpool.event.module.EventMapper;
+import com.eventpool.util.EventpoolMapper;
 import com.eventpool.web.controller.EventController;
 
 public class EventTest extends BaseTest{
@@ -34,7 +30,7 @@ public class EventTest extends BaseTest{
 	EventRepository eventRepository;
 	
 	@Resource
-	EventMapper eventMapper;
+	EventpoolMapper eventMapper;
 	
 	@Resource
 	EventApi eventApi;
