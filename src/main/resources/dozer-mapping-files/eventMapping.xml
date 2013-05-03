@@ -25,6 +25,7 @@
 			<field><a>termsAndConditions</a><b>termsAndConditions</b></field>
 			<field><a>keyWords</a><b>keyWords</b></field>
 			<field><a>createdBy</a><b>createdBy</b></field>
+			<field><a>isWebinar</a><b>isWebinar</b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">

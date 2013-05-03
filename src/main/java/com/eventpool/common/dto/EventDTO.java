@@ -45,7 +45,7 @@ public class EventDTO extends AuditableIdDTO {
 	private EventInfoType infoType;
 	
 	private List<TicketDTO> tickets;
-	
+	private boolean isWebinar = false;
 	private String termsAndConditions;
 	private String keyWords;
 	public String getTitle() {
@@ -207,5 +207,13 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setKeyWords(String keyWords) {
 		this.keyWords = keyWords;
+	}
+
+	public boolean isWebinar() {
+		return isWebinar;
+	}
+
+	public void setWebinar(boolean isWebinar) {
+		this.isWebinar = isWebinar;
 	}
 }

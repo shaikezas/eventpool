@@ -92,6 +92,10 @@ public class Event extends AuditableIdEntity {
 	@Column(name="KEY_WORDS",length=256)
 	private String keyWords;
 
+	@Column(name="WEBINAR",length=256)
+	@Type(type = "yes_no")
+	private boolean isWebinar;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -254,6 +258,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
+	}
+
+	public boolean getWebinar() {
+		return isWebinar;
+	}
+
+	public void setWebinar(boolean webinar) {
+		this.isWebinar = webinar;
 	}
 	
 	

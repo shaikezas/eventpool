@@ -36,7 +36,7 @@ public class EventTest extends BaseTest{
 	EventApi eventApi;
 	
 	@Resource
-	EventController evEventController;
+	EventController eventController;
 	
     @Test
     @Transactional
@@ -167,6 +167,6 @@ public class EventTest extends BaseTest{
     	eventRepository.save(eventEntity);
 */
     	//eventApi.saveEventDTO(event);
-    	evEventController.addEvent(event);
+    	eventController.addEvent(event);
     }
 }
