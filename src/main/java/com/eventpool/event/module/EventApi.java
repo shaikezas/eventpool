@@ -26,8 +26,16 @@ public class EventApi {
 
     @Transactional
     public void saveEventDTO(EventDTO eventDTO){
-    	Event event = new Event();
+    	if(eventDTO==null) throw new IllegalArgumentException("Input event DTO is null");
+    	Long id = eventDTO.getId();
+    	Event event = null;
+    	if(id == null){
+    		event = new Event();
+    	}else{
+    		event = eventRepository.findOne(id);
+    	}
     	eventpoolMapper.mapEvent(eventDTO, event);
     	eventRepository.save(event);
+    	logger.info("event saved before commit {}",event.getId());
     }
 }

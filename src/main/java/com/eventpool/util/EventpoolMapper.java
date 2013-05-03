@@ -34,7 +34,7 @@ public class EventpoolMapper {
 		mapper = new DozerBeanMapper();
 		List myMappingFiles = new ArrayList();
    	    myMappingFiles.add("dozer-mapping-files/orderMapping.xml");
-   	 myMappingFiles.add("dozer-mapping-files/eventMapping.xml");
+   	    myMappingFiles.add("dozer-mapping-files/eventMapping.xml");
  	 	mapper.setMappingFiles(myMappingFiles);
 	}
 	
