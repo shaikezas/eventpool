@@ -73,19 +73,19 @@ public class TicketInventory implements Serializable {
 		if(getSellableQty(blockingQty) >= 0){
 			this.blockingQty += blockingQty;
 			inventoryDetails.setInvBlocked(Boolean.TRUE);
-			}
 			inventoryDetails.setInvQty(getSellableQty(blockingQty));
 			inventoryDetails.setBlockingQty(blockingQty);
-			inventoryDetails.setInvUpdated(Boolean.FALSE);
-			inventoryDetails.setInvBlocked(Boolean.FALSE);
 			inventoryDetails.setTicketId(this.ticketId);
+			}
+			
+			
 		return inventoryDetails;
 	}
 	
 	public TicketInventoryDetails decrementTicketQuantity(Integer qty)
 			throws NoTicketInventoryAvailableException {
 		TicketInventoryDetails inventoryDetails = new TicketInventoryDetails();
-		if(this.blockingQty >= qty){
+		if(this.blockingQty >= qty && this.qty >= qty){
 				this.qty -= qty;
 				this.blockingQty -= qty;
 				inventoryDetails.setInvUpdated(Boolean.TRUE);
@@ -105,15 +105,16 @@ public class TicketInventory implements Serializable {
 		return true;
 	}
 	
-	public TicketInventoryDetails UnBlockingTicketQuantity(Integer blockingQty)
+	public TicketInventoryDetails UnBlockingTicketQuantity(Integer unBlockingQty)
 			throws NoTicketInventoryAvailableException {
 		TicketInventoryDetails inventoryDetails = new TicketInventoryDetails();
-			this.blockingQty -= blockingQty;
-			inventoryDetails.setInvBlocked(Boolean.TRUE);
-			inventoryDetails.setInvQty(getSellableQty(blockingQty));
-			inventoryDetails.setBlockingQty(blockingQty);
-			inventoryDetails.setInvUpdated(Boolean.FALSE);
+		if(this.blockingQty >= unBlockingQty){
+			this.blockingQty -= unBlockingQty;
+			inventoryDetails.setInvUnBlocked(Boolean.TRUE);
+			inventoryDetails.setInvQty(this.qty-this.blockingQty);
+			inventoryDetails.setUnBlockingQty(unBlockingQty);
 			inventoryDetails.setTicketId(this.ticketId);
+		}
 		return inventoryDetails;
 	}
 	

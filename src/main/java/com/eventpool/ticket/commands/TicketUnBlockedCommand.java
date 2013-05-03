@@ -4,6 +4,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.stereotype.Component;
+
 
 @SuppressWarnings("serial")
 @Command
@@ -15,7 +17,7 @@ public class TicketUnBlockedCommand extends AbstractICommand {
 	
 	@NotNull
 	@Min(1)
-	private Integer blockingQty;
+	private Integer unBlockingQty;
 
 	public Long getTicketId() {
 		return ticketId;
@@ -25,13 +27,14 @@ public class TicketUnBlockedCommand extends AbstractICommand {
 		this.ticketId = ticketId;
 	}
 
-	public Integer getBlockingQty() {
-		return blockingQty;
+	public Integer getUnBlockingQty() {
+		return unBlockingQty;
 	}
-	
-	public void setBlockingQty(Integer blockingQty) {
-		this.blockingQty = blockingQty;
+
+	public void setUnBlockingQty(Integer unBlockingQty) {
+		this.unBlockingQty = unBlockingQty;
 	}
+
 	
 	
 }

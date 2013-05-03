@@ -260,14 +260,14 @@ public class Event extends AuditableIdEntity {
 		this.tickets = tickets;
 	}
 
-	public boolean getWebinar() {
+	public boolean getIsWebinar() {
 		return isWebinar;
 	}
 
-	public void setWebinar(boolean webinar) {
-		this.isWebinar = webinar;
+	public void setIsWebinar(boolean isWebinar) {
+		this.isWebinar = isWebinar;
 	}
-	
+
 	
 	
 }

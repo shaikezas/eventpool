@@ -8,8 +8,11 @@ public class TicketInventoryDetails {
 	private Long ticketId;
 	private int invQty ;
 	private int blockingQty;
-	private boolean isInvUpdated;
-	private boolean isInvBlocked;
+	private boolean isInvUpdated=false;
+	private boolean isInvBlocked=false;
+	
+	private int unBlockingQty;
+	private boolean isInvUnBlocked=false;
 	
 	@XmlElement
 	public Long getTicketId() {
@@ -36,6 +39,7 @@ public class TicketInventoryDetails {
 		this.isInvUpdated = isInvUpdated;
 	}
 
+	@XmlElement
 	public int getBlockingQty() {
 		return blockingQty;
 	}
@@ -44,6 +48,7 @@ public class TicketInventoryDetails {
 		this.blockingQty = blockingQty;
 	}
 
+	@XmlElement
 	public boolean isInvBlocked() {
 		return isInvBlocked;
 	}
@@ -51,6 +56,25 @@ public class TicketInventoryDetails {
 	public void setInvBlocked(boolean isInvBlocked) {
 		this.isInvBlocked = isInvBlocked;
 	}
+	
+	@XmlElement
+	public int getUnBlockingQty() {
+		return unBlockingQty;
+	}
+
+	public void setUnBlockingQty(int unBlockingQty) {
+		this.unBlockingQty = unBlockingQty;
+	}
+
+	@XmlElement
+	public boolean isInvUnBlocked() {
+		return isInvUnBlocked;
+	}
+
+	public void setInvUnBlocked(boolean isInvUnBlocked) {
+		this.isInvUnBlocked = isInvUnBlocked;
+	}
+	
 	
 	
 }

@@ -52,5 +52,14 @@
 			<field><a>id</a><b>id</b></field>
     </mapping>
 
+
+	<mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.TicketRegister</class-a>
+        <class-b>com.eventpool.common.dto.TicketRegisterDTO</class-b>
+  			<field><a>ticketId</a><b>ticketId</b></field>
+			<field><a>qty</a><b>qty</b></field>
+			<field><a>price</a><b>price</b></field>
+			<field><a>id</a><b>id</b></field>
+    </mapping>
   
 </mappings>

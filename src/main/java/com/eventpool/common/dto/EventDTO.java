@@ -209,11 +209,13 @@ public class EventDTO extends AuditableIdDTO {
 		this.keyWords = keyWords;
 	}
 
-	public boolean isWebinar() {
+	public boolean getIsWebinar() {
 		return isWebinar;
 	}
 
-	public void setWebinar(boolean isWebinar) {
+	public void setIsWebinar(boolean isWebinar) {
 		this.isWebinar = isWebinar;
 	}
+	
+	
 }

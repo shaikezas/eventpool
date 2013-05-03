@@ -27,7 +27,7 @@ public class TicketServiceTest extends BaseTest{
 		cmd.setTicketId(101L);
 		
 		TicketUnBlockedCommand unblockcmd = new TicketUnBlockedCommand();
-		unblockcmd.setBlockingQty(1);
+		unblockcmd.setUnBlockingQty(1);
 		unblockcmd.setTicketId(101L);
 		
 		//Thread 1

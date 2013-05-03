@@ -17,6 +17,7 @@
 		<class>com.eventpool.common.entities.Order</class>
 		<class>com.eventpool.common.entities.Suborder</class>
 		<class>com.eventpool.common.entities.Registration</class>
+		<class>com.eventpool.common.entities.TicketRegister</class>
 		
 		
 		<!-- Jboss recognizes only the entities listed here -->
