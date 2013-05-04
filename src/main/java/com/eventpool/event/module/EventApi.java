@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.exceptions.EventNotFoundException;
 
-@SuppressWarnings("rawtypes")
 @Component
 public interface EventApi {
 

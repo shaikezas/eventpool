@@ -1,7 +1,10 @@
 package com.eventpool.common;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 
@@ -15,6 +18,7 @@ import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.module.CommonUtils;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
@@ -168,5 +172,16 @@ public class EventTest extends BaseTest{
 */
     	//eventApi.saveEventDTO(event);
     	eventController.addEvent(event);
+    }
+   
+    @Resource
+    private CommonUtils commonUtils;
+   
+    @Test
+    public void timeZoneConversion(){
+    	 Date gmtDate = commonUtils.getGMTDate(new Date());
+    	 log.info("gmt date "+gmtDate);
+    	 Date timeZoneDate = commonUtils.getTimeZoneDate(gmtDate, "IST");
+    	 log.info(" local date"+timeZoneDate);
     }
 }
