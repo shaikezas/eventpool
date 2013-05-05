@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 import com.eventpool.common.entities.City;
@@ -58,6 +59,39 @@ public class EntityUtilities {
 		}
 	}
 	
+	public Map<Integer,String> getCitiesForState(Integer stateId){
+		HashMap<Integer,String> cityMap = new HashMap<Integer, String>();
+		List<City> citiesForState = repositoryPool.getCityRepository().getCitiesForState(stateId);
+		if(citiesForState!=null && citiesForState.size()>0){
+			for(City city:citiesForState){
+				cityMap.put(city.getId(), city.getName());
+			}
+		}
+		return cityMap;
+	}
+
+	public Map<Integer,String> getCitiesForCountry(Integer countryId){
+		HashMap<Integer,String> cityMap = new HashMap<Integer, String>();
+		List<City> citiesForCountry = repositoryPool.getCityRepository().getCitiesForCountry(countryId);
+		if(citiesForCountry!=null && citiesForCountry.size()>0){
+			for(City city:citiesForCountry){
+				cityMap.put(city.getId(), city.getName());
+			}
+		}
+		return cityMap;
+		
+	}
+
+	public Map<Integer,String> getStatesForCountry(Integer countryId){
+		HashMap<Integer,String> stateMap = new HashMap<Integer, String>();
+		List<State> statesForCountry = repositoryPool.getStateRepository().getStatesForCountry(countryId);
+		if(statesForCountry!=null && statesForCountry.size()>0){
+			for(State state:statesForCountry){
+				stateMap.put(state.getId(), state.getName());
+			}
+		}
+		return stateMap;
+	}
 
 	public Map<Integer, String> getCityMap() {
 		return cityMap;

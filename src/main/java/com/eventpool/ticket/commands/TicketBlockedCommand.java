@@ -4,6 +4,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.eventpool.common.commands.AbstractICommand;
+import com.eventpool.common.commands.Command;
+
 
 @SuppressWarnings("serial")
 @Command

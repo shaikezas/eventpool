@@ -4,11 +4,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.eventpool.common.commands.ICommand;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 import com.eventpool.common.repositories.TicketInventoryRepository;
 import com.eventpool.ticket.command.Gate;
-import com.eventpool.ticket.commands.ICommand;
 
 @Service
 public class TicketInventoryServiceImpl implements TicketInventoryService{

@@ -96,6 +96,8 @@ public class Event extends AuditableIdEntity {
 	@Type(type = "yes_no")
 	private boolean isWebinar;
 	
+
+	
 	public String getTitle() {
 		return title;
 	}
@@ -268,6 +270,4 @@ public class Event extends AuditableIdEntity {
 		this.isWebinar = isWebinar;
 	}
 
-	
-	
 }

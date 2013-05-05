@@ -1,6 +1,6 @@
 package com.eventpool.ticket.service;
 
-import com.eventpool.ticket.commands.ICommand;
+import com.eventpool.common.commands.ICommand;
 
 public interface TicketInventoryService {
 	

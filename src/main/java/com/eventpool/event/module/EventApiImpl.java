@@ -1,5 +1,7 @@
 package com.eventpool.event.module;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventRepository;
@@ -24,7 +28,7 @@ public class EventApiImpl implements EventApi{
     @Resource
     private EventRepository eventRepository;
 
-    @Transactional
+    @Transactional(rollbackFor=RuntimeException.class)
     public void saveEventDTO(EventDTO eventDTO){
     	if(eventDTO==null) throw new IllegalArgumentException("Input event DTO is null");
     	Long id = eventDTO.getId();
@@ -39,7 +43,7 @@ public class EventApiImpl implements EventApi{
     	logger.info("event saved before commit {}",event.getId());
     }
     
-    @Transactional(readOnly = true)
+	@Transactional(readOnly = true)
     public EventDTO getEvenDTO(Long id) throws EventNotFoundException{
     	if(id == null) throw new IllegalArgumentException("Input Event id is null");
     	Event event = eventRepository.findOne(id);
