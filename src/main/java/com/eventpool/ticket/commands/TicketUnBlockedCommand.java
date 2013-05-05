@@ -6,6 +6,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.stereotype.Component;
 
+import com.eventpool.common.commands.AbstractICommand;
+import com.eventpool.common.commands.Command;
+
 
 @SuppressWarnings("serial")
 @Command

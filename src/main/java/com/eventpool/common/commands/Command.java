@@ -1,4 +1,4 @@
-package com.eventpool.ticket.commands;
+package com.eventpool.common.commands;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

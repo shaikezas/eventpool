@@ -1,4 +1,4 @@
-package com.eventpool.ticket.commands;
+package com.eventpool.common.commands;
 
 import java.io.Serializable;
 import java.util.UUID;
