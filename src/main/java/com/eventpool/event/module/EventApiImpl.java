@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.exceptions.EventNotFoundException;
+import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventRepository;
-import com.eventpool.util.EventpoolMapper;
 
 @Component
 public class EventApiImpl implements EventApi{

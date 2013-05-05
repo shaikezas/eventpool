@@ -16,13 +16,13 @@ import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.module.CommonUtils;
+import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.event.module.EventApi;
-import com.eventpool.util.EventpoolMapper;
 import com.eventpool.web.controller.EventController;
 
 public class EventTest extends BaseTest{

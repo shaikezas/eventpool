@@ -1,4 +1,4 @@
-package com.eventpool.util;
+package com.eventpool.common.module;
 
 import java.util.ArrayList;
 import java.util.List;

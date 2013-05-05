@@ -31,6 +31,7 @@ import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketRegister;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
+import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.OrderRepository;
 import com.eventpool.common.repositories.RegistrationRepository;
@@ -41,7 +42,6 @@ import com.eventpool.ticket.commands.TicketBlockedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.ticket.service.TicketInventoryUnblockedService;
-import com.eventpool.util.EventpoolMapper;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
 
