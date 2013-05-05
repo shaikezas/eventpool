@@ -2,6 +2,9 @@ package com.eventpool.common.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -9,9 +12,13 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "COUNTRY")
-public class Country extends IdEntity{
+public class Country extends AbstractEntity{
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ID")
+	private Integer id;
+	
 	@NotNull
 	@Column(name = "NAME")
 	private String name;
@@ -77,6 +84,14 @@ public class Country extends IdEntity{
 
 	public void setCurrencyCode(String currencyCode) {
 		this.currencyCode = currencyCode;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
