@@ -71,21 +71,11 @@ public class OrderServiceImpl implements OrderService{
 	 @Resource
 	 EventRepository eventRepository;
 	 
-	 DozerBeanMapper mapper;
-	 
 	 @Resource
 	 TicketInventoryService inventoryService;
 	 
 	 private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 	 
-	 @SuppressWarnings("unchecked")
-	 public OrderServiceImpl(){
-		 mapper = new DozerBeanMapper();
-			List myMappingFiles = new ArrayList();
-	   	    myMappingFiles.add("dozer-mapping-files/orderMapping.xml");
-	   	 myMappingFiles.add("dozer-mapping-files/eventMapping.xml");
-	 	 	mapper.setMappingFiles(myMappingFiles);
-	 }
 	 @Resource
 	 private RegistrationRepository registrationRepository;
 	 
@@ -135,7 +125,6 @@ public class OrderServiceImpl implements OrderService{
 	private void createRegistration(Suborder suborder,RegistrationDTO registrationDTO) {
 			
 			Registration registration = new Registration();
-			mapper.map(registrationDTO, registration);
 			registration.setSuborderId(suborder.getId());
 			registrationRepository.save(registration);
 	}
@@ -172,7 +161,7 @@ public class OrderServiceImpl implements OrderService{
 		 TicketRegisterForm ticketRegisterForm = null;
 		for(TicketRegister ticketRegister: ticketRegisters){
 			ticketRegisterDTO = new TicketRegisterDTO();
-			mapper.map(ticketRegister, ticketRegisterDTO);
+			eventpoolMapper.map(ticketRegister, ticketRegisterDTO);
 			ticketRegisterDTOs.add(ticketRegisterDTO);
 			if(isAttendeeRequired){
 				ticketRegisterForm = new TicketRegisterForm();
@@ -196,7 +185,7 @@ public class OrderServiceImpl implements OrderService{
 		TicketRegister ticketRegister = null;
 		for(TicketRegisterDTO ticketRegisterDTO : ticketRegisterDTOs){
 			ticketRegister = new TicketRegister();
-			mapper.map(ticketRegisterDTO, ticketRegister);
+			eventpoolMapper.map(ticketRegisterDTO, ticketRegister);
 			blockcmd.setBlockingQty(ticketRegister.getQty());
 			blockcmd.setTicketId(ticketRegister.getTicketId());
 		    ticketInventoryDetails = (TicketInventoryDetails) inventoryService.executeCommand(blockcmd);

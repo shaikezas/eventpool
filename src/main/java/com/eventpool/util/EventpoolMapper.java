@@ -177,4 +177,14 @@ public class EventpoolMapper {
 			}
 		}
 	}
+	
+	public void map(RegistrationDTO registrationDTO,Registration registration){
+		mapper.map(registrationDTO, registration);
+	}
+	
+	public void map(Object source,Object destination){
+		mapper.map(source, destination);
+	}
+	
+
 }
