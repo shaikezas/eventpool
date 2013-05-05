@@ -24,6 +24,10 @@ public class TicketInventory implements Serializable {
 	private Long ticketId;
 	
 	@NotNull
+	@Column(name = "MAX_QTY", columnDefinition = "Integer(11) default 0")
+	private Integer maxQty = 0;
+	
+	@NotNull
 	@Column(name = "TICKET_QTY", columnDefinition = "Integer(11) default 0")
 	private Integer qty = 0;
 	
@@ -59,6 +63,15 @@ public class TicketInventory implements Serializable {
 		this.blockingQty = blockingQty;
 	}
 	
+	public Integer getMaxQty() {
+		return maxQty;
+	}
+	
+	public void setMaxQty(Integer maxQty) {
+		this.maxQty = maxQty;
+	}
+	
+	
 	public Integer getVersion() {
 		return version;
 	}
@@ -73,12 +86,13 @@ public class TicketInventory implements Serializable {
 		if(getSellableQty(blockingQty) >= 0){
 			this.blockingQty += blockingQty;
 			inventoryDetails.setInvBlocked(Boolean.TRUE);
-			inventoryDetails.setInvQty(getSellableQty(blockingQty));
+			inventoryDetails.setSellableQty(getSellableQty(blockingQty));
 			inventoryDetails.setBlockingQty(blockingQty);
 			inventoryDetails.setTicketId(this.ticketId);
 			}
 			
-			
+		inventoryDetails.setMaxQty(this.maxQty);
+		
 		return inventoryDetails;
 	}
 	
@@ -90,8 +104,9 @@ public class TicketInventory implements Serializable {
 				this.blockingQty -= qty;
 				inventoryDetails.setInvUpdated(Boolean.TRUE);
 		}
-		inventoryDetails.setInvQty(getSellableQty(qty));
+		inventoryDetails.setSellableQty(getSellableQty(qty));
 		inventoryDetails.setTicketId(this.ticketId);
+		inventoryDetails.setMaxQty(this.maxQty);
 		return inventoryDetails;
 	}
 	
@@ -110,11 +125,25 @@ public class TicketInventory implements Serializable {
 		if(this.blockingQty >= unBlockingQty){
 			this.blockingQty -= unBlockingQty;
 			inventoryDetails.setInvUnBlocked(Boolean.TRUE);
-			inventoryDetails.setInvQty(this.qty-this.blockingQty);
+			inventoryDetails.setSellableQty(this.qty-this.blockingQty);
 			inventoryDetails.setUnBlockingQty(unBlockingQty);
 			inventoryDetails.setTicketId(this.ticketId);
 		}
+		inventoryDetails.setMaxQty(this.maxQty);
 		return inventoryDetails;
 	}
+
+	public TicketInventoryDetails updateTicketQuantity(Integer maxQty) {
+		TicketInventoryDetails inventoryDetails = new TicketInventoryDetails();
+		if(maxQty > (this.maxQty  - this.qty + this.blockingQty)){
+			this.maxQty = maxQty;
+			inventoryDetails.setMaxQtyUpdated(Boolean.TRUE);
+			inventoryDetails.setSellableQty(this.qty-this.blockingQty);
+			inventoryDetails.setTicketId(this.ticketId);
+		}
+		inventoryDetails.setMaxQty(this.maxQty);
+		return inventoryDetails;
+	}
+
 	
 }

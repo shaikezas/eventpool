@@ -23,11 +23,14 @@ import com.eventpool.common.type.OrderStatus;
 public class Suborder extends AuditableIdEntity {
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="TICKET_SNAPSHOT_ID",insertable=false,updatable=false)
-	private TicketSnapShot ticket;
+	@JoinColumn(name="TICKET_ID",insertable=false,updatable=false)
+	private Ticket ticket;
 	
-	@Column(name = "TICKET_SNAPSHOT_ID", nullable = false)
+	@Column(name = "TICKET_ID", nullable = false)
 	private Long ticketId;
+	
+	@Column(name = "TICKET_NAME", nullable = false)
+	private String ticketName;
 	
 	@Column(name = "QUANTITY", length = 11)
 	private Integer quantity;
@@ -36,7 +39,6 @@ public class Suborder extends AuditableIdEntity {
     @JoinColumn(name = "ORDER_ID", nullable = false)
     private Order order;
 	
-
 	@Column(name = "SUB_CATEGORY_ID")
 	private Integer subCategoryId;
 	
@@ -165,6 +167,26 @@ public class Suborder extends AuditableIdEntity {
 	public void setTicketId(Long ticketId) {
 		this.ticketId = ticketId;
 	}
+	
+	
+	
+	
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
+
+	public String getTicketName() {
+		return ticketName;
+	}
+
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
 
 	@PostUpdate
 	@PostPersist
@@ -177,12 +199,5 @@ public class Suborder extends AuditableIdEntity {
 		}
 	}
 
-	public TicketSnapShot getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(TicketSnapShot ticket) {
-		this.ticket = ticket;
-	}
 	
 }

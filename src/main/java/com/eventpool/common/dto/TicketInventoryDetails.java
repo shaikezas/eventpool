@@ -6,10 +6,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class TicketInventoryDetails {
 	private Long ticketId;
-	private int invQty ;
+	private int sellableQty ;
 	private int blockingQty;
 	private boolean isInvUpdated=false;
 	private boolean isInvBlocked=false;
+	
+	private int maxQty;
+	private boolean isMaxQtyUpdated=false;
 	
 	private int unBlockingQty;
 	private boolean isInvUnBlocked=false;
@@ -24,13 +27,12 @@ public class TicketInventoryDetails {
 	}
 	
 	@XmlElement
-	public int getInvQty() {
-		return invQty;
+	public int getSellableQty() {
+		return sellableQty;
 	}
-	public void setInvQty(int invQty) {
-		this.invQty = invQty;
+	public void setSellableQty(int sellableQty) {
+		this.sellableQty = sellableQty;
 	}
-	
 	@XmlElement
 	public boolean isInvUpdated() {
 		return isInvUpdated;
@@ -73,6 +75,22 @@ public class TicketInventoryDetails {
 
 	public void setInvUnBlocked(boolean isInvUnBlocked) {
 		this.isInvUnBlocked = isInvUnBlocked;
+	}
+
+	public int getMaxQty() {
+		return maxQty;
+	}
+
+	public void setMaxQty(int maxQty) {
+		this.maxQty = maxQty;
+	}
+
+	public boolean isMaxQtyUpdated() {
+		return isMaxQtyUpdated;
+	}
+
+	public void setMaxQtyUpdated(boolean isMaxQtyUpdated) {
+		this.isMaxQtyUpdated = isMaxQtyUpdated;
 	}
 	
 	

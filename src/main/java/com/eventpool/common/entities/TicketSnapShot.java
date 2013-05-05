@@ -37,6 +37,11 @@ public class TicketSnapShot extends AuditableIdEntity{
 	@Column(name = "QUANTITY")
 	private Integer quantity;
 	
+
+	@NotNull
+	@Column(name="TICKET_ID")
+	private Long ticketId;
+	
 	@NotNull
 	@Column(name="EVENT_ID")
 	private Long enventId;
@@ -130,6 +135,14 @@ public class TicketSnapShot extends AuditableIdEntity{
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public Long getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
 	}
 
 	
