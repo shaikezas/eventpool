@@ -37,7 +37,7 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		TicketInventory ticketInventory = ticketInventoryRepository.findOne(ticketId);
 		TicketInventoryDetails ticketInventoryDetails =  null;
 		if(ticketInventory!=null){
-			ticketInventoryDetails = ticketInventory.BlockingTicketQuantity(blockingQty);
+			ticketInventoryDetails = ticketInventory.blockingTicketQuantity(blockingQty);
 		ticketInventoryRepository.save(ticketInventory);
 		}
 		logger.info("Blocked Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
@@ -49,7 +49,7 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		Long ticketId = cmd.getTicketId();
 		Integer blockingQty = cmd.getUnBlockingQty();
 		TicketInventory ticketInventory = ticketInventoryRepository.findOne(ticketId);
-		TicketInventoryDetails ticketInventoryDetails = ticketInventory.UnBlockingTicketQuantity(blockingQty);
+		TicketInventoryDetails ticketInventoryDetails = ticketInventory.unBlockingTicketQuantity(blockingQty);
 		ticketInventoryRepository.save(ticketInventory);
 		logger.info("UnBlocked Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
 		return ticketInventoryDetails;

@@ -67,7 +67,7 @@ public class TicketInventory implements Serializable {
 		this.version = version;
 	}
 	
-	public TicketInventoryDetails BlockingTicketQuantity(Integer blockingQty)
+	public TicketInventoryDetails blockingTicketQuantity(Integer blockingQty)
 			throws NoTicketInventoryAvailableException {
 		TicketInventoryDetails inventoryDetails = new TicketInventoryDetails();
 		if(getSellableQty(blockingQty) >= 0){
@@ -105,7 +105,7 @@ public class TicketInventory implements Serializable {
 		return true;
 	}
 	
-	public TicketInventoryDetails UnBlockingTicketQuantity(Integer unBlockingQty)
+	public TicketInventoryDetails unBlockingTicketQuantity(Integer unBlockingQty)
 			throws NoTicketInventoryAvailableException {
 		TicketInventoryDetails inventoryDetails = new TicketInventoryDetails();
 		if(this.blockingQty >= unBlockingQty){
