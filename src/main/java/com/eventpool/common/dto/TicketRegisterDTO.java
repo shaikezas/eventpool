@@ -6,6 +6,7 @@ public class TicketRegisterDTO {
 	private int qty;
 	private Double price;
 	private Long id;
+	private String ticketName;
 	
 	public Long getTicketId() {
 		return ticketId;
@@ -31,6 +32,14 @@ public class TicketRegisterDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public String getTicketName() {
+		return ticketName;
+	}
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
+	
+	
 	
 	
 }

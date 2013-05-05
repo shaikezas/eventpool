@@ -9,11 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
@@ -51,6 +53,10 @@ public class EventpoolMapper {
 			}
 			orderDTO.setSuborders(suborderDTOs);
 		}
+		
+		AddressDTO address = new AddressDTO();
+		mapper.map(order.getBillingAddress(),address );
+		orderDTO.setBillingAddress(address);
 	}
 	
 	public void mapOrder(OrderDTO orderDTO,Order order){
@@ -60,12 +66,15 @@ public class EventpoolMapper {
 			List<Suborder> suborders = new ArrayList<Suborder>();
 			for(SuborderDTO suborderDTO:suborderDTOs){
 				Suborder suborder = new Suborder();
-				mapper.map(suborderDTO,suborder);
+				mapSuborder(suborderDTO,suborder);
 				suborders.add(suborder);
 			}
 			order.setSuborders(suborders);
 			
 		}
+		Address address = new Address();
+		mapper.map(orderDTO.getBillingAddress(),address );
+		order.setBillingAddress(address);
 	}
 	
 	@Transactional(readOnly=true)

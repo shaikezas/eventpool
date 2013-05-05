@@ -18,27 +18,32 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import com.eventpool.common.dto.EventRegisterDTO;
 import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.dto.TicketRegisterDTO;
+import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketRegister;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
+import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.OrderRepository;
 import com.eventpool.common.repositories.RegistrationRepository;
 import com.eventpool.common.repositories.SuborderRepository;
 import com.eventpool.common.repositories.TicketRegisterRepository;
+import com.eventpool.common.type.EventInfoType;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.ticket.service.TicketInventoryUnblockedService;
 import com.eventpool.util.EventpoolMapper;
 import com.eventpool.web.forms.OrderRegisterForm;
+import com.eventpool.web.forms.TicketRegisterForm;
 
 @SuppressWarnings("rawtypes")
 @Transactional(value = "transactionManager", propagation = REQUIRED)
@@ -63,6 +68,9 @@ public class OrderServiceImpl implements OrderService{
 	 @Resource
 		TicketInventoryUnblockedService unBlockedService;
 	 
+	 @Resource
+	 EventRepository eventRepository;
+	 
 	 DozerBeanMapper mapper;
 	 
 	 @Resource
@@ -80,7 +88,8 @@ public class OrderServiceImpl implements OrderService{
 	 }
 	 @Resource
 	 private RegistrationRepository registrationRepository;
-	public void creteOrder(OrderDTO orderDTO) throws Exception {
+	 
+	public Order createOrder(OrderDTO orderDTO) throws Exception {
 		Set<ConstraintViolation<OrderDTO>> validate = validator.validate(orderDTO);
         if (!CollectionUtils.isEmpty(validate)) {
             throw new ValidationException(validate.toString());
@@ -93,32 +102,34 @@ public class OrderServiceImpl implements OrderService{
         for (SuborderDTO suborderDTO : orderDTO.getSuborders()) {
             createSubOrder(suborderDTO);
         }
+        
+        return order;
 		
 	}
 
 	private void createSubOrder( SuborderDTO suborderDTO) throws Exception {
 		
-		Suborder suborder = new Suborder();
+		TicketInventoryDetails updateTicketInventory = updateTicketInventory(suborderDTO);
 		
-		eventpoolMapper.mapSuborder(suborderDTO, suborder);
-		
-		suborder  = suborderRepository.save(suborder);
-		updateTicketInventory(suborder);
-		List<RegistrationDTO> registrationDTOs = suborderDTO.getRegistrations();
-		
-		if(registrationDTOs!=null && registrationDTOs.size()>0){
-			for(RegistrationDTO registrationDTO:registrationDTOs){
-				createRegistration(suborder,registrationDTO);
-			}
+		if(updateTicketInventory.isInvUpdated()){
+			ticketRegisterRepository.delete(suborderDTO.getTicketRegisterId());
 		}
+//		List<RegistrationDTO> registrationDTOs = suborderDTO.getRegistrations();
+//		
+//		if(registrationDTOs!=null && registrationDTOs.size()>0){
+//			for(RegistrationDTO registrationDTO:registrationDTOs){
+//				createRegistration(suborder,registrationDTO);
+//			}
+//		}
 		
 	}
 
-	private void updateTicketInventory(Suborder suborder) throws Exception {
+	private TicketInventoryDetails updateTicketInventory(SuborderDTO suborder) throws Exception {
 		TicketOrderedCommand cmd = new TicketOrderedCommand();
 		cmd.setQty(suborder.getQuantity());
-		cmd.setTicketId(suborder.getTicket().getId());
-		inventoryService.executeCommand(cmd);
+		cmd.setTicketId(suborder.getTicketId());
+		TicketInventoryDetails inventoryDetails = (TicketInventoryDetails) inventoryService.executeCommand(cmd);
+		return inventoryDetails;
 	}
 
 	private void createRegistration(Suborder suborder,RegistrationDTO registrationDTO) {
@@ -129,13 +140,59 @@ public class OrderServiceImpl implements OrderService{
 			registrationRepository.save(registration);
 	}
 
-	public OrderRegisterForm registerOrder(List<TicketRegisterDTO> ticketRegisterDTOs) throws Exception {
+	public OrderRegisterForm registerOrder(EventRegisterDTO eventRegister) throws Exception {
+		
+		List<TicketRegister> ticketRegisters = blockTicketInventory(eventRegister.getTicketRegisterDTOs());
+		
+		OrderRegisterForm orderRegisterForm = createOrderRegisterForm(ticketRegisters,eventRegister);
+		
+		return orderRegisterForm;
+	}
+	
+	private OrderRegisterForm createOrderRegisterForm(List<TicketRegister> ticketRegisters,EventRegisterDTO eventRegister) {
+		
+		OrderRegisterForm orderRegisterForm = new OrderRegisterForm();
+			Event event = eventRepository.findOne(eventRegister.getEventId());
+			EventInfoType infoType = event.getInfoType();
+			boolean isAttendeeRequired = false;
+			 Double grossAmount = 0.0D;
+			 orderRegisterForm.setDiscountAmount(eventRegister.getDiscountAmount());
+			 orderRegisterForm.setDicountCoupon(eventRegister.getDicountCoupon());
+			 orderRegisterForm.setPaymentCurrency(eventRegister.getPaymentCurrency());
+			 orderRegisterForm.setSubCategoryId(eventRegister.getSubCategoryId());
+     		 
+			if(infoType.equals(EventInfoType.ATTENDEE)){
+				isAttendeeRequired = true;
+			}
+		 List<TicketRegisterDTO> ticketRegisterDTOs = new ArrayList<TicketRegisterDTO>();
+		 List<TicketRegisterForm> ticketRegForms = new ArrayList<TicketRegisterForm>();
+		 orderRegisterForm.setTicketRegForms(ticketRegForms);
+		 orderRegisterForm.setTicketRegisters(ticketRegisterDTOs);
+		 TicketRegisterDTO ticketRegisterDTO = null;
+		 TicketRegisterForm ticketRegisterForm = null;
+		for(TicketRegister ticketRegister: ticketRegisters){
+			ticketRegisterDTO = new TicketRegisterDTO();
+			mapper.map(ticketRegister, ticketRegisterDTO);
+			ticketRegisterDTOs.add(ticketRegisterDTO);
+			if(isAttendeeRequired){
+				ticketRegisterForm = new TicketRegisterForm();
+				ticketRegisterForm.setTicketId(ticketRegisterDTO.getTicketId());
+				ticketRegisterForm.setTicketName(ticketRegisterDTO.getTicketName());
+				ticketRegForms.add(ticketRegisterForm);
+			}
+			grossAmount = grossAmount + ticketRegisterDTO.getQty() * ticketRegisterDTO.getPrice();
+		}
+		orderRegisterForm.setNetAmount(grossAmount - orderRegisterForm.getDiscountAmount()); 
+		orderRegisterForm.setGrossAmount(grossAmount);
+		return orderRegisterForm;
+	}
+
+	private List<TicketRegister> blockTicketInventory(List<TicketRegisterDTO> ticketRegisterDTOs) throws Exception{
 		TicketBlockedCommand blockcmd = new TicketBlockedCommand();
 		blockcmd.setBlockingQty(1);
 		blockcmd.setTicketId(101L);
-		List<TicketRegister> ticketRegisters = new ArrayList<TicketRegister>();
-		
 		TicketInventoryDetails ticketInventoryDetails=null ;
+		List<TicketRegister> ticketRegisters = new ArrayList<TicketRegister>();
 		TicketRegister ticketRegister = null;
 		for(TicketRegisterDTO ticketRegisterDTO : ticketRegisterDTOs){
 			ticketRegister = new TicketRegister();
@@ -155,7 +212,8 @@ public class OrderServiceImpl implements OrderService{
 		    }
 		    ticketRegisters.add(ticketRegister);
 		}
-		return null;
+		return ticketRegisters;
 	}
+
 
 }

@@ -91,7 +91,6 @@ public class TicketInventory implements Serializable {
 				inventoryDetails.setInvUpdated(Boolean.TRUE);
 		}
 		inventoryDetails.setInvQty(getSellableQty(qty));
-		inventoryDetails.setInvUpdated(Boolean.FALSE);
 		inventoryDetails.setTicketId(this.ticketId);
 		return inventoryDetails;
 	}

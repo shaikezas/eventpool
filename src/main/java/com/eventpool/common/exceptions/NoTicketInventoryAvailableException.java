@@ -10,6 +10,10 @@ public class NoTicketInventoryAvailableException extends RuntimeException {
         super(formatMessage(code, args));
         this.code = code;
     }
+    
+    public NoTicketInventoryAvailableException(String message) {
+        super(message);
+    }
 
     public NoTicketInventoryAvailableException(Throwable th, String code, Object... args) {
         super(formatMessage(code, args), th);
