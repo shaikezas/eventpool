@@ -63,7 +63,7 @@ public class TicketInventoryUnblockedService {
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception in UnblockTask run method",e);		
 		}
 	      
 	      timer.cancel(); 

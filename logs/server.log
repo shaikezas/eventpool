@@ -8564,3 +8564,899 @@ java.lang.NullPointerException: null
 2013-05-05 23:05:50,254 [Thread-8] INFO  o.s.b.f.s.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3a633d51: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,stateRepository,orderRepository,categoryRepository,ticketInventoryRepository,registrationRepository,cityRepository,eventRepository,countryRepository,suborderRepository,ticketRegisterRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
 2013-05-05 23:05:50,260 [Thread-8] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
 2013-05-05 23:05:50,261 [Thread-8] INFO  o.hibernate.impl.SessionFactoryImpl - closing
+2013-05-05 23:10:44,244 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization started
+2013-05-05 23:10:44,361 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 05 23:10:44 IST 2013]; root of context hierarchy
+2013-05-05 23:10:44,439 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/app-config.xml]
+2013-05-05 23:10:44,544 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/META-INF/eventpool/applicationContext-common-data.xml]
+2013-05-05 23:10:45,467 [main] INFO  o.s.b.f.c.PropertyPlaceholderConfigurer - Loading properties file from URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/META-INF/properties/dev/eventpool.properties]
+2013-05-05 23:10:45,595 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#ea224b5' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:10:46,299 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'pooledDataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:10:46,301 [main] INFO  o.s.jndi.JndiObjectFactoryBean - JNDI lookup failed - returning specified default object instead: javax.naming.NameNotFoundException: Name commonDataSourceJndi is not bound in this Context
+2013-05-05 23:10:46,301 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'dataSource' of type [class org.springframework.jndi.JndiObjectFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:10:46,302 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'dataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:10:46,327 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-05-05 23:10:46,560 [main] INFO  o.h.annotations.common.Version - Hibernate Commons Annotations 3.2.0.Final
+2013-05-05 23:10:46,569 [main] INFO  org.hibernate.cfg.Environment - Hibernate 3.6.10.Final
+2013-05-05 23:10:46,573 [main] INFO  org.hibernate.cfg.Environment - hibernate.properties not found
+2013-05-05 23:10:46,577 [main] INFO  org.hibernate.cfg.Environment - Bytecode provider name : javassist
+2013-05-05 23:10:46,585 [main] INFO  org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+2013-05-05 23:10:46,683 [main] INFO  org.hibernate.ejb.Version - Hibernate EntityManager 3.6.10.Final
+2013-05-05 23:10:46,698 [main] INFO  org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: eventpool-persistence-unit
+	...]
+2013-05-05 23:10:46,887 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Media
+2013-05-05 23:10:46,926 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Media on table EVENT_MEDIA
+2013-05-05 23:10:46,990 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Address
+2013-05-05 23:10:46,990 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Address on table ADDRESS
+2013-05-05 23:10:47,004 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Category
+2013-05-05 23:10:47,005 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Category on table CATEGORY
+2013-05-05 23:10:47,022 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Ticket
+2013-05-05 23:10:47,022 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Ticket on table TICKET
+2013-05-05 23:10:47,029 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketInventory
+2013-05-05 23:10:47,030 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketInventory on table TICKET_INVENTORY
+2013-05-05 23:10:47,037 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Event
+2013-05-05 23:10:47,038 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Event on table EVENT
+2013-05-05 23:10:47,086 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Order
+2013-05-05 23:10:47,087 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Order on table ORDER
+2013-05-05 23:10:47,103 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Suborder
+2013-05-05 23:10:47,103 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Suborder on table SUBORDER
+2013-05-05 23:10:47,113 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Registration
+2013-05-05 23:10:47,113 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Registration on table REGISTRATION
+2013-05-05 23:10:47,117 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketRegister
+2013-05-05 23:10:47,118 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketRegister on table TICKET_REGISTER
+2013-05-05 23:10:47,122 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketSnapShot
+2013-05-05 23:10:47,122 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketSnapShot on table TICKET_SNAPSHOT
+2013-05-05 23:10:47,126 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.City
+2013-05-05 23:10:47,126 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.City on table CITY
+2013-05-05 23:10:47,128 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Country
+2013-05-05 23:10:47,129 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Country on table COUNTRY
+2013-05-05 23:10:47,131 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.State
+2013-05-05 23:10:47,131 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.State on table STATE
+2013-05-05 23:10:47,140 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Suborder.registrations -> REGISTRATION
+2013-05-05 23:10:47,142 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Order.suborders -> SUBORDER
+2013-05-05 23:10:47,143 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Event.tickets -> TICKET
+2013-05-05 23:10:47,148 [main] INFO  org.hibernate.cfg.Configuration - Hibernate Validator not found: ignoring
+2013-05-05 23:10:47,731 [main] INFO  o.h.c.s.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2013-05-05 23:10:47,745 [main] INFO  o.h.c.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+2013-05-05 23:10:47,753 [main] INFO  o.h.e.c.InjectedDataSourceConnectionProvider - Using provided datasource
+2013-05-05 23:10:48,292 [main] INFO  org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.MySQLDialect
+2013-05-05 23:10:48,320 [main] INFO  o.h.engine.jdbc.JdbcSupportLoader - Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2013-05-05 23:10:48,320 [main] INFO  org.hibernate.cfg.SettingsFactory - Database ->
+       name : MySQL
+    version : 5.0.45-community-nt
+      major : 5
+      minor : 0
+2013-05-05 23:10:48,321 [main] INFO  org.hibernate.cfg.SettingsFactory - Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.6 ( Revision: ${svn.Revision} )
+      major : 5
+      minor : 1
+2013-05-05 23:10:48,333 [main] INFO  o.h.t.TransactionFactoryFactory - Using default transaction strategy (direct JDBC transactions)
+2013-05-05 23:10:48,338 [main] INFO  o.h.t.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2013-05-05 23:10:48,338 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+2013-05-05 23:10:48,338 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+2013-05-05 23:10:48,338 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch size: 50
+2013-05-05 23:10:48,338 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+2013-05-05 23:10:48,339 [main] INFO  org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+2013-05-05 23:10:48,340 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): enabled
+2013-05-05 23:10:48,340 [main] INFO  org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+2013-05-05 23:10:48,341 [main] INFO  org.hibernate.cfg.SettingsFactory - Maximum outer join fetch depth: 2
+2013-05-05 23:10:48,341 [main] INFO  org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+2013-05-05 23:10:48,341 [main] INFO  org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+2013-05-05 23:10:48,342 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+2013-05-05 23:10:48,342 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+2013-05-05 23:10:48,342 [main] INFO  org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2013-05-05 23:10:48,345 [main] INFO  o.h.h.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+2013-05-05 23:10:48,345 [main] INFO  org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+2013-05-05 23:10:48,345 [main] INFO  org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+2013-05-05 23:10:48,345 [main] INFO  org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+2013-05-05 23:10:48,346 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache: enabled
+2013-05-05 23:10:48,346 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.EhCacheRegionFactory
+2013-05-05 23:10:48,362 [main] INFO  org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: enabled
+2013-05-05 23:10:48,362 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region prefix: $EVENT_POOL{hibernate.cache.region_prefix}
+2013-05-05 23:10:48,362 [main] INFO  org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: enabled
+2013-05-05 23:10:48,362 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache factory: org.hibernate.cache.StandardQueryCacheFactory
+2013-05-05 23:10:48,370 [main] INFO  org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+2013-05-05 23:10:48,371 [main] INFO  org.hibernate.cfg.SettingsFactory - Statistics: disabled
+2013-05-05 23:10:48,371 [main] INFO  org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+2013-05-05 23:10:48,371 [main] INFO  org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+2013-05-05 23:10:48,371 [main] INFO  org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+2013-05-05 23:10:48,372 [main] INFO  org.hibernate.cfg.SettingsFactory - Check Nullability in Core (should be disabled when Bean Validation is on): disabled
+2013-05-05 23:10:48,398 [main] INFO  o.hibernate.impl.SessionFactoryImpl - building session factory
+2013-05-05 23:10:48,410 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@7b26c885
+2013-05-05 23:10:48,410 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [clob] overrides previous : org.hibernate.type.ClobType@2f36d2ed
+2013-05-05 23:10:48,410 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@2f36d2ed
+2013-05-05 23:10:48,411 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@3851ddd2
+2013-05-05 23:10:48,411 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [blob] overrides previous : org.hibernate.type.BlobType@6ba22e1
+2013-05-05 23:10:48,411 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@6ba22e1
+2013-05-05 23:10:48,411 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@2647e53a
+2013-05-05 23:10:48,411 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@3a1a5678
+2013-05-05 23:10:48,411 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@1722fe15
+2013-05-05 23:10:48,421 [main] WARN  n.s.e.config.ConfigurationFactory - No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/C:/Users/e.ramulu/.m2/repository/net/sf/ehcache/ehcache-core/2.4.3/ehcache-core-2.4.3.jar!/ehcache-failsafe.xml
+2013-05-05 23:10:49,091 [main] INFO  o.h.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+2013-05-05 23:10:49,096 [main] INFO  o.h.cache.UpdateTimestampsCache - starting update timestamps cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache
+2013-05-05 23:10:49,102 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache]; using defaults.
+2013-05-05 23:10:49,169 [main] INFO  o.hibernate.cache.StandardQueryCache - starting query cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache
+2013-05-05 23:10:49,171 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache]; using defaults.
+2013-05-05 23:10:49,302 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:10:49,395 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:10:49,407 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:10:49,436 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@300b6421: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,categoryRepository,ticketRegisterRepository,countryRepository,registrationRepository,stateRepository,suborderRepository,orderRepository,eventRepository,ticketInventoryRepository,cityRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-05-05 23:10:50,315 [main] INFO  org.dozer.config.GlobalSettings - Trying to find Dozer configuration file: dozer.properties
+2013-05-05 23:10:50,331 [main] WARN  org.dozer.config.GlobalSettings - Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.
+2013-05-05 23:10:50,337 [main] INFO  org.dozer.DozerInitializer - Initializing Dozer. Version: 5.4.0, Thread Name: main
+2013-05-05 23:10:50,345 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerStatisticsController] auto registered with the Platform MBean Server
+2013-05-05 23:10:50,351 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerAdminController] auto registered with the Platform MBean Server
+2013-05-05 23:10:50,360 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:10:50,746 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:10:51,105 [main] INFO  o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+2013-05-05 23:10:51,116 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 6866 ms
+2013-05-05 23:10:51,204 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'DispatcherServlet': initialization started
+2013-05-05 23:10:51,211 [main] INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'DispatcherServlet-servlet': startup date [Sun May 05 23:10:51 IST 2013]; parent: Root WebApplicationContext
+2013-05-05 23:10:51,214 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/webapp-config.xml]
+2013-05-05 23:10:51,744 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@7a64f150: defining beans [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,velocityConfig,viewResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@300b6421
+2013-05-05 23:10:51,830 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/eventslist.json],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.util.List<com.eventpool.common.dto.EventDTO> com.eventpool.web.controller.EventController.getEventList()
+2013-05-05 23:10:51,831 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/addEvent],methods=[POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.addEvent(com.eventpool.common.dto.EventDTO)
+2013-05-05 23:10:51,832 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/updateEvent],methods=[PUT],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.updateEvent(com.eventpool.common.dto.EventDTO)
+2013-05-05 23:10:51,832 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/removeEvent/{id}],methods=[DELETE],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.removeEvent(java.lang.Long)
+2013-05-05 23:10:51,832 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/removeAllEvents],methods=[DELETE],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void com.eventpool.web.controller.EventController.removeAllEvents()
+2013-05-05 23:10:51,833 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/createevent],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.EventController.getCreateEventPartialPage(org.springframework.ui.ModelMap)
+2013-05-05 23:10:51,833 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/eventlist],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.EventController.getEventListPartialPage(org.springframework.ui.ModelMap)
+2013-05-05 23:10:51,833 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/myevents],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.EventController.getMyEventListPartialPage(org.springframework.ui.ModelMap)
+2013-05-05 23:10:51,834 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/findevent],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.EventController.getFindEventPartialPage(org.springframework.ui.ModelMap)
+2013-05-05 23:10:51,834 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/events/mytickets],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.EventController.getMyTicketsPartialPage(org.springframework.ui.ModelMap)
+2013-05-05 23:10:51,835 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[//home],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.IndexController.getIndex()
+2013-05-05 23:10:51,836 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.eventpool.web.controller.IndexController.getIndexPage()
+2013-05-05 23:10:51,837 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/order/create],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.eventpool.common.dto.OrderStatusDTO com.eventpool.web.controller.OrderController.createOrder(com.eventpool.web.forms.OrderRegisterForm)
+2013-05-05 23:10:51,837 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/order/register],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.eventpool.web.forms.OrderRegisterForm com.eventpool.web.controller.OrderController.registerOrder(com.eventpool.common.dto.EventRegisterDTO)
+2013-05-05 23:10:52,893 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2013-05-05 23:10:52,902 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:10:53,092 [main] INFO  o.s.w.s.v.v.VelocityConfigurer - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+2013-05-05 23:10:53,326 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'DispatcherServlet': initialization completed in 2121 ms
+2013-05-05 23:10:54,474 [net.sf.ehcache.CacheManager@150b75f2] INFO  net.sf.ehcache.util.UpdateChecker - New update(s) found: 2.4.7 [http://www.terracotta.org/confluence/display/release/Release+Notes+Ehcache+Core+2.4]. Please check http://ehcache.org for the latest version.
+2013-05-05 23:27:15,595 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:27:15,722 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\e.ramulu\git\eventpool\target\classes\META-INF\eventpool\applicationContext-common-data.xml]
+2013-05-05 23:27:16,353 [main] INFO  o.s.c.s.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@470b9279: startup date [Sun May 05 23:27:16 IST 2013]; root of context hierarchy
+2013-05-05 23:27:16,617 [main] INFO  o.s.b.f.c.PropertyPlaceholderConfigurer - Loading properties file from URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/META-INF/properties/dev/eventpool.properties]
+2013-05-05 23:27:16,745 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#15412e75' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:27:17,297 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'pooledDataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:27:17,301 [main] INFO  o.s.jndi.JndiObjectFactoryBean - JNDI lookup failed - returning specified default object instead: javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+2013-05-05 23:27:17,302 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class org.springframework.jndi.JndiObjectFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:27:17,302 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:27:17,319 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-05-05 23:27:17,470 [main] INFO  o.h.annotations.common.Version - Hibernate Commons Annotations 3.2.0.Final
+2013-05-05 23:27:17,480 [main] INFO  org.hibernate.cfg.Environment - Hibernate 3.6.10.Final
+2013-05-05 23:27:17,483 [main] INFO  org.hibernate.cfg.Environment - hibernate.properties not found
+2013-05-05 23:27:17,487 [main] INFO  org.hibernate.cfg.Environment - Bytecode provider name : javassist
+2013-05-05 23:27:17,493 [main] INFO  org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+2013-05-05 23:27:17,555 [main] INFO  org.hibernate.ejb.Version - Hibernate EntityManager 3.6.10.Final
+2013-05-05 23:27:17,572 [main] INFO  org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: eventpool-persistence-unit
+	...]
+2013-05-05 23:27:17,754 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Media
+2013-05-05 23:27:17,799 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Media on table EVENT_MEDIA
+2013-05-05 23:27:17,847 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Address
+2013-05-05 23:27:17,848 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Address on table ADDRESS
+2013-05-05 23:27:17,860 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Category
+2013-05-05 23:27:17,860 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Category on table CATEGORY
+2013-05-05 23:27:17,869 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Ticket
+2013-05-05 23:27:17,870 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Ticket on table TICKET
+2013-05-05 23:27:17,875 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketInventory
+2013-05-05 23:27:17,876 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketInventory on table TICKET_INVENTORY
+2013-05-05 23:27:17,881 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Event
+2013-05-05 23:27:17,882 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Event on table EVENT
+2013-05-05 23:27:17,921 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Order
+2013-05-05 23:27:17,922 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Order on table ORDER
+2013-05-05 23:27:17,934 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Suborder
+2013-05-05 23:27:17,934 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Suborder on table SUBORDER
+2013-05-05 23:27:17,942 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Registration
+2013-05-05 23:27:17,942 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Registration on table REGISTRATION
+2013-05-05 23:27:17,946 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketRegister
+2013-05-05 23:27:17,947 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketRegister on table TICKET_REGISTER
+2013-05-05 23:27:17,951 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketSnapShot
+2013-05-05 23:27:17,951 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketSnapShot on table TICKET_SNAPSHOT
+2013-05-05 23:27:17,956 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.City
+2013-05-05 23:27:17,956 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.City on table CITY
+2013-05-05 23:27:17,959 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Country
+2013-05-05 23:27:17,959 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Country on table COUNTRY
+2013-05-05 23:27:17,962 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.State
+2013-05-05 23:27:17,962 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.State on table STATE
+2013-05-05 23:27:17,971 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Suborder.registrations -> REGISTRATION
+2013-05-05 23:27:17,973 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Order.suborders -> SUBORDER
+2013-05-05 23:27:17,973 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Event.tickets -> TICKET
+2013-05-05 23:27:17,977 [main] INFO  org.hibernate.cfg.Configuration - Hibernate Validator not found: ignoring
+2013-05-05 23:27:18,492 [main] INFO  o.h.c.s.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2013-05-05 23:27:18,499 [main] INFO  o.h.c.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+2013-05-05 23:27:18,502 [main] INFO  o.h.e.c.InjectedDataSourceConnectionProvider - Using provided datasource
+2013-05-05 23:27:18,830 [main] INFO  org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.MySQLDialect
+2013-05-05 23:27:18,840 [main] INFO  o.h.engine.jdbc.JdbcSupportLoader - Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2013-05-05 23:27:18,841 [main] INFO  org.hibernate.cfg.SettingsFactory - Database ->
+       name : MySQL
+    version : 5.0.45-community-nt
+      major : 5
+      minor : 0
+2013-05-05 23:27:18,841 [main] INFO  org.hibernate.cfg.SettingsFactory - Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.6 ( Revision: ${svn.Revision} )
+      major : 5
+      minor : 1
+2013-05-05 23:27:18,844 [main] INFO  o.h.t.TransactionFactoryFactory - Using default transaction strategy (direct JDBC transactions)
+2013-05-05 23:27:18,847 [main] INFO  o.h.t.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2013-05-05 23:27:18,847 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+2013-05-05 23:27:18,847 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+2013-05-05 23:27:18,847 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch size: 50
+2013-05-05 23:27:18,847 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+2013-05-05 23:27:18,848 [main] INFO  org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+2013-05-05 23:27:18,848 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): enabled
+2013-05-05 23:27:18,848 [main] INFO  org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+2013-05-05 23:27:18,849 [main] INFO  org.hibernate.cfg.SettingsFactory - Maximum outer join fetch depth: 2
+2013-05-05 23:27:18,849 [main] INFO  org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+2013-05-05 23:27:18,849 [main] INFO  org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+2013-05-05 23:27:18,849 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+2013-05-05 23:27:18,849 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+2013-05-05 23:27:18,849 [main] INFO  org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2013-05-05 23:27:18,851 [main] INFO  o.h.h.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+2013-05-05 23:27:18,851 [main] INFO  org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+2013-05-05 23:27:18,851 [main] INFO  org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+2013-05-05 23:27:18,851 [main] INFO  org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+2013-05-05 23:27:18,852 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache: enabled
+2013-05-05 23:27:18,852 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.EhCacheRegionFactory
+2013-05-05 23:27:18,862 [main] INFO  org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: enabled
+2013-05-05 23:27:18,863 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region prefix: $EVENT_POOL{hibernate.cache.region_prefix}
+2013-05-05 23:27:18,863 [main] INFO  org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: enabled
+2013-05-05 23:27:18,863 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache factory: org.hibernate.cache.StandardQueryCacheFactory
+2013-05-05 23:27:18,868 [main] INFO  org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+2013-05-05 23:27:18,868 [main] INFO  org.hibernate.cfg.SettingsFactory - Statistics: disabled
+2013-05-05 23:27:18,868 [main] INFO  org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+2013-05-05 23:27:18,869 [main] INFO  org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+2013-05-05 23:27:18,869 [main] INFO  org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+2013-05-05 23:27:18,869 [main] INFO  org.hibernate.cfg.SettingsFactory - Check Nullability in Core (should be disabled when Bean Validation is on): disabled
+2013-05-05 23:27:18,883 [main] INFO  o.hibernate.impl.SessionFactoryImpl - building session factory
+2013-05-05 23:27:18,889 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@49f85a86
+2013-05-05 23:27:18,889 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@4fff395a
+2013-05-05 23:27:18,889 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@7d0e6cbd
+2013-05-05 23:27:18,890 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@3e052c6f
+2013-05-05 23:27:18,890 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@45a84b38
+2013-05-05 23:27:18,890 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [blob] overrides previous : org.hibernate.type.BlobType@2be26d42
+2013-05-05 23:27:18,890 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@2be26d42
+2013-05-05 23:27:18,890 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [clob] overrides previous : org.hibernate.type.ClobType@1e731e90
+2013-05-05 23:27:18,890 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@1e731e90
+2013-05-05 23:27:18,895 [main] WARN  n.s.e.config.ConfigurationFactory - No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/C:/Users/e.ramulu/.m2/repository/net/sf/ehcache/ehcache-core/2.4.3/ehcache-core-2.4.3.jar!/ehcache-failsafe.xml
+2013-05-05 23:27:19,274 [main] INFO  o.h.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+2013-05-05 23:27:19,277 [main] INFO  o.h.cache.UpdateTimestampsCache - starting update timestamps cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache
+2013-05-05 23:27:19,280 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache]; using defaults.
+2013-05-05 23:27:19,309 [main] INFO  o.hibernate.cache.StandardQueryCache - starting query cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache
+2013-05-05 23:27:19,310 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache]; using defaults.
+2013-05-05 23:27:19,365 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:27:19,405 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:27:19,410 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:27:19,425 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4c6504bc: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,ticketRegisterRepository,countryRepository,suborderRepository,cityRepository,ticketInventoryRepository,orderRepository,categoryRepository,registrationRepository,eventRepository,stateRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-05-05 23:27:19,913 [main] INFO  org.dozer.config.GlobalSettings - Trying to find Dozer configuration file: dozer.properties
+2013-05-05 23:27:19,923 [main] WARN  org.dozer.config.GlobalSettings - Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.
+2013-05-05 23:27:19,927 [main] INFO  org.dozer.DozerInitializer - Initializing Dozer. Version: 5.4.0, Thread Name: main
+2013-05-05 23:27:19,930 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerStatisticsController] auto registered with the Platform MBean Server
+2013-05-05 23:27:19,932 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerAdminController] auto registered with the Platform MBean Server
+2013-05-05 23:27:19,937 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:27:20,120 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:27:20,371 [main] INFO  o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+2013-05-05 23:27:20,426 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Began transaction (1): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@1c45484a]; rollback [true]
+2013-05-05 23:27:20,552 [main] WARN  o.h.util.JDBCExceptionReporter - SQL Error: 1054, SQLState: 42S22
+2013-05-05 23:27:20,552 [main] ERROR o.h.util.JDBCExceptionReporter - Unknown column 'event0_.PRIVACY_TYPE' in 'field list'
+2013-05-05 23:27:20,560 [main] INFO  o.h.e.def.DefaultLoadEventListener - Error performing load command
+org.hibernate.exception.SQLGrammarException: could not load an entity: [com.eventpool.common.entities.Event#1]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:92) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2041) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:86) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.loader.entity.AbstractEntityLoader.load(AbstractEntityLoader.java:76) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3294) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.event.def.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:496) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.event.def.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:477) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.event.def.DefaultLoadEventListener.load(DefaultLoadEventListener.java:227) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.event.def.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:285) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.event.def.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:152) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.impl.SessionImpl.fireLoad(SessionImpl.java:1090) [hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:1005) [hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.impl.SessionImpl.get(SessionImpl.java:998) [hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:781) [hibernate-entitymanager-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.find(AbstractEntityManagerImpl.java:756) [hibernate-entitymanager-3.6.10.Final.jar:3.6.10.Final]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:240) [spring-orm-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at $Proxy42.find(Unknown Source) [na:na]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findOne(SimpleJpaRepository.java:208) [spring-data-jpa-1.3.0.RELEASE.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.executeMethodOn(RepositoryFactorySupport.java:333) [spring-data-commons-1.5.0.RELEASE.jar:na]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:318) [spring-data-commons-1.5.0.RELEASE.jar:na]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172) [spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110) [spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172) [spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:155) [spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172) [spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.data.jpa.repository.support.LockModeRepositoryPostProcessor$LockModePopulatingMethodIntercceptor.invoke(LockModeRepositoryPostProcessor.java:92) [spring-data-jpa-1.3.0.RELEASE.jar:na]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172) [spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90) [spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172) [spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:202) [spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at $Proxy52.findOne(Unknown Source) [na:na]
+	at com.eventpool.common.EventTest.getEventDTO(EventTest.java:98) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47) [junit-4.11.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.11.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97) [surefire-junit4-2.7.1.jar:2.7.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103) [surefire-booter-2.7.1.jar:2.7.1]
+	at $Proxy0.invoke(Unknown Source) [na:na]
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69) [surefire-booter-2.7.1.jar:2.7.1]
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'event0_.PRIVACY_TYPE' in 'field list'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27) ~[na:1.6.0_24]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513) ~[na:1.6.0_24]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.Util.getInstance(Util.java:381) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1030) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1885) ~[mysql-connector-java-5.1.6.jar:na]
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeQuery(NewProxyPreparedStatement.java:76) ~[c3p0-0.9.1.2.jar:0.9.1.2]
+	at org.hibernate.jdbc.AbstractBatcher.getResultSet(AbstractBatcher.java:208) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:1953) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:802) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:274) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	at org.hibernate.loader.Loader.loadEntity(Loader.java:2037) ~[hibernate-core-3.6.10.Final.jar:3.6.10.Final]
+	... 73 common frames omitted
+2013-05-05 23:27:20,573 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Rolled back transaction after test execution for test context [TestContext@2aa05bc3 testClass = EventTest, testInstance = com.eventpool.common.EventTest@5e87512, testMethod = getEventDTO@EventTest, testException = org.springframework.dao.InvalidDataAccessResourceUsageException: could not load an entity: [com.eventpool.common.entities.Event#1]; SQL [select event0_.ID as ID5_0_, event0_.CREATEDBY as CREATEDBY5_0_, event0_.CREATED_DATE as CREATED3_5_0_, event0_.MODIFIED_DATE as MODIFIED4_5_0_, event0_.CONTACT_DETAILS as CONTACT5_5_0_, event0_.DESCRIPTION as DESCRIPT6_5_0_, event0_.END_DATE as END7_5_0_, event0_.PAY_TYPE as PAY8_5_0_, event0_.ATTEND_TYPE as ATTEND9_5_0_, event0_.ACTIVE as ACTIVE5_0_, event0_.WEBINAR as WEBINAR5_0_, event0_.KEY_WORDS as KEY12_5_0_, event0_.ORGANIZER_DESC as ORGANIZER13_5_0_, event0_.ORGANIZER_NAME as ORGANIZER14_5_0_, event0_.PRIVACY_TYPE as PRIVACY15_5_0_, event0_.PUBLISH_DATE as PUBLISH16_5_0_, event0_.SHOW_EVENT as SHOW17_5_0_, event0_.START_DATE as START18_5_0_, event0_.STATUS as STATUS5_0_, event0_.SUBCATEGORY_ID as SUBCATE20_5_0_, event0_.TERMS_CONDITIONS as TERMS21_5_0_, event0_.TITLE as TITLE5_0_, event0_.VENUE_ADDRESS_ID as VENUE24_5_0_, event0_.VENUE_NAME as VENUE23_5_0_ from EVENT event0_ where event0_.ID=?]; nested exception is org.hibernate.exception.SQLGrammarException: could not load an entity: [com.eventpool.common.entities.Event#1], mergedContextConfiguration = [MergedContextConfiguration@605df3c5 testClass = EventTest, locations = '{classpath:/META-INF/eventpool/application*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]
+2013-05-05 23:27:20,586 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Began transaction (2): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@1c45484a]; rollback [false]
+2013-05-05 23:27:20,798 [main] WARN  o.h.util.JDBCExceptionReporter - SQL Error: 1054, SQLState: 42S22
+2013-05-05 23:27:20,799 [main] ERROR o.h.util.JDBCExceptionReporter - Unknown column 'PRIVACY_TYPE' in 'field list'
+2013-05-05 23:27:20,837 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener@645064f] to process 'after' execution for test: method [public void com.eventpool.common.EventTest.addEvent()], instance [com.eventpool.common.EventTest@1da12fc0], exception [org.springframework.dao.InvalidDataAccessResourceUsageException: could not insert: [com.eventpool.common.entities.Event]; SQL [insert into EVENT (CREATEDBY, CREATED_DATE, MODIFIED_DATE, CONTACT_DETAILS, DESCRIPTION, END_DATE, PAY_TYPE, ATTEND_TYPE, ACTIVE, WEBINAR, KEY_WORDS, ORGANIZER_DESC, ORGANIZER_NAME, PRIVACY_TYPE, PUBLISH_DATE, SHOW_EVENT, START_DATE, STATUS, SUBCATEGORY_ID, TERMS_CONDITIONS, TITLE, VENUE_ADDRESS_ID, VENUE_NAME) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]; nested exception is org.hibernate.exception.SQLGrammarException: could not insert: [com.eventpool.common.entities.Event]]
+org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Transaction marked as rollbackOnly
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:521) ~[spring-orm-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:754) ~[spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:723) ~[spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener$TransactionContext.endTransaction(TransactionalTestExecutionListener.java:591) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.endTransaction(TransactionalTestExecutionListener.java:297) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.afterTestMethod(TransactionalTestExecutionListener.java:192) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:395) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:91) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97) [surefire-junit4-2.7.1.jar:2.7.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103) [surefire-booter-2.7.1.jar:2.7.1]
+	at $Proxy0.invoke(Unknown Source) [na:na]
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69) [surefire-booter-2.7.1.jar:2.7.1]
+Caused by: javax.persistence.RollbackException: Transaction marked as rollbackOnly
+	at org.hibernate.ejb.TransactionImpl.commit(TransactionImpl.java:73) ~[hibernate-entitymanager-3.6.10.Final.jar:3.6.10.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:512) ~[spring-orm-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	... 32 common frames omitted
+2013-05-05 23:27:20,844 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Began transaction (3): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@1c45484a]; rollback [false]
+2013-05-05 23:27:20,920 [main] INFO  org.dozer.DozerBeanMapper - Using the following xml files to load custom mappings for the bean mapper instance: [dozer-mapping-files/orderMapping.xml, dozer-mapping-files/eventMapping.xml]
+2013-05-05 23:27:20,920 [main] INFO  org.dozer.DozerBeanMapper - Trying to find xml mapping file: dozer-mapping-files/orderMapping.xml
+2013-05-05 23:27:20,922 [main] INFO  org.dozer.DozerBeanMapper - Using URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/orderMapping.xml] to load custom xml mappings
+2013-05-05 23:27:20,968 [main] INFO  org.dozer.DozerBeanMapper - Successfully loaded custom xml mappings from URL: [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/orderMapping.xml]
+2013-05-05 23:27:20,968 [main] INFO  org.dozer.DozerBeanMapper - Trying to find xml mapping file: dozer-mapping-files/eventMapping.xml
+2013-05-05 23:27:20,969 [main] INFO  org.dozer.DozerBeanMapper - Using URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/eventMapping.xml] to load custom xml mappings
+2013-05-05 23:27:21,008 [main] INFO  org.dozer.DozerBeanMapper - Successfully loaded custom xml mappings from URL: [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/eventMapping.xml]
+2013-05-05 23:27:21,110 [main] WARN  o.h.util.JDBCExceptionReporter - SQL Error: 1054, SQLState: 42S22
+2013-05-05 23:27:21,110 [main] ERROR o.h.util.JDBCExceptionReporter - Unknown column 'PRIVACY_TYPE' in 'field list'
+2013-05-05 23:27:21,114 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener@645064f] to process 'after' execution for test: method [public void com.eventpool.common.EventTest.saveEventDTO()], instance [com.eventpool.common.EventTest@64afb650], exception [org.springframework.dao.InvalidDataAccessResourceUsageException: could not insert: [com.eventpool.common.entities.Event]; SQL [insert into EVENT (CREATEDBY, CREATED_DATE, MODIFIED_DATE, CONTACT_DETAILS, DESCRIPTION, END_DATE, PAY_TYPE, ATTEND_TYPE, ACTIVE, WEBINAR, KEY_WORDS, ORGANIZER_DESC, ORGANIZER_NAME, PRIVACY_TYPE, PUBLISH_DATE, SHOW_EVENT, START_DATE, STATUS, SUBCATEGORY_ID, TERMS_CONDITIONS, TITLE, VENUE_ADDRESS_ID, VENUE_NAME) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]; nested exception is org.hibernate.exception.SQLGrammarException: could not insert: [com.eventpool.common.entities.Event]]
+org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Transaction marked as rollbackOnly
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:521) ~[spring-orm-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:754) ~[spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:723) ~[spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener$TransactionContext.endTransaction(TransactionalTestExecutionListener.java:591) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.endTransaction(TransactionalTestExecutionListener.java:297) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.afterTestMethod(TransactionalTestExecutionListener.java:192) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:395) ~[spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:91) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97) [surefire-junit4-2.7.1.jar:2.7.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103) [surefire-booter-2.7.1.jar:2.7.1]
+	at $Proxy0.invoke(Unknown Source) [na:na]
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69) [surefire-booter-2.7.1.jar:2.7.1]
+Caused by: javax.persistence.RollbackException: Transaction marked as rollbackOnly
+	at org.hibernate.ejb.TransactionImpl.commit(TransactionImpl.java:73) ~[hibernate-entitymanager-3.6.10.Final.jar:3.6.10.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:512) ~[spring-orm-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	... 32 common frames omitted
+2013-05-05 23:27:21,121 [main] INFO  com.eventpool.common.BaseTest - gmt date Sun May 05 17:57:21 IST 2013
+2013-05-05 23:27:21,121 [main] INFO  com.eventpool.common.BaseTest -  local dateSun May 05 17:57:21 IST 2013
+2013-05-05 23:27:21,142 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:27:21,169 [main] INFO  c.e.t.command.impl.RunEnvironment - executing command: TicketBlockedCommand[ticketId=1,blockingQty=2,id=88e07e73-4fac-461f-9921-97a46aa0ad41]
+2013-05-05 23:27:21,170 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocking Ticket Inventory...
+2013-05-05 23:27:21,176 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocked Ticket Inventory...<null>
+2013-05-05 23:27:21,184 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:27:25,031 [net.sf.ehcache.CacheManager@4eff0d4b] INFO  net.sf.ehcache.util.UpdateChecker - New update(s) found: 2.4.7 [http://www.terracotta.org/confluence/display/release/Release+Notes+Ehcache+Core+2.4]. Please check http://ehcache.org for the latest version.
+2013-05-05 23:27:51,202 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:27:51,209 [main] INFO  c.e.t.command.impl.RunEnvironment - executing command: TicketBlockedCommand[ticketId=101,blockingQty=1,id=a227ae1a-4d1a-4f71-ac76-59bc075308c0]
+2013-05-05 23:27:51,212 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocking Ticket Inventory...
+2013-05-05 23:27:51,214 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocked Ticket Inventory...<null>
+2013-05-05 23:27:51,218 [main] INFO  c.e.t.command.impl.RunEnvironment - executing command: TicketOrderedCommand[ticketId=101,qty=1,id=5d62bacd-ca17-45d6-a96a-509c6b10a670]
+2013-05-05 23:27:51,219 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Updating Ticket Inventory...
+2013-05-05 23:27:51,222 [main] ERROR c.e.t.command.impl.RunEnvironment - failed to execute command, throwing exception
+java.lang.NullPointerException: null
+	at com.eventpool.ticket.core.TicketDomainApiImpl.updateTicketOrdered(TicketDomainApiImpl.java:28) ~[classes/:na]
+	at com.eventpool.ticket.commands.handler.TicketOrderedCommandHandler.handle(TicketOrderedCommandHandler.java:21) ~[classes/:na]
+	at com.eventpool.ticket.commands.handler.TicketOrderedCommandHandler.handle(TicketOrderedCommandHandler.java:1) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:319) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110) ~[spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:202) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at $Proxy55.handle(Unknown Source) ~[na:na]
+	at com.eventpool.ticket.command.impl.RunEnvironment.runRetrying(RunEnvironment.java:94) ~[classes/:na]
+	at com.eventpool.ticket.command.impl.RunEnvironment.run(RunEnvironment.java:52) ~[classes/:na]
+	at com.eventpool.ticket.command.impl.StandardGate.dispatch(StandardGate.java:53) [classes/:na]
+	at com.eventpool.ticket.service.TicketInventoryServiceImpl.executeCommand(TicketInventoryServiceImpl.java:43) [classes/:na]
+	at com.eventpool.common.TicketServiceTest.updateTicketInventory(TicketServiceTest.java:37) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47) [junit-4.11.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.11.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97) [surefire-junit4-2.7.1.jar:2.7.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103) [surefire-booter-2.7.1.jar:2.7.1]
+	at $Proxy0.invoke(Unknown Source) [na:na]
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69) [surefire-booter-2.7.1.jar:2.7.1]
+2013-05-05 23:27:51,235 [Thread-8] INFO  o.s.c.s.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@470b9279: startup date [Sun May 05 23:27:16 IST 2013]; root of context hierarchy
+2013-05-05 23:27:51,237 [Thread-8] INFO  o.s.b.f.s.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4c6504bc: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,ticketRegisterRepository,countryRepository,suborderRepository,cityRepository,ticketInventoryRepository,orderRepository,categoryRepository,registrationRepository,eventRepository,stateRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-05-05 23:27:51,248 [Thread-8] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-05-05 23:27:51,249 [Thread-8] INFO  o.hibernate.impl.SessionFactoryImpl - closing
+2013-05-05 23:39:24,789 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:39:24,956 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\e.ramulu\git\eventpool\target\classes\META-INF\eventpool\applicationContext-common-data.xml]
+2013-05-05 23:39:25,625 [main] INFO  o.s.c.s.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@48bd6a5f: startup date [Sun May 05 23:39:25 IST 2013]; root of context hierarchy
+2013-05-05 23:39:25,874 [main] INFO  o.s.b.f.c.PropertyPlaceholderConfigurer - Loading properties file from URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/META-INF/properties/dev/eventpool.properties]
+2013-05-05 23:39:26,004 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#67071c84' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:39:26,525 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'pooledDataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:39:26,530 [main] INFO  o.s.jndi.JndiObjectFactoryBean - JNDI lookup failed - returning specified default object instead: javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+2013-05-05 23:39:26,530 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class org.springframework.jndi.JndiObjectFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:39:26,530 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:39:26,546 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-05-05 23:39:26,696 [main] INFO  o.h.annotations.common.Version - Hibernate Commons Annotations 3.2.0.Final
+2013-05-05 23:39:26,704 [main] INFO  org.hibernate.cfg.Environment - Hibernate 3.6.10.Final
+2013-05-05 23:39:26,706 [main] INFO  org.hibernate.cfg.Environment - hibernate.properties not found
+2013-05-05 23:39:26,709 [main] INFO  org.hibernate.cfg.Environment - Bytecode provider name : javassist
+2013-05-05 23:39:26,713 [main] INFO  org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+2013-05-05 23:39:26,772 [main] INFO  org.hibernate.ejb.Version - Hibernate EntityManager 3.6.10.Final
+2013-05-05 23:39:26,789 [main] INFO  org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: eventpool-persistence-unit
+	...]
+2013-05-05 23:39:26,971 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Media
+2013-05-05 23:39:27,010 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Media on table EVENT_MEDIA
+2013-05-05 23:39:27,063 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Address
+2013-05-05 23:39:27,063 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Address on table ADDRESS
+2013-05-05 23:39:27,077 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Category
+2013-05-05 23:39:27,078 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Category on table CATEGORY
+2013-05-05 23:39:27,088 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Ticket
+2013-05-05 23:39:27,088 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Ticket on table TICKET
+2013-05-05 23:39:27,093 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketInventory
+2013-05-05 23:39:27,094 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketInventory on table TICKET_INVENTORY
+2013-05-05 23:39:27,099 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Event
+2013-05-05 23:39:27,100 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Event on table EVENT
+2013-05-05 23:39:27,141 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Order
+2013-05-05 23:39:27,141 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Order on table ORDER
+2013-05-05 23:39:27,154 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Suborder
+2013-05-05 23:39:27,155 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Suborder on table SUBORDER
+2013-05-05 23:39:27,162 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Registration
+2013-05-05 23:39:27,163 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Registration on table REGISTRATION
+2013-05-05 23:39:27,167 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketRegister
+2013-05-05 23:39:27,168 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketRegister on table TICKET_REGISTER
+2013-05-05 23:39:27,172 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketSnapShot
+2013-05-05 23:39:27,173 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketSnapShot on table TICKET_SNAPSHOT
+2013-05-05 23:39:27,177 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.City
+2013-05-05 23:39:27,178 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.City on table CITY
+2013-05-05 23:39:27,180 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Country
+2013-05-05 23:39:27,181 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Country on table COUNTRY
+2013-05-05 23:39:27,184 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.State
+2013-05-05 23:39:27,184 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.State on table STATE
+2013-05-05 23:39:27,194 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Suborder.registrations -> REGISTRATION
+2013-05-05 23:39:27,196 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Order.suborders -> SUBORDER
+2013-05-05 23:39:27,197 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Event.tickets -> TICKET
+2013-05-05 23:39:27,203 [main] INFO  org.hibernate.cfg.Configuration - Hibernate Validator not found: ignoring
+2013-05-05 23:39:27,739 [main] INFO  o.h.c.s.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2013-05-05 23:39:27,749 [main] INFO  o.h.c.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+2013-05-05 23:39:27,752 [main] INFO  o.h.e.c.InjectedDataSourceConnectionProvider - Using provided datasource
+2013-05-05 23:39:28,062 [main] INFO  org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.MySQLDialect
+2013-05-05 23:39:28,070 [main] INFO  o.h.engine.jdbc.JdbcSupportLoader - Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2013-05-05 23:39:28,071 [main] INFO  org.hibernate.cfg.SettingsFactory - Database ->
+       name : MySQL
+    version : 5.0.45-community-nt
+      major : 5
+      minor : 0
+2013-05-05 23:39:28,071 [main] INFO  org.hibernate.cfg.SettingsFactory - Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.6 ( Revision: ${svn.Revision} )
+      major : 5
+      minor : 1
+2013-05-05 23:39:28,076 [main] INFO  o.h.t.TransactionFactoryFactory - Using default transaction strategy (direct JDBC transactions)
+2013-05-05 23:39:28,078 [main] INFO  o.h.t.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2013-05-05 23:39:28,078 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+2013-05-05 23:39:28,078 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+2013-05-05 23:39:28,078 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch size: 50
+2013-05-05 23:39:28,078 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+2013-05-05 23:39:28,080 [main] INFO  org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+2013-05-05 23:39:28,080 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): enabled
+2013-05-05 23:39:28,080 [main] INFO  org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+2013-05-05 23:39:28,081 [main] INFO  org.hibernate.cfg.SettingsFactory - Maximum outer join fetch depth: 2
+2013-05-05 23:39:28,082 [main] INFO  org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+2013-05-05 23:39:28,082 [main] INFO  org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+2013-05-05 23:39:28,082 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+2013-05-05 23:39:28,082 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+2013-05-05 23:39:28,082 [main] INFO  org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2013-05-05 23:39:28,084 [main] INFO  o.h.h.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+2013-05-05 23:39:28,085 [main] INFO  org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+2013-05-05 23:39:28,085 [main] INFO  org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+2013-05-05 23:39:28,085 [main] INFO  org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+2013-05-05 23:39:28,085 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache: enabled
+2013-05-05 23:39:28,085 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.EhCacheRegionFactory
+2013-05-05 23:39:28,095 [main] INFO  org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: enabled
+2013-05-05 23:39:28,096 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region prefix: $EVENT_POOL{hibernate.cache.region_prefix}
+2013-05-05 23:39:28,096 [main] INFO  org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: enabled
+2013-05-05 23:39:28,096 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache factory: org.hibernate.cache.StandardQueryCacheFactory
+2013-05-05 23:39:28,101 [main] INFO  org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+2013-05-05 23:39:28,102 [main] INFO  org.hibernate.cfg.SettingsFactory - Statistics: disabled
+2013-05-05 23:39:28,102 [main] INFO  org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+2013-05-05 23:39:28,103 [main] INFO  org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+2013-05-05 23:39:28,103 [main] INFO  org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+2013-05-05 23:39:28,103 [main] INFO  org.hibernate.cfg.SettingsFactory - Check Nullability in Core (should be disabled when Bean Validation is on): disabled
+2013-05-05 23:39:28,117 [main] INFO  o.hibernate.impl.SessionFactoryImpl - building session factory
+2013-05-05 23:39:28,123 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@293a985
+2013-05-05 23:39:28,123 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [clob] overrides previous : org.hibernate.type.ClobType@2c5e5c15
+2013-05-05 23:39:28,123 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@2c5e5c15
+2013-05-05 23:39:28,123 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [blob] overrides previous : org.hibernate.type.BlobType@66ef7d74
+2013-05-05 23:39:28,123 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@66ef7d74
+2013-05-05 23:39:28,123 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@75157f77
+2013-05-05 23:39:28,124 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@566399ae
+2013-05-05 23:39:28,124 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@24fe9ad1
+2013-05-05 23:39:28,124 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@47662250
+2013-05-05 23:39:28,128 [main] WARN  n.s.e.config.ConfigurationFactory - No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/C:/Users/e.ramulu/.m2/repository/net/sf/ehcache/ehcache-core/2.4.3/ehcache-core-2.4.3.jar!/ehcache-failsafe.xml
+2013-05-05 23:39:28,514 [main] INFO  o.h.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+2013-05-05 23:39:28,516 [main] INFO  o.h.cache.UpdateTimestampsCache - starting update timestamps cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache
+2013-05-05 23:39:28,519 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache]; using defaults.
+2013-05-05 23:39:28,553 [main] INFO  o.hibernate.cache.StandardQueryCache - starting query cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache
+2013-05-05 23:39:28,553 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache]; using defaults.
+2013-05-05 23:39:28,611 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:39:28,645 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:39:28,650 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:39:28,664 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@25e222e: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,cityRepository,categoryRepository,stateRepository,ticketRegisterRepository,ticketInventoryRepository,eventRepository,suborderRepository,orderRepository,registrationRepository,countryRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-05-05 23:39:29,144 [main] INFO  org.dozer.config.GlobalSettings - Trying to find Dozer configuration file: dozer.properties
+2013-05-05 23:39:29,155 [main] WARN  org.dozer.config.GlobalSettings - Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.
+2013-05-05 23:39:29,158 [main] INFO  org.dozer.DozerInitializer - Initializing Dozer. Version: 5.4.0, Thread Name: main
+2013-05-05 23:39:29,162 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerStatisticsController] auto registered with the Platform MBean Server
+2013-05-05 23:39:29,163 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerAdminController] auto registered with the Platform MBean Server
+2013-05-05 23:39:29,167 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:39:29,299 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:39:29,542 [main] INFO  o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+2013-05-05 23:39:29,591 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Began transaction (1): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@9fa8988]; rollback [true]
+2013-05-05 23:39:29,645 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Rolled back transaction after test execution for test context [TestContext@3a65724d testClass = EventTest, testInstance = com.eventpool.common.EventTest@59727745, testMethod = getEventDTO@EventTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@69f480e3 testClass = EventTest, locations = '{classpath:/META-INF/eventpool/application*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]
+2013-05-05 23:39:29,655 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Began transaction (2): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@9fa8988]; rollback [false]
+2013-05-05 23:39:29,889 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Committed transaction after test execution for test context [TestContext@3a65724d testClass = EventTest, testInstance = com.eventpool.common.EventTest@48d593f7, testMethod = addEvent@EventTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@69f480e3 testClass = EventTest, locations = '{classpath:/META-INF/eventpool/application*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]
+2013-05-05 23:39:29,895 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Began transaction (3): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@9fa8988]; rollback [false]
+2013-05-05 23:39:29,964 [main] INFO  org.dozer.DozerBeanMapper - Using the following xml files to load custom mappings for the bean mapper instance: [dozer-mapping-files/orderMapping.xml, dozer-mapping-files/eventMapping.xml]
+2013-05-05 23:39:29,964 [main] INFO  org.dozer.DozerBeanMapper - Trying to find xml mapping file: dozer-mapping-files/orderMapping.xml
+2013-05-05 23:39:29,966 [main] INFO  org.dozer.DozerBeanMapper - Using URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/orderMapping.xml] to load custom xml mappings
+2013-05-05 23:39:30,009 [main] INFO  org.dozer.DozerBeanMapper - Successfully loaded custom xml mappings from URL: [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/orderMapping.xml]
+2013-05-05 23:39:30,010 [main] INFO  org.dozer.DozerBeanMapper - Trying to find xml mapping file: dozer-mapping-files/eventMapping.xml
+2013-05-05 23:39:30,010 [main] INFO  org.dozer.DozerBeanMapper - Using URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/eventMapping.xml] to load custom xml mappings
+2013-05-05 23:39:30,043 [main] INFO  org.dozer.DozerBeanMapper - Successfully loaded custom xml mappings from URL: [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/eventMapping.xml]
+2013-05-05 23:39:30,170 [main] INFO  c.e.event.module.EventApiImpl - event saved before commit 2
+2013-05-05 23:39:30,173 [main] INFO  o.s.t.c.t.TransactionalTestExecutionListener - Committed transaction after test execution for test context [TestContext@3a65724d testClass = EventTest, testInstance = com.eventpool.common.EventTest@e1641c0, testMethod = saveEventDTO@EventTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@69f480e3 testClass = EventTest, locations = '{classpath:/META-INF/eventpool/application*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]
+2013-05-05 23:39:30,177 [main] INFO  com.eventpool.common.BaseTest - gmt date Sun May 05 18:09:30 IST 2013
+2013-05-05 23:39:30,177 [main] INFO  com.eventpool.common.BaseTest -  local dateSun May 05 18:09:30 IST 2013
+2013-05-05 23:39:30,191 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:39:30,230 [main] INFO  c.e.t.command.impl.RunEnvironment - executing command: TicketBlockedCommand[ticketId=1,blockingQty=2,id=2763ebb5-76dd-4d91-86bc-b7065d2223db]
+2013-05-05 23:39:30,231 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocking Ticket Inventory...
+2013-05-05 23:39:30,233 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocked Ticket Inventory...<null>
+2013-05-05 23:39:30,245 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:40:00,263 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:40:00,268 [main] INFO  c.e.t.command.impl.RunEnvironment - executing command: TicketBlockedCommand[ticketId=101,blockingQty=1,id=d3d43a8f-955e-49e2-927e-0dd43ab0a3c3]
+2013-05-05 23:40:00,269 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocking Ticket Inventory...
+2013-05-05 23:40:00,271 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocked Ticket Inventory...<null>
+2013-05-05 23:40:00,276 [main] INFO  c.e.t.command.impl.RunEnvironment - executing command: TicketOrderedCommand[ticketId=101,qty=1,id=1d8864e2-d4c1-4edf-874c-0db17482f54a]
+2013-05-05 23:40:00,278 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Updating Ticket Inventory...
+2013-05-05 23:40:00,288 [main] ERROR c.e.t.command.impl.RunEnvironment - failed to execute command, throwing exception
+java.lang.NullPointerException: null
+	at com.eventpool.ticket.core.TicketDomainApiImpl.updateTicketOrdered(TicketDomainApiImpl.java:28) ~[classes/:na]
+	at com.eventpool.ticket.commands.handler.TicketOrderedCommandHandler.handle(TicketOrderedCommandHandler.java:21) ~[classes/:na]
+	at com.eventpool.ticket.commands.handler.TicketOrderedCommandHandler.handle(TicketOrderedCommandHandler.java:1) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:319) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110) ~[spring-tx-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:202) ~[spring-aop-3.1.4.RELEASE.jar:3.1.4.RELEASE]
+	at $Proxy55.handle(Unknown Source) ~[na:na]
+	at com.eventpool.ticket.command.impl.RunEnvironment.runRetrying(RunEnvironment.java:94) ~[classes/:na]
+	at com.eventpool.ticket.command.impl.RunEnvironment.run(RunEnvironment.java:52) ~[classes/:na]
+	at com.eventpool.ticket.command.impl.StandardGate.dispatch(StandardGate.java:53) [classes/:na]
+	at com.eventpool.ticket.service.TicketInventoryServiceImpl.executeCommand(TicketInventoryServiceImpl.java:43) [classes/:na]
+	at com.eventpool.common.TicketServiceTest.updateTicketInventory(TicketServiceTest.java:37) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47) [junit-4.11.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.11.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174) [spring-test-3.2.2.RELEASE.jar:3.2.2.RELEASE]
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146) [surefire-junit4-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97) [surefire-junit4-2.7.1.jar:2.7.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_24]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_24]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_24]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_24]
+	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103) [surefire-booter-2.7.1.jar:2.7.1]
+	at $Proxy0.invoke(Unknown Source) [na:na]
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87) [surefire-booter-2.7.1.jar:2.7.1]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69) [surefire-booter-2.7.1.jar:2.7.1]
+2013-05-05 23:40:00,294 [Thread-8] INFO  o.s.c.s.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@48bd6a5f: startup date [Sun May 05 23:39:25 IST 2013]; root of context hierarchy
+2013-05-05 23:40:00,296 [Thread-8] INFO  o.s.b.f.s.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@25e222e: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,cityRepository,categoryRepository,stateRepository,ticketRegisterRepository,ticketInventoryRepository,eventRepository,suborderRepository,orderRepository,registrationRepository,countryRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-05-05 23:40:00,306 [Thread-8] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-05-05 23:40:00,307 [Thread-8] INFO  o.hibernate.impl.SessionFactoryImpl - closing
+2013-05-05 23:44:51,814 [main] INFO  com.eventpool.common.BaseTest - Setting Profile to :dev
+2013-05-05 23:44:51,964 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\e.ramulu\git\eventpool\target\classes\META-INF\eventpool\applicationContext-common-data.xml]
+2013-05-05 23:44:52,830 [main] INFO  o.s.c.s.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@32955cd5: startup date [Sun May 05 23:44:52 IST 2013]; root of context hierarchy
+2013-05-05 23:44:53,110 [main] INFO  o.s.b.f.c.PropertyPlaceholderConfigurer - Loading properties file from URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/META-INF/properties/dev/eventpool.properties]
+2013-05-05 23:44:53,251 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#7a354749' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:44:53,830 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'pooledDataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:44:53,834 [main] INFO  o.s.jndi.JndiObjectFactoryBean - JNDI lookup failed - returning specified default object instead: javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+2013-05-05 23:44:53,835 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class org.springframework.jndi.JndiObjectFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:44:53,835 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'dataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:44:53,851 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-05-05 23:44:54,001 [main] INFO  o.h.annotations.common.Version - Hibernate Commons Annotations 3.2.0.Final
+2013-05-05 23:44:54,008 [main] INFO  org.hibernate.cfg.Environment - Hibernate 3.6.10.Final
+2013-05-05 23:44:54,010 [main] INFO  org.hibernate.cfg.Environment - hibernate.properties not found
+2013-05-05 23:44:54,013 [main] INFO  org.hibernate.cfg.Environment - Bytecode provider name : javassist
+2013-05-05 23:44:54,018 [main] INFO  org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+2013-05-05 23:44:54,086 [main] INFO  org.hibernate.ejb.Version - Hibernate EntityManager 3.6.10.Final
+2013-05-05 23:44:54,107 [main] INFO  org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: eventpool-persistence-unit
+	...]
+2013-05-05 23:44:54,392 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Media
+2013-05-05 23:44:54,445 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Media on table EVENT_MEDIA
+2013-05-05 23:44:54,501 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Address
+2013-05-05 23:44:54,501 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Address on table ADDRESS
+2013-05-05 23:44:54,511 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Category
+2013-05-05 23:44:54,511 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Category on table CATEGORY
+2013-05-05 23:44:54,524 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Ticket
+2013-05-05 23:44:54,525 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Ticket on table TICKET
+2013-05-05 23:44:54,530 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketInventory
+2013-05-05 23:44:54,530 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketInventory on table TICKET_INVENTORY
+2013-05-05 23:44:54,535 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Event
+2013-05-05 23:44:54,536 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Event on table EVENT
+2013-05-05 23:44:54,582 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Order
+2013-05-05 23:44:54,589 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Order on table ORDER
+2013-05-05 23:44:54,610 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Suborder
+2013-05-05 23:44:54,610 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Suborder on table SUBORDER
+2013-05-05 23:44:54,617 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Registration
+2013-05-05 23:44:54,618 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Registration on table REGISTRATION
+2013-05-05 23:44:54,622 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketRegister
+2013-05-05 23:44:54,622 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketRegister on table TICKET_REGISTER
+2013-05-05 23:44:54,626 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.TicketSnapShot
+2013-05-05 23:44:54,627 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.TicketSnapShot on table TICKET_SNAPSHOT
+2013-05-05 23:44:54,634 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.City
+2013-05-05 23:44:54,634 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.City on table CITY
+2013-05-05 23:44:54,638 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.Country
+2013-05-05 23:44:54,638 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.Country on table COUNTRY
+2013-05-05 23:44:54,642 [main] INFO  org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.eventpool.common.entities.State
+2013-05-05 23:44:54,642 [main] INFO  o.h.cfg.annotations.EntityBinder - Bind entity com.eventpool.common.entities.State on table STATE
+2013-05-05 23:44:54,653 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Suborder.registrations -> REGISTRATION
+2013-05-05 23:44:54,656 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Order.suborders -> SUBORDER
+2013-05-05 23:44:54,656 [main] INFO  o.h.cfg.annotations.CollectionBinder - Mapping collection: com.eventpool.common.entities.Event.tickets -> TICKET
+2013-05-05 23:44:54,663 [main] INFO  org.hibernate.cfg.Configuration - Hibernate Validator not found: ignoring
+2013-05-05 23:44:55,257 [main] INFO  o.h.c.s.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2013-05-05 23:44:55,266 [main] INFO  o.h.c.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+2013-05-05 23:44:55,270 [main] INFO  o.h.e.c.InjectedDataSourceConnectionProvider - Using provided datasource
+2013-05-05 23:44:55,590 [main] INFO  org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.MySQLDialect
+2013-05-05 23:44:55,600 [main] INFO  o.h.engine.jdbc.JdbcSupportLoader - Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2013-05-05 23:44:55,601 [main] INFO  org.hibernate.cfg.SettingsFactory - Database ->
+       name : MySQL
+    version : 5.0.45-community-nt
+      major : 5
+      minor : 0
+2013-05-05 23:44:55,601 [main] INFO  org.hibernate.cfg.SettingsFactory - Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.6 ( Revision: ${svn.Revision} )
+      major : 5
+      minor : 1
+2013-05-05 23:44:55,604 [main] INFO  o.h.t.TransactionFactoryFactory - Using default transaction strategy (direct JDBC transactions)
+2013-05-05 23:44:55,606 [main] INFO  o.h.t.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2013-05-05 23:44:55,607 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+2013-05-05 23:44:55,607 [main] INFO  org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+2013-05-05 23:44:55,607 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch size: 50
+2013-05-05 23:44:55,607 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+2013-05-05 23:44:55,608 [main] INFO  org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+2013-05-05 23:44:55,608 [main] INFO  org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): enabled
+2013-05-05 23:44:55,608 [main] INFO  org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+2013-05-05 23:44:55,609 [main] INFO  org.hibernate.cfg.SettingsFactory - Maximum outer join fetch depth: 2
+2013-05-05 23:44:55,610 [main] INFO  org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+2013-05-05 23:44:55,610 [main] INFO  org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+2013-05-05 23:44:55,610 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+2013-05-05 23:44:55,610 [main] INFO  org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+2013-05-05 23:44:55,610 [main] INFO  org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2013-05-05 23:44:55,612 [main] INFO  o.h.h.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+2013-05-05 23:44:55,612 [main] INFO  org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+2013-05-05 23:44:55,612 [main] INFO  org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+2013-05-05 23:44:55,612 [main] INFO  org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+2013-05-05 23:44:55,612 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache: enabled
+2013-05-05 23:44:55,612 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.EhCacheRegionFactory
+2013-05-05 23:44:55,621 [main] INFO  org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: enabled
+2013-05-05 23:44:55,622 [main] INFO  org.hibernate.cfg.SettingsFactory - Cache region prefix: $EVENT_POOL{hibernate.cache.region_prefix}
+2013-05-05 23:44:55,622 [main] INFO  org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: enabled
+2013-05-05 23:44:55,622 [main] INFO  org.hibernate.cfg.SettingsFactory - Query cache factory: org.hibernate.cache.StandardQueryCacheFactory
+2013-05-05 23:44:55,626 [main] INFO  org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+2013-05-05 23:44:55,627 [main] INFO  org.hibernate.cfg.SettingsFactory - Statistics: disabled
+2013-05-05 23:44:55,627 [main] INFO  org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+2013-05-05 23:44:55,628 [main] INFO  org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+2013-05-05 23:44:55,628 [main] INFO  org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+2013-05-05 23:44:55,628 [main] INFO  org.hibernate.cfg.SettingsFactory - Check Nullability in Core (should be disabled when Bean Validation is on): disabled
+2013-05-05 23:44:55,644 [main] INFO  o.hibernate.impl.SessionFactoryImpl - building session factory
+2013-05-05 23:44:55,654 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [blob] overrides previous : org.hibernate.type.BlobType@7b7d8769
+2013-05-05 23:44:55,654 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@7b7d8769
+2013-05-05 23:44:55,654 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@6e453dd5
+2013-05-05 23:44:55,655 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@3dea382
+2013-05-05 23:44:55,655 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@dc0adca
+2013-05-05 23:44:55,655 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [clob] overrides previous : org.hibernate.type.ClobType@64d1afd3
+2013-05-05 23:44:55,655 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@64d1afd3
+2013-05-05 23:44:55,655 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@26e795b
+2013-05-05 23:44:55,655 [main] INFO  org.hibernate.type.BasicTypeRegistry - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@22e1469c
+2013-05-05 23:44:55,665 [main] WARN  n.s.e.config.ConfigurationFactory - No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/C:/Users/e.ramulu/.m2/repository/net/sf/ehcache/ehcache-core/2.4.3/ehcache-core-2.4.3.jar!/ehcache-failsafe.xml
+2013-05-05 23:44:56,039 [main] INFO  o.h.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+2013-05-05 23:44:56,041 [main] INFO  o.h.cache.UpdateTimestampsCache - starting update timestamps cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache
+2013-05-05 23:44:56,044 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.UpdateTimestampsCache]; using defaults.
+2013-05-05 23:44:56,073 [main] INFO  o.hibernate.cache.StandardQueryCache - starting query cache at region: $EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache
+2013-05-05 23:44:56,074 [main] WARN  n.s.e.h.AbstractEhcacheRegionFactory - Couldn't find a specific ehcache configuration for cache named [$EVENT_POOL{hibernate.cache.region_prefix}.org.hibernate.cache.StandardQueryCache]; using defaults.
+2013-05-05 23:44:56,133 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:44:56,172 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:44:56,176 [main] INFO  o.s.c.s.GenericApplicationContext - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-05-05 23:44:56,188 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6e8f94: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,ticketInventoryRepository,registrationRepository,suborderRepository,orderRepository,cityRepository,categoryRepository,ticketRegisterRepository,eventRepository,countryRepository,stateRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-05-05 23:44:56,689 [main] INFO  org.dozer.config.GlobalSettings - Trying to find Dozer configuration file: dozer.properties
+2013-05-05 23:44:56,699 [main] WARN  org.dozer.config.GlobalSettings - Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.
+2013-05-05 23:44:56,703 [main] INFO  org.dozer.DozerInitializer - Initializing Dozer. Version: 5.4.0, Thread Name: main
+2013-05-05 23:44:56,707 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerStatisticsController] auto registered with the Platform MBean Server
+2013-05-05 23:44:56,709 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerAdminController] auto registered with the Platform MBean Server
+2013-05-05 23:44:56,714 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:44:56,884 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+2013-05-05 23:44:57,171 [main] INFO  o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+2013-05-05 23:44:57,247 [main] INFO  org.dozer.DozerBeanMapper - Using the following xml files to load custom mappings for the bean mapper instance: [dozer-mapping-files/orderMapping.xml, dozer-mapping-files/eventMapping.xml]
+2013-05-05 23:44:57,248 [main] INFO  org.dozer.DozerBeanMapper - Trying to find xml mapping file: dozer-mapping-files/orderMapping.xml
+2013-05-05 23:44:57,250 [main] INFO  org.dozer.DozerBeanMapper - Using URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/orderMapping.xml] to load custom xml mappings
+2013-05-05 23:44:57,295 [main] INFO  org.dozer.DozerBeanMapper - Successfully loaded custom xml mappings from URL: [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/orderMapping.xml]
+2013-05-05 23:44:57,296 [main] INFO  org.dozer.DozerBeanMapper - Trying to find xml mapping file: dozer-mapping-files/eventMapping.xml
+2013-05-05 23:44:57,296 [main] INFO  org.dozer.DozerBeanMapper - Using URL [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/eventMapping.xml] to load custom xml mappings
+2013-05-05 23:44:57,335 [main] INFO  org.dozer.DozerBeanMapper - Successfully loaded custom xml mappings from URL: [file:/C:/Users/e.ramulu/git/eventpool/target/classes/dozer-mapping-files/eventMapping.xml]
+2013-05-05 23:44:57,513 [main] INFO  c.e.t.command.impl.RunEnvironment - executing command: TicketBlockedCommand[ticketId=1,blockingQty=2,id=97519062-4300-4479-8e28-30e3ba0c3965]
+2013-05-05 23:44:57,513 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocking Ticket Inventory...
+2013-05-05 23:44:57,535 [main] INFO  c.e.ticket.core.TicketDomainApiImpl - Blocked Ticket Inventory...<null>
+2013-05-05 23:44:57,547 [Thread-8] INFO  o.s.c.s.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@32955cd5: startup date [Sun May 05 23:44:52 IST 2013]; root of context hierarchy
+2013-05-05 23:44:57,549 [Thread-8] INFO  o.s.b.f.s.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6e8f94: defining beans [commonDataPropertiesConfigurer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,categoryTree,commonUtils,entityUtilities,eventpoolMapper,IPLocation,repositoryPool,saveEventCommandHandler,eventApiImpl,orderServiceImpl,auditLogger,springHandlersProvider,runEnvironment,standardGate,ticketBlockedCommandHandler,ticketOrderedCommandHandler,ticketUnBlockedCommandHandler,ticketDomainApiImpl,ticketInventoryServiceImpl,ticketInventoryUnblockedService,eventController,EventService,indexController,orderController,ticketInventoryRepository,registrationRepository,suborderRepository,orderRepository,cityRepository,categoryRepository,ticketRegisterRepository,eventRepository,countryRepository,stateRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,entityManagerFactory,dataSource,commonDataSource,pooledDataSource,validator,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2013-05-05 23:44:57,559 [Thread-8] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'eventpool-persistence-unit'
+2013-05-05 23:44:57,560 [Thread-8] INFO  o.hibernate.impl.SessionFactoryImpl - closing

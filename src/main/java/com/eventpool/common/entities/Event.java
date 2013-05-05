@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Type;
 
 import com.eventpool.common.type.EventInfoType;
+import com.eventpool.common.type.EventPrivacyType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 
@@ -96,7 +97,15 @@ public class Event extends AuditableIdEntity {
 	@Type(type = "yes_no")
 	private boolean isWebinar;
 	
+	@Column(name = "PUBLISH_DATE", nullable = false)
+	private Date publishDate;
 
+	@Column(name="SHOW_EVENT",length=256)
+	@Type(type = "yes_no")
+	private boolean showEvent;
+
+	@Column(name="PRIVACY_TYPE",length=256)
+	private EventPrivacyType privacyType;
 	
 	public String getTitle() {
 		return title;
@@ -268,6 +277,30 @@ public class Event extends AuditableIdEntity {
 
 	public void setIsWebinar(boolean isWebinar) {
 		this.isWebinar = isWebinar;
+	}
+
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
+	public boolean isShowEvent() {
+		return showEvent;
+	}
+
+	public void setShowEvent(boolean showEvent) {
+		this.showEvent = showEvent;
+	}
+
+	public EventPrivacyType getPrivacyType() {
+		return privacyType;
+	}
+
+	public void setPrivacyType(EventPrivacyType privacyType) {
+		this.privacyType = privacyType;
 	}
 
 }
