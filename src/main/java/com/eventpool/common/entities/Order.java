@@ -39,8 +39,8 @@ public class Order extends AuditableIdEntity {
 	@Size(max=255)
 	private String email;
 	
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="ADDRESS_ID")
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
+	@JoinColumn(name="ADDRESS_ID",referencedColumnName="ID")
 	private Address billingAddress;
 	
 	

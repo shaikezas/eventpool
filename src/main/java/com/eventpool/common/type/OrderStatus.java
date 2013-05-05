@@ -6,7 +6,8 @@ public enum OrderStatus {
 
   PAID("Payment Done"),
   CANCELLED("Cancelled"),
-  CLOSED("Closed");
+  CLOSED("Closed"),
+  NEW("NEW");
   
 
   private String description;

@@ -28,8 +28,8 @@ public class CategoryTree {
 	private HashMap<Long, CategoryNode> index;
 	
 	
-	@Value("$EVENT_POOL{createCategoryTree:false}")
-	private Boolean createCategoryTree; 
+//	@Value("$EVENT_POOL{createCategoryTree:false}")
+	private Boolean createCategoryTree=false; 
 
 	@PostConstruct
 	public void initCatalogueTree() {

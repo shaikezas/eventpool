@@ -23,8 +23,11 @@ import com.eventpool.common.type.OrderStatus;
 public class Suborder extends AuditableIdEntity {
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="TICKET_ID",nullable = false)
+	@JoinColumn(name="TICKET_ID",insertable=false,updatable=false)
 	private Ticket ticket;
+	
+	@Column(name = "TICKET_ID", nullable = false)
+	private Long ticketId;
 	
 	@Column(name = "QUANTITY", length = 11)
 	private Integer quantity;
@@ -50,7 +53,7 @@ public class Suborder extends AuditableIdEntity {
 	private Double discountAmount;
 	
 	@Column(name="DISCOUNT_COUPON")
-	private Integer dicountCoupon;
+	private String dicountCoupon;
 	
 	@Column(name="STATUS")
 	@Enumerated(EnumType.STRING)
@@ -128,11 +131,12 @@ public class Suborder extends AuditableIdEntity {
 		this.discountAmount = discountAmount;
 	}
 
-	public Integer getDicountCoupon() {
+	
+	public String getDicountCoupon() {
 		return dicountCoupon;
 	}
 
-	public void setDicountCoupon(Integer dicountCoupon) {
+	public void setDicountCoupon(String dicountCoupon) {
 		this.dicountCoupon = dicountCoupon;
 	}
 
@@ -160,6 +164,16 @@ public class Suborder extends AuditableIdEntity {
 		this.registrations = registrations;
 	}
 	
+	
+	
+	public Long getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
+	}
+
 	@PostUpdate
 	@PostPersist
 	public void onPersist(){

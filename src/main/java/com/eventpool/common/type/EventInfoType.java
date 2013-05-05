@@ -5,7 +5,7 @@ public enum EventInfoType {
   
 
   BASIC("BASIC"),
-  ATTENDEE("ATTEND");
+  ATTENDEE("ATTENDEE");
   
 
   private String description;

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -18,6 +19,9 @@ public class TicketRegister extends IdEntity{
 	@NotNull
 	@Column(name = "TICKET_QTY")
 	private int qty;
+	
+	@Transient
+	private String ticketName;
 	
 	@NotNull
 	@Column(name = "TICKET_PRICE")
@@ -49,6 +53,12 @@ public class TicketRegister extends IdEntity{
 	}
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+	public String getTicketName() {
+		return ticketName;
+	}
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
 	}
 	
 	

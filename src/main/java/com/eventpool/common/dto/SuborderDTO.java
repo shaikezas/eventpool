@@ -22,6 +22,8 @@ public class SuborderDTO extends AuditableIdDTO {
 
 	private TicketDTO ticket;
 	
+	private Long ticketId;
+	
 	private Integer quantity;
 	
     private OrderDTO order;
@@ -37,11 +39,13 @@ public class SuborderDTO extends AuditableIdDTO {
 	
 	private Double discountAmount;
 	
-	private Integer dicountCoupon;
+	private String dicountCoupon;
 	
 	private OrderStatus status;
 	
 	private String organizerName;
+	
+	private Long ticketRegisterId;
 	
 	private List<RegistrationDTO> registrations;
 
@@ -110,11 +114,12 @@ public class SuborderDTO extends AuditableIdDTO {
 		this.discountAmount = discountAmount;
 	}
 
-	public Integer getDicountCoupon() {
+
+	public String getDicountCoupon() {
 		return dicountCoupon;
 	}
 
-	public void setDicountCoupon(Integer dicountCoupon) {
+	public void setDicountCoupon(String dicountCoupon) {
 		this.dicountCoupon = dicountCoupon;
 	}
 
@@ -141,6 +146,23 @@ public class SuborderDTO extends AuditableIdDTO {
 	public void setRegistrations(List<RegistrationDTO> registrations) {
 		this.registrations = registrations;
 	}
+
+	public Long getTicketRegisterId() {
+		return ticketRegisterId;
+	}
+
+	public void setTicketRegisterId(Long ticketRegisterId) {
+		this.ticketRegisterId = ticketRegisterId;
+	}
+
+	public Long getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
+	}
+	
 	
 	
 }

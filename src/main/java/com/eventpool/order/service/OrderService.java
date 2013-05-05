@@ -1,14 +1,12 @@
 package com.eventpool.order.service;
 
-import java.util.List;
-
+import com.eventpool.common.dto.EventRegisterDTO;
 import com.eventpool.common.dto.OrderDTO;
-import com.eventpool.common.dto.TicketRegisterDTO;
+import com.eventpool.common.entities.Order;
 import com.eventpool.web.forms.OrderRegisterForm;
 
 public interface OrderService {
 
-	void creteOrder(OrderDTO orderDTO) throws Exception;
-	
-	OrderRegisterForm registerOrder(List<TicketRegisterDTO> ticketRegisters) throws Exception;
+	Order createOrder(OrderDTO orderDTO) throws Exception;
+	OrderRegisterForm registerOrder(EventRegisterDTO eventRegister) throws Exception;
 }

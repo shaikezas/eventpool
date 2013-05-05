@@ -45,16 +45,21 @@ public class TicketInventoryUnblockedService {
 			ticketRegister = ticketReg;
 		}
 	    public void run() {
-	      System.out.println("Time's up! "+ticketRegister.getId());
+	      log.info("Time's up for ticketRegisterId ! "+ticketRegister.getId());
 	      TicketUnBlockedCommand unblockcmd  = new TicketUnBlockedCommand();
 	      unblockcmd.setUnBlockingQty(ticketRegister.getQty());
 	      unblockcmd.setTicketId(ticketRegister.getTicketId());
 	      try {
-			TicketInventoryDetails ticketInventoryDetails = (TicketInventoryDetails) inventoryService.executeCommand(unblockcmd);
-			if(ticketInventoryDetails.isInvUnBlocked()){
-				ticketRegisterRepository.delete(ticketRegister.getId());
+	    	  TicketRegister register = ticketRegisterRepository.findOne(ticketRegister.getId());
+	    	  if(register!=null){
+	    		  TicketInventoryDetails ticketInventoryDetails = (TicketInventoryDetails) inventoryService.executeCommand(unblockcmd);
+	    		  if(ticketInventoryDetails.isInvUnBlocked()){
+	    			  ticketRegisterRepository.delete(ticketRegister.getId());
+	    		  }else{
+	    			  log.error("Unable to unblock the ticket inventory for ticket register id "+ticketRegister.getId());
+	    		  }
 			}else{
-				log.error("Unable unblock the ticket inventory for ticket register id "+ticketRegister.getId());
+				log.error("Order placed for the ticket register id "+ticketRegister.getId());
 			}
 			
 		} catch (Exception e) {
