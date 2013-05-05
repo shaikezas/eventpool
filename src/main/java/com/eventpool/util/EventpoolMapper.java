@@ -21,6 +21,7 @@ import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.entities.TicketSnapShot;
 
 @SuppressWarnings("rawtypes")
 @Component
@@ -91,7 +92,7 @@ public class EventpoolMapper {
 			suborderDTO.setRegistrations(registrationDTOs);
 		}
 		
-			Ticket ticket = suborder.getTicket();
+			TicketSnapShot ticket = suborder.getTicket();
 			
 			if(ticket!=null){
 				TicketDTO ticketDTO = new TicketDTO();
@@ -123,7 +124,7 @@ public class EventpoolMapper {
 			TicketDTO ticketDTO = suborderDTO.getTicket();
 			
 			if(ticketDTO!=null){
-				Ticket ticket = new Ticket();
+				TicketSnapShot ticket = new TicketSnapShot();
 				mapper.map(ticketDTO, ticket);
 				suborder.setTicket(ticket);
 			}

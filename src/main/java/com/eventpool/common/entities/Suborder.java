@@ -23,10 +23,10 @@ import com.eventpool.common.type.OrderStatus;
 public class Suborder extends AuditableIdEntity {
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="TICKET_ID",insertable=false,updatable=false)
-	private Ticket ticket;
+	@JoinColumn(name="TICKET_SNAPSHOT_ID",insertable=false,updatable=false)
+	private TicketSnapShot ticket;
 	
-	@Column(name = "TICKET_ID", nullable = false)
+	@Column(name = "TICKET_SNAPSHOT_ID", nullable = false)
 	private Long ticketId;
 	
 	@Column(name = "QUANTITY", length = 11)
@@ -65,14 +65,6 @@ public class Suborder extends AuditableIdEntity {
 	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="SUBORDER_ID",referencedColumnName="ID")
 	private List<Registration> registrations;
-
-	public Ticket getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(Ticket ticket) {
-		this.ticket = ticket;
-	}
 
 	public Integer getQuantity() {
 		return quantity;
@@ -183,6 +175,14 @@ public class Suborder extends AuditableIdEntity {
 				registration.setSuborderId(this.getId());
 			}
 		}
+	}
+
+	public TicketSnapShot getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(TicketSnapShot ticket) {
+		this.ticket = ticket;
 	}
 	
 }
