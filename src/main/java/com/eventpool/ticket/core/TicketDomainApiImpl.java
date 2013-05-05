@@ -11,8 +11,10 @@ import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.repositories.TicketInventoryRepository;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
+import com.eventpool.ticket.commands.TicketCreatedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
 import com.eventpool.ticket.commands.TicketUnBlockedCommand;
+import com.eventpool.ticket.commands.TicketUpdatedCommand;
 
 @Service
 public class TicketDomainApiImpl implements TicketDomainApi{
@@ -52,6 +54,34 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		TicketInventoryDetails ticketInventoryDetails = ticketInventory.unBlockingTicketQuantity(blockingQty);
 		ticketInventoryRepository.save(ticketInventory);
 		logger.info("UnBlocked Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
+		return ticketInventoryDetails;
+	}
+	public TicketInventoryDetails ticketCreated(TicketCreatedCommand cmd) {
+		logger.info("Creating Ticket Inventory...");
+		Long ticketId = cmd.getTicketId();
+		Integer maxQty = cmd.getMaxQty();
+		TicketInventory ticketInventory = new TicketInventory();
+		ticketInventory.setMaxQty(maxQty);
+		ticketInventory.setQty(maxQty);
+		ticketInventory.setTicketId(ticketId);
+		ticketInventoryRepository.save(ticketInventory);
+		TicketInventoryDetails ticketInventoryDetails = new TicketInventoryDetails();
+		ticketInventoryDetails.setMaxQty(maxQty);
+		ticketInventoryDetails.setSellableQty(maxQty);
+		ticketInventoryDetails.setTicketId(ticketId);
+		ticketInventoryDetails.setMaxQtyUpdated(true);
+
+		logger.info("Created Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
+		return ticketInventoryDetails;
+	}
+	public TicketInventoryDetails ticketUpdated(TicketUpdatedCommand cmd) {
+		logger.info("Updating Ticket Inventory...");
+		Long ticketId = cmd.getTicketId();
+		Integer maxQty = cmd.getMaxQty();
+		TicketInventory ticketInventory = ticketInventoryRepository.findOne(ticketId);
+		TicketInventoryDetails ticketInventoryDetails = ticketInventory.updateTicketQuantity(maxQty);
+		ticketInventoryRepository.save(ticketInventory);
+		logger.info("Updated Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
 		return ticketInventoryDetails;
 	}
 
