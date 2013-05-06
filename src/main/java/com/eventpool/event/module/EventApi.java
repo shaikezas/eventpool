@@ -10,7 +10,7 @@ import com.eventpool.common.exceptions.EventNotFoundException;
 public interface EventApi {
 
     @Transactional
-    public void saveEventDTO(EventDTO eventDTO);
+    public EventDTO saveEventDTO(EventDTO eventDTO);
     
     @Transactional(readOnly = true)
     public EventDTO getEvenDTO(Long id) throws EventNotFoundException;

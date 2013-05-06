@@ -19,7 +19,6 @@ import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 public class TicketInventory implements Serializable {
 
 	@Id
-	@GeneratedValue
 	@Column(name="TICKET_ID")
 	private Long ticketId;
 	

@@ -22,7 +22,9 @@ import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
+import com.eventpool.event.service.EventCommandService;
 import com.eventpool.web.controller.EventController;
 
 public class EventTest extends BaseTest{
@@ -38,6 +40,9 @@ public class EventTest extends BaseTest{
 	
 	@Resource
 	EventController eventController;
+	
+	@Resource
+	EventCommandService eventCommandService;
 	
     @Test
     @Transactional
@@ -116,7 +121,12 @@ public class EventTest extends BaseTest{
     @Transactional
     @Rollback(false)
     public void saveEventDTO(){
-    	EventDTO event = new EventDTO();
+    	EventDTO event = getEventDTOObject();
+    	eventController.addEvent(event);
+    }
+
+	private EventDTO getEventDTOObject() {
+		EventDTO event = new EventDTO();
     	event.setContactDetails("contact details");
     	event.setCreatedBy(2L);
     	event.setCreatedDate(new Date());
@@ -162,14 +172,8 @@ public class EventTest extends BaseTest{
     	List<TicketDTO> tickets = new ArrayList<TicketDTO>();
     	tickets.add(ticket);
     	event.setTickets(tickets);
-    	
-/*    	Event eventEntity = new Event();
-    	eventMapper.mapEvent(event, eventEntity);
-    	eventRepository.save(eventEntity);
-*/
-    	//eventApi.saveEventDTO(event);
-    	eventController.addEvent(event);
-    }
+		return event;
+	}
    
     @Resource
     private CommonUtils commonUtils;
@@ -180,5 +184,12 @@ public class EventTest extends BaseTest{
     	 log.info("gmt date "+gmtDate);
     	 Date timeZoneDate = commonUtils.getTimeZoneDate(gmtDate, "IST");
     	 log.info(" local date"+timeZoneDate);
+    }
+    
+    @Test
+    public void testEventServiceCommand() throws Exception{
+    	SaveEventCommand saveEventCommand = new SaveEventCommand();
+    	saveEventCommand.setEventDTO(getEventDTOObject());
+    	eventCommandService.executeCommand(saveEventCommand);
     }
 }

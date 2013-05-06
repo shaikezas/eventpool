@@ -38,9 +38,6 @@ public class RunEnvironment {
 	@Resource
 	private HandlersProvider handlersProvider;
 
-//	@Resource
-//	EvictCacheUtil evictCacheUtil;
-
 	public Object run(Object command) throws Exception {
 		Object result = null;
 		Exception failureException = null;
@@ -50,7 +47,6 @@ public class RunEnvironment {
 			numAttempts++;
 			try {
 				result = runRetrying(command);
-//				evictCacheUtil.evictCache((ICommand) command);
 				return result;
 			} catch (ConcurrencyFailureException cfe) {
 				failureException = cfe;
@@ -83,17 +79,9 @@ public class RunEnvironment {
 					commandClassName);
 		}
 
-		// code-review: Why can't this config be part of the CommandType enum
-
-		// code-review: do logging/authorization here
-		// You can add Your own capabilities here: dependency injection,
-		// security, transaction management, logging, profiling, spying, storing
-		// commands, etc
-
 		Object result = null;
 		result = handler.handle(command);
 
-		//code-review: Is this also an issue?
 		return result;
 	}
 

@@ -1,12 +1,24 @@
 package com.eventpool.event.command.impl;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.dto.TicketInventoryDetails;
+import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
+import com.eventpool.event.module.EventApiImpl;
 import com.eventpool.ticket.command.handler.CommandHandler;
 import com.eventpool.ticket.command.handler.CommandHandlerAnnotation;
+import com.eventpool.ticket.commands.TicketCreatedCommand;
+import com.eventpool.ticket.commands.TicketUpdatedCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 
 
@@ -20,9 +32,29 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 	@Resource
 	TicketInventoryService ticketInventoryService;
 
+	private static final Logger logger = LoggerFactory.getLogger(SaveEventCommandHandler.class);
+	
+	
 	public Boolean handle(SaveEventCommand command)
 			throws Exception {
-		eventApi.saveEventDTO(command.getEventDTO());
+		List<Long> ticketIds = new ArrayList<Long>();
+		EventDTO eventDTO = command.getEventDTO();
+		eventApi.saveEventDTO(eventDTO);
+	   	List<TicketDTO> tickets = eventDTO.getTickets();
+		if(tickets!=null && tickets.size()>0){
+			for(TicketDTO ticketDTO:tickets){
+				TicketUpdatedCommand ticketUpdatedCommand = new TicketUpdatedCommand();
+				ticketUpdatedCommand.setMaxQty(ticketDTO.getMaxQty());
+				ticketUpdatedCommand.setTicketId(ticketDTO.getId());
+				TicketInventoryDetails ticketInventoryDetails = (TicketInventoryDetails) ticketInventoryService.executeCommand(ticketUpdatedCommand);
+				if(!ticketInventoryDetails.isMaxQtyUpdated()){
+					ticketIds.add(ticketDTO.getId());
+				}
+			}
+		}
+		if(ticketIds.size()>0){
+			logger.error("could not update Max qty for tickets {}",ticketIds);
+		}
 		return true;
 	}
 

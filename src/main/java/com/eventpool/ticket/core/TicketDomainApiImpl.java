@@ -60,6 +60,12 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		logger.info("Creating Ticket Inventory...");
 		Long ticketId = cmd.getTicketId();
 		Integer maxQty = cmd.getMaxQty();
+		TicketInventoryDetails ticketInventoryDetails = createTicketInventory(ticketId, maxQty);
+		logger.info("Created Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
+		return ticketInventoryDetails;
+	}
+	private TicketInventoryDetails createTicketInventory(Long ticketId,
+			Integer maxQty) {
 		TicketInventory ticketInventory = new TicketInventory();
 		ticketInventory.setMaxQty(maxQty);
 		ticketInventory.setQty(maxQty);
@@ -70,8 +76,6 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		ticketInventoryDetails.setSellableQty(maxQty);
 		ticketInventoryDetails.setTicketId(ticketId);
 		ticketInventoryDetails.setMaxQtyUpdated(true);
-
-		logger.info("Created Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
 		return ticketInventoryDetails;
 	}
 	public TicketInventoryDetails ticketUpdated(TicketUpdatedCommand cmd) {
@@ -79,8 +83,13 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		Long ticketId = cmd.getTicketId();
 		Integer maxQty = cmd.getMaxQty();
 		TicketInventory ticketInventory = ticketInventoryRepository.findOne(ticketId);
-		TicketInventoryDetails ticketInventoryDetails = ticketInventory.updateTicketQuantity(maxQty);
-		ticketInventoryRepository.save(ticketInventory);
+		TicketInventoryDetails ticketInventoryDetails = null;
+		if(ticketInventory == null){
+			ticketInventoryDetails = createTicketInventory(ticketId, maxQty);
+		}else{
+			ticketInventoryDetails =  ticketInventory.updateTicketQuantity(maxQty);
+			ticketInventoryRepository.save(ticketInventory);
+		}
 		logger.info("Updated Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
 		return ticketInventoryDetails;
 	}

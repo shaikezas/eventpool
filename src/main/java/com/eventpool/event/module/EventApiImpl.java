@@ -10,12 +10,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventRepository;
+import com.eventpool.ticket.commands.TicketCreatedCommand;
+import com.eventpool.ticket.commands.TicketUpdatedCommand;
+import com.eventpool.ticket.service.TicketInventoryService;
 
 @Component
 public class EventApiImpl implements EventApi{
@@ -27,9 +31,9 @@ public class EventApiImpl implements EventApi{
     
     @Resource
     private EventRepository eventRepository;
-
+    
     @Transactional(rollbackFor=RuntimeException.class)
-    public void saveEventDTO(EventDTO eventDTO){
+    public EventDTO saveEventDTO(EventDTO eventDTO){
     	if(eventDTO==null) throw new IllegalArgumentException("Input event DTO is null");
     	Long id = eventDTO.getId();
     	Event event = null;
@@ -40,7 +44,9 @@ public class EventApiImpl implements EventApi{
     	}
     	eventpoolMapper.mapEvent(eventDTO, event);
     	eventRepository.save(event);
+    	eventpoolMapper.mapEventDTO(event, eventDTO);
     	logger.info("event saved before commit {}",event.getId());
+    	return eventDTO;
     }
     
 	@Transactional(readOnly = true)
