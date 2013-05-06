@@ -10,9 +10,9 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>logs/server.log</File>
+        <File>${user.home}/logs/server.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>logs/server.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${user.home}/logs/server.%d{yyyy-MM-dd}.log</FileNamePattern>
         </rollingPolicy>
 
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
