@@ -20,7 +20,7 @@ public class TicketRegisterServiceTest extends BaseTest{
 	@Resource
 	TicketRegisterRepository registerRepository;
 	
-	@Test
+//	@Test
     public void registerTicket() throws Exception {
 		
 		TicketRegister register = registerRepository.findOne(2L);

@@ -14,7 +14,7 @@ public class TicketServiceTest extends BaseTest{
 	@Resource
 	TicketInventoryService inventoryService;
 	
-	@Test
+//	@Test
     public void updateTicketInventory() throws Exception {
 		
 		
