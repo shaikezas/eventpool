@@ -11,7 +11,6 @@ import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.repositories.TicketInventoryRepository;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
-import com.eventpool.ticket.commands.TicketCreatedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
 import com.eventpool.ticket.commands.TicketUnBlockedCommand;
 import com.eventpool.ticket.commands.TicketUpdatedCommand;
@@ -54,14 +53,6 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		TicketInventoryDetails ticketInventoryDetails = ticketInventory.unBlockingTicketQuantity(blockingQty);
 		ticketInventoryRepository.save(ticketInventory);
 		logger.info("UnBlocked Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
-		return ticketInventoryDetails;
-	}
-	public TicketInventoryDetails ticketCreated(TicketCreatedCommand cmd) {
-		logger.info("Creating Ticket Inventory...");
-		Long ticketId = cmd.getTicketId();
-		Integer maxQty = cmd.getMaxQty();
-		TicketInventoryDetails ticketInventoryDetails = createTicketInventory(ticketId, maxQty);
-		logger.info("Created Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
 		return ticketInventoryDetails;
 	}
 	private TicketInventoryDetails createTicketInventory(Long ticketId,

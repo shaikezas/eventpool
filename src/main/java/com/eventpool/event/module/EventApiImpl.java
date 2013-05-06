@@ -1,7 +1,5 @@
 package com.eventpool.event.module;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -10,16 +8,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
-import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Event;
-import com.eventpool.common.entities.Ticket;
-import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventRepository;
-import com.eventpool.ticket.commands.TicketCreatedCommand;
-import com.eventpool.ticket.commands.TicketUpdatedCommand;
-import com.eventpool.ticket.service.TicketInventoryService;
 
 @Component
 public class EventApiImpl implements EventApi{

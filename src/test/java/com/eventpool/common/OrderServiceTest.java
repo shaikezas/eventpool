@@ -25,7 +25,7 @@ public class OrderServiceTest extends BaseTest{
 	@Resource
 	OrderController controller;
 	
-	@Test
+//	@Test
     public void registerTicket() throws Exception {
     	
     	EventRegisterDTO eventDTO = new EventRegisterDTO();

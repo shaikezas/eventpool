@@ -4,20 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
-import com.eventpool.common.entities.Ticket;
-import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
-import com.eventpool.event.module.EventApiImpl;
 import com.eventpool.ticket.command.handler.CommandHandler;
 import com.eventpool.ticket.command.handler.CommandHandlerAnnotation;
-import com.eventpool.ticket.commands.TicketCreatedCommand;
 import com.eventpool.ticket.commands.TicketUpdatedCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 
