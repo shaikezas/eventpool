@@ -6,48 +6,39 @@ import java.util.List;
 import javax.persistence.Column;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.hibernate.annotations.Type;
 
 import com.eventpool.common.type.EventInfoType;
+import com.eventpool.common.type.EventPrivacyType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 
 public class EventDTO extends AuditableIdDTO {
 
 	private String title;
-
 	Date startDate;
-
 	Date endDate;
-	
 	private Boolean isActive;
-	
 	private EventStatus status;
-
 	private String description;
-
 	private EventType eventType;
-
 	private Integer subCategoryId;
-	
-
 	private MediaDTO media; 
-
 	private String venueName;
-	
 	private AddressDTO venueAddress;
-	
 	private String organizerName;
-	
 	private String organizerDescription;
-	
 	private String contactDetails;
-	
 	private EventInfoType infoType;
-	
 	private List<TicketDTO> tickets;
 	private boolean isWebinar = false;
 	private String termsAndConditions;
 	private String keyWords;
+	private Date publishDate;
+	private boolean showEvent;
+	private String privacyType;
+
+	
 	public String getTitle() {
 		return title;
 	}
@@ -215,6 +206,30 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setIsWebinar(boolean isWebinar) {
 		this.isWebinar = isWebinar;
+	}
+
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
+	public boolean isShowEvent() {
+		return showEvent;
+	}
+
+	public void setShowEvent(boolean showEvent) {
+		this.showEvent = showEvent;
+	}
+
+	public String getPrivacyType() {
+		return privacyType;
+	}
+
+	public void setPrivacyType(String privacyType) {
+		this.privacyType = privacyType;
 	}
 	
 	

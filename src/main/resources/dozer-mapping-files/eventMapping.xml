@@ -26,6 +26,9 @@
 			<field><a>keyWords</a><b>keyWords</b></field>
 			<field><a>createdBy</a><b>createdBy</b></field>
 			<field><a>isWebinar</a><b>isWebinar</b></field>
+			<field><a>publishDate</a><b>publishDate</b></field>
+			<field><a>showEvent</a><b>showEvent</b></field>
+			<field><a>privacyType</a><b>privacyType</b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">
