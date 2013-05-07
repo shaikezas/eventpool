@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.web.forms.EventForm;
+import com.eventpool.web.forms.TicketForm;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,18 +28,58 @@ public class EventController {
 
     @Resource(name="EventService")
     private EventService eventService;
-
+    
+    
+    private EventForm eventForm;
+    
     @RequestMapping("eventslist.json")
-    public @ResponseBody List<EventDTO> getEventList() {
-    	System.out.println("Getting events "+eventService.getAllEvents().size());
-        return eventService.getAllEvents();
+    public @ResponseBody EventForm getEventList() {
+        return eventForm;
     }
 
     @RequestMapping(value = "/addEvent", method = RequestMethod.POST)
-    public @ResponseBody void addEvent(@RequestBody EventDTO event) {
-    	System.out.println("Event name :"+event.getTitle());
-    	System.out.println("Adding event  :"+event.toString());
-        eventService.addEvent(event);
+    public @ResponseBody void addEvent(@RequestBody EventForm event) {
+    	System.out.println("Event title :"+event.getTitle());
+    	System.out.println("description  :"+event.getDescription());
+    	System.out.println("Start date "+event.getStartDate());
+    	System.out.println("End Date "+event.getEndDate());
+    	System.out.println("Is Private "+event.getIsPrivate());
+    	System.out.println("Banner "+event.getBanner());
+    	System.out.println("Thumbnal "+event.getOrganizerLogo());
+    	System.out.println("Event url "+event.getEventUrl());
+    	if(event.getTickets()!=null){
+    	System.out.println("Ticket size"+event.getTickets().size());
+    	System.out.println("Ticket name"+event.getTickets().get(0).getName());
+    	}else
+    		System.out.println("tickets are null");
+    	
+//        eventService.addEvent(event);
+    }
+    
+    @RequestMapping(value = "/addTicket", method = RequestMethod.POST)
+    public @ResponseBody void addTicket(@RequestBody EventForm event) {
+    	
+    	System.out.println("Adding Ticket");
+    	System.out.println("Event title :"+event.getTitle());
+    	System.out.println("description  :"+event.getDescription());
+    	System.out.println("Start date "+event.getStartDate());
+    	System.out.println("End Date "+event.getEndDate());
+    	System.out.println("Is Private "+event.getIsPrivate());
+    	System.out.println("Banner "+event.getBanner());
+    	System.out.println("Thumbnal "+event.getOrganizerLogo());
+    	System.out.println("Event url "+event.getEventUrl());
+    	System.out.println("Ticket size"+event.getTickets().size());
+    	if(event.getTickets().size()>0)
+    		System.out.println("Ticket name"+event.getTickets().get(0).getName());
+    	else
+    		System.out.println("Tickets are empty");
+    	
+    	TicketForm form = new TicketForm();
+    	event.getTickets().add(form);
+    	System.out.println("Added form");
+    	this.eventForm = event;
+    	
+//        eventService.addEvent(event);
     }
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
@@ -69,20 +111,17 @@ public class EventController {
     
     @RequestMapping("/myevents")
     public String getMyEventListPartialPage(ModelMap modelMap) {
-    	System.out.println("My Events");
         return "events/myevents";
     }
     
 
     @RequestMapping("/findevent")
     public String getFindEventPartialPage(ModelMap modelMap) {
-    	System.out.println("Find event");
         return "events/findevent";
     }
     
     @RequestMapping("/mytickets")
     public String getMyTicketsPartialPage(ModelMap modelMap) {
-    	System.out.println("My tickets");
         return "ticket/mytickets";
     }
     

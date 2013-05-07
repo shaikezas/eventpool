@@ -8,8 +8,8 @@ var EventController = function($scope, $http) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.fetchEventsList = function() {
-        $http.get('events/eventslist.json').success(function(eventList){
-            $scope.events = eventList;
+        $http.get('events/eventslist.json').success(function(event){
+            $scope.event = event;
         });
     }
 
@@ -17,6 +17,19 @@ var EventController = function($scope, $http) {
         $scope.resetError();
 
         $http.post('events/addEvent', event).success(function() {
+            $scope.fetchEventsList();
+            $scope.event.title = '';
+            $scope.event.description = '';
+            $scope.event.venueName = '';
+        }).error(function() {
+            $scope.setError('Could not add a new event');
+        });
+    }
+    
+    $scope.addNewTicket = function(event) {
+        $scope.resetError();
+        alert("Hello"+event);
+        $http.post('events/addTicket', event).success(function() {
             $scope.fetchEventsList();
             $scope.event.title = '';
             $scope.event.description = '';
