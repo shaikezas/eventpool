@@ -21,12 +21,14 @@ public class EntityUtilities {
 	private RepositoryPool repositoryPool;
 	
 	private Map<Integer,String> cityMap = new HashMap<Integer,String>(39000);
-
+	private Map<Integer,Integer> cityStateMap = new HashMap<Integer,Integer>(39000);
 	private Map<Integer,String> stateMap =new HashMap<Integer,String>();
-
+	private Map<Integer,Integer> stateCountryMap =new HashMap<Integer,Integer>();
 	private Map<Integer,String> countryMap = new HashMap<Integer,String>();
 
-	private boolean initAllMaps=false;
+	private boolean initAllMaps=true;
+	
+	public static final String SEPARATOR = "|";
 	
 	@PostConstruct
 	public void initMaps(){
@@ -35,6 +37,7 @@ public class EntityUtilities {
 			if(allCities!=null && allCities.size()>0){
 				for(City city:allCities){
 					cityMap.put(city.getId(), city.getName());
+					cityStateMap.put(city.getId(), city.getStateId());
 				}
 			}else{
 				cityMap.clear();
@@ -43,6 +46,7 @@ public class EntityUtilities {
 			if(allStates!=null && allStates.size()>0){
 				for(State state:allStates){
 					stateMap.put(state.getId(), state.getName());
+					stateCountryMap.put(state.getId(), state.getCountryId());
 				}
 			}else{
 				stateMap.clear();
@@ -93,6 +97,22 @@ public class EntityUtilities {
 		return stateMap;
 	}
 
+	public Map<Integer,String> getCitiesWithStateAndCountry(){
+		HashMap<Integer,String> cityMap = new HashMap<Integer, String>();
+		for(Integer cityId:this.cityMap.keySet()){
+			Integer stateId = this.cityStateMap.get(cityId);
+			Integer countryId = this.stateCountryMap.get(stateId);
+			
+			String cityName  = this.cityMap.get(cityId);
+			String stateName  = this.stateMap.get(stateId);
+			String countryName  = this.countryMap.get(countryId);
+			
+			String cityWithStateAndCountry = cityName + SEPARATOR +stateName+SEPARATOR+countryName;
+			cityMap.put(cityId, cityWithStateAndCountry);
+		}
+		return cityMap;
+	}
+	
 	public Map<Integer, String> getCityMap() {
 		return cityMap;
 	}

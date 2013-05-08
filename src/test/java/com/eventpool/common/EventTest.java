@@ -2,6 +2,7 @@ package com.eventpool.common;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,6 +17,7 @@ import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.module.CommonUtils;
+import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
@@ -122,7 +124,7 @@ public class EventTest extends BaseTest{
     @Rollback(false)
     public void saveEventDTO(){
     	EventDTO event = getEventDTOObject();
-    	eventController.addEvent(event);
+    	//eventController.addEvent(event);
     }
 
 	private EventDTO getEventDTOObject() {
@@ -191,5 +193,16 @@ public class EventTest extends BaseTest{
     	SaveEventCommand saveEventCommand = new SaveEventCommand();
     	saveEventCommand.setEventDTO(getEventDTOObject());
     	eventCommandService.executeCommand(saveEventCommand);
+    }
+    
+    @Resource
+    private EntityUtilities entityUtilities;
+    
+    @Test
+    public void testCityMap(){
+    	Map<Integer, String> citiesWithStateAndCountry = entityUtilities.getCitiesWithStateAndCountry();
+    	for(String str:citiesWithStateAndCountry.values()){
+    		log.info(str);
+    	}
     }
 }
