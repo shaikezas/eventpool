@@ -65,7 +65,7 @@ public class CategoryTree {
 							if(object[3]!=null) {
 								parentCategoryId = Long.parseLong(object[4].toString());
 							}
-							if(categoryId != null) {//Some can be null due to inactive of CPTCMTRFNUM, as it is LEFT JOIN it will still return null
+							if(categoryId != null) {
 								count++;
 								Long parentId = null;
 								if(parentCategoryId != null) {
@@ -239,6 +239,19 @@ public class CategoryTree {
 		return null;
 	}
 	
+	public List<CategoryNode> getSubCategories(Long categoryId){
+		CategoryNode node = getNode(categoryId);
+		return node.getChildCategories();
+	}
+	
+	public List<Long> getSubCategoryNodes(Long categoryId){
+		CategoryNode node = getNode(categoryId);
+		List<Long> childNodes = new ArrayList<Long>();
+		for(CategoryNode childNode:node.getChildCategories()){
+			childNodes.add(childNode.getId());
+		}
+		return childNodes;
+	}
 	public CategoryNode getRoot(){
 		return this.root;
 	 } 
