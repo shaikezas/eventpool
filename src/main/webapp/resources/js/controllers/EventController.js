@@ -28,7 +28,20 @@ var EventController = function($scope, $http,search) {
     
     $scope.addNewTicket = function(event) {
         $scope.resetError();
-        $http.post('events/addTicket', event).success(function() {
+        $http.post('events/addTicket', event).success(function(event) {
+            $scope.fetchEventsList();
+            $scope.event.title = '';
+            $scope.event.description = '';
+            $scope.event.venueName = '';
+            $scope.event = event;
+        }).error(function() {
+            $scope.setError('Could not add a new event');
+        });
+    }
+    
+    $scope.removeTicket = function(event) {
+        $scope.resetError();
+        $http.post('events/removeTicket', event).success(function() {
             $scope.fetchEventsList();
             $scope.event.title = '';
             $scope.event.description = '';
@@ -116,19 +129,8 @@ var EventController = function($scope, $http,search) {
         
     };
 
-    $scope.fetchEventsList();
+//    $scope.fetchEventsList();
 
     $scope.predicate = 'id'
 }
 
-/*function TypeaheadCtrl($scope,$http) {
-
-	  $scope.selected = undefined;
-	   $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']; 
-	   $scope.fetchStates = function() {
- 		 		$http.get('events/states').success(function(stateList){
-      $scope.states = stateList;
-  });
-  }
-	   $scope.fetchStates();
-	}*/

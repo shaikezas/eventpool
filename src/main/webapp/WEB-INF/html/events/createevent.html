@@ -80,38 +80,11 @@
 							  <div class="control-group">
 							    <label class="control-label" for="facebookURL">Event Facebook URL :</label>
 							    <div class="controls">
-							      <input type="text" id="eventTitle" ng-model="event.media.faceBookUrl" >
+							      <input type="text" id="eventTitle" ng-model="event.faceBookUrl" >
 							    </div>
 							  </div>							  
 							  							  
-							  <div class="control-group">
-							    <label class="control-label" for="bannerURL">Banner URL :</label>
-							    <div class="controls">
-							      <input type="text" id="eventTitle" ng-model="event.media.bannerUrl">
-							    </div>
-							  </div>	
 							  
-							  <div class="control-group">
-							    <label class="control-label" for="status">Event Type :</label>
-							    <div class="controls">
-									  <select id="Status" ng-model="event.eventType.description">
-										  <option>No Registration</option>
-										  <option>Free Event</option>
-										  <option>Paid Event</option>
-									  </select>
-							    </div>
-							  </div>
-							  <div class="control-group">
-							    <label class="control-label" for="status">Event Status :</label>
-							    <div class="controls">
-									  <select id="Status" ng-model="event.status.description">
-										  <option>Draft</option>
-										  <option>Open</option>
-										  <option>Closed</option>
-										   <option>Cancelled</option>
-									  </select>
-							    </div>
-							  </div>
 
 							  <div class="control-group">
 							    <label class="control-label" for="category">Category :</label>
@@ -129,7 +102,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="subCategory">Sub Category :</label>
 							    <div class="controls">
-							      	<select id="subCategory" ng-model="event.subCategoryId">
+							      	<select id="subCategory" >
 										  <option>1</option>
 										  <option>2</option>
 										  <option>3</option>
@@ -148,10 +121,11 @@
 							    </div>
 							  </div>
 							  
+							  
 							  <div class="control-group">
 							    <label class="control-label" for="url">Event URL :</label>
 							    <div class="controls">
-							     www.eventpool.com\events\<input type="text" id="url" ng-model="event.media.companyLogoUrl"  >
+							     www.eventpool.com\events\<input type="text" id="url" ng-model="event.eventUrl"  >
 							    </div>
 							  </div>		
 							  
@@ -179,7 +153,7 @@
 								  <div class="control-group">
 								    <div class="controls">
 								      
-								        <input type="checkbox" onclick="toggle('.venueInfo', this)" > Is Webinar
+								        <input type="checkbox" ng-model="event.isWebinar" onclick="toggle('.venueInfo', this)" > Is Webinar
 								      
 								    </div>
 								  </div>
@@ -196,13 +170,13 @@
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress1">Venue Address1 :*</label>
 								    <div class="controls">
-								      <textarea id="venueAddress2" rows="3" ng-model="event.venueAddress.address1" ></textarea>
+								      <textarea id="venueAddress2" rows="3" ng-model="event.address1" ></textarea>
 								    </div>
 								  </div>
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress2">Venue Address2 :*</label>
 								    <div class="controls">
-								      <textarea id="venueAddress2" rows="3" ng-model="event.venueAddress.address2" ></textarea>
+								      <textarea id="venueAddress2" rows="3" ng-model="event.address2" ></textarea>
 								    </div>
 								  </div>								  
 							  
@@ -215,7 +189,6 @@
 	            			 		 <ul id="Ul1" class="controls">
 	            					 <li ng-repeat="item in searchResults | filter:searchText"> 
 	                                
-<!--                  					 <a href="javascript:void(0);" ng-click="selectMe(item)">{{item.cityName}} - {{item.stateName}} - {{item.countryName}}</a></li> -->
 										<a href="javascript:void(0);" ng-click="selectMe(item)">{{item}}</a></li>
             						</ul>
 	                                  </div>
@@ -250,7 +223,7 @@
 								  <div class="control-group">
 								    <label class="control-label" for="inputEmail">Pincode  :</label>
 								    <div class="controls">
-								      <input type="text" id="inputEmail" ng-model="event.venueAddress.zipCode">
+								      <input type="text" id="inputEmail" ng-model="event.zipCode">
 								    </div>
 								  </div>
 							  </div>
@@ -306,15 +279,14 @@
 							  </div>
 							  
 							  
-							  <div class="control-group">
-							    <label class="control-label" for="eventFb">Event Facebook Link :</label>
+							   <div class="control-group">
+							    <label class="control-label" for="uploadBanner">Organizer logo :</label>
 							    <div class="controls">
-									  <input type="text" id="eventFb" >
+							      
+							       <input type="file" ng-model="event.organizerLogo" />
+							      						      
 							    </div>
 							  </div>
-							  
-							  
-							  
 							  
 							 
 							  
@@ -338,49 +310,10 @@
 									    <label class="control-label" for="inputEmail">Add Ticket :</label>
 									    <div class="controls">
 									      <button type="button" class="btn"  ng-click="addNewTicket(event)">Free</button>
-									      <button type="submit" class="btn">Paid</button>  <button type="submit" class="btn">Donation</button> 
+									      <button type="buttom" class="btn" ng-click="removeTicket(event,1)">Paid</button>   
 									    </div>
 									</div>
-							  		<table class="table table-condensed" >
-								      <thead>
-								        <tr>
-								        	
-					  	 		
-								          <th>TICKET NAMME</th>
-								          <th>TICKET QUANTITY</th>
-								          <th>TICKET PRICE</th>
-								          <th>SALES STATUS   |   Fee    |   Buyer Total</th>
-								          <th>  </th>
-								          <th>  </th>
-								        </tr>
-								      </thead>
-								      <tbody>
-								        <tr>
-								          <td> <input type="text"  ></td>
-								          <td> <input type="text"  ></td>
-								          <td>Free</td>
-								          <td>
-									          <select>
-												  <option>On Sale</option>
-											  </select>
-										  </td>
-								          <td>
-								          	
-								        	<button type="submit" class="btn" id="show" >Setting</button>
-								        	
-				          	
-								          	</td>
-								          <td>
-								          	
-								          	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								          	
-								          </td>
-								        </tr>
-								      
-								        
-								      </tbody>
-								    </table>
-							  
+						
 							  <table>
 							  <tbody>
 							   <tr ng-repeat="ticket in event.tickets | orderBy:predicate">
@@ -401,7 +334,7 @@
 								      <tbody>
 								        <tr>
 								          <td> <input type="text"  ng-model="ticket.name"></td>
-								          <td> <input type="text"  ></td>
+								          <td> <input type="text"  ng-model="ticket.quantity"></td>
 								          <td>Free</td>
 								          <td>
 									          <select>
@@ -410,12 +343,12 @@
 										  </td>
 								          <td>
 								          	
-								        	<a id="example_top" href="#" class="btn " data-toggle="popover" title="" data-content="Link one " data-original-title="A Title">Setting <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-arow"></i></a>
+								        	<a href="#" class="btn " id="show" >Setting </a>
 				          	
 								          	</td>
 								          <td>
 								          	
-								          	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								          	<button type="button" class="close" onclick="alert('foo')" data-dismiss="modal" aria-hidden="true">×</button>
 								          	
 								          </td>
 								        </tr>
@@ -423,6 +356,7 @@
 								        
 								      </tbody>
 								    </table>
+
 							  </td>
 							   </tr>
     </tbody>
@@ -434,14 +368,6 @@
 							      <button id="hide" type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
 							      
 							    </div>
-							    <label class="control-label" for="name">Ticket Name :</label>
-							    <div class="controls">
-							      <input type="text" id="organizerName" ng-model="ticket.name" required min="6" >
-							    </div>
-
-							  </div>							  
-							  
-								  <div class="control-group">
 								    <label class="control-label" for="ticketDescription">Ticket Description :*</label>
 								    <div class="controls">
 								      <textarea id="ticketDescription" rows="3" ng-model="ticket.description" ></textarea>
@@ -473,12 +399,6 @@
 							    </div>
 							  </div>
 							      <div class="control-group">
-							    <label class="control-label" for="ticketPrice">Ticket Price :</label>
-							    <div class="controls">
-							      <input type="text" id="ticketPrice" ng-model="ticket.price" >
-							    </div>
-							  </div>							  
-							      <div class="control-group">
 							    <label class="control-label" for="maxQtyToSale">Max Qty To Sale :</label>
 							    <div class="controls">
 							      <input type="text" id="maxQtyToSale" ng-model="ticket.quantity" >
@@ -500,7 +420,7 @@
 							  
 							  <div class="control-group">
 							    <div class="controls">
-							     <button type="button" class="btn" ng-click="addTicket(ticket)">Add Ticket</button>
+							    
 							      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
 							     </div>
 							  </div>

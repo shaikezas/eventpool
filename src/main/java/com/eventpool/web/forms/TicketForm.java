@@ -34,6 +34,8 @@ public class TicketForm {
 	private Integer minQty;
 	
 	private Integer maxQty;
+	
+	private Integer formId;
 
 	public String getName() {
 		return name;
@@ -115,6 +117,14 @@ public class TicketForm {
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public Integer getFormId() {
+		return formId;
+	}
+
+	public void setFormId(Integer formId) {
+		this.formId = formId;
 	}
 
 	

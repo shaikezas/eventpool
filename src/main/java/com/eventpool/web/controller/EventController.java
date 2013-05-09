@@ -40,8 +40,8 @@ public class EventController {
     private EventService eventService;
     
     
-    private EventForm eventForm;
     
+    private EventForm eventForm;
     
     @RequestMapping("eventslist.json")
     public @ResponseBody EventForm getEventList() {
@@ -68,7 +68,7 @@ public class EventController {
     }
     
     @RequestMapping(value = "/addTicket", method = RequestMethod.POST)
-    public @ResponseBody void addTicket(@RequestBody EventForm event) {
+    public @ResponseBody EventForm addTicket(@RequestBody EventForm event) {
     	
     	System.out.println("Adding Ticket");
     	System.out.println("Event title :"+event.getTitle());
@@ -86,9 +86,26 @@ public class EventController {
     		System.out.println("Tickets are empty");
     	
     	TicketForm form = new TicketForm();
+    	form.setFormId(event.getTickets().size()+1);
     	event.getTickets().add(form);
     	System.out.println("Added form");
-    	this.eventForm = event;
+    	return event;
+//        eventService.addEvent(event);
+    }
+    
+    @RequestMapping(value = "/removeTicket", method = RequestMethod.POST)
+    public @ResponseBody EventForm removeTicket(@RequestBody EventForm event) {
+    	
+    	System.out.println("Removing Ticket ");
+    	if(event.getTickets().size()>0)
+    	{
+//    		event.getTickets().remove(ticketFormId-1);
+    	}
+    	else
+    		System.out.println("Tickets are empty");
+    	
+    	
+    	return event;
     	
 //        eventService.addEvent(event);
     }
