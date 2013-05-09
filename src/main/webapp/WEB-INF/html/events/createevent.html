@@ -176,22 +176,22 @@
 			                
 								<form class="form-horizontal">
 							  
-								  <div class="control-group ">
+								  <div class="control-group">
 								    <div class="controls">
-								      <label class="checkbox">
-								        <input type="checkbox" >Is Webinar <br>
-								        
-								      </label>
+								      
+								        <input type="checkbox" onclick="toggle('.venueInfo', this)" > Is Webinar
+								      
 								    </div>
 								  </div>
-							  
+							  <div class="venueInfo">
 								
 							  <div class="control-group">
 							    <label class="control-label" for="venueTitle">Venue Title :</label>
 							    <div class="controls">
 							      <input type="text" id="eventTitle" ng-model="event.venueName" required min="6" >
 							    </div>
-							  </div>							  
+							  </div>	
+							  						  
 							  
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress1">Venue Address1 :*</label>
@@ -261,7 +261,7 @@
 								      <a href="#organizerInformation" data-toggle="tab"><button type="button" class="btn">Next</button></a>
 								    </div>
 								  </div>
-							  
+							  </div>
 							</form>
 			
 			              </div>
@@ -342,6 +342,45 @@
 									      <button type="submit" class="btn">Paid</button>  <button type="submit" class="btn">Donation</button> 
 									    </div>
 									</div>
+							  		<table class="table table-condensed" >
+								      <thead>
+								        <tr>
+								        	
+					  	 		
+								          <th>TICKET NAMME</th>
+								          <th>TICKET QUANTITY</th>
+								          <th>TICKET PRICE</th>
+								          <th>SALES STATUS   |   Fee    |   Buyer Total</th>
+								          <th>  </th>
+								          <th>  </th>
+								        </tr>
+								      </thead>
+								      <tbody>
+								        <tr>
+								          <td> <input type="text"  ></td>
+								          <td> <input type="text"  ></td>
+								          <td>Free</td>
+								          <td>
+									          <select>
+												  <option>On Sale</option>
+											  </select>
+										  </td>
+								          <td>
+								          	
+								        	<button type="submit" class="btn" id="show" >Setting</button>
+								        	
+				          	
+								          	</td>
+								          <td>
+								          	
+								          	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								          	
+								          </td>
+								        </tr>
+								      
+								        
+								      </tbody>
+								    </table>
 							  
 							  <table>
 							  <tbody>
@@ -389,12 +428,18 @@
 							   </tr>
     </tbody>
 </table>
-			
+			 <div id="ticketInfo" style="display: none">
 				           <div class="control-group">
+						<div class="controls" style="text-align: right">
+							    	
+							      <button id="hide" type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+							      
+							    </div>
 							    <label class="control-label" for="name">Ticket Name :</label>
 							    <div class="controls">
 							      <input type="text" id="organizerName" ng-model="ticket.name" required min="6" >
 							    </div>
+
 							  </div>							  
 							  
 								  <div class="control-group">
@@ -461,8 +506,8 @@
 							     </div>
 							  </div>
 							  
-							
-								</form>
+							</div>
+								</form >
 							
 			              </div>
 			              
@@ -477,6 +522,21 @@
    
 
     <script type="text/javascript">
+    
+    
+      function toggle(className, obj) {
+        var $input = $(obj);
+        if ($input.prop('checked')) $(className).hide();
+        else $(className).show();
+    	}
+      
+      $("#show").click(function(){
+      	$("#ticketInfo").show();
+   	 });
+      
+      $("#hide").click(function(){
+      	$("#ticketInfo").hide();
+   	 });
     
     
       $('#datetimepickerStart').datetimepicker({
