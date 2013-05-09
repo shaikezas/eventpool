@@ -4,7 +4,7 @@
  * EventController
  * @constructor
  */
-var EventController = function($scope, $http) {
+var EventController = function($scope, $http,search) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.fetchEventsList = function() {
@@ -80,6 +80,14 @@ var EventController = function($scope, $http) {
         });
 
     };
+    
+    $scope.getsearchResults = function(query) {
+		search.getbasicsearchresults(query).success(function(data) {
+			$scope.searchResults = data;
+	    }).error(function(data) {
+	    	
+	    });
+	};
 
     $scope.resetEventForm = function() {
         $scope.resetError();
@@ -96,8 +104,29 @@ var EventController = function($scope, $http) {
         $scope.error = true;
         $scope.errorMessage = message;
     }
+    
+    $scope.selectMe = function(item) {
+    	$scope.searchText = item.city+"-"+item.state+"-"+item.country;
+        $scope.city =  item.city
+        $scope.state =  item.state;
+        $scope.country = item.country;
+        $scope.event.cityId = item.cityId;
+        
+    };
 
     $scope.fetchEventsList();
 
     $scope.predicate = 'id'
 }
+
+/*function TypeaheadCtrl($scope,$http) {
+
+	  $scope.selected = undefined;
+	   $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']; 
+	   $scope.fetchStates = function() {
+ 		 		$http.get('events/states').success(function(stateList){
+      $scope.states = stateList;
+  });
+  }
+	   $scope.fetchStates();
+	}*/

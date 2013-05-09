@@ -1,5 +1,6 @@
 package com.eventpool.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.web.forms.EventForm;
+import com.eventpool.web.forms.SearchResponse;
 import com.eventpool.web.forms.TicketForm;
 
 /**
@@ -28,6 +31,7 @@ public class EventController {
 
     @Resource(name="EventService")
     private EventService eventService;
+    
     
     
     private EventForm eventForm;
@@ -124,5 +128,22 @@ public class EventController {
     public String getMyTicketsPartialPage(ModelMap modelMap) {
         return "ticket/mytickets";
     }
-    
+    @RequestMapping("search")
+    public @ResponseBody List<SearchResponse> getStates(@RequestParam("query") String query) {
+    	System.out.println("getting states :"+query);
+    	List<SearchResponse> search = new ArrayList<SearchResponse>();
+    	SearchResponse res = new SearchResponse();
+    	res.setCity("BEN");
+    	res.setState("KA");
+    	res.setCountry("India");
+    	
+    	SearchResponse res1 = new SearchResponse();
+    	res1.setCity("HYD");
+    	res1.setState("AP");
+    	res1.setCountry("India");
+    	search.add(res);
+    	search.add(res1);
+        return search;
+    }
 }
+

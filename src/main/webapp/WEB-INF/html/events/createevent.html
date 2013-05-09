@@ -206,46 +206,44 @@
 								    </div>
 								  </div>								  
 							  
+							    <div class="control-group" ng-class="{open: focused && searchText.length > 0}">
+								   <label class="control-label" for="cityId">Search City :*</label>
+								   <div class="controls">
+								     <input type="text" ng-model="searchText"   
+	            					placeholder="Search"  ng-change="getsearchResults(searchText)">
+	            					</div>
+	            			 		 <ul id="Ul1" class="controls">
+	            					 <li ng-repeat="item in searchResults | filter:searchText"> 
+	                                
+                 					 <a href="javascript:void(0);" ng-click="selectMe(item)">{{item.city}} - {{item.state}} - {{item.country}}</a></li>
+            						</ul>
+	                                  </div>
+	                         
+							  	
 								  <div class="control-group">
-								    <label class="control-label" for="Country">Country :*</label>
+								    <label class="control-label" for="state">City :*</label>
 								    <div class="controls">
-										  <select id="Country" ng-model="event.venueAddress.country">
-											  <option>Select Country</option>
-										  </select>
+								    <input type="text" id="eventCityName" ng-model="city" disabled="disabled" >
 								    </div>
 								  </div>
 							  
 								  <div class="control-group">
 								    <label class="control-label" for="state">State :*</label>
 								    <div class="controls">
-										  <select id="state" ng-model="event.venueAddress.state">
-											  <option>Select State</option>
-										  </select>
+								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
 								    </div>
 								  </div>
-							  
-							  
-								  <div class="control-group">
-								    <label class="control-label" for="city">City :*</label>
+								  
+								   <div class="control-group">
+								    <label class="control-label" for="state">Country :*</label>
 								    <div class="controls">
-										  <select id="city" ng-model="event.venueAddress.cityId" >
-											  <option>Select City</option>
-										  </select>
+										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
 								    </div>
 								  </div>
+								  
 							  
-								  <div class="control-group">
-								    <label class="control-label" for="Locality">locality :</label>
-								    <div class="controls">
-										  <select id="locality" >
-											  <option>Select Locality</option>
-											  <option>2</option>
-											  <option>3</option>
-											  <option>4</option>
-											  <option>5</option>
-										  </select>
-								    </div>
-								  </div>
+								
+							  
 							  
 							  
 								  <div class="control-group">
@@ -254,14 +252,14 @@
 								      <input type="text" id="inputEmail" ng-model="event.venueAddress.zipCode">
 								    </div>
 								  </div>
-							  
+							  </div>
 								  <div class="control-group">
 								    <div class="controls">
 								      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
 								      <a href="#organizerInformation" data-toggle="tab"><button type="button" class="btn">Next</button></a>
 								    </div>
 								  </div>
-							  </div>
+							  
 							</form>
 			
 			              </div>
