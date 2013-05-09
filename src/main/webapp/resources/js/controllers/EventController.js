@@ -28,7 +28,6 @@ var EventController = function($scope, $http,search) {
     
     $scope.addNewTicket = function(event) {
         $scope.resetError();
-        alert("Hello"+event);
         $http.post('events/addTicket', event).success(function() {
             $scope.fetchEventsList();
             $scope.event.title = '';
@@ -106,11 +105,14 @@ var EventController = function($scope, $http,search) {
     }
     
     $scope.selectMe = function(item) {
-    	$scope.searchText = item.city+"-"+item.state+"-"+item.country;
-        $scope.city =  item.city
-        $scope.state =  item.state;
-        $scope.country = item.country;
-        $scope.event.cityId = item.cityId;
+    	$scope.searchText = item
+    	var n = item.split("-");
+        $scope.city =  n[0]
+        $scope.state =  n[1];
+        $scope.country = n[2];
+        $scope.event.cityId = n[3];
+        $scope.searchResults = null;
+        
         
     };
 

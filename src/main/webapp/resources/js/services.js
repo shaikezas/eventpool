@@ -16,7 +16,7 @@ getbasicsearchresults: function(query) {
 	  var config = {
         method: "GET",
         params: datatosend,
-        url: "events/search"
+        url: "search/citysearch"
     };
 	  return $http(config);
 }

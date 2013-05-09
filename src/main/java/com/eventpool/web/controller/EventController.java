@@ -1,7 +1,12 @@
 package com.eventpool.web.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -15,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.Region;
+import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.SearchResponse;
 import com.eventpool.web.forms.TicketForm;
@@ -33,8 +40,8 @@ public class EventController {
     private EventService eventService;
     
     
-    
     private EventForm eventForm;
+    
     
     @RequestMapping("eventslist.json")
     public @ResponseBody EventForm getEventList() {
@@ -128,22 +135,6 @@ public class EventController {
     public String getMyTicketsPartialPage(ModelMap modelMap) {
         return "ticket/mytickets";
     }
-    @RequestMapping("search")
-    public @ResponseBody List<SearchResponse> getStates(@RequestParam("query") String query) {
-    	System.out.println("getting states :"+query);
-    	List<SearchResponse> search = new ArrayList<SearchResponse>();
-    	SearchResponse res = new SearchResponse();
-    	res.setCity("BEN");
-    	res.setState("KA");
-    	res.setCountry("India");
-    	
-    	SearchResponse res1 = new SearchResponse();
-    	res1.setCity("HYD");
-    	res1.setState("AP");
-    	res1.setCountry("India");
-    	search.add(res);
-    	search.add(res1);
-        return search;
-    }
+
 }
 

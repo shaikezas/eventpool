@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 import com.eventpool.common.entities.City;
@@ -28,7 +27,7 @@ public class EntityUtilities {
 
 	private boolean initAllMaps=true;
 	
-	public static final String SEPARATOR = "|";
+	public static final String SEPARATOR = "-";
 	
 	@PostConstruct
 	public void initMaps(){
