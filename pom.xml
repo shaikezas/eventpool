@@ -4,6 +4,13 @@
   <artifactId>eventpool</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+	  
+	<repositories>
+	  <repository>
+	    <id>The Buzz Media Maven Repository</id>
+	    <url>http://maven.thebuzzmedia.com</url>
+	  </repository>
+	</repositories>
   <dependencies>
 
         <dependency>
