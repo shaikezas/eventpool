@@ -20,6 +20,7 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.FileImageOutputStream;
 
+import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -222,7 +223,7 @@ public class ImageProcessor {
 	}
 	
 	public BufferedImage scaleTo(BufferedImage srcImage, int width , int height){
-		return getPaddedImage(srcImage, width, height, Color.WHITE);
+		return getPaddedImage(Scalr.resize(srcImage, Scalr.Method.QUALITY, width, height), width, height, Color.WHITE);
 	}
 	
 }

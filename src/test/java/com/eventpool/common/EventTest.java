@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
@@ -171,6 +172,12 @@ public class EventTest extends BaseTest{
     	ticket.setSaleEnd(new Date());
     	ticket.setSaleStart(new Date());
 
+    	MediaDTO mediaDTO = new MediaDTO();
+    	mediaDTO.setBannerUrl("20130509_070251.jpg");
+    	mediaDTO.setFaceBookUrl("facebook");
+    	mediaDTO.setOtherUrl1("otherurl1");
+    	
+    	event.setMedia(mediaDTO);
     	List<TicketDTO> tickets = new ArrayList<TicketDTO>();
     	tickets.add(ticket);
     	event.setTickets(tickets);

@@ -34,10 +34,10 @@ CREATE TABLE `EVENT_MEDIA` (
    IMAGE_URL varchar(256) DEFAULT NULL,
    company_logo_url varchar(256),
    VIDEO_URL varchar(256) DEFAULT NULL,
-   BANNER_URL varchar(256) NOT NULL,
-   FACEBOOK_URL varchar(256) NOT NULL,
-   OTHER_URL1 varchar(256) NOT NULL,
-   OTHER_URL2 varchar(256) NOT NULL,
+   BANNER_URL varchar(256) NULL,
+   FACEBOOK_URL varchar(256) NULL,
+   OTHER_URL1 varchar(256) NULL,
+   OTHER_URL2 varchar(256) NULL,
   PRIMARY KEY (EVENT_ID)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 

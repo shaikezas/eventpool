@@ -245,6 +245,10 @@ public class Event extends AuditableIdEntity {
 				ticket.setEnventId(this.getId());
 			}
 		}
+		Media childMedia = this.getMedia();
+		if(childMedia!=null){
+			childMedia.setEventId(this.getId());
+		}
 	}
 
 	public Media getMedia() {

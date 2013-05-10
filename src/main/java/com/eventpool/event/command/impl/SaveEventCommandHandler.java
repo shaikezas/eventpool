@@ -9,8 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
+import com.eventpool.common.image.SaveImage;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
 import com.eventpool.ticket.command.handler.CommandHandler;
@@ -26,6 +28,9 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 	@Resource
 	EventApi eventApi;
 	
+	@Resource 
+	SaveImage saveImage;
+	
 	@Resource
 	TicketInventoryService ticketInventoryService;
 
@@ -36,6 +41,7 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 			throws Exception {
 		List<Long> ticketIds = new ArrayList<Long>();
 		EventDTO eventDTO = command.getEventDTO();
+		preprocess(eventDTO);
 		eventApi.saveEventDTO(eventDTO);
 	   	List<TicketDTO> tickets = eventDTO.getTickets();
 		if(tickets!=null && tickets.size()>0){
@@ -55,4 +61,11 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		return true;
 	}
 
+	public void preprocess(EventDTO eventDTO) throws Exception{
+		MediaDTO media = eventDTO.getMedia();
+		if(media!=null){
+			String bannerUrl = media.getBannerUrl();
+			saveImage.saveImageOnDisk(bannerUrl);
+		}
+	}
 }

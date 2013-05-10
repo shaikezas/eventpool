@@ -28,13 +28,21 @@ public class SaveImage {
 	@Resource
 	private ImageProcessor imageProcessor;
 
-	//@Value("${image-base-path}")
+	@Value("$EVENT_POOL{image.location.prefix}")
 	private String imageBasePath;
 	
-	//@Value("${image-base-path-for-db-entry}")
+	@Value("$EVENT_POOL{image.location}")
 	private String imageBasePathForDb;
+	
+	@Value("$EVENT_POOL{image.source.location}")
+	private String localImagePath;
+	
 
-	public Map<ImageType,String> saveImageOnDisk(String imageUrl, float imageQuality) throws Exception{
+	public Map<ImageType,String> saveImageOnDisk(String imageUrl) throws Exception{
+		if(imageUrl==null) return null;
+		if(!imageUrl.startsWith("http")){
+			imageUrl = localImagePath+"/"+imageUrl;
+		}
 		Map<ImageType,String> processedImageMap = new HashMap<ImageType, String>();
 		int width = 300;
 		int height = 300;
@@ -44,13 +52,13 @@ public class SaveImage {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		String fileName = getFileName(width, height, uuid);
 		String dbfileName = getDbfileName(imageUrl, fileName);
-		saveOnDisk(scaledImage, imageUrl, dbfileName, imageQuality);
+		saveOnDisk(scaledImage, imageUrl, fileName, .9f);
 		processedImageMap.put(ImageType.MEDIUM, dbfileName);
 		
 		return processedImageMap;
 	}
 	
-	public String replaceLast(String input,String appendText){
+	protected String replaceLast(String input,String appendText){
 		if(input!=null && !input.isEmpty()){
 			int lastIndexOf = input.lastIndexOf(".");
 			if(lastIndexOf!=-1){
@@ -59,7 +67,7 @@ public class SaveImage {
 		}
 		return null;
 	}
-	public static String getHashPath(String imgPath, int maxNumOfFolders){
+	protected static String getHashPath(String imgPath, int maxNumOfFolders){
 	   if(imgPath == null)
 	       return null;
 	   if(maxNumOfFolders == 0)
@@ -70,7 +78,7 @@ public class SaveImage {
 	   return outPutImageDir;
 	 }
 	
-	public boolean createDir(String dirPath) {
+	protected boolean createDir(String dirPath) {
 		boolean dirExistsOrCreated = false;
 		File f = new File(dirPath);
 		if (!f.exists()) {
@@ -81,7 +89,7 @@ public class SaveImage {
 		return dirExistsOrCreated;
 	}
 	
-	public static String md5(String key) {
+	protected static String md5(String key) {
 		 MessageDigest m;
 		 try {
 		     m = MessageDigest.getInstance("MD5");
@@ -97,11 +105,11 @@ public class SaveImage {
 		 return "";
     }
 	
-	public String getDbfileName(String imageUrl, String fileName) {
+	protected String getDbfileName(String imageUrl, String fileName) {
 		return imageBasePathForDb+getHashPath(imageUrl, 1000)+fileName;
 	}
 
-	public  void saveOnDisk(BufferedImage scaledImage, String imageUrl , String fileName, float imageQuality) throws Exception {
+	protected  void saveOnDisk(BufferedImage scaledImage, String imageUrl , String fileName, float imageQuality) throws Exception {
 		String dirName = imageBasePath+getHashPath(imageUrl, 1000);
 		String absoluteFileName=dirName+fileName;
 		// create directory.
@@ -112,7 +120,7 @@ public class SaveImage {
 		}
 	}
 
-	public String getFileName( Integer width,Integer height,String uuid) {
+	protected String getFileName( Integer width,Integer height,String uuid) {
 		if(width==null) width=0;
 		if(height==null) height=0;
 		return width+"X"+height+"_"+uuid+".jpg";
