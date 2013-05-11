@@ -11,7 +11,7 @@ AppDirectives.directive('appVersion', ['version', function (version) {
 }]);
 
 
-AppDirectives.directive('fileuploadPlugin', function($timeout) {
+AppDirectives.directive('multiplefileuploadPlugin', function($timeout) {
 	var linkFn;
 	linkFn = function(scope, element, attrs) {
 		var addfiles = function(files) {
@@ -128,7 +128,7 @@ AppDirectives.directive('fileuploadPlugin', function($timeout) {
 	};
 });
 
-AppDirectives.directive('profileuploadPlugin', function($timeout) {
+AppDirectives.directive('fileuploadPlugin', function($timeout) {
 	var linkFn;
 	linkFn = function(scope, element, attrs, ngModel) {
 		scope.errorCallback = function(event, src) {
@@ -142,7 +142,7 @@ AppDirectives.directive('profileuploadPlugin', function($timeout) {
 			scope.$emit('profilepicchanged', scope.profilepic);
 		};
 		angular.element(element).ready(function() {
-			jQuery('#profileupload').fileupload({
+			jQuery('#fileupload').fileupload({
 		        dataType: 'json',
 		        limitMultiFileUploads: 1,
 		        done: function (e, data) {

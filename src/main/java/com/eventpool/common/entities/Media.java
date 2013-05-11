@@ -43,6 +43,9 @@ public class Media implements Serializable{
 
 	@Column(name = "OTHER_URL2")
 	private String otherUrl2;
+	
+	@Column(name = "EVENT_URL")
+	private String eventUrl;
 
 	public Long getEventId() {
 		return eventId;
@@ -108,5 +111,15 @@ public class Media implements Serializable{
 	public void setOtherUrl2(String otherUrl2) {
 		this.otherUrl2 = otherUrl2;
 	}
+	
+	
+	public String getEventUrl() {
+		return eventUrl;
+	}
+	
+	public void setEventUrl(String eventUrl) {
+		this.eventUrl = eventUrl;
+	}
+	
 
 }

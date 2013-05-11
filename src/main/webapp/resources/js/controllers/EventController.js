@@ -26,29 +26,17 @@ var EventController = function($scope, $http,search) {
         });
     }
     
-    $scope.addNewTicket = function(event) {
+    $scope.addNewTicket = function() {
         $scope.resetError();
-        $http.post('events/addTicket', event).success(function(event) {
-            $scope.fetchEventsList();
-            $scope.event.title = '';
-            $scope.event.description = '';
-            $scope.event.venueName = '';
-            $scope.event = event;
-        }).error(function() {
-            $scope.setError('Could not add a new event');
-        });
+        if(angular.isUndefined($scope.event.tickets)) {
+        	$scope.event.tickets = [];
+        }
+        $scope.event.tickets.push(new eventpool.ticket());
     }
     
-    $scope.removeTicket = function(event) {
+    $scope.removeTicket = function(index) {
         $scope.resetError();
-        $http.post('events/removeTicket', event).success(function() {
-            $scope.fetchEventsList();
-            $scope.event.title = '';
-            $scope.event.description = '';
-            $scope.event.venueName = '';
-        }).error(function() {
-            $scope.setError('Could not add a new event');
-        });
+        $scope.event.tickets.splice(index, 1);
     }
 
     $scope.updateEvent = function(event) {
@@ -128,7 +116,13 @@ var EventController = function($scope, $http,search) {
         
         
     };
-
+    $scope.profilepic;
+    $scope.$watch("profilepic", function() {
+    	if(!angular.isUndefined($scope.profilepic)) {
+    		alert($scope.profilepic.uniqueid);
+    		$scope.event.banner = $scope.profilepic.uniqueid;
+    	}
+    })
 //    $scope.fetchEventsList();
 
     $scope.predicate = 'id'

@@ -116,7 +116,8 @@
 							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
 							    <div class="controls">
 							      
-							       <input type="file" ng-model="event.banner" />
+							       <input type="file" id="fileupload" name="files[]"
+											data-url="events/bannerpic" fileupload-plugin/>
 							      						      
 							    </div>
 							  </div>
@@ -348,7 +349,7 @@
 								          	</td>
 								          <td>
 								          	
-								          	<button type="button" class="close" onclick="alert('foo')" data-dismiss="modal" aria-hidden="true">×</button>
+								          	<button type="button" class="btn" ng-click="removeTicket($index)" >X</button>
 								          	
 								          </td>
 								        </tr>

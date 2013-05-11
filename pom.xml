@@ -11,6 +11,10 @@
 	    <url>http://maven.thebuzzmedia.com</url>
 	  </repository>
 	</repositories>
+	<properties>
+		<commons-fileupload-version>1.2.1</commons-fileupload-version>
+        <commons-io-version>2.0.1</commons-io-version>
+	</properties>
   <dependencies>
 
         <dependency>
@@ -95,6 +99,22 @@
 				<groupId>org.imgscalr</groupId>
 				<artifactId>imgscalr-lib</artifactId>
 				<version>4.2</version>
+			</dependency>
+					<dependency>
+      		<groupId>commons-fileupload</groupId>
+	 	 	<artifactId>commons-fileupload</artifactId>
+      		<version>${commons-fileupload-version}</version>
+    	</dependency>
+		<!-- optional, good for handle I/O task -->
+			<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io-version}</version>
+		</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4.4</version>
 			</dependency>
   </dependencies>
     <build>

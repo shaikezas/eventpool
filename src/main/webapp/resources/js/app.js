@@ -7,32 +7,32 @@ var App = angular.module('EventPool', ['EventPool.filters', 'EventPool.services'
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/createevent', {
-        templateUrl: 'events/createevent',
+        templateUrl: 'html/events/createevent.html',
         controller: EventController
     });
     
     $routeProvider.when('/eventlist', {
-        templateUrl: 'events/eventlist',
+        templateUrl: 'html/events/eventlist.html',
         controller: EventController
     });
     
     $routeProvider.when('/myevents', {
-        templateUrl: 'events/myevents',
+        templateUrl: 'html/events/myevents.html',
         controller: EventController
     });
     
     $routeProvider.when('/findevent', {
-        templateUrl: 'events/findevent',
+        templateUrl: 'html/events/findevent.html',
         controller: EventController
     });
     
     $routeProvider.when('/mytickets', {
-        templateUrl: 'events/mytickets',
+        templateUrl: 'html/ticket/mytickets.html',
         controller: EventController
     });
     
     $routeProvider.when('/home', {
-        templateUrl: 'home',
+        templateUrl: 'html/home.html',
         controller: EventController
     });
     

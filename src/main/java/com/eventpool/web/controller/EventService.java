@@ -23,4 +23,6 @@ public interface EventService {
     public void deleteAll();
 
     public void updateEvent(EventDTO Event);
+    
+    public EventDTO getEventByUrl(String eventUrl);
 }

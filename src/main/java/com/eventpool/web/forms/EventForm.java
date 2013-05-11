@@ -14,7 +14,7 @@ public class EventForm  {
 	private String description;
 	private Integer subCategoryId;
 	private File organizerLogo;
-	private File banner;
+	private String banner;
 	private String videoUrl;
 	private String faceBookUrl;
 	private String otherUrl1;
@@ -41,8 +41,14 @@ public class EventForm  {
 	private Boolean isPrivate=false;
 	private Boolean isPublish=false;
 	private String eventUrl;
+	private Integer selectedformid;
 	
-	
+	public Integer getSelectedformid() {
+		return selectedformid;
+	}
+	public void setSelectedformid(Integer selectedformid) {
+		this.selectedformid = selectedformid;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -85,10 +91,10 @@ public class EventForm  {
 	public void setOrganizerLogo(File organizerLogo) {
 		this.organizerLogo = organizerLogo;
 	}
-	public File getBanner() {
+	public String getBanner() {
 		return banner;
 	}
-	public void setBanner(File banner) {
+	public void setBanner(String banner) {
 		this.banner = banner;
 	}
 	public String getVideoUrl() {

@@ -41,6 +41,7 @@
 			<field><a>faceBookUrl    </a><b>faceBookUrl   </b></field>
 			<field><a>otherUrl1      </a><b>otherUrl1     </b></field>
 			<field><a>otherUrl2      </a><b>otherUrl2     </b></field>
+			<field><a>eventUrl      </a><b>eventUrl     </b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">

@@ -1,12 +1,7 @@
 package com.eventpool.web.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -18,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.eventpool.common.dto.EventDTO;
-import com.eventpool.common.dto.Region;
-import com.eventpool.common.module.EntityUtilities;
+import com.eventpool.web.domain.PhotoWeb;
+import com.eventpool.web.domain.UploadedFileResponse;
 import com.eventpool.web.forms.EventForm;
-import com.eventpool.web.forms.SearchResponse;
-import com.eventpool.web.forms.TicketForm;
 
 /**
  * Created with IntelliJ IDEA.
@@ -67,47 +62,18 @@ public class EventController {
 //        eventService.addEvent(event);
     }
     
-    @RequestMapping(value = "/addTicket", method = RequestMethod.POST)
-    public @ResponseBody EventForm addTicket(@RequestBody EventForm event) {
-    	
-    	System.out.println("Adding Ticket");
-    	System.out.println("Event title :"+event.getTitle());
-    	System.out.println("description  :"+event.getDescription());
-    	System.out.println("Start date "+event.getStartDate());
-    	System.out.println("End Date "+event.getEndDate());
-    	System.out.println("Is Private "+event.getIsPrivate());
-    	System.out.println("Banner "+event.getBanner());
-    	System.out.println("Thumbnal "+event.getOrganizerLogo());
-    	System.out.println("Event url "+event.getEventUrl());
-    	System.out.println("Ticket size"+event.getTickets().size());
-    	if(event.getTickets().size()>0)
-    		System.out.println("Ticket name"+event.getTickets().get(0).getName());
-    	else
-    		System.out.println("Tickets are empty");
-    	
-    	TicketForm form = new TicketForm();
-    	form.setFormId(event.getTickets().size()+1);
-    	event.getTickets().add(form);
-    	System.out.println("Added form");
-    	return event;
-//        eventService.addEvent(event);
-    }
-    
-    @RequestMapping(value = "/removeTicket", method = RequestMethod.POST)
-    public @ResponseBody EventForm removeTicket(@RequestBody EventForm event) {
-    	
-    	System.out.println("Removing Ticket ");
-    	if(event.getTickets().size()>0)
-    	{
-//    		event.getTickets().remove(ticketFormId-1);
-    	}
-    	else
-    		System.out.println("Tickets are empty");
-    	
-    	
-    	return event;
-    	
-//        eventService.addEvent(event);
+    @RequestMapping(value = "/bannerpic", method = RequestMethod.POST)
+    public @ResponseBody
+    UploadedFileResponse setProfilePic(@RequestParam("files[]") MultipartFile fileupload) {
+    	UploadedFileResponse response = new UploadedFileResponse();
+    	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
+    	PhotoWeb photo = new PhotoWeb();
+    	photo.setUniqueid("123456");
+    	photosData.add(photo);
+    	response.setStatus(true);
+    	response.setFilesuploaded(photosData);
+    	System.out.println("File uploaded");
+    	return response;
     }
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
@@ -124,33 +90,14 @@ public class EventController {
     public @ResponseBody void removeAllEvents() {
         eventService.deleteAll();
     }
-
-    @RequestMapping("/createevent")
-    public String getCreateEventPartialPage(ModelMap modelMap) {
-    	System.out.println("Create Eent");
-        return "events/createevent";
-    }
     
-    @RequestMapping("/eventlist")
-    public String getEventListPartialPage(ModelMap modelMap) {
-    	System.out.println("Event list");
-        return "events/eventlist";
-    }
-    
-    @RequestMapping("/myevents")
-    public String getMyEventListPartialPage(ModelMap modelMap) {
-        return "events/myevents";
-    }
-    
-
-    @RequestMapping("/findevent")
-    public String getFindEventPartialPage(ModelMap modelMap) {
-        return "events/findevent";
-    }
-    
-    @RequestMapping("/mytickets")
-    public String getMyTicketsPartialPage(ModelMap modelMap) {
-        return "ticket/mytickets";
+    @RequestMapping(value="/{eventUrl}", method = RequestMethod.GET)
+    public ModelAndView getEventByUrl(@PathVariable String eventUrl) {
+    	System.out.println("Calling getEventByUrl");
+    	 ModelAndView  modelView = new ModelAndView("events/eventpage");
+    	 ModelMap modelMap = modelView.getModelMap();
+    	 	modelMap.put("name", "ezas");
+    	 	return modelView;
     }
 
 }

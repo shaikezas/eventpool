@@ -16,10 +16,12 @@ import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.module.CommonUtils;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
@@ -79,6 +81,14 @@ public class EventTest extends BaseTest{
     	venueAddress.setZipCode(12345L);
     	event.setVenueAddress(venueAddress);
     	event.setVenueName("venue name");
+    	
+    	Media mediaDTO = new Media();
+    	mediaDTO.setBannerUrl("20130509_070251.jpg");
+    	mediaDTO.setFaceBookUrl("facebook");
+    	mediaDTO.setOtherUrl1("otherurl1");
+    	mediaDTO.setEventUrl("eventUrl");
+    	
+    	event.setMedia(mediaDTO);
     	
     	Ticket ticket = new Ticket();
     	ticket.setCreatedBy(0L);
@@ -176,6 +186,7 @@ public class EventTest extends BaseTest{
     	mediaDTO.setBannerUrl("20130509_070251.jpg");
     	mediaDTO.setFaceBookUrl("facebook");
     	mediaDTO.setOtherUrl1("otherurl1");
+    	mediaDTO.setEventUrl("eventUrl");
     	
     	event.setMedia(mediaDTO);
     	List<TicketDTO> tickets = new ArrayList<TicketDTO>();
@@ -195,7 +206,7 @@ public class EventTest extends BaseTest{
     	 log.info(" local date"+timeZoneDate);
     }
     
-    @Test
+//    @Test
     public void testEventServiceCommand() throws Exception{
     	SaveEventCommand saveEventCommand = new SaveEventCommand();
     	saveEventCommand.setEventDTO(getEventDTOObject());
@@ -211,5 +222,13 @@ public class EventTest extends BaseTest{
     	for(String str:citiesWithStateAndCountry.values()){
     		log.info(str);
     	}
+    }
+    
+    @Resource
+    HtmlEmailService htmlEmailService;
+    @Test
+    public void sendMail(){
+    	
+    	htmlEmailService.sendMail();
     }
 }
