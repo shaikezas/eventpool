@@ -20,6 +20,7 @@ import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.module.CommonUtils;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
@@ -211,5 +212,13 @@ public class EventTest extends BaseTest{
     	for(String str:citiesWithStateAndCountry.values()){
     		log.info(str);
     	}
+    }
+    
+    @Resource
+    HtmlEmailService htmlEmailService;
+    @Test
+    public void sendMail(){
+    	
+    	htmlEmailService.sendMail();
     }
 }
