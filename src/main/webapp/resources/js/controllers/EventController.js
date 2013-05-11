@@ -13,14 +13,11 @@ var EventController = function($scope, $http,search) {
         });
     }
 
-    $scope.addNewEvent = function(event) {
+    $scope.addNewEvent = function() {
         $scope.resetError();
 
-        $http.post('events/addEvent', event).success(function() {
-            $scope.fetchEventsList();
-            $scope.event.title = '';
-            $scope.event.description = '';
-            $scope.event.venueName = '';
+        $http.post('events/addEvent', $scope.event).success(function() {
+//            $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not add a new event');
         });

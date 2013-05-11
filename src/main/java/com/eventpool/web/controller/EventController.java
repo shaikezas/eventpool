@@ -20,6 +20,7 @@ import com.eventpool.common.dto.EventDTO;
 import com.eventpool.web.domain.PhotoWeb;
 import com.eventpool.web.domain.UploadedFileResponse;
 import com.eventpool.web.forms.EventForm;
+import com.eventpool.web.forms.TicketForm;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,8 +55,12 @@ public class EventController {
     	System.out.println("Thumbnal "+event.getOrganizerLogo());
     	System.out.println("Event url "+event.getEventUrl());
     	if(event.getTickets()!=null){
-    	System.out.println("Ticket size"+event.getTickets().size());
-    	System.out.println("Ticket name"+event.getTickets().get(0).getName());
+    		System.out.println("Ticket size"+event.getTickets().size());
+    		for(TicketForm ticket :event.getTickets()){
+    			System.out.println("Ticket name :"+ticket.getName());
+    		}
+    	
+    	
     	}else
     		System.out.println("tickets are null");
     	

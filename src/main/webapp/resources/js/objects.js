@@ -6,6 +6,6 @@ if ( !window.eventpool ) {
 }
 
 eventpool.ticket = function() {
-	this.title 	= "";
+	this.name 	= "";
 	this.quantity 	= 0;
 };
