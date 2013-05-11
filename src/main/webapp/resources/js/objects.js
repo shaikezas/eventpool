@@ -8,4 +8,5 @@ if ( !window.eventpool ) {
 eventpool.ticket = function() {
 	this.name 	= "";
 	this.quantity 	= 0;
+	this.showsettings = false;
 };

@@ -344,7 +344,7 @@
 										  </td>
 								          <td>
 								          	
-								        	<a href="#" class="btn " id="show" >Setting </a>
+								        	<button class="btn" ng-click="showticketsettings(ticket, true)">Setting </button>
 				          	
 								          	</td>
 								          <td>
@@ -357,16 +357,12 @@
 								        
 								      </tbody>
 								    </table>
-
-							  </td>
-							   </tr>
-    </tbody>
-</table>
-			 <div id="ticketInfo" style="display: none">
+								    
+								    		 <div ng-show="ticket.showsettings == true">
 				           <div class="control-group">
 						<div class="controls" style="text-align: right">
 							    	
-							      <button id="hide" type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+							      <button id="hide" type="button" class="close" ng-click="showticketsettings(ticket, false)">X</button>
 							      
 							    </div>
 								    <label class="control-label" for="ticketDescription">Ticket Description :*</label>
@@ -427,6 +423,12 @@
 							  </div>
 							  
 							</div>
+
+							  </td>
+							   </tr>
+    </tbody>
+</table>
+	
 								</form >
 							
 			              </div>

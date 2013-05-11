@@ -102,6 +102,10 @@ var EventController = function($scope, $http,search) {
         $scope.errorMessage = message;
     }
     
+    $scope.showticketsettings = function(ticket, show) {
+    	ticket.showsettings = show;
+    }
+    
     $scope.selectMe = function(item) {
     	$scope.searchText = item
     	var n = item.split("-");
@@ -116,7 +120,6 @@ var EventController = function($scope, $http,search) {
     $scope.profilepic;
     $scope.$watch("profilepic", function() {
     	if(!angular.isUndefined($scope.profilepic)) {
-    		alert($scope.profilepic.uniqueid);
     		$scope.event.banner = $scope.profilepic.uniqueid;
     	}
     })
