@@ -29,18 +29,30 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 
 	public Date convertTo(String source, Date destination) {
 		if (source != null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			try {
-				destination = sdf.parse(source);
-			} catch (ParseException e) {
-				logger.error("date parse exception",e);
-			}
+			String pattern = "yyyy-MM-dd HH:mm:ss";
+			destination = getDate(source,pattern);
 		}
 		return destination;
 	}
 
+	private Date getDate(String source,  String pattern) {
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		try {
+			return sdf.parse(source);
+		} catch (ParseException e) {
+			logger.error("date parse exception",e);
+		}
+		return null;
+	}
+
 	public String convertFrom(Date source,String destination) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String pattern = "yyyy-MM-dd HH:mm:ss";
+		return getDateString(source, pattern);
+	}
+
+	private String getDateString(Date source, String pattern) {
+		String destination;
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		destination = sdf.format(source);
 		return destination;
 	}
