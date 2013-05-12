@@ -222,4 +222,22 @@ public class EventpoolMapper {
 		}
 		
 	}
+	
+	public void mapEventForm(EventDTO eventDTO,EventForm eventForm){
+		mapper.map(eventDTO,eventForm);
+		mapper.map(eventDTO.getVenueAddress(),eventForm);
+		mapper.map(eventDTO.getMedia(), eventForm);
+		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
+		if(ticketDTOs!=null && ticketDTOs.size()>0){
+			List<TicketForm> ticketForms = new ArrayList<TicketForm>();
+			for(TicketDTO ticketDTO:ticketDTOs){
+				TicketForm ticketForm = new TicketForm();
+				mapper.map(ticketDTO,ticketForm);
+				ticketForms.add(ticketForm);
+			}
+			eventForm.setTickets(ticketForms);
+		}
+		
+	}
+
 }

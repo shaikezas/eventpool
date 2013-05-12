@@ -20,6 +20,7 @@ import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.image.SaveImage;
 import com.eventpool.common.module.CommonUtils;
 import com.eventpool.common.module.EntityUtilities;
@@ -318,5 +319,47 @@ public class EventTest extends BaseTest{
 		
 		eventApi.saveEventDTO(eventDTO);
 		
+    }
+    
+    @Test
+    public void getEventForm(){
+    	try {
+			EventDTO eventDTO = eventApi.getEvenDTO(28L);
+			EventForm eventForm = new EventForm();
+			eventMapper.mapEventForm(eventDTO, eventForm );
+	
+			log.info(eventForm.getAddress1());
+			log.info(eventForm.getAddress2());
+			log.info(eventForm.getBanner());
+			log.info(eventForm.getCategory());
+			log.info(eventForm.getContactDetails());
+			log.info(eventForm.getDescription());
+			log.info(eventForm.getEndDate());
+			log.info(eventForm.getEventUrl());
+			log.info(eventForm.getFaceBookUrl());
+			log.info(eventForm.getFax());
+			log.info(eventForm.getKeyWords());
+			log.info(eventForm.getMapUrl());
+			log.info(eventForm.getMobileNumber());
+			log.info(eventForm.getOrganizerDescription());
+			log.info(eventForm.getOrganizerName());
+			log.info(eventForm.getOtherUrl1());
+			log.info(eventForm.getOtherUrl2());
+		//	log.info(eventForm.getOrganizerLogo());
+			log.info(eventForm.getPhoneNumber());
+			log.info(eventForm.getPrivacyType());
+			log.info(eventForm.getPublishDate().toString());
+			log.info(eventForm.getStartDate());
+		//	log.info(eventForm.getSelectedformid().toString());
+			log.info(eventForm.getSubCategoryId().toString());
+			log.info(eventForm.getTermsAndConditions());
+			log.info(eventForm.getTitle());
+			log.info(eventForm.getVenueName());
+			log.info(eventForm.getVideoUrl());
+			log.info(eventForm.getZipCode().toString());
+			
+		} catch (EventNotFoundException e) {
+			log.error("Event not found",e);
+		}
     }
 }

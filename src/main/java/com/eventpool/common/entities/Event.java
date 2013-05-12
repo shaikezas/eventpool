@@ -105,6 +105,7 @@ public class Event extends AuditableIdEntity {
 	private boolean showEvent;
 
 	@Column(name="PRIVACY_TYPE",length=256)
+	@Enumerated(EnumType.STRING)
 	private EventPrivacyType privacyType;
 	
 	public String getTitle() {
