@@ -74,4 +74,17 @@
 			<field><a>fax         </a><b>fax         </b></field>
 			<field><a>mobileNumber</a><b>mobileNumber</b></field>
 	</mapping>
+	
+	
+	
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.Category</class-a>
+        <class-b>com.eventpool.common.dto.CategoryDTO</class-b>
+        	<field><a>id</a><b>id</b></field>
+			<field><a>name    </a><b>name    </b></field>
+			<field><a>description    </a><b>description    </b></field>
+			<field><a>isActive      </a><b>isActive      </b></field>
+			<field><a>code      </a><b>code      </b></field>
+			<field><a>parentCategory      </a><b>parentCategory      </b></field>
+	</mapping>
 </mappings>

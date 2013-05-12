@@ -4,7 +4,7 @@
  * EventController
  * @constructor
  */
-var EventController = function($scope, $http,search) {
+var EventController = function($scope, $http,search,subcategories) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.fetchEventsList = function() {
@@ -106,8 +106,6 @@ var EventController = function($scope, $http,search) {
     	ticket.showsettings = show;
     }
     
-    $scope.defaultcategories = [ {key: 1, value: 1}, {key:2, value:2}]
-    $scope.event.category = $scope.defaultcategories[0].value;
     $scope.selectMe = function(item) {
     	$scope.searchText = item
     	var n = item.split("-");
@@ -126,7 +124,26 @@ var EventController = function($scope, $http,search) {
     	}
     })
 //    $scope.fetchEventsList();
-
+    
+     $scope.fetchCategories = function() {
+        $http.get('dropdown/categories').success(function(categories){
+            $scope.categories = categories;
+        });
+    }
+    
+    $scope.fetchSubCategories = function() {
+    	alert("foo");
+      /*  $http.get('dropdown/subcategories',$scope.category).success(function(subcategories){
+            $scope.subcategories = subcategories;
+        });*/
+        
+    	subcategories.getsubcategories($scope.category).success(function(subcategories) {
+			$scope.subcategories = subcategories;
+	    }).error(function(data) {
+	    	
+	    });
+    }
+    $scope.fetchCategories();
     $scope.predicate = 'id'
 }
 

@@ -12,7 +12,7 @@ public class EventForm  {
 	String endDate;
 	private Boolean isActive;
 	private String description;
-	private Integer subCategoryId;
+	private String subCategoryId;
 	private File organizerLogo;
 	private String banner;
 	private String videoUrl;
@@ -44,7 +44,6 @@ public class EventForm  {
 	private Integer selectedformid;
 	private Long addId;
 	private Long eventId;
-	private String category;
 	
 	public Integer getSelectedformid() {
 		return selectedformid;
@@ -82,10 +81,10 @@ public class EventForm  {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getSubCategoryId() {
+	public String getSubCategoryId() {
 		return subCategoryId;
 	}
-	public void setSubCategoryId(Integer subCategoryId) {
+	public void setSubCategoryId(String subCategoryId) {
 		this.subCategoryId = subCategoryId;
 	}
 	public File getOrganizerLogo() {
@@ -257,12 +256,6 @@ public class EventForm  {
 	
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
 	}
 	public Long getAddId() {
 		return addId;

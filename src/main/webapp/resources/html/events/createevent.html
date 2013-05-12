@@ -84,15 +84,9 @@
 							  <div class="control-group">
 							    <label class="control-label" for="category">Category :</label>
 							    <div class="controls">
-									  <select id="Category">
-										  <option>1</option>
-										  <option>2</option>
-										  <option>3</option>
-										  <option>4</option>
-										  <option>5</option>
-									  </select>
-									  <select id="Category" ng-model="event.category"
-													ng-options="cat.key for cat in defaultcategories">
+									  <select id="Category" ng-model="category" ng-change="fetchSubCategories()"
+													ng-options="cat.value as cat.key for cat in categories">
+													<option value="">-- Select Category --</option>
 										</select>
 							    </div>
 							  </div>
@@ -100,13 +94,10 @@
 							  <div class="control-group">
 							    <label class="control-label" for="subCategory">Sub Category :</label>
 							    <div class="controls">
-							      	<select id="subCategory" >
-										  <option>1</option>
-										  <option>2</option>
-										  <option>3</option>
-										  <option>4</option>
-										  <option>5</option>
-									  </select>
+							      	<select id="Subcategory" ng-model="event.subCategoryId"
+													ng-options="subcat.value as subcat.key for subcat in subcategories">
+													<option value="">-- Select SubCategory --</option>
+										</select>
 							    </div>
 							  </div>
 							  
