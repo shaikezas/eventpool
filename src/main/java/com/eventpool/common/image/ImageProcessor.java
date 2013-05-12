@@ -63,6 +63,10 @@ public class ImageProcessor {
 		return srcImage;
 	}
 	
+	public BufferedImage getSourceImage(File file) throws IOException {
+		BufferedImage srcImage = ImageIO.read(file);
+		return srcImage;
+	}
 	public BufferedImage trim ( BufferedImage image ){
 		int j;
 		int trimFromTopUnits=0,trimFromBottomUnits=0,trimFromRightUnits=0,trimFromLeftUnits=0;

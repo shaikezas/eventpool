@@ -23,6 +23,7 @@ import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.entities.TicketSnapShot;
+import com.eventpool.web.forms.EventForm;
 
 @SuppressWarnings("rawtypes")
 @Component
@@ -188,5 +189,7 @@ public class EventpoolMapper {
 		mapper.map(source, destination);
 	}
 	
-
+	public void mapEventDTO(EventForm eventForm,EventDTO eventDTO){
+		
+	}
 }

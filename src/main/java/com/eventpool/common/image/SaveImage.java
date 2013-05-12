@@ -2,6 +2,7 @@ package com.eventpool.common.image;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SaveImage {
 
+	private static final String FILE_PREFIX = "file:///";
+
 	protected static final Logger logger = LoggerFactory.getLogger(SaveImage.class);
 	
 	@Resource
@@ -41,7 +44,7 @@ public class SaveImage {
 	public Map<ImageType,String> saveImageOnDisk(String imageUrl) throws Exception{
 		if(imageUrl==null) return null;
 		if(!imageUrl.startsWith("http")){
-			imageUrl = localImagePath+"/"+imageUrl;
+			imageUrl =FILE_PREFIX+localImagePath+"/"+imageUrl;
 		}
 		Map<ImageType,String> processedImageMap = new HashMap<ImageType, String>();
 		int width = 300;
@@ -126,4 +129,11 @@ public class SaveImage {
 		return width+"X"+height+"_"+uuid+".jpg";
 	}
 
+	public String saveInSourceLocation(File file) throws IOException{
+		BufferedImage sourceImage = imageProcessor.getSourceImage(file);
+		String uuid = UUID.randomUUID().toString().replace("-", "");
+		String destFile = uuid+".jpg";
+		ImageProcessor.writeImageToDisk(sourceImage,localImagePath+"/"+destFile, 0.9f);
+		return destFile;
+	}
 }

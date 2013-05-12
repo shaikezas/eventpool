@@ -1,4 +1,6 @@
 package com.eventpool.common;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,7 @@ import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.image.SaveImage;
 import com.eventpool.common.module.CommonUtils;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
@@ -230,5 +233,20 @@ public class EventTest extends BaseTest{
     public void sendMail(){
     	
     	htmlEmailService.sendMail();
+    }
+    
+    @Resource
+    SaveImage saveImage;
+    
+    @Test
+    public void testImageSaveInLocal(){
+    	
+    	File file = new File("C:\\Event\\20130509_070251.jpg");
+    	try {
+			String saveInSourceLocation = saveImage.saveInSourceLocation(file);
+			log.info(saveInSourceLocation);
+		} catch (IOException e) {
+			log.error("error in saving file",e);
+		}
     }
 }
