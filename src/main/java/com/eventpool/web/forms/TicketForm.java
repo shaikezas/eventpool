@@ -36,6 +36,8 @@ public class TicketForm {
 	private Integer maxQty;
 	
 	private Integer formId;
+	
+	private Boolean showsettings;
 
 	public String getName() {
 		return name;
@@ -127,6 +129,14 @@ public class TicketForm {
 		this.formId = formId;
 	}
 
+	public Boolean getShowsettings() {
+		return showsettings;
+	}
+	
+	public void setShowsettings(Boolean showsettings) {
+		this.showsettings = showsettings;
+	}
+	
 	
 	
 }

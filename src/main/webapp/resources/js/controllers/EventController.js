@@ -106,6 +106,8 @@ var EventController = function($scope, $http,search) {
     	ticket.showsettings = show;
     }
     
+    $scope.defaultcategories = [ {key: 1, value: 1}, {key:2, value:2}]
+    $scope.event.category = $scope.defaultcategories[0].value;
     $scope.selectMe = function(item) {
     	$scope.searchText = item
     	var n = item.split("-");

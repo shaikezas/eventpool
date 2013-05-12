@@ -41,33 +41,28 @@
 							  
 							  
 							  
-							<!-- <div class="control-group">
+							    <div class="control-group">
 							    <label class="control-label" for="startDate">Start Date & Time :</label>
 							    <div class="controls">
-								 	<div id="datetimepickerStart" class="input-append date">
-				      					<input type="text" id="startDate" ng-model="event.startDate" placeholder="Start Date and Time"></input>
-									    <span class="add-on">
-									        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-									    </span>
+								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="event.startDate" 
+				      										placeholder="Start Date and Time" readonly></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
 							    </div>
 							  </div>
-							  
-							  
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="endDate">End Date & Time :</label>
 							    <div class="controls">
-								 	<div id="datetimepickerEnd" class="input-append date">
-				      					<input type="text" id="endDate" ng-model="event.endDate" placeholder="End Date and Time"></input>
-									    <span class="add-on">
-									        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-									    </span>
+								 	<div id="datetimepickerEnd" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="event.endDate" 
+				      										placeholder="End Date and Time" readonly></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
 							    </div>
 							  </div>
 							  
-							 -->
 							  
 							  <div class="control-group ">
 							    <div class="controls">
@@ -96,6 +91,9 @@
 										  <option>4</option>
 										  <option>5</option>
 									  </select>
+									  <select id="Category" ng-model="event.category"
+													ng-options="cat.key for cat in defaultcategories">
+										</select>
 							    </div>
 							  </div>
 							  
@@ -451,17 +449,8 @@
         if ($input.prop('checked')) $(className).hide();
         else $(className).show();
     	}
-      
-      $("#show").click(function(){
-      	$("#ticketInfo").show();
-   	 });
-      
-      $("#hide").click(function(){
-      	$("#ticketInfo").hide();
-   	 });
     
-    
-      $('#datetimepickerStart').datetimepicker({
+      /*$('#datetimepickerStart').datetimepicker({
         format: 'dd/MM/yyyy hh:mm:ss',
          language: 'en',
      	 pick12HourFormat: true
@@ -484,7 +473,7 @@
         format: 'dd/MM/yyyy hh:mm:ss',
         language: 'en',
      	 pick12HourFormat: true
-      });
+      });*/
     </script>
 
 
