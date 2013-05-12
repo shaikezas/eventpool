@@ -34,6 +34,8 @@ import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
 import com.eventpool.event.service.EventCommandService;
 import com.eventpool.web.controller.EventController;
+import com.eventpool.web.forms.EventForm;
+import com.eventpool.web.forms.TicketForm;
 
 public class EventTest extends BaseTest{
 	
@@ -248,5 +250,73 @@ public class EventTest extends BaseTest{
 		} catch (IOException e) {
 			log.error("error in saving file",e);
 		}
+    }
+   
+    @Test
+    public void testEventFormMap(){
+    	EventForm eventForm  = new EventForm();
+    	
+    	eventForm.setAddress1("adr1");
+    	eventForm.setAddress2("addr2");
+    	eventForm.setBanner("banner");
+    	eventForm.setCategory("category");
+    	eventForm.setCityId(2);
+    	eventForm.setContactDetails("contact details");
+    	eventForm.setDescription("description");
+    	eventForm.setEventUrl("event url");
+    	eventForm.setFaceBookUrl("face book url");
+    	eventForm.setIsActive(true);
+    	eventForm.setFax("fax");
+    	eventForm.setIsPrivate(true);
+    	eventForm.setIsPublish(true);
+    	eventForm.setKeyWords("key words");
+    	eventForm.setMapUrl("map url");
+    	//eventForm.setEventId(1L);
+    	eventForm.setMobileNumber("1234567890");
+    	eventForm.setOrganizerDescription("organizer Desciption");
+    	eventForm.setOrganizerName("organizer name");
+    	eventForm.setOtherUrl1("other url1");
+    	eventForm.setOtherUrl2("other url2");
+    	eventForm.setPhoneNumber("1234567890");
+    	eventForm.setPrivacyType("PRIVATE");
+    	eventForm.setPublishDate(new Date());
+    	eventForm.setShowEvent(true);
+    	eventForm.setStartDate("2013-05-03 11:11:11");
+    	eventForm.setSubCategoryId(2);
+    	eventForm.setTermsAndConditions("terms and conditions");
+    	eventForm.setTitle("title");
+    	eventForm.setVenueName("venue name");
+    	eventForm.setVideoUrl("video url");
+    	eventForm.setIsWebinar(false);
+    	eventForm.setZipCode(304567L);
+    	
+    	TicketForm ticketForm = new TicketForm();
+    	ticketForm.setDescription("description");
+    	ticketForm.setIsActive(false);
+    	ticketForm.setMaxQty(40);
+    	ticketForm.setMinQty(20);
+    	ticketForm.setName("name");
+    	ticketForm.setPrice(12.3d);
+    	ticketForm.setQuantity(123);
+    	ticketForm.setSaleEnd("2013-05-03 11:11:11");
+    	ticketForm.setSaleStart("2013-05-03 11:11:11");
+    	ticketForm.setShowsettings(true);
+    	
+    	List<TicketForm> ticketForms = new ArrayList<TicketForm>();
+    	eventForm.setTickets(ticketForms);
+    	ticketForms.add(ticketForm);
+    	
+    	EventDTO eventDTO = new EventDTO();
+		eventMapper.mapEventDTO(eventForm, eventDTO );
+		
+		//hard coded the following
+		eventDTO.setCreatedBy(1L);
+		eventDTO.setEventType(EventType.FREE);
+		for(TicketDTO ticketDTO:eventDTO.getTickets()){
+			ticketDTO.setCreatedBy(2L);
+		}
+		
+		eventApi.saveEventDTO(eventDTO);
+		
     }
 }

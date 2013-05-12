@@ -37,12 +37,13 @@ public class EventForm  {
 	private String keyWords;
 	private Date publishDate;
 	private boolean showEvent;
-	private String privacyType;
+	private String privacyType;// isPrivate is uplicate of this.
 	private Boolean isPrivate=false;
 	private Boolean isPublish=false;
 	private String eventUrl;
 	private Integer selectedformid;
-	
+	private Long addId;
+	private Long eventId;
 	private String category;
 	
 	public Integer getSelectedformid() {
@@ -201,10 +202,10 @@ public class EventForm  {
 	public void setTickets(List<TicketForm> tickets) {
 		this.tickets = tickets;
 	}
-	public boolean isWebinar() {
+	public boolean isIsWebinar() {
 		return isWebinar;
 	}
-	public void setWebinar(boolean isWebinar) {
+	public void setIsWebinar(boolean isWebinar) {
 		this.isWebinar = isWebinar;
 	}
 	public String getTermsAndConditions() {
@@ -262,6 +263,18 @@ public class EventForm  {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public Long getAddId() {
+		return addId;
+	}
+	public void setAddId(Long addId) {
+		this.addId = addId;
+		}
+public Long getEventId() {
+		return eventId;
+	}
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 	
 }

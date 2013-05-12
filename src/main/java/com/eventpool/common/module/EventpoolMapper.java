@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
@@ -24,6 +25,7 @@ import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.web.forms.EventForm;
+import com.eventpool.web.forms.TicketForm;
 
 @SuppressWarnings("rawtypes")
 @Component
@@ -40,6 +42,7 @@ public class EventpoolMapper {
 		List myMappingFiles = new ArrayList();
    	    myMappingFiles.add("dozer-mapping-files/orderMapping.xml");
    	    myMappingFiles.add("dozer-mapping-files/eventMapping.xml");
+   	 myMappingFiles.add("dozer-mapping-files/eventFormMapping.xml");
  	 	mapper.setMappingFiles(myMappingFiles);
 	}
 	
@@ -190,6 +193,33 @@ public class EventpoolMapper {
 	}
 	
 	public void mapEventDTO(EventForm eventForm,EventDTO eventDTO){
+		mapper.map(eventForm, eventDTO);
+		
+		AddressDTO venueAddress = eventDTO.getVenueAddress();
+		if(venueAddress == null){
+			venueAddress = new AddressDTO();
+			eventDTO.setVenueAddress(venueAddress);
+		}
+		mapper.map(eventForm, venueAddress);
+		
+		
+		MediaDTO media = eventDTO.getMedia();
+		if(media == null){
+			media = new MediaDTO();
+			eventDTO.setMedia(media);
+		}
+		mapper.map(eventForm, media);
+		
+		List<TicketForm> ticketForms = eventForm.getTickets();
+		if(ticketForms!=null && ticketForms.size()>0){
+			List<TicketDTO> ticketDTOs = new ArrayList<TicketDTO>();
+			for(TicketForm ticketForm:ticketForms){
+				TicketDTO ticketDTO = new TicketDTO();
+				mapper.map(ticketForm, ticketDTO);
+				ticketDTOs.add(ticketDTO);
+			}
+			eventDTO.setTickets(ticketDTOs);
+		}
 		
 	}
 }

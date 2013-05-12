@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+    <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.web.forms.EventForm</class-a>
+        <class-b>com.eventpool.common.dto.EventDTO</class-b>
+
+		<field><a>title</a><b>title</b></field>		
+		<field><a>isActive</a><b>isActive</b></field>
+		<field><a>description</a><b>description</b></field>
+		<field><a>subCategoryId</a><b>subCategoryId</b></field>
+		<field><a>venueName</a><b>venueName</b></field>
+		<field><a>organizerName</a><b>organizerName</b></field>
+		<field><a>organizerDescription</a><b>organizerDescription</b></field>
+		<field><a>contactDetails</a><b>contactDetails</b></field>
+	    <field><a>isWebinar</a><b>isWebinar</b></field>
+		<field><a>termsAndConditions</a><b>termsAndConditions</b></field>
+		<field><a>keyWords</a><b>keyWords</b></field>
+		<field><a>publishDate</a><b>publishDate</b></field>		
+		<field><a>showEvent</a><b>showEvent</b></field>		
+		<field><a>privacyType</a><b>privacyType</b></field>
+
+<!-- 		<field><a>isPublish            	  </a></field>
+		<field><a>selectedformid       	  </a></field>
+ -->
+		<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>startDate</a><b>startDate</b></field>
+		<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>endDate</a><b>endDate</b></field>
+			
+    </mapping>
+
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.web.forms.EventForm</class-a>
+        <class-b>com.eventpool.common.dto.MediaDTO</class-b>
+        	<field><a>eventId</a><b>eventId</b></field>
+			<field><a>organizerLogo </a><b>companyLogoUrl</b></field>
+			<field><a>banner      </a><b>bannerUrl     </b></field>
+			<field><a>videoUrl       </a><b>videoUrl      </b></field>
+			<field><a>faceBookUrl    </a><b>faceBookUrl   </b></field>
+			<field><a>otherUrl1      </a><b>otherUrl1     </b></field>
+			<field><a>otherUrl2      </a><b>otherUrl2     </b></field>
+			<field><a>eventUrl      </a><b>eventUrl     </b></field>
+    </mapping>
+
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.web.forms.TicketForm</class-a>
+        <class-b>com.eventpool.common.dto.TicketDTO</class-b>
+        
+<!-- <field><a>showsettings </a></field>
+ -->        
+        	<field><a>id</a><b>id</b></field>
+  			<field><a>name        </a><b>name        </b></field>
+			<field><a>description </a><b>description </b></field>
+			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>saleStart    </a><b>saleStart   </b></field>
+			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>saleEnd      </a><b>saleEnd     </b></field>
+			<field><a>isActive    </a><b>isActive    </b></field>
+			<field><a>quantity    </a><b>quantity    </b></field>
+			<field><a>enventId    </a><b>enventId    </b></field>
+			<field><a>price       </a><b>price       </b></field>
+			<field><a>minQty      </a><b>minQty      </b></field>
+			<field><a>maxQty      </a><b>maxQty      </b></field>
+    </mapping>
+
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.web.forms.EventForm</class-a>
+        <class-b>com.eventpool.common.dto.AddressDTO</class-b>
+        	<field><a>addId    </a><b>id    </b></field>
+			<field><a>address1    </a><b>address1    </b></field>
+			<field><a>address2    </a><b>address2    </b></field>
+			<field><a>cityId      </a><b>cityId      </b></field>
+			<field><a>mapUrl      </a><b>mapUrl      </b></field>
+			<field><a>zipCode     </a><b>zipCode     </b></field>
+			<field><a>phoneNumber </a><b>phoneNumber </b></field>
+			<field><a>fax         </a><b>fax         </b></field>
+			<field><a>mobileNumber</a><b>mobileNumber</b></field>
+	</mapping>
+</mappings>

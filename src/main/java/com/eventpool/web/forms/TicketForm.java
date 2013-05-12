@@ -1,20 +1,9 @@
 package com.eventpool.web.forms;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Type;
-
-import com.eventpool.common.type.TicketType;
 
 public class TicketForm {
 	
+	private Long id;
 	private String name;
 	
 	private String description;
@@ -135,6 +124,14 @@ public class TicketForm {
 	
 	public void setShowsettings(Boolean showsettings) {
 		this.showsettings = showsettings;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	
