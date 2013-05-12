@@ -177,3 +177,28 @@ AppDirectives.directive("focused", function($timeout) {
         scope.$eval(attrs.focused + '=true')
     }
 });
+
+AppDirectives.directive('datetimePicker', function($timeout) {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, model) {
+            $(".datetimepicker").datetimepicker({
+            	autoclose: true,
+                format: 'dd MM yyyy  hh:ii',
+                forceParse: false,
+                todayBtn: true,
+                todayHighlight : true,
+                pickerPosition: "bottom-left",
+                startDate : new Date(),
+                weekStart : 1
+            }).on('changeDate', function(ev){
+            	scope.$apply(function() {
+            		$timeout(function() {
+            			model.$setViewValue(element.val());
+            		}, 10);
+            	});
+            });
+            //model.$setViewValue(model);
+        }
+    };
+});

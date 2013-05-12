@@ -43,6 +43,8 @@ public class EventForm  {
 	private String eventUrl;
 	private Integer selectedformid;
 	
+	private String category;
+	
 	public Integer getSelectedformid() {
 		return selectedformid;
 	}
@@ -254,6 +256,12 @@ public class EventForm  {
 	
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 }
