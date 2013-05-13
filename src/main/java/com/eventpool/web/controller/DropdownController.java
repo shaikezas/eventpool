@@ -3,11 +3,15 @@ package com.eventpool.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.eventpool.common.module.CategoryNode;
+import com.eventpool.common.module.CategoryTree;
 import com.eventpool.web.forms.Dropdown;
 
 
@@ -19,25 +23,37 @@ public class DropdownController {
 	
 	List<Dropdown>  subcatgories = null;
 	
+	@Resource
+	private CategoryTree categoryTree;
+	
 	@RequestMapping("categories")
     public @ResponseBody List<Dropdown> getCategories() {
-		
-		System.out.println("Getting categories...");
-        if(categories == null){
+		if(categories == null){
         	categories = new ArrayList<Dropdown>();
-        	setCategories();
         }
-        
+		Long[] allCategoryIds = categoryTree.getAllCategoryIds();
+		for(Long categoryId:allCategoryIds){
+			CategoryNode node = categoryTree.getNode(categoryId);
+			Dropdown dropdown = new Dropdown();
+			dropdown.setKey(categoryId.toString());
+			dropdown.setValue(node.getName());
+			categories.add(dropdown);
+		}
         return categories;
     }
 	
 	@RequestMapping("subcategories")
     public @ResponseBody List<Dropdown> getSubCategories(@RequestParam String categoryid) {
 		
-		System.out.println("Getting subcategories..."+categoryid);
         if(subcatgories == null){
         	subcatgories = new ArrayList<Dropdown>();
-        	setSubCategories();
+        }
+        CategoryNode node = categoryTree.getNode(Long.parseLong(categoryid));
+        for(CategoryNode child:node.getChildCategories()){
+        	Dropdown dropdown = new Dropdown();
+			dropdown.setKey(child.getId().toString());
+			dropdown.setValue(child.getName());
+			categories.add(dropdown);
         }
         
         return categories;
