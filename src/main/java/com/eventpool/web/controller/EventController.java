@@ -102,6 +102,7 @@ public class EventController {
     	 ModelAndView  modelView = new ModelAndView("event/eventpage");
     	 ModelMap modelMap = modelView.getModelMap();
     	 	modelMap.put("name", "ezas");
+//    	 	eventService.getEventByUrl("eventUrl");
     	 	return modelView;
     }
 
