@@ -50,4 +50,6 @@ public class EventApiImpl implements EventApi{
     	eventpoolMapper.mapEventDTO(event, eventDTO);
     	return eventDTO;
     }
+	
+
 }

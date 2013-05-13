@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
@@ -68,6 +69,15 @@ public class EventServiceImpl implements EventService {
     	venueAddress.setZipCode(12345L);
     	event.setVenueAddress(venueAddress);
     	event.setVenueName("venue name");
+    	event.setTitle("Test Event");
+    	
+    	MediaDTO mediaDTO = new MediaDTO();
+    	mediaDTO.setBannerUrl("20130509_070251.jpg");
+    	mediaDTO.setFaceBookUrl("facebook");
+    	mediaDTO.setOtherUrl1("otherurl1");
+    	mediaDTO.setEventUrl("testurl");
+    	
+    	event.setMedia(mediaDTO);
     	
     	TicketDTO ticket = new TicketDTO();
     	ticket.setCreatedBy(0L);

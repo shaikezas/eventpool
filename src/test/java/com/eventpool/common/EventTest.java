@@ -92,7 +92,7 @@ public class EventTest extends BaseTest{
     	mediaDTO.setBannerUrl("20130509_070251.jpg");
     	mediaDTO.setFaceBookUrl("facebook");
     	mediaDTO.setOtherUrl1("otherurl1");
-    	mediaDTO.setEventUrl("eventUrl");
+    	mediaDTO.setEventUrl("testurl");
     	
     	event.setMedia(mediaDTO);
     	
@@ -260,7 +260,6 @@ public class EventTest extends BaseTest{
     	eventForm.setAddress1("adr1");
     	eventForm.setAddress2("addr2");
     	eventForm.setBanner("banner");
-    	eventForm.setCategory("category");
     	eventForm.setCityId(2);
     	eventForm.setContactDetails("contact details");
     	eventForm.setDescription("description");
@@ -283,7 +282,7 @@ public class EventTest extends BaseTest{
     	eventForm.setPublishDate(new Date());
     	eventForm.setShowEvent(true);
     	eventForm.setStartDate("2013-05-03 11:11:11");
-    	eventForm.setSubCategoryId(2);
+    	eventForm.setSubCategoryId("2");
     	eventForm.setTermsAndConditions("terms and conditions");
     	eventForm.setTitle("title");
     	eventForm.setVenueName("venue name");
@@ -331,7 +330,6 @@ public class EventTest extends BaseTest{
 			log.info(eventForm.getAddress1());
 			log.info(eventForm.getAddress2());
 			log.info(eventForm.getBanner());
-			log.info(eventForm.getCategory());
 			log.info(eventForm.getContactDetails());
 			log.info(eventForm.getDescription());
 			log.info(eventForm.getEndDate());
