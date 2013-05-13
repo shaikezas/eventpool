@@ -34,10 +34,12 @@ public class DropdownController {
 		Long[] allCategoryIds = categoryTree.getAllCategoryIds();
 		for(Long categoryId:allCategoryIds){
 			CategoryNode node = categoryTree.getNode(categoryId);
-			Dropdown dropdown = new Dropdown();
-			dropdown.setKey(categoryId.toString());
-			dropdown.setValue(node.getName());
-			categories.add(dropdown);
+			if(node.getLevel()==1){
+				Dropdown dropdown = new Dropdown();
+				dropdown.setKey(categoryId.toString());
+				dropdown.setValue(node.getName());
+				categories.add(dropdown);
+			}
 		}
         return categories;
     }
