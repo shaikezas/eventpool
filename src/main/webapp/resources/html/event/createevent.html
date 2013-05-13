@@ -28,14 +28,14 @@
 							  <div class="control-group">
 							    <label class="control-label" for="eventTitle">Event Title :</label>
 							    <div class="controls">
-							      <input type="text" id="eventTitle" ng-model="event.title" placeholder="Title" required min="6" >
+							      <input type="text" id="eventTitle" ng-model="event.title" placeholder="Title" required  >
 							    </div>
 							  </div>
 							  
 							    <div class="control-group">
 							    <label class="control-label" for="description">Description :</label>
 							    <div class="controls">
-							      <textarea id="description" rows="3" ng-model="event.description" placeholder="Description" ></textarea>
+							      <textarea id="description" required ng-model="event.description" placeholder="Description" ></textarea>
 							    </div>
 							  </div>
 							  
@@ -106,12 +106,14 @@
 							    <div class="controls">
 							      
 							       <input type="file" id="fileupload" name="files[]"
-											data-url="events/bannerpic" fileupload-plugin/>
+											data-url="upload/file" fileupload-plugin/>
+											
+											
 							      						      
 							    </div>
 							  </div>
 							  
-							  
+							
 							  <div class="control-group">
 							    <label class="control-label" for="url">Event URL :</label>
 							    <div class="controls">
@@ -206,9 +208,6 @@
 								  </div>
 								  
 							  
-								
-							  
-							  
 							  
 								  <div class="control-group">
 								    <label class="control-label" for="inputEmail">Pincode  :</label>
@@ -255,16 +254,9 @@
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="moreEmail">More Email Id`s for Reports :</label>
-							    <div class="controls">
-									  <input type="text" id="moreEmail" >
-							    </div>
-							  </div>
-							  
-							  <div class="control-group">
 							    <label class="control-label" for="website">Event Website URL :</label>
 							    <div class="controls">
-									  <input type="text" id="website" >
+									  <input type="text" id="website" ng-model="event.eventWebSiteUrl" >
 							    </div>
 							  </div>
 							  
@@ -274,6 +266,7 @@
 							    <div class="controls">
 							      
 							       <input type="file" ng-model="event.organizerLogo" />
+							       
 							      						      
 							    </div>
 							  </div>
@@ -299,8 +292,8 @@
 									<div class="control-group">
 									    <label class="control-label" for="inputEmail">Add Ticket :</label>
 									    <div class="controls">
-									      <button type="button" class="btn"  ng-click="addNewTicket(event)">Free</button>
-									      <button type="buttom" class="btn" ng-click="removeTicket(event,1)">Paid</button>   
+									      <button type="button" class="btn"  ng-click="addNewFreeTicket(event)">Free</button>
+									      <button type="buttom" class="btn" ng-click="addNewPaidTicket(event)">Paid</button>   
 									    </div>
 									</div>
 						
@@ -325,7 +318,7 @@
 								        <tr>
 								          <td> <input type="text"  ng-model="ticket.name"></td>
 								          <td> <input type="text"  ng-model="ticket.quantity"></td>
-								          <td>Free</td>
+								          <td><span ng-show="ticket.showFree">FREE</span><input type="text" ng-show="ticket.showPrice" ng-model="ticket.price" ></td>
 								          <td>
 									          <select>
 												  <option>On Sale</option>
@@ -435,11 +428,11 @@
     <script type="text/javascript">
     
     
-      function toggle(className, obj) {
+     /*  function toggle(className, obj) {
         var $input = $(obj);
         if ($input.prop('checked')) $(className).hide();
         else $(className).show();
-    	}
+    	} */
     
       /*$('#datetimepickerStart').datetimepicker({
         format: 'dd/MM/yyyy hh:mm:ss',

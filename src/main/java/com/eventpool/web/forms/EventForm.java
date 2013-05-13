@@ -44,6 +44,7 @@ public class EventForm  {
 	private Integer selectedformid;
 	private Long addId;
 	private Long eventId;
+	private String eventWebSiteUrl;
 	
 	public Integer getSelectedformid() {
 		return selectedformid;
@@ -269,5 +270,14 @@ public Long getEventId() {
 	public void setEventId(Long eventId) {
 		this.eventId = eventId;
 	}
+	
+	public String getEventWebSiteUrl() {
+		return eventWebSiteUrl;
+	}
+	
+	public void setEventWebSiteUrl(String eventWebSiteUrl) {
+		this.eventWebSiteUrl = eventWebSiteUrl;
+	}
+	
 	
 }

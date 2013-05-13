@@ -29,7 +29,7 @@ import com.eventpool.web.forms.TicketForm;
  * Time: 12:22 AM
  */
 @Controller
-@RequestMapping("/events")
+@RequestMapping("/event")
 public class EventController {
 
     @Resource(name="EventService")
@@ -67,7 +67,7 @@ public class EventController {
 //        eventService.addEvent(event);
     }
     
-    @RequestMapping(value = "/bannerpic", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/bannerpic", method = RequestMethod.POST)
     public @ResponseBody
     UploadedFileResponse setProfilePic(@RequestParam("files[]") MultipartFile fileupload) {
     	UploadedFileResponse response = new UploadedFileResponse();
@@ -79,7 +79,7 @@ public class EventController {
     	response.setFilesuploaded(photosData);
     	System.out.println("File uploaded");
     	return response;
-    }
+    }*/
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
     public @ResponseBody void updateEvent(@RequestBody EventDTO event) {
@@ -99,7 +99,7 @@ public class EventController {
     @RequestMapping(value="/{eventUrl}", method = RequestMethod.GET)
     public ModelAndView getEventByUrl(@PathVariable String eventUrl) {
     	System.out.println("Calling getEventByUrl");
-    	 ModelAndView  modelView = new ModelAndView("events/eventpage");
+    	 ModelAndView  modelView = new ModelAndView("event/eventpage");
     	 ModelMap modelMap = modelView.getModelMap();
     	 	modelMap.put("name", "ezas");
     	 	return modelView;

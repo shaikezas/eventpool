@@ -24,9 +24,13 @@ public class TicketForm {
 	
 	private Integer maxQty;
 	
-	private Integer formId;
+	private String type;
 	
 	private Boolean showsettings;
+	
+	private Boolean showPrice ;
+	
+	private Boolean showFree;
 
 	public String getName() {
 		return name;
@@ -110,13 +114,6 @@ public class TicketForm {
 		this.isActive = isActive;
 	}
 
-	public Integer getFormId() {
-		return formId;
-	}
-
-	public void setFormId(Integer formId) {
-		this.formId = formId;
-	}
 
 	public Boolean getShowsettings() {
 		return showsettings;
@@ -134,6 +131,29 @@ public class TicketForm {
 		this.id = id;
 	}
 	
+	public String getType() {
+		return type;
+	}
 	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
+	public Boolean getShowPrice() {
+		return showPrice;
+	}
+	
+	public void setShowPrice(Boolean showPrice) {
+		this.showPrice = showPrice;
+	}
+	
+	public Boolean getShowFree() {
+		return showFree;
+	}
+	
+	public void setShowFree(Boolean showFree) {
+		this.showFree = showFree;
+	}
 	
 }

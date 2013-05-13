@@ -150,7 +150,7 @@ AppDirectives.directive('fileuploadPlugin', function($timeout) {
 		        		if(data.result.status == true) {
 		        			scope.profilepic = data.result.filesuploaded[0];
 		        		} else {
-		        			alert("error");
+		        			alert("Error in file upload");
 		        		}
 		        	});
 		        }

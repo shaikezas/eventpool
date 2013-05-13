@@ -31,14 +31,14 @@ public class SaveImage {
 	@Resource
 	private ImageProcessor imageProcessor;
 
-	@Value("$EVENT_POOL{image.location.prefix}")
-	private String imageBasePath;
+//	@Value("$EVENT_POOL{image.location.prefix}")
+	private String imageBasePath = "C://Event//image//";
 	
-	@Value("$EVENT_POOL{image.location}")
-	private String imageBasePathForDb;
+//	@Value("$EVENT_POOL{image.location}")
+	private String imageBasePathForDb = "eventpool//images//";
 	
-	@Value("$EVENT_POOL{image.source.location}")
-	private String localImagePath;
+//	@Value("$EVENT_POOL{image.source.location}")
+	private String localImagePath = "C://Event//source";
 	
 
 	public Map<ImageType,String> saveImageOnDisk(String imageUrl) throws Exception{

@@ -23,12 +23,27 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         });
     }
     
-    $scope.addNewTicket = function() {
+    $scope.addNewFreeTicket = function() {
         $scope.resetError();
         if(angular.isUndefined($scope.event.tickets)) {
         	$scope.event.tickets = [];
         }
-        $scope.event.tickets.push(new eventpool.ticket());
+        
+        var ticket = new eventpool.ticket();
+        ticket.type = "FREE";
+        ticket.showFree = true;
+        $scope.event.tickets.push(ticket);
+    }
+    
+    $scope.addNewPaidTicket = function() {
+        $scope.resetError();
+        if(angular.isUndefined($scope.event.tickets)) {
+        	$scope.event.tickets = [];
+        }
+        var ticket = new eventpool.ticket();
+        ticket.type = "PAID";
+        ticket.showPrice = true;
+        $scope.event.tickets.push(ticket);
     }
     
     $scope.removeTicket = function(index) {
