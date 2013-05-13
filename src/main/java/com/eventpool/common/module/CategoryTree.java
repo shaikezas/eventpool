@@ -29,7 +29,7 @@ public class CategoryTree {
 	
 	
 //	@Value("$EVENT_POOL{createCategoryTree:false}")
-	private Boolean createCategoryTree=false; 
+	private Boolean createCategoryTree=true; 
 
 	@PostConstruct
 	public void initCatalogueTree() {
@@ -51,19 +51,19 @@ public class CategoryTree {
 						
 							Long categoryId  = null;
 							if(object[1]!=null) {
-								categoryId = Long.parseLong(object[2].toString());
+								categoryId = Long.parseLong(object[0].toString());
 							}
 							String categoryName = null;
 							if(object[2]!=null) {
 								categoryName = object[1].toString();
 							}
 							String parentCategoryName = null;
-							if(object[4]!=null) {
+							if(object[3]!=null) {
 								parentCategoryName = object[3].toString();
 							}
 							Long parentCategoryId = null;
-							if(object[3]!=null) {
-								parentCategoryId = Long.parseLong(object[4].toString());
+							if(object[2]!=null) {
+								parentCategoryId = Long.parseLong(object[2].toString());
 							}
 							if(categoryId != null) {
 								count++;

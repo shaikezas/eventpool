@@ -22,6 +22,7 @@ import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.image.SaveImage;
+import com.eventpool.common.module.CategoryTree;
 import com.eventpool.common.module.CommonUtils;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
@@ -359,5 +360,14 @@ public class EventTest extends BaseTest{
 		} catch (EventNotFoundException e) {
 			log.error("Event not found",e);
 		}
+    }
+    
+    @Resource
+    CategoryTree categoryTree;
+    
+    @Test
+    public void  testCategoryTree(){
+    	log.info(categoryTree.toString());
+    	
     }
 }
