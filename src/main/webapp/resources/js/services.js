@@ -23,3 +23,40 @@ getbasicsearchresults: function(query) {
     
     }
 });
+
+
+AppServices.service('subcategories', function ($http) {
+
+    return {
+getsubcategories: function(categoryid) {
+	  var datatosend = {
+			  "categoryid": categoryid
+	  };
+	  var config = {
+        method: "GET",
+        params: datatosend,
+        url: "dropdown/subcategories"
+    };
+	  return $http(config);
+}
+    
+    }
+});
+
+
+AppServices.service('categories', function ($http) {
+
+    return {
+getcategories: function(categoryid) {
+	  var datatosend = {
+	  };
+	  var config = {
+        method: "GET",
+        params: datatosend,
+        url: "dropdown/categories"
+    };
+	  return $http(config);
+}
+    
+    }
+});
