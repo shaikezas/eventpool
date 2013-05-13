@@ -29,7 +29,7 @@ import com.eventpool.web.forms.TicketForm;
  * Time: 12:22 AM
  */
 @Controller
-@RequestMapping("/events")
+@RequestMapping("/event")
 public class EventController {
 
     @Resource(name="EventService")
@@ -99,7 +99,7 @@ public class EventController {
     @RequestMapping(value="/{eventUrl}", method = RequestMethod.GET)
     public ModelAndView getEventByUrl(@PathVariable String eventUrl) {
     	System.out.println("Calling getEventByUrl");
-    	 ModelAndView  modelView = new ModelAndView("events/eventpage");
+    	 ModelAndView  modelView = new ModelAndView("event/eventpage");
     	 ModelMap modelMap = modelView.getModelMap();
     	 	modelMap.put("name", "ezas");
     	 	return modelView;

@@ -1,14 +1,14 @@
 'use strict';
 
 /**
- * EventController
+ * CreateEventController
  * @constructor
  */
-var EventController = function($scope, $http,search,subcategories) {
+var CreateEventController = function($scope, $http,search,subcategories,categories) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.fetchEventsList = function() {
-        $http.get('events/eventslist.json').success(function(event){
+        $http.get('event/eventslist.json').success(function(event){
             $scope.event = event;
         });
     }
@@ -16,7 +16,7 @@ var EventController = function($scope, $http,search,subcategories) {
     $scope.addNewEvent = function() {
         $scope.resetError();
 
-        $http.post('events/addEvent', $scope.event).success(function() {
+        $http.post('event/addEvent', $scope.event).success(function() {
 //            $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not add a new event');
@@ -39,7 +39,7 @@ var EventController = function($scope, $http,search,subcategories) {
     $scope.updateEvent = function(event) {
         $scope.resetError();
 
-        $http.put('events/updateEvent', event).success(function() {
+        $http.put('event/updateEvent', event).success(function() {
             $scope.fetchEventsList();
             $scope.event.name = '';
             $scope.event.speed = '';
@@ -60,7 +60,7 @@ var EventController = function($scope, $http,search,subcategories) {
     $scope.removeEvent = function(id) {
         $scope.resetError();
 
-        $http.delete('events/removeEvent/' + id).success(function() {
+        $http.delete('event/removeEvent/' + id).success(function() {
             $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not remove event');
@@ -70,7 +70,7 @@ var EventController = function($scope, $http,search,subcategories) {
     $scope.removeAllEvents = function() {
         $scope.resetError();
 
-        $http.delete('events/removeAllEvents').success(function() {
+        $http.delete('event/removeAllEvents').success(function() {
             $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not remove all events');
@@ -123,20 +123,16 @@ var EventController = function($scope, $http,search,subcategories) {
     		$scope.event.banner = $scope.profilepic.uniqueid;
     	}
     })
-//    $scope.fetchEventsList();
     
      $scope.fetchCategories = function() {
-        $http.get('dropdown/categories').success(function(categories){
-            $scope.categories = categories;
-        });
+    	categories.getcategories($scope.category).success(function(categories) {
+    		$scope.categories = categories;
+	    }).error(function(data) {
+	    	
+	    });
     }
     
     $scope.fetchSubCategories = function() {
-    	alert("foo");
-      /*  $http.get('dropdown/subcategories',$scope.category).success(function(subcategories){
-            $scope.subcategories = subcategories;
-        });*/
-        
     	subcategories.getsubcategories($scope.category).success(function(subcategories) {
 			$scope.subcategories = subcategories;
 	    }).error(function(data) {

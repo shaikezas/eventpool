@@ -3,7 +3,7 @@
 <html lang="en" ng-app="EventPool">
   <head>
     <meta charset="utf-8">
-    <title>Event Pool</title>
+    <title ng-Bind-Template="Event Pool : {{title}}"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -80,7 +80,7 @@
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/services.js"></script>
 	<script src="js/objects.js"></script>
-	<script src="resources/js/controllers/EventController.js"></script>
+	<script src="resources/js/controllers/CreateEventController.js"></script>
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>
 	<script src="resources/js/ui-bootstrap-tpls-0.2.0.js"></script>

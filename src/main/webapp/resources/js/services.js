@@ -42,3 +42,21 @@ getsubcategories: function(categoryid) {
     
     }
 });
+
+
+AppServices.service('categories', function ($http) {
+
+    return {
+getcategories: function(categoryid) {
+	  var datatosend = {
+	  };
+	  var config = {
+        method: "GET",
+        params: datatosend,
+        url: "dropdown/categories"
+    };
+	  return $http(config);
+}
+    
+    }
+});
