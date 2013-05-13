@@ -1,5 +1,8 @@
 package com.eventpool.event.module;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -9,9 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Media;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
+
 
 @Component
 public class EventApiImpl implements EventApi{
@@ -23,6 +29,9 @@ public class EventApiImpl implements EventApi{
     
     @Resource
     private EventRepository eventRepository;
+
+    @Resource
+    private EventMediaRepository eventMediaRepository;
     
     @Transactional(rollbackFor=RuntimeException.class)
     public EventDTO saveEventDTO(EventDTO eventDTO){
@@ -50,4 +59,13 @@ public class EventApiImpl implements EventApi{
     	eventpoolMapper.mapEventDTO(event, eventDTO);
     	return eventDTO;
     }
+
+	public List<String> checkEventUrl(String eventUrl) {
+		Media media = eventMediaRepository.findEventUrl(eventUrl);
+		if(media == null){
+			List<String> suggestions = new ArrayList<String>();
+			suggestions.add(eventUrl);
+		}
+		return new ArrayList<String>();
+	}
 }

@@ -16,7 +16,7 @@ public interface EventService {
 
     public EventDTO getEventById(Long id);
 
-    public void addEvent(EventDTO Event);
+    public boolean addEvent(EventDTO Event) throws Exception;
 
     public void deleteEventById(Long id);
 

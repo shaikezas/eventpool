@@ -1,5 +1,7 @@
 package com.eventpool.event.module;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,4 +16,6 @@ public interface EventApi {
     
     @Transactional(readOnly = true)
     public EventDTO getEvenDTO(Long id) throws EventNotFoundException;
+    
+    public List<String> checkEventUrl(String eventUrl);
 }
