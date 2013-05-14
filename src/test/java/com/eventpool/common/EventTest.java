@@ -290,6 +290,7 @@ public class EventTest extends BaseTest{
     	eventForm.setVideoUrl("video url");
     	eventForm.setIsWebinar(false);
     	eventForm.setZipCode(304567L);
+    	eventForm.setEventWebSiteUrl("eventwebsiteurl");
     	
     	TicketForm ticketForm = new TicketForm();
     	ticketForm.setDescription("description");
@@ -302,6 +303,7 @@ public class EventTest extends BaseTest{
     	ticketForm.setSaleEnd("2013-05-03 11:11:11");
     	ticketForm.setSaleStart("2013-05-03 11:11:11");
     	ticketForm.setShowsettings(true);
+    	ticketForm.setTicketOrder(3);
     	
     	List<TicketForm> ticketForms = new ArrayList<TicketForm>();
     	eventForm.setTickets(ticketForms);

@@ -42,6 +42,7 @@
 			<field><a>otherUrl1      </a><b>otherUrl1     </b></field>
 			<field><a>otherUrl2      </a><b>otherUrl2     </b></field>
 			<field><a>eventUrl      </a><b>eventUrl     </b></field>
+			<field><a>eventWebSiteUrl      </a><b>evenWebSiteUrl     </b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">
@@ -61,12 +62,13 @@
 			<field><a>price       </a><b>price       </b></field>
 			<field><a>minQty      </a><b>minQty      </b></field>
 			<field><a>maxQty      </a><b>maxQty      </b></field>
+			<field><a>ticketOrder      </a><b>ticketOrder      </b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">
         <class-a>com.eventpool.web.forms.EventForm</class-a>
         <class-b>com.eventpool.common.dto.AddressDTO</class-b>
-        	<field><a>addId    </a><b>id    </b></field>
+        	<field><a>addressId    </a><b>id    </b></field>
 			<field><a>address1    </a><b>address1    </b></field>
 			<field><a>address2    </a><b>address2    </b></field>
 			<field><a>cityId      </a><b>cityId      </b></field>

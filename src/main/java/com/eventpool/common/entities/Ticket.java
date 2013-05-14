@@ -53,6 +53,9 @@ public class Ticket extends AuditableIdEntity{
 	
 	@Column(name="MAX_QTY")
 	private Integer maxQty;
+	
+	@Column(name="TICKET_ORDER")
+	private Integer ticketOrder;
 
 	
 	public String getName() {
@@ -135,6 +138,14 @@ public class Ticket extends AuditableIdEntity{
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public Integer getTicketOrder() {
+		return ticketOrder;
+	}
+
+	public void setTicketOrder(Integer ticketOrder) {
+		this.ticketOrder = ticketOrder;
 	}
 
 	

@@ -24,6 +24,7 @@ public class MediaDTO implements Serializable{
 	private String otherUrl2;
 	
 	private String eventUrl;
+	private String evenWebSiteUrl;
 
 	public Long getEventId() {
 		return eventId;
@@ -88,6 +89,14 @@ public class MediaDTO implements Serializable{
 	
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
+	}
+
+	public String getEvenWebSiteUrl() {
+		return evenWebSiteUrl;
+	}
+
+	public void setEvenWebSiteUrl(String evenWebSiteUrl) {
+		this.evenWebSiteUrl = evenWebSiteUrl;
 	}
 	
 	
