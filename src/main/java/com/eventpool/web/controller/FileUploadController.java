@@ -28,7 +28,7 @@ public class FileUploadController {
 
 	@RequestMapping(value = "/file", method = RequestMethod.POST)
     public @ResponseBody
-    UploadedFileResponse setProfilePic(@RequestParam("files[]") MultipartFile fileupload) {
+    UploadedFileResponse setProfilePic(@RequestParam("file") MultipartFile fileupload) {
     	UploadedFileResponse response = new UploadedFileResponse();
     	response.setStatus(true);
 //    	System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + 

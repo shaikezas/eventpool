@@ -74,7 +74,6 @@ AppDirectives.directive('multiplefileuploadPlugin', function($timeout) {
 		        	scope.$apply(function(scope) {		        		
 		        		if(data.result.status == true) {
 		        			if(true == scope.filesadded) {
-		        				//Worst logic ever -- revisit it once again -- Azeez
 		        				var replyFromServer = [];
 			        			for(var i=0; i < data.result.filesuploaded.length; i++){
 			        				replyFromServer.push(data.result.filesuploaded[i]);
@@ -130,7 +129,7 @@ AppDirectives.directive('multiplefileuploadPlugin', function($timeout) {
 
 AppDirectives.directive('fileuploadPlugin', function($timeout) {
 	var linkFn;
-	linkFn = function(scope, element, attrs, ngModel) {
+	linkFn = function(scope, element, attrs, model) {
 		scope.errorCallback = function(event, src) {
 			var imgElement = event.srcElement;
 			angular.element(imgElement).attr('src', '/img/loading.gif');
@@ -142,7 +141,7 @@ AppDirectives.directive('fileuploadPlugin', function($timeout) {
 			scope.$emit('profilepicchanged', scope.profilepic);
 		};
 		angular.element(element).ready(function() {
-			jQuery('#fileupload').fileupload({
+			jQuery('.fileupload').fileupload({
 		        dataType: 'json',
 		        limitMultiFileUploads: 1,
 		        done: function (e, data) {
