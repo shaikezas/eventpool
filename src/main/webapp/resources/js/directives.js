@@ -129,7 +129,7 @@ AppDirectives.directive('multiplefileuploadPlugin', function($timeout) {
 
 AppDirectives.directive('fileuploadPlugin', function($timeout) {
 	var linkFn;
-	linkFn = function(scope, element, attrs, model) {
+	linkFn = function(scope, element, attrs) {
 		scope.errorCallback = function(event, src) {
 			var imgElement = event.srcElement;
 			angular.element(imgElement).attr('src', '/img/loading.gif');
@@ -147,7 +147,7 @@ AppDirectives.directive('fileuploadPlugin', function($timeout) {
 		        done: function (e, data) {
 		        	scope.$apply(function(scope) {
 		        		if(data.result.status == true) {
-		        			scope.profilepic = data.result.filesuploaded[0];
+		        			scope.response = data.result.filesuploaded[0];
 		        		} else {
 		        			alert("Error in file upload");
 		        		}
@@ -158,7 +158,10 @@ AppDirectives.directive('fileuploadPlugin', function($timeout) {
 	};
 	return {
 		restrict	: 'A',
-		link		: linkFn
+		link		: linkFn,
+		scope: {
+    		response: '=ngModel',
+    	},
 	};		
 });
 
