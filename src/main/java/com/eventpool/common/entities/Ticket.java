@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
+import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
 
 @Entity
@@ -40,6 +41,10 @@ public class Ticket extends AuditableIdEntity{
 	
 	@Column(name = "QUANTITY")
 	private Integer quantity;
+	
+	@Column(name="PAY_TYPE")
+	@Enumerated(EnumType.STRING)
+	private TicketType ticketType;
 	
 	@NotNull
 	@Column(name="EVENT_ID")
@@ -148,5 +153,14 @@ public class Ticket extends AuditableIdEntity{
 		this.ticketOrder = ticketOrder;
 	}
 
+	
+	public TicketType getTicketType() {
+		return ticketType;
+	}
+	
+	public void setTicketType(TicketType ticketType) {
+		this.ticketType = ticketType;
+	}
+	
 	
 }

@@ -61,6 +61,7 @@
 			<field><a>maxQty      </a><b>maxQty      </b></field>
 			<field><a>createdBy</a><b>createdBy</b></field>
 			<field><a>ticketOrder      </a><b>ticketOrder      </b></field>
+			<field><a>ticketType      </a><b>ticketType      </b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">

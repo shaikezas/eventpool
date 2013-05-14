@@ -261,17 +261,15 @@
 							  </div>
 							  
 							  
-							   <div class="control-group">
-							    <label class="control-label" for="uploadBanner">Organizer logo :</label>
+							  
+							 <div class="control-group">
+							    <label class="control-label" for="uploadLogo">Organizer logo :</label>
 							    <div class="controls">
 							      
-							       <input type="file" ng-model="event.organizerLogo" />
-							       
-							      						      
+							       <input type="file" class="fileupload" name="file" ng-model="event.organizerLogo"
+											data-url="upload/file" fileupload-plugin/>
 							    </div>
 							  </div>
-							  
-							 
 							  
 							  <div class="control-group">
 							    <div class="controls">
@@ -374,23 +372,6 @@
 							    </div>
 							  </div>
 							  
-							 <!--   <div class="control-group">
-							    <label class="control-label" for="startDate">Start Date & Time :</label>
-							    <div class="controls">
-								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
-				      					<input type="text" datetime-picker  ng-model="event.startDate" 
-				      										placeholder="Start Date and Time" readonly></input>
-				      										<span class="add-on"><i class="icon-th"></i></span>
-									</div>
-							    </div>
-							  </div>
-							   -->
-							      <div class="control-group">
-							    <label class="control-label" for="maxQtyToSale">Max Qty To Sale :</label>
-							    <div class="controls">
-							      <input type="text" id="maxQtyToSale" ng-model="ticket.quantity" >
-							    </div>
-							  </div>							  
 							      <div class="control-group">
 							    <label class="control-label" for="minQty">Min Qty For Order :</label>
 							    <div class="controls">
@@ -405,14 +386,16 @@
 							  </div>
 							 
 							  
-							  <div class="control-group">
+							 
+							  
+							</div>
+							
+							 <div class="control-group">
 							    <div class="controls">
 							    
 							      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
 							     </div>
 							  </div>
-							  
-							</div>
 
 							  </td>
 							   </tr>

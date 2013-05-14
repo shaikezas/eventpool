@@ -22,6 +22,7 @@
 		<field><a>publishDate</a><b>publishDate</b></field>		
 		<field><a>showEvent</a><b>showEvent</b></field>		
 		<field><a>privacyType</a><b>privacyType</b></field>
+		<field><a>createdBy</a><b>createdBy</b></field>
 
 <!-- 		<field><a>isPublish            	  </a></field>
 		<field><a>selectedformid       	  </a></field>
@@ -63,6 +64,8 @@
 			<field><a>minQty      </a><b>minQty      </b></field>
 			<field><a>maxQty      </a><b>maxQty      </b></field>
 			<field><a>ticketOrder      </a><b>ticketOrder      </b></field>
+			<field><a>ticketType      </a><b>ticketType      </b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">

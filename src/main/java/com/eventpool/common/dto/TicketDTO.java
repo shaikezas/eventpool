@@ -35,6 +35,7 @@ public class TicketDTO extends AuditableIdDTO{
 	
 	private Integer maxQty;
 	private Integer ticketOrder;
+	private TicketType ticketType;
 	
 	public String getName() {
 		return name;
@@ -124,6 +125,14 @@ public class TicketDTO extends AuditableIdDTO{
 
 	public void setTicketOrder(Integer ticketOrder) {
 		this.ticketOrder = ticketOrder;
+	}
+
+	public TicketType getTicketType() {
+		return ticketType;
+	}
+
+	public void setTicketType(TicketType ticketType) {
+		this.ticketType = ticketType;
 	}
 
 	

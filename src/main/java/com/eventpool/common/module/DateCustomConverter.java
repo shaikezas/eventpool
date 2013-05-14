@@ -29,7 +29,7 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 
 	public Date convertTo(String source, Date destination) {
 		if (source != null) {
-			String pattern = "yyyy-MM-dd HH:mm:ss";
+			String pattern = "dd-MMM-yyyy HH:mm";
 			destination = getDate(source,pattern);
 		}
 		return destination;
@@ -46,7 +46,7 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 	}
 
 	public String convertFrom(Date source,String destination) {
-		String pattern = "yyyy-MM-dd HH:mm:ss";
+		String pattern = "dd-MMM-yyyy HH:mm";
 		return getDateString(source, pattern);
 	}
 
@@ -56,6 +56,7 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 		destination = sdf.format(source);
 		return destination;
 	}
+	
 
 
 }

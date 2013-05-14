@@ -46,6 +46,7 @@ public class EventForm  {
 	private Long eventId;
 	private String eventWebSiteUrl;
 	private Long addressId;
+	private Long createdBy;
 	
 	public String getTitle() {
 		return title;
@@ -268,7 +269,12 @@ public Long getEventId() {
 		this.eventWebSiteUrl = eventWebSiteUrl;
 	}
 	
-	
+	public Long getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);

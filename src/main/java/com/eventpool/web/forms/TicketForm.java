@@ -28,7 +28,7 @@ public class TicketForm {
 	
 	private Integer maxQty;
 	
-	private TicketType type;
+	private TicketType ticketType;
 	
 	private Boolean showsettings;
 	
@@ -37,6 +37,9 @@ public class TicketForm {
 	private Boolean showFree;
 	
 	private int ticketOrder;	
+	
+	private Long createdBy;
+	
 	public String getName() {
 		return name;
 	}
@@ -136,7 +139,7 @@ public class TicketForm {
 		this.id = id;
 	}
 	
-	public TicketType getType() {
+	public TicketType getTicketType() {
 		if(this.showFree)
 			return TicketType.FREE;
 		
@@ -145,11 +148,9 @@ public class TicketForm {
 		return TicketType.FREE;
 	}
 	
-	public void setType(TicketType type) {
-		this.type = type;
-	}
-	
-	
+	public void setTicketType(TicketType ticketType) {
+		this.ticketType = ticketType;
+	}	
 	public Boolean getShowPrice() {
 		return showPrice;
 	}
@@ -176,6 +177,14 @@ public class TicketForm {
 	}
 	
 	
+	public Long getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);

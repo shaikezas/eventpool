@@ -47,7 +47,7 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		if(tickets!=null && tickets.size()>0){
 			for(TicketDTO ticketDTO:tickets){
 				TicketUpdatedCommand ticketUpdatedCommand = new TicketUpdatedCommand();
-				ticketUpdatedCommand.setMaxQty(ticketDTO.getMaxQty());
+				ticketUpdatedCommand.setMaxQty(ticketDTO.getQuantity());
 				ticketUpdatedCommand.setTicketId(ticketDTO.getId());
 				TicketInventoryDetails ticketInventoryDetails = (TicketInventoryDetails) ticketInventoryService.executeCommand(ticketUpdatedCommand);
 				if(!ticketInventoryDetails.isMaxQtyUpdated()){

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.web.domain.PhotoWeb;
 import com.eventpool.web.domain.UploadedFileResponse;
 import com.eventpool.web.forms.EventForm;
@@ -35,7 +36,8 @@ public class EventController {
     @Resource(name="EventService")
     private EventService eventService;
     
-    
+    @Resource
+    private EventpoolMapper mapper;
     
     private EventForm eventForm;
     
@@ -58,6 +60,7 @@ public class EventController {
     		System.out.println("Ticket size"+event.getTickets().size());
     		for(TicketForm ticket :event.getTickets()){
     			System.out.println("Ticket name :"+ticket.getName());
+    			ticket.setCreatedBy(1L);
     		}
     	
     	
@@ -66,22 +69,16 @@ public class EventController {
     	
     	System.out.println("Event..."+event);
     	
-//        eventService.addEvent(event);
+    	EventDTO eventDTO = new EventDTO();
+    	mapper.mapEventDTO(event, eventDTO);
+    	eventDTO.setCreatedBy(1L);
+        try {
+			eventService.addEvent(eventDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
-    /*@RequestMapping(value = "/bannerpic", method = RequestMethod.POST)
-    public @ResponseBody
-    UploadedFileResponse setProfilePic(@RequestParam("files[]") MultipartFile fileupload) {
-    	UploadedFileResponse response = new UploadedFileResponse();
-    	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
-    	PhotoWeb photo = new PhotoWeb();
-    	photo.setUniqueid("123456");
-    	photosData.add(photo);
-    	response.setStatus(true);
-    	response.setFilesuploaded(photosData);
-    	System.out.println("File uploaded");
-    	return response;
-    }*/
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
     public @ResponseBody void updateEvent(@RequestBody EventDTO event) {

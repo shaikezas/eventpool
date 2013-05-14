@@ -147,7 +147,7 @@ AppDirectives.directive('fileuploadPlugin', function($timeout) {
 		        done: function (e, data) {
 		        	scope.$apply(function(scope) {
 		        		if(data.result.status == true) {
-		        			scope.response = data.result.filesuploaded[0];
+		        			scope.response = data.result.filesuploaded[0].uniqueid;
 		        		} else {
 		        			alert("Error in file upload");
 		        		}
@@ -186,7 +186,7 @@ AppDirectives.directive('datetimePicker', function($timeout) {
         link: function(scope, element, attrs, model) {
             $(".datetimepicker").datetimepicker({
             	autoclose: true,
-                format: 'dd MM yyyy  hh:ii',
+                format: 'dd-MM-yyyy HH:ii',
                 forceParse: false,
                 todayBtn: true,
                 todayHighlight : true,

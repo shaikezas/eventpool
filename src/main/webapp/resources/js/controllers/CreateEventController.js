@@ -30,7 +30,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         }
         
         var ticket = new eventpool.ticket();
-        ticket.type = "FREE";
+        ticket.ticketType = "FREE";
         ticket.showFree = true;
         ticket.ticketOrder = $scope.event.tickets.length+1;
         $scope.event.tickets.push(ticket);
@@ -42,7 +42,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	$scope.event.tickets = [];
         }
         var ticket = new eventpool.ticket();
-        ticket.type = "PAID";
+        ticket.ticketType = "PAID";
         ticket.showPrice = true;
         ticket.ticketOrder = $scope.event.tickets.length+1;
         $scope.event.tickets.push(ticket);
@@ -134,13 +134,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         
         
     };
-    $scope.profilepic;
+   /* $scope.profilepic;
     $scope.$watch("profilepic", function() {
     	if(!angular.isUndefined($scope.profilepic)) {
-    		$scope.event.banner = $scope.profilepic.uniqueid;
+//    		$scope.event.banner = $scope.profilepic.uniqueid;
     	}
     })
-    
+    */
      $scope.fetchCategories = function() {
     	categories.getcategories($scope.category).success(function(categories) {
     		$scope.categories = categories;
