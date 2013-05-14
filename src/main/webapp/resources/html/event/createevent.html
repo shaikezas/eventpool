@@ -352,31 +352,39 @@
 								      <textarea id="ticketDescription" rows="3" ng-model="ticket.description" ></textarea>
 								    </div>
 								  </div>
-							<div class="control-group">
+							   <div class="control-group">
 							    <label class="control-label" for="ticketStartDate">Ticket Sale Start On :</label>
 							    <div class="controls">
-								 	<div id="datetimepickerStart1" class="input-append date">
-				      					<input type="text" id="startDate" ng-model="ticket.saleStart" placeholder="Start On"></input>
-									    <span class="add-on">
-									        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-									    </span>
+								 	<div id="datetimepickerStart1" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="ticket.saleStart" 
+				      										placeholder="Sale Start On" readonly></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
 							    </div>
 							  </div>
 							  
-							  
-							  
-							  <div class="control-group">
-							    <label class="control-label" for="saleEnd">Sale End On :</label>
+							   <div class="control-group">
+							    <label class="control-label" for="ticketStartDate">Ticket Sale End On :</label>
 							    <div class="controls">
-								 	<div id="datetimepickerEnd1" class="input-append date">
-				      					<input type="text" id="endDate" ng-model="ticket.saleEnd" placeholder="Sale End On"></input>
-									    <span class="add-on">
-									        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-									    </span>
+								 	<div id="datetimepickerEnd1" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="ticket.saleEnd" 
+				      										placeholder="Sale Ends On" readonly></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
 							    </div>
 							  </div>
+							  
+							 <!--   <div class="control-group">
+							    <label class="control-label" for="startDate">Start Date & Time :</label>
+							    <div class="controls">
+								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="event.startDate" 
+				      										placeholder="Start Date and Time" readonly></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
+									</div>
+							    </div>
+							  </div>
+							   -->
 							      <div class="control-group">
 							    <label class="control-label" for="maxQtyToSale">Max Qty To Sale :</label>
 							    <div class="controls">

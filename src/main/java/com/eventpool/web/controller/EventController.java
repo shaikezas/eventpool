@@ -64,6 +64,8 @@ public class EventController {
     	}else
     		System.out.println("tickets are null");
     	
+    	System.out.println("Event..."+event);
+    	
 //        eventService.addEvent(event);
     }
     

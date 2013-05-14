@@ -1,5 +1,7 @@
 package com.eventpool.web.forms;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+
 
 public class TicketForm {
 	
@@ -31,7 +33,8 @@ public class TicketForm {
 	private Boolean showPrice ;
 	
 	private Boolean showFree;
-
+	
+	private int ticketOrder;	
 	public String getName() {
 		return name;
 	}
@@ -155,5 +158,21 @@ public class TicketForm {
 	public void setShowFree(Boolean showFree) {
 		this.showFree = showFree;
 	}
+	
+	
+	public int getTicketOrder() {
+		return ticketOrder;
+	}
+	
+	public void setTicketOrder(int ticketOrder) {
+		this.ticketOrder = ticketOrder;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
+	}
+	
 	
 }

@@ -36,8 +36,8 @@ public class DropdownController {
 			CategoryNode node = categoryTree.getNode(categoryId);
 			if(node.getLevel()==1){
 				Dropdown dropdown = new Dropdown();
-				dropdown.setKey(categoryId.toString());
-				dropdown.setValue(node.getName());
+				dropdown.setKey(node.getName());
+				dropdown.setValue(categoryId.toString());
 				categories.add(dropdown);
 			}
 		}
@@ -53,8 +53,8 @@ public class DropdownController {
         CategoryNode node = categoryTree.getNode(Long.parseLong(categoryid));
         for(CategoryNode child:node.getChildCategories()){
         	Dropdown dropdown = new Dropdown();
-			dropdown.setKey(child.getId().toString());
-			dropdown.setValue(child.getName());
+			dropdown.setKey(child.getName());
+			dropdown.setValue(child.getId().toString());
 			categories.add(dropdown);
         }
         

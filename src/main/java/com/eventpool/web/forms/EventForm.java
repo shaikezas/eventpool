@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+
 public class EventForm  {
 
 	private String title;
@@ -279,5 +281,10 @@ public Long getEventId() {
 		this.eventWebSiteUrl = eventWebSiteUrl;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
+	}
 	
 }
