@@ -2,6 +2,8 @@ package com.eventpool.web.forms;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
+import com.eventpool.common.type.TicketType;
+
 
 public class TicketForm {
 	
@@ -26,7 +28,7 @@ public class TicketForm {
 	
 	private Integer maxQty;
 	
-	private String type;
+	private TicketType type;
 	
 	private Boolean showsettings;
 	
@@ -134,11 +136,16 @@ public class TicketForm {
 		this.id = id;
 	}
 	
-	public String getType() {
-		return type;
+	public TicketType getType() {
+		if(this.showFree)
+			return TicketType.FREE;
+		
+		if(this.showPrice)
+				return TicketType.PAID;
+		return TicketType.FREE;
 	}
 	
-	public void setType(String type) {
+	public void setType(TicketType type) {
 		this.type = type;
 	}
 	

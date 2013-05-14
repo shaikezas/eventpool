@@ -43,17 +43,9 @@ public class EventForm  {
 	private Boolean isPrivate=false;
 	private Boolean isPublish=false;
 	private String eventUrl;
-	private Integer selectedformid;
-	private Long addId;
 	private Long eventId;
 	private String eventWebSiteUrl;
 	
-	public Integer getSelectedformid() {
-		return selectedformid;
-	}
-	public void setSelectedformid(Integer selectedformid) {
-		this.selectedformid = selectedformid;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -260,12 +252,6 @@ public class EventForm  {
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
 	}
-	public Long getAddId() {
-		return addId;
-	}
-	public void setAddId(Long addId) {
-		this.addId = addId;
-		}
 public Long getEventId() {
 		return eventId;
 	}
