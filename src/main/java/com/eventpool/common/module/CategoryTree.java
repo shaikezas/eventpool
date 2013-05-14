@@ -54,7 +54,7 @@ public class CategoryTree {
 								categoryId = Long.parseLong(object[0].toString());
 							}
 							String categoryName = null;
-							if(object[2]!=null) {
+							if(object[1]!=null) {
 								categoryName = object[1].toString();
 							}
 							String parentCategoryName = null;
