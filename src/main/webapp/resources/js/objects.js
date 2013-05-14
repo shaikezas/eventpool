@@ -13,4 +13,5 @@ eventpool.ticket = function() {
 	this.type = "";
 	this.showPrice = false;
 	this.showFree = false;
+	this.ticketOrder =0;
 };

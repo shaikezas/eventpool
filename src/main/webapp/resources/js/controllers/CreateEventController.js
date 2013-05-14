@@ -32,6 +32,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.type = "FREE";
         ticket.showFree = true;
+        ticket.ticketOrder = $scope.event.tickets.length+1;
         $scope.event.tickets.push(ticket);
     }
     
@@ -43,6 +44,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.type = "PAID";
         ticket.showPrice = true;
+        ticket.ticketOrder = $scope.event.tickets.length+1;
         $scope.event.tickets.push(ticket);
     }
     
