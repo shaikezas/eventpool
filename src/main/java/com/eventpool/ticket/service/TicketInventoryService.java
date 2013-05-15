@@ -11,6 +11,8 @@ public interface TicketInventoryService {
 	
 	public int getSellableTicketInventory(Long ticketId);
 	
+	public String getAggregateTicketInventoryByEvent(Long eventId);
+	
 	Object executeCommand(ICommand cmd) throws Exception;
 
 }

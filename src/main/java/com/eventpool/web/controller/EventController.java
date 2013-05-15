@@ -91,9 +91,9 @@ public class EventController {
 
     
     @RequestMapping("/eventlist")
-    public @ResponseBody List<MyEventForm> getEventList() {
+    public @ResponseBody List<MyEventForm> getEventList() throws Exception {
     	System.out.println("getEventList");
-         List<EventDTO> eventDTOs = eventService.getAllEvents();
+         List<EventDTO> eventDTOs = eventService.getAllEvents(1L);
          System.out.println("Event dtos size :"+eventDTOs.size());
          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
          MyEventForm form  = new MyEventForm();
@@ -108,6 +108,8 @@ public class EventController {
          String sold = "";
          for(EventDTO dto : eventDTOs){
         	 form =  convertToMyEventForm(dto);
+        	 sold = ticketInventoryService.getAggregateTicketInventoryByEvent(dto.getId());
+        	 form.setSold(sold);
         	 forms.add(form);
          }
          
