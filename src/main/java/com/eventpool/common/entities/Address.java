@@ -12,22 +12,22 @@ import javax.validation.constraints.NotNull;
 public class Address extends IdEntity{
 
 
-	@NotNull
+	//@NotNull
 	@Column(name="ADDR_LINE1")
 	private String address1;
 	
-	@NotNull
+	//@NotNull
 	@Column(name="ADDR_LINE2")
 	private String address2;
 	
-	@NotNull
+	//@NotNull
 	@Column(name = "CITY_ID")
 	private Integer cityId;
 	
 	@Column(name="MAP_URL")
 	private String mapUrl;
 	
-	@NotNull
+	//@NotNull
 	@Column(name="ZIP")
 	private Long zipCode;
 
