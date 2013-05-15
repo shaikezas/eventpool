@@ -1,8 +1,5 @@
 package com.eventpool.web.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -11,15 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.module.EventpoolMapper;
-import com.eventpool.web.domain.PhotoWeb;
-import com.eventpool.web.domain.UploadedFileResponse;
+import com.eventpool.common.type.EventType;
+import com.eventpool.common.type.TicketType;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.TicketForm;
 
@@ -58,9 +54,12 @@ public class EventController {
     	System.out.println("Event url "+event.getEventUrl());
     	if(event.getTickets()!=null){
     		System.out.println("Ticket size"+event.getTickets().size());
+    		int i=1;
     		for(TicketForm ticket :event.getTickets()){
     			System.out.println("Ticket name :"+ticket.getName());
     			ticket.setCreatedBy(1L);
+    			ticket.setTicketOrder(i);
+    			i++;
     		}
     	
     	
@@ -72,6 +71,7 @@ public class EventController {
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
     	eventDTO.setCreatedBy(1L);
+    	updateEventType(eventDTO);
         try {
 			eventService.addEvent(eventDTO);
 		} catch (Exception e) {
@@ -102,6 +102,31 @@ public class EventController {
     	 ModelMap modelMap = modelView.getModelMap();
     	 	modelMap.put("name", "ezas");
     	 	return modelView;
+    }
+    
+    private void updateEventType(EventDTO dto){
+    	Boolean isFree = false;
+    	Boolean isPaid = false;
+    	
+    	for(TicketDTO ticket : dto.getTickets()){
+    		if(ticket.getTicketType().equals(TicketType.FREE)){
+    			isFree = true;
+    		}
+    		if(ticket.getTicketType().equals(TicketType.PAID)){
+    			isFree = true;
+    		}
+    	}
+    	
+    	if(isFree && isPaid){
+    		dto.setEventType(EventType.PAIDNFREE);
+    	}else if(isFree){
+    		dto.setEventType(EventType.FREE);
+    	}else if(isPaid){
+    		dto.setEventType(EventType.PAID);
+    	}else{
+    		dto.setEventType(EventType.NOREGISTRATION);
+    	}
+    	
     }
 
 }

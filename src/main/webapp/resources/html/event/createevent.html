@@ -261,7 +261,6 @@
 							  </div>
 							  
 							  
-							  
 							 <div class="control-group">
 							    <label class="control-label" for="uploadLogo">Organizer logo :</label>
 							    <div class="controls">
@@ -297,7 +296,7 @@
 						
 							  <table>
 							  <tbody>
-							   <tr ng-repeat="ticket in event.tickets | orderBy:predicate">
+							   <tr ng-repeat="ticket in event.tickets | orderBy:predicate" >
 							   <td>
 									<table class="table table-condensed" >
 								      <thead>
@@ -323,7 +322,6 @@
 											  </select>
 										  </td>
 								          <td>
-								          	
 								        	<button class="btn" ng-click="showticketsettings(ticket, true)">Setting </button>
 				          	
 								          	</td>
@@ -390,18 +388,18 @@
 							  
 							</div>
 							
-							 <div class="control-group">
-							    <div class="controls">
-							    
-							      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
-							     </div>
-							  </div>
+							
 
 							  </td>
 							   </tr>
     </tbody>
 </table>
-	
+	 <div class="control-group">
+							    <div class="controls">
+							    
+							      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
+							     </div>
+							  </div>
 								</form >
 							
 			              </div>

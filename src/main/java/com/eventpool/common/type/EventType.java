@@ -6,7 +6,8 @@ public enum EventType {
 
   PAID("Paid Event"),
   FREE("Free Event"),
-  NOREGISTRATION("No Registration");
+  NOREGISTRATION("No Registration"),
+  PAIDNFREE("Paid and Free Event");
   
 
   private String description;
