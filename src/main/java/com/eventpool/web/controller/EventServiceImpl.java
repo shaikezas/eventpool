@@ -37,8 +37,8 @@ public class EventServiceImpl implements EventService {
 	EventCommandService eventCommandService;
 	
     
-    public List<EventDTO> getAllEvents() {
-        return eventList;
+    public List<EventDTO> getAllEvents(Long userId) throws Exception {
+        return eventApi.getAllEvents(userId);
     }
 
     public EventDTO getEventById(Long id) {

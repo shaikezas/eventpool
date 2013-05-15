@@ -12,7 +12,7 @@ import com.eventpool.common.entities.Event;
  * Time: 12:20 AM
  */
 public interface EventService {
-    public List<EventDTO> getAllEvents();
+    public List<EventDTO> getAllEvents(Long userId) throws Exception;
 
     public EventDTO getEventById(Long id);
 

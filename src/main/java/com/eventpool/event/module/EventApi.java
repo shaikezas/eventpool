@@ -18,4 +18,6 @@ public interface EventApi {
     public EventDTO getEvenDTO(Long id) throws EventNotFoundException;
     
     public List<String> checkEventUrl(String eventUrl);
+    
+    public List<EventDTO> getAllEvents(Long userId) throws Exception;
 }

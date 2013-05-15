@@ -1,7 +1,10 @@
 package com.eventpool.common.module;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
@@ -24,6 +27,8 @@ import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.entities.TicketSnapShot;
+import com.eventpool.common.type.EventType;
+import com.eventpool.common.type.TicketType;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.TicketForm;
 
@@ -200,7 +205,11 @@ public class EventpoolMapper {
 			venueAddress = new AddressDTO();
 			eventDTO.setVenueAddress(venueAddress);
 		}
-		mapper.map(eventForm, venueAddress);
+		if(eventForm.getCityId()!=null){
+			mapper.map(eventForm, venueAddress);
+		}else{
+			eventDTO.setVenueAddress(null);
+		}
 		
 		
 		MediaDTO media = eventDTO.getMedia();
@@ -208,21 +217,82 @@ public class EventpoolMapper {
 			media = new MediaDTO();
 			eventDTO.setMedia(media);
 		}
-		mapper.map(eventForm, media);
 		
+		if(!checkIfNull(eventForm)){
+			mapper.map(eventForm, media);
+		}
+		else{ 
+			eventDTO.setMedia(null);
+		}
+		
+		Set<TicketType> ticketTypes = new HashSet<TicketType>();
 		List<TicketForm> ticketForms = eventForm.getTickets();
 		if(ticketForms!=null && ticketForms.size()>0){
 			List<TicketDTO> ticketDTOs = new ArrayList<TicketDTO>();
 			for(TicketForm ticketForm:ticketForms){
 				TicketDTO ticketDTO = new TicketDTO();
 				mapper.map(ticketForm, ticketDTO);
+				ticketTypes.add(TicketType.PAID);
 				ticketDTOs.add(ticketDTO);
 			}
 			eventDTO.setTickets(ticketDTOs);
 		}
+		int type = 0;
+		for(TicketType ticketType:ticketTypes){
+			if(ticketType == TicketType.PAID){
+				type = type | 1;
+			}
+			if(ticketType == TicketType.FREE){
+				type = type | 2;
+			}
+			if(ticketType == TicketType.DONATION){
+				type = type | 4;
+			}
+
+		}
 		
+		if(type == 1 ) {
+			eventDTO.setEventType(EventType.PAID);
+		}
+		if(type == 2) {
+			eventDTO.setEventType(EventType.FREE);
+		}
+		if(type == 3) {
+			eventDTO.setEventType(EventType.PAIDNFREE);
+		}
+		if(type == 4){
+			eventDTO.setEventType(EventType.NOREGISTRATION);
+		}
 	}
 	
+	private boolean checkIfNull(EventForm eventForm) {
+		if(eventForm.getOrganizerLogo() != null){
+			return false;
+		}
+		if(eventForm.getBanner()!=null){
+			return false;
+		}
+		if(eventForm.getVideoUrl()!=null){
+			return false;
+		}
+		if(eventForm.getFaceBookUrl()!=null){
+			return false;
+		}
+		if(eventForm.getOtherUrl1()!=null){
+			return false;
+		}
+		if(eventForm.getOtherUrl2()!=null){
+			return false;
+		}
+		if(eventForm.getEventUrl()!=null){
+			return false;
+		}
+		if(eventForm.getEventWebSiteUrl()!=null){
+			return false;
+		}
+		return true;
+	}
+
 	public void mapEventForm(EventDTO eventDTO,EventForm eventForm){
 		mapper.map(eventDTO,eventForm);
 		mapper.map(eventDTO.getVenueAddress(),eventForm);
