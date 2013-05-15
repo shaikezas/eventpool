@@ -30,11 +30,11 @@ public class TicketForm {
 	
 	private TicketType ticketType;
 	
-	private Boolean showsettings;
+	private boolean showsettings = false;
 	
-	private Boolean showPrice ;
+	private boolean showPrice =false ;
 	
-	private Boolean showFree;
+	private boolean showFree = false;
 	
 	private int ticketOrder;	
 	
@@ -151,19 +151,19 @@ public class TicketForm {
 	public void setTicketType(TicketType ticketType) {
 		this.ticketType = ticketType;
 	}	
-	public Boolean getShowPrice() {
+	public boolean getShowPrice() {
 		return showPrice;
 	}
 	
-	public void setShowPrice(Boolean showPrice) {
+	public void setShowPrice(boolean showPrice) {
 		this.showPrice = showPrice;
 	}
 	
-	public Boolean getShowFree() {
+	public boolean getShowFree() {
 		return showFree;
 	}
 	
-	public void setShowFree(Boolean showFree) {
+	public void setShowFree(boolean showFree) {
 		this.showFree = showFree;
 	}
 	

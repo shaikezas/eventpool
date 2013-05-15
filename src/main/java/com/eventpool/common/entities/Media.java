@@ -9,9 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "EVENT_MEDIA")
@@ -48,7 +45,6 @@ public class Media implements Serializable{
 	@Column(name = "EVENT_URL")
 	private String eventUrl;
 
-	@NotNull
 	@Column(name = "EVENT_WEBSITE_URL")
 	private String eventWebSiteUrl;
 

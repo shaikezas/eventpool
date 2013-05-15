@@ -14,18 +14,22 @@
 	  	 		
 				          <th>EVENT NAME</th>
 				          <th>DATE</th>
+				          <th>START DATE</th>
+				          <th>END DATE</th>
 				          <th>STATUS</th>
 				          <th>SOLD</th>
 				          <th>QUICK LINKS</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
-				          <td>{{event.title}}</td>
-				          <td>Jun 15, 2013</td>
-				          <td>Live</td>
-				          <td>0/5	</td>
-				          <td><a href="#">Manage</a> | <a href="#">Edit</a> | <a href="#">View</a> | <a href="#">Invite</a></td>
+				        <tr ng-repeat="myevent in myevents" >
+				          <td>{{myevent.title}}</td>
+				          <td>{{myevent.createdDate}}</td>
+				          <td>{{myevent.startDate}}</td>
+				           <td>{{myevent.endDate}}</td>
+				           <td>{{myevent.status}}</td>
+				          <td>{{myevent.sold}}</td>
+				          <td><a href="#">Manage</a> | <a href="#">Edit</a> | <a href="#">Preview</a> | <a href="#">Publish</a></td>
 				        </tr>
 				        
 				      </tbody>

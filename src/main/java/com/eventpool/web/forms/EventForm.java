@@ -10,8 +10,8 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 public class EventForm  {
 
 	private String title;
-	String startDate;
-	String endDate;
+	private String startDate;
+	private String endDate;
 	private Boolean isActive;
 	private String description;
 	private String subCategoryId;

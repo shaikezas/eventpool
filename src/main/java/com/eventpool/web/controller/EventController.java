@@ -1,5 +1,10 @@
 package com.eventpool.web.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -14,9 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
+import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.web.forms.EventForm;
+import com.eventpool.web.forms.MyEventForm;
 import com.eventpool.web.forms.TicketForm;
 
 /**
@@ -35,12 +43,8 @@ public class EventController {
     @Resource
     private EventpoolMapper mapper;
     
-    private EventForm eventForm;
-    
-    @RequestMapping("eventslist.json")
-    public @ResponseBody EventForm getEventList() {
-        return eventForm;
-    }
+    @Resource
+    private TicketInventoryService ticketInventoryService;
 
     @RequestMapping(value = "/addEvent", method = RequestMethod.POST)
     public @ResponseBody void addEvent(@RequestBody EventForm event) {
@@ -85,6 +89,33 @@ public class EventController {
         eventService.updateEvent(event);
     }
 
+    
+    @RequestMapping("/eventlist")
+    public @ResponseBody List<MyEventForm> getEventList() {
+    	System.out.println("getEventList");
+         List<EventDTO> eventDTOs = eventService.getAllEvents();
+         System.out.println("Event dtos size :"+eventDTOs.size());
+         List<MyEventForm>  forms = new ArrayList<MyEventForm>();
+         MyEventForm form  = new MyEventForm();
+         
+         form.setCreatedDate(getDateString(new Date()));
+         form.setEndDate(getDateString(new Date()));
+         form.setStartDate(getDateString(new Date()));
+         form.setTitle("Ezas Test");
+         form.setStatus(EventStatus.DRAFT);
+         form.setSold("0/100");
+         forms.add(form);
+         String sold = "";
+         for(EventDTO dto : eventDTOs){
+        	 form =  convertToMyEventForm(dto);
+        	 forms.add(form);
+         }
+         
+         
+         
+         return forms;
+    }
+    
     @RequestMapping(value = "/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
         eventService.deleteEventById(id);
@@ -107,7 +138,7 @@ public class EventController {
     private void updateEventType(EventDTO dto){
     	Boolean isFree = false;
     	Boolean isPaid = false;
-    	
+    	if(dto.getTickets()!=null){
     	for(TicketDTO ticket : dto.getTickets()){
     		if(ticket.getTicketType().equals(TicketType.FREE)){
     			isFree = true;
@@ -115,6 +146,7 @@ public class EventController {
     		if(ticket.getTicketType().equals(TicketType.PAID)){
     			isFree = true;
     		}
+    	}
     	}
     	
     	if(isFree && isPaid){
@@ -128,6 +160,39 @@ public class EventController {
     	}
     	
     }
+    
+    private void updateEventForm(EventForm form){
+    	if(form.getTickets()!=null){
+    	for(TicketForm ticket : form.getTickets()){
+    		if(ticket.getTicketType().equals(TicketType.FREE)){
+    			ticket.setShowFree(true);
+    		}
+    		if(ticket.getTicketType().equals(TicketType.PAID)){
+    			ticket.setShowPrice(true);
+    		}
+    	}
+    	}
+    }
+    
+    private MyEventForm convertToMyEventForm(EventDTO dto){
+    	
+    	MyEventForm form = new MyEventForm();
+    	
+    	form.setTitle(dto.getTitle());
+    	form.setCreatedDate(getDateString(dto.getCreatedDate()));
+    	form.setStartDate(getDateString(dto.getStartDate()));
+    	form.setEndDate(getDateString(dto.getEndDate()));
+    	
+    	return form;
+    }
+    
+    private String getDateString(Date source) {
+		String destination;
+		String pattern = "dd-MMM-yyyy HH:mm";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		destination = sdf.format(source);
+		return destination;
+	}
 
 }
 

@@ -35,7 +35,7 @@
 							    <div class="control-group">
 							    <label class="control-label" for="description">Description :</label>
 							    <div class="controls">
-							      <textarea id="description" required ng-model="event.description" placeholder="Description" ></textarea>
+							      <textarea id="description" required ng-model="event.description" placeholder="Description" required></textarea>
 							    </div>
 							  </div>
 							  
@@ -46,7 +46,7 @@
 							    <div class="controls">
 								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
 				      					<input type="text" datetime-picker  ng-model="event.startDate" 
-				      										placeholder="Start Date and Time" readonly></input>
+				      										placeholder="Start Date and Time" readonly required></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
 							    </div>
@@ -57,7 +57,7 @@
 							    <div class="controls">
 								 	<div id="datetimepickerEnd" class="input-append date datetimepicker">
 				      					<input type="text" datetime-picker  ng-model="event.endDate" 
-				      										placeholder="End Date and Time" readonly></input>
+				      										placeholder="End Date and Time" readonly required></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
 							    </div>
@@ -130,8 +130,8 @@
 							  
 							  <div class="control-group">
 							    <div class="controls">
-							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description" ng-hide="editMode" ng-click="addNewEvent()">Save & Exit</button>
-							      <a href="#venueInformation" data-toggle="tab"><button type="button" class="btn" ng-disabled="!event.title || !event.description" ng-hide="editMode">Next</button></a>
+							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent()">Save & Exit</button>
+							      <a href="#venueInformation" data-toggle="tab"><button type="button" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode">Next</button></a>
 							    </div>
 							  </div>
 							</form>
@@ -218,7 +218,7 @@
 							  </div>
 								  <div class="control-group">
 								    <div class="controls">
-								      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
+								      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
 								      <a href="#organizerInformation" data-toggle="tab"><button type="button" class="btn">Next</button></a>
 								    </div>
 								  </div>
@@ -272,7 +272,7 @@
 							  
 							  <div class="control-group">
 							    <div class="controls">
-							      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
+							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
 							      <a href="#ticketInformation" data-toggle="tab"><button type="button" class="btn">Next</button></a>
 							    </div>
 							  </div>
@@ -296,7 +296,7 @@
 						
 							  <table>
 							  <tbody>
-							   <tr ng-repeat="ticket in event.tickets | orderBy:predicate" >
+							   <tr ng-repeat="ticket in event.tickets" >
 							   <td>
 									<table class="table table-condensed" >
 								      <thead>
@@ -397,7 +397,7 @@
 	 <div class="control-group">
 							    <div class="controls">
 							    
-							      <button type="submit" class="btn" ng-click="addNewEvent(event)">Save & Exit</button>
+							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
 							     </div>
 							  </div>
 								</form >

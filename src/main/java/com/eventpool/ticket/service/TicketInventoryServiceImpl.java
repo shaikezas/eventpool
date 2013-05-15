@@ -19,14 +19,14 @@ public class TicketInventoryServiceImpl implements TicketInventoryService{
 	@Resource
 	TicketInventoryRepository ticketInventoryRepository;
 	
-	public int getTicketInventory(Long ticketId) {
+	public int getTicketMaxInventory(Long ticketId) {
 		TicketInventory ticketInventory = ticketInventoryRepository.findOne(ticketId);
 		
 		if (ticketInventory==null){
 			throw new NoTicketInventoryAvailableException("No Ticket Inventory found");
 		}
 		
-		return ticketInventory.getQty();
+		return ticketInventory.getMaxQty();
 	}
 	
 	public int getSellableTicketInventory(Long ticketId) {
@@ -37,6 +37,16 @@ public class TicketInventoryServiceImpl implements TicketInventoryService{
 		}
 		
 		return ticketInventory.getQty() - ticketInventory.getBlockingQty();
+	}
+	
+	public TicketInventory getTicketInventory(Long ticketId) {
+		TicketInventory ticketInventory = ticketInventoryRepository.findOne(ticketId);
+		
+		if (ticketInventory==null){
+			throw new NoTicketInventoryAvailableException("No Ticket Inventory found");
+		}
+		
+		return ticketInventory;
 	}
 
 	public Object executeCommand(ICommand cmd) throws Exception {
