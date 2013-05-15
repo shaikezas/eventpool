@@ -261,7 +261,7 @@ public class EventTest extends BaseTest{
     	eventForm.setAddress1("adr1");
     	eventForm.setAddress2("addr2");
     	eventForm.setBanner("banner");
-    	eventForm.setCityId(2);
+    //	eventForm.setCityId(2);
     	eventForm.setContactDetails("contact details");
     	eventForm.setDescription("description");
     	eventForm.setEventUrl("event url");
@@ -282,7 +282,7 @@ public class EventTest extends BaseTest{
     	eventForm.setPrivacyType("PRIVATE");
     	eventForm.setPublishDate(new Date());
     	eventForm.setShowEvent(true);
-    	eventForm.setStartDate("2013-05-03 11:11:11");
+    	eventForm.setStartDate("05-MAY-2013 11:11");
     	eventForm.setSubCategoryId("2");
     	eventForm.setTermsAndConditions("terms and conditions");
     	eventForm.setTitle("title");
@@ -300,8 +300,8 @@ public class EventTest extends BaseTest{
     	ticketForm.setName("name");
     	ticketForm.setPrice(12.3d);
     	ticketForm.setQuantity(123);
-    	ticketForm.setSaleEnd("2013-05-03 11:11:11");
-    	ticketForm.setSaleStart("2013-05-03 11:11:11");
+    	ticketForm.setSaleEnd("05-MAY-2013 11:11");
+    	ticketForm.setSaleStart("05-MAY-2011 11:11");
     	ticketForm.setShowsettings(true);
     	ticketForm.setTicketOrder(3);
     	

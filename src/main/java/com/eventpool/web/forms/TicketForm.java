@@ -32,9 +32,9 @@ public class TicketForm {
 	
 	private Boolean showsettings;
 	
-	private Boolean showPrice ;
+	private boolean showPrice ;
 	
-	private Boolean showFree;
+	private boolean showFree;
 	
 	private int ticketOrder;	
 	

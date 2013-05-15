@@ -48,7 +48,6 @@ public class Media implements Serializable{
 	@Column(name = "EVENT_URL")
 	private String eventUrl;
 
-	@NotNull
 	@Column(name = "EVENT_WEBSITE_URL")
 	private String eventWebSiteUrl;
 
