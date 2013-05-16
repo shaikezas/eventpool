@@ -5,6 +5,7 @@ import com.eventpool.common.type.EventStatus;
 public class MyEventForm {
 	
 	private String title;
+	private Long id;
 	private String startDate;
 	private String endDate;
 	private String createdDate;
@@ -47,6 +48,14 @@ public class MyEventForm {
 		this.sold = sold;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 	
 }

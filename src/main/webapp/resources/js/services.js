@@ -62,20 +62,18 @@ getcategories: function(categoryid) {
 });
 
 
-/*service('srvprofile', function ($http, myprofile, mynetwork) {
-	var profileinfo = new netvogue.profile(); //This must be converted to hashtable if we want to store localdata
-      
-      *//*********************************//*
+AppServices.service('srvevent', function ($http) {
       return {
-          profileinfo: function (routeparams) {
-              var profileid = "";
-              if (!angular.isUndefined(routeparams.profileid)) {
-                  profileid = routeparams.profileid;
+    	  myevent: function (routeparams) {
+              var eventid = "";
+              if (!angular.isUndefined(routeparams.eventid)) {
+            	  eventid = routeparams.eventid;
               }
               var config = {
                   method: "GET",
-                  url: "profile/" + profileid
+                  url: "event/myevent/" + eventid
               };
               return $http(config);
-          };
-      });*/
+          }
+      }
+});

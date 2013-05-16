@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.exceptions.EventNotFoundException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +15,7 @@ import com.eventpool.common.entities.Event;
 public interface EventService {
     public List<EventDTO> getAllEvents(Long userId) throws Exception;
 
-    public EventDTO getEventById(Long id);
+    public EventDTO getEventById(Long id) throws EventNotFoundException;
 
     public boolean addEvent(EventDTO Event) throws Exception;
 

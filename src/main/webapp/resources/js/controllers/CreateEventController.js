@@ -4,9 +4,28 @@
  * CreateEventController
  * @constructor
  */
-var CreateEventController = function($scope, $http,search,subcategories,categories) {
+var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent) {
     $scope.event = {};
     $scope.editMode = false;
+    $scope.myevent = function() {
+    	if(angular.isDefined($routeParams.eventid)){
+    	srvevent.myevent($routeParams).success(function(data) {
+		 $scope.event = data;
+    }).error(function(data) {
+    	
+    });
+    }
+    };
+    
+   /* $scope.getsearchResults = function(query) {
+		search.getbasicsearchresults(query).success(function(data) {
+			$scope.searchResults = data;
+	    }).error(function(data) {
+	    	
+	    });
+	};*/
+	
+	
     $scope.fetchEventsList = function() {
         $http.get('event/eventslist.json').success(function(event){
             $scope.event = event;
@@ -155,6 +174,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    });
     }
     $scope.fetchCategories();
+    $scope.myevent();
     $scope.predicate = 'id'
 }
 

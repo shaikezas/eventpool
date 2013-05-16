@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
@@ -41,8 +42,9 @@ public class EventServiceImpl implements EventService {
         return eventApi.getAllEvents(userId);
     }
 
-    public EventDTO getEventById(Long id) {
-        return findEventById(id);
+    public EventDTO getEventById(Long id) throws EventNotFoundException {
+//        return findEventById(id);
+    	return eventApi.getEvenDTO(id);
     }
 
     public boolean addEvent(EventDTO eventDTO) throws Exception {
