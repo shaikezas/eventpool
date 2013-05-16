@@ -25,4 +25,8 @@ public interface EventService {
     public void updateEvent(EventDTO Event);
     
     public EventDTO getEventByUrl(String eventUrl);
+    
+    public boolean publishEvent(Long eventId,boolean isPublish);
+    
+    public boolean publishEvent(String eventUrl,boolean isPublish);
 }

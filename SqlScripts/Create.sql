@@ -19,6 +19,7 @@ CREATE TABLE `EVENT` (
    STATUS char(10) NULL,
    KEY_WORDS varchar(256) NULL,
    WEBINAR char(1) NULL,
+   PUBLISH char(1) NULL,
    PUBLISH_DATE timestamp  NULL,
    SHOW_EVENT char(1) NULL,
    PRIVACY_TYPE char(10) NULL,

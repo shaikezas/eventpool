@@ -1,6 +1,5 @@
 package com.eventpool.event.command;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 

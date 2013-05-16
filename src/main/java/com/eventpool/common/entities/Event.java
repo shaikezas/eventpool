@@ -97,6 +97,10 @@ public class Event extends AuditableIdEntity {
 	@Type(type = "yes_no")
 	private boolean isWebinar;
 	
+	@Column(name="PUBLISH",length=1)
+	@Type(type = "yes_no")
+	private boolean publish;
+
 	@Column(name = "PUBLISH_DATE", nullable = false)
 	private Date publishDate;
 
@@ -107,7 +111,8 @@ public class Event extends AuditableIdEntity {
 	@Column(name="PRIVACY_TYPE",length=256)
 	@Enumerated(EnumType.STRING)
 	private EventPrivacyType privacyType;
-	
+
+
 	public String getTitle() {
 		return title;
 	}
@@ -306,6 +311,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setPrivacyType(EventPrivacyType privacyType) {
 		this.privacyType = privacyType;
+	}
+
+	public boolean isPublish() {
+		return publish;
+	}
+
+	public void setPublish(boolean publish) {
+		this.publish = publish;
 	}
 
 }

@@ -32,6 +32,7 @@ import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.event.command.PublishEventCommand;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
 import com.eventpool.event.service.EventCommandService;
@@ -378,5 +379,14 @@ public class EventTest extends BaseTest{
     public void  testGetAllEvents() throws Exception{
     	List<EventDTO> allEvents = eventApi.getAllEvents(1L);
     	log.info(allEvents.size()+" size ");
+    }
+    
+    @Test
+    public void testPublishCommand() throws Exception{
+    	PublishEventCommand publishEventCommand = new PublishEventCommand();
+    	//publishEventCommand.setEventId(3L);
+    	publishEventCommand.setPublish(true);
+    	publishEventCommand.setEventUrl("event url");
+    	eventCommandService.executeCommand(publishEventCommand);
     }
 }

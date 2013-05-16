@@ -98,4 +98,14 @@ public class EventServiceImpl implements EventService {
 	public EventDTO getEventByUrl(String eventUrl) {
 		return findEventByUrl(eventUrl);
 	}
+
+	public boolean publishEvent(Long eventId, boolean isPublish) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean publishEvent(String eventUrl, boolean isPublish) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
