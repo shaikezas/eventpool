@@ -69,6 +69,7 @@ public class EventApiImpl implements EventApi{
 		return new ArrayList<String>();
 	}
 
+	@Transactional(readOnly = true)
 	public List<EventDTO> getAllEvents(Long userId) throws Exception {
 		List<Event> allEvents = eventRepository.getAllEvents(userId);
 		List<EventDTO> eventDtoList = new ArrayList<EventDTO>();
