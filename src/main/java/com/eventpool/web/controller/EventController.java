@@ -75,8 +75,8 @@ public class EventController {
     
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
-    public @ResponseBody void updateEvent(@RequestBody EventDTO event) {
-        eventService.updateEvent(event);
+    public @ResponseBody void updateEvent(@RequestBody EventDTO event) throws Exception {
+        eventService.addEvent(event);
     }
 
     
@@ -101,12 +101,12 @@ public class EventController {
     
     @RequestMapping(value = "/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
-        eventService.deleteEventById(id);
+      //  eventService.deleteEventById(id);
     }
 
     @RequestMapping(value = "/removeAllEvents", method = RequestMethod.DELETE)
     public @ResponseBody void removeAllEvents() {
-        eventService.deleteAll();
+        //eventService.deleteAll();
     }
     
     @RequestMapping(value="/{eventUrl}", method = RequestMethod.GET)

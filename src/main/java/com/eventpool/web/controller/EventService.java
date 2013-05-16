@@ -19,12 +19,6 @@ public interface EventService {
 
     public boolean addEvent(EventDTO Event) throws Exception;
 
-    public void deleteEventById(Long id);
-
-    public void deleteAll();
-
-    public void updateEvent(EventDTO Event);
-    
     public EventDTO getEventByUrl(String eventUrl);
     
     public boolean publishEvent(Long eventId,boolean isPublish) throws Exception;

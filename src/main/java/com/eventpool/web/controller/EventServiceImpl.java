@@ -57,37 +57,7 @@ public class EventServiceImpl implements EventService {
     public List<String> checkEventUrl(String eventUrl){
     	return eventApi.checkEventUrl(eventUrl);
     }
-    public void deleteEventById(Long id) {
-        EventDTO foundEvent = findEventById(id);
-        if (foundEvent != null) {
-            eventList.remove(foundEvent);
-            id--;
-        }
-    }
-
-    public void deleteAll() {
-        eventList.clear();
-        id = 0L;
-    }
-
-    public void updateEvent(EventDTO event) {
-        EventDTO foundEvent = findEventById(event.getId());
-        if (foundEvent != null) {
-            eventList.remove(foundEvent);
-            eventList.add(event);
-        }
-    }
-
-    private EventDTO findEventById(Long id) {
-        for (EventDTO event : eventList) {
-            if (event.getId() == id) {
-                return event;
-            }
-        }
-
-        return null;
-    }
-    
+ 
     private EventDTO findEventByUrl(String eventUrl) {
         for (EventDTO event : eventList) {
             if (event.getMedia()!=null && event.getMedia().getEventUrl()!=null && event.getMedia().getEventUrl().equalsIgnoreCase(eventUrl)) {
