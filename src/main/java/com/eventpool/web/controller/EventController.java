@@ -112,9 +112,7 @@ public class EventController {
     @RequestMapping(value="/{eventUrl}", method = RequestMethod.GET)
     public ModelAndView getEventByUrl(@PathVariable String eventUrl) {
     	System.out.println("Calling getEventByUrl");
-    	 ModelAndView  modelView = new ModelAndView("event/eventpage");
-    	 ModelMap modelMap = modelView.getModelMap();
-    	 	modelMap.put("name", "ezas");
+    	ModelAndView  modelView = new ModelAndView("redirect:/#/myevent/"+eventUrl);
     	 	return modelView;
     }
     
