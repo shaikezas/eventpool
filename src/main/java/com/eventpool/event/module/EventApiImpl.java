@@ -82,4 +82,11 @@ public class EventApiImpl implements EventApi{
 		}
 		return eventDtoList;
 	}
+
+	public EventDTO getEventByUrl(String eventUrl) throws Exception {
+		Event event = eventRepository.getByEventUrl(eventUrl);
+		EventDTO eventDTO = new EventDTO();
+		eventpoolMapper.mapEventDTO(event, eventDTO);
+		return eventDTO;
+	}
 }

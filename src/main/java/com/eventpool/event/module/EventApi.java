@@ -21,4 +21,6 @@ public interface EventApi {
     
     public List<EventDTO> getAllEvents(Long userId) throws Exception;
     
+    public EventDTO getEventByUrl(String eventUrl) throws Exception;
+    
 }

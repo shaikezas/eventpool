@@ -20,5 +20,8 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	@Modifying
 	@Query(value="UPDATE Event event SET event.publish=?2 WHERE event.id in (SELECT eventMedia.id FROM Media eventMedia where  eventMedia.eventUrl= ?1)")
 	public void publish(String id,boolean publish);
-	
+
+	@Query(value="SELECT event FROM Event event WHERE event.id in (SELECT eventMedia.id FROM Media eventMedia where  eventMedia.eventUrl= ?1)")
+	public Event getByEventUrl(String eventUrl);
+
 }

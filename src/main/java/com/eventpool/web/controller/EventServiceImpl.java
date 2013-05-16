@@ -58,18 +58,9 @@ public class EventServiceImpl implements EventService {
     	return eventApi.checkEventUrl(eventUrl);
     }
  
-    private EventDTO findEventByUrl(String eventUrl) {
-        for (EventDTO event : eventList) {
-            if (event.getMedia()!=null && event.getMedia().getEventUrl()!=null && event.getMedia().getEventUrl().equalsIgnoreCase(eventUrl)) {
-                return event;
-            }
-        }
-
-        return null;
-    }
-
-	public EventDTO getEventByUrl(String eventUrl) {
-		return findEventByUrl(eventUrl);
+    
+	public EventDTO getEventByUrl(String eventUrl) throws Exception {
+		return eventApi.getEventByUrl(eventUrl);
 	}
 
 	public boolean publishEvent(Long eventId, boolean isPublish) throws Exception {
