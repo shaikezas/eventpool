@@ -9,3 +9,8 @@ var MyEventsController = function($scope, $http,search,subcategories,categories)
     
     $scope.fetchEventsList();
 }
+
+/*function MyEventController($scope, $routeParams, $timeout, srvevent) {
+	 $scope.event = {};
+	
+}*/
