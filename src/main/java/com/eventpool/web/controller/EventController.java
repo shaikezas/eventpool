@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ import com.eventpool.web.forms.TicketForm;
 @RequestMapping("/event")
 public class EventController {
 
-    @Resource(name="EventService")
+	@Autowired
     private EventService eventService;
     
     @Resource

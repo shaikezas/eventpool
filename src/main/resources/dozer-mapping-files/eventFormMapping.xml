@@ -7,7 +7,8 @@
     <mapping stop-on-errors="false" wildcard="false">
         <class-a>com.eventpool.web.forms.EventForm</class-a>
         <class-b>com.eventpool.common.dto.EventDTO</class-b>
-
+	
+		<field><a>id</a><b>id</b></field>	
 		<field><a>title</a><b>title</b></field>		
 		<field><a>isActive</a><b>isActive</b></field>
 		<field><a>description</a><b>description</b></field>

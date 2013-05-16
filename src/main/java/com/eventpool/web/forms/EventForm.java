@@ -10,6 +10,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 public class EventForm  {
 
 	private String title;
+	private Long id;
 	private String startDate;
 	private String endDate;
 	private Boolean isActive;
@@ -285,5 +286,12 @@ public Long getEventId() {
 	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 }

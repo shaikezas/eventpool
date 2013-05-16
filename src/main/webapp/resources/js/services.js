@@ -60,3 +60,22 @@ getcategories: function(categoryid) {
     
     }
 });
+
+
+/*service('srvprofile', function ($http, myprofile, mynetwork) {
+	var profileinfo = new netvogue.profile(); //This must be converted to hashtable if we want to store localdata
+      
+      *//*********************************//*
+      return {
+          profileinfo: function (routeparams) {
+              var profileid = "";
+              if (!angular.isUndefined(routeparams.profileid)) {
+                  profileid = routeparams.profileid;
+              }
+              var config = {
+                  method: "GET",
+                  url: "profile/" + profileid
+              };
+              return $http(config);
+          };
+      });*/
