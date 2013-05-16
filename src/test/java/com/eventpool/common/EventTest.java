@@ -372,4 +372,11 @@ public class EventTest extends BaseTest{
     	log.info(categoryTree.toString());
     	
     }
+    
+    
+    @Test
+    public void  testGetAllEvents() throws Exception{
+    	List<EventDTO> allEvents = eventApi.getAllEvents(1L);
+    	log.info(allEvents.size()+" size ");
+    }
 }
