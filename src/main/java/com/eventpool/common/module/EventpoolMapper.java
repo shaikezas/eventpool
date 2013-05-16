@@ -295,8 +295,12 @@ public class EventpoolMapper {
 
 	public void mapEventForm(EventDTO eventDTO,EventForm eventForm){
 		mapper.map(eventDTO,eventForm);
-		mapper.map(eventDTO.getVenueAddress(),eventForm);
-		mapper.map(eventDTO.getMedia(), eventForm);
+		if(eventDTO.getVenueAddress()!=null){
+			mapper.map(eventDTO.getVenueAddress(),eventForm);
+		}
+		if(eventDTO.getMedia()!=null){
+			mapper.map(eventDTO.getMedia(), eventForm);
+		}
 		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
 		if(ticketDTOs!=null && ticketDTOs.size()>0){
 			List<TicketForm> ticketForms = new ArrayList<TicketForm>();
