@@ -27,7 +27,7 @@ public interface EventService {
     
     public EventDTO getEventByUrl(String eventUrl);
     
-    public boolean publishEvent(Long eventId,boolean isPublish);
+    public boolean publishEvent(Long eventId,boolean isPublish) throws Exception;
     
-    public boolean publishEvent(String eventUrl,boolean isPublish);
+    public boolean publishEvent(String eventUrl,boolean isPublish) throws Exception;
 }

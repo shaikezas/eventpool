@@ -15,6 +15,7 @@ import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.event.command.PublishEventCommand;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.command.impl.SaveEventCommandHandler;
 import com.eventpool.event.module.EventApi;
@@ -101,13 +102,17 @@ public class EventServiceImpl implements EventService {
 		return findEventByUrl(eventUrl);
 	}
 
-	public boolean publishEvent(Long eventId, boolean isPublish) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean publishEvent(Long eventId, boolean isPublish) throws Exception {
+		PublishEventCommand publishEventCommand = new PublishEventCommand();
+		publishEventCommand.setEventId(eventId);
+		publishEventCommand.setPublish(isPublish);
+		return eventCommandService.executeCommand(publishEventCommand);
 	}
 
-	public boolean publishEvent(String eventUrl, boolean isPublish) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean publishEvent(String eventUrl, boolean isPublish) throws Exception {
+		PublishEventCommand publishEventCommand = new PublishEventCommand();
+		publishEventCommand.setEventUrl(eventUrl);
+		publishEventCommand.setPublish(isPublish);
+		return eventCommandService.executeCommand(publishEventCommand);
 	}
 }
