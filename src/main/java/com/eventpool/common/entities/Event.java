@@ -112,6 +112,8 @@ public class Event extends AuditableIdEntity {
 	@Enumerated(EnumType.STRING)
 	private EventPrivacyType privacyType;
 
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="event")
+	private EventSettings eventSettings; 
 
 	public String getTitle() {
 		return title;
@@ -255,6 +257,11 @@ public class Event extends AuditableIdEntity {
 		if(childMedia!=null){
 			childMedia.setEventId(this.getId());
 		}
+		EventSettings eventSettings = this.getEventSettings();
+		if(eventSettings!=null){
+			eventSettings.setEventId(this.getId());
+			eventSettings.setCreatedBy(getCreatedBy());
+		}
 	}
 
 	public Media getMedia() {
@@ -319,6 +326,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setPublish(boolean publish) {
 		this.publish = publish;
+	}
+
+	public EventSettings getEventSettings() {
+		return eventSettings;
+	}
+
+	public void setEventSettings(EventSettings eventSettings) {
+		this.eventSettings = eventSettings;
 	}
 
 }

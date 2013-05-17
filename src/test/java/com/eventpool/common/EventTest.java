@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Address;
@@ -311,6 +312,7 @@ public class EventTest extends BaseTest{
     	ticketForms.add(ticketForm);
     	
     	EventDTO eventDTO = new EventDTO();
+    	eventDTO.setEventSettingsDTO(new EventSettingsDTO());
 		eventMapper.mapEventDTO(eventForm, eventDTO );
 		
 		//hard coded the following

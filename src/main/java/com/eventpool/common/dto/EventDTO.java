@@ -37,6 +37,7 @@ public class EventDTO extends AuditableIdDTO {
 	private Date publishDate;
 	private boolean showEvent;
 	private String privacyType;
+	private EventSettingsDTO eventSettingsDTO;
 
 	
 	public String getTitle() {
@@ -230,6 +231,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setPrivacyType(String privacyType) {
 		this.privacyType = privacyType;
+	}
+
+	public EventSettingsDTO getEventSettingsDTO() {
+		return eventSettingsDTO;
+	}
+
+	public void setEventSettingsDTO(EventSettingsDTO eventSettingsDTO) {
+		this.eventSettingsDTO = eventSettingsDTO;
 	}
 	
 	

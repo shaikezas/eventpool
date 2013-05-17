@@ -22,7 +22,7 @@
 		<class>com.eventpool.common.entities.City</class>
 		<class>com.eventpool.common.entities.Country</class>
 		<class>com.eventpool.common.entities.State</class>
-		
+		<class>com.eventpool.common.entities.EventSettings</class>
 		<!-- Jboss recognizes only the entities listed here -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
