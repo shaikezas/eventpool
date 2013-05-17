@@ -44,6 +44,9 @@ public class EventApiImpl implements EventApi{
     		event = eventRepository.findOne(id);
     	}
     	eventpoolMapper.mapEvent(eventDTO, event);
+    	if(event.getSubCategoryId()  == null){
+    		event.setSubCategoryId(1000);
+    	}
     	eventRepository.save(event);
     	eventpoolMapper.mapEventDTO(event, eventDTO);
     	logger.info("event saved before commit {}",event.getId());

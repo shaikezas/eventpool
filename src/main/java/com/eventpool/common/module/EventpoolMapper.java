@@ -1,7 +1,6 @@
 package com.eventpool.common.module;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,8 +24,6 @@ import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
-import com.eventpool.common.entities.TicketInventory;
-import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.web.forms.EventForm;
@@ -47,7 +44,7 @@ public class EventpoolMapper {
 		List myMappingFiles = new ArrayList();
    	    myMappingFiles.add("dozer-mapping-files/orderMapping.xml");
    	    myMappingFiles.add("dozer-mapping-files/eventMapping.xml");
-   	 myMappingFiles.add("dozer-mapping-files/eventFormMapping.xml");
+   	    myMappingFiles.add("dozer-mapping-files/eventFormMapping.xml");
  	 	mapper.setMappingFiles(myMappingFiles);
 	}
 	

@@ -55,7 +55,7 @@ public class Event extends AuditableIdEntity {
 	@Enumerated(EnumType.STRING)
 	private EventType eventType;
 
-	@NotNull(message = "Can't be Empty")
+	//@NotNull(message = "Can't be Empty")
 	@Column(name = "SUBCATEGORY_ID")
 	private Integer subCategoryId;
 	
