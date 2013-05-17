@@ -25,6 +25,7 @@ import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.ticket.service.TicketInventoryService;
+import com.eventpool.web.forms.Dropdown;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.MyEventForm;
 import com.eventpool.web.forms.TicketForm;
@@ -131,6 +132,22 @@ public class EventController {
     	EventForm form = new EventForm();
     	EventDTO eventDTO = eventService.getEventByUrl(eventurl);
     	mapper.mapEventForm(eventDTO, form);
+    	String qty = "0";
+    	List<Dropdown> dropdownList = null;
+    	Dropdown dropdown = null;
+    	
+    	for(TicketForm ticket : form.getTickets()){
+    		dropdownList = new ArrayList<Dropdown>();
+    		ticket.setQtyList(dropdownList);
+    		dropdown = new Dropdown(qty,qty);
+    		dropdownList.add(dropdown);
+    		for(int i=ticket.getMinQty();i<=ticket.getMaxQty();i++){
+    			dropdown = new Dropdown(String.valueOf(i),String.valueOf(i));
+        		dropdownList.add(dropdown);
+    		}
+    		
+    		
+    	}
     	 	return form;
     }
     

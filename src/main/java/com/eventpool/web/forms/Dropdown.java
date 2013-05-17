@@ -4,7 +4,18 @@ public class Dropdown {
 	
 	private String key;
 	
-	private String value;
+	private Object value;
+
+	public Dropdown(){
+		
+	}
+	
+	public Dropdown(String key,Object value){
+		this.key = key;
+		
+		this.value = value;
+	}
+
 
 	public String getKey() {
 		return key;
@@ -14,11 +25,11 @@ public class Dropdown {
 		this.key = key;
 	}
 
-	public String getValue() {
+	public Object getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(Object value) {
 		this.value = value;
 	}
 	

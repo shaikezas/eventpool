@@ -37,7 +37,7 @@ public class DropdownController {
 			if(node.getLevel()==1){
 				Dropdown dropdown = new Dropdown();
 				dropdown.setKey(node.getName());
-				dropdown.setValue(categoryId.toString());
+				dropdown.setValue(categoryId);
 				categories.add(dropdown);
 			}
 		}

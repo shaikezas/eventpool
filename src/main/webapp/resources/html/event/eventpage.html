@@ -31,11 +31,10 @@
 						  <td class="amt">{{ticket.price}} </td>
 						  <td class="amt">{{ticket.saleEnd}}</td>
 						  <td class="amt"> 
-						  	<select>
-								  <option>0</option>
-								  <option>1</option>
-								  <option>2</option>
-							  </select>	
+						  	<select id="Category" ng-model="category" 
+													ng-options="qty.value as qty.key for qty in ticket.qtyList">
+													<option value="">select</option>
+										</select>
 						  </td>
 						 
 						</tr>

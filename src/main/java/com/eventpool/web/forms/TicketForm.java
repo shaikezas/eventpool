@@ -1,5 +1,7 @@
 package com.eventpool.web.forms;
 
+import java.util.List;
+
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 import com.eventpool.common.type.TicketType;
@@ -39,6 +41,8 @@ public class TicketForm {
 	private int ticketOrder;	
 	
 	private Long createdBy;
+	
+	private List<Dropdown> qtyList;
 	
 	public String getName() {
 		return name;
@@ -190,5 +194,11 @@ public class TicketForm {
 		return ReflectionToStringBuilder.toString(this);
 	}
 	
+	public List<Dropdown> getQtyList() {
+		return qtyList;
+	}
 	
+	public void setQtyList(List<Dropdown> qtyList) {
+		this.qtyList = qtyList;
+	}
 }
