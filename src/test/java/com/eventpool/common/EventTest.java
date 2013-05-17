@@ -325,6 +325,22 @@ public class EventTest extends BaseTest{
     }
     
     @Test
+    public void testBasicEvent(){
+    	EventForm eventForm  = new EventForm();
+        eventForm.setTitle("title");
+        eventForm.setStartDate("05-MAY-2013 11:11");
+        eventForm.setEndDate("05-MAY-2013 11:11");
+        eventForm.setOrganizerName("organizer name");
+        EventDTO eventDTO = new EventDTO();
+		eventMapper.mapEventDTO(eventForm, eventDTO );
+		
+		//hard coded the following
+		eventDTO.setCreatedBy(1L);
+		//eventDTO.setEventType(EventType.FREE);
+		eventApi.saveEventDTO(eventDTO);
+    }
+
+    @Test
     public void getEventForm(){
     	try {
 			EventDTO eventDTO = eventApi.getEvenDTO(28L);
