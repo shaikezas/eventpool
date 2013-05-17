@@ -74,6 +74,19 @@ AppServices.service('srvevent', function ($http) {
                   url: "event/myevent/" + eventid
               };
               return $http(config);
+          },
+      
+     eventpage: function (routeparams) {
+          var eventurl = "";
+          if (!angular.isUndefined(routeparams.eventurl)) {
+        	  eventurl = routeparams.eventurl;
           }
+          var config = {
+              method: "GET",
+              url: "event/myeventurl/" + eventurl
+          };
+          return $http(config);
       }
+      };
+      
 });

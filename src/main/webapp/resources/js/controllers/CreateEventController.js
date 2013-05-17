@@ -7,6 +7,7 @@
 var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent) {
     $scope.event = {};
     $scope.editMode = false;
+    $scope.$parent.title="Create Event";
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
     	srvevent.myevent($routeParams).success(function(data) {
@@ -16,6 +17,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     });
     }
     };
+    $scope.myevent();
     
    /* $scope.getsearchResults = function(query) {
 		search.getbasicsearchresults(query).success(function(data) {
@@ -174,7 +176,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    });
     }
     $scope.fetchCategories();
-    $scope.myevent();
+    
     $scope.predicate = 'id'
 }
 

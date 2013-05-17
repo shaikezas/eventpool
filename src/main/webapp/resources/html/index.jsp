@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="EventPool">
+<html lang="en" ng-app="EventPool" ng-controller="MainController">
   <head>
     <meta charset="utf-8">
     <title ng-Bind-Template="Event Pool : {{title}}"></title>
@@ -17,42 +17,9 @@
 
   <body >
 
-    <!-- Navbar
-    ================================================== -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-         
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active">
-                <a href="#/home">Home</a>
-              </li>
-              <li class="">
-                <a href="#/findevent">Find Event</a>
-              </li>
-              <li class="">
-                <a href="#/createevent">Create Event</a>
-              </li>
-              <li class="">
-                <a href="#/myevents">My Events</a>
-              </li>
-              <li class="">
-                <a href="#/mytickets">My Tickets</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
-
+ 
 
   <div class="container">
 
@@ -80,7 +47,9 @@
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/services.js"></script>
 	<script src="js/objects.js"></script>
+	<script src="resources/js/controllers/MainController.js"></script>
 	<script src="resources/js/controllers/CreateEventController.js"></script>
+	<script src="resources/js/controllers/EventPageController.js"></script>
 	<script src="resources/js/controllers/MyEventsController.js"></script>
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>

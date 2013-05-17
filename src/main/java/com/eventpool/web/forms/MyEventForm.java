@@ -10,6 +10,7 @@ public class MyEventForm {
 	private String endDate;
 	private String createdDate;
 	private EventStatus status;
+	private String eventUrl;
 	private String sold;
 	public String getTitle() {
 		return title;
@@ -57,5 +58,12 @@ public class MyEventForm {
 	}
 	
 	
+	public String getEventUrl() {
+		return eventUrl;
+	}
+	
+	public void setEventUrl(String eventUrl) {
+		this.eventUrl = eventUrl;
+	}
 	
 }

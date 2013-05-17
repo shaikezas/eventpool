@@ -44,6 +44,9 @@ public class EventApiImpl implements EventApi{
     		event = eventRepository.findOne(id);
     	}
     	eventpoolMapper.mapEvent(eventDTO, event);
+    	if(event.getSubCategoryId()  == null){
+    		event.setSubCategoryId(1000);
+    	}
     	eventRepository.save(event);
     	eventpoolMapper.mapEventDTO(event, eventDTO);
     	logger.info("event saved before commit {}",event.getId());
@@ -83,6 +86,7 @@ public class EventApiImpl implements EventApi{
 		return eventDtoList;
 	}
 
+	@Transactional(readOnly = true)
 	public EventDTO getEventByUrl(String eventUrl) throws Exception {
 		Event event = eventRepository.getByEventUrl(eventUrl);
 		EventDTO eventDTO = new EventDTO();

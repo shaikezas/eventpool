@@ -1,0 +1,102 @@
+
+
+
+          <div class="tabBody">
+          	
+          	
+			   	
+          	 <div class="eventBaner">  <img ng-src="bootstrap/img/banner.jpg"/>    </div>
+         
+      
+      
+      
+            	<h1>Book the Ticket</h1>
+            	
+            	
+            	
+            	<div class="span8 ">
+					<table class="table table-condensed" >
+					<thead>
+						<tr>
+						  <th>Ticket Type</th>
+						  <th class="amt">Price</th>
+						  <th class="amt">Sale End</th>
+						  <th class="amt">Total</th>
+						 
+						</tr>
+					</thead>
+					<tbody>
+						  <tr ng-repeat="ticket in event.tickets" >
+						  <td class="amt">{{ticket.name}} </td>
+						  <td class="amt">{{ticket.price}} </td>
+						  <td class="amt">{{ticket.saleEnd}}</td>
+						  <td class="amt"> 
+						  	<select>
+								  <option>0</option>
+								  <option>1</option>
+								  <option>2</option>
+							  </select>	
+						  </td>
+						 
+						</tr>
+					</tbody>
+				</table>
+				
+				
+				<div style="text-align: right">
+        		<button type="button" class="btn btn-primary">Book Ticket</button>
+        		</div>
+        		
+				</div>
+			    <div class="span3 ">
+					<div class="contBox">
+						Event Details
+						
+						<ul class="eventDetails">
+							<li>
+								{{event.startDate}}
+							</li>
+							<li>
+								{{event.endDate}}	
+							</li>
+							<li>
+								{{ event.address1}}
+							</li>
+							<li>
+								Set Remainder
+							</li>
+							<li>
+								Add Calender
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+
+        	
+        
+          </div>
+
+
+
+
+
+       
+
+
+
+       
+
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+ 	
+
+

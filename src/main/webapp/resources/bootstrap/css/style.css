@@ -356,3 +356,25 @@ input[type="color"],
 	border:1px solid #dddddd;
 	padding: 5px;
 }
+.table td, th{
+	border:1px solid #dddddd;
+	padding: 5px;
+}
+
+.amt{
+	text-align: right !important;
+}
+
+.eventBaner{
+	/* background:#e5e5e5;  */
+	height: 180px; 
+	border-radius: 5px;
+}
+
+.eventDetails li{
+	border-bottom: 1px solid #ccc;
+	display: inline-block;
+	width: 90%;
+	padding: 2px 2px 2px 2px;
+}
+

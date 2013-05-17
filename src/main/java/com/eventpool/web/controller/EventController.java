@@ -109,10 +109,10 @@ public class EventController {
         //eventService.deleteAll();
     }
     
-    @RequestMapping(value="/{eventUrl}", method = RequestMethod.GET)
-    public ModelAndView getEventByUrl(@PathVariable String eventUrl) {
+    @RequestMapping(value="/{eventurl}", method = RequestMethod.GET)
+    public ModelAndView getEventByUrl(@PathVariable String eventurl) {
     	System.out.println("Calling getEventByUrl");
-    	ModelAndView  modelView = new ModelAndView("redirect:/#/myevent/"+eventUrl);
+    	ModelAndView  modelView = new ModelAndView("redirect:/#/event/"+eventurl);
     	 	return modelView;
     }
     
@@ -124,6 +124,16 @@ public class EventController {
     	mapper.mapEventForm(eventDTO, form);
     	 	return form;
     }
+    
+    @RequestMapping(value="/myeventurl/{eventurl}", method = RequestMethod.GET)
+    public @ResponseBody EventForm getMyEventUrl(@PathVariable String eventurl) throws Exception {
+    	System.out.println("Calling getMyEventUrl");
+    	EventForm form = new EventForm();
+    	EventDTO eventDTO = eventService.getEventByUrl(eventurl);
+    	mapper.mapEventForm(eventDTO, form);
+    	 	return form;
+    }
+    
     
     private void updateEventType(EventDTO dto){
     	Boolean isFree = false;
@@ -173,6 +183,7 @@ public class EventController {
     	form.setStartDate(getDateString(dto.getStartDate()));
     	form.setEndDate(getDateString(dto.getEndDate()));
     	form.setId(dto.getId());
+    	form.setEventUrl(dto.getMedia().getEventUrl());
     	
     	return form;
     }
