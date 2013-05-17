@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "EVENT_MEDIA")
@@ -42,6 +43,7 @@ public class Media implements Serializable{
 	@Column(name = "OTHER_URL2")
 	private String otherUrl2;
 	
+	@NotNull
 	@Column(name = "EVENT_URL")
 	private String eventUrl;
 

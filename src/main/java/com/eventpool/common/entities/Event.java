@@ -59,7 +59,7 @@ public class Event extends AuditableIdEntity {
 	@Column(name = "SUBCATEGORY_ID")
 	private Integer subCategoryId;
 	
-	
+	@NotNull
 	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="event")
 	private Media media; 
 
