@@ -333,6 +333,7 @@ public class EventTest extends BaseTest{
         eventForm.setStartDate("05-MAY-2013 11:11");
         eventForm.setEndDate("05-MAY-2013 11:11");
         eventForm.setOrganizerName("organizer name");
+        eventForm.setEventUrl("eventurl1");
         EventDTO eventDTO = new EventDTO();
 		eventMapper.mapEventDTO(eventForm, eventDTO );
 		
