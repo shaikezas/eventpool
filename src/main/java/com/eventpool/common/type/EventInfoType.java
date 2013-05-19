@@ -5,6 +5,7 @@ public enum EventInfoType {
   
 
   BASIC("BASIC"),
+  BUYER("BUYER"),
   ATTENDEE("ATTENDEE");
   
 

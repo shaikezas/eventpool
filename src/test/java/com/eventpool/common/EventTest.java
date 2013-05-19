@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,9 @@ import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.MediaDTO;
+import com.eventpool.common.dto.OrderFormSettings;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.dto.UserSettingJson;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Media;
@@ -307,6 +310,20 @@ public class EventTest extends BaseTest{
     	ticketForm.setShowsettings(true);
     	ticketForm.setTicketOrder(3);
     	
+    	OrderFormSettings orderFormSettings = new OrderFormSettings();
+    	orderFormSettings.setAttendType("buyer");
+    	Map<String, UserSettingJson> userSettings = new HashMap<String, UserSettingJson>();
+    	UserSettingJson userSettingsObject = new UserSettingJson();
+    	Map<String, Boolean> fname = new HashMap<String, Boolean>();
+    	fname.put("include", true);
+    	fname.put("required",true);
+		userSettingsObject.setFname(fname );
+    	
+		userSettings.put("free",userSettingsObject );
+		orderFormSettings.setUserSettings(userSettings );
+    	
+		eventForm.setOrderFormSettings(orderFormSettings );
+    	
     	List<TicketForm> ticketForms = new ArrayList<TicketForm>();
     	eventForm.setTickets(ticketForms);
     	ticketForms.add(ticketForm);
@@ -321,6 +338,7 @@ public class EventTest extends BaseTest{
 		for(TicketDTO ticketDTO:eventDTO.getTickets()){
 			ticketDTO.setCreatedBy(2L);
 		}
+		
 		
 		eventApi.saveEventDTO(eventDTO);
 		

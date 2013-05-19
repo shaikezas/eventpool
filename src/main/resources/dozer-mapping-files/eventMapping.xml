@@ -106,6 +106,7 @@
 			<field><a>showAttendeList       </a><b>showAttendeList       </b></field>
 			<field><a>showRemainingTickets  </a><b>showRemainingTickets  </b></field>
 			<field><a>showTermsAndConditions</a><b>showTermsAndConditions</b></field>
+			<field><a>orderFromSettings</a><b>orderFromSettings</b></field>
 	</mapping>
 	
 	

@@ -18,7 +18,6 @@ public class EventSettings extends AuditableEntity {
 	@JoinColumn(name="EVENT_ID",insertable=false,updatable=false)
 	private Event event;
 	
-
 	@Id
 	@Column(name = "EVENT_ID")
 	private Long eventId;
@@ -59,6 +58,9 @@ public class EventSettings extends AuditableEntity {
 	@Type(type = "yes_no")
 	private boolean showTermsAndConditions;
 
+	@Column(name="ORDER_FORM_SETTINGS")
+	private String orderFromSettings;
+	
 	public Event getEvent() {
 		return event;
 	}
@@ -145,6 +147,14 @@ public class EventSettings extends AuditableEntity {
 
 	public void setShowTermsAndConditions(boolean showTermsAndConditions) {
 		this.showTermsAndConditions = showTermsAndConditions;
+	}
+
+	public String getOrderFromSettings() {
+		return orderFromSettings;
+	}
+
+	public void setOrderFromSettings(String orderFromSettings) {
+		this.orderFromSettings = orderFromSettings;
 	}
 
 	

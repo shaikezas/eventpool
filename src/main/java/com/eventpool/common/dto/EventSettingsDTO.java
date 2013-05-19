@@ -1,8 +1,13 @@
 package com.eventpool.common.dto;
 
 
+
 public class EventSettingsDTO extends AuditableIdDTO {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long eventId;
 	private boolean showGoogleMap;
 	private boolean showOrganizerName;
@@ -13,7 +18,8 @@ public class EventSettingsDTO extends AuditableIdDTO {
 	private boolean showAttendeList;
 	private boolean showRemainingTickets;
 	private boolean showTermsAndConditions;
-
+	private String orderFromSettings;
+	
 	public Long getEventId() {
 		return eventId;
 	}
@@ -92,6 +98,14 @@ public class EventSettingsDTO extends AuditableIdDTO {
 
 	public void setShowTermsAndConditions(boolean showTermsAndConditions) {
 		this.showTermsAndConditions = showTermsAndConditions;
+	}
+
+	public String getOrderFromSettings() {
+		return orderFromSettings;
+	}
+
+	public void setOrderFromSettings(String orderFromSettings) {
+		this.orderFromSettings = orderFromSettings;
 	}
 
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.dozer.DozerBeanMapper;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.OrderDTO;
+import com.eventpool.common.dto.OrderFormSettings;
 import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
@@ -260,6 +263,17 @@ public class EventpoolMapper {
 		if(type == 4){
 			eventDTO.setEventType(EventType.NOREGISTRATION);
 		}
+		
+		OrderFormSettings orderFormSettings = eventForm.getOrderFormSettings();
+		if(orderFormSettings!=null){
+			JSONObject json = new JSONObject(orderFormSettings);
+			EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
+			if(eventSettingsDTO==null){
+				eventSettingsDTO = new EventSettingsDTO();
+				eventDTO.setEventSettingsDTO(eventSettingsDTO);
+			}
+			eventSettingsDTO.setOrderFromSettings(json.toString());
+		}
 	}
 	
 	private boolean checkIfNull(EventForm eventForm) {
@@ -308,7 +322,12 @@ public class EventpoolMapper {
 			}
 			eventForm.setTickets(ticketForms);
 		}
-		
+		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
+		if(eventSettingsDTO!=null){
+			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();
+			OrderFormSettings orderFormSettingObject =(OrderFormSettings) JSONObject.stringToValue(orderFromSettings);
+			eventForm.setOrderFormSettings(orderFormSettingObject);
+		}
 	}
 
 }
