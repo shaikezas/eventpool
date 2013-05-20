@@ -65,7 +65,7 @@ public class OrderServiceTest extends BaseTest{
 //		System.out.println("Status "+order.getStatus());
 //		System.out.println("OrderId "+order.getOrderId());
 		
-		Thread.sleep(1000*30);
+		Thread.sleep(1000*40);
 	}
     
 //	@Test

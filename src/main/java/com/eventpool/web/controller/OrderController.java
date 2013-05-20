@@ -9,7 +9,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.EventRegisterDTO;
@@ -32,8 +34,8 @@ public class OrderController {
 	@Resource
 	OrderService orderService;
 	
-	  @RequestMapping("/register")
-	    public @ResponseBody OrderRegisterForm registerOrder(EventRegisterDTO eventRegister) {
+	  @RequestMapping(value = "/register", method = RequestMethod.POST)
+	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) {
 		  OrderRegisterForm orderRegisterForm = null;  
 		  try {
 			  orderRegisterForm = orderService.registerOrder(eventRegister);

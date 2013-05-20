@@ -42,6 +42,8 @@ public class TicketForm {
 	
 	private Long createdBy;
 	
+	private Long selectedQty = 0L;
+	
 	private List<Dropdown> qtyList;
 	
 	public String getName() {
@@ -201,4 +203,14 @@ public class TicketForm {
 	public void setQtyList(List<Dropdown> qtyList) {
 		this.qtyList = qtyList;
 	}
+	
+	
+	public Long getSelectedQty() {
+		return selectedQty;
+	}
+	
+	public void setSelectedQty(Long selectedQty) {
+		this.selectedQty = selectedQty;
+	}
+	
 }

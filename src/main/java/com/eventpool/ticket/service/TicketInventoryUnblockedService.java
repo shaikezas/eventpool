@@ -66,7 +66,7 @@ public class TicketInventoryUnblockedService {
 			log.error("Exception in UnblockTask run method",e);		
 		}
 	      
-	      timer.cancel(); 
+	      this.cancel(); 
 	    }
 	  }
 }

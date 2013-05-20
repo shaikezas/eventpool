@@ -85,7 +85,7 @@ public class TicketInventory implements Serializable {
 		if(getSellableQty(blockingQty) >= 0){
 			this.blockingQty += blockingQty;
 			inventoryDetails.setInvBlocked(Boolean.TRUE);
-			inventoryDetails.setSellableQty(getSellableQty(blockingQty));
+			inventoryDetails.setSellableQty(this.qty - this.blockingQty);
 			inventoryDetails.setBlockingQty(blockingQty);
 			inventoryDetails.setTicketId(this.ticketId);
 			}
@@ -103,7 +103,7 @@ public class TicketInventory implements Serializable {
 				this.blockingQty -= qty;
 				inventoryDetails.setInvUpdated(Boolean.TRUE);
 		}
-		inventoryDetails.setSellableQty(getSellableQty(qty));
+		inventoryDetails.setSellableQty(this.qty - this.blockingQty);
 		inventoryDetails.setTicketId(this.ticketId);
 		inventoryDetails.setMaxQty(this.maxQty);
 		return inventoryDetails;
