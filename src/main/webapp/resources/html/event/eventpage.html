@@ -15,7 +15,6 @@
             	
             	
             	<div class="span8 " >
-            	<div class="span8 " ng-show="editMode==true">
 					<table class="table table-condensed" >
 					<thead>
 						<tr>
@@ -50,93 +49,6 @@
 				</div>
 				
 				      	
-            	<div class="span8 " ng-show="editMode==false">
-					<table class="table table-condensed" >
-					<thead>
-						<tr>
-						  <th>Ticket Type</th>
-						  <th class="amt">Price</th>
-						  <th class="amt">Quantity</th>
-						 
-						</tr>
-					</thead>
-					<tbody>
-						  <tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
-						  <td class="amt">{{ticketRegister.ticketName}} </td>
-						  <td class="amt">{{ticketRegister.price}} </td>
-						  <td class="amt"> {{ticketRegister.qty}}</td>
-						</tr>
-					</tbody>
-				</table>
-				<h4>Ticket Buyer</h4>
-				<div class="control-group">
-							    <label class="control-label" for="firstName">First Name</label>
-							    <div class="controls">
-							      <input type="text" id="firstName" ng-model="orderRegister.firstName">
-							    </div>
-							  </div>
-							  
-							  <div class="control-group">
-							    <label class="control-label" for="lastName">Last Name</label>
-							    <div class="controls">
-							      <input type="text" id="lastName" ng-model="orderRegister.lastName" >
-							    </div>
-							  </div>
-							  
-							  <div class="control-group">
-							    <label class="control-label" for="emailaddress">Email Address</label>
-							    <div class="controls">
-							      <input type="text" id="emailaddress" ng-model="orderRegister.email">
-							    </div>
-							  </div>
-							  
-							   <h4>Billing Information</h4>
-							 
-							 
-							 	
-							 	
-							  	<div class="control-group">
-								    <label class="control-label" for="Address">Address  :</label>
-								    <div class="controls">
-								      <input type="text" id="Address" ng-model="orderRegister.billingAddress.address1">
-								    </div>
-								  </div>
-								  
-								  <div class="control-group">
-								    <label class="control-label" for="Address1">Address  :</label>
-								    <div class="controls">
-								      <input type="text" id="Address1" ng-model="orderRegister.billingAddress.address2">
-								    </div>
-								  </div>
-							  
-							  
-							  
-								  <div class="control-group">
-								    <label class="control-label" for="city">City :*</label>
-								    <div class="controls">
-										   <input type="text" id="city" ng-model="orderRegister.billingAddress.cityId">
-								    </div>
-								  </div>
-							  
-								  
-							  
-								  <div class="control-group">
-								    <label class="control-label" for="Pincode">Pincode  :</label>
-								    <div class="controls">
-								      <input type="text" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode">
-								    </div>
-								  </div>
-							 
-							 
-							 
-							  
-							  <div class="control-group">
-							    <div class="controls">
-							      <button type="button" class="btn" ng-click="bookTicket()">Payment</button> 
-							    </div>
-							  </div>
-        		
-				</div>
 			    <div class="span3 ">
 					<div class="contBox">
 						Event Details
@@ -160,27 +72,8 @@
 						</ul>
 					</div>
 					
-					<div class="contBox" ng-show="editMode==false">
-						Order Summary
-						
-						<ul class="orderDetails">
-							<li>
-								Not of Tickets : {{ orderRegister.totalTickets}}
-							</li>
-							<li>
-								Gross Amount: {{orderRegister.grossAmount}}
-							</li>
-							<li>
-								Payable Amount : {{orderRegister.netAmount}}	
-							</li>
-							
-						</ul>
-					</div>
 				</div>
 				
-				
-
-        	
         
           </div>
 

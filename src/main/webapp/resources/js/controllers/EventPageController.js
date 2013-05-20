@@ -1,13 +1,8 @@
 var EventPageController = function($scope, $http,$routeParams, srvevent,$location,Data) {
-    $scope.event = Data.getEventData();
-    $scope.editMode = true;
-    $scope.orderRegister = Data.getOrderRegisterData();
+	  $scope.event = Data.getEventData();
+	    $scope.editMode = true;
+	    $scope.orderRegister = Data.getOrderRegisterData();
     $scope.status = {};
-var EventPageController = function($scope, $http,$routeParams, srvevent) {
-    $scope.event = {};
-    $scope.editMode = true;
-    $scope.orderRegister = {};
-    
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
     	srvevent.eventpage($routeParams).success(function(data) {
@@ -61,6 +56,5 @@ var EventPageController = function($scope, $http,$routeParams, srvevent) {
          }).error(function(error) {
              alert(error);
          });
-    }
-    
+}
 }
