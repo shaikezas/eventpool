@@ -10,33 +10,40 @@ import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.type.CurrencyType;
 
 public class OrderRegisterForm {
-private String firstName;
-	
+	private String firstName;
+
 	private String lastName;
-	
+
 	@EmailAddressValidation
-	@Size(max=255)
+	@Size(max = 255)
 	private String email;
-	
+
 	private AddressDTO billingAddress;
-	
+
 	private Double grossAmount;
-	
+
 	private Double netAmount;
-	
+
 	private Double discountAmount;
-	
+
 	private String dicountCoupon;
-	
+
 	private CurrencyType paymentCurrency;
-	
+
 	private Integer subCategoryId;
-	
+
 	private String organizerName;
 	
-	private List<TicketRegisterDTO> ticketRegisters ;
-	
+	private int totalTickets;
+
+	private List<TicketRegisterDTO> ticketRegisters;
+
 	private List<TicketRegisterForm> ticketRegForms;
+
+	private String venueName;
+	private String venueAddress;
+	private String startDate;
+	private String endDate;
 
 	public String getFirstName() {
 		return firstName;
@@ -103,7 +110,7 @@ private String firstName;
 	}
 
 	public Double getDiscountAmount() {
-		if(discountAmount==null)
+		if (discountAmount == null)
 			return 0.0D;
 		return discountAmount;
 	}
@@ -144,11 +151,45 @@ private String firstName;
 		this.organizerName = organizerName;
 	}
 
+	public String getVenueName() {
+		return venueName;
+	}
 
+	public void setVenueName(String venueName) {
+		this.venueName = venueName;
+	}
+
+	public String getVenueAddress() {
+		return venueAddress;
+	}
+
+	public void setVenueAddress(String venueAddress) {
+		this.venueAddress = venueAddress;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	
+	public int getTotalTickets() {
+		return totalTickets;
+	}
 	
+	public void setTotalTickets(int totalTickets) {
+		this.totalTickets = totalTickets;
+	}
 	
-	
-	
-	
+
 }

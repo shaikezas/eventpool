@@ -20,7 +20,8 @@ public class TicketRegister extends IdEntity{
 	@Column(name = "TICKET_QTY")
 	private int qty;
 	
-	@Transient
+	@NotNull
+	@Column(name = "TICKET_NAME")
 	private String ticketName;
 	
 	@NotNull

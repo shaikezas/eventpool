@@ -8,6 +8,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.event = {};
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
+    $scope.isCollapsed = true;
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
     	srvevent.myevent($routeParams).success(function(data) {

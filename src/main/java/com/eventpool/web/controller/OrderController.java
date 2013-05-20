@@ -21,6 +21,7 @@ import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
+import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.forms.OrderRegisterForm;
@@ -35,18 +36,21 @@ public class OrderController {
 	OrderService orderService;
 	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
-	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) {
+	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
 		  OrderRegisterForm orderRegisterForm = null;  
 		  try {
 			  orderRegisterForm = orderService.registerOrder(eventRegister);
-			} catch (Exception e) {
+			} catch(NoTicketInventoryBlockedException e){
+				throw e;
+			}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		  return orderRegisterForm;
 	    }
 	  
-	  @RequestMapping("/create")
-	    public @ResponseBody OrderStatusDTO createOrder(OrderRegisterForm orderRegisterForm) {
+	  @RequestMapping(value = "/create", method = RequestMethod.POST)
+	    public @ResponseBody OrderStatusDTO createOrder(@RequestBody OrderRegisterForm orderRegisterForm) {
 		  OrderStatusDTO status = new OrderStatusDTO();
 		  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm);
 		  try {
@@ -98,6 +102,7 @@ public class OrderController {
 			  suborderDTO.setTicketId(ticketRegisterDTO.getTicketId());
 			  suborderDTO.setTicketPrice(ticketRegisterDTO.getPrice());
 			  suborderDTO.setTicketRegisterId(ticketRegisterDTO.getId());
+			  suborderDTO.setTicketName(ticketRegisterDTO.getTicketName());
 			  suborders.add(suborderDTO);
 			  suborderMap.put(suborderDTO.getTicketId(), suborderDTO);
 			  

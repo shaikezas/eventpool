@@ -1,6 +1,8 @@
-var EventPageController = function($scope, $http,$routeParams, srvevent) {
-    $scope.event = {};
-    $scope.editMode = false;
+var EventPageController = function($scope, $http,$routeParams, srvevent,$location,Data) {
+    $scope.event = Data.getEventData();
+    $scope.editMode = true;
+    $scope.orderRegister = Data.getOrderRegisterData();
+    $scope.status = {};
     
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
@@ -38,10 +40,23 @@ var EventPageController = function($scope, $http,$routeParams, srvevent) {
     	
 
         $http.post('order/register',eventRegister).success(function(data) {
-        	alert(data);
-        }).error(function() {
-            $scope.setError('Could not register');
+        	$scope.orderRegister = data;
+        	Data.setOrderRegisterData(data);
+        	Data.setEventData($scope.event);
+        	$location.url("/order");
+        }).error(function(error) {
+            alert(data);
         });
+    }
+    
+    $scope.bookTicket = function() {
+    	 $http.post('order/create',$scope.orderRegister).success(function(data) {
+         	$scope.editMode = false;
+         	$scope.status = data;
+         	
+         }).error(function(xhr, status, err) {
+             alert(xhr.responseText);
+         });
     }
     
 }

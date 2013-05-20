@@ -12,7 +12,9 @@ import org.dozer.Mapper;
 import org.dozer.MapperAware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DateCustomConverter extends DozerConverter<String, Date> implements
 		MapperAware {
 	private static final Logger logger = LoggerFactory.getLogger(DateCustomConverter.class);
@@ -48,6 +50,10 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 	public String convertFrom(Date source,String destination) {
 		String pattern = "dd-MMM-yyyy HH:mm";
 		return getDateString(source, pattern);
+	}
+	
+	public String convertFrom(Date source) {
+		return convertFrom(source,"");
 	}
 
 	private String getDateString(Date source, String pattern) {

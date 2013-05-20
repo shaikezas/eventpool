@@ -323,7 +323,7 @@
 											  </select>
 										  </td>
 								          <td>
-								        	<button class="btn" ng-click="showticketsettings(ticket, true)">Setting </button>
+								        	<button class="btn" ng-click="isCollapsed = !isCollapsed">Setting </button>
 				          	
 								          	</td>
 								          <td>
@@ -337,11 +337,12 @@
 								      </tbody>
 								    </table>
 								    
-								    		 <div ng-show="ticket.showsettings == true">
+								    		 <!-- <div ng-show="ticket.showsettings == true"> -->
+								    		 <div collapse="isCollapsed">
 				           <div class="control-group">
 						<div class="controls" style="text-align: right">
 							    	
-							      <button id="hide" type="button" class="close" ng-click="showticketsettings(ticket, false)">X</button>
+							      <!-- <button id="hide" type="button" class="close" ng-click="showticketsettings(ticket, false)">X</button> -->
 							      
 							    </div>
 								    <label class="control-label" for="ticketDescription">Ticket Description :*</label>

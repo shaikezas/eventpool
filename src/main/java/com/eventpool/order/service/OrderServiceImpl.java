@@ -31,6 +31,7 @@ import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketRegister;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
+import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.OrderRepository;
@@ -79,6 +80,8 @@ public class OrderServiceImpl implements OrderService{
 	 @Resource
 	 private RegistrationRepository registrationRepository;
 	 
+	 @Resource
+	 private DateCustomConverter dateCustomConverter;
 	public Order createOrder(OrderDTO orderDTO) throws Exception {
 		Set<ConstraintViolation<OrderDTO>> validate = validator.validate(orderDTO);
         if (!CollectionUtils.isEmpty(validate)) {
@@ -149,6 +152,10 @@ public class OrderServiceImpl implements OrderService{
 			 orderRegisterForm.setDicountCoupon(eventRegister.getDicountCoupon());
 			 orderRegisterForm.setPaymentCurrency(eventRegister.getPaymentCurrency());
 			 orderRegisterForm.setSubCategoryId(eventRegister.getSubCategoryId());
+			 orderRegisterForm.setVenueName(event.getVenueName());
+			 orderRegisterForm.setVenueAddress(event.getVenueAddress().getAddress1());
+			 orderRegisterForm.setStartDate(dateCustomConverter.convertFrom(event.getStartDate()));
+			 orderRegisterForm.setEndDate(dateCustomConverter.convertFrom(event.getEndDate()));
      		 
 			if(infoType.equals(EventInfoType.ATTENDEE)){
 				isAttendeeRequired = true;
@@ -159,10 +166,12 @@ public class OrderServiceImpl implements OrderService{
 		 orderRegisterForm.setTicketRegisters(ticketRegisterDTOs);
 		 TicketRegisterDTO ticketRegisterDTO = null;
 		 TicketRegisterForm ticketRegisterForm = null;
+		 int totalTickets = 0;
 		for(TicketRegister ticketRegister: ticketRegisters){
 			ticketRegisterDTO = new TicketRegisterDTO();
 			eventpoolMapper.map(ticketRegister, ticketRegisterDTO);
 			ticketRegisterDTOs.add(ticketRegisterDTO);
+			totalTickets += ticketRegisterDTO.getQty();
 			if(isAttendeeRequired){
 				ticketRegisterForm = new TicketRegisterForm();
 				ticketRegisterForm.setTicketId(ticketRegisterDTO.getTicketId());
@@ -171,6 +180,7 @@ public class OrderServiceImpl implements OrderService{
 			}
 			grossAmount = grossAmount + ticketRegisterDTO.getQty() * ticketRegisterDTO.getPrice();
 		}
+		orderRegisterForm.setTotalTickets(totalTickets);
 		orderRegisterForm.setNetAmount(grossAmount - orderRegisterForm.getDiscountAmount()); 
 		orderRegisterForm.setGrossAmount(grossAmount);
 		return orderRegisterForm;
@@ -195,9 +205,9 @@ public class OrderServiceImpl implements OrderService{
 		    if(ticketInventoryDetails.isInvBlocked()){
 		    	ticketRegister.setQty(ticketInventoryDetails.getBlockingQty());
 		    	ticketRegister = ticketRegisterRepository.save(ticketRegister);
-		    	unBlockedService.registerTask(ticketRegister, 30);
+		    	unBlockedService.registerTask(ticketRegister, 60);
 		    }else{
-		    	throw new NoTicketInventoryBlockedException("Unable to block Ticket");
+		    	throw new NoTicketInventoryBlockedException("Unable to block Ticket : sellable quantity is "+ticketInventoryDetails.getSellableQty());
 		    }
 		    ticketRegisters.add(ticketRegister);
 		}

@@ -60,6 +60,5 @@
 	<script src="lib/fileupload/load-image.min.js"></script>    
 	    
 
-
   </body>
 </html>
