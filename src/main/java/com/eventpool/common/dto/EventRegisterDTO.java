@@ -13,6 +13,7 @@ public class EventRegisterDTO {
 	private Double discountAmount = 0.0D; 
 	private Integer subCategoryId;
 	private String organizerName; 
+
 	
 	public Long getEventId() {
 		return eventId;

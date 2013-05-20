@@ -1,6 +1,7 @@
 var EventPageController = function($scope, $http,$routeParams, srvevent) {
     $scope.event = {};
-    $scope.editMode = false;
+    $scope.editMode = true;
+    $scope.orderRegister = {};
     
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
@@ -16,6 +17,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent) {
     
     $scope.registerTicket = function() {
 //        $scope.resetError();
+    	$scope.editMode = false;
     	var tickets = $scope.event.tickets;
     	var eventRegister = new eventpool.eventRegister();
     	eventRegister.eventId = $scope.event.id;
@@ -38,10 +40,20 @@ var EventPageController = function($scope, $http,$routeParams, srvevent) {
     	
 
         $http.post('order/register',eventRegister).success(function(data) {
-        	alert(data);
-        }).error(function() {
-            $scope.setError('Could not register');
+        	$scope.orderRegister = data;
+        	
+        }).error(function(error) {
+            alert(data);
         });
+    }
+    
+    $scope.bookTicket = function() {
+    	 $http.post('order/create',$scope.orderRegister).success(function(data) {
+         	alert(data);
+         	
+         }).error(function(error) {
+             alert(error);
+         });
     }
     
 }

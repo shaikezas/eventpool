@@ -47,6 +47,8 @@ public class SuborderDTO extends AuditableIdDTO {
 	
 	private Long ticketRegisterId;
 	
+	private String ticketName;
+	
 	private List<RegistrationDTO> registrations;
 
 	public TicketDTO getTicket() {
@@ -162,6 +164,17 @@ public class SuborderDTO extends AuditableIdDTO {
 	public void setTicketId(Long ticketId) {
 		this.ticketId = ticketId;
 	}
+	
+	
+	public String getTicketName() {
+		return ticketName;
+	}
+	
+	
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
+	
 	
 	
 	
