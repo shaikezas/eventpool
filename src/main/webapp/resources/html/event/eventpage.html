@@ -15,6 +15,7 @@
             	
             	
             	<div class="span8 " >
+            	<div class="span8 " ng-show="editMode==true">
 					<table class="table table-condensed" >
 					<thead>
 						<tr>
@@ -159,6 +160,22 @@
 						</ul>
 					</div>
 					
+					<div class="contBox" ng-show="editMode==false">
+						Order Summary
+						
+						<ul class="orderDetails">
+							<li>
+								Not of Tickets : {{ orderRegister.totalTickets}}
+							</li>
+							<li>
+								Gross Amount: {{orderRegister.grossAmount}}
+							</li>
+							<li>
+								Payable Amount : {{orderRegister.netAmount}}	
+							</li>
+							
+						</ul>
+					</div>
 				</div>
 				
 				

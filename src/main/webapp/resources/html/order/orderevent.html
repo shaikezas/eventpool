@@ -19,6 +19,11 @@
 				
 				      	
             	<div class="span8 " >
+            	<h1>Order Summary</h1>
+            	
+            	
+            	
+            	<div class="span8 ">
 					<table class="table table-condensed" >
 					<thead>
 						<tr>
@@ -142,6 +147,16 @@
 							</li>
 							<li>
 								Payable Amount : {{orderRegister.netAmount}}	
+								{{ orderRegister.venueName}}
+							</li>
+							<li>
+								{{ orderRegister.venueAddress}}
+							</li>
+							<li>
+								{{orderRegister.startDate}}
+							</li>
+							<li>
+								{{orderRegister.endDate}}	
 							</li>
 							
 						</ul>
