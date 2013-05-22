@@ -1,0 +1,416 @@
+		        <div class="span9">
+		      
+			            <h1>Create Event</h1>
+			            
+			 <!--  Create Event Nav Tab  
+			 ================================================== -->           
+			            <ul id="myTab" class="nav nav-tabs">
+				              <li class="active">	<a href="#eventInformation" data-toggle="tab">	Event Information	</a></li>
+				              <li>					<a href="#venueInformation" data-toggle="tab">	Venue Information	</a></li>
+				              <li>					<a href="#organizerInformation" data-toggle="tab">Organizer Information	</a></li>
+				              <li>					<a href="#ticketInformation" data-toggle="tab">	Ticket Information	</a></li>
+			            </ul>
+			 <!--  Create Event Nav Tab -->  
+			 
+			 <!-- Create Event Tab Content Start  
+			 ================================================== -->
+			            
+			            <div id="myTabContent" class="tab-content">
+			            	
+			              <div class="tab-pane fade in active" id="eventInformation">
+			                
+								<form class="form-horizontal" >
+								
+							  <div class="control-group">
+							    <label class="control-label" for="eventTitle">Event Title :</label>
+							    <div class="controls">
+							      <input type="text" id="eventTitle" ng-model="event.title" placeholder="Title" required  >
+							    </div>
+							  </div>
+							  
+							    <div class="control-group">
+							    <label class="control-label" for="description">Description :</label>
+							    <div class="controls">
+							      <textarea id="description" required ng-model="event.description" placeholder="Description" required></textarea>
+							    </div>
+							  </div>
+							  
+							  
+							  
+							    <div class="control-group">
+							    <label class="control-label" for="startDate">Start Date & Time :</label>
+							    <div class="controls">
+								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="event.startDate" 
+				      										placeholder="Start Date and Time" readonly required></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
+									</div>
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="endDate">End Date & Time :</label>
+							    <div class="controls">
+								 	<div id="datetimepickerEnd" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="event.endDate" 
+				      										placeholder="End Date and Time" readonly required></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
+									</div>
+							    </div>
+							  </div>
+							  
+							  
+							  <div class="control-group ">
+							    <div class="controls">
+							      <label class="checkbox">
+							        <input type="checkbox" ng-model="event.isPrivate">Is Event Private <br>
+							        <span class="info">(If Checked Event will not be available in search, You can directly give Event link for registration.)!</span>
+							      </label>
+							    </div>
+							  </div>
+							  <div class="control-group">
+							    <label class="control-label" for="facebookURL">Event Facebook URL :</label>
+							    <div class="controls">
+							      <input type="text" id="eventTitle" ng-model="event.faceBookUrl" >
+							    </div>
+							  </div>							  
+							  							  
+							  
+
+							  <div class="control-group">
+							    <label class="control-label" for="category">Category :</label>
+							    <div class="controls">
+									  <select id="Category" ng-model="category" ng-change="fetchSubCategories()"
+													ng-options="cat.value as cat.key for cat in categories">
+													<option value="">-- Select Category --</option>
+										</select>
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="subCategory">Sub Category :</label>
+							    <div class="controls">
+							      	<select id="Subcategory" ng-model="event.subCategoryId"
+													ng-options="subcat.value as subcat.key for subcat in subcategories">
+													<option value="">-- Select SubCategory --</option>
+										</select>
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
+							    <div class="controls">
+							      
+							       <input type="file" class="fileupload" name="file" ng-model="event.banner"
+											data-url="upload/file" fileupload-plugin/>
+											
+											
+							      						      
+							    </div>
+							  </div>
+							  
+							
+							  <div class="control-group">
+							    <label class="control-label" for="url">Event URL :</label>
+							    <div class="controls">
+							     www.eventpool.com\events\<input type="text" id="url" ng-model="event.eventUrl"  >
+							    </div>
+							  </div>		
+							  
+							    <div class="control-group">
+							    <label class="control-label" for="eventSearch">Event search key words :</label>
+							    <div class="controls">
+							      <input type="text" id="eventSearch" ng-model="event.keyWords" placeholder="Event Search" >
+							    </div>
+							    </div>
+							  
+							  <div class="control-group">
+							    <div class="controls">
+							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent()">Save & Exit</button>
+							      <a href="#venueInformation" data-toggle="tab"><button type="button" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode">Next</button></a>
+							    </div>
+							  </div>
+							</form>
+							        
+			               </div>
+			             
+			              <div class="tab-pane fade" id="venueInformation">
+			                
+								<form class="form-horizontal">
+							  
+								  <div class="control-group">
+								    <div class="controls">
+								      
+								        <input type="checkbox" ng-model="event.isWebinar" onclick="toggle('.venueInfo', this)" > Is Webinar
+								      
+								    </div>
+								  </div>
+							  <div class="venueInfo">
+								
+							  <div class="control-group">
+							    <label class="control-label" for="venueTitle">Venue Title :</label>
+							    <div class="controls">
+							      <input type="text" id="eventTitle" ng-model="event.venueName" required min="6" >
+							    </div>
+							  </div>	
+							  						  
+							  
+								  <div class="control-group">
+								    <label class="control-label" for="venueAddress1">Venue Address1 :*</label>
+								    <div class="controls">
+								      <textarea id="venueAddress2" rows="3" ng-model="event.address1" ></textarea>
+								    </div>
+								  </div>
+								  <div class="control-group">
+								    <label class="control-label" for="venueAddress2">Venue Address2 :*</label>
+								    <div class="controls">
+								      <textarea id="venueAddress2" rows="3" ng-model="event.address2" ></textarea>
+								    </div>
+								  </div>								  
+							  
+							    <div class="control-group" ng-class="{open: focused && searchText.length > 0}">
+								   <label class="control-label" for="cityId">Search City :*</label>
+								   <div class="controls">
+								     <input type="text" ng-model="searchText"   
+	            					placeholder="Search"  ng-change="getsearchResults(searchText)">
+	            					</div>
+	            			 		 <ul id="Ul1" class="controls">
+	            					 <li ng-repeat="item in searchResults | filter:searchText"> 
+	                                
+										<a href="javascript:void(0);" ng-click="selectMe(item)">{{item}}</a></li>
+            						</ul>
+	                                  </div>
+	                         
+							  	
+								  <div class="control-group">
+								    <label class="control-label" for="state">City :*</label>
+								    <div class="controls">
+								    <input type="text" id="eventCityName" ng-model="city" disabled="disabled" >
+								    </div>
+								  </div>
+							  
+								  <div class="control-group">
+								    <label class="control-label" for="state">State :*</label>
+								    <div class="controls">
+								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
+								    </div>
+								  </div>
+								  
+								   <div class="control-group">
+								    <label class="control-label" for="state">Country :*</label>
+								    <div class="controls">
+										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
+								    </div>
+								  </div>
+								  
+							  
+							  
+								  <div class="control-group">
+								    <label class="control-label" for="inputEmail">Pincode  :</label>
+								    <div class="controls">
+								      <input type="text" id="inputEmail" ng-model="event.zipCode">
+								    </div>
+								  </div>
+							  </div>
+								  <div class="control-group">
+								    <div class="controls">
+								      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+								      <a href="#organizerInformation" data-toggle="tab"><button type="button" class="btn">Next</button></a>
+								    </div>
+								  </div>
+							  
+							</form>
+			
+			              </div>
+			              
+			              <div class="tab-pane fade" id="organizerInformation">
+			                
+								<form class="form-horizontal">
+				           <div class="control-group">
+							    <label class="control-label" for="organizerName">Organizer Name :</label>
+							    <div class="controls">
+							      <input type="text" id="organizerName" ng-model="event.organizerName" required min="6" >
+							    </div>
+							  </div>							  
+							  
+								  <div class="control-group">
+								    <label class="control-label" for="organizerDescription">Organizer Description :*</label>
+								    <div class="controls">
+								      <textarea id="organizerDescription" rows="3" ng-model="event.organizerDescription" ></textarea>
+								    </div>
+								  </div>
+							  
+							  
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="contactDetails">Event Contract Info :*</label>
+							    <div class="controls">
+							      <textarea id="contactDetails" rows="3" ng-model="event.contactDetails" placeholder="Enter Name(s), Phone or Email:"></textarea>
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="website">Event Website URL :</label>
+							    <div class="controls">
+									  <input type="text" id="website" ng-model="event.eventWebSiteUrl" >
+							    </div>
+							  </div>
+							  
+							  
+							 <div class="control-group">
+							    <label class="control-label" for="uploadLogo">Organizer logo :</label>
+							    <div class="controls">
+							      
+							       <input type="file" class="fileupload" name="file" ng-model="event.organizerLogo"
+											data-url="upload/file" fileupload-plugin/>
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <div class="controls">
+							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+							      <a href="#ticketInformation" data-toggle="tab"><button type="button" class="btn">Next</button></a>
+							    </div>
+							  </div>
+							  
+							</form>
+			
+			              </div>
+			              
+			              <div class="tab-pane fade" id="ticketInformation">				                
+				                
+						        <form class="form-horizontal">
+							  
+							  
+									<div class="control-group">
+									    <label class="control-label" for="inputEmail">Add Ticket :</label>
+									    <div class="controls">
+									      <button type="button" class="btn"  ng-click="addNewFreeTicket(event)">Free</button>
+									      <button type="buttom" class="btn" ng-click="addNewPaidTicket(event)">Paid</button>   
+									    </div>
+									</div>
+						
+							  <table>
+							  <tbody>
+							   <tr ng-repeat="ticket in event.tickets" >
+							   <td>
+									<table class="table table-condensed" >
+								      <thead>
+								        <tr>
+								        	
+					  	 		
+								          <th>TICKET NAMME</th>
+								          <th>TICKET QUANTITY</th>
+								          <th>TICKET PRICE</th>
+								          <th>SALES STATUS   |   Fee    |   Buyer Total</th>
+								          <th>  </th>
+								          <th>  </th>
+								        </tr>
+								      </thead>
+								      <tbody>
+								        <tr>
+								          <td> <input type="text"  ng-model="ticket.name"></td>
+								          <td> <input type="text"  ng-model="ticket.quantity"></td>
+								          <td><span ng-show="ticket.showFree">FREE</span><input type="text" ng-show="ticket.showPrice" ng-model="ticket.price" ></td>
+								          <td>
+									          <select>
+												  <option>On Sale</option>
+											  </select>
+										  </td>
+								          <td>
+								        	<button class="btn" ng-click="isCollapsed = !isCollapsed">Setting </button>
+				          	
+								          	</td>
+								          <td>
+								          	
+								          	<button type="button" class="btn" ng-click="removeTicket($index)" >X</button>
+								          	
+								          </td>
+								        </tr>
+								      
+								        
+								      </tbody>
+								    </table>
+								    
+								    		 <!-- <div ng-show="ticket.showsettings == true"> -->
+								    		 <div collapse="isCollapsed">
+				           <div class="control-group">
+						<div class="controls" style="text-align: right">
+							    	
+							      <!-- <button id="hide" type="button" class="close" ng-click="showticketsettings(ticket, false)">X</button> -->
+							      
+							    </div>
+								    <label class="control-label" for="ticketDescription">Ticket Description :*</label>
+								    <div class="controls">
+								      <textarea id="ticketDescription" rows="3" ng-model="ticket.description" ></textarea>
+								    </div>
+								  </div>
+							   <div class="control-group">
+							    <label class="control-label" for="ticketStartDate">Ticket Sale Start On :</label>
+							    <div class="controls">
+								 	<div id="datetimepickerStart1" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="ticket.saleStart" 
+				      										placeholder="Sale Start On" readonly></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
+									</div>
+							    </div>
+							  </div>
+							  
+							   <div class="control-group">
+							    <label class="control-label" for="ticketStartDate">Ticket Sale End On :</label>
+							    <div class="controls">
+								 	<div id="datetimepickerEnd1" class="input-append date datetimepicker">
+				      					<input type="text" datetime-picker  ng-model="ticket.saleEnd" 
+				      										placeholder="Sale Ends On" readonly></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
+									</div>
+							    </div>
+							  </div>
+							  
+							      <div class="control-group">
+							    <label class="control-label" for="minQty">Min Qty For Order :</label>
+							    <div class="controls">
+							      <input type="text" id="ticketMinQty" ng-model="ticket.minQty" >
+							    </div>
+							  </div>							  
+							      <div class="control-group">
+							    <label class="control-label" for="tcktMaxQty">Max Qty For Order :</label>
+							    <div class="controls">
+							      <input type="text" id="tcktMaxQty" ng-model="ticket.maxQty" >
+							    </div>
+							  </div>
+							 
+							  
+							 
+							  
+							</div>
+							
+							
+
+							  </td>
+							   </tr>
+    </tbody>
+</table>
+	 <div class="control-group">
+							    <div class="controls">
+							    
+							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+							     </div>
+							  </div>
+								</form >
+							
+			              </div>
+			              
+			              
+			            </div>
+			          
+			 <!-- Create Event Tab Content End -->           
+		          
+		          </div>
+		
+    
+   
+
+
+
+

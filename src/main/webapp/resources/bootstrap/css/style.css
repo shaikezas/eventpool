@@ -366,8 +366,8 @@ input[type="color"],
 }
 
 .eventBaner{
-	/* background:#e5e5e5;  */
-	height: 180px; 
+	background:#e5e5e5; 
+	height: 200px; 
 	border-radius: 5px;
 }
 
@@ -378,3 +378,27 @@ input[type="color"],
 	padding: 2px 2px 2px 2px;
 }
 
+
+.smmary li{
+	padding:2px;
+	border-bottom: 1px dotted #ccc;
+}
+
+.orderFrom{
+	border-right: 1px solid #ddd;
+}
+.orderFrom .control-group{
+	margin: 0px
+} 
+
+.orderFrom .control-label {
+	margin: 0px
+} 
+
+.max-label   {
+	width: 410px !important;
+	padding-right: 10px;
+}
+.checkbox1 input[type="checkbox"] {
+	margin:0px 10px 0px 0px 
+}

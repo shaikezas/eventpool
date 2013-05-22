@@ -1,0 +1,38 @@
+<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+
+<div class="tabBody">
+	<div ng-include src="'html/header.html'"></div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<div class="well sidebar-nav" >
+					<ul class="nav nav-list">
+						<li class="nav-header">Sidebar</li>
+						<li ng-class="{active: templateSelect=='edit'}">
+						<a  href ng-click="template = 'html/event/editevent.html';templateSelect= 'edit'">Edit Event</a>
+						</li>
+						<li ng-class="{active: templateSelect=='orderForm'}">
+						<a  href ng-click="template = 'html/event/eventsettings.html';templateSelect= 'orderForm'">Order Form</a>
+						</li>
+					</ul>
+				</div>
+				<!--/.well -->
+			</div>
+			<!--/span-->
+			<div ng-include src="template"></div>
+		</div>
+
+
+
+
+
+
+	</div>
+
+</div>
+
+
+
+
+
+

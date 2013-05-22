@@ -9,19 +9,19 @@
          
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active">
-                <a href="#/home">Home</a>
+              <li ng-class="{active : header=='home'}">
+                <a href="#/home" >Home</a>
               </li>
-              <li class="">
-                <a href="#/findevent">Find Event</a>
+              <li ng-class="{active : header=='findevent'}">
+                <a href="#/findevent" >Find Event</a>
               </li>
-              <li class="">
-                <a href="#/createevent">Create Event</a>
+              <li ng-class="{active : header=='create'}">
+                <a href="#/createevent" >Create Event</a>
               </li>
-              <li class="">
-                <a href="#/myevents">My Events</a>
+              <li ng-class="{active : header=='myevents'}">
+                <a href="#/myevents" >My Events</a>
               </li>
-              <li class="">
+              <li ng-class="{active : header=='mytickets'}">
                 <a href="#/mytickets">My Tickets</a>
               </li>
             </ul>
