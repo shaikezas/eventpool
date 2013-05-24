@@ -40,22 +40,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.event.eventUrl = $scope.event.title;
     	};
     
-    $scope.updateUrl = function() {
-    	$scope.event.eventUrl = $scope.event.title;
-    	};
-    
-    $scope.updateUrl = function() {
-    	$scope.event.eventUrl = $scope.event.title;
-    	};
-    
-    $scope.updateUrl = function() {
-    	$scope.event.eventUrl = $scope.event.title;
-    	};
-    
-    $scope.updateUrl = function() {
-    	$scope.event.eventUrl = $scope.event.title;
-    	};
-    
+   
    /* $scope.getsearchResults = function(query) {
 		search.getbasicsearchresults(query).success(function(data) {
 			$scope.searchResults = data;
@@ -99,7 +84,17 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "FREE";
         ticket.showFree = true;
-        ticket.saleStart = $scope.event.startDate;
+
+        var now = new Date();
+        ticket.saleStart = now;
+        if(angular.isDefined($scope.event.startDate)){
+        var sEnd = $scope.event.startDate;
+        sEnd = new Date(sEnd);
+        var millSecs = sEnd.getTime();
+        millSecs = millSecs - 3600000;
+        sEnd = new Date(millSecs);
+        ticket.saleEnd = sEnd;
+        }
         ticket.minQty = 1;
         ticket.maxQty = 5;
         $scope.event.tickets.push(ticket);
@@ -113,7 +108,16 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "PAID";
         ticket.showPrice = true;
-        ticket.saleStart = $scope.event.startDate;
+        var now = new Date();
+        ticket.saleStart = now;
+        if(angular.isDefined($scope.event.startDate)){
+        var sEnd = $scope.event.startDate;
+        sEnd = new Date(sEnd);
+        var millSecs = sEnd.getTime();
+        millSecs = millSecs - 3600000;
+        sEnd = new Date(millSecs);
+        ticket.saleEnd = sEnd;
+        }
         ticket.minQty = 1;
         ticket.maxQty = 5;
         $scope.event.tickets.push(ticket);
