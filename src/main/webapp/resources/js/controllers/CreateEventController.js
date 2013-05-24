@@ -23,6 +23,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     };
     $scope.myevent();
     
+    $scope.updateUrl = function() {
+    	$scope.event.eventUrl = $scope.event.title;
+    	};
+    
    /* $scope.getsearchResults = function(query) {
 		search.getbasicsearchresults(query).success(function(data) {
 			$scope.searchResults = data;
@@ -57,6 +61,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "FREE";
         ticket.showFree = true;
+        ticket.saleStart = $scope.event.startDate;
+        ticket.minQty = 1;
+        ticket.maxQty = 5;
         $scope.event.tickets.push(ticket);
     }
     
@@ -68,6 +75,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "PAID";
         ticket.showPrice = true;
+        ticket.saleStart = $scope.event.startDate;
+        ticket.minQty = 1;
+        ticket.maxQty = 5;
         $scope.event.tickets.push(ticket);
     }
     
