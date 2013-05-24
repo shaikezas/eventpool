@@ -57,7 +57,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         if(angular.isUndefined($scope.event.tickets)) {	
         	$scope.event.tickets = [];
         }
-        
+      
         var ticket = new eventpool.ticket();
         ticket.ticketType = "FREE";
         ticket.showFree = true;
