@@ -36,6 +36,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     };
     $scope.myevent();
     
+    $scope.updateUrl = function() {
+    	$scope.event.eventUrl = $scope.event.title;
+    	};
+    
     $scope.fetchEventsList = function() {
         $http.get('event/eventslist.json').success(function(event){
             $scope.event = event;
@@ -66,7 +70,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         if(angular.isUndefined($scope.event.tickets)) {	
         	$scope.event.tickets = [];
         }
-        
+      
         var ticket = new eventpool.ticket();
         ticket.ticketType = "FREE";
         ticket.showFree = true;
