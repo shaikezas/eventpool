@@ -264,7 +264,7 @@ public class EventpoolMapper {
 			eventDTO.setEventType(EventType.NOREGISTRATION);
 		}
 		
-		OrderFormSettings orderFormSettings = eventForm.getOrderFormSettings();
+		/*OrderFormSettings orderFormSettings = eventForm.getOrderFormSettings();
 		if(orderFormSettings!=null){
 			JSONObject json = new JSONObject(orderFormSettings);
 			EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
@@ -273,7 +273,7 @@ public class EventpoolMapper {
 				eventDTO.setEventSettingsDTO(eventSettingsDTO);
 			}
 			eventSettingsDTO.setOrderFromSettings(json.toString());
-		}
+		}*/
 	}
 	
 	private boolean checkIfNull(EventForm eventForm) {
@@ -322,12 +322,12 @@ public class EventpoolMapper {
 			}
 			eventForm.setTickets(ticketForms);
 		}
-		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
+/*		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
 		if(eventSettingsDTO!=null){
 			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();
 			OrderFormSettings orderFormSettingObject =(OrderFormSettings) JSONObject.stringToValue(orderFromSettings);
 			eventForm.setOrderFormSettings(orderFormSettingObject);
-		}
+		}*/
 	}
 
 }

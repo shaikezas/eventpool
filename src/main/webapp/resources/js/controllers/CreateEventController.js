@@ -4,14 +4,27 @@
  * CreateEventController
  * @constructor
  */
-var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent) {
+var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent,eventsettings) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
     $scope.isCollapsed = true;
+    $scope.eventFormSettings = {};
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
       $scope.header = "create";
+      
+      $scope.updateUrl = function(){
+    	  $scope.event.eventUrl = $scope.event.title;
+      }
+      
+      $scope.updateQuestions = function(){
+    	  $http.post('event/updatequestions', $scope.eventFormSettings).success(function(data) {
+//            $scope.fetchEventsList();
+        }).error(function() {
+            $scope.setError('Could not add a new event');
+        });
+      }
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
     	srvevent.myevent($routeParams).success(function(data) {
@@ -23,20 +36,20 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     };
     $scope.myevent();
     
-   /* $scope.getsearchResults = function(query) {
-		search.getbasicsearchresults(query).success(function(data) {
-			$scope.searchResults = data;
-	    }).error(function(data) {
-	    	
-	    });
-	};*/
-	
-	
     $scope.fetchEventsList = function() {
         $http.get('event/eventslist.json').success(function(event){
             $scope.event = event;
         });
     }
+    
+    $scope.fetchEventSettings = function() {
+    	eventsettings.geteventsettings($scope.event.id).success(function(eventFormSettings) {
+			$scope.eventFormSettings = eventFormSettings;
+	    }).error(function(data) {
+	    	
+	    });
+    }
+
 
     $scope.addNewEvent = function() {
         $scope.resetError();
@@ -57,6 +70,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "FREE";
         ticket.showFree = true;
+        ticket.saleStart = $scope.event.startDate;
+        ticket.minQty = 1;
+        ticket.maxQty = 5;
         $scope.event.tickets.push(ticket);
     }
     
@@ -68,6 +84,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "PAID";
         ticket.showPrice = true;
+        ticket.saleStart = $scope.event.startDate;
+        ticket.minQty = 1;
+        ticket.maxQty = 5;
         $scope.event.tickets.push(ticket);
     }
     
@@ -106,6 +125,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
             $scope.setError('Could not remove event');
         });
     }
+    
 
     $scope.removeAllEvents = function() {
         $scope.resetError();

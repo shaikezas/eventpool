@@ -29,7 +29,7 @@ public class EventDTO extends AuditableIdDTO {
 	private String organizerName;
 	private String organizerDescription;
 	private String contactDetails;
-	private EventInfoType infoType;
+	private EventInfoType infoType = EventInfoType.BASIC;
 	private List<TicketDTO> tickets;
 	private boolean isWebinar = false;
 	private String termsAndConditions;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
 
 @Component
@@ -22,5 +23,9 @@ public interface EventApi {
     public List<EventDTO> getAllEvents(Long userId) throws Exception;
     
     public EventDTO getEventByUrl(String eventUrl) throws Exception;
+
+	public void updateEventSettings(EventSettings settings);
+	
+	public EventSettings getEventSettings(Long eventId);
     
 }

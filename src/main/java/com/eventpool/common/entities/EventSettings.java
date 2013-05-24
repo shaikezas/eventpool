@@ -61,6 +61,9 @@ public class EventSettings extends AuditableEntity {
 	@Column(name="ORDER_FORM_SETTINGS")
 	private String orderFromSettings;
 	
+	@Column(name="EVENT_INFO_SETTINGS")
+	private String eventInfoSettings;
+	
 	public Event getEvent() {
 		return event;
 	}
@@ -156,6 +159,16 @@ public class EventSettings extends AuditableEntity {
 	public void setOrderFromSettings(String orderFromSettings) {
 		this.orderFromSettings = orderFromSettings;
 	}
+	
+	public String getEventInfoSettings() {
+		return eventInfoSettings;
+	}
+	
+	
+	public void setEventInfoSettings(String eventInfoSettings) {
+		this.eventInfoSettings = eventInfoSettings;
+	}
+	
 
 	
 }

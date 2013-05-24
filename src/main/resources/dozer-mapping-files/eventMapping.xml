@@ -107,6 +107,8 @@
 			<field><a>showRemainingTickets  </a><b>showRemainingTickets  </b></field>
 			<field><a>showTermsAndConditions</a><b>showTermsAndConditions</b></field>
 			<field><a>orderFromSettings</a><b>orderFromSettings</b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
+			<field><a>eventInfoSettings</a><b>eventInfoSettings</b></field>
 	</mapping>
 	
 	

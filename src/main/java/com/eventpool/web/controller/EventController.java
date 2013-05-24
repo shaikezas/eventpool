@@ -1,15 +1,19 @@
 package com.eventpool.web.controller;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,17 +22,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.EventInfoSettings;
+import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.entities.EventDefaultSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
-import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.common.type.QuestionType;
 import com.eventpool.common.type.TicketType;
+import com.eventpool.event.service.impl.EventDefaultSettingsService;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.web.forms.Dropdown;
 import com.eventpool.web.forms.EventForm;
+import com.eventpool.web.forms.EventFormSettings;
+import com.eventpool.web.forms.EventQuestion;
 import com.eventpool.web.forms.MyEventForm;
 import com.eventpool.web.forms.TicketForm;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Created with IntelliJ IDEA.
@@ -45,6 +57,9 @@ public class EventController {
     
     @Resource
     private EventpoolMapper mapper;
+    
+    @Resource
+    EventDefaultSettingsService infoService;
     
     @Resource
     private TicketInventoryService ticketInventoryService;
@@ -66,7 +81,7 @@ public class EventController {
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
     	eventDTO.setCreatedBy(1L);
-    	updateEventType(eventDTO);
+//    	updateEventType(eventDTO);
         try {
 			eventService.addEvent(eventDTO);
 		} catch (Exception e) {
@@ -151,7 +166,59 @@ public class EventController {
     	 	return form;
     }
     
+    @RequestMapping(value="/questions/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody EventFormSettings getEventSettings(@PathVariable Long eventid) throws Exception {
+    	System.out.println("Calling getEventSettings ..."+eventid);
+    	EventDTO event = eventService.getEventById(eventid);
+    	EventFormSettings form = new EventFormSettings();
+    	form.setEventId(eventid);
+    	form.setMap(getEventInfoSettings(event));
+    	
+    	 	return form;
+    }
     
+    
+    @RequestMapping(value = "/updatequestions", method = RequestMethod.POST)
+    public @ResponseBody String updateEventSettings(@RequestBody EventFormSettings form) throws Exception {
+    	System.out.println("Calling updateEventSettings ...");
+    	
+    	Map<String, List<EventInfoSettings>> map = form.getMap();
+    	Gson gson = new Gson();
+    	List<EventInfoSettings> eventInfoSettings = new ArrayList<EventInfoSettings>();
+    	for (Map.Entry<String,  List<EventInfoSettings>> entry : map.entrySet()) {
+    			List<EventInfoSettings> infoSettings = map.get(entry.getKey());
+    			for(EventInfoSettings info : infoSettings ){
+    				if(info.getIsValue()){
+    					eventInfoSettings.add(info);
+    				}
+    			}
+    			
+    	}
+    	EventDTO eventDTO = eventService.getEventById(form.getEventId());
+    	if(eventDTO.getEventSettingsDTO()==null){
+    		eventDTO.setEventSettingsDTO(new EventSettingsDTO());
+    	}
+    	System.out.println("JSON...Text "+gson.toJson(eventInfoSettings));
+    	eventDTO.getEventSettingsDTO().setEventInfoSettings(gson.toJson(eventInfoSettings));
+    	eventDTO.getEventSettingsDTO().setEventId(form.getEventId());
+    	eventDTO.getEventSettingsDTO().setCreatedBy(eventDTO.getCreatedBy());
+    	eventService.addEvent(eventDTO);
+    
+//    	System.out.println("JSON...Text "+getJsonString(eventInfoSettings).toString());
+    	
+    	/*EventDTO event = eventService.getEventById(form.getEventId());
+    	event.setInfoType(form.getInfoType());
+    	if(eventInfoSettings.size()>0){
+    		event.getEventSettingsDTO().setEventInfoSettings(getJsonString(eventInfoSettings).toString());
+    	}*/
+    	
+    	
+    	
+    	
+//    	form.setMap(infoService.getEventInfoSettings());
+    	
+    	 	return "";
+    }
     private void updateEventType(EventDTO dto){
     	Boolean isFree = false;
     	Boolean isPaid = false;
@@ -212,6 +279,72 @@ public class EventController {
 		destination = sdf.format(source);
 		return destination;
 	}
+    
+    
+    
+    private List<EventQuestion> getQuestions(){
+    	List<EventQuestion> questions = new ArrayList<EventQuestion>();
+    	EventQuestion question = new EventQuestion();
+    	question.setQuestion("Sex");
+    	question.setValue(true);
+    	questions.add(question);
+    	question.setType(QuestionType.RADIO);
+    	
+    	
+    	return questions;
+    }
+    
+    public Map<String,List<EventInfoSettings>>  getEventInfoSettings(EventDTO event){
+    	 Map<String,List<EventInfoSettings>> map = new LinkedHashMap<String,List<EventInfoSettings>>();
+    	List<EventInfoSettings> settings = infoService.getEventInfoSettings();
+    	List<EventInfoSettings> eventInfoSettings = new ArrayList<EventInfoSettings>();
+    	eventInfoSettings.addAll(settings);
+    	
+    	if(event.getEventSettingsDTO()!=null && event.getEventSettingsDTO().getEventInfoSettings()!=null){
+    		String infoSettings = event.getEventSettingsDTO().getEventInfoSettings();
+    		Gson gson = new Gson();
+    		Type type = new TypeToken<List<EventInfoSettings>>(){}.getType();
+    		List<EventInfoSettings> eventSettings = gson.fromJson(infoSettings, type);
+    		Collections.copy(eventInfoSettings, eventSettings);
+    	}
+    	
+			JSONObject json = new JSONObject();
+			System.out.println(json.toString());
+			for(EventInfoSettings setting : eventInfoSettings){
+				if(map.get(setting.getGroup())==null){
+					map.put(setting.getGroup(), new ArrayList<EventInfoSettings>());
+				}
+				
+				map.get(setting.getGroup()).add(setting);
+			}
+		return map;
+		
+		
+	} 
+    
+    /*private JSONObject getJsonString(List<EventInfoSettings> infoSettings) throws JSONException{
+    	    JSONObject responseDetailsJson = new JSONObject();
+    	    JSONArray jsonArray = new JSONArray(infoSettings);
+    	    responseDetailsJson.put("info",jsonArray);
+    	    return responseDetailsJson;
 
+    }*/
+    
+
+    /*List<Student> students = new ArrayList<Student>();
+    students.add(a);
+    students.add(b);
+    students.add(c);
+    students.add(d);
+
+    gson = new Gson();
+    String jsonStudents = gson.toJson(students);
+    System.out.println("jsonStudents = " + jsonStudents);
+
+    //
+    // Converts JSON string into a collection of Student object.
+    //
+    Type type = new TypeToken<List<Student>>(){}.getType();
+    List<Student> studentList = gson.fromJson(jsonStudents, type);*/
 }
 

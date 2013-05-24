@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
@@ -62,6 +63,10 @@ public class EventServiceImpl implements EventService {
 	public EventDTO getEventByUrl(String eventUrl) throws Exception {
 		return eventApi.getEventByUrl(eventUrl);
 	}
+	
+	public void updateEventSettings(EventSettings settings){
+		eventApi.updateEventSettings(settings);
+	}
 
 	public boolean publishEvent(Long eventId, boolean isPublish) throws Exception {
 		PublishEventCommand publishEventCommand = new PublishEventCommand();
@@ -75,5 +80,9 @@ public class EventServiceImpl implements EventService {
 		publishEventCommand.setEventUrl(eventUrl);
 		publishEventCommand.setPublish(isPublish);
 		return eventCommandService.executeCommand(publishEventCommand);
+	}
+
+	public EventSettings getEventSettings(Long eventId) {
+		return eventApi.getEventSettings(eventId);
 	}
 }

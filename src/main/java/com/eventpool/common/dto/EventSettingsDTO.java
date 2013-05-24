@@ -19,6 +19,7 @@ public class EventSettingsDTO extends AuditableIdDTO {
 	private boolean showRemainingTickets;
 	private boolean showTermsAndConditions;
 	private String orderFromSettings;
+	private String eventInfoSettings;
 	
 	public Long getEventId() {
 		return eventId;
@@ -108,5 +109,12 @@ public class EventSettingsDTO extends AuditableIdDTO {
 		this.orderFromSettings = orderFromSettings;
 	}
 
+	public String getEventInfoSettings() {
+		return eventInfoSettings;
+	}
+	
+	public void setEventInfoSettings(String eventInfoSettings) {
+		this.eventInfoSettings = eventInfoSettings;
+	}
 	
 }

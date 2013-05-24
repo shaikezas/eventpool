@@ -90,3 +90,17 @@ AppServices.service('srvevent', function ($http) {
       };
       
 });
+
+AppServices.service('eventsettings', function ($http) {
+
+    return {
+geteventsettings: function(eventid) {
+	  var config = {
+        method: "GET",
+        url: "event/questions/"+eventid
+    };
+	  return $http(config);
+}
+    
+    }
+});

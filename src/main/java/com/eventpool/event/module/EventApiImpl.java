@@ -12,11 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.entities.Media;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
+import com.eventpool.common.repositories.EventSettingsRepository;
 
 
 @Component
@@ -32,6 +34,9 @@ public class EventApiImpl implements EventApi{
 
     @Resource
     private EventMediaRepository eventMediaRepository;
+    
+    @Resource
+    private EventSettingsRepository eventSettingsRepository;
     
     @Transactional(rollbackFor=RuntimeException.class)
     public EventDTO saveEventDTO(EventDTO eventDTO){
@@ -92,5 +97,15 @@ public class EventApiImpl implements EventApi{
 		EventDTO eventDTO = new EventDTO();
 		eventpoolMapper.mapEventDTO(event, eventDTO);
 		return eventDTO;
+	}
+
+	public void updateEventSettings(EventSettings settings) {
+		eventSettingsRepository.save(settings);
+		
+	}
+
+	public EventSettings getEventSettings(Long eventId) {
+		return eventSettingsRepository.findOne(eventId);
+		
 	}
 }

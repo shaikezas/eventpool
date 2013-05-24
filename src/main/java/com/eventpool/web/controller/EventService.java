@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
 
 /**
@@ -24,4 +25,9 @@ public interface EventService {
     public boolean publishEvent(Long eventId,boolean isPublish) throws Exception;
     
     public boolean publishEvent(String eventUrl,boolean isPublish) throws Exception;
+    
+
+	public void updateEventSettings(EventSettings settings);
+	
+	public EventSettings getEventSettings(Long eventId);
 }
