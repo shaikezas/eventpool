@@ -44,6 +44,18 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.event.eventUrl = $scope.event.title;
     	};
     
+    $scope.updateUrl = function() {
+    	$scope.event.eventUrl = $scope.event.title;
+    	};
+    
+    $scope.updateUrl = function() {
+    	$scope.event.eventUrl = $scope.event.title;
+    	};
+    
+    $scope.updateUrl = function() {
+    	$scope.event.eventUrl = $scope.event.title;
+    	};
+    
     $scope.fetchEventsList = function() {
         $http.get('event/eventslist.json').success(function(event){
             $scope.event = event;
