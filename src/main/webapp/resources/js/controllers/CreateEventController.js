@@ -40,6 +40,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.event.eventUrl = $scope.event.title;
     	};
     
+<<<<<<< HEAD
     $scope.updateUrl = function() {
     	$scope.event.eventUrl = $scope.event.title;
     	};
@@ -56,6 +57,17 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.event.eventUrl = $scope.event.title;
     	};
     
+=======
+   /* $scope.getsearchResults = function(query) {
+		search.getbasicsearchresults(query).success(function(data) {
+			$scope.searchResults = data;
+	    }).error(function(data) {
+	    	
+	    });
+	};*/
+	
+	
+>>>>>>> refs/remotes/origin/master
     $scope.fetchEventsList = function() {
         $http.get('event/eventslist.json').success(function(event){
             $scope.event = event;
