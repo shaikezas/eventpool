@@ -2,6 +2,7 @@ package com.eventpool.common.dto;
 
 import java.util.List;
 
+import com.eventpool.common.module.EventPoolConstants;
 import com.eventpool.common.type.CurrencyType;
 
 public class EventRegisterDTO {
@@ -13,7 +14,7 @@ public class EventRegisterDTO {
 	private Double discountAmount = 0.0D; 
 	private Integer subCategoryId;
 	private String organizerName; 
-
+	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	
 	public Long getEventId() {
 		return eventId;
@@ -58,6 +59,13 @@ public class EventRegisterDTO {
 		this.organizerName = organizerName;
 	}
 	
+	public int getRegistrationLimit() {
+		return registrationLimit;
+	}
+	
+	public void setRegistrationLimit(int registrationLimit) {
+		this.registrationLimit = registrationLimit;
+	}
 	
 	
 

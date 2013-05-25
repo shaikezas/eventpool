@@ -19,7 +19,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       }
       
       $scope.updateQuestions = function(){
-    	  $http.post('event/updatequestions', $scope.eventFormSettings).success(function(data) {
+    	  $http.post('event/updatesettings', $scope.eventFormSettings).success(function(data) {
 //            $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not add a new event');

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.eventpool.common.dto.EventInfoSettings;
+import com.eventpool.common.dto.EventOrderSettings;
 import com.eventpool.common.type.EventInfoType;
 
 public class EventFormSettings {
@@ -11,7 +12,7 @@ public class EventFormSettings {
 	private Long eventId;
 	private Map<String,List<EventInfoSettings>> map = null;
 	private EventInfoType infoType;
-	
+	private EventOrderSettings orderSettings;
 	public Long getEventId() {
 		return eventId;
 	}
@@ -35,6 +36,13 @@ public class EventFormSettings {
 		this.infoType = infoType;
 	}
 	
+	public EventOrderSettings getOrderSettings() {
+		return orderSettings;
+	}
+	
+	public void setOrderSettings(EventOrderSettings orderSettings) {
+		this.orderSettings = orderSettings;
+	}
 	
 	
 }

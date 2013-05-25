@@ -38,6 +38,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	        
     	}
     	
+    	$scope.event.
 
         $http.post('order/register',eventRegister).success(function(data) {
         	$scope.orderRegister = data;

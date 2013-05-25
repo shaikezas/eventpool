@@ -1,10 +1,19 @@
  <div class="span9 contBox">
           
          
-			 	   <h1>Order Form</h1>
-			            <form class="form-horizontal ">
+			            <h1>Order Form</h1>
+			            
+			            <ul id="myTab" class="nav nav-tabs">
+				              <li class="active">	<a href="#eventInformation" data-toggle="tab">	Event Information	</a></li>
+				              <li>					<a href="#orderInformation" data-toggle="tab">	Order Information	</a></li>
+			            </ul>
+			            
+			              <div id="myTabContent" class="tab-content">
+			            	
+			              <div class="tab-pane fade in active" id="eventInformation">
+			           	 <form class="form-horizontal ">
 			
-						<button type="button" class="btn">Save Changes</button><br /><br />
+						<button type="button" class="btn" ng-click="updateQuestions()">Save Changes</button><br /><br />
 						
 						<div class="contBox"> 
 							 
@@ -12,14 +21,14 @@
 							    <label class="control-label" for="inputEmail">You have 3 options:</label>
 							    <div class="controls">
 									<label class="radio">
-									  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> Collect only basic information (email, name)
+									  <input type="radio" name="optionsRadios" id="optionsRadios1"  ng-model="eventFormSettings.infoType"  value="BASIC" > Collect only basic information (email, name)
 									</label>  
 									 <label class="radio">
-									  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">	Collect information below for the ticket buyer only
+									  <input type="radio" name="optionsRadios" id="optionsRadios2"  ng-model="eventFormSettings.infoType"  value="BUYER">	Collect information below for the ticket buyer only
 									 </label> 
 									  
 									 <label class="radio">
-									  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">	Collect information below for each attendee
+									  <input type="radio" name="optionsRadios" id="optionsRadios3"  ng-model="eventFormSettings.infoType"  value="ATTENDEE">	Collect information below for each attendee
 									</label>
 							    </div>
 							  </div>
@@ -76,77 +85,35 @@
 						
 						</div>	 	 
 							 	
+						</form>
+						</div>
 						
-						<br>
+    <div class="tab-pane fade" id="orderInformation">
+			           	 <form class="form-horizontal ">
+			
 						<div class="contBox">			  
 							<h4>Optional Settings</h4>			  
 							<div class="control-group ">
 						    	<label class="control-label max-label" for="category">Title for your attendee info page:</label>
 							    <div class="controls">
-							        <input type="text" id="firstName" >
+							        <input type="text" id="firstName" ng-model="eventFormSettings.orderSettings.orderTitle">
 							    </div>
 					 		</div>
 					 		
 					 		<div class="control-group ">
 						    	<label class="control-label max-label" for="category">Instructions for your attendees:   </label>
 							    <div class="controls">
-							        <textarea id="description" rows="3"></textarea>
+							        <textarea id="description" rows="3" ng-model="eventFormSettings.orderSettings.instructions"></textarea>
 							    </div>
 					 		</div>	
 					 		
 					 		<div class="control-group ">
 						    	<label class="control-label max-label" for="category">Registration time limit:</label>
 							    <div class="controls">
-							       <input type="text" id="firstName" >
+							       <input type="text" id="regTimeLimit" ng-model="eventFormSettings.orderSettings.registrationLimit" >
 							    </div>
 					 		</div>	
 					 		
-					 			
-					 		<div class="control-group ">
-								<label class="control-label max-label" for="category">Ticket delivery options: </label>
-							    <div class="controls">
-							      <label class="checkbox checkbox1">
-							        <input type="checkbox">Is Event Private 
-							      </label>
-							    </div>
-							</div>
-					 		
-					 		
-					 		<div class="control-group ">
-								<label class="control-label max-label" for="category"></label>
-							    <div class="controls">
-							      <label class="checkbox checkbox1">
-							        <input type="checkbox">Is Event Private 
-							      </label>
-							    </div>
-							</div>
-							
-							
-					 		<div class="control-group ">
-						    	<label class="control-label max-label" for="category">Message to display after ticket sales have ended:  </label>
-							    <div class="controls">
-							        <textarea id="description" rows="3"></textarea>
-							    </div>
-					 		</div>	
-					 		
-					 		<div class="control-group ">
-						    	<label class="control-label max-label" for="category">Attendee Management: </label>
-							    <div class="controls " >
-							        <label class="checkbox checkbox1">
-							        <input type="checkbox">Allow attendee to update information after registration 
-							      </label>
-							    </div>
-					 		</div>	
-					 		
-					 		<div class="control-group ">
-						    	<label class="control-label max-label" for="category">Refund Policy: </label>
-							    <div class="controls">
-							        <label class="checkbox checkbox1">
-							        <input type="checkbox" >Allow attendee to request refunds for purchased tickets 
-							      </label>
-							    </div>
-					 		</div>	
-		 				 
 						</div>	 
 						<br>
 						<button type="button" class="btn" ng-click="updateQuestions()">Save Changes</button><br /><br />		  
@@ -154,6 +121,7 @@
 								  
 							 
 							 </form>
-							  
+							 </div>
+							</div>
 							  
         </div><!--/span-->

@@ -97,7 +97,7 @@ AppServices.service('eventsettings', function ($http) {
 geteventsettings: function(eventid) {
 	  var config = {
         method: "GET",
-        url: "event/questions/"+eventid
+        url: "event/settings/"+eventid
     };
 	  return $http(config);
 }

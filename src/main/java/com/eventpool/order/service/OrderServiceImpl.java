@@ -134,7 +134,7 @@ public class OrderServiceImpl implements OrderService{
 
 	public OrderRegisterForm registerOrder(EventRegisterDTO eventRegister) throws Exception {
 		
-		List<TicketRegister> ticketRegisters = blockTicketInventory(eventRegister.getTicketRegisterDTOs());
+		List<TicketRegister> ticketRegisters = blockTicketInventory(eventRegister.getTicketRegisterDTOs(),eventRegister.getRegistrationLimit());
 		
 		OrderRegisterForm orderRegisterForm = createOrderRegisterForm(ticketRegisters,eventRegister);
 		
@@ -186,7 +186,7 @@ public class OrderServiceImpl implements OrderService{
 		return orderRegisterForm;
 	}
 
-	private List<TicketRegister> blockTicketInventory(List<TicketRegisterDTO> ticketRegisterDTOs) throws Exception{
+	private List<TicketRegister> blockTicketInventory(List<TicketRegisterDTO> ticketRegisterDTOs,int registrationLimit) throws Exception{
 		TicketBlockedCommand blockcmd = new TicketBlockedCommand();
 		blockcmd.setBlockingQty(1);
 		blockcmd.setTicketId(101L);
@@ -205,7 +205,7 @@ public class OrderServiceImpl implements OrderService{
 		    if(ticketInventoryDetails.isInvBlocked()){
 		    	ticketRegister.setQty(ticketInventoryDetails.getBlockingQty());
 		    	ticketRegister = ticketRegisterRepository.save(ticketRegister);
-		    	unBlockedService.registerTask(ticketRegister, 60);
+		    	unBlockedService.registerTask(ticketRegister, registrationLimit*60);
 		    }else{
 		    	throw new NoTicketInventoryBlockedException("Unable to block Ticket : sellable quantity is "+ticketInventoryDetails.getSellableQty());
 		    }

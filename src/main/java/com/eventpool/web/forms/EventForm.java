@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 import com.eventpool.common.dto.OrderFormSettings;
+import com.eventpool.common.module.EventPoolConstants;
 
 public class EventForm  {
 
@@ -50,7 +51,7 @@ public class EventForm  {
 	private String eventWebSiteUrl;
 	private Long addressId;
 	private Long createdBy;
-	private OrderFormSettings orderFormSettings;
+	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	
 	public String getTitle() {
 		return title;
@@ -295,12 +296,16 @@ public Long getEventId() {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public OrderFormSettings getOrderFormSettings() {
-		return orderFormSettings;
+
+	public int getRegistrationLimit() {
+		return registrationLimit;
 	}
-	public void setOrderFormSettings(OrderFormSettings orderFormSettings) {
-		this.orderFormSettings = orderFormSettings;
+	
+	public void setRegistrationLimit(int registrationLimit) {
+		this.registrationLimit = registrationLimit;
 	}
+	
+	
 
 	
 }

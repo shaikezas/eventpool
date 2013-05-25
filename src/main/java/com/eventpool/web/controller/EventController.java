@@ -23,9 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
+import com.eventpool.common.dto.EventOrderSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.TicketDTO;
-import com.eventpool.common.entities.EventDefaultSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.type.EventType;
@@ -150,7 +150,11 @@ public class EventController {
     	String qty = "0";
     	List<Dropdown> dropdownList = null;
     	Dropdown dropdown = null;
-    	
+    	if(eventDTO.getEventSettingsDTO()!=null && eventDTO.getEventSettingsDTO().getOrderFromSettings()!=null){
+    		if(getEventOrderSettings(eventDTO).getRegistrationLimit()>=0){
+    			form.setRegistrationLimit(getEventOrderSettings(eventDTO).getRegistrationLimit());
+    		}
+    	}
     	for(TicketForm ticket : form.getTickets()){
     		dropdownList = new ArrayList<Dropdown>();
     		ticket.setQtyList(dropdownList);
@@ -166,19 +170,21 @@ public class EventController {
     	 	return form;
     }
     
-    @RequestMapping(value="/questions/{eventid}", method = RequestMethod.GET)
+    @RequestMapping(value="/settings/{eventid}", method = RequestMethod.GET)
     public @ResponseBody EventFormSettings getEventSettings(@PathVariable Long eventid) throws Exception {
     	System.out.println("Calling getEventSettings ..."+eventid);
     	EventDTO event = eventService.getEventById(eventid);
     	EventFormSettings form = new EventFormSettings();
     	form.setEventId(eventid);
     	form.setMap(getEventInfoSettings(event));
+    	form.setInfoType(event.getInfoType());
+    	form.setOrderSettings(getEventOrderSettings(event));
     	
-    	 	return form;
+    	return form;
     }
     
     
-    @RequestMapping(value = "/updatequestions", method = RequestMethod.POST)
+    @RequestMapping(value = "/updatesettings", method = RequestMethod.POST)
     public @ResponseBody String updateEventSettings(@RequestBody EventFormSettings form) throws Exception {
     	System.out.println("Calling updateEventSettings ...");
     	
@@ -192,14 +198,14 @@ public class EventController {
     					eventInfoSettings.add(info);
     				}
     			}
-    			
     	}
     	EventDTO eventDTO = eventService.getEventById(form.getEventId());
     	if(eventDTO.getEventSettingsDTO()==null){
     		eventDTO.setEventSettingsDTO(new EventSettingsDTO());
     	}
-    	System.out.println("JSON...Text "+gson.toJson(eventInfoSettings));
+    	eventDTO.setInfoType(form.getInfoType());
     	eventDTO.getEventSettingsDTO().setEventInfoSettings(gson.toJson(eventInfoSettings));
+    	eventDTO.getEventSettingsDTO().setOrderFromSettings(gson.toJson(form.getOrderSettings()));
     	eventDTO.getEventSettingsDTO().setEventId(form.getEventId());
     	eventDTO.getEventSettingsDTO().setCreatedBy(eventDTO.getCreatedBy());
     	eventService.addEvent(eventDTO);
@@ -320,6 +326,19 @@ public class EventController {
 		return map;
 		
 		
+	} 
+    
+    
+    public EventOrderSettings  getEventOrderSettings(EventDTO event){
+    	if(event.getEventSettingsDTO()!=null && event.getEventSettingsDTO().getOrderFromSettings()!=null){
+    	String orderFromSettings = event.getEventSettingsDTO().getOrderFromSettings();
+    	 Gson gson = new Gson();
+    	 Type type = new TypeToken<EventOrderSettings>(){}.getType();
+    	 EventOrderSettings orderSettings = gson.fromJson(orderFromSettings, type);
+    	 
+    	return orderSettings;
+    	}
+    	return new EventOrderSettings();
 	} 
     
     /*private JSONObject getJsonString(List<EventInfoSettings> infoSettings) throws JSONException{
