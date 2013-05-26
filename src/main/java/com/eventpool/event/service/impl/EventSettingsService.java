@@ -8,14 +8,16 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
+import com.eventpool.common.dto.EventOrderSettings;
 import com.eventpool.common.entities.EventDefaultSettings;
 import com.eventpool.common.repositories.EventDefaultSettingsRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 @Component
-public class EventDefaultSettingsService {
+public class EventSettingsService {
 
 	
 	@Resource
@@ -28,7 +30,7 @@ public class EventDefaultSettingsService {
 		return defaultSettingsRepository.findByName(name);
 	}
 	
-	public List<EventInfoSettings> getEventInfoSettings(){
+	public List<EventInfoSettings> getEventDefaultSettings(){
 		if(settings==null){
 		EventDefaultSettings eventSettings = getEventDefaultSettingsByName("EVENTINFO");
 		Gson gson = new Gson();
@@ -36,6 +38,25 @@ public class EventDefaultSettingsService {
 		settings = gson.fromJson(eventSettings.getSettings(), type);
 		}
 		return settings;
+	}
+	
+	public EventOrderSettings  getEventOrderSettings(EventDTO event){
+	    	if(event.getEventSettingsDTO()!=null && event.getEventSettingsDTO().getOrderFromSettings()!=null){
+	    	String orderFromSettings = event.getEventSettingsDTO().getOrderFromSettings();
+	    	 Gson gson = new Gson();
+	    	 Type type = new TypeToken<EventOrderSettings>(){}.getType();
+	    	 EventOrderSettings orderSettings = gson.fromJson(orderFromSettings, type);
+	    	 
+	    	return orderSettings;
+	    	}
+	    	return new EventOrderSettings();
+	} 
+	
+	public List<EventInfoSettings> getEventInfoSettings(EventDTO event){
+		String infoSettings = event.getEventSettingsDTO().getEventInfoSettings();
+		Gson gson = new Gson();
+		Type type = new TypeToken<List<EventInfoSettings>>(){}.getType();
+		return gson.fromJson(infoSettings, type);
 	}
 	
 	

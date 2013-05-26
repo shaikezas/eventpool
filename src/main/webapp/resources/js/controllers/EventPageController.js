@@ -23,6 +23,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	eventRegister.eventId = $scope.event.id;
     	eventRegister.subCategoryId = $scope.event.subCategoryId;
     	eventRegister.organizerName = $scope.event.organizerName;
+    	eventRegister.registrationLimit = $scop.event.registrationLimit;
     	
     	for (var i=0;i<tickets.length;i++)
     	{ 
@@ -38,7 +39,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	        
     	}
     	
-    	$scope.event.
+    	
 
         $http.post('order/register',eventRegister).success(function(data) {
         	$scope.orderRegister = data;

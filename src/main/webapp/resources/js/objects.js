@@ -24,6 +24,7 @@ eventpool.eventRegister = function() {
 	this.discountAmount = 0.0; 
 	this.subCategoryId =0;
 	this.organizerName=""; 
+	this.registrationLimit = 15;
 	
 };
 

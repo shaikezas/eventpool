@@ -31,7 +31,7 @@ import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.QuestionType;
 import com.eventpool.common.type.TicketType;
-import com.eventpool.event.service.impl.EventDefaultSettingsService;
+import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.web.forms.Dropdown;
 import com.eventpool.web.forms.EventForm;
@@ -59,7 +59,7 @@ public class EventController {
     private EventpoolMapper mapper;
     
     @Resource
-    EventDefaultSettingsService infoService;
+    EventSettingsService infoService;
     
     @Resource
     private TicketInventoryService ticketInventoryService;
@@ -151,8 +151,8 @@ public class EventController {
     	List<Dropdown> dropdownList = null;
     	Dropdown dropdown = null;
     	if(eventDTO.getEventSettingsDTO()!=null && eventDTO.getEventSettingsDTO().getOrderFromSettings()!=null){
-    		if(getEventOrderSettings(eventDTO).getRegistrationLimit()>=0){
-    			form.setRegistrationLimit(getEventOrderSettings(eventDTO).getRegistrationLimit());
+    		if(infoService.getEventOrderSettings(eventDTO).getRegistrationLimit()>=0){
+    			form.setRegistrationLimit(infoService.getEventOrderSettings(eventDTO).getRegistrationLimit());
     		}
     	}
     	for(TicketForm ticket : form.getTickets()){
@@ -302,20 +302,16 @@ public class EventController {
     
     public Map<String,List<EventInfoSettings>>  getEventInfoSettings(EventDTO event){
     	 Map<String,List<EventInfoSettings>> map = new LinkedHashMap<String,List<EventInfoSettings>>();
-    	List<EventInfoSettings> settings = infoService.getEventInfoSettings();
+    	List<EventInfoSettings> settings = infoService.getEventDefaultSettings();
     	List<EventInfoSettings> eventInfoSettings = new ArrayList<EventInfoSettings>();
     	eventInfoSettings.addAll(settings);
     	
     	if(event.getEventSettingsDTO()!=null && event.getEventSettingsDTO().getEventInfoSettings()!=null){
-    		String infoSettings = event.getEventSettingsDTO().getEventInfoSettings();
-    		Gson gson = new Gson();
-    		Type type = new TypeToken<List<EventInfoSettings>>(){}.getType();
-    		List<EventInfoSettings> eventSettings = gson.fromJson(infoSettings, type);
+    		
+    		List<EventInfoSettings> eventSettings = infoService.getEventInfoSettings(event);
     		Collections.copy(eventInfoSettings, eventSettings);
     	}
     	
-			JSONObject json = new JSONObject();
-			System.out.println(json.toString());
 			for(EventInfoSettings setting : eventInfoSettings){
 				if(map.get(setting.getGroup())==null){
 					map.put(setting.getGroup(), new ArrayList<EventInfoSettings>());
@@ -327,43 +323,6 @@ public class EventController {
 		
 		
 	} 
-    
-    
-    public EventOrderSettings  getEventOrderSettings(EventDTO event){
-    	if(event.getEventSettingsDTO()!=null && event.getEventSettingsDTO().getOrderFromSettings()!=null){
-    	String orderFromSettings = event.getEventSettingsDTO().getOrderFromSettings();
-    	 Gson gson = new Gson();
-    	 Type type = new TypeToken<EventOrderSettings>(){}.getType();
-    	 EventOrderSettings orderSettings = gson.fromJson(orderFromSettings, type);
-    	 
-    	return orderSettings;
-    	}
-    	return new EventOrderSettings();
-	} 
-    
-    /*private JSONObject getJsonString(List<EventInfoSettings> infoSettings) throws JSONException{
-    	    JSONObject responseDetailsJson = new JSONObject();
-    	    JSONArray jsonArray = new JSONArray(infoSettings);
-    	    responseDetailsJson.put("info",jsonArray);
-    	    return responseDetailsJson;
 
-    }*/
-    
-
-    /*List<Student> students = new ArrayList<Student>();
-    students.add(a);
-    students.add(b);
-    students.add(c);
-    students.add(d);
-
-    gson = new Gson();
-    String jsonStudents = gson.toJson(students);
-    System.out.println("jsonStudents = " + jsonStudents);
-
-    //
-    // Converts JSON string into a collection of Student object.
-    //
-    Type type = new TypeToken<List<Student>>(){}.getType();
-    List<Student> studentList = gson.fromJson(jsonStudents, type);*/
 }
 

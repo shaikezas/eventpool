@@ -61,9 +61,6 @@ public class OrderServiceImpl implements OrderService{
 	 private OrderRepository orderRepository;
 	 
 	 @Resource
-	 private SuborderRepository suborderRepository;
-	 
-	 @Resource
 	 TicketRegisterRepository ticketRegisterRepository;
 	 
 	 @Resource
@@ -125,12 +122,12 @@ public class OrderServiceImpl implements OrderService{
 		return inventoryDetails;
 	}
 
-	private void createRegistration(Suborder suborder,RegistrationDTO registrationDTO) {
+/*	private void createRegistration(Suborder suborder,RegistrationDTO registrationDTO) {
 			
 			Registration registration = new Registration();
 			registration.setSuborderId(suborder.getId());
 			registrationRepository.save(registration);
-	}
+	}*/
 
 	public OrderRegisterForm registerOrder(EventRegisterDTO eventRegister) throws Exception {
 		
@@ -157,7 +154,7 @@ public class OrderServiceImpl implements OrderService{
 			 orderRegisterForm.setStartDate(dateCustomConverter.convertFrom(event.getStartDate()));
 			 orderRegisterForm.setEndDate(dateCustomConverter.convertFrom(event.getEndDate()));
      		 
-			if(infoType.equals(EventInfoType.ATTENDEE)){
+			if(!infoType.equals(EventInfoType.BASIC)){
 				isAttendeeRequired = true;
 			}
 		 List<TicketRegisterDTO> ticketRegisterDTOs = new ArrayList<TicketRegisterDTO>();
