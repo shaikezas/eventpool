@@ -178,7 +178,7 @@ public class EventController {
     	form.setEventId(eventid);
     	form.setMap(getEventInfoSettings(event));
     	form.setInfoType(event.getInfoType());
-    	form.setOrderSettings(getEventOrderSettings(event));
+    	form.setOrderSettings(infoService.getEventOrderSettings(event));
     	
     	return form;
     }
