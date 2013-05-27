@@ -20,19 +20,21 @@
 			            	
 			              <div class="tab-pane fade in active" id="eventInformation">
 			                
-								<form class="form-horizontal" >
+								<form class="form-horizontal" name="eventForm">
 								
 							  <div class="control-group">
 							    <label class="control-label" for="eventTitle">Event Title :</label>
 							    <div class="controls">
-							      <input type="text" id="eventTitle" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required  >
+							      <input type="text" id="eventTitle" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required  >
+							      <span ng-show="nameRequired" ng-style="{color:'red'}">Required.</span>
 						    </div>
 							  </div>
 							  
 							    <div class="control-group">
 							    <label class="control-label" for="description">Description :</label>
 							    <div class="controls">
-							      <textarea id="description" required ng-model="event.description" placeholder="Description" required></textarea>
+							      <textarea id="description" name="description" required ng-model="event.description" placeholder="Description" required></textarea>
+							      <span ng-show="descRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
@@ -42,10 +44,11 @@
 							    <label class="control-label" for="startDate">Start Date & Time :</label>
 							    <div class="controls">
 								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
-				      					<input type="text" datetime-picker  ng-model="event.startDate" 
+				      					<input type="text" name="startDate" datetime-picker  ng-model="event.startDate" 
 				      										placeholder="Start Date and Time" readonly required ></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
-									</div>
+				      				</div>
+				      				<span ng-show="startDateRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
@@ -53,10 +56,11 @@
 							    <label class="control-label" for="endDate">End Date & Time :</label>
 							    <div class="controls">
 								 	<div id="datetimepickerEnd" class="input-append date datetimepicker">
-				      					<input type="text" datetime-picker  ng-model="event.endDate" 
+				      					<input type="text" name="endDate" datetime-picker  ng-model="event.endDate" 
 				      										placeholder="End Date and Time" readonly required></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
-									</div>
+				      				</div>
+				      				<span ng-show="endDateRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
@@ -72,7 +76,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="facebookURL">Event Facebook URL :</label>
 							    <div class="controls">
-							      <input type="text" id="eventTitle" ng-model="event.faceBookUrl" >
+							      <input type="text" id="eventFacebookUrl" ng-model="event.faceBookUrl" >
 							    </div>
 							  </div>							  
 							  							  
@@ -127,7 +131,8 @@
 							  
 							  <div class="control-group">
 							    <div class="controls">
-							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent()">Save & Exit</button>
+							    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
+							      <button type="submit" class="btn" ng-hide="editMode" ng-click="addNewEvent()">Save & Exit</button>
 							      <a href="#venueInformation" data-toggle="tab"><button type="button" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode">Next</button></a>
 							    </div>
 							  </div>
@@ -151,7 +156,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="venueTitle">Venue Title :</label>
 							    <div class="controls">
-							      <input type="text" id="eventTitle" ng-model="event.venueName" required min="6" >
+							      <input type="text" id="eventVenueName" ng-model="event.venueName" required min="6" >
 							    </div>
 							  </div>	
 							  						  

@@ -67,12 +67,30 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
     $scope.addNewEvent = function() {
         $scope.resetError();
-
+        $scope.validations();
+        if($scope.stopSubmitAction === true){
+        	$scope.stopSubmitAction = false;
+         }
+        else {
+        	alert("success");
         $http.post('event/addEvent', $scope.event).success(function() {
 //            $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not add a new event');
         });
+        }
+        
+    }
+    
+    $scope.validations = function() {
+    	
+    	$scope.nameRequired = $scope.eventForm.eName.$error.required;
+    	$scope.descRequired = $scope.eventForm.description.$error.required;
+    	$scope.startDateRequired = $scope.eventForm.startDate.$error.required;
+    	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
+    	if($scope.nameRequired || $scope.endDateRequired ||$scope.descRequired ||$scope.startDateRequired){
+    		$scope.stopSubmitAction=true;
+    	}
     }
     
     $scope.addNewFreeTicket = function() {
