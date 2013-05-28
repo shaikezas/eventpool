@@ -25,6 +25,32 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
             $scope.setError('Could not add a new event');
         });
       }
+      
+    $scope.open = function () {
+    	    $scope.shouldBeOpen = true;
+    	  };
+
+    $scope.close = function () {
+    	    $scope.shouldBeOpen = false;
+    	  };
+   $scope.saveAndClose = function () {
+	   alert($scope.questionForm.questionType);
+	   $http.post('event/addQuestion', $scope.questionForm).success(function() {
+     }).error(function() {
+         $scope.setError('Could not add a Question ');
+     });
+       	    $scope.shouldBeOpen = false;
+      };   
+       	  
+       	  
+    $scope.showRelatedFields = function () {
+    	
+    };
+      
+   $scope.questionType = [  {questionTypeName : 'Text' },      
+    	                    {questionTypeName : 'Dropdown' },
+    	                    {questionTypeName : 'Radio Buttons' }, 
+    	                    {questionTypeName : 'Checkboxes' }];
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
     	srvevent.myevent($routeParams).success(function(data) {

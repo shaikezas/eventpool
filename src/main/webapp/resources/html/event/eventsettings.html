@@ -81,7 +81,47 @@
 							 
 						<div style="clear: both" >Your questions: Not finding what you are looking for on this list? Create your own questions with more options.</div>
 						
-						<button type="button" class="btn">Create a Question</button>
+						<button type="button" class="btn" ng-click="open()">Create a Question</button>
+						<form name="questions" class="form-horizontal ">
+						    <div modal="shouldBeOpen" close="close()" options="opts">
+						        <div class="modal-header">
+						            <h4>Question Form</h4>
+						        </div>
+						        <div class="modal-body">
+						            Question :<div class="controls">
+							      			<input type="text" id="question" name="question" ng-model="questionForm.question" placeholder="Type a question?" >
+							          	</div>
+							  		
+								    <label class="control-label" for="questionType">Question Type :</label>
+								    <div class="controls">
+								      	<select id="questionType" ng-model="questionForm.questionType" ng-change="showRelatedFields()"
+														ng-options="question.questionTypeName for question in questionType">
+										
+										<option value="">-- Select QuestionType --</option>
+										</select>
+								    </div>
+								    <div ng-show="text">
+								    	<input type="text">
+								    </div>
+								    <div ng-show="checkboxes">
+								    	<input type="text">checkboxes
+								    </div>
+								    <div ng-show="radiobuttons">
+								    	<input type="text">radio buttons
+								    </div>
+								    <div ng-show="dropdown">
+								    	<input type="text">dropdownlist
+								    </div>
+							  									  		
+						        </div>
+						        
+						        <div class="modal-footer">
+						            <button type="button" class="btn" ng-click="saveAndClose()">Save and Close</button>
+						            <button type="button" class="btn" ng-click="close()">Cancel</button>
+						        </div>
+						    </div>
+						    </form>
+												
 						
 						</div>	 	 
 							 	
