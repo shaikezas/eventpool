@@ -1,8 +1,8 @@
 package com.eventpool.event.service.impl;
 
 import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -24,17 +24,17 @@ public class EventSettingsService {
 	private EventDefaultSettingsRepository defaultSettingsRepository;
 	
 	
-	private List<EventInfoSettings> settings = null;
+	private Set<EventInfoSettings> settings = null;
 	
 	public EventDefaultSettings getEventDefaultSettingsByName(String name){
 		return defaultSettingsRepository.findByName(name);
 	}
 	
-	public List<EventInfoSettings> getEventDefaultSettings(){
+	public Set<EventInfoSettings> getEventDefaultSettings(){
 		if(settings==null){
 		EventDefaultSettings eventSettings = getEventDefaultSettingsByName("EVENTINFO");
 		Gson gson = new Gson();
-		Type type = new TypeToken<List<EventInfoSettings>>(){}.getType();
+		Type type = new TypeToken<LinkedHashSet<EventInfoSettings>>(){}.getType();
 		settings = gson.fromJson(eventSettings.getSettings(), type);
 		}
 		return settings;
@@ -52,10 +52,10 @@ public class EventSettingsService {
 	    	return new EventOrderSettings();
 	} 
 	
-	public List<EventInfoSettings> getEventInfoSettings(EventDTO event){
+	public Set<EventInfoSettings> getEventInfoSettings(EventDTO event){
 		String infoSettings = event.getEventSettingsDTO().getEventInfoSettings();
 		Gson gson = new Gson();
-		Type type = new TypeToken<List<EventInfoSettings>>(){}.getType();
+		Type type = new TypeToken<LinkedHashSet<EventInfoSettings>>(){}.getType();
 		return gson.fromJson(infoSettings, type);
 	}
 	

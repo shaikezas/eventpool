@@ -2,11 +2,12 @@ package com.eventpool.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -184,11 +185,11 @@ public class EventController {
     public @ResponseBody String updateEventSettings(@RequestBody EventFormSettings form) throws Exception {
     	System.out.println("Calling updateEventSettings ...");
     	
-    	Map<String, List<EventInfoSettings>> map = form.getMap();
+    	Map<String, LinkedHashSet<EventInfoSettings>> map = form.getMap();
     	Gson gson = new Gson();
-    	List<EventInfoSettings> eventInfoSettings = new ArrayList<EventInfoSettings>();
-    	for (Map.Entry<String,  List<EventInfoSettings>> entry : map.entrySet()) {
-    			List<EventInfoSettings> infoSettings = map.get(entry.getKey());
+    	Set<EventInfoSettings> eventInfoSettings = new LinkedHashSet<EventInfoSettings>();
+    	for (Map.Entry<String,  LinkedHashSet<EventInfoSettings>> entry : map.entrySet()) {
+    		LinkedHashSet<EventInfoSettings> infoSettings = map.get(entry.getKey());
     			for(EventInfoSettings info : infoSettings ){
     				if(info.getIsValue()){
     					eventInfoSettings.add(info);
@@ -296,21 +297,21 @@ public class EventController {
     	return questions;
     }
     
-    public Map<String,List<EventInfoSettings>>  getEventInfoSettings(EventDTO event){
-    	 Map<String,List<EventInfoSettings>> map = new LinkedHashMap<String,List<EventInfoSettings>>();
-    	List<EventInfoSettings> settings = infoService.getEventDefaultSettings();
-    	List<EventInfoSettings> eventInfoSettings = new ArrayList<EventInfoSettings>();
+    public Map<String,LinkedHashSet<EventInfoSettings>>  getEventInfoSettings(EventDTO event){
+    	 Map<String,LinkedHashSet<EventInfoSettings>> map = new LinkedHashMap<String,LinkedHashSet<EventInfoSettings>>();
+    	Set<EventInfoSettings> settings = infoService.getEventDefaultSettings();
+    	Set<EventInfoSettings> eventInfoSettings = new LinkedHashSet<EventInfoSettings>();
     	eventInfoSettings.addAll(settings);
     	
     	if(event.getEventSettingsDTO()!=null && event.getEventSettingsDTO().getEventInfoSettings()!=null){
     		
-    		List<EventInfoSettings> eventSettings = infoService.getEventInfoSettings(event);
-    		Collections.copy(eventInfoSettings, eventSettings);
+    		Set<EventInfoSettings> eventSettings = infoService.getEventInfoSettings(event);
+    		eventInfoSettings.addAll(eventSettings);
     	}
     	
 			for(EventInfoSettings setting : eventInfoSettings){
 				if(map.get(setting.getGroup())==null){
-					map.put(setting.getGroup(), new ArrayList<EventInfoSettings>());
+					map.put(setting.getGroup(), new LinkedHashSet<EventInfoSettings>());
 				}
 				
 				map.get(setting.getGroup()).add(setting);

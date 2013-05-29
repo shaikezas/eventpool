@@ -9,6 +9,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
     $scope.isCollapsed = true;
+    $scope.isWebinar = false;
     $scope.eventFormSettings = {};
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
@@ -27,14 +28,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       }
       
     $scope.openDialog = function () {
-    	 var d = $dialog.dialog($scope.opts);
-    	    d.open();
+    	$scope.shouldBeOpen = true;
     	  };
 
   $scope.opts = {
     backdrop: true,
     keyboard: true,
-    templateUrl: 'html/event/questionform.html',
     controller: 'CreateEventController'
   };
 
@@ -44,19 +43,19 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      }).error(function() {
          $scope.setError('Could not add a Question ');
      });
-    };  
+	   $scope.shouldBeOpen = false; 
+   };  
     
 
     $scope.close = function(){
-  	    $dialog.dialog.close()
+    	$scope.shouldBeOpen = false;
   	  };
        	  
        	  
     $scope.showRelatedFields = function () {
-    	alert();
     	$scope.text = true;
-    	$scope.checkboxes = true;
-    	$scope.radiobuttons = true;
+//    	$scope.checkboxes = true;
+//    	$scope.radiobuttons = true;
     	
     };
       

@@ -1,6 +1,6 @@
 package com.eventpool.web.forms;
 
-import java.util.List;
+import java.util.Set;
 
 import com.eventpool.common.dto.EventInfoSettings;
 
@@ -12,7 +12,7 @@ public class TicketRegisterForm {
 	
 	private String ticketName;
 	
-	private List<EventInfoSettings> infoSettings;
+	private Set<EventInfoSettings> infoSettings;
 
 	public Long getTicketId() {
 		return ticketId;
@@ -30,11 +30,11 @@ public class TicketRegisterForm {
 		this.ticketName = ticketName;
 	}
 
-	public List<EventInfoSettings> getInfoSettings() {
+	public Set<EventInfoSettings> getInfoSettings() {
 		return infoSettings;
 	}
 
-	public void setInfoSettings(List<EventInfoSettings> infoSettings) {
+	public void setInfoSettings(Set<EventInfoSettings> infoSettings) {
 		this.infoSettings = infoSettings;
 	}
 	

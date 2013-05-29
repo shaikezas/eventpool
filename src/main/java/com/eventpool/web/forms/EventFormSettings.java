@@ -1,6 +1,6 @@
 package com.eventpool.web.forms;
 
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 import com.eventpool.common.dto.EventInfoSettings;
@@ -10,7 +10,7 @@ import com.eventpool.common.type.EventInfoType;
 public class EventFormSettings {
 
 	private Long eventId;
-	private Map<String,List<EventInfoSettings>> map = null;
+	private Map<String,LinkedHashSet<EventInfoSettings>> map = null;
 	private EventInfoType infoType;
 	private EventOrderSettings orderSettings;
 	public Long getEventId() {
@@ -20,11 +20,11 @@ public class EventFormSettings {
 		this.eventId = eventId;
 	}
 	
-	public Map<String, List<EventInfoSettings>> getMap() {
+	public Map<String, LinkedHashSet<EventInfoSettings>> getMap() {
 		return map;
 	}
 	
-	public void setMap(Map<String, List<EventInfoSettings>> map) {
+	public void setMap(Map<String, LinkedHashSet<EventInfoSettings>> map) {
 		this.map = map;
 	}
 	
