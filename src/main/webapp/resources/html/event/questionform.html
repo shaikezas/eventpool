@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 					       <form name="questions" class="form-horizontal">
 					       <div class="modal-header">
 						            <h3>Question Form</h3>
@@ -78,4 +79,86 @@
 						            <button type="button" class="btn" ng-click="saveAndClose()">Save and Close</button>
 						            <button type="button" class="btn" ng-click="close()">Cancel</button>
 						        </div>
+=======
+					       <form name="questions" class="form-horizontal">
+					       <div class="modal-header">
+						            <h3>Question Form</h3>
+						        </div>
+						        <div class="modal-body">
+						           <div class="control-group">
+							    	<label class="control-label" for="questionName">Question :</label> 
+							    		<div class="controls">
+							      			<input type="text" id="question" name="question" ng-model="questionForm.question" placeholder="Type a question?" >
+							          	</div>
+							        </div>
+							  		<div class="control-group">
+								    <label class="control-label" for="questionType">Question Type :</label>
+								    <div class="controls">
+								      	<select id="questionType" ng-model="questionForm.questionType" ng-change="showRelatedFields()"
+														ng-options="question.questionTypeName for question in questionType">
+										
+										<option value="">-- Select QuestionType --</option>
+										</select>
+								    </div>
+								    </div>
+								    <div ng-show="text">
+								    	<div class="control-group">
+							    		<label class="control-label" for="text1">Text 1 :</label> 
+							    		<div class="controls">
+							      			<input type="text" ng-model="questionForm.text1" >
+							          	</div>
+							        	</div>
+							        	<div class="control-group">
+							    		<label class="control-label" for="text2">Text 2 :</label> 
+							    		<div class="controls">
+							      			<input type="text" ng-model="questionForm.text2" >
+							          	</div>
+							        	</div>
+								    </div>
+								    <div ng-show="checkboxes">
+								    
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  <input type="checkbox" ng-model="questionForm.checkbox1" >  <input type="text">
+								      	</div>
+								  	</div>
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  <input type="checkbox" ng-model="questionForm.checkbox2" >  <input type="text">
+								      	</div>
+								  	</div>
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  <input type="checkbox" ng-model="questionForm.checkbox3" >  <input type="text">
+								      	</div>
+								  	</div>								  									  	
+								    </div>
+								    <div ng-show="radiobuttons">
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  <input type="radio" ng-model="questionForm.radio1" >  <input type="text">
+								      	</div>
+								  	</div>
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  <input type="radio" ng-model="questionForm.radio2" >  <input type="text">
+								      	</div>
+								  	</div>
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  <input type="radio" ng-model="questionForm.radio3" >  <input type="text">
+								      	</div>
+								  	</div>
+								    </div>
+								    <div ng-show="dropdown">
+								    	Drop down lists need to be showed here.
+								    </div>
+							  									  		
+						        </div>
+						        
+						        <div class="modal-footer">
+						            <button type="button" class="btn" ng-click="saveAndClose()">Save and Close</button>
+						            <button type="button" class="btn" ng-click="close()">Cancel</button>
+						        </div>
+>>>>>>> refs/remotes/origin/master
 						        </form>
