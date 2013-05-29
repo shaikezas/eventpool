@@ -26,6 +26,7 @@ import com.eventpool.common.type.OrderStatus;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
+import com.google.gson.Gson;
 
 
 @Controller
@@ -113,13 +114,10 @@ public class OrderController {
 			  suborderDTO = suborderMap.get(regForm.getTicketId());
 			  registrationDTO = new RegistrationDTO();
 			  
-			  registrationDTO.setCompany(regForm.getCompany());
 			  registrationDTO.setCreatedBy(0L);
 			  registrationDTO.setCreatedDate(new Date());
-			  registrationDTO.setEmail(regForm.getEmail());
-			  registrationDTO.setName(regForm.getName());
-			  registrationDTO.setPhone(regForm.getPhone());
-			  
+			  Gson gson = new Gson();
+			  registrationDTO.setAttendeeInfo(gson.toJson(regForm.getInfoSettings()));
 			  if(suborderDTO.getRegistrations()==null){
 				  registrations = new ArrayList<RegistrationDTO>();
 				  suborderDTO.setRegistrations(registrations);
@@ -132,5 +130,6 @@ public class OrderController {
 		  
 		  return orderDTO;
 	  }
+	  
 	  
 }

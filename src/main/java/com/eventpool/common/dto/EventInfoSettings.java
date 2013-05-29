@@ -12,6 +12,8 @@ public class EventInfoSettings {
 	
 	private String options;
 	
+	private String value;
+	
 	private Boolean isValue;
 	
 	private Boolean isRequired;
@@ -64,6 +66,16 @@ public class EventInfoSettings {
 		this.isRequired = isRequired;
 	}
 
+	
+	public String getValue() {
+		return value;
+	}
+	
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

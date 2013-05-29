@@ -15,55 +15,18 @@ import com.eventpool.common.annotation.EmailAddressValidation;
 public class Registration extends AuditableIdEntity {
 
 	
-	@NotNull
-	@Column(name="NAME")
-	private String name;
-	
-	@Column(name="COMPANY")
-	private String company;
-	
-	@NotNull
-	@EmailAddressValidation
-	@Column(name="EMAIL")
-	@Size(max=255)
-	private String email;
-	
-	@Column(name="PHONE")
-	private String phone;
+	@Column(name="ATTENDEE_INFO")
+	private String attendeeInfo;
 	
 	@Column(name="SUBORDER_ID")
 	private Long suborderId;
 
-	public String getName() {
-		return name;
+	public String getAttendeeInfo() {
+		return attendeeInfo;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setAttendeeInfo(String attendeeInfo) {
+		this.attendeeInfo = attendeeInfo;
 	}
 
 	public Long getSuborderId() {
@@ -73,6 +36,7 @@ public class Registration extends AuditableIdEntity {
 	public void setSuborderId(Long suborderId) {
 		this.suborderId = suborderId;
 	}
+
 	
 	
 }

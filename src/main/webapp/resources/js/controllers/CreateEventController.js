@@ -4,7 +4,7 @@
  * CreateEventController
  * @constructor
  */
-var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent,eventsettings) {
+var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent,eventsettings, $dialog) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
@@ -26,24 +26,37 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         });
       }
       
-    $scope.open = function () {
-    	    $scope.shouldBeOpen = true;
+    $scope.openDialog = function () {
+    	 var d = $dialog.dialog($scope.opts);
+    	    d.open();
     	  };
 
-    $scope.close = function () {
-    	    $scope.shouldBeOpen = false;
-    	  };
+  $scope.opts = {
+    backdrop: true,
+    keyboard: true,
+    templateUrl: 'html/event/questionform.html',
+    controller: 'CreateEventController'
+  };
+
    $scope.saveAndClose = function () {
 	   alert($scope.questionForm.questionType);
 	   $http.post('event/addQuestion', $scope.questionForm).success(function() {
      }).error(function() {
          $scope.setError('Could not add a Question ');
      });
-       	    $scope.shouldBeOpen = false;
-      };   
+    };  
+    
+
+    $scope.close = function(){
+  	    $dialog.dialog.close()
+  	  };
        	  
        	  
     $scope.showRelatedFields = function () {
+    	alert();
+    	$scope.text = true;
+    	$scope.checkboxes = true;
+    	$scope.radiobuttons = true;
     	
     };
       

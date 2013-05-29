@@ -44,11 +44,8 @@
     <mapping stop-on-errors="false" wildcard="false">
         <class-a>com.eventpool.common.entities.Registration</class-a>
         <class-b>com.eventpool.common.dto.RegistrationDTO</class-b>
-  			<field><a>name</a><b>name</b></field>
-			<field><a>company</a><b>company</b></field>
-			<field><a>email</a><b>email</b></field>
-			<field><a>phone</a><b>phone</b></field>
 			<field><a>suborderId</a><b>suborderId</b></field>
+			<field><a>attendeeInfo</a><b>attendeeInfo</b></field>
 			<field><a>createdBy</a><b>createdBy</b></field>
 			<field><a>createdDate</a><b>createdDate</b></field>
 			<field><a>modifiedDate</a><b>modifiedDate</b></field>

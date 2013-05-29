@@ -1,6 +1,5 @@
 package com.eventpool.web.controller;
 
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +10,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
-import com.eventpool.common.dto.EventOrderSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.exceptions.EventNotFoundException;
@@ -40,7 +37,6 @@ import com.eventpool.web.forms.EventQuestion;
 import com.eventpool.web.forms.MyEventForm;
 import com.eventpool.web.forms.TicketForm;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 /**
  * Created with IntelliJ IDEA.
