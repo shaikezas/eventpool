@@ -322,7 +322,7 @@ public class EventTest extends BaseTest{
 		userSettings.put("free",userSettingsObject );
 		orderFormSettings.setUserSettings(userSettings );
     	
-		eventForm.setOrderFormSettings(orderFormSettings );
+		//eventForm.setOrderFormSettings(orderFormSettings );
     	
     	List<TicketForm> ticketForms = new ArrayList<TicketForm>();
     	eventForm.setTickets(ticketForms);

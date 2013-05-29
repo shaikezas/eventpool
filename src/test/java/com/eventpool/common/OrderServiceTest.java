@@ -112,11 +112,11 @@ public class OrderServiceTest extends BaseTest{
 		int count=1;
 		for(TicketRegisterForm regForm : form.getTicketRegForms()){
 			System.out.println("Ticket Id:"+regForm.getTicketId()+" and Name :"+regForm.getTicketName());
-			regForm.setCompany("company"+count);
+		/*	regForm.setCompany("company"+count);
 			regForm.setEmail("shaikezas"+count+"@gmail.com");
 			regForm.setName("Ezas"+count);
 			regForm.setPhone("Phone"+count);
-			count++;
+		*/	count++;
 		}
 		OrderStatusDTO order = controller.createOrder(form);
 		System.out.println("Status "+order.getStatus());
