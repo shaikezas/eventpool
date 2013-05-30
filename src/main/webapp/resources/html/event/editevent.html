@@ -23,7 +23,7 @@
 								<form class="form-horizontal" name="eventForm">
 								
 							  <div class="control-group">
-							    <label class="control-label" for="eventTitle">Event Title :</label>
+							    <label class="control-label" for="eventTitle">Event Title :*</label>
 							    <div class="controls">
 							      <input type="text" id="eventTitle" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required  >
 							      <span ng-show="nameRequired" ng-style="{color:'red'}">Required.</span>
@@ -31,7 +31,7 @@
 							  </div>
 							  
 							    <div class="control-group">
-							    <label class="control-label" for="description">Description :</label>
+							    <label class="control-label" for="description">Description :*</label>
 							    <div class="controls">
 							      <textarea id="description" name="description" required ng-model="event.description" placeholder="Description" required></textarea>
 							      <span ng-show="descRequired" ng-style="{color:'red'}">Required.</span>
@@ -41,7 +41,7 @@
 							  
 							  
 							    <div class="control-group">
-							    <label class="control-label" for="startDate">Start Date & Time :</label>
+							    <label class="control-label" for="startDate">Start Date & Time :*</label>
 							    <div class="controls">
 								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
 				      					<input type="text" name="startDate" datetime-picker  ng-model="event.startDate" 
@@ -53,7 +53,7 @@
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="endDate">End Date & Time :</label>
+							    <label class="control-label" for="endDate">End Date & Time :*</label>
 							    <div class="controls">
 								 	<div id="datetimepickerEnd" class="input-append date datetimepicker">
 				      					<input type="text" name="endDate" datetime-picker  ng-model="event.endDate" 
@@ -136,27 +136,26 @@
 							      <a href="#venueInformation" data-toggle="tab"><button type="button" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode">Next</button></a>
 							    </div>
 							  </div>
-							</form>
-							        
+							</form> 
 			               </div>
-			             
 			              <div class="tab-pane fade" id="venueInformation">
 			                
-								<form class="form-horizontal">
+								<form class="form-horizontal" name="venueForm">
 							  
 								  <div class="control-group">
 								    <div class="controls">
-								      
-								        <input type="checkbox" ng-model="event.isWebinar" onclick="toggle('.venueInfo', this)" > Is Webinar
+								      <!-- ng-click="isWebinarChecked=!isWebinarChecked"  -->
+								        <input type="checkbox" ng-model="event.isWebinar" ng-change="setRequiredFields()" > Is Webinar
 								      
 								    </div>
 								  </div>
-							  <div class="venueInfo">
+							  <div collapse="isWebinarChecked">
 								
 							  <div class="control-group">
-							    <label class="control-label" for="venueTitle">Venue Title :</label>
+							    <label class="control-label" for="venueTitle">Venue Title :*</label>
 							    <div class="controls">
-							      <input type="text" id="eventVenueName" ng-model="event.venueName" required min="6" >
+							      <input type="text" name="venueName" id="eventVenueName" ng-model="event.venueName" required min="6" >
+							      <span ng-show="venueNameReq" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>	
 							  						  
@@ -164,18 +163,20 @@
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress1">Venue Address1 :*</label>
 								    <div class="controls">
-								      <textarea id="venueAddress2" rows="3" ng-model="event.address1" ></textarea>
+								      <textarea id="venueAddress2" name="venueAddress1" rows="3" ng-model="event.address1" required ></textarea>
+								      <span ng-show="venueAdd1Req" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress2">Venue Address2 :*</label>
 								    <div class="controls">
-								      <textarea id="venueAddress2" rows="3" ng-model="event.address2" ></textarea>
+								      <textarea id="venueAddress2" name="venueAddress2" rows="3" ng-model="event.address2" required ></textarea>
+								      <span ng-show="venueAdd2Req" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>								  
 							  
 							    <div class="control-group" ng-class="{open: focused && searchText.length > 0}">
-								   <label class="control-label" for="cityId">Search City :*</label>
+								   <label class="control-label" for="cityId">Search City :</label>
 								   <div class="controls">
 								     <input type="text" ng-model="searchText"   
 	            					placeholder="Search"  ng-change="getsearchResults(searchText)">
@@ -189,21 +190,21 @@
 	                         
 							  	
 								  <div class="control-group">
-								    <label class="control-label" for="state">City :*</label>
+								    <label class="control-label" for="state">City :</label>
 								    <div class="controls">
 								    <input type="text" id="eventCityName" ng-model="city" disabled="disabled" >
 								    </div>
 								  </div>
 							  
 								  <div class="control-group">
-								    <label class="control-label" for="state">State :*</label>
+								    <label class="control-label" for="state">State :</label>
 								    <div class="controls">
 								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
 								    </div>
 								  </div>
 								  
 								   <div class="control-group">
-								    <label class="control-label" for="state">Country :*</label>
+								    <label class="control-label" for="state">Country :</label>
 								    <div class="controls">
 										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
 								    </div>
@@ -220,7 +221,8 @@
 							  </div>
 								  <div class="control-group">
 								    <div class="controls">
-								      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+								    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
+								      <button type="submit" class="btn" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
 								      <a href="#organizerInformation" data-toggle="tab"><button type="button" class="btn">Next</button></a>
 								    </div>
 								  </div>
@@ -231,25 +233,26 @@
 			              
 			              <div class="tab-pane fade" id="organizerInformation">
 			                
-								<form class="form-horizontal">
+								<form class="form-horizontal" name="orgForm">
 				           <div class="control-group">
-							    <label class="control-label" for="organizerName">Organizer Name :</label>
+							    <label class="control-label" for="organizerName">Organizer Name :*</label>
 							    <div class="controls">
-							      <input type="text" id="organizerName" ng-model="event.organizerName" required min="6" >
+							      <input type="text" name="orgName" id="organizerName" ng-model="event.organizerName" required min="6" >
+							      <span ng-show="orgNameReq" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>							  
 							  
 								  <div class="control-group">
-								    <label class="control-label" for="organizerDescription">Organizer Description :*</label>
+								    <label class="control-label" for="organizerDescription">Organizer Description :</label>
 								    <div class="controls">
-								      <textarea id="organizerDescription" rows="3" ng-model="event.organizerDescription" ></textarea>
+								      <textarea id="organizerDescription" name="orgDesc" rows="3" ng-model="event.organizerDescription" ></textarea>
 								    </div>
 								  </div>
 							  
 							  
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="contactDetails">Event Contract Info :*</label>
+							    <label class="control-label" for="contactDetails">Event Contract Info :</label>
 							    <div class="controls">
 							      <textarea id="contactDetails" rows="3" ng-model="event.contactDetails" placeholder="Enter Name(s), Phone or Email:"></textarea>
 							    </div>

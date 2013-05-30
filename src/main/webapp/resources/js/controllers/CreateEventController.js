@@ -9,6 +9,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
     $scope.isCollapsed = true;
+    $scope.isWebinarChecked = false;
     $scope.isWebinar = false;
     $scope.eventFormSettings = {};
       $scope.template = "html/event/editevent.html";
@@ -119,14 +120,24 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         }
         
     }
-    
+    $scope.setRequiredFields = function() {
+    	$scope.isWebinarChecked=!$scope.isWebinarChecked;
+    	$scope.venueForm.venueName.$error.required = !$scope.isWebinarChecked;
+    	$scope.venueForm.venueAddress1.$error.required = !$scope.isWebinarChecked;
+    	$scope.venueForm.venueAddress2.$error.required = !$scope.isWebinarChecked;
+    	$scope.venueForm.$invalid = !$scope.isWebinarChecked;
+    }
     $scope.validations = function() {
-    	
     	$scope.nameRequired = $scope.eventForm.eName.$error.required;
     	$scope.descRequired = $scope.eventForm.description.$error.required;
     	$scope.startDateRequired = $scope.eventForm.startDate.$error.required;
     	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
-    	if($scope.nameRequired || $scope.endDateRequired ||$scope.descRequired ||$scope.startDateRequired){
+    	$scope.venueNameReq = $scope.venueForm.venueName.$error.required;
+    	$scope.venueAdd1Req = $scope.venueForm.venueAddress1.$error.required;
+    	$scope.venueAdd2Req = $scope.venueForm.venueAddress2.$error.required;
+    	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;
+    	
+    	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid){
     		$scope.stopSubmitAction=true;
     	}
     }
