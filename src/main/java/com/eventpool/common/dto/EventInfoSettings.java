@@ -1,5 +1,7 @@
 package com.eventpool.common.dto;
 
+import java.util.List;
+
 import com.eventpool.common.type.QuestionType;
 
 public class EventInfoSettings {
@@ -10,7 +12,7 @@ public class EventInfoSettings {
 	
 	private String group;
 	
-	private String options;
+	private List<String> options;
 	
 	private String value;
 	
@@ -42,11 +44,11 @@ public class EventInfoSettings {
 		this.group = group;
 	}
 
-	public String getOptions() {
+	public List getOptions() {
 		return options;
 	}
 
-	public void setOptions(String options) {
+	public void setOptions(List options) {
 		this.options = options;
 	}
 

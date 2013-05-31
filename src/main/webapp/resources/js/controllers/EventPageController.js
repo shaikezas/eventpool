@@ -3,6 +3,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
 	    $scope.editMode = true;
 	    $scope.orderRegister = Data.getOrderRegisterData();
     $scope.status = {};
+                    
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
     	srvevent.eventpage($routeParams).success(function(data) {

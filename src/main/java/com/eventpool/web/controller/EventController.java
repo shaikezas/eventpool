@@ -207,19 +207,6 @@ public class EventController {
     	eventDTO.getEventSettingsDTO().setCreatedBy(eventDTO.getCreatedBy());
     	eventService.addEvent(eventDTO);
     
-//    	System.out.println("JSON...Text "+getJsonString(eventInfoSettings).toString());
-    	
-    	/*EventDTO event = eventService.getEventById(form.getEventId());
-    	event.setInfoType(form.getInfoType());
-    	if(eventInfoSettings.size()>0){
-    		event.getEventSettingsDTO().setEventInfoSettings(getJsonString(eventInfoSettings).toString());
-    	}*/
-    	
-    	
-    	
-    	
-//    	form.setMap(infoService.getEventInfoSettings());
-    	
     	 	return "";
     }
     private void updateEventType(EventDTO dto){

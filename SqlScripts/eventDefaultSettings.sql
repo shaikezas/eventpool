@@ -1,5 +1,5 @@
 INSERT INTO EVENT_DEFAULT_SETTINGS(NAME,SETTINGS,CREATEDBY,CREATED_DATE,MODIFIED_DATE) VALUES 
-('EVENTINFO','[{"name":"Prefix (Mr., Mrs., etc.)","type":"DROPDOWN","group":"Contact","options":"Mr.,Mrs.","isValue":false,"isRequired":false},
+('EVENTINFO','[{"name":"Prefix (Mr., Mrs., etc.)","type":"DROPDOWN","group":"Contact","options":["Mr.","Mrs."],"isValue":false,"isRequired":false},
 {"name":"First Name","type":"TEXT","group":"Contact","isValue":true,"isRequired":true},
 {"name":"Last Name","type":"TEXT","group":"Contact","isValue":true,"isRequired":true},
 {"name":"Suffix","type":"TEXT","group":"Contact","isValue":false,"isRequired":false},

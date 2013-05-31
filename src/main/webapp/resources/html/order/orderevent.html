@@ -106,7 +106,10 @@
 								  <div class="control-group">
 								    <label class="control-label" for="Pincode">{{infoSettings.name}}  :</label>
 								    <div class="controls">
-								      <input type="text" id="infosettings"  ng-model="infoSettings.value">
+								      <input type="text" id="infosettings"  ng-model="infoSettings.value" ng-show="infoSettings.type=='TEXT'"> 
+								        <select id="Category" ng-model="infoSettings.value" ng-show="infoSettings.type=='DROPDOWN'"
+								         ng-options="c for c in infoSettings.options">
+										</select>
 								    </div>
 								  </div>
 								  </div>

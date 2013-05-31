@@ -9,7 +9,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
     $scope.isCollapsed = true;
+    $scope.isWebinarChecked = false;
     $scope.isWebinar = false;
+    $scope.questionForm = {};
     $scope.eventFormSettings = {};
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
@@ -38,26 +40,20 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
   };
 
    $scope.saveAndClose = function () {
-	   alert($scope.questionForm.questionType);
-	   $http.post('event/addQuestion', $scope.questionForm).success(function() {
+	   alert("foo");
+	   $scope.shouldBeOpen = false; 
+	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
+	 /*  $http.post('event/addQuestion', $scope.questionForm).success(function() {
      }).error(function() {
          $scope.setError('Could not add a Question ');
-     });
-	   $scope.shouldBeOpen = false; 
+     });*/
+	   
    };  
     
 
     $scope.close = function(){
     	$scope.shouldBeOpen = false;
   	  };
-       	  
-       	  
-    $scope.showRelatedFields = function () {
-    	$scope.text = true;
-//    	$scope.checkboxes = true;
-//    	$scope.radiobuttons = true;
-    	
-    };
       
    $scope.questionType = [  {questionTypeName : 'Text' },      
     	                    {questionTypeName : 'Dropdown' },
@@ -119,14 +115,24 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         }
         
     }
-    
+    $scope.setRequiredFields = function() {
+    	$scope.isWebinarChecked=!$scope.isWebinarChecked;
+    	$scope.venueForm.venueName.$error.required = !$scope.isWebinarChecked;
+    	$scope.venueForm.venueAddress1.$error.required = !$scope.isWebinarChecked;
+    	$scope.venueForm.venueAddress2.$error.required = !$scope.isWebinarChecked;
+    	$scope.venueForm.$invalid = !$scope.isWebinarChecked;
+    }
     $scope.validations = function() {
-    	
     	$scope.nameRequired = $scope.eventForm.eName.$error.required;
     	$scope.descRequired = $scope.eventForm.description.$error.required;
     	$scope.startDateRequired = $scope.eventForm.startDate.$error.required;
     	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
-    	if($scope.nameRequired || $scope.endDateRequired ||$scope.descRequired ||$scope.startDateRequired){
+    	$scope.venueNameReq = $scope.venueForm.venueName.$error.required;
+    	$scope.venueAdd1Req = $scope.venueForm.venueAddress1.$error.required;
+    	$scope.venueAdd2Req = $scope.venueForm.venueAddress2.$error.required;
+    	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;
+    	
+    	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid){
     		$scope.stopSubmitAction=true;
     	}
     }
