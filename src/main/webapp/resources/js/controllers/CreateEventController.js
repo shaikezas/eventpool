@@ -40,13 +40,23 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
   };
 
    $scope.saveAndClose = function () {
+<<<<<<< HEAD
 	   alert("foo");
 	   $scope.shouldBeOpen = false; 
 	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
 	 /*  $http.post('event/addQuestion', $scope.questionForm).success(function() {
+=======
+	   $scope.shouldBeOpen = false; 
+	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
+	   $http.post('event/addQuestion', $scope.questionForm).success(function() {
+>>>>>>> refs/remotes/origin/master
      }).error(function() {
          $scope.setError('Could not add a Question ');
+<<<<<<< HEAD
      });*/
+=======
+     });
+>>>>>>> refs/remotes/origin/master
 	   
    };  
     
