@@ -39,26 +39,19 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
   };
 
    $scope.saveAndClose = function () {
-	   alert($scope.questionForm.questionType);
+	   $scope.shouldBeOpen = false; 
+	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
 	   $http.post('event/addQuestion', $scope.questionForm).success(function() {
      }).error(function() {
          $scope.setError('Could not add a Question ');
      });
-	   $scope.shouldBeOpen = false; 
+	   
    };  
     
 
     $scope.close = function(){
     	$scope.shouldBeOpen = false;
   	  };
-       	  
-       	  
-    $scope.showRelatedFields = function () {
-    	$scope.text = true;
-//    	$scope.checkboxes = true;
-//    	$scope.radiobuttons = true;
-    	
-    };
       
    $scope.questionType = [  {questionTypeName : 'Text' },      
     	                    {questionTypeName : 'Dropdown' },

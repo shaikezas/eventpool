@@ -82,9 +82,9 @@
 							 
 						<div style="clear: both" >Your questions: Not finding what you are looking for on this list? Create your own questions with more options.</div>
 						
-						<button type="button" class="btn" ng-click="openDialog()">Create a Question</button>
-				
-						    <div modal="shouldBeOpen" options="opts">
+						<button type="button" class="btn" data-toggle="modal" ng-click="openDialog()">Create a Question</button>
+						 
+						    <div class="modal" modal="shouldBeOpen" options="opts">
 						        <div class="modal-header">
 						            <h3>Question Form</h3>
 						        </div>
@@ -98,29 +98,29 @@
 							  		<div class="control-group">
 								    <label class="control-label" for="questionType">Question Type :</label>
 								    <div class="controls">
-								      	<select id="questionType" ng-model="questionForm.questionType" ng-change="showRelatedFields()"
+								      	<select id="questionType" ng-model="questionForm.questionType"
 														ng-options="question.questionTypeName for question in questionType">
 										
 										<option value="">-- Select QuestionType --</option>
 										</select>
 								    </div>
 								    </div>
-								    <div ng-show="text">
+								    <div ng-show="questionForm.questionType['questionTypeName']=='Text'">
+								    	<label class="control-label" for="text1">Options available :</label>
 								    	<div class="control-group">
-							    		<label class="control-label" for="text1">Text 1 :</label> 
 							    		<div class="controls">
 							      			<input type="text" ng-model="questionForm.text1" >
 							          	</div>
 							        	</div>
 							        	<div class="control-group">
-							    		<label class="control-label" for="text2">Text 2 :</label> 
+							    		<label class="control-label" for="text2"></label> 
 							    		<div class="controls">
 							      			<input type="text" ng-model="questionForm.text2" >
 							          	</div>
 							        	</div>
 								    </div>
-								    <div ng-show="checkboxes">
-								    
+								    <div ng-show="questionForm.questionType['questionTypeName']=='Checkboxes'">
+								    <label class="control-label" for="text1">Options available :</label>
 								    <div class="control-group">
 								    	<div class="controls">
 								      	  <input type="checkbox" ng-model="questionForm.checkbox1" >  <input type="text">
@@ -137,25 +137,38 @@
 								      	</div>
 								  	</div>								  									  	
 								    </div>
-								    <div ng-show="radiobuttons">
-								    <div class="control-group">
-								    	<div class="controls">
-								      	  <input type="radio" ng-model="questionForm.radio1" >  <input type="text">
-								      	</div>
-								  	</div>
-								    <div class="control-group">
-								    	<div class="controls">
-								      	  <input type="radio" ng-model="questionForm.radio2" >  <input type="text">
-								      	</div>
-								  	</div>
-								    <div class="control-group">
-								    	<div class="controls">
-								      	  <input type="radio" ng-model="questionForm.radio3" >  <input type="text">
-								      	</div>
-								  	</div>
+								    <div ng-show="questionForm.questionType['questionTypeName']=='Radio Buttons'">
+								    <label class="control-label" for="text1">Options available :</label>
+							    	<div class="controls">
+									<label class="radio">
+									  <input type="radio" name="questionRadios" id="optionsRadios1"  ng-model="questionForm.radioValue"  value="Senior Engineer" > <input type="text">
+									</label>  
+									 <label class="radio">
+									  <input type="radio" name="questionRadios" id="optionsRadios2"  ng-model="questionForm.radioValue"  value="Project Lead">	<input type="text">
+									 </label> 
+									  
+									 <label class="radio">
+									  <input type="radio" name="questionRadios" id="optionsRadios3"  ng-model="questionForm.radioValue"  value="Project Manager"> <input type="text">
+									</label>
+							   		 </div>
 								    </div>
-								    <div ng-show="dropdown">
-								    	Drop down lists need to be showed here.
+								    <div ng-show="questionForm.questionType['questionTypeName']=='Dropdown'">
+								    <label class="control-label" for="text1">Options available :</label>
+								    	<div class="control-group">
+								    	<div class="controls">
+								      	  1. <input type="text" ng-model="questionForm.dropdown1">
+								      	</div>
+								  	</div>
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  2. <input type="text" ng-model="questionForm.dropdown2">
+								      	</div>
+								  	</div>
+								    <div class="control-group">
+								    	<div class="controls">
+								      	  3. <input type="text" ng-model="questionForm.dropdown3">
+								      	</div>
+								  	</div>
 								    </div>
 							  									  		
 						        </div>
@@ -164,10 +177,8 @@
 						            <button type="button" class="btn" ng-click="saveAndClose()">Save and Close</button>
 						            <button type="button" class="btn" ng-click="close()">Cancel</button>
 						        </div>
-						    </div> 
-						    
-												
-						
+						    </div>
+						  
 						</div>	 	 
 							 	
 						</form>
