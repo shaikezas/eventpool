@@ -27,6 +27,7 @@ import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.web.forms.EventForm;
@@ -102,11 +103,10 @@ public class EventpoolMapper {
 			suborderDTO.setRegistrations(registrationDTOs);
 		}
 		
-			Ticket ticket = suborder.getTicket();
-			
-			if(ticket!=null){
+			TicketSnapShot ticketSnapShot = suborder.getTicketSnapShot();
+			if(ticketSnapShot!=null){
 				TicketDTO ticketDTO = new TicketDTO();
-				mapper.map(ticket, ticketDTO);
+				mapper.map(ticketSnapShot, ticketDTO);
 				suborderDTO.setTicket(ticketDTO);
 			}
 			
@@ -134,9 +134,12 @@ public class EventpoolMapper {
 			TicketDTO ticketDTO = suborderDTO.getTicket();
 			
 			if(ticketDTO!=null){
-				Ticket ticket = new Ticket();
-				mapper.map(ticketDTO, ticket);
-				suborder.setTicket(ticket);
+				TicketSnapShot ticketSnapShot = new TicketSnapShot();
+				mapper.map(ticketDTO, ticketSnapShot);
+				suborder.setTicketSnapShot(ticketSnapShot);
+				suborder.setTicketId(ticketDTO.getId());
+				suborder.setTicketName(ticketDTO.getName());
+				suborder.setTicketPrice(ticketDTO.getPrice());
 			}
 			
 			OrderDTO orderDTO = suborderDTO.getOrder();

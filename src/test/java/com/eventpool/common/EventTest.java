@@ -17,7 +17,9 @@ import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.MediaDTO;
+import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.OrderFormSettings;
+import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.UserSettingJson;
 import com.eventpool.common.entities.Address;
@@ -33,13 +35,17 @@ import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
+import com.eventpool.common.type.CurrencyType;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.common.type.OrderStatus;
+import com.eventpool.common.type.TicketType;
 import com.eventpool.event.command.PublishEventCommand;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
 import com.eventpool.event.service.EventCommandService;
+import com.eventpool.order.service.OrderService;
 import com.eventpool.web.controller.EventController;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.TicketForm;
@@ -230,10 +236,10 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testCityMap(){
-    	Map<Integer, String> citiesWithStateAndCountry = entityUtilities.getCitiesWithStateAndCountry();
-    	for(String str:citiesWithStateAndCountry.values()){
-    		log.info(str);
-    	}
+    //	Map<Integer, String> citiesWithStateAndCountry = entityUtilities.getCitiesWithStateAndCountry();
+    //	for(String str:citiesWithStateAndCountry.values()){
+    //		log.info(str);
+    //	}
     }
     
     @Resource
@@ -432,4 +438,63 @@ public class EventTest extends BaseTest{
     	List<EventDTO> allEvents = eventApi.getAllEvents(EventStatus.OPEN);
     	log.info(allEvents.size()+" size ");
     }
+    
+	@Resource
+	OrderService orderService;
+    
+    @Test
+    @Rollback(false)
+    public void  testOrder() throws Exception{
+    	
+    	SuborderDTO suborderDTO =new SuborderDTO();
+    	suborderDTO.setCreatedBy(1L);
+    	suborderDTO.setCreatedDate(new Date());
+    	suborderDTO.setDicountCoupon("discount coupon");
+    	suborderDTO.setDiscountAmount(123.00);
+    	suborderDTO.setGrossAmount(234.00);
+    	suborderDTO.setModifiedDate(new Date());
+    	suborderDTO.setNetAmount(345.34);
+    	suborderDTO.setOrganizerName("organizername");
+    	TicketDTO ticket = new TicketDTO();
+		suborderDTO.setTicket(ticket);
+    	suborderDTO.getTicket().setId(1L);
+    	suborderDTO.getTicket().setQuantity(12);
+    	suborderDTO.setStatus(OrderStatus.CANCELLED);
+    	suborderDTO.setSubCategoryId(1);
+    	suborderDTO.setTicketRegisterId(1L);
+    	suborderDTO.getTicket().setEventId(1L);
+    	ticket.setCreatedBy(1L);
+    	ticket.setCreatedDate(new Date());
+    	ticket.setDescription("description");
+    	ticket.setTicketType(TicketType.FREE);
+    	ticket.setName("name");
+    	ticket.setPrice(123.00);
+    	
+    	OrderDTO orderDTO = new  OrderDTO();
+    	orderDTO.setCreatedBy(1L);
+    	orderDTO.setCreatedDate(new Date());
+    	orderDTO.setDicountCoupon("discount coupon");
+    	orderDTO.setEmail("ramuenugurthi@gmail.com");
+    	orderDTO.setGrossAmount(234.00);
+    	orderDTO.setLastName("lastname");
+    	orderDTO.setFirstName("firstname");
+    	orderDTO.setModifiedDate(new Date());
+    	orderDTO.setNetAmount(234.00);
+    	orderDTO.setPaymentCurrency(CurrencyType.USD);
+    	List<SuborderDTO> suborders  = new ArrayList<SuborderDTO>();
+    	suborders.add(suborderDTO);
+		orderDTO.setSuborders(suborders);
+		
+		AddressDTO billingAddress = new AddressDTO();
+		orderDTO.setBillingAddress(billingAddress);
+		billingAddress.setAddress1("addr1");
+		billingAddress.setAddress2("addr2");
+		billingAddress.setCityId(23);
+		billingAddress.setFax("fax");
+		billingAddress.setMapUrl("mapurl");
+		billingAddress.setMobileNumber("123455678");
+		billingAddress.setPhoneNumber("98765432");
+		billingAddress.setZipCode(12345L);
+		orderService.createOrder(orderDTO);
+    }  
 }

@@ -22,18 +22,26 @@ import com.eventpool.common.type.OrderStatus;
 @Table(name = "SUBORDER")
 public class Suborder extends AuditableIdEntity {
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="TICKET_ID",insertable=false,updatable=false)
-	private Ticket ticket;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1737813513553962187L;
 	
-	@Column(name = "TICKET_ID", nullable = false)
-	private Long ticketId;
+	@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.PERSIST)
+	@JoinColumn(name="TICKET_SNAPSHOT_ID",referencedColumnName="ID")
+	private TicketSnapShot ticketSnapShot;
 	
+/*	@Column(name = "TICKET_SNAPSHOT_ID", nullable = false,insertable=false)
+	private Long ticketSnapShotId;
+*/	
 	@Column(name = "TICKET_NAME", nullable = false)
 	private String ticketName;
-	
-	@Column(name = "QUANTITY", length = 11)
-	private Integer quantity;
+
+	@Column(name = "TICKET_ID", nullable = false)
+	private Long ticketId;
+
+	@Column(name="TICKET_PRICE")
+	private Double ticketPrice;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID", nullable = false)
@@ -41,9 +49,6 @@ public class Suborder extends AuditableIdEntity {
 	
 	@Column(name = "SUB_CATEGORY_ID")
 	private Integer subCategoryId;
-	
-	@Column(name="TICKET_PRICE")
-	private Double ticketPrice;
 
 	@Column(name="GROSS_AMOUNT")
 	private Double grossAmount;
@@ -68,14 +73,6 @@ public class Suborder extends AuditableIdEntity {
 	@JoinColumn(name="SUBORDER_ID",referencedColumnName="ID")
 	private List<Registration> registrations;
 
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
 
 	public Order getOrder() {
 		return order;
@@ -93,14 +90,14 @@ public class Suborder extends AuditableIdEntity {
 		this.subCategoryId = subCategoryId;
 	}
 
-	public Double getTicketPrice() {
+/*	public Double getTicketPrice() {
 		return ticketPrice;
 	}
 
 	public void setTicketPrice(Double ticketPrice) {
 		this.ticketPrice = ticketPrice;
 	}
-
+*/
 	public Double getGrossAmount() {
 		return grossAmount;
 	}
@@ -160,34 +157,6 @@ public class Suborder extends AuditableIdEntity {
 	
 	
 	
-	public Long getTicketId() {
-		return ticketId;
-	}
-
-	public void setTicketId(Long ticketId) {
-		this.ticketId = ticketId;
-	}
-	
-	
-	
-	
-
-	public Ticket getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(Ticket ticket) {
-		this.ticket = ticket;
-	}
-
-	public String getTicketName() {
-		return ticketName;
-	}
-
-	public void setTicketName(String ticketName) {
-		this.ticketName = ticketName;
-	}
-
 	@PostUpdate
 	@PostPersist
 	public void onPersist(){
@@ -199,5 +168,36 @@ public class Suborder extends AuditableIdEntity {
 		}
 	}
 
-	
+	public TicketSnapShot getTicketSnapShot() {
+		return ticketSnapShot;
+	}
+
+	public void setTicketSnapShot(TicketSnapShot ticketSnapShot) {
+		this.ticketSnapShot = ticketSnapShot;
+	}
+
+	public String getTicketName() {
+		return ticketName;
+	}
+
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
+
+	public Long getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public Double getTicketPrice() {
+		return ticketPrice;
+	}
+
+	public void setTicketPrice(Double ticketPrice) {
+		this.ticketPrice = ticketPrice;
+	}
+
 }

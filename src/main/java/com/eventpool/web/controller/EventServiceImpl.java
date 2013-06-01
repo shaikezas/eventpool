@@ -90,4 +90,8 @@ public class EventServiceImpl implements EventService {
 	public List<EventDTO> getAllEvents(Long userId, EventStatus status) throws Exception {
 		return eventApi.getAllEvents(userId,status);
 	}
+
+	public List<TicketDTO> getOrderedTickets(Long userId) throws Exception {
+		return eventApi.getOrderedTickets(userId);
+	}
 }

@@ -17,13 +17,6 @@ import com.eventpool.common.type.TicketType;
 @Table(name = "TICKET_SNAPSHOT")
 public class TicketSnapShot extends AuditableIdEntity{
 	
-	@NotNull(message = "Can't be Empty")
-	@Column(name = "NAME")
-	private String name;
-	
-	@Column(name = "DESCRIPTION",length=1000)
-	private String description;
-	
 	@Column(name = "SALE_STARTDATE", nullable = false)
 	Date saleStart;
 	
@@ -37,39 +30,26 @@ public class TicketSnapShot extends AuditableIdEntity{
 	@Column(name = "QUANTITY")
 	private Integer quantity;
 	
-
 	@NotNull
 	@Column(name="TICKET_ID")
 	private Long ticketId;
 	
 	@NotNull
 	@Column(name="EVENT_ID")
-	private Long enventId;
-	
-	@Column(name="PRICE")
-	private Double price;
+	private Long eventId;
 	
 	@Column(name="MIN_QTY")
 	private Integer minQty;
 	
 	@Column(name="MAX_QTY")
 	private Integer maxQty;
+	
+	@Column(name="TICKET_ORDER")
+	private Integer ticketOrder;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	@Column(name="PAY_TYPE")
+	@Enumerated(EnumType.STRING)
+	private TicketType ticketType;
 
 	public Date getSaleStart() {
 		return saleStart;
@@ -97,21 +77,6 @@ public class TicketSnapShot extends AuditableIdEntity{
 		this.quantity = quantity;
 	}
 
-	public Long getEnventId() {
-		return enventId;
-	}
-
-	public void setEnventId(Long enventId) {
-		this.enventId = enventId;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
 
 	public Integer getMinQty() {
 		return minQty;
@@ -145,6 +110,28 @@ public class TicketSnapShot extends AuditableIdEntity{
 		this.ticketId = ticketId;
 	}
 
-	
-	
+	public Integer getTicketOrder() {
+		return ticketOrder;
+	}
+
+	public void setTicketOrder(Integer ticketOrder) {
+		this.ticketOrder = ticketOrder;
+	}
+
+	public TicketType getTicketType() {
+		return ticketType;
+	}
+
+	public void setTicketType(TicketType ticketType) {
+		this.ticketType = ticketType;
+	}
+
+	public Long getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
+	}
+
 }

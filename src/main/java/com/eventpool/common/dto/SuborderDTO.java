@@ -22,12 +22,7 @@ public class SuborderDTO extends AuditableIdDTO {
 
 	private TicketDTO ticket;
 	
-	private Long ticketId;
-	
-	private Integer quantity;
-	
     private OrderDTO order;
-	
 
 	private Integer subCategoryId;
 	
@@ -47,8 +42,6 @@ public class SuborderDTO extends AuditableIdDTO {
 	
 	private Long ticketRegisterId;
 	
-	private String ticketName;
-	
 	private List<RegistrationDTO> registrations;
 
 	public TicketDTO getTicket() {
@@ -57,14 +50,6 @@ public class SuborderDTO extends AuditableIdDTO {
 
 	public void setTicket(TicketDTO ticket) {
 		this.ticket = ticket;
-	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
 	}
 
 
@@ -157,25 +142,5 @@ public class SuborderDTO extends AuditableIdDTO {
 		this.ticketRegisterId = ticketRegisterId;
 	}
 
-	public Long getTicketId() {
-		return ticketId;
-	}
-
-	public void setTicketId(Long ticketId) {
-		this.ticketId = ticketId;
-	}
-	
-	
-	public String getTicketName() {
-		return ticketName;
-	}
-	
-	
-	public void setTicketName(String ticketName) {
-		this.ticketName = ticketName;
-	}
-	
-	
-	
 	
 }

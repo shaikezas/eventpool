@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.type.EventStatus;
@@ -32,4 +33,6 @@ public interface EventApi {
 	public List<EventDTO> getAllEvents(EventStatus status) throws Exception;
     
 	public List<EventDTO> getAllEvents(Long userId,EventStatus status) throws Exception;
+
+	public List<TicketDTO> getOrderedTickets(Long userId);
 }

@@ -9,19 +9,19 @@
          
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li ng-class="{active : header=='home'}">
+              <li ng-class="activeWhen(path()=='/home')">
                 <a href="#/home" >Home</a>
               </li>
-              <li ng-class="{active : header=='findevent'}">
+              <li ng-class="activeWhen(path()=='/findevent')">
                 <a href="#/findevent" >Find Event</a>
               </li>
-              <li ng-class="{active : header=='create'}">
+              <li ng-class="activeWhen(path()=='/createevent')">
                 <a href="#/createevent" >Create Event</a>
               </li>
-              <li ng-class="{active : header=='myevents'}">
+              <li ng-class="activeWhen(path()=='/myevents')">
                 <a href="#/myevents" >My Events</a>
               </li>
-              <li ng-class="{active : header=='mytickets'}">
+              <li ng-class="activeWhen(path()=='/mytickets')">
                 <a href="#/mytickets">My Tickets</a>
               </li>
             </ul>

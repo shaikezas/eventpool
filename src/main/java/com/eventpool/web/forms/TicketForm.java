@@ -22,7 +22,7 @@ public class TicketForm {
 	
 	private Integer quantity;
 	
-	private Long enventId;
+	private Long eventId;
 	
 	private Double price;
 	
@@ -86,14 +86,6 @@ public class TicketForm {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	public Long getEnventId() {
-		return enventId;
-	}
-
-	public void setEnventId(Long enventId) {
-		this.enventId = enventId;
 	}
 
 	public Double getPrice() {
@@ -211,6 +203,14 @@ public class TicketForm {
 	
 	public void setSelectedQty(Long selectedQty) {
 		this.selectedQty = selectedQty;
+	}
+
+	public Long getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 	
 }

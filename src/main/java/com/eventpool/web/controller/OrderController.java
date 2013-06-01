@@ -19,6 +19,7 @@ import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.OrderStatusDTO;
 import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
+import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
@@ -96,16 +97,17 @@ public class OrderController {
 			  suborderDTO.setGrossAmount(ticketRegisterDTO.getQty() * ticketRegisterDTO.getPrice());
 			  suborderDTO.setNetAmount(suborderDTO.getGrossAmount() - suborderDTO.getDiscountAmount());
 			  suborderDTO.setOrder(orderDTO);
-			  suborderDTO.setQuantity(ticketRegisterDTO.getQty());
+			  suborderDTO.setTicket(new TicketDTO());
+			  suborderDTO.getTicket().setQuantity(ticketRegisterDTO.getQty());
 			  suborderDTO.setStatus(OrderStatus.NEW);
 			  suborderDTO.setSubCategoryId(orderRegisterForm.getSubCategoryId());
 			  suborderDTO.setOrganizerName(orderRegisterForm.getOrganizerName());
-			  suborderDTO.setTicketId(ticketRegisterDTO.getTicketId());
+			  suborderDTO.getTicket().setId(ticketRegisterDTO.getTicketId());
 			  suborderDTO.setTicketPrice(ticketRegisterDTO.getPrice());
 			  suborderDTO.setTicketRegisterId(ticketRegisterDTO.getId());
-			  suborderDTO.setTicketName(ticketRegisterDTO.getTicketName());
+			  suborderDTO.getTicket().setName(ticketRegisterDTO.getTicketName());
 			  suborders.add(suborderDTO);
-			  suborderMap.put(suborderDTO.getTicketId(), suborderDTO);
+			  suborderMap.put(suborderDTO.getTicket().getId(), suborderDTO);
 			  
 		  }
 		  List<RegistrationDTO> registrations = null;
