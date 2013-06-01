@@ -23,10 +23,7 @@ import com.eventpool.event.module.EventApi;
 import com.eventpool.event.service.EventCommandService;
 
 /**
- * Created with IntelliJ IDEA.
- * User: xvitcoder
- * Date: 12/21/12
- * Time: 12:21 AM
+ 
  */
 @Service("EventService")
 public class EventServiceImpl implements EventService {
@@ -84,5 +81,9 @@ public class EventServiceImpl implements EventService {
 
 	public EventSettings getEventSettings(Long eventId) {
 		return eventApi.getEventSettings(eventId);
+	}
+
+	public List<EventDTO> getAllEvents(EventStatus status) throws Exception {
+		return eventApi.getAllEvents(status);
 	}
 }

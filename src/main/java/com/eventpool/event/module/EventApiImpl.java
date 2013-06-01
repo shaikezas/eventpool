@@ -19,6 +19,7 @@ import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.EventSettingsRepository;
+import com.eventpool.common.type.EventStatus;
 
 
 @Component
@@ -107,5 +108,19 @@ public class EventApiImpl implements EventApi{
 	public EventSettings getEventSettings(Long eventId) {
 		return eventSettingsRepository.findOne(eventId);
 		
+	}
+
+	@Transactional(readOnly = true)
+	public List<EventDTO> getAllEvents(EventStatus status) throws Exception {
+		List<Event> allEvents = eventRepository.getAllEvents(status);
+		List<EventDTO> eventDtoList = new ArrayList<EventDTO>();
+		if(allEvents!=null && allEvents.size()>0){
+			for(Event event:allEvents){
+				EventDTO eventDTO = new EventDTO();
+				eventpoolMapper.mapEventDTO(event, eventDTO);
+				eventDtoList.add(eventDTO);
+			}
+		}
+		return eventDtoList;
 	}
 }

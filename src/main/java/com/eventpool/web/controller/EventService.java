@@ -6,15 +6,13 @@ import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
+import com.eventpool.common.type.EventStatus;
 
 /**
- * Created with IntelliJ IDEA.
- * User: xvitcoder
- * Date: 12/21/12
- * Time: 12:20 AM
  */
 public interface EventService {
-    public List<EventDTO> getAllEvents(Long userId) throws Exception;
+
+	public List<EventDTO> getAllEvents(Long userId) throws Exception;
 
     public EventDTO getEventById(Long id) throws EventNotFoundException;
 
@@ -26,8 +24,10 @@ public interface EventService {
     
     public boolean publishEvent(String eventUrl,boolean isPublish) throws Exception;
     
-
 	public void updateEventSettings(EventSettings settings);
 	
 	public EventSettings getEventSettings(Long eventId);
+	
+	public List<EventDTO> getAllEvents(EventStatus status) throws Exception;
+
 }

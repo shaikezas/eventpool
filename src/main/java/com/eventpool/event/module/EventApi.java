@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
+import com.eventpool.common.type.EventStatus;
 
 @Component
 public interface EventApi {
@@ -27,5 +28,7 @@ public interface EventApi {
 	public void updateEventSettings(EventSettings settings);
 	
 	public EventSettings getEventSettings(Long eventId);
+    
+	public List<EventDTO> getAllEvents(EventStatus status) throws Exception;
     
 }

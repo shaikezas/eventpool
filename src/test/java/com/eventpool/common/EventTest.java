@@ -426,4 +426,10 @@ public class EventTest extends BaseTest{
     	publishEventCommand.setEventUrl("event url");
     	eventCommandService.executeCommand(publishEventCommand);
     }
+    
+    @Test
+    public void  testGetAllEventsByStatus() throws Exception{
+    	List<EventDTO> allEvents = eventApi.getAllEvents(EventStatus.OPEN);
+    	log.info(allEvents.size()+" size ");
+    }
 }
