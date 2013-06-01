@@ -40,9 +40,12 @@
 	<script src="lib/jquery/jquery.js" type="text/javascript"></script>
 	<script src="lib/jquery/jquery-ui.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"> </script>
+    
+    <!-- check this for datetime picker documentation http://www.malot.fr/bootstrap-datetimepicker -->
     <script type="text/javascript" src="lib/bootstrap/bootstrap-datetimepicker.js"> </script>
     <script src="resources/bootstrap/js/bootstrap-tab.js"></script>
 
+	<script src="lib/moment.js"></script>
 	<script src="resources/js/lib/angular/angular.js"></script>
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/services.js"></script>

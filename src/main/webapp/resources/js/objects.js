@@ -14,6 +14,9 @@ eventpool.ticket = function() {
 	this.showPrice = false;
 	this.showFree = false;
 	this.ticketOrder =0;
+	this.minQty = 1;
+    this.maxQty = 5;
+    this.saleStart = moment().format("DD-MM-YYYY hh:mm A");
 };
 
 eventpool.eventRegister = function() {
