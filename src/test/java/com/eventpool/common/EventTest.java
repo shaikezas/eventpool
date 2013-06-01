@@ -497,4 +497,11 @@ public class EventTest extends BaseTest{
 		billingAddress.setZipCode(12345L);
 		orderService.createOrder(orderDTO);
     }  
+    
+    @Test
+    @Transactional
+    public void testMytickets(){
+    	List<TicketDTO> orderedTickets = eventApi.getOrderedTickets(0L);
+    	log.info(orderedTickets.size()+" size");
+    }
 }

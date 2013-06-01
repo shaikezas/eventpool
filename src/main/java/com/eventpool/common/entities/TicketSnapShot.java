@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -22,6 +23,15 @@ public class TicketSnapShot extends AuditableIdEntity{
 	
 	@Column(name = "SALE_ENDDATE", nullable = false)
 	Date saleEnd;
+	
+//	@Column(name = "TICKET_NAME")
+	@Transient
+	private String ticketName;
+
+	//@Column(name="TICKET_PRICE")
+	@Transient
+	private Double ticketPrice;
+
 	
 	@Column(name="ACTIVE",nullable=false)
 	@Type(type = "yes_no")
@@ -131,6 +141,22 @@ public class TicketSnapShot extends AuditableIdEntity{
 
 	public void setEventId(Long eventId) {
 		this.eventId = eventId;
+	}
+
+	public String getTicketName() {
+		return ticketName;
+	}
+
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
+
+	public Double getTicketPrice() {
+		return ticketPrice;
+	}
+
+	public void setTicketPrice(Double ticketPrice) {
+		this.ticketPrice = ticketPrice;
 	}
 
 }
