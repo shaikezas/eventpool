@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import com.eventpool.common.dto.Region;
 import com.eventpool.common.entities.City;
 import com.eventpool.common.entities.Country;
 import com.eventpool.common.entities.State;
@@ -96,8 +97,8 @@ public class EntityUtilities {
 		return stateMap;
 	}
 
-	public Map<Integer,String> getCitiesWithStateAndCountry(){
-		HashMap<Integer,String> cityMap = new HashMap<Integer, String>();
+	public Map<Integer,Region> getCitiesWithStateAndCountry(){
+		HashMap<Integer,Region> cityMap = new HashMap<Integer, Region>();
 		for(Integer cityId:this.cityMap.keySet()){
 			Integer stateId = this.cityStateMap.get(cityId);
 			Integer countryId = this.stateCountryMap.get(stateId);
@@ -106,8 +107,16 @@ public class EntityUtilities {
 			String stateName  = this.stateMap.get(stateId);
 			String countryName  = this.countryMap.get(countryId);
 			
+			Region region = new Region();
+				region.setCityId(cityId);
+				region.setCityName(cityName);
+				region.setStateId(stateId);
+				region.setStateName(stateName);
+				region.setCountryId(countryId);
+				region.setCountryName(countryName);
+			
 			String cityWithStateAndCountry = cityName + SEPARATOR +stateName+SEPARATOR+countryName;
-			cityMap.put(cityId, cityWithStateAndCountry);
+			cityMap.put(cityId, region);
 		}
 		return cityMap;
 	}
