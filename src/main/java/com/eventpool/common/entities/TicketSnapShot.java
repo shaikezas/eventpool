@@ -34,7 +34,6 @@ public class TicketSnapShot extends AuditableIdEntity{
 	@Column(name="TICKET_ID")
 	private Long ticketId;
 	
-	@NotNull
 	@Column(name="EVENT_ID")
 	private Long eventId;
 	

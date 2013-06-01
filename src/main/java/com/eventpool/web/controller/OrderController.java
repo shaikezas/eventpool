@@ -24,6 +24,7 @@ import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
 import com.eventpool.common.type.OrderStatus;
+import com.eventpool.common.type.TicketType;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
@@ -103,12 +104,18 @@ public class OrderController {
 			  suborderDTO.setSubCategoryId(orderRegisterForm.getSubCategoryId());
 			  suborderDTO.setOrganizerName(orderRegisterForm.getOrganizerName());
 			  suborderDTO.getTicket().setId(ticketRegisterDTO.getTicketId());
-			  suborderDTO.setTicketPrice(ticketRegisterDTO.getPrice());
+			  suborderDTO.getTicket().setPrice(ticketRegisterDTO.getPrice());
 			  suborderDTO.setTicketRegisterId(ticketRegisterDTO.getId());
 			  suborderDTO.getTicket().setName(ticketRegisterDTO.getTicketName());
 			  suborders.add(suborderDTO);
 			  suborderMap.put(suborderDTO.getTicket().getId(), suborderDTO);
 			  
+			  //TODO: hard coding
+			  suborderDTO.getTicket().setCreatedBy(1L);
+			  suborderDTO.getTicket().setTicketType(TicketType.FREE);
+			  
+			  //TODO: to be removed
+			  suborderDTO.setTicketPrice(ticketRegisterDTO.getPrice());
 		  }
 		  List<RegistrationDTO> registrations = null;
 		  RegistrationDTO registrationDTO = null;
