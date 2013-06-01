@@ -64,7 +64,7 @@
 			
     </mapping>
     
-       <mapping stop-on-errors="false" wildcard="false">
+   <mapping stop-on-errors="false" wildcard="false">
         <class-a>com.eventpool.common.entities.TicketSnapShot</class-a>
         <class-b>com.eventpool.common.dto.TicketDTO</class-b>
         	<field><a>ticketId</a><b>id</b></field>

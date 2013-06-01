@@ -11,14 +11,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.entities.Media;
+import com.eventpool.common.entities.Suborder;
+import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.EventSettingsRepository;
+import com.eventpool.common.repositories.SuborderRepository;
 import com.eventpool.common.type.EventStatus;
 
 
@@ -33,6 +37,9 @@ public class EventApiImpl implements EventApi{
     @Resource
     private EventRepository eventRepository;
 
+    @Resource
+    private SuborderRepository suborderRepository;
+   
     @Resource
     private EventMediaRepository eventMediaRepository;
     
@@ -137,5 +144,21 @@ public class EventApiImpl implements EventApi{
 			}
 		}
 		return eventDtoList;
+	}
+
+	public List<TicketDTO> getOrderedTickets(Long userId) {
+		List<Suborder> suborders = suborderRepository.getSuborders(userId);
+		List<TicketDTO> ticketDTOs = new ArrayList<TicketDTO>();
+		if(suborders!=null && suborders.size()>0){
+			for(Suborder suborder:suborders){
+				TicketSnapShot ticketSnapShot = suborder.getTicketSnapShot();
+				TicketDTO ticketDTO = new TicketDTO();
+				eventpoolMapper.map(ticketSnapShot, ticketDTO);
+				ticketDTOs.add(ticketDTO);
+				ticketDTO.setName(suborder.getTicketName());
+				ticketDTO.setPrice(suborder.getTicketPrice());
+			}
+		}
+		return ticketDTOs;
 	}
 }

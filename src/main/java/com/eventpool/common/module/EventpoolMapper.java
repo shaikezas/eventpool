@@ -104,7 +104,6 @@ public class EventpoolMapper {
 		}
 		
 			TicketSnapShot ticketSnapShot = suborder.getTicketSnapShot();
-			
 			if(ticketSnapShot!=null){
 				TicketDTO ticketDTO = new TicketDTO();
 				mapper.map(ticketSnapShot, ticketDTO);
