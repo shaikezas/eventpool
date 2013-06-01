@@ -230,10 +230,10 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testCityMap(){
-    	Map<Integer, String> citiesWithStateAndCountry = entityUtilities.getCitiesWithStateAndCountry();
-    	for(String str:citiesWithStateAndCountry.values()){
-    		log.info(str);
-    	}
+    //	Map<Integer, String> citiesWithStateAndCountry = entityUtilities.getCitiesWithStateAndCountry();
+    //	for(String str:citiesWithStateAndCountry.values()){
+    //		log.info(str);
+    //	}
     }
     
     @Resource
