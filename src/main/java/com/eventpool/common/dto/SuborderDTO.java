@@ -27,7 +27,6 @@ public class SuborderDTO extends AuditableIdDTO {
 	private Integer quantity;
 	
     private OrderDTO order;
-	
 
 	private Integer subCategoryId;
 	

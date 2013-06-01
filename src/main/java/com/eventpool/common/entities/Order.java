@@ -43,7 +43,6 @@ public class Order extends AuditableIdEntity {
 	@JoinColumn(name="ADDRESS_ID",referencedColumnName="ID")
 	private Address billingAddress;
 	
-	
 	@Column(name="GROSS_AMOUNT")
 	private Double grossAmount;
 	

@@ -68,7 +68,7 @@ public class OrderServiceTest extends BaseTest{
 		Thread.sleep(1000*40);
 	}
     
-//	@Test
+	@Test
     public void placeOrder() throws Exception {
     	
     	EventRegisterDTO eventDTO = new EventRegisterDTO();

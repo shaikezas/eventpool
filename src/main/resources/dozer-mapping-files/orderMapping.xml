@@ -25,10 +25,10 @@
     <mapping stop-on-errors="false" wildcard="false">
         <class-a>com.eventpool.common.entities.Suborder</class-a>
         <class-b>com.eventpool.common.dto.SuborderDTO</class-b>
-  			<field><a>quantity</a><b>quantity</b></field>
-			<field><a>subCategoryId</a><b>subCategoryId</b></field>
+<!--   			<field><a>quantity</a><b>quantity</b></field>
+ --> 		<field><a>subCategoryId</a><b>subCategoryId</b></field> 
 			<field><a>ticketPrice</a><b>ticketPrice</b></field>
-			<field><a>organizerName</a><b>organizerName</b></field>
+ 		    <field><a>organizerName</a><b>organizerName</b></field>
 			<field><a>grossAmount</a><b>grossAmount</b></field>
 			<field><a>netAmount</a><b>netAmount</b></field>
 			<field><a>discountAmount</a><b>discountAmount</b></field>
@@ -38,7 +38,7 @@
 			<field><a>modifiedDate</a><b>modifiedDate</b></field>
 			<field><a>ticketId</a><b>ticketId</b></field>
 			<field><a>ticketName</a><b>ticketName</b></field>
-			<field><a>id</a><b>id</b></field>
+	     	<field><a>id</a><b>id</b></field>
     </mapping>
     
     <mapping stop-on-errors="false" wildcard="false">
@@ -63,5 +63,22 @@
 			<field><a>ticketName</a><b>ticketName</b></field>
 			
     </mapping>
+    
+       <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.TicketSnapShot</class-a>
+        <class-b>com.eventpool.common.dto.TicketDTO</class-b>
+        	<field><a>ticketId</a><b>id</b></field>
+  			<field><a>saleStart    </a><b>saleStart   </b></field>
+			<field><a>saleEnd      </a><b>saleEnd     </b></field>
+			<field><a>isActive    </a><b>isActive    </b></field>
+			<field><a>quantity    </a><b>quantity    </b></field>
+			<field><a>enventId    </a><b>enventId    </b></field>
+			<field><a>minQty      </a><b>minQty      </b></field>
+			<field><a>maxQty      </a><b>maxQty      </b></field>
+			<field><a>createdBy</a><b>createdBy</b></field>
+			<field><a>ticketOrder      </a><b>ticketOrder      </b></field>
+			<field><a>ticketType      </a><b>ticketType      </b></field>
+    </mapping>
+    
   
 </mappings>
