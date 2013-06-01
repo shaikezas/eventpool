@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 public interface TicketInventoryRepository extends JpaRepository<TicketInventory, Long>{
 //	SELECT ti.MAX_QTY FROM  ticket_inventory ti,ticket t WHERE t.EVENT_ID=2 AND t.ID=ti.TICKET_ID
 	
-	@Query(value = "SELECT ti FROM  TicketInventory ti, Ticket t WHERE t.id=ti.ticketId and t.enventId=:enventId ")
-	public List<TicketInventory> findTicketInventoryByEventId(@Param("enventId")Long enventId);
+	@Query(value = "SELECT ti FROM  TicketInventory ti, Ticket t WHERE t.id=ti.ticketId and t.eventId=:eventId ")
+	public List<TicketInventory> findTicketInventoryByEventId(@Param("eventId")Long eventId);
 }

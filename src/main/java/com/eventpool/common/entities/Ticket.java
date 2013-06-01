@@ -48,7 +48,7 @@ public class Ticket extends AuditableIdEntity{
 	
 	@NotNull
 	@Column(name="EVENT_ID")
-	private Long enventId;
+	private Long eventId;
 	
 	@Column(name="PRICE")
 	private Double price;
@@ -105,14 +105,6 @@ public class Ticket extends AuditableIdEntity{
 		this.quantity = quantity;
 	}
 
-	public Long getEnventId() {
-		return enventId;
-	}
-
-	public void setEnventId(Long enventId) {
-		this.enventId = enventId;
-	}
-
 	public Double getPrice() {
 		return price;
 	}
@@ -160,6 +152,14 @@ public class Ticket extends AuditableIdEntity{
 	
 	public void setTicketType(TicketType ticketType) {
 		this.ticketType = ticketType;
+	}
+
+	public Long getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 	
 	

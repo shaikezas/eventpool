@@ -250,7 +250,7 @@ public class Event extends AuditableIdEntity {
 		List<Ticket> listOfTickets = this.getTickets();
 		if ( listOfTickets!= null && listOfTickets.size()>0){
 			for ( Ticket ticket : listOfTickets){
-				ticket.setEnventId(this.getId());
+				ticket.setEventId(this.getId());
 			}
 		}
 		Media childMedia = this.getMedia();

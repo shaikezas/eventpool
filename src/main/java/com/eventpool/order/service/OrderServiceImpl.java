@@ -118,8 +118,8 @@ public class OrderServiceImpl implements OrderService {
 	private TicketInventoryDetails updateTicketInventory(SuborderDTO suborder)
 			throws Exception {
 		TicketOrderedCommand cmd = new TicketOrderedCommand();
-		cmd.setQty(suborder.getQuantity());
-		cmd.setTicketId(suborder.getTicketId());
+		cmd.setQty(suborder.getTicket().getQuantity());
+		cmd.setTicketId(suborder.getTicket().getId());
 		TicketInventoryDetails inventoryDetails = (TicketInventoryDetails) inventoryService
 				.executeCommand(cmd);
 		return inventoryDetails;

@@ -36,7 +36,7 @@ public class TicketSnapShot extends AuditableIdEntity{
 	
 	@NotNull
 	@Column(name="EVENT_ID")
-	private Long enventId;
+	private Long eventId;
 	
 	@Column(name="MIN_QTY")
 	private Integer minQty;
@@ -75,14 +75,6 @@ public class TicketSnapShot extends AuditableIdEntity{
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	public Long getEnventId() {
-		return enventId;
-	}
-
-	public void setEnventId(Long enventId) {
-		this.enventId = enventId;
 	}
 
 
@@ -132,6 +124,14 @@ public class TicketSnapShot extends AuditableIdEntity{
 
 	public void setTicketType(TicketType ticketType) {
 		this.ticketType = ticketType;
+	}
+
+	public Long getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 
 }

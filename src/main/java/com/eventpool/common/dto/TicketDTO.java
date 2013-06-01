@@ -27,7 +27,7 @@ public class TicketDTO extends AuditableIdDTO{
 	
 	private Integer quantity;
 	
-	private Long enventId;
+	private Long eventId;
 	
 	private Double price;
 	
@@ -79,12 +79,12 @@ public class TicketDTO extends AuditableIdDTO{
 		this.quantity = quantity;
 	}
 
-	public Long getEnventId() {
-		return enventId;
+	public Long getEventId() {
+		return eventId;
 	}
 
-	public void setEnventId(Long enventId) {
-		this.enventId = enventId;
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 
 	public Double getPrice() {

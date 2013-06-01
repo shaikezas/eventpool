@@ -27,7 +27,6 @@
         <class-b>com.eventpool.common.dto.SuborderDTO</class-b>
 <!--   			<field><a>quantity</a><b>quantity</b></field>
  --> 		<field><a>subCategoryId</a><b>subCategoryId</b></field> 
-			<field><a>ticketPrice</a><b>ticketPrice</b></field>
  		    <field><a>organizerName</a><b>organizerName</b></field>
 			<field><a>grossAmount</a><b>grossAmount</b></field>
 			<field><a>netAmount</a><b>netAmount</b></field>
@@ -36,8 +35,6 @@
 			<field><a>createdBy</a><b>createdBy</b></field>
 			<field><a>createdDate</a><b>createdDate</b></field>
 			<field><a>modifiedDate</a><b>modifiedDate</b></field>
-			<field><a>ticketId</a><b>ticketId</b></field>
-			<field><a>ticketName</a><b>ticketName</b></field>
 	     	<field><a>id</a><b>id</b></field>
     </mapping>
     
@@ -72,7 +69,7 @@
 			<field><a>saleEnd      </a><b>saleEnd     </b></field>
 			<field><a>isActive    </a><b>isActive    </b></field>
 			<field><a>quantity    </a><b>quantity    </b></field>
-			<field><a>enventId    </a><b>enventId    </b></field>
+			<field><a>eventId    </a><b>eventId    </b></field>
 			<field><a>minQty      </a><b>minQty      </b></field>
 			<field><a>maxQty      </a><b>maxQty      </b></field>
 			<field><a>createdBy</a><b>createdBy</b></field>
