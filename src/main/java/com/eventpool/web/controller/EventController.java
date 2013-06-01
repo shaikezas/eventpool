@@ -93,8 +93,8 @@ public class EventController {
     }
 
     
-    @RequestMapping("/eventlist")
-    public @ResponseBody List<MyEventForm> getEventList() throws Exception {
+    @RequestMapping("/draftEventList")
+    public @ResponseBody List<MyEventForm> getDraftEventList() throws Exception {
     	System.out.println("getEventList");
          List<EventDTO> eventDTOs = eventService.getAllEvents(1L);
          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
@@ -112,6 +112,40 @@ public class EventController {
          return forms;
     }
     
+    @RequestMapping("/liveEventList")
+    public @ResponseBody List<MyEventForm> getLiveEventList() throws Exception {
+    	System.out.println("getEventList");
+    	MyEventForm form = new MyEventForm();
+    	form.setId(1L);
+    	form.setStartDate("11/10/12");
+    	form.setTitle("LiveEvent");
+    	form.setSold("23/50");
+          
+         List<MyEventForm>  forms = new ArrayList<MyEventForm>();
+        	 forms.add(form);
+         
+         
+         
+         return forms;
+        
+    }
+    
+    @RequestMapping("/pastEventList")
+    public @ResponseBody List<MyEventForm> getPastEventList() throws Exception {
+    	System.out.println("getEventList");
+    	MyEventForm form = new MyEventForm();
+    	form.setId(1L);
+    	form.setStartDate("11/11/11");
+    	form.setTitle("PastEvnet");
+    	form.setSold("23/50");
+          
+         List<MyEventForm>  forms = new ArrayList<MyEventForm>();
+        	 forms.add(form);
+         
+         
+         
+         return forms;
+    }
     @RequestMapping(value = "/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
       //  eventService.deleteEventById(id);
