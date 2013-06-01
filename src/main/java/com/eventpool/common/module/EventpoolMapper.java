@@ -137,7 +137,7 @@ public class EventpoolMapper {
 				TicketSnapShot ticketSnapShot = new TicketSnapShot();
 				mapper.map(ticketDTO, ticketSnapShot);
 				suborder.setTicketSnapShot(ticketSnapShot);
-				suborder.setTickerId(ticketDTO.getId());
+				suborder.setTicketId(ticketDTO.getId());
 				suborder.setTicketName(ticketDTO.getName());
 				suborder.setTicketPrice(ticketDTO.getPrice());
 			}

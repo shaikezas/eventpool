@@ -26,9 +26,9 @@ public class Suborder extends AuditableIdEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 1737813513553962187L;
-
+	
 	@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.PERSIST)
-	@JoinColumn(name="TICKET_SNAPSHOT_ID",insertable=true,updatable=false)
+	@JoinColumn(name="TICKET_SNAPSHOT_ID",referencedColumnName="ID")
 	private TicketSnapShot ticketSnapShot;
 	
 /*	@Column(name = "TICKET_SNAPSHOT_ID", nullable = false,insertable=false)
@@ -188,7 +188,7 @@ public class Suborder extends AuditableIdEntity {
 		return ticketId;
 	}
 
-	public void setTickerId(Long ticketId) {
+	public void setTicketId(Long ticketId) {
 		this.ticketId = ticketId;
 	}
 
