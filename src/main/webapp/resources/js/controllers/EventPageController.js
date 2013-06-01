@@ -1,8 +1,9 @@
 var EventPageController = function($scope, $http,$routeParams, srvevent,$location,Data) {
-	  $scope.event = Data.getEventData();
+		$scope.event = Data.getEventData();
 	    $scope.editMode = true;
 	    $scope.orderRegister = Data.getOrderRegisterData();
-    $scope.status = {};
+	    $scope.status = {};
+	    $scope.enableBookTicket = true;
                     
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
@@ -60,4 +61,18 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
              alert(error);
          });
 }
+    
+    $scope.atleastOneTktSelected = function() {
+    	var tickets = $scope.event.tickets;
+    	var totalTkts = 0;
+    	for (var i=0;i<tickets.length;i++) 	{    		
+    		totalTkts = parseInt(totalTkts) + parseInt(tickets[i].selectedQty);
+    	}
+    	if(totalTkts > 0){
+    	$scope.enableBookTicket = false;
+    	}
+    	else {
+    		$scope.enableBookTicket = true;
+    	}
+    }
 }

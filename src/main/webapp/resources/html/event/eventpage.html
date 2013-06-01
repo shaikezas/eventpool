@@ -32,7 +32,7 @@
 						  <td class="amt">{{ticket.saleEnd}}</td>
 						  <td class="amt"> 
 						  	<select id="Category" ng-model="ticket.selectedQty" ng-init="ticket.selectedQty='0'" 
-													ng-options="qty.value as qty.key for qty in ticket.qtyList" >
+													ng-options="qty.value as qty.key for qty in ticket.qtyList" ng-change="atleastOneTktSelected()">
 										</select>
 						  </td>
 						 
@@ -42,7 +42,7 @@
 				
 				
 				<div style="text-align: right">
-        		<button type="button" class="btn btn-primary" ng-click="registerTicket()" >Book Ticket</button>
+        		<button type="button" class="btn" ng-click="registerTicket()" ng-disabled="enableBookTicket">Book Ticket</button>
         		</div>
         		
 				</div>

@@ -311,7 +311,7 @@
 								        <tr>
 								        	
 					  	 		
-								          <th>TICKET NAMME</th>
+								          <th>TICKET NAME <span ng-style="{color:'red'}">*</span></th>
 								          <th>TICKET QUANTITY</th>
 								          <th>TICKET PRICE</th>
 								          <th>SALES STATUS   |   Fee    |   Buyer Total</th>
@@ -321,7 +321,7 @@
 								      </thead>
 								      <tbody>
 								        <tr>
-								          <td> <input type="text"  ng-model="ticket.name"></td>
+								          <td> <input type="text"  ng-model="ticket.name"><span ng-show="required" ng-style="{color:'red'}">Required.</span></td>
 								          <td> <input type="text"  ng-model="ticket.quantity"></td>
 								          <td><span ng-show="ticket.showFree">FREE</span><input type="text" ng-show="ticket.showPrice" ng-model="ticket.price" ></td>
 								          <td>
@@ -330,9 +330,8 @@
 											  </select>
 										  </td>
 								          <td>
-								        	<button class="btn" ng-click="isCollapsed = !isCollapsed">Setting </button>
-				          	
-								          	</td>
+								        	<button class="btn" ng-click="isCollapsed = !isCollapsed"><div tooltip="Sales Start : {{ticket.saleStart}} <br> Sales End : {{ticket.saleEnd}} Minimum Tickets : {{ticket.minQty}} Maximum Tickets : {{ticket.maxQty}}">Setting</div></button>
+								        	</td>
 								          <td>
 								          	
 								          	<button type="button" class="btn" ng-click="removeTicket($index)" >X</button>
