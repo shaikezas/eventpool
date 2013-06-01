@@ -123,4 +123,19 @@ public class EventApiImpl implements EventApi{
 		}
 		return eventDtoList;
 	}
+
+	@Transactional(readOnly = true)
+	public List<EventDTO> getAllEvents(Long userId, EventStatus status)
+			throws Exception {
+		List<Event> allEvents = eventRepository.getAllEvents(userId,status);
+		List<EventDTO> eventDtoList = new ArrayList<EventDTO>();
+		if(allEvents!=null && allEvents.size()>0){
+			for(Event event:allEvents){
+				EventDTO eventDTO = new EventDTO();
+				eventpoolMapper.mapEventDTO(event, eventDTO);
+				eventDtoList.add(eventDTO);
+			}
+		}
+		return eventDtoList;
+	}
 }

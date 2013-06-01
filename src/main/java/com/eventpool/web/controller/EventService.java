@@ -30,4 +30,6 @@ public interface EventService {
 	
 	public List<EventDTO> getAllEvents(EventStatus status) throws Exception;
 
+	public List<EventDTO> getAllEvents(Long userId,EventStatus status) throws Exception;
+
 }

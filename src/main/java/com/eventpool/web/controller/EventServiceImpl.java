@@ -86,4 +86,8 @@ public class EventServiceImpl implements EventService {
 	public List<EventDTO> getAllEvents(EventStatus status) throws Exception {
 		return eventApi.getAllEvents(status);
 	}
+
+	public List<EventDTO> getAllEvents(Long userId, EventStatus status) throws Exception {
+		return eventApi.getAllEvents(userId,status);
+	}
 }
