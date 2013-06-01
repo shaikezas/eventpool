@@ -186,7 +186,7 @@ AppDirectives.directive('datetimePicker', function($timeout) {
         link: function(scope, element, attrs, model) {
             $(".datetimepicker").datetimepicker({
             	autoclose: true,
-                format: 'dd-mm-yyyy HH:ii P',
+                format: 'dd-M-yyyy HH:ii P',
                 forceParse: false,
                 todayBtn: true,
                 todayHighlight : true,

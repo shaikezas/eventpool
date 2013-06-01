@@ -157,7 +157,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	var millSecs = sEnd.getTime();
         	millSecs = millSecs - 3600000;
         	sEnd = new Date(millSecs);
-        	ticket.saleEnd = sEnd;
+        	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY hh:mm A");
         }
         
         $scope.event.tickets.push(ticket);
@@ -171,18 +171,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "PAID";
         ticket.showPrice = true;
-        var now = new Date();
-        ticket.saleStart = now;
         if(angular.isDefined($scope.event.startDate)){
-        var sEnd = $scope.event.startDate;
-        sEnd = new Date(sEnd);
-        var millSecs = sEnd.getTime();
-        millSecs = millSecs - 3600000;
-        sEnd = new Date(millSecs);
-        ticket.saleEnd = sEnd;
+	        var sEnd = $scope.event.startDate;
+	        sEnd = new Date(sEnd);
+	        var millSecs = sEnd.getTime();
+	        millSecs = millSecs - 3600000;
+	        sEnd = new Date(millSecs);
+	        ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY hh:mm A");
         }
-        ticket.minQty = 1;
-        ticket.maxQty = 5;
         $scope.event.tickets.push(ticket);
     }
     
