@@ -265,13 +265,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	ticket.showsettings = show;
     }
     
-    $scope.selectMe = function(item) {
-    	$scope.searchText = item
-    	var n = item.split("-");
-        $scope.city =  n[0]
-        $scope.state =  n[1];
-        $scope.country = n[2];
-        $scope.event.cityId = n[3];
+    $scope.selectCity = function(region) {
+    	$scope.searchText = region.cityName;
+        $scope.city =  region.cityName;
+        $scope.state =  region.stateName;
+        $scope.country = region.countryName;
+        $scope.event.cityId = region.cityId;
         $scope.searchResults = null;
         
         

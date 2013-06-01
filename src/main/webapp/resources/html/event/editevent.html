@@ -186,9 +186,9 @@
 	            					placeholder="Search"  ng-change="getsearchResults(searchText)">
 	            					</div>
 	            			 		 <ul id="Ul1" class="controls">
-	            					 <li ng-repeat="item in searchResults | filter:searchText"> 
+	            					 <li ng-repeat="region in searchResults | filter:searchText"> 
 	                                
-										<a href="javascript:void(0);" ng-click="selectMe(item)">{{item}}</a></li>
+										<a href="javascript:void(0);" ng-click="selectCity(region)">{{region.cityName}}  - {{region.stateName}} - {{region.countryName}}</a></li>
             						</ul>
 	                                  </div>
 	                         
