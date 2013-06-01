@@ -152,9 +152,11 @@ public class OrderServiceImpl implements OrderService {
 		orderRegisterForm
 				.setPaymentCurrency(eventRegister.getPaymentCurrency());
 		orderRegisterForm.setSubCategoryId(eventRegister.getSubCategoryId());
+		if(!event.getIsWebinar()){
 		orderRegisterForm.setVenueName(event.getVenueName());
 		orderRegisterForm
 				.setVenueAddress(event.getVenueAddress().getAddress1());
+		}
 		orderRegisterForm.setStartDate(dateCustomConverter.convertFrom(event
 				.getStartDate()));
 		orderRegisterForm.setEndDate(dateCustomConverter.convertFrom(event
