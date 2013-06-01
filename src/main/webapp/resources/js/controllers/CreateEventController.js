@@ -108,10 +108,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	$scope.stopSubmitAction = false;
          }
         else {
-        	alert("success");
+        	
         $http.post('event/addEvent', $scope.event).success(function() {
+        	$scope.success=true;
 //            $scope.fetchEventsList();
         }).error(function() {
+        	$scope.error=true;
             $scope.setError('Could not add a new event');
         });
         }

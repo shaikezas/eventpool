@@ -1,3 +1,4 @@
+DELETE FROM EVENT_DEFAULT_SETTINGS;
 INSERT INTO EVENT_DEFAULT_SETTINGS(NAME,SETTINGS,CREATEDBY,CREATED_DATE,MODIFIED_DATE) VALUES 
 ('EVENTINFO','[{"name":"Prefix (Mr., Mrs., etc.)","type":"DROPDOWN","group":"Contact","options":["Mr.","Mrs."],"isValue":false,"isRequired":false},
 {"name":"First Name","type":"TEXT","group":"Contact","isValue":true,"isRequired":true},
@@ -18,3 +19,4 @@ INSERT INTO EVENT_DEFAULT_SETTINGS(NAME,SETTINGS,CREATEDBY,CREATED_DATE,MODIFIED
 {"name":"Gender","type":"TEXT","group":"Other","isValue":false,"isRequired":false},
 {"name":"Birth Date","type":"TEXT","group":"Other","isValue":false,"isRequired":false},
 {"name":"Age","type":"TEXT","group":"Other","isValue":false,"isRequired":false}]',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+COMMIT;
