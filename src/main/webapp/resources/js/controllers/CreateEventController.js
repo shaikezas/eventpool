@@ -150,10 +150,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         }
         markup += "<td class='movie-info'><div class='movie-title'>" + cityinfo.cityName + "</div>";
         if (cityinfo.stateName !== undefined) {
-            markup += "<div class='movie-synopsis'>" + cityinfo.stateName + "</div>";
-        }
-        else if (cityinfo.countryName !== undefined) {
-            markup += "<div class='movie-synopsis'>" + cityinfo.countryName + "</div>";
+            markup += "<div class='movie-synopsis'>" + cityinfo.stateName + "," + cityinfo.countryName + "</div>";
         }
         markup += "</td></tr></table>"
         return markup;
