@@ -141,8 +141,34 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     }
     
+    $scope.cityFormatResult = function(cityinfo) {
+    	cityinfo = cityinfo.text;
+        var markup = "<table class='movie-result'><tr>";
+        markup += "<td class='movie-image'><img src='images/ola-logo.png'/></td>";
+        if (cityinfo.posters !== undefined && cityinfo.posters.thumbnail !== undefined) {
+            markup += "<td class='movie-image'><img src='" + cityinfo.posters.thumbnail + "'/></td>";
+        }
+        markup += "<td class='movie-info'><div class='movie-title'>" + cityinfo.cityName + "</div>";
+        if (cityinfo.stateName !== undefined) {
+            markup += "<div class='movie-synopsis'>" + cityinfo.stateName + "</div>";
+        }
+        else if (cityinfo.countryName !== undefined) {
+            markup += "<div class='movie-synopsis'>" + cityinfo.countryName + "</div>";
+        }
+        markup += "</td></tr></table>"
+        return markup;
+    }
+
+    $scope.cityFormatSelection = function(cityinfo) {
+        return cityinfo.text.cityName;
+    }
+    
     $scope.cityselect2options = {
-    		
+    		query: $scope.getcityinfo, 
+    		minimumInputLength: 1, 
+    		placeholder: "City",
+    		formatResult: $scope.cityFormatResult, 
+    	    formatSelection: $scope.cityFormatSelection,  
     };
     
     $scope.getcityinfo = function(query) {
@@ -150,7 +176,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 			//$scope.cityResults = data;
             var result = {results: []};
 		    for (var i = 0; i < data.length; i++) {
-		        result.results.push({id: data[i].cityId, text: data[i].cityName});
+		        result.results.push({id: data[i].cityId, text: data[i]});
 		    }
 		    query.callback(result);
 
