@@ -427,9 +427,9 @@ public class EventTest extends BaseTest{
     @Test
     public void testPublishCommand() throws Exception{
     	PublishEventCommand publishEventCommand = new PublishEventCommand();
-    	//publishEventCommand.setEventId(3L);
+    	publishEventCommand.setEventId(3L);
     	publishEventCommand.setPublish(true);
-    	publishEventCommand.setEventUrl("event url");
+    	//publishEventCommand.setEventUrl("event url");
     	eventCommandService.executeCommand(publishEventCommand);
     }
     

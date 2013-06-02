@@ -15,11 +15,11 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	public List<Event> getAllEvents(Long userId);
 	
 	@Modifying
-	@Query(value="UPDATE Event event SET event.publish=?2 WHERE event.id = ?1")
+	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN' WHERE event.id = ?1")
 	public void publish(Long id,boolean publish);
 
 	@Modifying
-	@Query(value="UPDATE Event event SET event.publish=?2 WHERE event.id in (SELECT eventMedia.id FROM Media eventMedia where  eventMedia.eventUrl= ?1)")
+	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN' WHERE event.id in (SELECT eventMedia.id FROM Media eventMedia where  eventMedia.eventUrl= ?1)")
 	public void publish(String id,boolean publish);
 
 	@Query(value="SELECT event FROM Event event WHERE event.id in (SELECT eventMedia.id FROM Media eventMedia where  eventMedia.eventUrl= ?1)")
