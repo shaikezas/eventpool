@@ -114,7 +114,7 @@ public class SaveImage {
 	}
 
 	protected  void saveOnDisk(BufferedImage scaledImage, String imageUrl , String fileName, float imageQuality) throws Exception {
-		String dirName = imageBasePath+getHashPath(imageUrl, 1000);
+		String dirName = imageBasePath+imageBasePathForDb+getHashPath(imageUrl, 1000);
 		String absoluteFileName=dirName+fileName;
 		// create directory.
 		if ( createDir(dirName)){ 

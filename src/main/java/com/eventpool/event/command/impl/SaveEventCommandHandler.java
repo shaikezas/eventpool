@@ -2,6 +2,7 @@ package com.eventpool.event.command.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,6 +13,7 @@ import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
+import com.eventpool.common.image.ImageType;
 import com.eventpool.common.image.SaveImage;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
@@ -65,7 +67,8 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		MediaDTO media = eventDTO.getMedia();
 		if(media!=null){
 			String bannerUrl = media.getBannerUrl();
-			saveImage.saveImageOnDisk(bannerUrl);
+			Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl);
+			media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
 		}
 	}
 }
