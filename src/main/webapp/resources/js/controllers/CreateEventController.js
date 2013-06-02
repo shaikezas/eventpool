@@ -153,9 +153,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
             result.results.push({id: 1, text: "Bangalore"});
             result.results.push({id: 1, text: "Chennai"});
             result.results.push({id: 1, text: "Mumbai"});
-		    for (var i = 0; i < data.length; i++) {
+		    /*for (var i = 0; i < data.length; i++) {
 		        result.results.push({id: data[i].mobile, text: data[i].mobile});
-		    }
+		    }*/
 		    query.callback(result);
 
         /*}).error(function(data) {
