@@ -141,6 +141,27 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     }
     
+    $scope.cityselect2options = {
+    		
+    };
+    
+    $scope.getcityinfo = function(query) {
+        //customersrv.getcustomersbymobile(query.term).success(function(data) {
+            //$scope.customersavailable = data;
+            var result = {results: []};
+            result.results.push({id: 1, text: "Hyderabad"});
+            result.results.push({id: 1, text: "Bangalore"});
+            result.results.push({id: 1, text: "Chennai"});
+            result.results.push({id: 1, text: "Mumbai"});
+		    for (var i = 0; i < data.length; i++) {
+		        result.results.push({id: data[i].mobile, text: data[i].mobile});
+		    }
+		    query.callback(result);
+
+        /*}).error(function(data) {
+
+        });*/
+    };
     $scope.addNewFreeTicket = function() {
         $scope.resetError();
         if(angular.isUndefined($scope.event.tickets)) {	

@@ -12,7 +12,8 @@
     <link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="resources/bootstrap/css/style.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
-	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
+	<link href="lib/oldangularui/select2.css" rel="stylesheet" media="screen">
+	<link href="lib/oldangularui/angular-ui.min.css" rel="stylesheet" media="screen">
 
   </head>
 
@@ -45,9 +46,9 @@
     <script type="text/javascript" src="lib/bootstrap/bootstrap-datetimepicker.js"> </script>
     <script src="resources/bootstrap/js/bootstrap-tab.js"></script>
 	<script src="lib/moment.js"></script>
-	<script src="lib/select2/select2.js"></script>
+	<script src="lib/oldangularui/select2.min.js"></script>
 	<script src="lib/angular/angular.js"></script>
-	<script src="lib/angular/angular-select2.js"></script>
+	<script src="lib/oldangularui/angular-ui.js"></script>
 	
 	<!-- Javascript files related to project -->
 	<script src="resources/js/app.js"></script>
