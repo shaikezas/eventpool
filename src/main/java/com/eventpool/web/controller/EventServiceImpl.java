@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
@@ -91,7 +92,7 @@ public class EventServiceImpl implements EventService {
 		return eventApi.getAllEvents(userId,status);
 	}
 
-	public List<TicketDTO> getOrderedTickets(Long userId) throws Exception {
+	public List<SuborderDTO> getOrderedTickets(Long userId) throws Exception {
 		return eventApi.getOrderedTickets(userId);
 	}
 }

@@ -501,7 +501,7 @@ public class EventTest extends BaseTest{
     @Test
     @Transactional
     public void testMytickets(){
-    	List<TicketDTO> orderedTickets = eventApi.getOrderedTickets(0L);
+    	List<SuborderDTO> orderedTickets = eventApi.getOrderedTickets(0L);
     	log.info(orderedTickets.size()+" size");
     }
 }

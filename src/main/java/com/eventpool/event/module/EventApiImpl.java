@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.EventSettings;
@@ -153,19 +154,16 @@ public class EventApiImpl implements EventApi{
 		return eventDtoList;
 	}
 
-	public List<TicketDTO> getOrderedTickets(Long userId) {
+	public List<SuborderDTO> getOrderedTickets(Long userId) {
 		List<Suborder> suborders = suborderRepository.getSuborders(userId);
-		List<TicketDTO> ticketDTOs = new ArrayList<TicketDTO>();
+		List<SuborderDTO> suborderDTOs = new ArrayList<SuborderDTO>();
 		if(suborders!=null && suborders.size()>0){
 			for(Suborder suborder:suborders){
-				TicketSnapShot ticketSnapShot = suborder.getTicketSnapShot();
-				TicketDTO ticketDTO = new TicketDTO();
-				eventpoolMapper.map(ticketSnapShot, ticketDTO);
-				ticketDTOs.add(ticketDTO);
-				ticketDTO.setName(suborder.getTicketName());
-				ticketDTO.setPrice(suborder.getTicketPrice());
+				SuborderDTO suborderDTO = new SuborderDTO();
+				eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
+				suborderDTOs.add(suborderDTO);
 			}
 		}
-		return ticketDTOs;
+		return suborderDTOs;
 	}
 }
