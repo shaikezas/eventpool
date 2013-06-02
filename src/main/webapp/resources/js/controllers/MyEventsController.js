@@ -15,6 +15,11 @@ var MyEventsController = function($scope, $http,search,subcategories,categories)
             $scope.liveEvents = liveevents;
         });
     }
+    
+    $scope.publishEvent = function(eventid) {
+        $http.get('event/publishevent/'+eventid).success(function(){
+        });
+    }
     $scope.fetchPastEventsList = function() {
         $http.get('event/pastEventList').success(function(pastevents){
             $scope.pastEvents = pastevents;

@@ -20,10 +20,10 @@
         .movie-image { width: 20px; }
         .movie-image img { height: 20px; width: 20px;  }
         .movie-info { padding-left: 10px; vertical-align: top; }
-        .movie-title { font-size: 1.2em; padding-bottom: 15px; }
+        .movie-title { font-size: 1.0em; padding-bottom: 2px; }
         .movie-synopsis { font-size: .8em; color: #888; }
         .select2-highlighted .movie-synopsis { font-size: .8em; color: #eee; }
-        .bigdrop.select2-container .select2-results {max-height: 300px;}
+        .bigdrop.select2-container .select2-results {max-height: 100px;}
         .bigdrop .select2-results {max-height: 300px;}
       </style>
   </head>
