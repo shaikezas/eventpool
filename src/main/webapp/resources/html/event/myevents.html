@@ -70,7 +70,7 @@
 				           <td>{{myevent.endDate}}</td>
 				           <td>{{myevent.status}}</td>
 				          <td>{{myevent.sold}}</td>
-				          <td><a href="#/myevent/{{myevent.id}}">Manage</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a> | <a href="#">Publish</a></td>
+				          <td><a href="#/myevent/{{myevent.id}}">Manage</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a> | <a  ng-click="publishEvent(myevent.id)">Publish</a></td>
 				        </tr>
 				        
 				      </tbody>

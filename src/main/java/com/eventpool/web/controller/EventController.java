@@ -26,6 +26,7 @@ import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.QuestionType;
 import com.eventpool.common.type.TicketType;
@@ -95,8 +96,7 @@ public class EventController {
     
     @RequestMapping("/draftEventList")
     public @ResponseBody List<MyEventForm> getDraftEventList() throws Exception {
-    	System.out.println("getEventList");
-         List<EventDTO> eventDTOs = eventService.getAllEvents(1L);
+         List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.DRAFT);
          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
          MyEventForm form  = null;
          String sold = "";
@@ -114,17 +114,16 @@ public class EventController {
     
     @RequestMapping("/liveEventList")
     public @ResponseBody List<MyEventForm> getLiveEventList() throws Exception {
-    	System.out.println("getEventList");
-    	MyEventForm form = new MyEventForm();
-    	form.setId(1L);
-    	form.setStartDate("11/10/12");
-    	form.setTitle("LiveEvent");
-    	form.setSold("23/50");
-          
-         List<MyEventForm>  forms = new ArrayList<MyEventForm>();
-        	 forms.add(form);
-         
-         
+        List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.OPEN);
+        List<MyEventForm>  forms = new ArrayList<MyEventForm>();
+        MyEventForm form  = null;
+        String sold = "";
+        for(EventDTO dto : eventDTOs){
+       	 form =  convertToMyEventForm(dto);
+       	 sold = ticketInventoryService.getAggregateTicketInventoryByEvent(dto.getId());
+       	 form.setSold(sold);
+       	 forms.add(form);
+        }
          
          return forms;
         
@@ -132,16 +131,16 @@ public class EventController {
     
     @RequestMapping("/pastEventList")
     public @ResponseBody List<MyEventForm> getPastEventList() throws Exception {
-    	System.out.println("getEventList");
-    	MyEventForm form = new MyEventForm();
-    	form.setId(1L);
-    	form.setStartDate("11/11/11");
-    	form.setTitle("PastEvnet");
-    	form.setSold("23/50");
-          
-         List<MyEventForm>  forms = new ArrayList<MyEventForm>();
-        	 forms.add(form);
-         
+    	  List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.CLOSED);
+          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
+          MyEventForm form  = null;
+          String sold = "";
+          for(EventDTO dto : eventDTOs){
+         	 form =  convertToMyEventForm(dto);
+         	 sold = ticketInventoryService.getAggregateTicketInventoryByEvent(dto.getId());
+         	 form.setSold(sold);
+         	 forms.add(form);
+          }
          
          
          return forms;
@@ -149,6 +148,11 @@ public class EventController {
     @RequestMapping(value = "/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
       //  eventService.deleteEventById(id);
+    }
+    
+    @RequestMapping(value = "/publishevent/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody void publishEvent(@PathVariable("eventid") Long eventId) throws Exception {
+        eventService.publishEvent(eventId, true);
     }
 
     @RequestMapping(value = "/removeAllEvents", method = RequestMethod.DELETE)
@@ -345,6 +349,8 @@ public class EventController {
 		
 		
 	} 
+    
+    
 
 }
 
