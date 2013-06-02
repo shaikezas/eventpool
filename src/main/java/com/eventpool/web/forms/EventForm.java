@@ -21,6 +21,7 @@ public class EventForm  {
 	private String subCategoryId;
 	private File organizerLogo;
 	private String banner;
+	private File bannerFile;
 	private String videoUrl;
 	private String faceBookUrl;
 	private String otherUrl1;
@@ -303,6 +304,12 @@ public Long getEventId() {
 	
 	public void setRegistrationLimit(int registrationLimit) {
 		this.registrationLimit = registrationLimit;
+	}
+	public File getBannerFile() {
+		return bannerFile;
+	}
+	public void setBannerFile(File bannerFile) {
+		this.bannerFile = bannerFile;
 	}
 	
 	

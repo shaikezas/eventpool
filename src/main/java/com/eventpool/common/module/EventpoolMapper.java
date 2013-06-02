@@ -223,6 +223,9 @@ public class EventpoolMapper {
 		
 		if(!checkIfNull(eventForm)){
 			mapper.map(eventForm, media);
+			if(eventForm.getBannerFile()!=null){
+				media.setBannerUrl(eventForm.getBannerFile().getPath());
+			}
 		}
 		else{ 
 			eventDTO.setMedia(null);
@@ -314,6 +317,7 @@ public class EventpoolMapper {
 		}
 		if(eventDTO.getMedia()!=null){
 			mapper.map(eventDTO.getMedia(), eventForm);
+			eventForm.setBanner(eventDTO.getMedia().getBannerUrl());
 		}
 		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
 		if(ticketDTOs!=null && ticketDTOs.size()>0){
