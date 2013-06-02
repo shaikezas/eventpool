@@ -60,12 +60,19 @@ public class EventApiImpl implements EventApi{
     	if(event.getSubCategoryId()  == null){
     		event.setSubCategoryId(1000);
     	}
+    	setDefaultValues(event);
     	eventRepository.save(event);
     	eventpoolMapper.mapEventDTO(event, eventDTO);
     	logger.info("event saved before commit {}",event.getId());
     	return eventDTO;
     }
     
+	private void setDefaultValues(Event event) {
+		if(event.getStatus()==null){
+			event.setStatus(EventStatus.DRAFT);
+		}
+	}
+
 	@Transactional(readOnly = true)
     public EventDTO getEvenDTO(Long id) throws EventNotFoundException{
     	if(id == null) throw new IllegalArgumentException("Input Event id is null");
