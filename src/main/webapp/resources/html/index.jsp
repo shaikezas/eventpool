@@ -59,6 +59,7 @@
 	<script src="lib/moment.js"></script>
 	<script src="lib/select2/select2.js"></script>
 	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-ui-utils.js"></script>
 	<script src="lib/angular/angular-select2.js"></script>
 	
 	<!-- Javascript files related to project -->
