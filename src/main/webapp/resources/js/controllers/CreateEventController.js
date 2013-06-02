@@ -39,6 +39,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     controller: 'CreateEventController'
   };
 
+  $scope.validateeventname = function(eventname) {
+	  if(angular.isUndefined(eventname))
+		  return true;
+	  if(eventname == "success")
+		  return true;
+	  return false; 
+  }
+  
    $scope.saveAndClose = function () {
 	   $scope.shouldBeOpen = false; 
 	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);

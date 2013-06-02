@@ -120,8 +120,12 @@
 							  <div class="control-group">
 							    <label class="control-label" for="url">Event URL :</label>
 							    <div class="controls">
-							     www.eventpool.com\events\<input type="text" id="url" ng-model="event.eventUrl"  >
+							     www.eventpool.com\events\<input type="text" name="url" id="url" ng-model="event.eventUrl" 
+							     				ui-validate="{eventnameexists:'validateeventname($value)'}">
 							    </div>
+							    <span ng-show="eventForm.url.$error.eventnameexists" style="font-family: 'Lato', sans-serif; font-weight: 300;color:red;"
+                   					class="validation_msg"> Event name taken </span>
+                  				</span>
 							  </div>		
 							  
 							    <div class="control-group">
