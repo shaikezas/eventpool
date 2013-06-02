@@ -12,6 +12,7 @@
     <link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="resources/bootstrap/css/style.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
+	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
 
   </head>
 
@@ -40,13 +41,15 @@
 	<script src="lib/jquery/jquery.js" type="text/javascript"></script>
 	<script src="lib/jquery/jquery-ui.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"> </script>
-    
     <!-- check this for datetime picker documentation http://www.malot.fr/bootstrap-datetimepicker -->
     <script type="text/javascript" src="lib/bootstrap/bootstrap-datetimepicker.js"> </script>
     <script src="resources/bootstrap/js/bootstrap-tab.js"></script>
-
 	<script src="lib/moment.js"></script>
-	<script src="resources/js/lib/angular/angular.js"></script>
+	<script src="lib/select2/select2.js"></script>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-select2.js"></script>
+	
+	<!-- Javascript files related to project -->
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/services.js"></script>
 	<script src="js/objects.js"></script>

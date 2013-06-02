@@ -2,7 +2,8 @@
 
 var EventPool = {};
 
-var App = angular.module('EventPool', ['EventPool.filters', 'EventPool.services', 'EventPool.directives','ui.bootstrap']);
+var App = angular.module('EventPool', 
+		['EventPool.filters', 'EventPool.services', 'EventPool.directives','ui.bootstrap', 'ui.select2']);
 App.factory('Data', function() {
 	    var eventData = {};
 	    var orderRegisterData = {};
