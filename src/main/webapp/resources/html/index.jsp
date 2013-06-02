@@ -14,6 +14,18 @@
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
 
+	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->
+	<style type="text/css">
+        .movie-result td {vertical-align: top }
+        .movie-image { width: 60px; }
+        .movie-image img { height: 80px; width: 60px;  }
+        .movie-info { padding-left: 10px; vertical-align: top; }
+        .movie-title { font-size: 1.2em; padding-bottom: 15px; }
+        .movie-synopsis { font-size: .8em; color: #888; }
+        .select2-highlighted .movie-synopsis { font-size: .8em; color: #eee; }
+        .bigdrop.select2-container .select2-results {max-height: 300px;}
+        .bigdrop .select2-results {max-height: 300px;}
+      </style>
   </head>
 
   <body >

@@ -145,9 +145,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	cityinfo = cityinfo.text;
         var markup = "<table class='movie-result'><tr>";
         markup += "<td class='movie-image'><img src='images/ola-logo.png'/></td>";
-        if (cityinfo.posters !== undefined && cityinfo.posters.thumbnail !== undefined) {
+        /*if (cityinfo.posters !== undefined && cityinfo.posters.thumbnail !== undefined) {
             markup += "<td class='movie-image'><img src='" + cityinfo.posters.thumbnail + "'/></td>";
-        }
+        }*/
         markup += "<td class='movie-info'><div class='movie-title'>" + cityinfo.cityName + "</div>";
         if (cityinfo.stateName !== undefined) {
             markup += "<div class='movie-synopsis'>" + cityinfo.stateName + "," + cityinfo.countryName + "</div>";
@@ -162,10 +162,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     
     $scope.cityselect2options = {
     		query: $scope.getcityinfo, 
-    		minimumInputLength: 1, 
+    		minimumInputLength: 3, 
     		placeholder: "City",
     		formatResult: $scope.cityFormatResult, 
-    	    formatSelection: $scope.cityFormatSelection,  
+    	    formatSelection: $scope.cityFormatSelection,
+    	    dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
     };
     
     $scope.getcityinfo = function(query) {
