@@ -146,21 +146,17 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     };
     
     $scope.getcityinfo = function(query) {
-        //customersrv.getcustomersbymobile(query.term).success(function(data) {
-            //$scope.customersavailable = data;
+    	search.getbasicsearchresults(query.term).success(function(data) {
+			//$scope.cityResults = data;
             var result = {results: []};
-            result.results.push({id: 1, text: "Hyderabad"});
-            result.results.push({id: 1, text: "Bangalore"});
-            result.results.push({id: 1, text: "Chennai"});
-            result.results.push({id: 1, text: "Mumbai"});
-		    /*for (var i = 0; i < data.length; i++) {
-		        result.results.push({id: data[i].mobile, text: data[i].mobile});
-		    }*/
+		    for (var i = 0; i < data.length; i++) {
+		        result.results.push({id: data[i].cityId, text: data[i].cityName});
+		    }
 		    query.callback(result);
 
-        /*}).error(function(data) {
+        }).error(function(data) {
 
-        });*/
+        });
     };
     $scope.addNewFreeTicket = function() {
         $scope.resetError();

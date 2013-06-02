@@ -193,10 +193,10 @@
 	                                  </div>
 	                         
 							  	  <div class="control-group">
-								    <label class="control-label" for="state">City select2:</label>
+								    <label class="control-label" for="state">City </label>
 								    <div class="controls">
-								    <input ui-select2="{'query': getcityinfo, 'placeholder': 'City'}" ng-model="cityinput" class="input-xlarge"
-                                                />
+								    <input ui-select2="{'query': getcityinfo, 'minimumInputLength': 1, 'placeholder': 'City'}" 
+								    				ng-model="cityinput"/>
 								    </div>
 								  </div>	
 							  	
