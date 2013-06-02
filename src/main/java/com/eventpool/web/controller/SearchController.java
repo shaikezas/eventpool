@@ -41,8 +41,8 @@ public class SearchController {
     	
     	Map<Integer, Region> citiesWithStateAndCountry = utilities.getCitiesWithStateAndCountry();
     	for(Integer key : citiesWithStateAndCountry.keySet()){
-    		
-    		citySearch.put(citiesWithStateAndCountry.get(key).getCityName().toLowerCase(),citiesWithStateAndCountry.get(key));
+    		String keyName = citiesWithStateAndCountry.get(key).getCityName() +"-"+citiesWithStateAndCountry.get(key).getStateName()+"-"+citiesWithStateAndCountry.get(key).getCountryName();
+    		citySearch.put(keyName.toLowerCase(),citiesWithStateAndCountry.get(key));
     	}
     	}
     	SortedMap<String, Region> myValues = citySearch.subMap(query, getNextKey(query));

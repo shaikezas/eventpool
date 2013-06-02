@@ -39,6 +39,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     controller: 'CreateEventController'
   };
 
+  $scope.validateeventname = function(eventname) {
+	  if(angular.isUndefined(eventname))
+		  return true;
+	  if(eventname == "success")
+		  return true;
+	  return false; 
+  }
+  
    $scope.saveAndClose = function () {
 	   $scope.shouldBeOpen = false; 
 	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
@@ -144,7 +152,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.cityFormatResult = function(cityinfo) {
     	cityinfo = cityinfo.text;
         var markup = "<table class='movie-result'><tr>";
-        markup += "<td class='movie-image'><img src='images/ola-logo.png'/></td>";
+        markup += "<td class='movie-image'><img src='images/india_preview.gif'/></td>";
         /*if (cityinfo.posters !== undefined && cityinfo.posters.thumbnail !== undefined) {
             markup += "<td class='movie-image'><img src='" + cityinfo.posters.thumbnail + "'/></td>";
         }*/
@@ -160,15 +168,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         return cityinfo.text.cityName;
     }
     
-    $scope.cityselect2options = {
-    		query: $scope.getcityinfo, 
-    		minimumInputLength: 3, 
-    		placeholder: "City",
-    		formatResult: $scope.cityFormatResult, 
-    	    formatSelection: $scope.cityFormatSelection,
-    	    dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-    };
-    
     $scope.getcityinfo = function(query) {
     	search.getbasicsearchresults(query.term).success(function(data) {
 			//$scope.cityResults = data;
@@ -182,6 +181,17 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
         });
     };
+    
+    $scope.cityselect2options = {
+    		query: $scope.getcityinfo, 
+    		minimumInputLength: 3, 
+    		placeholder: "City",
+    		formatResult: $scope.cityFormatResult, 
+    	    formatSelection: $scope.cityFormatSelection,
+    	    dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+    };
+    
+   
     $scope.addNewFreeTicket = function() {
         $scope.resetError();
         if(angular.isUndefined($scope.event.tickets)) {	
@@ -300,13 +310,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     }
     
     $scope.selectCity = function(region) {
-    	$scope.searchText = region.cityName;
-        $scope.city =  region.cityName;
-        $scope.state =  region.stateName;
-        $scope.country = region.countryName;
-        $scope.event.cityId = region.cityId;
-        $scope.searchResults = null;
-        
+    	if(angular.isUndefined(region)){
+    		return ;
+    	}
+        $scope.state =  region.text.stateName;
+        $scope.country = region.text.countryName;
+        $scope.event.cityId = region.text.cityId;
         
     };
    /* $scope.profilepic;

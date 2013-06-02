@@ -120,8 +120,12 @@
 							  <div class="control-group">
 							    <label class="control-label" for="url">Event URL :</label>
 							    <div class="controls">
-							     www.eventpool.com\events\<input type="text" id="url" ng-model="event.eventUrl"  >
+							     www.eventpool.com\events\<input type="text" name="url" id="url" ng-model="event.eventUrl" 
+							     				ui-validate="{eventnameexists:'validateeventname($value)'}">
 							    </div>
+							    <span ng-show="eventForm.url.$error.eventnameexists" style="font-family: 'Lato', sans-serif; font-weight: 300;color:red;"
+                   					class="validation_msg"> Event name taken </span>
+                  				</span>
 							  </div>		
 							  
 							    <div class="control-group">
@@ -179,33 +183,13 @@
 								    </div>
 								  </div>								  
 							  
-							    <div class="control-group" ng-class="{open: focused && searchText.length > 0}">
-								   <label class="control-label" for="cityId">Search City :*</label>
-								   <div class="controls">
-								     <input type="text" ng-model="searchText"   
-	            					placeholder="Search"  ng-change="getsearchResults(searchText)">
-	            					</div>
-	            			 		 <ul id="Ul1" class="controls">
-	            					 <li ng-repeat="region in searchResults | filter:searchText"> 
-	                                
-										<a href="javascript:void(0);" ng-click="selectCity(region)">{{region.cityName}}  - {{region.stateName}} - {{region.countryName}}</a></li>
-            						</ul>
-	                                  </div>
-	                         
 							  	  <div class="control-group">
-								    <label class="control-label" for="state">City </label>
+								    <label class="control-label" for="state">City :*</label>
 								    <div class="controls">
-								    <input ui-select2="cityselect2options" ng-model="cityinput"/>
+								    <input ui-select2="cityselect2options" ng-model="cityinput" ng-change="selectCity(cityinput)"/>
 								    </div>
 								  </div>	
 							  	
-								  <div class="control-group">
-								    <label class="control-label" for="state">City :*</label>
-								    <div class="controls">
-								    <input type="text" id="eventCityName" ng-model="city" disabled="disabled" >
-								    </div>
-								  </div>
-							  
 								  <div class="control-group">
 								    <label class="control-label" for="state">State :*</label>
 								    <div class="controls">

@@ -17,8 +17,8 @@
 	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->
 	<style type="text/css">
         .movie-result td {vertical-align: top }
-        .movie-image { width: 60px; }
-        .movie-image img { height: 80px; width: 60px;  }
+        .movie-image { width: 20px; }
+        .movie-image img { height: 20px; width: 20px;  }
         .movie-info { padding-left: 10px; vertical-align: top; }
         .movie-title { font-size: 1.2em; padding-bottom: 15px; }
         .movie-synopsis { font-size: .8em; color: #888; }
@@ -59,6 +59,7 @@
 	<script src="lib/moment.js"></script>
 	<script src="lib/select2/select2.js"></script>
 	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-ui-utils.js"></script>
 	<script src="lib/angular/angular-select2.js"></script>
 	
 	<!-- Javascript files related to project -->
