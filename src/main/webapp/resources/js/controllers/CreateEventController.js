@@ -44,7 +44,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 		  return true;
 	  if(eventname == "success")
 		  return true;
-	  return false; 
+	  return true; 
   }
   
    $scope.saveAndClose = function () {
