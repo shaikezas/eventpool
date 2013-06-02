@@ -1041,7 +1041,6 @@ angular.module('ui.unique',[]).filter('unique', ['$parse', function ($parse) {
   };
 }]);
 
-<<<<<<< HEAD
 /**
  * General-purpose validator for ngModel.
  * angular.js comes with several built-in validation mechanism for input fields (ngRequired, ngPattern etc.) but using
@@ -1119,7 +1118,6 @@ angular.module('ui.validate',[]).directive('uiValidate', function () {
     }
   };
 });
-=======
 /**
  * General-purpose validator for ngModel.
  * angular.js comes with several built-in validation mechanism for input fields (ngRequired, ngPattern etc.) but using
@@ -1197,8 +1195,6 @@ angular.module('ui.validate',[]).directive('uiValidate', function () {
     }
   };
 });
->>>>>>> refs/remotes/origin/master
-
 angular.module('ui.utils',  [
   "ui.event",
   "ui.format",

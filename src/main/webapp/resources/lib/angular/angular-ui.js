@@ -484,7 +484,7 @@ angular.module('ui.directives').directive('uiKeypress', ['$parse', function ($pa
     ['ui.config', '$parse', function (uiConfig, $parse) {
 
       var mapEvents = 'bounds_changed center_changed click dblclick drag dragend ' +
-        'dragstart heading_changed idle maptypeid_changed mousemove mouseout ' +
+        'dragstart Ring_changed idle maptypeid_changed mousemove mouseout ' +
         'mouseover projection_changed resize rightclick tilesloaded tilt_changed ' +
         'zoom_changed';
       var options = uiConfig.map || {};

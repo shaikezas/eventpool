@@ -310,7 +310,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     }
     
     $scope.selectCity = function(region) {
-    	if(angular.isUndefined(region)){
+    	if(angular.isUndefined(region) || region == null){
     		return ;
     	}
         $scope.state =  region.text.stateName;
