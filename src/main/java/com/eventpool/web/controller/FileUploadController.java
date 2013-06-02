@@ -35,8 +35,8 @@ public class FileUploadController {
     	File file = new File(fileupload.getOriginalFilename());
     	String saveInSourceLocation = "";
     	try {
-			fileupload.transferTo(file);
-			saveInSourceLocation = save.saveInSourceLocation(file);
+			//fileupload.transferTo(file);
+			saveInSourceLocation = save.saveInSourceLocation(fileupload.getInputStream());
 		} catch (IllegalStateException e) {
 			response.setStatus(false);
 			e.printStackTrace();

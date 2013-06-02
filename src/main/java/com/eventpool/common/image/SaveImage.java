@@ -3,6 +3,7 @@ package com.eventpool.common.image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -131,6 +132,14 @@ public class SaveImage {
 
 	public String saveInSourceLocation(File file) throws IOException{
 		BufferedImage sourceImage = imageProcessor.getSourceImage(file);
+		String uuid = UUID.randomUUID().toString().replace("-", "");
+		String destFile = uuid+".jpg";
+		ImageProcessor.writeImageToDisk(sourceImage,localImagePath+"/"+destFile, 0.9f);
+		return destFile;
+	}
+	
+	public String saveInSourceLocation(InputStream is) throws IOException{
+		BufferedImage sourceImage = imageProcessor.getSourceImage(is);
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		String destFile = uuid+".jpg";
 		ImageProcessor.writeImageToDisk(sourceImage,localImagePath+"/"+destFile, 0.9f);

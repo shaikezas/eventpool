@@ -42,6 +42,22 @@ public class ImageProcessor {
 		URL url = new URL(resource);		
 		return getSourceImage(url);
 	}
+	
+	protected BufferedImage getSourceImage(InputStream inStream) throws IOException{
+		BufferedImage srcImage = null;
+		srcImage = ImageIO.read(inStream);
+		try{
+			if(srcImage == null){
+				throw new IOException("Error in getting imageSource for input stream");
+		    }
+		}finally{
+			if(inStream != null){
+				inStream.close();
+			}
+		}
+		return srcImage;
+	}
+	
 	protected BufferedImage getSourceImage(URL url) throws IOException{
 		URLConnection conn = null;
 		InputStream inStream = null;
