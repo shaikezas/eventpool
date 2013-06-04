@@ -68,7 +68,9 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		if(media!=null){
 			String bannerUrl = media.getBannerUrl();
 			Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl);
-			media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
+			if(imageMap!=null){
+				media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
+			}
 		}
 	}
 }
