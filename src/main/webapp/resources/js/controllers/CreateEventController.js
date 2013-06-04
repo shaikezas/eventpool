@@ -13,7 +13,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.isWebinar = false;
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
-  
+   
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
       $scope.header = "create";
@@ -153,10 +153,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.venueAdd2Req = $scope.venueForm.venueAddress2.$error.required;
     	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;
     	
-      	
-    	alert($scope.tktForm.$invalid);
-    	
-    	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
+      	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
     		$scope.stopSubmitAction=true;
     	}
     }
