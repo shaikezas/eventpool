@@ -13,6 +13,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.isWebinar = false;
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
+  
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
       $scope.header = "create";
@@ -25,7 +26,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	  $http.post('event/updatesettings', $scope.eventFormSettings).success(function(data) {
 //            $scope.fetchEventsList();
         }).error(function() {
-            $scope.setError('Could not add a new event');
+            $scope.setError('Could not update settings.');
         });
       }
       
@@ -69,6 +70,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	                    {questionTypeName : 'Dropdown' },
     	                    {questionTypeName : 'Radio Buttons' }, 
     	                    {questionTypeName : 'Checkboxes' }];
+   		  
+   $scope.statuses = 		[  {statusName : 'Draft' },      
+    	                    {statusName : 'Open' },
+    	                    {statusName : 'Closed' }, 
+    	                    {statusName : 'Cancelled' }];
+   $scope.event.status = $scope.statuses[0];
+   
+   
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
     	srvevent.myevent($routeParams).success(function(data) {
@@ -144,7 +153,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.venueAdd2Req = $scope.venueForm.venueAddress2.$error.required;
     	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;
     	
-    	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid){
+      	
+    	alert($scope.tktForm.$invalid);
+    	
+    	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
     		$scope.stopSubmitAction=true;
     	}
     }
