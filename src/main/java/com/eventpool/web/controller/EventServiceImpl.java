@@ -12,6 +12,7 @@ import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.type.EventInfoType;
@@ -94,5 +95,9 @@ public class EventServiceImpl implements EventService {
 
 	public List<SuborderDTO> getOrderedTickets(Long userId) throws Exception {
 		return eventApi.getOrderedTickets(userId);
+	}
+
+	public List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId) {
+		return eventApi.getTicketInventoryDetails(eventId);
 	}
 }

@@ -82,4 +82,5 @@
 			<field><a>fax         </a><b>fax         </b></field>
 			<field><a>mobileNumber</a><b>mobileNumber</b></field>
 	</mapping>
+	
 </mappings>

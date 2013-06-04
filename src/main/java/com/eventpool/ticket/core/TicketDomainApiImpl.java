@@ -1,5 +1,7 @@
 package com.eventpool.ticket.core;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -7,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.repositories.TicketInventoryRepository;
@@ -17,10 +20,12 @@ import com.eventpool.ticket.commands.TicketUpdatedCommand;
 
 @Service
 public class TicketDomainApiImpl implements TicketDomainApi{
+	
 	static final Logger logger = LoggerFactory.getLogger(TicketDomainApiImpl.class);
 	
 	@Resource
 	TicketInventoryRepository ticketInventoryRepository;
+	
 	public TicketInventoryDetails updateTicketOrdered(TicketOrderedCommand cmd) {
 		logger.info("Updating Ticket Inventory...");
 		Long ticketId = cmd.getTicketId();
@@ -84,5 +89,5 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		logger.info("Updated Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
 		return ticketInventoryDetails;
 	}
-
+	
 }
