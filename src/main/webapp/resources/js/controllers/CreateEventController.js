@@ -11,6 +11,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.isCollapsed = true;
     $scope.isWebinarChecked = false;
     $scope.isWebinar = false;
+    $scope.startDateBeforeEndDate = false;
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
    
@@ -92,6 +93,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.updateUrl = function() {
     	$scope.event.eventUrl = $scope.event.title;
     	};
+   
+    	     	
     
    
    /* $scope.getsearchResults = function(query) {
@@ -150,9 +153,18 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
     	$scope.venueNameReq = $scope.venueForm.venueName.$error.required;
     	$scope.venueAdd1Req = $scope.venueForm.venueAddress1.$error.required;
-    	$scope.venueAdd2Req = $scope.venueForm.venueAddress2.$error.required;
     	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;
-    	
+    	if(angular.isDefined($scope.event.startDate)&&angular.isDefined($scope.event.endDate)){
+      	var startDate = new Date($scope.event.startDate);
+    	var endDate = new Date($scope.event.endDate);
+    	if(startDate.getTime()>endDate.getTime()){
+    		$scope.stopSubmitAction=true;
+    		$scope.startDateBeforeEndDate = true;
+    	}
+    	else {
+    		$scope.startDateBeforeEndDate = false;
+    	}
+    	}
       	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
     		$scope.stopSubmitAction=true;
     	}
