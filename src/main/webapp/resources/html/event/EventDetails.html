@@ -54,8 +54,7 @@
 							    <div class="controls">
 								 	
 				      					{{event.endDate}}
-				      				>
-				      				
+				      			
 							    </div>
 							  </div>
 							  
@@ -120,7 +119,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="url" ng-style="{color:'blue'}">Event URL :</label>
 							    <div class="controls">
-							     www.eventpool.com\events\{{event.eventUrl}}
+							     <a href="http://www.eventpool.com\events\{{event.eventUrl}}" target="_blank">www.eventpool.com\events\{{event.eventUrl}}</a>
 							    </div>
 							    <span ng-show="eventForm.url.$error.eventnameexists" style="font-family: 'Lato', sans-serif; font-weight: 300;color:red;"
                    					class="validation_msg"> Event name taken </span>
@@ -150,7 +149,8 @@
 								      
 								    </div>
 								  </div>
-							  <div collapse="collapseWebinar">
+								
+							  <div ng-show="!event.isWebinar">
 								
 							  <div class="control-group">
 							    <label class="control-label" for="venueTitle" ng-style="{color:'blue'}">Venue Title :</label>
@@ -201,11 +201,12 @@
 							  
 								  <div class="control-group">
 								    <label class="control-label" for="inputEmail" ng-style="{color:'blue'}">Pincode  :</label>
-								    <div class="controls">
+								    
 								      {{event.zipCode}}
-								    </div>
+								    
 								  </div>
 							  </div>
+							 
 						
 							  
 							</form>
@@ -268,7 +269,7 @@
 								          <th><span ng-style="{color:'blue'}">TICKET NAME</span></th>
 								          <th><span ng-style="{color:'blue'}">TICKET QUANTITY</span></th>
 								          <th><span ng-style="{color:'blue'}">TICKET PRICE</span></th>
-								          <th><span ng-style="{color:'blue'}">SALES STATUS   |   Fee    |   Buyer Total</span></th>
+								          <th><span ng-style="{color:'blue'}">SALES STATUS</span></th>
 								          <th>  </th>
 								          
 								        </tr>
@@ -294,7 +295,7 @@
 								    </table>
 								    
 								    		 <!-- <div ng-show="ticket.showsettings == true"> -->
-								    		 <div collapse="isCollapsed">
+						<div collapse="isCollapsed">
 				           <div class="control-group">
 						<div class="controls" style="text-align: right">
 							    	

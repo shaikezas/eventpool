@@ -15,7 +15,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
    
-      $scope.template = "html/event/editevent.html";
+      $scope.template = "html/event/EventDetails.html";
       $scope.templateSelect = "edit";
       $scope.header = "create";
       
