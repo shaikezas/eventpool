@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.type.EventStatus;
 
 public interface EventRepository extends JpaRepository<Event, Long>{
@@ -30,5 +31,8 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	
 	@Query(value="SELECT event FROM Event event WHERE event.createdBy=?1 and event.status=?2")
 	public List<Event> getAllEvents(Long userId,EventStatus status);
+
+	@Query(value="SELECT ticket FROM Ticket ticket WHERE ticket.eventId=?1")
+	public List<Ticket> getEventTickets(Long eventId);
 
 }

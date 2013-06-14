@@ -9,12 +9,28 @@
          
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li ">
+              <li >
                 <a href="#/home" >Home</a>
               </li>
-            </ul>
+           <li>
+            <a ng-click="loginuser()" ng-show="user.name==null">Login</a>
+         </li >
+              <li>
+            <a ng-click="logout()" ng-show="user.name">Logout</a>
+         </li >
+        <li>
+            <a ng-show="user.name"> Welcome {{user.name}}</a>
+        </li>
+		 </ul>
+      	 
+         
           </div>
         </div>
       </div>
+    </div>
+    <div ng-class="'alert alert-'+message().type" ng-show="message().show">
+        <button type="button" class="close" ng-click="message().show=false">×</button>
+        <msg >{{message().text}}</msg>
+        
     </div>
       

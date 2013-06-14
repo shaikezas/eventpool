@@ -9,13 +9,12 @@
          
       
       
-      
-            	<h1>Book the Ticket</h1>
+            	<h1 ng-show="event.tickets.length > 0">Book the Ticket</h1>
             	
             	
             	
             	<div class="span8 " >
-					<table class="table table-condensed" >
+					<table class="table table-condensed"  ng-show="event.tickets.length > 0" >
 					<thead>
 						<tr>
 						  <th>Ticket Type</th>
@@ -42,12 +41,11 @@
 				
 				
 				<div style="text-align: right">
-        		<button type="button" class="btn" ng-click="registerTicket()" ng-disabled="enableBookTicket">Book Ticket</button>
+        		<button type="button" class="btn" ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.tickets.length > 0">Book Ticket</button>
         		</div>
         		
 				</div>
 				
-				      	
 			    <div class="span3 ">
 					<div class="contBox">
 						Event Details

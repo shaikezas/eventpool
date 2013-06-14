@@ -111,5 +111,12 @@
 			<field><a>eventInfoSettings</a><b>eventInfoSettings</b></field>
 	</mapping>
 	
-	
+	<mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.common.entities.TicketInventory</class-a>
+        <class-b>com.eventpool.common.dto.TicketInventoryDTO</class-b>
+        	<field><a>ticketId    </a><b>ticketId    </b></field>
+			<field><a>maxQty    </a><b>maxQty    </b></field>
+			<field><a>qty    </a><b>qty    </b></field>
+			<field><a>blockingQty      </a><b>blockingQty      </b></field>
+	</mapping>
 </mappings>

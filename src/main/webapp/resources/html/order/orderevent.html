@@ -19,8 +19,7 @@
 				
 				      	
             	
-            	
-            	
+            	<form name="ticketInfoForm" id="ticketInforFormId">            	
             	<div class="span8 ">
 					<table class="table table-condensed" >
 					<thead>
@@ -43,23 +42,26 @@
 				<div ng-show="editMode==true">
 				<h4>Ticket Buyer</h4>
 				<div class="control-group">
-							    <label class="control-label" for="firstName">First Name</label>
+							    <label class="control-label" for="firstName">First Name :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" id="firstName" ng-model="orderRegister.firstName">
+							      <input type="text" name="firstName" id="firstName" ng-model="orderRegister.firstName" required >
+							       <span ng-show="firstNameRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="lastName">Last Name</label>
+							    <label class="control-label" for="lastName">Last Name :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" id="lastName" ng-model="orderRegister.lastName" >
+							      <input type="text" name="lastName" id="lastName" ng-model="orderRegister.lastName" required >
+							      <span ng-show="lastNameRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="emailaddress">Email Address</label>
+							    <label class="control-label" for="emailaddress">Email Address :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="email" id="emailaddress" ng-model="orderRegister.email">
+							      <input type="text" name="emailAddress" id="emailaddress" ng-model="orderRegister.email" required >
+							       <span ng-show="emailAddressRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
@@ -69,35 +71,37 @@
 							 	
 							 	
 							  	<div class="control-group">
-								    <label class="control-label" for="Address">Address  :</label>
+								    <label class="control-label" for="Address">Address1 :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="text" id="Address" ng-model="orderRegister.billingAddress.address1">
+								      <input type="text" name="address1" id="Address" ng-model="orderRegister.billingAddress.address1" required >
+								      <span ng-show="address1Required" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
 								  
 								  <div class="control-group">
-								    <label class="control-label" for="Address1">Address  :</label>
+								    <label class="control-label" for="Address1">Address2  :</label>
 								    <div class="controls">
 								      <input type="text" id="Address1" ng-model="orderRegister.billingAddress.address2">
 								    </div>
 								  </div>
 							  
 							    <div class="control-group">
-								    <label class="control-label" for="state">City :*</label>
+								    <label class="control-label" for="state">City :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								    <input ui-select2="cityselect2options" ng-model="cityinput" ng-change="selectCity(cityinput)"/>
+								    <input ui-select2="cityselect2options" name="city" ng-model="cityinput" ng-change="selectCity(cityinput)" required />
+								    <span ng-show="cityRequired" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>	
 							  	
 								  <div class="control-group">
-								    <label class="control-label" for="state">State :*</label>
+								    <label class="control-label" for="state">State :</label>
 								    <div class="controls">
 								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
 								    </div>
 								  </div>
 								  
 								   <div class="control-group">
-								    <label class="control-label" for="state">Country :*</label>
+								    <label class="control-label" for="state">Country :</label>
 								    <div class="controls">
 										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
 								    </div>
@@ -105,26 +109,29 @@
 							  
 							  
 								  <div class="control-group">
-								    <label class="control-label" for="Pincode">Pincode  :</label>
+								    <label class="control-label" for="Pincode">Pincode  :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="text" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode">
+								      <input type="number" name="pincode" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode" required ng-minlength="6" ng-maxlength="6">
+								      <span ng-show="pincodeRequired" ng-style="{color:'red'}">Required.</span>
+								      <span ng-show="pincodeMinLength" ng-style="{color:'red'}">Should be 6 digits</span>
+								      <span ng-show="pincodeMaxLength" ng-style="{color:'red'}">Should be 6 digits</span>
 								    </div>
 								  </div>
 							 
-						  <div ng-repeat="ticketRegForm in orderRegister.ticketRegForms" >
-							 <h4>{{ticketRegForm.ticketName}}</h4>
+						 <div ng-repeat="ticketRegForm in orderRegister.ticketRegForms" >
+							<h4>{{ticketRegForm.ticketName}}</h4>
 							 <div ng-repeat="infoSettings in ticketRegForm.infoSettings" >
-								  <div class="control-group">
-								    <label class="control-label" for="Pincode">{{infoSettings.name}}  :</label>
+								<div class="control-group">
+								    <label class="control-label" for="Pincode">{{infoSettings.name}} : <span ng-show="infoSettings.isRequired" ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="text" id="infosettings"  ng-model="infoSettings.value" ng-show="infoSettings.type=='TEXT'"> 
-								        <select id="Category" ng-model="infoSettings.value" ng-show="infoSettings.type=='DROPDOWN'"
-								         ng-options="c for c in infoSettings.options">
-										</select>
+								      <input type="text" id="infosettings"  ng-model="infoSettings.value" ng-show="infoSettings.type=='TEXT'" required="infoSettings.isRequired">
+								      <select id="Category" ng-model="infoSettings.value" ng-show="infoSettings.type=='DROPDOWN'"
+								        ng-options="c for c in infoSettings.options" required="infoSettings.isRequired">
+									  </select>
 								    </div>
-								  </div>
-								  </div>
 							 </div>
+							</div>
+						 </div>
 							  
 							  <div class="control-group">
 							    <div class="controls">
@@ -132,7 +139,8 @@
 							    </div>
 							  </div>
         		</div>
-				</div>
+			  </div>
+			</form>
 			    <div class="span3 ">
 					<div class="contBox">
 						Event Details
@@ -186,6 +194,7 @@
 						</ul>
 					</div>
 				</div>
+				
 				
 				
 

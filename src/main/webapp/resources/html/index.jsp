@@ -36,8 +36,38 @@
 
   <div class="container">
 
+
+    <div class="modal" style="display: none" id="login">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal" ng-click="cancel()">x</a>
+
+            <h3>Login</h3>
+        </div>
+        <div class="modal-body">
+            <label>See webapp-config.xml for valid username/password.</label>
+            <div class="control-group">
+                <label class="control-label" for="username">Username</label>
+
+                <div class="controls">
+                    <input id="username" ng-model="username"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">Password</label>
+
+                <div class="controls">
+                    <input type="password" id="password" ng-model="password"/>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a ng-click="login()" class="btn btn-primary">Login</a>
+            <a data-dismiss="modal" class="btn" ng-click="cancel()">Cancel</a>
+        </div>
+    </div>
    
 <div ng-view></div>
+ 
       </div>
 
 
@@ -64,12 +94,14 @@
 	
 	<!-- Javascript files related to project -->
 	<script src="resources/js/app.js"></script>
+	<script  src="js/base64.js"></script>
 	<script src="resources/js/services.js"></script>
 	<script src="js/objects.js"></script>
 	<script src="resources/js/controllers/MainController.js"></script>
 	<script src="resources/js/controllers/CreateEventController.js"></script>
 	<script src="resources/js/controllers/EventPageController.js"></script>
 	<script src="resources/js/controllers/MyEventsController.js"></script>
+	<script src="resources/js/controllers/FindEventController.js"></script>
 	<script src="resources/js/controllers/MyTicketsController.js"></script>
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>

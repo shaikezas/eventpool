@@ -6,22 +6,22 @@ var MyEventsController = function($scope, $http,search,subcategories,categories)
     $scope.$parent.title="My Events";
     $scope.header = "myevents";
     $scope.fetchDraftEventsList = function() {
-        $http.get('event/draftEventList').success(function(draftevents){
+        $http.get('event/myevent/draftEventList').success(function(draftevents){
             $scope.draftEvents = draftevents;
         });
     }
     $scope.fetchLiveEventsList = function() {
-        $http.get('event/liveEventList').success(function(liveevents){
+        $http.get('event/myevent/liveEventList').success(function(liveevents){
             $scope.liveEvents = liveevents;
         });
     }
     
     $scope.publishEvent = function(eventid) {
-        $http.get('event/publishevent/'+eventid).success(function(){
+        $http.get('event/myevent/publishevent/'+eventid).success(function(){
         });
     }
     $scope.fetchPastEventsList = function() {
-        $http.get('event/pastEventList').success(function(pastevents){
+        $http.get('event/myevent/pastEventList').success(function(pastevents){
             $scope.pastEvents = pastevents;
         });
     }

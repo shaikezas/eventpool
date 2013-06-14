@@ -26,6 +26,7 @@ import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.order.service.OrderService;
+import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
 import com.google.gson.Gson;
@@ -53,19 +54,21 @@ public class OrderController {
 	    }
 	  
 	  @RequestMapping(value = "/create", method = RequestMethod.POST)
-	    public @ResponseBody OrderStatusDTO createOrder(@RequestBody OrderRegisterForm orderRegisterForm) {
+	    public @ResponseBody ResponseMessage createOrder(@RequestBody OrderRegisterForm orderRegisterForm)  {
 		  OrderStatusDTO status = new OrderStatusDTO();
 		  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm);
+		  Order order = null;
 		  try {
-			Order order = orderService.createOrder(orderDTO);
-			if(order!=null && order.getId()!=null){
-				status.setStatus("SUCCESS");
-				status.setOrderId(order.getId());
-			}
+			order = orderService.createOrder(orderDTO);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			 return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
 		}
-		  return status;
+		  if(order==null){
+			  return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order");
+			}
+		  return new ResponseMessage(ResponseMessage.Type.success, "Successfully created the order, your orderId is :"+order.getId());
 	    }
 	  
 	  private OrderDTO convertToOrderDTO(OrderRegisterForm orderRegisterForm){

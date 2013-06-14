@@ -19,14 +19,29 @@
                 <a href="#/createevent" >Create Event</a>
               </li>
               <li ng-class="activeWhen(path()=='/myevents')">
-                <a href="#/myevents" >My Events</a>
+                <a href="#/myevents" ng-show="user.name" >My Events</a>
               </li>
               <li ng-class="activeWhen(path()=='/mytickets')">
-                <a href="#/mytickets">My Tickets</a>
+                <a href="#/mytickets" ng-show="user.name">My Tickets</a>
               </li>
+               <li>
+            <a ng-click="loginuser()" ng-show="user.name==null">Login</a>
+         </li >
+               <li>
+            <a ng-click="logout()" ng-show="user.name">Logout</a>
+         </li >
+        <li>
+            <a ng-show="user.name"> Welcome {{user.name}}</a>
+        </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+    <div ng-class="'alert alert-'+message().type" ng-show="message().show">
+        <button type="button" class="close" ng-click="message().show=false">×</button>
+        <msg>{{message().text}}</msg>
+        
+    </div>
+    
       

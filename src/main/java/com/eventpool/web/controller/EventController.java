@@ -12,6 +12,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +35,7 @@ import com.eventpool.common.type.QuestionType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.ticket.service.TicketInventoryService;
+import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.forms.Dropdown;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.EventFormSettings;
@@ -62,8 +66,8 @@ public class EventController {
     @Resource
     private TicketInventoryService ticketInventoryService;
 
-    @RequestMapping(value = "/addEvent", method = RequestMethod.POST)
-    public @ResponseBody void addEvent(@RequestBody EventForm event) {
+    @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
+    public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
     	if(event.getTickets()!=null){
     		int i=1;
     		for(TicketForm ticket :event.getTickets()){
@@ -80,21 +84,35 @@ public class EventController {
     	mapper.mapEventDTO(event, eventDTO);
     	eventDTO.setCreatedBy(1L);
 //    	updateEventType(eventDTO);
-        try {
-			eventService.addEvent(eventDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    	 try {
+ 			eventService.addEvent(eventDTO);
+ 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event");
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 			return new ResponseMessage(ResponseMessage.Type.error, "Failed to create event : reason -"+e.getMessage());
+ 		}
     }
     
 
-    @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
-    public @ResponseBody void updateEvent(@RequestBody EventDTO event) throws Exception {
+    @RequestMapping(value = "/myevent/updateevent", method = RequestMethod.PUT)
+    public @ResponseBody ResponseMessage updateEvent(@RequestBody EventDTO event) throws Exception {
         eventService.addEvent(event);
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated event");
+    }
+    
+    @RequestMapping(value = "/myevent/createevent", method = RequestMethod.POST)
+    public @ResponseBody void createEvent() throws Exception {
+    	System.out.println("createEvent()");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name1 = auth.getName(); //get logged in username
+        System.out.println("logged in name1 :"+name1);
+    	   User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	      String name = user.getUsername(); //get logged in username
+        System.out.println("logged in name :"+name);
     }
 
     
-    @RequestMapping("/draftEventList")
+    @RequestMapping("/myevent/draftEventList")
     public @ResponseBody List<MyEventForm> getDraftEventList() throws Exception {
          List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.DRAFT);
          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
@@ -112,7 +130,7 @@ public class EventController {
          return forms;
     }
     
-    @RequestMapping("/liveEventList")
+    @RequestMapping("/myevent/liveEventList")
     public @ResponseBody List<MyEventForm> getLiveEventList() throws Exception {
         List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.OPEN);
         List<MyEventForm>  forms = new ArrayList<MyEventForm>();
@@ -129,7 +147,7 @@ public class EventController {
         
     }
     
-    @RequestMapping("/pastEventList")
+    @RequestMapping("/myevent/pastEventList")
     public @ResponseBody List<MyEventForm> getPastEventList() throws Exception {
     	  List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.CLOSED);
           List<MyEventForm>  forms = new ArrayList<MyEventForm>();
@@ -145,17 +163,18 @@ public class EventController {
          
          return forms;
     }
-    @RequestMapping(value = "/removeEvent/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/myevent/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
       //  eventService.deleteEventById(id);
     }
     
-    @RequestMapping(value = "/publishevent/{eventid}", method = RequestMethod.GET)
-    public @ResponseBody void publishEvent(@PathVariable("eventid") Long eventId) throws Exception {
+    @RequestMapping(value = "/myevent/publishevent/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody ResponseMessage publishEvent(@PathVariable("eventid") Long eventId) throws Exception {
         eventService.publishEvent(eventId, true);
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully published event");
     }
 
-    @RequestMapping(value = "/removeAllEvents", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/myevent/removeAllEvents", method = RequestMethod.DELETE)
     public @ResponseBody void removeAllEvents() {
         //eventService.deleteAll();
     }
@@ -167,7 +186,7 @@ public class EventController {
     	 	return modelView;
     }
     
-    @RequestMapping(value="/myevent/{eventId}", method = RequestMethod.GET)
+    @RequestMapping(value="/id/{eventId}", method = RequestMethod.GET)
     public @ResponseBody EventForm getMyEvent(@PathVariable Long eventId) throws EventNotFoundException {
     	System.out.println("Calling getMyEvent");
     	EventForm form = new EventForm();
@@ -176,7 +195,7 @@ public class EventController {
     	 	return form;
     }
     
-    @RequestMapping(value="/myeventurl/{eventurl}", method = RequestMethod.GET)
+    @RequestMapping(value="/url/{eventurl}", method = RequestMethod.GET)
     public @ResponseBody EventForm getMyEventUrl(@PathVariable String eventurl) throws Exception {
     	System.out.println("Calling getMyEventUrl");
     	EventForm form = new EventForm();
@@ -205,7 +224,7 @@ public class EventController {
     	 	return form;
     }
     
-    @RequestMapping(value="/settings/{eventid}", method = RequestMethod.GET)
+    @RequestMapping(value="/myevent/settings/{eventid}", method = RequestMethod.GET)
     public @ResponseBody EventFormSettings getEventSettings(@PathVariable Long eventid) throws Exception {
     	System.out.println("Calling getEventSettings ..."+eventid);
     	EventDTO event = eventService.getEventById(eventid);
@@ -219,8 +238,8 @@ public class EventController {
     }
     
     
-    @RequestMapping(value = "/updatesettings", method = RequestMethod.POST)
-    public @ResponseBody String updateEventSettings(@RequestBody EventFormSettings form) throws Exception {
+    @RequestMapping(value = "/myevent/updatesettings", method = RequestMethod.POST)
+    public @ResponseBody ResponseMessage updateEventSettings(@RequestBody EventFormSettings form) throws Exception {
     	System.out.println("Calling updateEventSettings ...");
     	
     	Map<String, LinkedList<EventInfoSettings>> map = form.getMap();
@@ -245,7 +264,7 @@ public class EventController {
     	eventDTO.getEventSettingsDTO().setCreatedBy(eventDTO.getCreatedBy());
     	eventService.addEvent(eventDTO);
     
-    	 	return "";
+    	return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated event settings");
     }
     private void updateEventType(EventDTO dto){
     	Boolean isFree = false;

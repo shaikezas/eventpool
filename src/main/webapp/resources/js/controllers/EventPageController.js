@@ -103,13 +103,34 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     }
     
     $scope.bookTicket = function() {
+    	$scope.validations();
+        if($scope.stopSubmitAction === true){
+        	$scope.stopSubmitAction = false;
+         }
+        else {
     	 $http.post('order/create',$scope.orderRegister).success(function(data) {
          	$scope.editMode = false;
          	$scope.status = data;
          }).error(function(error) {
              alert(error);
          });
+        }
 }
+    
+    $scope.validations = function() {
+    	$scope.firstNameRequired = $scope.ticketInfoForm.firstName.$error.required;
+    	$scope.lastNameRequired = $scope.ticketInfoForm.lastName.$error.required;
+    	$scope.emailAddressRequired = $scope.ticketInfoForm.emailAddress.$error.required;
+    	$scope.address1Required = $scope.ticketInfoForm.address1.$error.required;
+    	$scope.cityRequired = $scope.ticketInfoForm.city.$error.required;
+    	$scope.pincodeRequired = $scope.ticketInfoForm.pincode.$error.required;
+    	$scope.pincodeMinLength = $scope.ticketInfoForm.pincode.$error.minlength;
+    	$scope.pincodeMaxLength = $scope.ticketInfoForm.pincode.$error.maxlength;
+alert($scope.ticketInfoForm.$invalid);
+    	if($scope.ticketInfoForm.$invalid){
+    		$scope.stopSubmitAction=true;
+    	}
+    }
     
     $scope.atleastOneTktSelected = function() {
     	var tickets = $scope.event.tickets;

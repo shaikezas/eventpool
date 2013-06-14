@@ -13,10 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Suborder;
+import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
@@ -24,6 +27,7 @@ import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.EventSettingsRepository;
 import com.eventpool.common.repositories.SuborderRepository;
+import com.eventpool.common.repositories.TicketInventoryRepository;
 import com.eventpool.common.type.EventStatus;
 
 
@@ -46,6 +50,9 @@ public class EventApiImpl implements EventApi{
     
     @Resource
     private EventSettingsRepository eventSettingsRepository;
+    
+    @Resource
+	TicketInventoryRepository ticketInventoryRepository;
     
     @Transactional(rollbackFor=RuntimeException.class)
     public EventDTO saveEventDTO(EventDTO eventDTO){
@@ -166,4 +173,41 @@ public class EventApiImpl implements EventApi{
 		}
 		return suborderDTOs;
 	}
+
+	public List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId) {
+		logger.info("getting ticket inventory for an event {}",eventId);
+		
+		//TODO: need to reduce two calls.
+		List<TicketInventory> ticketInventorys = ticketInventoryRepository.findTicketInventoryByEventId(eventId);
+		List<Ticket> eventTickets = eventRepository.getEventTickets(eventId);
+		
+		List<TicketInventoryDTO> tiketInventoryDTOS = new ArrayList<TicketInventoryDTO>();
+		if(eventTickets!=null && eventTickets.size()>0){
+			for(Ticket ticket:eventTickets){
+				boolean found = false;
+				if(ticketInventorys!=null && ticketInventorys.size()>0){
+					for(TicketInventory ticketInventory:ticketInventorys){
+						TicketInventoryDTO ticketInventoryDTO = new TicketInventoryDTO();
+						eventpoolMapper.map(ticketInventory, ticketInventoryDTO);
+						tiketInventoryDTOS.add(ticketInventoryDTO);
+						
+						if(ticket.getId().compareTo(ticketInventory.getTicketId())==0){
+							Double price = ticket.getPrice();
+							ticketInventoryDTO.setPrice(price);
+							found = true;
+						}
+					}
+					if(!found){
+						TicketInventoryDTO ticketInventoryDTO = new TicketInventoryDTO();
+						ticketInventoryDTO.setMaxQty(ticket.getMaxQty());
+						Double price = ticket.getPrice();
+						ticketInventoryDTO.setPrice(price);
+					}
+				}
+			}
+		}
+		
+		return tiketInventoryDTOS;
+	}
+
 }

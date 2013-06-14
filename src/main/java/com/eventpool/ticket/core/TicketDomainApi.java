@@ -1,5 +1,8 @@
 package com.eventpool.ticket.core;
 
+import java.util.List;
+
+import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;

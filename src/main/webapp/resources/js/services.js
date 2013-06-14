@@ -71,7 +71,7 @@ AppServices.service('srvevent', function ($http) {
               }
               var config = {
                   method: "GET",
-                  url: "event/myevent/" + eventid
+                  url: "event/id/" + eventid
               };
               return $http(config);
           },
@@ -83,7 +83,7 @@ AppServices.service('srvevent', function ($http) {
           }
           var config = {
               method: "GET",
-              url: "event/myeventurl/" + eventurl
+              url: "event/url/" + eventurl
           };
           return $http(config);
       }
@@ -97,7 +97,7 @@ AppServices.service('eventsettings', function ($http) {
 geteventsettings: function(eventid) {
 	  var config = {
         method: "GET",
-        url: "event/settings/"+eventid
+        url: "event/myevent/settings/"+eventid
     };
 	  return $http(config);
 }

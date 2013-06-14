@@ -2,8 +2,6 @@
 		        <div class="span9" ng-controller="CreateEventController">
 		      
 			            <h1>Create Event</h1>
-			            <div id="success" ng-show="success"><span ng-style="{color:'green'}">Successfully created the event.</span></div>
-			            <div id="Error" ng-show="error"><span ng-style="{color:'red'}">Event not created.</span></div>
 			            
 			 <!--  Create Event Nav Tab  
 			 ================================================== -->           
@@ -23,11 +21,11 @@
 			              <div class="tab-pane fade in active" id="eventInformation">
 			                
 								<form class="form-horizontal" name="eventForm">
-								
+							<span ng-show="startDateBeforeEndDate" ng-style="{color:'red'}">Start date & time should not be after End date & time.</span>
 							  <div class="control-group">
 							    <label class="control-label" for="eventTitle">Event Title :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" id="eventTitle" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required  >
+							      <input type="text" id="eventTitle" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required >
 							      <span ng-show="nameRequired" ng-style="{color:'red'}">Required.</span>
 						    </div>
 							  </div>
@@ -66,6 +64,15 @@
 							    </div>
 							  </div>
 							  
+							 <!-- <div class="control-group">
+							    <label class="control-label" for="status">Status :</label>
+							    <div class="controls">
+									  <select id="status" ng-model="event.status"
+													ng-options="status.statusName for status in statuses"">
+										</select>
+							    </div>
+							  </div>
+							 -->
 							  
 							  <div class="control-group ">
 							    <div class="controls">
@@ -182,21 +189,21 @@
 								  </div>								  
 							  
 							  	  <div class="control-group">
-								    <label class="control-label" for="state">City :*</label>
+								    <label class="control-label" for="state">City :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
 								    <input ui-select2="cityselect2options" ng-model="cityinput" ng-change="selectCity(cityinput)"/>
 								    </div>
 								  </div>	
 							  	
 								  <div class="control-group">
-								    <label class="control-label" for="state">State :*</label>
+								    <label class="control-label" for="state">State :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
 								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
 								    </div>
 								  </div>
 								  
 								   <div class="control-group">
-								    <label class="control-label" for="state">Country :*</label>
+								    <label class="control-label" for="state">Country :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
 										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
 								    </div>
@@ -272,7 +279,7 @@
 			              <div class="tab-pane fade" id="ticketInformation">				                
 				                
 						        <!-- <form class="form-horizontal"> -->
-							  
+							  <form class="form-horizontal" name="tktForm">
 							  
 									<div class="control-group">
 									    <label class="control-label" for="inputEmail">Add Ticket :</label>
@@ -301,8 +308,8 @@
 								      </thead>
 								      <tbody>
 								        <tr>
-								          <td> <input type="text"  ng-model="ticket.name"><span ng-show="required" ng-style="{color:'red'}">Required.</span></td>
-								          <td> <input type="text"  ng-model="ticket.quantity"></td>
+								          <td> <input type="text" ng-model="ticket.name" required ></td>
+								          <td> <input type="text" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
 								          <td><span ng-show="ticket.showFree">FREE</span><input type="text" ng-show="ticket.showPrice" ng-model="ticket.price" ></td>
 								          <td>
 									          <select>
@@ -385,11 +392,11 @@
 </table>
 	 <div class="control-group">
 							    <div class="controls">
-							    
-							      <button type="submit" class="btn" ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+							    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
+							      <button type="submit" class="btn" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
 							     </div>
 							  </div>
-								<!-- </form > -->
+							</form >
 							
 			              </div>
 			              
