@@ -1,3 +1,4 @@
+<<<<<<< HEAD
         	
   <div class="span9 contBox">       	
         	
@@ -76,3 +77,83 @@
        
 
 
+=======
+        	
+  <div class="span9 contBox">       	
+        	
+          <div class="tabBody">
+          
+ <div ng-include src="'html/header.html'"></div>          
+      
+            <h1>My Tickets</h1>
+            			<ul id="myTab" class="nav nav-tabs">
+				              <li class="active">	<a href="#activeTickets" data-toggle="tab" ng-click="fetchValidTicketsList()">Active Tickets</a></li>
+				              <li>					<a href="#inActiveTickets" data-toggle="tab" ng-click="fetchPastTicketsList()">InActive Tickets</a></li>
+				        </ul>
+          
+         <div id="myTabContent" class="tab-content">
+         
+         <div class="tab-pane fade in active" id="activeTickets">
+         		 <div >
+				    <table class="table table-condensed">
+				      <thead>
+				        <tr>
+						  <th>EVENT NAME</th>
+				          <th>TICKET TYPE</th>
+				          <th>QUANTITY</th>
+				          <th>PRICE</th>
+				          <th>QUICK LINKS</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <tr ng-repeat="ticket in activeTickets" >
+				          <td>{{ticket.name}}</td>
+				          <td>{{ticket.type}}</td>
+				          <td>{{ticket.qty}}</td>
+				           <td>{{ticket.price}}</td>
+				          <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a>  | <a href="#event/{{myevent.eventUrl}}">Cancel Ticket</a></td>
+				        </tr>
+				        
+				      </tbody>
+				    </table>
+				</div>
+			</div>
+              
+			<div class="tab-pane fade " id="inActiveTickets">
+         		 <div>
+				    <table class="table table-condensed">
+				      <thead>
+				        <tr>
+				          <th>EVENT NAME</th>
+				          <th>TICKET TYPE</th>
+				          <th>QUANTITY</th>
+				          <th>PRICE</th>
+				          <th>QUICK LINKS</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <tr ng-repeat="ticket in inActiveTickets" >
+				          <td>{{ticket.name}}</td>
+				          <td>{{ticket.type}}</td>
+				          <td>{{ticket.qty}}</td>
+				           <td>{{ticket.price}}</td>
+				          <td><a href="#/myevent/{{myevent.id}}">Print Tickets</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a></td>
+				        </tr>
+				        
+				      </tbody>
+				    </table>
+				</div>
+			</div>
+		  </div>
+</div>
+
+
+
+
+
+
+
+       
+
+
+>>>>>>> refs/remotes/origin/master
