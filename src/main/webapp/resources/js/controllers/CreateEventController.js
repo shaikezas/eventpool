@@ -137,10 +137,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         else {
         	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
+        	$location.url('myevents');
         }).error(function() {
         });
         }
-        $location.url('myevents');
+        
     }
     $scope.setRequiredFields = function() {
     	$scope.isWebinarChecked=!$scope.isWebinarChecked;
