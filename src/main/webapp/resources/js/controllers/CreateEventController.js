@@ -133,8 +133,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         if($scope.stopSubmitAction === true){
         	$scope.stopSubmitAction = false;
          }
-        else {
-        	
+        else {        	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
@@ -154,6 +153,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.descRequired = $scope.eventForm.description.$error.required;
     	$scope.startDateRequired = $scope.eventForm.startDate.$error.required;
     	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
+    	$scope.catRequired = $scope.eventForm.category.$error.required;
+    	$scope.subCatRequired = $scope.eventForm.subCategory.$error.required;
     	$scope.venueNameReq = $scope.venueForm.venueName.$error.required;
     	$scope.venueAdd1Req = $scope.venueForm.venueAddress1.$error.required;
     	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;

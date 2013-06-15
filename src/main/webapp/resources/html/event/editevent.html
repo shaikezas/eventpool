@@ -92,22 +92,24 @@
 							  
 
 							  <div class="control-group">
-							    <label class="control-label" for="category">Category :</label>
+							    <label class="control-label" for="category">Category :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-									  <select id="Category" ng-model="category" ng-change="fetchSubCategories()"
-													ng-options="cat.value as cat.key for cat in categories">
+									  <select name="category" id="Category" ng-model="category" ng-change="fetchSubCategories()"
+													ng-options="cat.value as cat.key for cat in categories" required>
 													<option value="">-- Select Category --</option>
 										</select>
+										<span ng-show="catRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="subCategory">Sub Category :</label>
+							    <label class="control-label" for="subCategory">Sub Category :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      	<select id="Subcategory" ng-model="event.subCategoryId"
-													ng-options="subcat.value as subcat.key for subcat in subcategories">
+							      	<select name="subCategory" id="Subcategory" ng-model="event.subCategoryId"
+													ng-options="subcat.value as subcat.key for subcat in subcategories" required>
 													<option value="">-- Select SubCategory --</option>
 										</select>
+										<span ng-show="subCatRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
 							  
