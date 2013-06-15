@@ -83,7 +83,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	                    {statusName : 'Open' },
     	                    {statusName : 'Closed' }, 
     	                    {statusName : 'Cancelled' }];
-   $scope.event.status = $scope.statuses[0];
    
    
     $scope.myevent = function() {
