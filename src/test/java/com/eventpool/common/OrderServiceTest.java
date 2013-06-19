@@ -14,6 +14,7 @@ import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.type.CurrencyType;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.controller.OrderController;
+import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
 
@@ -118,9 +119,9 @@ public class OrderServiceTest extends BaseTest{
 			regForm.setPhone("Phone"+count);
 		*/	count++;
 		}
-		OrderStatusDTO order = controller.createOrder(form);
-		System.out.println("Status "+order.getStatus());
-		System.out.println("OrderId "+order.getOrderId());
+		ResponseMessage order = controller.createOrder(form);
+		//System.out.println("Status "+order.getStatus());
+		//System.out.println("OrderId "+order.getOrderId());
 		
 		Thread.sleep(1000*80);
 	}
