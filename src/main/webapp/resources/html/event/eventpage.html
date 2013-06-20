@@ -5,7 +5,8 @@
           	
           	<div ng-include src="'html/eventpageheader.html'"></div>
 			   			
-          	 <div class="eventBaner">  <img ng-src='http://localhost:8083/image/{{event.banner}}' onerror="handleImgError(this)"/>    </div>
+          	 <div class="eventBaner">  <img ng-src='http://localhost:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/banner.jpg'"/> 
+          	    </div>
          
       
       
