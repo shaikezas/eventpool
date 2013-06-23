@@ -100,4 +100,9 @@ public class EventServiceImpl implements EventService {
 	public List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId) {
 		return eventApi.getTicketInventoryDetails(eventId);
 	}
+
+	public List<SuborderDTO> getEventOrderedTickets(Long eventId)
+			throws Exception {
+		return eventApi.getEventOrderedTickets(eventId);
+	}
 }

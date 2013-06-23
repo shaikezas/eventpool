@@ -515,4 +515,10 @@ public class EventTest extends BaseTest{
     	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords("");
     	log.info(eventSearchRecords.size()+" size");
     }
+    
+    @Test
+    public void testEventOrderedTickets() throws Exception{
+    	List<SuborderDTO> suborderDTOs = eventApi.getEventOrderedTickets(1L);
+    	log.info(suborderDTOs.size()+" size");
+    }
 }

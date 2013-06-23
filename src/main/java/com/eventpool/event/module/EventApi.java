@@ -38,6 +38,7 @@ public interface EventApi {
 
 	public List<SuborderDTO> getOrderedTickets(Long userId);
 	 
-	List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId);
+	public List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId);
 	
+	public List<SuborderDTO> getEventOrderedTickets(Long eventId);
 }

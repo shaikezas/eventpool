@@ -163,6 +163,10 @@ public class EventApiImpl implements EventApi{
 
 	public List<SuborderDTO> getOrderedTickets(Long userId) {
 		List<Suborder> suborders = suborderRepository.getSuborders(userId);
+		return mapSuborderDTO(suborders);
+	}
+
+	private List<SuborderDTO> mapSuborderDTO(List<Suborder> suborders) {
 		List<SuborderDTO> suborderDTOs = new ArrayList<SuborderDTO>();
 		if(suborders!=null && suborders.size()>0){
 			for(Suborder suborder:suborders){
@@ -208,6 +212,12 @@ public class EventApiImpl implements EventApi{
 		}
 		
 		return tiketInventoryDTOS;
+	}
+
+	@Transactional(readOnly=true)
+	public List<SuborderDTO> getEventOrderedTickets(Long eventId) {
+		List<Suborder> suborders = suborderRepository.getEventSuborders(eventId);
+		return mapSuborderDTO(suborders);
 	}
 
 }
