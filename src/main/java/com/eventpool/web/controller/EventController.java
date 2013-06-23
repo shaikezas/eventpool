@@ -314,7 +314,7 @@ public class EventController {
     	form.setStartDate(getDateString(dto.getStartDate()));
     	form.setEndDate(getDateString(dto.getEndDate()));
     	form.setId(dto.getId());
-    	form.setEventUrl(dto.getMedia().getEventUrl());
+    	form.setEventUrl(dto.getEventUrl());
     	
     	return form;
     }

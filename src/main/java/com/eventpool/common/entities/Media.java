@@ -43,10 +43,6 @@ public class Media implements Serializable{
 	@Column(name = "OTHER_URL2")
 	private String otherUrl2;
 	
-	@NotNull
-	@Column(name = "EVENT_URL")
-	private String eventUrl;
-
 	@Column(name = "EVENT_WEBSITE_URL")
 	private String eventWebSiteUrl;
 
@@ -116,14 +112,6 @@ public class Media implements Serializable{
 	}
 	
 	
-	public String getEventUrl() {
-		return eventUrl;
-	}
-	
-	public void setEventUrl(String eventUrl) {
-		this.eventUrl = eventUrl;
-	}
-
 	public String getEventWebSiteUrl() {
 		return eventWebSiteUrl;
 	}

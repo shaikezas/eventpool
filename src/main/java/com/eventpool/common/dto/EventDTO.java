@@ -38,7 +38,7 @@ public class EventDTO extends AuditableIdDTO {
 	private boolean showEvent;
 	private String privacyType;
 	private EventSettingsDTO eventSettingsDTO;
-
+	private String eventUrl;
 	
 	public String getTitle() {
 		return title;
@@ -239,6 +239,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setEventSettingsDTO(EventSettingsDTO eventSettingsDTO) {
 		this.eventSettingsDTO = eventSettingsDTO;
+	}
+
+	public String getEventUrl() {
+		return eventUrl;
+	}
+
+	public void setEventUrl(String eventUrl) {
+		this.eventUrl = eventUrl;
 	}
 	
 	

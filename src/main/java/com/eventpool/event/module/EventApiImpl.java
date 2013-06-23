@@ -92,7 +92,7 @@ public class EventApiImpl implements EventApi{
     }
 
 	public List<String> checkEventUrl(String eventUrl) {
-		Media media = eventMediaRepository.findEventUrl(eventUrl);
+		Event media = eventRepository.findEventUrl(eventUrl);
 		if(media == null){
 			List<String> suggestions = new ArrayList<String>();
 			suggestions.add(eventUrl);

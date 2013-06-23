@@ -109,7 +109,7 @@ public class EventTest extends BaseTest{
     	mediaDTO.setBannerUrl("20130509_070251.jpg");
     	mediaDTO.setFaceBookUrl("facebook");
     	mediaDTO.setOtherUrl1("otherurl1");
-    	mediaDTO.setEventUrl("testurl");
+    	event.setEventUrl("testurl");
     	
     	event.setMedia(mediaDTO);
     	
@@ -158,6 +158,7 @@ public class EventTest extends BaseTest{
     @Rollback(false)
     public void saveEventDTO(){
     	EventDTO event = getEventDTOObject();
+    	eventApi.saveEventDTO(event);
     	//eventController.addEvent(event);
     }
 
@@ -209,7 +210,7 @@ public class EventTest extends BaseTest{
     	mediaDTO.setBannerUrl("20130509_070251.jpg");
     	mediaDTO.setFaceBookUrl("facebook");
     	mediaDTO.setOtherUrl1("otherurl1");
-    	mediaDTO.setEventUrl("eventUrl");
+    	event.setEventUrl("eventUrl");
     	
     	event.setMedia(mediaDTO);
     	List<TicketDTO> tickets = new ArrayList<TicketDTO>();
@@ -229,7 +230,7 @@ public class EventTest extends BaseTest{
     	 log.info(" local date"+timeZoneDate);
     }
     
-//    @Test
+   @Test
     public void testEventServiceCommand() throws Exception{
     	SaveEventCommand saveEventCommand = new SaveEventCommand();
     	saveEventCommand.setEventDTO(getEventDTOObject());

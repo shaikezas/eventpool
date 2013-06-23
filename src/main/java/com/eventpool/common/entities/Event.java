@@ -112,6 +112,11 @@ public class Event extends AuditableIdEntity {
 	@Enumerated(EnumType.STRING)
 	private EventPrivacyType privacyType;
 
+	@NotNull
+	@Column(name = "EVENT_URL")
+	private String eventUrl;
+
+	
 	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="event")
 	private EventSettings eventSettings; 
 
@@ -334,6 +339,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setEventSettings(EventSettings eventSettings) {
 		this.eventSettings = eventSettings;
+	}
+
+	public String getEventUrl() {
+		return eventUrl;
+	}
+
+	public void setEventUrl(String eventUrl) {
+		this.eventUrl = eventUrl;
 	}
 
 }
