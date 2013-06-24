@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
+import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
@@ -266,6 +267,14 @@ public class EventController {
     
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated event settings");
     }
+    
+    @RequestMapping(value = "/myevent/getTicketHistory/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody List<SuborderDTO> getTicketHistory(@PathVariable("eventid") Long eventId) throws Exception {
+    	List<SuborderDTO> subOrdersList = eventService.getEventOrderedTickets(eventId);
+    	System.out.println("Sub orders : " + subOrdersList);
+        return subOrdersList;
+    }
+    
     private void updateEventType(EventDTO dto){
     	Boolean isFree = false;
     	Boolean isPaid = false;
