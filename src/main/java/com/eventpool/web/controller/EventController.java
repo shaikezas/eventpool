@@ -271,11 +271,33 @@ public class EventController {
     @RequestMapping(value = "/myevent/getTicketHistory/{eventid}", method = RequestMethod.GET)
     public @ResponseBody List<SuborderDTO> getTicketHistory(@PathVariable("eventid") Long eventId) throws Exception {
     	List<SuborderDTO> subOrdersList = eventService.getEventOrderedTickets(eventId);
-    	System.out.println("Sub orders : " + subOrdersList);
-        return subOrdersList;
+    	List<SuborderDTO> subOrdersToDisplay = new ArrayList<SuborderDTO>();
+    	SuborderDTO sodto = null;
+    	 for(SuborderDTO dto : subOrdersList){
+    		 sodto =  convertToSubOrderDTO(dto);
+    		 subOrdersToDisplay.add(sodto);
+         }
+    	return subOrdersToDisplay;
     }
     
-    private void updateEventType(EventDTO dto){
+    private SuborderDTO convertToSubOrderDTO(SuborderDTO dto) {
+    	SuborderDTO soDto = new SuborderDTO();
+    	soDto.setGrossAmount(dto.getGrossAmount());
+    	soDto.setNetAmount(dto.getNetAmount());
+    	soDto.setStatus(dto.getStatus());
+    	TicketDTO tDto = dto.getTicket();
+    	soDto.setTicketPrice(dto.getTicketPrice());
+    	System.out.println(dto.getTicket());
+    	System.out.println(tDto.getName());
+    	System.out.println(tDto.getTicketType());
+    	System.out.println(tDto.getMinQty());
+    	System.out.println(tDto.getMaxQty());
+    	System.out.println(dto.getTicketPrice());
+		return soDto;
+	}
+
+
+	private void updateEventType(EventDTO dto){
     	Boolean isFree = false;
     	Boolean isPaid = false;
     	if(dto.getTickets()!=null){

@@ -22,12 +22,11 @@
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr ng-repeat="ticket in activeTickets" >
-				          <td>{{ticket.name}}</td>
-				          <td>{{ticket.type}}</td>
-				          <td>{{ticket.qty}}</td>
-				           <td>{{ticket.price}}</td>
-				          <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a>  | <a href="#event/{{myevent.eventUrl}}">Cancel Ticket</a></td>
+				        <tr ng-repeat="ticket in subOrdersList" >
+				          <td>{{ticket.grossAmount}}</td>
+				          <td>{{ticket.ticketPrice}}</td>
+				          <td>{{ticket.netAmount}}</td>
+				           <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a>  | <a href="#event/{{myevent.eventUrl}}">Cancel Ticket</a></td>
 				        </tr>
 				        
 				      </tbody>
