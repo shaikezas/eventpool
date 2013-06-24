@@ -1,23 +1,15 @@
         	
-  <div class="span9 contBox">       	
-        	
-          <div class="tabBody">
-          
+  <div class="span9 contBox"> 
  <div ng-include src="'html/header.html'"></div>          
       
-            <h1>My Tickets</h1>
-          
-       
-         
-  
-         
+        
 				    <table class="table table-condensed">
 				      <thead>
 				        <tr>
-						  <th>EVENT NAME</th>
-				          <th>TICKET TYPE</th>
+						  <th>GROSS AMT</th>
+				          <th>TICKET PRICE</th>
+				          <th>NET AMT</th>
 				          <th>QUANTITY</th>
-				          <th>PRICE</th>
 				          <th>QUICK LINKS</th>
 				        </tr>
 				      </thead>
@@ -26,15 +18,10 @@
 				          <td>{{ticket.grossAmount}}</td>
 				          <td>{{ticket.ticketPrice}}</td>
 				          <td>{{ticket.netAmount}}</td>
+				          <td>{{ticket.ticket.quantity}}</td>
 				           <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a>  | <a href="#event/{{myevent.eventUrl}}">Cancel Ticket</a></td>
 				        </tr>
 				        
 				      </tbody>
-				    </table>
-			
-		
-              
-
-		 
-</div>
+				    </table>		 
 </div>

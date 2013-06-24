@@ -286,13 +286,13 @@ public class EventController {
     	soDto.setNetAmount(dto.getNetAmount());
     	soDto.setStatus(dto.getStatus());
     	TicketDTO tDto = dto.getTicket();
-    	soDto.setTicketPrice(dto.getTicketPrice());
+    	soDto.setTicketPrice(tDto.getPrice());
     	System.out.println(dto.getTicket());
     	System.out.println(tDto.getName());
     	System.out.println(tDto.getTicketType());
     	System.out.println(tDto.getMinQty());
     	System.out.println(tDto.getMaxQty());
-    	System.out.println(dto.getTicketPrice());
+    	System.out.println(tDto.getQuantity());
 		return soDto;
 	}
 
