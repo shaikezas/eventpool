@@ -14,11 +14,11 @@
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr ng-repeat="ticket in subOrdersList" >
-				          <td>{{ticket.grossAmount}}</td>
-				          <td>{{ticket.ticket.price}}</td>
-				          <td>{{ticket.netAmount}}</td>
-				          <td>{{ticket.ticket.quantity}}</td>
+				        <tr ng-repeat="order in subOrdersList" >
+				          <td>{{order.grossAmount}}</td>
+				          <td>{{order.ticketPrice}}</td>
+				          <td>{{order.netAmount}}</td>
+				          <td>{{order.ticket.quantity}}</td>
 				           <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a>  | <a href="#event/{{myevent.eventUrl}}">Cancel Ticket</a></td>
 				        </tr>
 				        
