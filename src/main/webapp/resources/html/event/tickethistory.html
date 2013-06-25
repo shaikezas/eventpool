@@ -16,7 +16,7 @@
 				      <tbody>
 				        <tr ng-repeat="ticket in subOrdersList" >
 				          <td>{{ticket.grossAmount}}</td>
-				          <td>{{ticket.ticketPrice}}</td>
+				          <td>{{ticket.ticket.price}}</td>
 				          <td>{{ticket.netAmount}}</td>
 				          <td>{{ticket.ticket.quantity}}</td>
 				           <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a>  | <a href="#event/{{myevent.eventUrl}}">Cancel Ticket</a></td>
