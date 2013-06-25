@@ -270,15 +270,16 @@ public class EventController {
     
     @RequestMapping(value = "/myevent/getTicketHistory/{eventid}", method = RequestMethod.GET)
     public @ResponseBody List<SuborderDTO> getTicketHistory(@PathVariable("eventid") Long eventId) throws Exception {
-    	List<SuborderDTO> subOrdersList = eventService.getEventOrderedTickets(eventId);
-    	List<SuborderDTO> subOrdersToDisplay = new ArrayList<SuborderDTO>();
+    	//List<SuborderDTO> subOrdersList = 
+    			return eventService.getEventOrderedTickets(eventId);
+/*    	List<SuborderDTO> subOrdersToDisplay = new ArrayList<SuborderDTO>();
     	SuborderDTO sodto = null;
     	 for(SuborderDTO dto : subOrdersList){
     		 sodto =  convertToSubOrderDTO(dto);
     		 subOrdersToDisplay.add(sodto);
          }
     	return subOrdersToDisplay;
-    }
+*/    }
     
     private SuborderDTO convertToSubOrderDTO(SuborderDTO dto) {
     	SuborderDTO soDto = new SuborderDTO();
