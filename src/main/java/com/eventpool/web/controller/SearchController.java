@@ -10,14 +10,12 @@ import java.util.TreeMap;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.Region;
-import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.web.forms.SearchResponse;
 
@@ -29,6 +27,9 @@ public class SearchController {
 
     @Resource
     private EntityUtilities utilities;
+    
+    @Resource
+    private SearchService searchService;
     
     TreeMap<String, Region> citySearch = null;
 	
@@ -76,6 +77,8 @@ public class SearchController {
     	sr.setEventTitle("ETitle002");
     	srList.add(sr);
     	System.out.println("Default Resuts fetching......." + srList);
+    	String query = "";
+		List<EventSearchRecord> searchRecords = searchService.getSearchRecords(query , 10);
     	return srList;
     }
     
