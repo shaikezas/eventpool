@@ -10,12 +10,16 @@ import java.util.TreeMap;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.Region;
+import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.module.EntityUtilities;
+import com.eventpool.web.forms.SearchResponse;
 
 
 @Controller
@@ -52,6 +56,29 @@ public class SearchController {
     	
         return searchResults;
     }
+    
+    @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
+    public @ResponseBody List<SearchResponse> getDefaultResults() throws Exception {
+    	List<SearchResponse> srList = new ArrayList<SearchResponse>();
+    	System.out.println("Default Resuts fetching......." + srList);
+    	SearchResponse sr = new SearchResponse();
+    	sr.setvName("VN001");
+    	sr.setvAddress("VAdd001");
+    	sr.setStartDate("11-11-11");
+    	sr.setEndDate("12-12-12");
+    	sr.setEventTitle("ETitle001");
+    	srList.add(sr);
+    	sr = new SearchResponse();
+    	sr.setvName("VN002");
+    	sr.setvAddress("VAdd002");
+    	sr.setStartDate("10-10-10");
+    	sr.setEndDate("11-11-11");
+    	sr.setEventTitle("ETitle002");
+    	srList.add(sr);
+    	System.out.println("Default Resuts fetching......." + srList);
+    	return srList;
+    }
+    
     
     public static String getNextKey(String key1){
         int len = key1.length();
