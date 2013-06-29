@@ -119,15 +119,12 @@ public class OrderServiceTest extends BaseTest{
 			regForm.setPhone("Phone"+count);
 		*/	count++;
 		}
-<<<<<<< HEAD
 		/*OrderStatusDTO order = controller.createOrder(form);
 		System.out.println("Status "+order.getStatus());
 		System.out.println("OrderId "+order.getOrderId());*/
-=======
 		ResponseMessage order = controller.createOrder(form);
 		//System.out.println("Status "+order.getStatus());
 		//System.out.println("OrderId "+order.getOrderId());
->>>>>>> refs/remotes/origin/master
 		
 		Thread.sleep(1000*80);
 	}
