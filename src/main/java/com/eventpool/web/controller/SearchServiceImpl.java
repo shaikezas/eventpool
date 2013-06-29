@@ -24,7 +24,7 @@ public class SearchServiceImpl implements SearchService {
 	public SearchServer searchServer;
 
 	
-    public List<EventSearchRecord> getSearchRecords(String query)
+    public List<EventSearchRecord> getSearchRecords(String query,int rows)
 			throws Exception {
     	if(query==null || query.isEmpty()){
     		query = "*:*";
@@ -34,7 +34,10 @@ public class SearchServiceImpl implements SearchService {
 		QueryResponse response;
 		
 		solrQuery.setQuery(query);
-		solrQuery.setRows(10);
+		if(rows==0){
+			rows = 10;
+		}
+		solrQuery.setRows(rows);
 		solrQuery.setIncludeScore(true);
 		
 		logger.debug("RawQuery :" + query);

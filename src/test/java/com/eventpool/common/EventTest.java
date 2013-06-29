@@ -513,7 +513,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testSearchService() throws Exception{
-    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords("");
+    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords("",10);
     	log.info(eventSearchRecords.size()+" size");
     }
     
