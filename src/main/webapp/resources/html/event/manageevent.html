@@ -15,7 +15,7 @@
 						<a  href ng-click="template = 'html/event/eventsettings.html';templateSelect= 'orderForm';fetchEventSettings()">Order Form</a>
 						</li>
 						<li ng-class="{active: templateSelect=='ticketHistory'}">
-						<a  href ng-click="template = 'html/event/tickethistory.html';templateSelect= 'ticketHistory';fetchTicketsHistory()">Tickets History</a>
+						<a  href ng-click="template = 'html/event/tickethistory.html';templateSelect= 'ticketHistory';fetchTicketsHistory(event.id)">Tickets History</a>
 						</li>						
 					</ul>
 				</div>

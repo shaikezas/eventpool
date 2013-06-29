@@ -1,7 +1,9 @@
 package com.eventpool.event.module;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -92,12 +94,22 @@ public class EventApiImpl implements EventApi{
     }
 
 	public List<String> checkEventUrl(String eventUrl) {
-		Media media = eventMediaRepository.findEventUrl(eventUrl);
-		if(media == null){
+		Event event = eventRepository.findEventUrl(eventUrl);
+		//getSuggestion(eventUrl);
+		if(event == null){
 			List<String> suggestions = new ArrayList<String>();
 			suggestions.add(eventUrl);
 		}
 		return new ArrayList<String>();
+	}
+
+	private Set<String> getSuggestion(String eventUrl) {
+		Set<String> suggestionUrls = new HashSet<String>();
+		int i=1;
+		for(i=1;i<10;i++){
+			suggestionUrls.add(eventUrl+""+i);
+		}
+		return suggestionUrls;
 	}
 
 	@Transactional(readOnly = true)
@@ -163,6 +175,10 @@ public class EventApiImpl implements EventApi{
 
 	public List<SuborderDTO> getOrderedTickets(Long userId) {
 		List<Suborder> suborders = suborderRepository.getSuborders(userId);
+		return mapSuborderDTO(suborders);
+	}
+
+	private List<SuborderDTO> mapSuborderDTO(List<Suborder> suborders) {
 		List<SuborderDTO> suborderDTOs = new ArrayList<SuborderDTO>();
 		if(suborders!=null && suborders.size()>0){
 			for(Suborder suborder:suborders){
@@ -208,6 +224,12 @@ public class EventApiImpl implements EventApi{
 		}
 		
 		return tiketInventoryDTOS;
+	}
+
+	@Transactional(readOnly=true)
+	public List<SuborderDTO> getEventOrderedTickets(Long eventId) {
+		List<Suborder> suborders = suborderRepository.getEventSuborders(eventId);
+		return mapSuborderDTO(suborders);
 	}
 
 }

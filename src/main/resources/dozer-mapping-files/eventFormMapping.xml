@@ -24,7 +24,7 @@
 		<field><a>showEvent</a><b>showEvent</b></field>		
 		<field><a>privacyType</a><b>privacyType</b></field>
 		<field><a>createdBy</a><b>createdBy</b></field>
-
+		<field><a>eventUrl      </a><b>eventUrl     </b></field>
 <!-- 		<field><a>isPublish            	  </a></field>
 		<field><a>selectedformid       	  </a></field>
  -->
@@ -43,7 +43,7 @@
 			<field><a>faceBookUrl    </a><b>faceBookUrl   </b></field>
 			<field><a>otherUrl1      </a><b>otherUrl1     </b></field>
 			<field><a>otherUrl2      </a><b>otherUrl2     </b></field>
-			<field><a>eventUrl      </a><b>eventUrl     </b></field>
+			
 			<field><a>eventWebSiteUrl      </a><b>evenWebSiteUrl     </b></field>
     </mapping>
 

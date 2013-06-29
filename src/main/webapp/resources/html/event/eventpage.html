@@ -4,12 +4,13 @@
           <div class="tabBody">
           	
           	<div ng-include src="'html/eventpageheader.html'"></div>
-			   	
-          	 <div class="eventBaner">  <img ng-src="bootstrap/img/banner.jpg"/>    </div>
+			   			
+          	 <div class="eventBaner">  <img ng-src='http://localhost:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/banner.jpg'"/> 
+          	    </div>
          
       
       
-            	<h1 ng-show="event.tickets.length > 0">Book the Ticket</h1>
+            	<h1 ng-show="event.tickets.length > 0">Book the Ticket </h1>
             	
             	
             	
@@ -21,7 +22,6 @@
 						  <th class="amt">Price</th>
 						  <th class="amt">Sale End</th>
 						  <th class="amt">Quantity</th>
-						 
 						</tr>
 					</thead>
 					<tbody>

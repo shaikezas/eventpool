@@ -125,6 +125,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    	
 	    });
     }
+    
+    $scope.fetchTicketsHistory = function(eventid) {
+        $http.get('event/myevent/getTicketHistory/'+eventid).success(function(subOrdersList){
+        	$scope.subOrdersList = subOrdersList;
+        });
+    }
 
 
     $scope.addNewEvent = function() {

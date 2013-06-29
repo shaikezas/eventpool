@@ -112,7 +112,6 @@ public class OrderController {
 			  suborderDTO.getTicket().setName(ticketRegisterDTO.getTicketName());
 			  suborders.add(suborderDTO);
 			  suborderMap.put(suborderDTO.getTicket().getId(), suborderDTO);
-			  
 			  //TODO: hard coding
 			  suborderDTO.getTicket().setCreatedBy(1L);
 			  suborderDTO.getTicket().setTicketType(TicketType.FREE);
@@ -134,9 +133,7 @@ public class OrderController {
 				  registrations = new ArrayList<RegistrationDTO>();
 				  suborderDTO.setRegistrations(registrations);
 			  }
-			  
 			  suborderDTO.getRegistrations().add(registrationDTO);
-			  
 		  }
 		  
 		  

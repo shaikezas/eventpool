@@ -36,5 +36,9 @@ public interface EventService {
 	public List<EventDTO> getAllEvents(Long userId,EventStatus status) throws Exception;
 	
 	public List<SuborderDTO> getOrderedTickets(Long userId) throws Exception;
+	
 	public List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId) ;
+	public List<SuborderDTO> getEventOrderedTickets(Long eventId) throws Exception;
+
+	
 }

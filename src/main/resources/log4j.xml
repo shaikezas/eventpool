@@ -31,11 +31,11 @@
 
     <!-- Suppress warnings from Commons Validator -->
     <logger name="org.apache.commons.validator.ValidatorResources">
-        <level value="ERROR"/>
+        <level value="INFO"/>
     </logger>
 
     <logger name="org.springframework">
-        <level value="ERROR"/>
+        <level value="INFO"/>
     </logger>
    
     <logger name="com.hs18">

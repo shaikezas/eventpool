@@ -74,4 +74,10 @@ $jq(function () {
             });
         });*/
     }
-});
+}
+);
+function handleImgError(srcElement){
+	 srcElement.onerror = null;
+	    srcElement.src="bootstrap/img/banner.jpg";
+	}
+;

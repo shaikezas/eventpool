@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.type.EventStatus;
 
@@ -20,10 +21,10 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	public void publish(Long id,boolean publish);
 
 	@Modifying
-	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN' WHERE event.id in (SELECT eventMedia.id FROM Media eventMedia where  eventMedia.eventUrl= ?1)")
+	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN' WHERE event.eventUrl = ?1")
 	public void publish(String id,boolean publish);
 
-	@Query(value="SELECT event FROM Event event WHERE event.id in (SELECT eventMedia.id FROM Media eventMedia where  eventMedia.eventUrl= ?1)")
+	@Query(value="SELECT event FROM Event event WHERE event.eventUrl =?1")
 	public Event getByEventUrl(String eventUrl);
 	
 	@Query(value="SELECT event FROM Event event WHERE event.status=?1")
@@ -34,5 +35,9 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 
 	@Query(value="SELECT ticket FROM Ticket ticket WHERE ticket.eventId=?1")
 	public List<Ticket> getEventTickets(Long eventId);
+	
+	@Query(value="SELECT event FROM Event event WHERE event.eventUrl=?1")
+	public Event findEventUrl(String eventUrl);
+
 
 }

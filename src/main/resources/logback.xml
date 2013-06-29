@@ -33,7 +33,7 @@
 
 
     <!--   <logger name="com.base22" level="TRACE"/> -->
-    <logger name="com.eventpool" level="DEBUG"/>
+    <logger name="com.eventpool" level="INFO"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />

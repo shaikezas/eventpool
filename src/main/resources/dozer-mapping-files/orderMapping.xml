@@ -36,6 +36,7 @@
 			<field><a>createdDate</a><b>createdDate</b></field>
 			<field><a>modifiedDate</a><b>modifiedDate</b></field>
 	     	<field><a>id</a><b>id</b></field>
+	     	<field><a>ticketPrice</a><b>ticketPrice</b></field>
     </mapping>
     
     <mapping stop-on-errors="false" wildcard="false">

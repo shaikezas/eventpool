@@ -47,6 +47,8 @@ import com.eventpool.event.module.EventApi;
 import com.eventpool.event.service.EventCommandService;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.controller.EventController;
+import com.eventpool.web.controller.EventSearchRecord;
+import com.eventpool.web.controller.SearchService;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.TicketForm;
 
@@ -66,6 +68,9 @@ public class EventTest extends BaseTest{
 	
 	@Resource
 	EventCommandService eventCommandService;
+	
+	@Resource
+	SearchService searchService;
 	
     @Test
     @Transactional
@@ -104,7 +109,7 @@ public class EventTest extends BaseTest{
     	mediaDTO.setBannerUrl("20130509_070251.jpg");
     	mediaDTO.setFaceBookUrl("facebook");
     	mediaDTO.setOtherUrl1("otherurl1");
-    	mediaDTO.setEventUrl("testurl");
+    	event.setEventUrl("testurl");
     	
     	event.setMedia(mediaDTO);
     	
@@ -153,6 +158,7 @@ public class EventTest extends BaseTest{
     @Rollback(false)
     public void saveEventDTO(){
     	EventDTO event = getEventDTOObject();
+    	eventApi.saveEventDTO(event);
     	//eventController.addEvent(event);
     }
 
@@ -204,7 +210,7 @@ public class EventTest extends BaseTest{
     	mediaDTO.setBannerUrl("20130509_070251.jpg");
     	mediaDTO.setFaceBookUrl("facebook");
     	mediaDTO.setOtherUrl1("otherurl1");
-    	mediaDTO.setEventUrl("eventUrl");
+    	event.setEventUrl("eventUrl");
     	
     	event.setMedia(mediaDTO);
     	List<TicketDTO> tickets = new ArrayList<TicketDTO>();
@@ -224,7 +230,7 @@ public class EventTest extends BaseTest{
     	 log.info(" local date"+timeZoneDate);
     }
     
-//    @Test
+   @Test
     public void testEventServiceCommand() throws Exception{
     	SaveEventCommand saveEventCommand = new SaveEventCommand();
     	saveEventCommand.setEventDTO(getEventDTOObject());
@@ -503,5 +509,17 @@ public class EventTest extends BaseTest{
     public void testMytickets(){
     	List<SuborderDTO> orderedTickets = eventApi.getOrderedTickets(0L);
     	log.info(orderedTickets.size()+" size");
+    }
+    
+    @Test
+    public void testSearchService() throws Exception{
+    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords("");
+    	log.info(eventSearchRecords.size()+" size");
+    }
+    
+    @Test
+    public void testEventOrderedTickets() throws Exception{
+    	List<SuborderDTO> suborderDTOs = eventApi.getEventOrderedTickets(1L);
+    	log.info(suborderDTOs.size()+" size");
     }
 }
