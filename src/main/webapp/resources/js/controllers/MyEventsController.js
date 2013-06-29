@@ -18,6 +18,7 @@ var MyEventsController = function($scope, $http,search,subcategories,categories)
     
     $scope.publishEvent = function(eventid) {
         $http.get('event/myevent/publishevent/'+eventid).success(function(){
+        $scope.fetchDraftEventsList;
         });
     }
     $scope.fetchPastEventsList = function() {
