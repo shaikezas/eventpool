@@ -44,7 +44,12 @@
             <h3>Login</h3>
         </div>
         <div class="modal-body">
-            <label>See webapp-config.xml for valid username/password.</label>
+        		 <div ng-class="'alert alert-'+access().type" ng-show="access().show">
+        <button type="button" class="close" ng-click="access().show=false">×</button>
+        <msg>{{access().text}}</msg>
+        
+    </div>
+        
             <div class="control-group">
                 <label class="control-label" for="username">Username</label>
 

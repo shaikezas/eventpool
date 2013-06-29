@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.eventpool.web.domain.User;
+import com.eventpool.common.entities.User;
 import com.eventpool.web.domain.UserService;
 
 @Controller
@@ -21,5 +21,12 @@ public class UserController {
     	System.out.println("getCurrentUser");
         return userService.getCurrentUser();
     }
+    
+ /*   @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @ResponseBody
+    public void createUser(String userName,String password){
+    	System.out.println("create User");
+        userService.saveUser(new User(userName,password));
+    }*/
 
 }

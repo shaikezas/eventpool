@@ -3,6 +3,7 @@
 var EventPool = {};
 var httpHeaders;
 var message;
+var access;
 var App = angular.module('EventPool', 
 		['EventPool.filters', 'EventPool.services', 'EventPool.directives','ui.bootstrap', 'ui.utils', 'ui.select2']);
 App.factory('Data', function() {
@@ -100,6 +101,10 @@ App.run(function ($rootScope, $http, base64) {
     $rootScope.message = function () {
         return message;
     };
+    
+    $rootScope.access = function () {
+        return access;
+    };
 
     /**
      * Holds all the requests which failed due to 401 response.
@@ -135,8 +140,14 @@ App.run(function ($rootScope, $http, base64) {
         httpHeaders.common['Authorization'] = 'Basic ' + base64.encode(username + ':' + password);
         $http.get('user').success(function (data) {
             $rootScope.user = data;
+            access = "";
             $rootScope.$broadcast('event:loginConfirmed');
         });
+       access = {
+               text: "Invalid credentails",
+               type: "error",
+               show: true
+           };
     });
 
     /**

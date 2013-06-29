@@ -1,6 +1,7 @@
 function MainController($scope, $route,$rootScope, $routeParams,$location) {
 	$scope.title = "Home";
 	$scope.header = "home";
+	
 	 $scope.path = function () {
          return $location.url();
      };

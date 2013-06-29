@@ -118,9 +118,9 @@ public class OrderServiceTest extends BaseTest{
 			regForm.setPhone("Phone"+count);
 		*/	count++;
 		}
-		OrderStatusDTO order = controller.createOrder(form);
+		/*OrderStatusDTO order = controller.createOrder(form);
 		System.out.println("Status "+order.getStatus());
-		System.out.println("OrderId "+order.getOrderId());
+		System.out.println("OrderId "+order.getOrderId());*/
 		
 		Thread.sleep(1000*80);
 	}

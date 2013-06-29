@@ -43,13 +43,13 @@
 	</bean>
 	<security:http pattern="/event/myevent/**" create-session="never">
 		<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
-		<security:intercept-url pattern="/**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/**" access="ROLE_USER" />
 		 
 <!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
 	</security:http>
 	<security:http pattern="/html/event/myevent/**" create-session="never">
 		<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
-		<security:intercept-url pattern="/**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/**" access="ROLE_USER" />
 		 
 <!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
 	</security:http>
@@ -68,7 +68,7 @@ class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
 
 	<bean id="restAuthenticationEntryPoint"
 		class="com.eventpool.web.controller.RestAuthenticationEntryPoint" /> 
-	<security:authentication-manager alias="authenticationManager">
+	<!-- <security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="ezas" password="ezas"
@@ -78,5 +78,14 @@ class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
 				<security:user name="cnu" password="cnu" authorities="ROLE_USER" />
 			</security:user-service>
 		</security:authentication-provider>
+	</security:authentication-manager> -->
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="eventpoolUserDetailsService">
+           <security:password-encoder hash="md5">
+           		<security:salt-source system-wide="cewuiqwzie"/>
+           </security:password-encoder>
+        </security:authentication-provider>
 	</security:authentication-manager>
+	
+	<bean id="eventpoolUserDetailsService" class="com.eventpool.common.module.EventpoolUserDetailsServiceImpl"/>
 </beans>

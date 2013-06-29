@@ -1,35 +1,93 @@
 package com.eventpool.common.entities;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.EnumSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Type;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.GrantedAuthority;
 
 import com.eventpool.common.type.Gender;
-import com.eventpool.common.type.TicketType;
 
 @Entity
-@Table(name = "USER")
+@Table(name="USER", uniqueConstraints = {@UniqueConstraint (columnNames = "USERNAME"),      @UniqueConstraint (columnNames = "EMAIL")})
 public class User extends IdEntity{
+	
+	private static final String SALT = "cewuiqwzie"; // This is required for password change through Spring security
+	
+	public User(){
+		
+	}
+	
+	public User(String userName){
+		
+		this.userName = userName;
+		
+	}
+	public User(String userName, String password) {
+	    // By default account enabled should be false, once the user clicks on confirmation email, this flag should be set
+	    // to true
+	    accountExpired = false;
+
+	    this.userName = userName;
+	    this.password = encode(password);
+	  }
+	 public String encode(String password) {
+		    return new Md5PasswordEncoder().encodePassword(password, SALT);
+	 }
+	 public void setTemporaryPassword(String password) {
+		  this.password = encode(password);
+	  }
+	 public Boolean Authenticate(String password) {
+		    if (this.password.equals(encode(password))) {
+		      return true;
+		    }
+		    System.out.println("Original password is: " + this.password);
+		    System.out.println("Password entered  is: " + encode(password));
+		    return false;
+		  }
+	 public void updatePassword(String old, String newPass1, String newPass2) {
+		    if (!password.equals(old)) {
+		      throw new IllegalArgumentException("Existing Password invalid");
+		    }
+		    if (!newPass1.equals(newPass2)) {
+		      throw new IllegalArgumentException("New Passwords don't match");
+		    }
+		    password = encode(newPass1);
+	}
+
 	
 	@Column(name = "FNAME")
 	private String fname;
 	
+	@Column(name = "ACCOUNT_ENABLED")
+	  boolean accountEnabled; // This would depend upon business requirements
+
+	@Column(name = "ACCOUNT_EXPIRED")
+	  boolean accountExpired;
+	
+	 
 	@Column(name = "LNAME")
 	private String lname;
+	
+	@Column(name = "USERNAME")
+	@NotNull
+	private String userName;
+	
+	@Column(name="PASSWORD")
+	@NotNull
+	private String password;
 
 	@NotNull
 	@Column(name = "EMAIL")
 	private String email;
-
-	@Column(name = "PASSWORD")
-	private String password;
 
 	@Column(name = "COMPANY")
 	private String company;
@@ -196,4 +254,41 @@ public class User extends IdEntity{
 	}
 	
 		
+	  public enum Roles implements GrantedAuthority {
+		    ROLE_USER, ROLE_ADMIN;
+		    public String getAuthority() {
+		      return name();
+		    }
+		  }
+	  
+	  @Transient
+	  private Roles[] roles = new Roles[]{Roles.ROLE_USER}; // Roles of this user -- This is required for Spring Security
+	  
+	  public Roles[] getRoles() {
+		    return roles;
+		  }
+
+		  public void setRoles(Roles... roles) {
+		    this.roles = roles;
+		  }
+		public boolean isAccountEnabled() {
+			return accountEnabled;
+		}
+		public void setAccountEnabled(boolean accountEnabled) {
+			this.accountEnabled = accountEnabled;
+		}
+		public boolean isAccountExpired() {
+			return accountExpired;
+		}
+		public void setAccountExpired(boolean accountExpired) {
+			this.accountExpired = accountExpired;
+		}
+		public String getUserName() {
+			return userName;
+		}
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+		  
+		  
 }

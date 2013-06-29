@@ -14,7 +14,6 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +25,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
+import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.module.EventpoolUserDetails;
+import com.eventpool.common.module.EventpoolUserDetailsService;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.QuestionType;
@@ -65,6 +68,9 @@ public class EventController {
     
     @Resource
     private TicketInventoryService ticketInventoryService;
+    
+    @Autowired
+    private EventpoolUserDetailsService userDetailsService;
 
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
@@ -80,9 +86,11 @@ public class EventController {
     	}else
     		System.out.println("tickets are null");
     	
+    	User user = userDetailsService.getUserFromSession();
+    	System.out.println("user Id "+user.getId());
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
-    	eventDTO.setCreatedBy(1L);
+    	eventDTO.setCreatedBy(user.getId());
 //    	updateEventType(eventDTO);
     	 try {
  			eventService.addEvent(eventDTO);
@@ -106,8 +114,8 @@ public class EventController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name1 = auth.getName(); //get logged in username
         System.out.println("logged in name1 :"+name1);
-    	   User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	      String name = user.getUsername(); //get logged in username
+    	   User user = ((EventpoolUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+    	      String name = user.getUserName(); //get logged in username
         System.out.println("logged in name :"+name);
     }
 
@@ -266,7 +274,15 @@ public class EventController {
     
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated event settings");
     }
-    private void updateEventType(EventDTO dto){
+    
+    @RequestMapping(value = "/myevent/getTicketHistory/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody List<SuborderDTO> getTicketHistory(@PathVariable("eventid") Long eventId) throws Exception {
+    	//List<SuborderDTO> subOrdersList = 
+    			return eventService.getEventOrderedTickets(eventId);
+    }
+    
+
+	private void updateEventType(EventDTO dto){
     	Boolean isFree = false;
     	Boolean isPaid = false;
     	if(dto.getTickets()!=null){
@@ -314,7 +330,7 @@ public class EventController {
     	form.setStartDate(getDateString(dto.getStartDate()));
     	form.setEndDate(getDateString(dto.getEndDate()));
     	form.setId(dto.getId());
-    	form.setEventUrl(dto.getMedia().getEventUrl());
+    	form.setEventUrl(dto.getEventUrl());
     	
     	return form;
     }

@@ -130,12 +130,12 @@
      <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>3.1.1.RELEASE</version>
+            <version>3.1.3.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>3.1.1.RELEASE</version>
+            <version>3.1.3.RELEASE</version>
         </dependency>
     <dependency>
             <groupId>javax.servlet</groupId>
@@ -143,6 +143,25 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+               <dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-core</artifactId>
+			<version>4.0.0</version>
+			
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-jdk14</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+			
+		</dependency>
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+        
   </dependencies>
     <build>
         <finalName>eventpool</finalName>
