@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.dozer.CustomConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +30,7 @@ import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
+import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.EventpoolUserDetails;
 import com.eventpool.common.module.EventpoolUserDetailsService;
@@ -39,11 +41,13 @@ import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.web.domain.ResponseMessage;
+import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.Dropdown;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.EventFormSettings;
 import com.eventpool.web.forms.EventQuestion;
 import com.eventpool.web.forms.MyEventForm;
+import com.eventpool.web.forms.SubOrderForm;
 import com.eventpool.web.forms.TicketForm;
 import com.google.gson.Gson;
 
@@ -71,6 +75,11 @@ public class EventController {
     
     @Autowired
     private EventpoolUserDetailsService userDetailsService;
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private DateCustomConverter dateConverter;
 
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
@@ -281,6 +290,31 @@ public class EventController {
     			return eventService.getEventOrderedTickets(eventId);
     }
     
+    @RequestMapping(value = "/myevent/getMyTickets", method = RequestMethod.GET)
+    public @ResponseBody List<SubOrderForm> getMyTickets() throws Exception {
+    			List<SuborderDTO> subOrdersList = eventService.getOrderedTickets((userService.getCurrentUser()).getId());
+    			return converSubDTOtoForm(subOrdersList);
+    }
+    
+
+	private List<SubOrderForm> converSubDTOtoForm(List<SuborderDTO> subOrdersList) throws EventNotFoundException {
+		List<SubOrderForm> subFormList = new ArrayList<SubOrderForm>();
+		for(SuborderDTO subOrder : subOrdersList){
+			SubOrderForm subForm = new SubOrderForm();
+			subForm.setQuantity(subOrder.getTicket().getQuantity());
+			subForm.setTicketName(subOrder.getTicket().getName());
+			subForm.setTicketPrice(subOrder.getTicket().getPrice());
+			EventDTO event = eventService.getEventById(subOrder.getTicket().getEventId());
+			subForm.setEvnetName(event.getTitle());
+			subForm.setStartDate(dateConverter.convertFrom(event.getStartDate()));
+			subForm.setEndDate(dateConverter.convertFrom(event.getEndDate()));
+			subForm.setBookedOn(dateConverter.convertFrom(subOrder.getCreatedDate()));
+			subFormList.add(subForm);
+			
+		}
+		return subFormList;
+	}
+
 
 	private void updateEventType(EventDTO dto){
     	Boolean isFree = false;

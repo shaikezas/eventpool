@@ -2,7 +2,7 @@
           
  <div ng-include src="'html/header.html'"></div>          
       
-            <h1>My Events</h1>
+            <h1>My Tickets</h1>
           
           <div >
 				    <table class="table table-condensed">
@@ -11,19 +11,25 @@
 				        	
 	  	 		
 				          <th>EVENT NAME</th>
-				          <th>DATE</th>
+				          <th>TICKET NAME</th>
+				          <th>BOOKED ON</th>
+				          <th>EVENT STARTS ON</th>
+				          <th>EVENT ENDS ON</th>
 				          <th>QTY</th>
-				          <th>Amount</th>
-				          <th>Print</th>
+				          <th>AMOUNT</th>
+				          <th>QUICK LINKS</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
-				          <td>My Event</td>
-				          <td>Date</td>
-				          <td>Qty</td>
-				          <td>Amount</td>
-				          <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a>  | <a href="#event/{{myevent.eventUrl}}">Cancel Ticket</a></td>
+				        <tr ng-repeat="myTicket in myTicketsList">
+				          <td>{{myTicket.evnetName}}</td>
+				          <td>{{myTicket.ticketName}}</td>
+				          <td>{{myTicket.bookedOn}}</td>
+				          <td>{{myTicket.startDate}}</td>
+				          <td>{{myTicket.endDate}}</td>
+				          <td>{{myTicket.quantity}}</td>
+				          <td>{{myTicket.ticketPrice}}</td>
+				          <td><a href="#/myevent/{{myevent.id}}">Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a></td>
 				        </tr>
 				        
 				      </tbody>

@@ -173,11 +173,13 @@ public class EventApiImpl implements EventApi{
 		return eventDtoList;
 	}
 
+	@Transactional(readOnly = true)
 	public List<SuborderDTO> getOrderedTickets(Long userId) {
 		List<Suborder> suborders = suborderRepository.getSuborders(userId);
 		return mapSuborderDTO(suborders);
 	}
 
+	@Transactional(readOnly = true)
 	private List<SuborderDTO> mapSuborderDTO(List<Suborder> suborders) {
 		List<SuborderDTO> suborderDTOs = new ArrayList<SuborderDTO>();
 		if(suborders!=null && suborders.size()>0){

@@ -60,7 +60,6 @@ public class SearchController {
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
     public @ResponseBody List<SearchResponse> getDefaultResults() throws Exception {
     	List<SearchResponse> srList = new ArrayList<SearchResponse>();
-    	System.out.println("Default Resuts fetching......." + srList);
     	SearchResponse sr = new SearchResponse();
     	sr.setvName("VN001");
     	sr.setvAddress("VAdd001");
@@ -75,7 +74,6 @@ public class SearchController {
     	sr.setEndDate("11-11-11");
     	sr.setEventTitle("ETitle002");
     	srList.add(sr);
-    	System.out.println("Default Resuts fetching......." + srList);
     	return srList;
     }
     
