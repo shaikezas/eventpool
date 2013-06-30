@@ -30,7 +30,7 @@
 	            <span class="icon-bar"></span>
 	          </button>
 	         
-	          <div class="nav-collapse collapse">
+	          <!-- div class="nav-collapse collapse">
 	            <ul class="nav">
 	              <li class=""><a href="#/home">Home</a></li>
 	              <li class=""><a href="#/findevent">Find Event</a></li>
@@ -40,7 +40,7 @@
 	               <li class=""> <a ng-click="logout()">Logout</a></li>
 	              <li class="active"> <a href="MyAccount.html">Welcome {{user.userName}}</a></li>
 	            </ul>
-	          </div>
+	          </div-->
 	        </div>
 	      </div>
 	    </div>
@@ -51,6 +51,7 @@
 		<div class="container">
 		    	
 		          <div class="tabBody">
+		           <div ng-include src="'html/header.html'"></div>  
 		      
 			            <h1>User Settings</h1>
 			            
@@ -417,11 +418,11 @@
 
     <!-- Footer
     ================================================== -->
-    <footer class="footer">
+    <!-- footer class="footer">
       <div class="container">
         © 2009-2013, Copyright @ Company Name. All Rights Reserved.
       </div>
-    </footer>
+    </footer -->
 
 
  	
