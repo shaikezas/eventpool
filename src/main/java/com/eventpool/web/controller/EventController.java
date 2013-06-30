@@ -303,7 +303,7 @@ public class EventController {
 			SubOrderForm subForm = new SubOrderForm();
 			subForm.setQuantity(subOrder.getTicket().getQuantity());
 			subForm.setTicketName(subOrder.getTicket().getName());
-			subForm.setTicketPrice(subOrder.getTicket().getPrice());
+			subForm.setTicketPrice(subOrder.getTicketPrice());
 			EventDTO event = eventService.getEventById(subOrder.getTicket().getEventId());
 			subForm.setEvnetName(event.getTitle());
 			subForm.setStartDate(dateConverter.convertFrom(event.getStartDate()));
