@@ -59,26 +59,10 @@ public class SearchController {
     }
     
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
-    public @ResponseBody List<SearchResponse> getDefaultResults() throws Exception {
-    	List<SearchResponse> srList = new ArrayList<SearchResponse>();
-    	SearchResponse sr = new SearchResponse();
-    	sr.setvName("VN001");
-    	sr.setvAddress("VAdd001");
-    	sr.setStartDate("11-11-11");
-    	sr.setEndDate("12-12-12");
-    	sr.setEventTitle("ETitle001");
-    	srList.add(sr);
-    	sr = new SearchResponse();
-    	sr.setvName("VN002");
-    	sr.setvAddress("VAdd002");
-    	sr.setStartDate("10-10-10");
-    	sr.setEndDate("11-11-11");
-    	sr.setEventTitle("ETitle002");
-    	srList.add(sr);
-    	System.out.println("Default Resuts fetching......." + srList);
-    	String query = "";
-		List<EventSearchRecord> searchRecords = searchService.getSearchRecords(query , 10);
-    	return srList;
+    public @ResponseBody List<EventSearchRecord> getDefaultResults() throws Exception {
+    	List<EventSearchRecord> srList = new ArrayList<EventSearchRecord>();
+    	//Need to add service code here to get search records and has to assign to srList variable.
+       	return srList;
     }
     
     
