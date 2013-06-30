@@ -141,6 +141,7 @@ App.run(function ($rootScope, $http, base64) {
         $http.get('user').success(function (data) {
             $rootScope.user = data;
             access = "";
+            message = "";
             $rootScope.$broadcast('event:loginConfirmed');
         });
        access = {
