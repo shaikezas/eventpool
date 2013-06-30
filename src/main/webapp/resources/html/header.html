@@ -30,8 +30,8 @@
                <li>
             <a ng-click="logout()" ng-show="user.userName">Logout</a>
          </li >
-        <li>
-            <a ng-show="user.userName"> Welcome {{user.userName}}</a>
+        <li ng-class="activeWhen(path()=='/userSettings')">
+            <a href="#/userSettings" ng-show="user.userName"> Welcome {{user.userName}}</a>
         </li>
             </ul>
           </div>

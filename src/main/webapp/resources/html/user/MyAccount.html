@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Company Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-datetimepicker.min.css">
+		
+  </head>
+
+  <body >
+
+
+	
+	    <!-- Navbar
+	    ================================================== -->
+	    <div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="navbar-inner">
+	        <div class="container">
+	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	         
+	          <div class="nav-collapse collapse">
+	            <ul class="nav">
+	              <li class=""><a href="index.html">Home</a></li>
+	              <li class=""><a href="findEvent.html">Find Event</a></li>
+	              <li class=""><a href="createEvent.html">Create Event</a></li>
+	              <li class=""><a href="myEvents.html">My Events</a></li>
+	              <li class=""> <a href="myTickets.html">My Tickets</a></li>
+	              <li class="active"> <a href="MyAccount.html">Welcome {{user.userName}}</a></li>
+	            </ul>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+
+
+
+
+		<div class="container">
+		    	
+		          <div class="tabBody">
+		      
+			            <h1>User Settings</h1>
+			            
+			 <!--  Create Event Nav Tab  
+			 ================================================== -->           
+			            <ul id="myTab" class="nav nav-tabs">
+				              <li class="active">	<a href="#personalDetails" data-toggle="tab">	Personal Details	</a></li>
+				              <li>					<a href="#companyDetails" data-toggle="tab">	Company Details		</a></li>
+				              <li>					<a href="#changePassword" data-toggle="tab">	Change Password		</a></li>
+				              <li>					<a href="#socialPlugins" data-toggle="tab">		Social Plugins		</a></li>
+
+			            </ul>
+			 <!--  Create Event Nav Tab -->  
+			 
+			 <!-- Create Event Tab Content Start  
+			 ================================================== -->
+			            
+			            <div id="myTabContent" class="tab-content">
+			            	
+			              <div class="tab-pane fade in active" id="personalDetails">
+			                
+								<form class="form-horizontal">
+								
+							<h4>My Account</h4>
+							
+							
+							  <div class="control-group">
+							    <label class="control-label" for="userName">User Name :</label>
+							    <div class="controls">
+							      <input type="text" id="userName" >
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="emailaddress">Email Address :</label>
+							    <div class="controls">
+							      <input type="text" id="emailaddress" >
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="salutation">Salutation :</label>
+							    <div class="controls">
+							      <input type="text" id="salutation" value="Mr" >
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="fastName">First Name </label>
+							    <div class="controls">
+							      <input type="text" id="fastName" >
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="middleName">Middle Name  </label>
+							    <div class="controls">
+							      <input type="text" id="middleName" >
+							    </div>
+							  </div>
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="lastName">Last Name</label>
+							    <div class="controls">
+							      <input type="text" id="lastName" >
+							    </div>
+							  </div>
+							  
+							  
+							 
+							 
+							 <div class="control-group">
+							    <label class="control-label" for="designation">Designation </label>
+							    <div class="controls">
+							      <input type="text" id="designation" >
+							    </div>
+							  </div>
+							  
+							  
+							 	
+							 	<div class="control-group">
+								    <label class="control-label" for="Country">Country :*</label>
+								    <div class="controls">
+										  <select id="Country">
+											  <option>Select Country</option>
+										  </select>
+								    </div>
+								  </div>
+							  
+							  	<div class="control-group">
+								    <label class="control-label" for="Address">Address  :</label>
+								    <div class="controls">
+								      <input type="text" id="Address" >
+								    </div>
+								  </div>
+								  
+								  <div class="control-group">
+								    <label class="control-label" for="country">Country   :</label>
+								    <div class="controls">
+								      <input type="text" id="country" >
+								    </div>
+								  </div>
+							  
+							  
+								  <div class="control-group">
+								    <label class="control-label" for="state">State :*</label>
+								    <div class="controls">
+										  <select id="state">
+											  <option>Select State</option>
+										  </select>
+								    </div>
+								  </div>
+							  
+								  <div class="control-group">
+								    <label class="control-label" for="city">City :*</label>
+								    <div class="controls">
+										  <select id="city">
+											  <option>Select City</option>
+										  </select>
+								    </div>
+								  </div>
+							  
+								  
+							  
+								  <div class="control-group">
+								    <label class="control-label" for="Pincode">Pincode  :</label>
+								    <div class="controls">
+								      <input type="text" id="Pincode" >
+								    </div>
+								  </div>
+								  
+								  <div class="control-group">
+								    <label class="control-label" for="Phone">Phone No  :</label>
+								    <div class="controls">
+								      <input type="text" id="Phone" >
+								    </div>
+								  </div>
+							 
+								 <div class="control-group">
+								    <label class="control-label" for="Phone">Phone No  :</label>
+								    <div class="controls">
+								      <input type="text" id="Phone" >
+								    </div>
+								  </div>
+							 
+							 
+							  
+							  <div class="control-group">
+							    <div class="controls">
+							    	<button type="button" class="btn">Edite</button> 
+							       <button type="button" class="btn">Cancel</button> 
+							       <button type="button" class="btn">Update</button> 
+							    </div>
+							  </div>
+							  
+							</form>
+							        
+			               </div>
+			             
+			              <div class="tab-pane fade" id="companyDetails">
+			                
+								
+								<form class="form-horizontal">
+									
+									
+									<div class="control-group">
+									    <label class="control-label" for="companyName">Company Name :</label>
+									    <div class="controls">
+									      <input type="text" id="companyName" >
+									    </div>
+									 </div>
+									  	
+								 	<div class="control-group">
+									    <label class="control-label" for="companyDesc">Company Description :</label>
+									    <div class="controls">
+									      <input type="text" id="companyDesc" >
+									    </div>
+									 </div>
+									 
+									 <div class="control-group">
+									    <label class="control-label" for="companyAddress" >Company Address :</label>
+									    <div class="controls">
+									     	<textarea id="companyAddress" rows="3"></textarea>
+									    </div>
+									 </div>
+									 
+								 	<div class="control-group">
+									    <label class="control-label" for="Country1">Country :*</label>
+									    <div class="controls">
+											  <select id="Country1">
+												  <option>Select Country</option>
+											  </select>
+									    </div>
+									  </div>
+								  
+									  <div class="control-group">
+									    <label class="control-label" for="state1">State :*</label>
+									    <div class="controls">
+											  <select id="state1">
+												  <option>Select State</option>
+											  </select>
+									    </div>
+									  </div>
+								  
+									  <div class="control-group">
+									    <label class="control-label" for="city1">City :*</label>
+									    <div class="controls">
+											  <select id="city1">
+												  <option>Select City</option>
+											  </select>
+									    </div>
+									  </div>
+								  
+									  
+								  
+									  <div class="control-group">
+									    <label class="control-label" for="pinCode1">Pincode  :</label>
+									    <div class="controls">
+									      <input type="text" id="pinCode1" >
+									    </div>
+									  </div>
+									  
+									  <div class="control-group">
+									    <label class="control-label" for="phoneNo">Phone No  :</label>
+									    <div class="controls">
+									      <input type="text" id="phoneNo" >
+									    </div>
+									  </div>
+								 
+									 <div class="control-group">
+									    <label class="control-label" for="faxNo">Fax No  :</label>
+									    <div class="controls">
+									      <input type="text" id="faxNo" >
+									    </div>
+									  </div>
+									  
+									  <div class="control-group">
+									    <label class="control-label" for="coymanyMail">Company Email  :</label>
+									    <div class="controls">
+									      <input type="text" id="coymanyMail" >
+									    </div>
+									  </div>
+										
+									 <div class="control-group">
+									    <label class="control-label" for="coymanyurl">Company URL  :</label>
+									    <div class="controls">
+									      <input type="email" id="coymanyurl" >
+									    </div>
+									  </div>
+									  
+									  <div class="control-group">
+									    <label class="control-label" for="coymanyLogo">Company Logo/Poster  :</label>
+									    <div class="controls">
+									      <input type="file" id="coymanyLogo" >
+									    </div>
+									  </div>
+									
+									<div class="control-group">
+							    <div class="controls">
+							    	<button type="button" class="btn">Edite</button> 
+							       <button type="button" class="btn">Cancel</button> 
+							       <button type="button" class="btn">Update</button> 
+							    </div>
+							  </div>
+									
+									
+									
+									
+									
+								</form>
+								
+								
+			              </div>
+			              
+			              <div class="tab-pane fade" id="changePassword">
+			                
+								<form class="form-horizontal">
+									<div class="control-group">
+									    <label class="control-label" for="newpw">New Password :</label>
+									    <div class="controls">
+									      <input type="password" id="newpw" >
+									    </div>
+									 </div>
+									 
+									 <div class="control-group">
+									    <label class="control-label" for="confirmpw">Confirm Password :</label>
+									    <div class="controls">
+									      <input type="password" id="confirmpw" >
+									    </div>
+									 </div>
+									
+								</form>
+			
+			
+			              </div>
+			              
+			              <div class="tab-pane fade" id="socialPlugins">				                
+				                
+						        <form class="form-horizontal">
+								
+								
+								
+								
+								<div>
+								    <table class="table table-condensed">
+								     
+								      <thead>
+								        <tr>
+								          <th> Name Social Network </th>
+								          <th> broadcast to...</th>
+								          <th> ...when I register an event</th>
+								        </tr>
+								      </thead>
+								      <tbody>
+								       
+								        <tr>
+								          <td> Facebook </td>
+								          <td> <img src="assets/img/facbook-btn-login.png" /> </td>
+								          <td><input type="checkbox"  ></td>
+								        </tr>
+								      
+								      	 <tr>
+								          <td> Twitter </td>
+								          <td> <img src="assets/img/twitter-btn-login.png" /> </td>
+								          <td><input type="checkbox"  ></td>
+								        </tr>
+								        
+								         <tr>
+								          <td> Google  </td>
+								          <td> <img src="assets/img/facbook-btn-login.png" /> </td>
+								          <td><input type="checkbox"  ></td>
+								        </tr>
+								        
+								      </tbody>
+								    </table>
+								</div>
+												
+								
+								
+								
+								
+								
+								
+								
+								</form>
+							
+			              </div>
+			              
+			              
+			            </div>
+			          
+			 <!-- Create Event Tab Content End -->           
+		          
+		          </div>
+		
+		</div>
+    
+    
+   
+
+
+
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        © 2009-2013, Copyright @ Company Name. All Rights Reserved.
+      </div>
+    </footer>
+
+
+ 	
+
+
+	<script type="text/javascript" src="assets/js/jquery.min.js"> </script> 
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+    <script type="text/javascript" src="assets/js/bootstrap-datetimepicker.min.js"> </script>
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+  </body>
+</html>
