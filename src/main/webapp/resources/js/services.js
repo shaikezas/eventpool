@@ -104,3 +104,23 @@ geteventsettings: function(eventid) {
     
     }
 });
+
+
+AppServices.service('signupSrv', function ($http) {
+
+    return {
+createUser: function(userName,password) {
+	  var datatosend = {
+			  "userName": userName,
+			  "password":password
+	  };
+	  var config = {
+        method: "POST",
+        params: datatosend,
+        url: "createuser"
+    };
+	  return $http(config);
+}
+    
+    }
+});

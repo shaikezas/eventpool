@@ -64,7 +64,14 @@
                     <input type="password" id="password" ng-model="password"/>
                 </div>
             </div>
-        </div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="checkbox"  ng-model="newuser">
+						Are you new to Eventpool?
+
+					</div>
+				</div>
+			</div>
         <div class="modal-footer">
             <a ng-click="login()" class="btn btn-primary">Login</a>
             <a data-dismiss="modal" class="btn" ng-click="cancel()">Cancel</a>

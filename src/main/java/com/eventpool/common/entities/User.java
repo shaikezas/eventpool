@@ -68,10 +68,10 @@ public class User extends IdEntity{
 	private String fname;
 	
 	@Column(name = "ACCOUNT_ENABLED")
-	  boolean accountEnabled; // This would depend upon business requirements
+	  boolean accountEnabled =true; // This would depend upon business requirements
 
 	@Column(name = "ACCOUNT_EXPIRED")
-	  boolean accountExpired;
+	  boolean accountExpired = false;
 	
 	 
 	@Column(name = "LNAME")
@@ -85,7 +85,7 @@ public class User extends IdEntity{
 	@NotNull
 	private String password;
 
-	@NotNull
+	
 	@Column(name = "EMAIL")
 	private String email;
 

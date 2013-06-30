@@ -39,4 +39,15 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ResultStatus validateUserName(String userName) {
+		if(userName.isEmpty()) {
+			return ResultStatus.FAILURE;
+		}
+		User b = userRepository.findByUserName(userName);
+		if(null == b) {
+			return ResultStatus.SUCCESS;
+		}
+		return ResultStatus.USER_EXISTS;
+	}
 }
