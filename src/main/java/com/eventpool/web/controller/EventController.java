@@ -73,8 +73,6 @@ public class EventController {
     @Resource
     private TicketInventoryService ticketInventoryService;
     
-    @Resource
-    private EventpoolUserDetailsService eventpoolUserDetailsService;
     @Autowired
     private UserService userService;
     
@@ -83,10 +81,12 @@ public class EventController {
 
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
+    	User user = userService.getCurrentUser();
+    	
     	if(event.getTickets()!=null){
     		int i=1;
     		for(TicketForm ticket :event.getTickets()){
-    			ticket.setCreatedBy(1L);
+    			ticket.setCreatedBy(user.getId());
     			ticket.setTicketOrder(i);
     			i++;
     		}
@@ -95,7 +95,6 @@ public class EventController {
     	}else
     		System.out.println("tickets are null");
     	
-    	User user = eventpoolUserDetailsService.getUserFromSession();
     	System.out.println("user Id "+user.getId());
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
@@ -120,18 +119,15 @@ public class EventController {
     @RequestMapping(value = "/myevent/createevent", method = RequestMethod.POST)
     public @ResponseBody void createEvent() throws Exception {
     	System.out.println("createEvent()");
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name1 = auth.getName(); //get logged in username
-        System.out.println("logged in name1 :"+name1);
-    	   User user = ((EventpoolUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-    	      String name = user.getUserName(); //get logged in username
-        System.out.println("logged in name :"+name);
+    	User user = userService.getCurrentUser();
+        System.out.println("logged in name :"+user.getUserName());
     }
 
     
     @RequestMapping("/myevent/draftEventList")
     public @ResponseBody List<MyEventForm> getDraftEventList() throws Exception {
-         List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.DRAFT);
+    	User user = userService.getCurrentUser();
+         List<EventDTO> eventDTOs = eventService.getAllEvents(user.getId(),EventStatus.DRAFT);
          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
          MyEventForm form  = null;
          String sold = "";
@@ -149,7 +145,8 @@ public class EventController {
     
     @RequestMapping("/myevent/liveEventList")
     public @ResponseBody List<MyEventForm> getLiveEventList() throws Exception {
-        List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.OPEN);
+    	User user = userService.getCurrentUser();
+        List<EventDTO> eventDTOs = eventService.getAllEvents(user.getId(),EventStatus.OPEN);
         List<MyEventForm>  forms = new ArrayList<MyEventForm>();
         MyEventForm form  = null;
         String sold = "";
@@ -166,7 +163,8 @@ public class EventController {
     
     @RequestMapping("/myevent/pastEventList")
     public @ResponseBody List<MyEventForm> getPastEventList() throws Exception {
-    	  List<EventDTO> eventDTOs = eventService.getAllEvents(1L,EventStatus.CLOSED);
+    	User user = userService.getCurrentUser();
+    	  List<EventDTO> eventDTOs = eventService.getAllEvents(user.getId(),EventStatus.CLOSED);
           List<MyEventForm>  forms = new ArrayList<MyEventForm>();
           MyEventForm form  = null;
           String sold = "";
