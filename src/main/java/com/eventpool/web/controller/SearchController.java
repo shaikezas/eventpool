@@ -62,6 +62,7 @@ public class SearchController {
     public @ResponseBody List<EventSearchRecord> getDefaultResults() throws Exception {
     	List<EventSearchRecord> srList = new ArrayList<EventSearchRecord>();
     	//Need to add service code here to get search records and has to assign to srList variable.
+    	srList = searchService.getSearchRecords("", 10);
        	return srList;
     }
     
