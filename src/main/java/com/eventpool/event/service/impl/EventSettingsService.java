@@ -59,5 +59,11 @@ public class EventSettingsService {
 		return gson.fromJson(infoSettings, type);
 	}
 	
-	
+	public List<EventInfoSettings> getEventInfoSettings(String data){
+		List<EventInfoSettings> eventSettings = null;
+		Gson gson = new Gson();
+		Type type = new TypeToken<LinkedList<EventInfoSettings>>(){}.getType();
+		eventSettings = gson.fromJson(data, type);
+		return eventSettings;
+	}
 }
