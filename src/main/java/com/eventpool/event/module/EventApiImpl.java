@@ -18,18 +18,18 @@ import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.EventSettings;
-import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketInventory;
-import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.exceptions.EventNotFoundException;
+import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.EventSettingsRepository;
 import com.eventpool.common.repositories.SuborderRepository;
 import com.eventpool.common.repositories.TicketInventoryRepository;
+import com.eventpool.common.repositories.TicketRepository;
 import com.eventpool.common.type.EventStatus;
 
 
@@ -55,6 +55,9 @@ public class EventApiImpl implements EventApi{
     
     @Resource
 	TicketInventoryRepository ticketInventoryRepository;
+    
+    @Resource
+    TicketRepository ticketRepository;
     
     @Transactional(rollbackFor=RuntimeException.class)
     public EventDTO saveEventDTO(EventDTO eventDTO){
@@ -232,6 +235,16 @@ public class EventApiImpl implements EventApi{
 	public List<SuborderDTO> getEventOrderedTickets(Long eventId) {
 		List<Suborder> suborders = suborderRepository.getEventSuborders(eventId);
 		return mapSuborderDTO(suborders);
+	}
+
+	public TicketDTO getTicketById(Long ticketId) throws TicketNotFoundException {
+		
+		if(ticketId == null) throw new IllegalArgumentException("Input Ticket id is null");
+    	 Ticket ticket = ticketRepository.findOne(ticketId);
+    	if(ticket == null) throw new TicketNotFoundException();
+    	TicketDTO ticketDTO = new TicketDTO();
+    	eventpoolMapper.mapTicketDTO(ticket, ticketDTO);
+    	return ticketDTO;
 	}
 
 }

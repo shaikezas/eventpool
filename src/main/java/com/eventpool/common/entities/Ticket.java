@@ -37,7 +37,7 @@ public class Ticket extends AuditableIdEntity{
 	
 	@Column(name="ACTIVE",nullable=false)
 	@Type(type = "yes_no")
-	private Boolean isActive;
+	private Boolean isActive = true;
 	
 	@Column(name = "QUANTITY")
 	private Integer quantity;

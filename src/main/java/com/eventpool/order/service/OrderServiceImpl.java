@@ -22,13 +22,16 @@ import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventRegisterDTO;
 import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.SuborderDTO;
+import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.TicketRegister;
+import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
+import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.OrderRepository;
@@ -68,6 +71,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private EventService eventService;
+	
 
 	@Resource
 	TicketInventoryService inventoryService;
@@ -85,33 +89,44 @@ public class OrderServiceImpl implements OrderService {
 			throw new ValidationException(validate.toString());
 		}
 		Order order = new Order();
+		for (SuborderDTO suborderDTO : orderDTO.getSuborders()) {
+			updateTicketDTO(suborderDTO);
+		}
 		eventpoolMapper.mapOrder(orderDTO, order);
-
+		
 		order = orderRepository.save(order);
 
 		for (SuborderDTO suborderDTO : orderDTO.getSuborders()) {
-			createSubOrder(suborderDTO);
+			deleteTicketRegister(suborderDTO);
 		}
 
 		return order;
 
 	}
 
-	private void createSubOrder(SuborderDTO suborderDTO) throws Exception {
+	private void updateTicketDTO(SuborderDTO suborderDTO) throws TicketNotFoundException{
+		 Long ticketId = suborderDTO.getTicket().getId();
+		 TicketDTO ticketDTO = eventService.getTicketById(ticketId);
+		
+		if(ticketDTO!=null){
+			suborderDTO.getTicket().setSaleStart(ticketDTO.getSaleStart());
+			suborderDTO.getTicket().setSaleEnd(ticketDTO.getSaleEnd());
+			suborderDTO.getTicket().setEventId(ticketDTO.getEventId());
+			suborderDTO.getTicket().setMinQty(ticketDTO.getMinQty());
+			suborderDTO.getTicket().setMaxQty(ticketDTO.getMaxQty());
+			suborderDTO.getTicket().setIsActive(ticketDTO.getIsActive());
+			suborderDTO.getTicket().setTicketOrder(ticketDTO.getTicketOrder());
+			suborderDTO.getTicket().setTicketType(ticketDTO.getTicketType());
+			
+		}
+	}
+	private void deleteTicketRegister(SuborderDTO suborderDTO) throws Exception {
 
 		TicketInventoryDetails updateTicketInventory = updateTicketInventory(suborderDTO);
 
 		if (updateTicketInventory.isInvUpdated()) {
 			ticketRegisterRepository.delete(suborderDTO.getTicketRegisterId());
 		}
-		// List<RegistrationDTO> registrationDTOs =
-		// suborderDTO.getRegistrations();
-		//
-		// if(registrationDTOs!=null && registrationDTOs.size()>0){
-		// for(RegistrationDTO registrationDTO:registrationDTOs){
-		// createRegistration(suborder,registrationDTO);
-		// }
-		// }
 
 	}
 

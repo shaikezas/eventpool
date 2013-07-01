@@ -149,6 +149,10 @@ public class EventpoolMapper {
 			}
 	}
 	
+	public void mapTicketDTO(Ticket ticket,TicketDTO ticketDTO){
+		mapper.map(ticket, ticketDTO);
+	}
+	
 	@Transactional(readOnly=true)
 	public void mapEventDTO(Event event,EventDTO eventDTO){
 		mapper.map(event, eventDTO);

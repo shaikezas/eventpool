@@ -30,6 +30,8 @@ public class SuborderDTO extends AuditableIdDTO {
 
 	private Double grossAmount;
 	
+	private String ticketName;
+	
 	private Double netAmount;
 	
 	private Double discountAmount;
@@ -142,5 +144,11 @@ public class SuborderDTO extends AuditableIdDTO {
 		this.ticketRegisterId = ticketRegisterId;
 	}
 
+	public String getTicketName() {
+		return ticketName;
+	}
 	
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
+	}
 }

@@ -126,7 +126,6 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	$scope.pincodeRequired = $scope.ticketInfoForm.pincode.$error.required;
     	$scope.pincodeMinLength = $scope.ticketInfoForm.pincode.$error.minlength;
     	$scope.pincodeMaxLength = $scope.ticketInfoForm.pincode.$error.maxlength;
-alert($scope.ticketInfoForm.$invalid);
     	if($scope.ticketInfoForm.$invalid){
     		$scope.stopSubmitAction=true;
     	}

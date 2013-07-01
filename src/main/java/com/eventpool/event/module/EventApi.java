@@ -11,6 +11,7 @@ import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
+import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.type.EventStatus;
 
 @Component
@@ -37,6 +38,8 @@ public interface EventApi {
 	public List<EventDTO> getAllEvents(Long userId,EventStatus status) throws Exception;
 
 	public List<SuborderDTO> getOrderedTickets(Long userId);
+	
+	public TicketDTO getTicketById(Long ticketId) throws TicketNotFoundException;
 	 
 	public List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId);
 	

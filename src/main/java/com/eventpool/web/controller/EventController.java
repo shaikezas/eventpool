@@ -30,6 +30,7 @@ import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
+import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.EventpoolUserDetails;
@@ -295,12 +296,12 @@ public class EventController {
     }
     
 
-	private List<SubOrderForm> converSubDTOtoForm(List<SuborderDTO> subOrdersList) throws EventNotFoundException {
+	private List<SubOrderForm> converSubDTOtoForm(List<SuborderDTO> subOrdersList) throws EventNotFoundException, TicketNotFoundException {
 		List<SubOrderForm> subFormList = new ArrayList<SubOrderForm>();
 		for(SuborderDTO subOrder : subOrdersList){
 			SubOrderForm subForm = new SubOrderForm();
 			subForm.setQuantity(subOrder.getTicket().getQuantity());
-			subForm.setTicketName(subOrder.getTicket().getName());
+			subForm.setTicketName(subOrder.getTicketName());
 			subForm.setTicketPrice(subOrder.getTicketPrice());
 			EventDTO event = eventService.getEventById(subOrder.getTicket().getEventId());
 			subForm.setEvnetName(event.getTitle());

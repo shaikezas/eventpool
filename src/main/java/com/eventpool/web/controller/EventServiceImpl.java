@@ -1,26 +1,22 @@
 package com.eventpool.web.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.exceptions.EventNotFoundException;
-import com.eventpool.common.type.EventInfoType;
+import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.type.EventStatus;
-import com.eventpool.common.type.EventType;
 import com.eventpool.event.command.PublishEventCommand;
 import com.eventpool.event.command.SaveEventCommand;
-import com.eventpool.event.command.impl.SaveEventCommandHandler;
 import com.eventpool.event.module.EventApi;
 import com.eventpool.event.service.EventCommandService;
 
@@ -104,5 +100,10 @@ public class EventServiceImpl implements EventService {
 	public List<SuborderDTO> getEventOrderedTickets(Long eventId)
 			throws Exception {
 		return eventApi.getEventOrderedTickets(eventId);
+	}
+
+	public TicketDTO getTicketById(Long ticketId) throws TicketNotFoundException{
+		
+		return eventApi.getTicketById(ticketId);
 	}
 }

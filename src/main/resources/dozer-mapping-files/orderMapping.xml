@@ -35,6 +35,7 @@
 			<field><a>createdBy</a><b>createdBy</b></field>
 			<field><a>createdDate</a><b>createdDate</b></field>
 			<field><a>modifiedDate</a><b>modifiedDate</b></field>
+			<field><a>ticketName</a><b>ticketName</b></field>
 	     	<field><a>id</a><b>id</b></field>
 	     	<field><a>ticketPrice</a><b>ticketPrice</b></field>
     </mapping>
