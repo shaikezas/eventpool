@@ -73,8 +73,6 @@ public class EventController {
     @Resource
     private TicketInventoryService ticketInventoryService;
     
-    @Resource
-    private EventpoolUserDetailsService eventpoolUserDetailsService;
     @Autowired
     private UserService userService;
     
@@ -83,10 +81,12 @@ public class EventController {
 
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
+    	User user = userService.getCurrentUser();
+    	
     	if(event.getTickets()!=null){
     		int i=1;
     		for(TicketForm ticket :event.getTickets()){
-    			ticket.setCreatedBy(1L);
+    			ticket.setCreatedBy(user.getId());
     			ticket.setTicketOrder(i);
     			i++;
     		}
@@ -95,7 +95,6 @@ public class EventController {
     	}else
     		System.out.println("tickets are null");
     	
-    	User user = eventpoolUserDetailsService.getUserFromSession();
     	System.out.println("user Id "+user.getId());
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
