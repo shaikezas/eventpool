@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.dozer.DozerBeanMapper;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -14,10 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
-import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.OrderDTO;
-import com.eventpool.common.dto.OrderFormSettings;
 import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
@@ -28,10 +25,12 @@ import com.eventpool.common.entities.Registration;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketSnapShot;
+import com.eventpool.common.entities.User;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.TicketForm;
+import com.eventpool.web.forms.UserForm;
 
 @SuppressWarnings("rawtypes")
 @Component
@@ -335,6 +334,14 @@ public class EventpoolMapper {
 			OrderFormSettings orderFormSettingObject =(OrderFormSettings) JSONObject.stringToValue(orderFromSettings);
 			eventForm.setOrderFormSettings(orderFormSettingObject);
 		}*/
+	}
+	
+	public void mapUserForm(UserForm userForm,User user){
+		mapper.map(userForm,user);
+	}
+	
+	public void mapUser(User user,UserForm userForm){
+		mapper.map(user,userForm);
 	}
 
 }
