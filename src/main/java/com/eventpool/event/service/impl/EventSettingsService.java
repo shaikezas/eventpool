@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
@@ -26,7 +27,7 @@ public class EventSettingsService {
 
 	
 	@Resource
-	private EventDefaultSettingsRepository defaultSettingsRepository;
+	private EventDefaultSettingsRepository eventDefaultSettingsRepository;
 	
 	@Resource
 	private SuborderRepository suborderRepository;
@@ -34,7 +35,7 @@ public class EventSettingsService {
 	private List<EventInfoSettings> settings = null;
 	
 	public EventDefaultSettings getEventDefaultSettingsByName(String name){
-		return defaultSettingsRepository.findByName(name);
+		return eventDefaultSettingsRepository.findByName(name);
 	}
 	
 	public List<EventInfoSettings> getEventDefaultSettings(){
@@ -74,6 +75,7 @@ public class EventSettingsService {
 		return eventSettings;
 	}
 	
+	@Transactional(readOnly=true)
 	public TicketAttendeeDTO getAttendes(Long ticketId){
 		TicketAttendeeDTO ticketAttendeeDTO = new TicketAttendeeDTO();
 		ticketAttendeeDTO.setTicketId(ticketId);
@@ -95,7 +97,7 @@ public class EventSettingsService {
 		}
 		return ticketAttendeeDTO;
 	}
-	
+	@Transactional(readOnly=true)
 	public TicketBuyerDTO getBuyers(Long ticketId){
 		TicketBuyerDTO ticketBuyerDTO = new TicketBuyerDTO();
 		ticketBuyerDTO.setTicketId(ticketId);
@@ -109,6 +111,7 @@ public class EventSettingsService {
 				userDTO.setFname(order.getFirstName());
 				userDTO.setLname(order.getLastName());
 				userDTO.setEmail(order.getEmail());
+				userDTOs.add(userDTO);
 			}
 		}
 		return ticketBuyerDTO;

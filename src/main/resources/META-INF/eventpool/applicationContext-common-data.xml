@@ -25,7 +25,9 @@
 	</bean>
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.eventpool" /> 
+	<context:component-scan base-package="com.eventpool" >
+	<context:exclude-filter type="regex" expression="com.eventpool.web.controller.EventController"/>
+	</context:component-scan> 
 
 	<jpa:repositories base-package="com.eventpool.common.repositories"
 		entity-manager-factory-ref="entityManagerFactory"

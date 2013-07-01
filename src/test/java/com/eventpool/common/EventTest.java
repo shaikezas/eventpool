@@ -45,8 +45,10 @@ import com.eventpool.event.command.PublishEventCommand;
 import com.eventpool.event.command.SaveEventCommand;
 import com.eventpool.event.module.EventApi;
 import com.eventpool.event.service.EventCommandService;
+import com.eventpool.event.service.impl.EventSettingsService;
+import com.eventpool.event.service.impl.TicketAttendeeDTO;
+import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.order.service.OrderService;
-import com.eventpool.web.controller.EventController;
 import com.eventpool.web.controller.EventSearchRecord;
 import com.eventpool.web.controller.SearchService;
 import com.eventpool.web.forms.EventForm;
@@ -64,13 +66,13 @@ public class EventTest extends BaseTest{
 	EventApi eventApi;
 	
 	@Resource
-	EventController eventController;
-	
-	@Resource
 	EventCommandService eventCommandService;
 	
 	@Resource
 	SearchService searchService;
+	
+	@Resource
+	EventSettingsService eventSettingsService;
 	
     @Test
     @Transactional
@@ -159,7 +161,6 @@ public class EventTest extends BaseTest{
     public void saveEventDTO(){
     	EventDTO event = getEventDTOObject();
     	eventApi.saveEventDTO(event);
-    	//eventController.addEvent(event);
     }
 
 	private EventDTO getEventDTOObject() {
@@ -521,5 +522,17 @@ public class EventTest extends BaseTest{
     public void testEventOrderedTickets() throws Exception{
     	List<SuborderDTO> suborderDTOs = eventApi.getEventOrderedTickets(1L);
     	log.info(suborderDTOs.size()+" size");
+    }
+    
+    @Test
+    public void testViewAttendes(){
+    	TicketAttendeeDTO attendes = eventSettingsService.getAttendes(4L);
+    	log.info(attendes.getEventInfoSettings()+" ");
+    }
+    
+    @Test
+    public void testViewBuyers(){
+    	TicketBuyerDTO buyers = eventSettingsService.getBuyers(4L);
+    	log.info(buyers.getUserDTOs()+" ");
     }
 }

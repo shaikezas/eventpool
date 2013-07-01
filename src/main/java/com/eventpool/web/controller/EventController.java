@@ -73,8 +73,8 @@ public class EventController {
     @Resource
     private TicketInventoryService ticketInventoryService;
     
-    @Autowired
-    private EventpoolUserDetailsService userDetailsService;
+    @Resource
+    private EventpoolUserDetailsService eventpoolUserDetailsService;
     @Autowired
     private UserService userService;
     
@@ -95,7 +95,7 @@ public class EventController {
     	}else
     		System.out.println("tickets are null");
     	
-    	User user = userDetailsService.getUserFromSession();
+    	User user = eventpoolUserDetailsService.getUserFromSession();
     	System.out.println("user Id "+user.getId());
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
