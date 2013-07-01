@@ -22,11 +22,13 @@ import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
+import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.domain.ResponseMessage;
+import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
 import com.google.gson.Gson;
@@ -38,6 +40,10 @@ public class OrderController {
 
 	@Resource
 	OrderService orderService;
+	
+	@Resource
+	UserService  userService;
+	
 	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
 	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
@@ -56,7 +62,9 @@ public class OrderController {
 	  @RequestMapping(value = "/create", method = RequestMethod.POST)
 	    public @ResponseBody ResponseMessage createOrder(@RequestBody OrderRegisterForm orderRegisterForm)  {
 		  OrderStatusDTO status = new OrderStatusDTO();
-		  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm);
+		  User user = userService.getCurrentUser();
+		  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
+		  
 		  Order order = null;
 		  try {
 			order = orderService.createOrder(orderDTO);
@@ -71,10 +79,10 @@ public class OrderController {
 		  return new ResponseMessage(ResponseMessage.Type.success, "Successfully created the order, your orderId is :"+order.getId());
 	    }
 	  
-	  private OrderDTO convertToOrderDTO(OrderRegisterForm orderRegisterForm){
+	  private OrderDTO convertToOrderDTO(OrderRegisterForm orderRegisterForm,Long userId){
 		  OrderDTO orderDTO = new OrderDTO();
 		  orderDTO.setBillingAddress(orderRegisterForm.getBillingAddress());
-		  orderDTO.setCreatedBy(0L);
+		  orderDTO.setCreatedBy(userId);
 		  orderDTO.setCreatedDate(new Date());
 		  orderDTO.setDicountCoupon(orderRegisterForm.getDicountCoupon());
 		  orderDTO.setDiscountAmount(orderRegisterForm.getDiscountAmount());
@@ -94,7 +102,7 @@ public class OrderController {
 		  for(TicketRegisterDTO ticketRegisterDTO : orderRegisterForm.getTicketRegisters()){
 			  
 			  suborderDTO = new SuborderDTO();
-			  suborderDTO.setCreatedBy(0L);
+			  suborderDTO.setCreatedBy(userId);
 			  suborderDTO.setCreatedDate(new Date());
 			  suborderDTO.setDicountCoupon(orderRegisterForm.getDicountCoupon());
 			  suborderDTO.setDiscountAmount(orderRegisterForm.getDiscountAmount());
@@ -125,7 +133,7 @@ public class OrderController {
 			  suborderDTO = suborderMap.get(regForm.getTicketId());
 			  registrationDTO = new RegistrationDTO();
 			  
-			  registrationDTO.setCreatedBy(0L);
+			  registrationDTO.setCreatedBy(userId);
 			  registrationDTO.setCreatedDate(new Date());
 			  Gson gson = new Gson();
 			  registrationDTO.setAttendeeInfo(gson.toJson(regForm.getInfoSettings()));

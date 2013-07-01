@@ -15,6 +15,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
 	public User getCurrentUser() {
 
        return  ((EventpoolUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
@@ -49,5 +50,12 @@ public class UserServiceImpl implements UserService {
 			return ResultStatus.SUCCESS;
 		}
 		return ResultStatus.USER_EXISTS;
+	}
+	
+	public ResultStatus updateUser(User user){
+		userRepository.updateUser(user.getId(), user.getCompany(), user.getPhone(), user.getEmail(), user.getMobile(), user.getAltEmail(),
+				user.getHomeAddress(), user.getOfficeAddress(), user.getShippingAddress(), user.getGeneder(), user.getCompanyUrl(), user.getFname(), user.getLname(), user.getDob());
+		
+		return ResultStatus.SUCCESS;
 	}
 }
