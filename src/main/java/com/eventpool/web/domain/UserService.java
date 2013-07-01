@@ -16,5 +16,6 @@ public interface UserService {
 	public User getUserByUsername(String username);
 	public User getUserByUserId(String userId);
 	public ResultStatus validateUserName(String userName);
+	public ResultStatus updateUser(User user);
 	
 }

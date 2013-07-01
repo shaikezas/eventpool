@@ -2,7 +2,6 @@ package com.eventpool.web.controller;
 
 import javax.annotation.Resource;
 
-import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.web.domain.ResponseMessage;

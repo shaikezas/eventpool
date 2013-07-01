@@ -50,4 +50,11 @@ public class UserServiceImpl implements UserService {
 		}
 		return ResultStatus.USER_EXISTS;
 	}
+	
+	public ResultStatus updateUser(User user){
+		userRepository.updateUser(user.getId(), user.getCompany(), user.getPhone(), user.getEmail(), user.getMobile(), user.getAltEmail(),
+				user.getHomeAddress(), user.getOfficeAddress(), user.getShippingAddress(), user.getGeneder(), user.getCompanyUrl(), user.getFname(), user.getLname(), user.getDob());
+		
+		return ResultStatus.SUCCESS;
+	}
 }
