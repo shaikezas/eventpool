@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Modifying
 	@Transactional
 	@Query(value = "Update User u set u.company=:company, u.phone=:phone, u.email=:email, u.mobile=:mobile, u.altEmail=:altEmail, u.homeAddress=:homeAddress,u.officeAddress=:officeAddress" +
-			" u.shippingAddress=:shippingAddress, u.geneder=:geneder,u.dob =:dob, u.companyUrl=:companyUrl, u.fname=:fname, u.lname=:lname where o.id=:id")
+			", u.shippingAddress=:shippingAddress, u.geneder=:geneder,u.dob=:dob, u.companyUrl=:companyUrl, u.fname=:fname, u.lname=:lname where u.id=:id")
 	public int updateUser(@Param("id") Long id,
 			@Param("company") String company,@Param("phone") String phone,@Param("email") String email,@Param("mobile") String mobile,
 			@Param("altEmail") String altEmail,@Param("homeAddress") String homeAddress,@Param("officeAddress") String officeAddress,@Param("shippingAddress") String shippingAddress,
