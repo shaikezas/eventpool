@@ -1,6 +1,7 @@
 package com.eventpool.event.service.impl;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,11 @@ import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventOrderSettings;
 import com.eventpool.common.entities.EventDefaultSettings;
+import com.eventpool.common.entities.Order;
+import com.eventpool.common.entities.Registration;
+import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.repositories.EventDefaultSettingsRepository;
+import com.eventpool.common.repositories.SuborderRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -23,6 +28,8 @@ public class EventSettingsService {
 	@Resource
 	private EventDefaultSettingsRepository defaultSettingsRepository;
 	
+	@Resource
+	private SuborderRepository suborderRepository;
 	
 	private List<EventInfoSettings> settings = null;
 	
@@ -65,5 +72,45 @@ public class EventSettingsService {
 		Type type = new TypeToken<LinkedList<EventInfoSettings>>(){}.getType();
 		eventSettings = gson.fromJson(data, type);
 		return eventSettings;
+	}
+	
+	public TicketAttendeeDTO getAttendes(Long ticketId){
+		TicketAttendeeDTO ticketAttendeeDTO = new TicketAttendeeDTO();
+		ticketAttendeeDTO.setTicketId(ticketId);
+		List<EventInfoSettings> eventInfoSettings = new ArrayList<EventInfoSettings>();
+		ticketAttendeeDTO.setEventInfoSettings(eventInfoSettings );
+		List<Suborder> suborders = suborderRepository.getAttendes(ticketId);
+		if(suborders!=null && suborders.size()>0){
+			for(Suborder suborder:suborders){
+				List<Registration> registrations = suborder.getRegistrations();
+				if(registrations!=null && registrations.size()>0){
+					for(Registration registration:registrations){
+						String attendeeInfo = registration.getAttendeeInfo();
+						if(attendeeInfo!=null){
+							eventInfoSettings.addAll(getEventInfoSettings(attendeeInfo));
+						}
+					}
+				}
+			}
+		}
+		return ticketAttendeeDTO;
+	}
+	
+	public TicketBuyerDTO getBuyers(Long ticketId){
+		TicketBuyerDTO ticketBuyerDTO = new TicketBuyerDTO();
+		ticketBuyerDTO.setTicketId(ticketId);
+		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+		ticketBuyerDTO.setUserDTOs(userDTOs );
+		List<Order> orders = suborderRepository.getBuyers(ticketId);
+
+		if(orders!=null && orders.size()>0){
+			for(Order order:orders){
+				UserDTO userDTO = new UserDTO();
+				userDTO.setFname(order.getFirstName());
+				userDTO.setLname(order.getLastName());
+				userDTO.setEmail(order.getEmail());
+			}
+		}
+		return ticketBuyerDTO;
 	}
 }
