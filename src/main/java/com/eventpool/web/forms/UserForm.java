@@ -18,7 +18,7 @@ public class UserForm {
 	
 	
 	
-
+	private Long id;
 	
 	private String fname;
 	
@@ -205,4 +205,11 @@ public class UserForm {
 			this.createdDate = createdDate;
 		}
 		  
+		  public Long getId() {
+			return id;
+		}
+		  
+		  public void setId(Long id) {
+			this.id = id;
+		}
 }

@@ -83,4 +83,28 @@
 			<field><a>mobileNumber</a><b>mobileNumber</b></field>
 	</mapping>
 	
+	 <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.web.forms.UserForm</class-a>
+        <class-b>com.eventpool.common.entities.User</class-b>
+        	<field><a>id    </a><b>id    </b></field>
+			<field><a>fname    </a><b>fname    </b></field>
+			<field><a>accountEnabled    </a><b>accountEnabled    </b></field>
+			<field><a>accountExpired      </a><b>accountExpired      </b></field>
+			<field><a>lname      </a><b>lname      </b></field>
+			<field><a>userName     </a><b>userName     </b></field>
+			<field><a>email </a><b>email </b></field>
+			<field><a>company         </a><b>company         </b></field>
+			<field><a>phone</a><b>phone</b></field>
+			<field><a>mobile</a><b>mobile</b></field>
+			<field><a>altEmail</a><b>altEmail</b></field>
+			<field><a>homeAddress</a><b>homeAddress</b></field>
+			<field><a>officeAddress</a><b>officeAddress</b></field>
+			<field><a>shippingAddress</a><b>shippingAddress</b></field>
+			<field><a>geneder</a><b>geneder</b></field>
+			<field><a>dob</a><b>dob</b></field>
+			<field><a>companyUrl</a><b>companyUrl</b></field>
+			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>createdDate</a><b>createdDate</b></field>
+	</mapping>
+	
 </mappings>
+
