@@ -1,6 +1,7 @@
 package com.eventpool.common.module;
 
 
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -33,9 +34,9 @@ public class HtmlEmailService
 		private String password;
 
 		protected static final Logger logger = LoggerFactory.getLogger(HtmlEmailService.class);
-		public void sendMail() {
+		public void sendMail(List<String> toList,String subject,String body,List<String> ccList) {
 				// Recipient's email ID needs to be mentioned.
-			   String to = "ramuenugurthi@gmail.com";
+			  // String to = "ramuenugurthi@gmail.com";
 			
 			   // Get system properties
 			   Properties props = System.getProperties();
@@ -65,19 +66,29 @@ public class HtmlEmailService
 			      message.setFrom(new InternetAddress(from));
 			
 			      // Set To: header field of the header.
-			      message.addRecipient(Message.RecipientType.TO,
-			                               new InternetAddress(to));
+			      if(toList!=null && toList.size()>0){
+			    	  for(String to:toList){
+					      message.addRecipient(Message.RecipientType.TO,
+					                               new InternetAddress(to));
+			    	  }
+			      }
+			      
+			      if(ccList!=null && ccList.size()>0){
+			    	  for(String to:ccList){
+					      message.addRecipient(Message.RecipientType.CC,
+					                               new InternetAddress(to));
+			    	  }
+			      }
 			
 			      // Set Subject: header field
-			      message.setSubject("This is the Subject Line!");
+			      message.setSubject(subject);
 			
 			      // Send the actual HTML message, as big as you like
-			      message.setContent("<h1>This is actual message</h1>",
-			                         "text/html" );
+			      message.setContent(body,"text/html" );
 			
 			      // Send message
 			      Transport.send(message);
-			      logger.info("mail sent successfully to :"+to);
+			      logger.info("mail sent successfully to :"+toList);
 			   }catch (MessagingException mex) {
 				   logger.error("error in sending mail",mex);
 			   }
