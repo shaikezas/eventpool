@@ -253,8 +253,10 @@ public class EventTest extends BaseTest{
     HtmlEmailService htmlEmailService;
     @Test
     public void sendMail(){
+    	List<String> toList = new ArrayList<String>();
+    	toList.add("ramuenugurthi@gmail.com");
     	
-    	htmlEmailService.sendMail();
+    	htmlEmailService.sendMail(null,"subject","body",toList);
     }
     
     @Resource
