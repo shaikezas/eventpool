@@ -40,6 +40,8 @@ import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.QuestionType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.EventSettingsService;
+import com.eventpool.event.service.impl.TicketAttendeeDTO;
+import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.UserService;
@@ -289,7 +291,17 @@ public class EventController {
     			return eventService.getEventOrderedTickets(eventId);
     }
     
-    @RequestMapping(value = "/myevent/getMyTickets", method = RequestMethod.GET)
+    @RequestMapping(value = "/myevent/attendees/{ticketId}", method = RequestMethod.GET)
+    public @ResponseBody TicketAttendeeDTO getAttendees(@PathVariable("ticketId") Long ticketId) throws Exception {
+    	 			return infoService.getAttendes(ticketId);
+    }
+    
+    @RequestMapping(value = "/myevent/buyers/{ticketId}", method = RequestMethod.GET)
+    public @ResponseBody TicketBuyerDTO getBuyers(@PathVariable("ticketId") Long ticketId) throws Exception {
+    				return infoService.getBuyers(ticketId);
+    }
+    
+    @RequestMapping(value = "/myevent/myTickets", method = RequestMethod.GET)
     public @ResponseBody List<SubOrderForm> getMyTickets() throws Exception {
     			List<SuborderDTO> subOrdersList = eventService.getOrderedTickets((userService.getCurrentUser()).getId());
     			return converSubDTOtoForm(subOrdersList);

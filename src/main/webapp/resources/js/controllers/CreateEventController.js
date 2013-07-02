@@ -131,6 +131,20 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	$scope.subOrdersList = subOrdersList;
         });
     }
+    
+    $scope.fetchBuyers = function(ticketId) {
+    	  $http.get('event/myevent/buyers/'+ticketId).success(function(buyersList){
+        	$scope.buyersList = buyersList;
+        	alert($scope.buyersList);
+        });
+    }
+    
+    $scope.fetchAttendees = function(ticketId) {
+    	$http.get('event/myevent/attendees/'+ticketId).success(function(attendeesList){
+        	$scope.attendeesList = attendeesList;
+        	alert($scope.attendeesList);
+        });
+    }
 
 
     $scope.addNewEvent = function() {

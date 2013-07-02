@@ -4,7 +4,7 @@ var MyTicketsController = function($scope, $http) {
 	$scope.myTicketsList = {};
 	
     $scope.fetchMyTicketsList = function() {
-    	$http.get('event/myevent/getMyTickets').success(function(myTicketsList){
+    	$http.get('event/myevent/myTickets').success(function(myTicketsList){
         	$scope.myTicketsList = myTicketsList;
         });
         

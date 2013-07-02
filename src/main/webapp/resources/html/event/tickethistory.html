@@ -17,7 +17,7 @@
 				          <td>{{order.ticketPrice}}</td>
 				          <td>{{order.netAmount}}</td>
 				          <td>{{order.ticket.quantity}}</td>
-				           <td><a href="#/myevent/{{myevent.id}}">View Attendees</a> | <a href="#event/{{myevent.eventUrl}}">View Buyers</a></td>
+				           <td><button type="submit" ng-click="fetchAttendees(order.ticket.id)">View Attendees</button> | <a ng-click="fetchBuyers(order.ticket.id)">View Buyers</a></td>
 				        </tr>
 				        
 				      </tbody>
