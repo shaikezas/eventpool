@@ -35,6 +35,7 @@ import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.EventpoolUserDetails;
 import com.eventpool.common.module.EventpoolUserDetailsService;
+import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.QuestionType;
@@ -70,7 +71,7 @@ public class EventController {
     
     @Resource
     EventSettingsService infoService;
-    
+
     @Resource
     private TicketInventoryService ticketInventoryService;
     
@@ -80,6 +81,9 @@ public class EventController {
     @Autowired
     private DateCustomConverter dateConverter;
 
+    @Resource
+    private HtmlEmailService htmlEmailService;
+    
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
     	User user = userService.getCurrentUser();
@@ -103,6 +107,11 @@ public class EventController {
 //    	updateEventType(eventDTO);
     	 try {
  			eventService.addEvent(eventDTO);
+ 			String email = user.getEmail();
+ 			String subject = eventDTO.getEventUrl();
+ 			List<String> toList = new ArrayList<String>();
+ 			toList.add(email);
+ 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created.", null);
  			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event");
  		} catch (Exception e) {
  			e.printStackTrace();
