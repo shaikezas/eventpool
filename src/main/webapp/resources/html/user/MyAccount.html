@@ -81,14 +81,20 @@
 							  <div class="control-group">
 							    <label class="control-label" for="userName">User Name :</label>
 							    <div class="controls">
-							      <input type="text" id="userName" >
+							      {{userDetails.userName}}
 							    </div>
 							  </div>
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="emailaddress">Email Address :</label>
 							    <div class="controls">
-							      <input type="text" id="emailaddress" >
+							      <input type="text" id="emailaddress" ng-model="userDetails.email">
+							    </div>
+							  </div>
+							   <div class="control-group">
+							    <label class="control-label" for="altemailaddress">Alternate Email :</label>
+							    <div class="controls">
+							      <input type="text" id="altemailaddress" ng-model="userDetails.altEmail">
 							    </div>
 							  </div>
 							  
@@ -100,110 +106,54 @@
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="fastName">First Name </label>
+							    <label class="control-label" for="fastName" >First Name </label>
 							    <div class="controls">
-							      <input type="text" id="fastName" >
+							      <input type="text" id="fastName" ng-model="userDetails.fname">
 							    </div>
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="middleName">Middle Name  </label>
+							    <label class="control-label" for="middleName" >Middle Name  </label>
 							    <div class="controls">
-							      <input type="text" id="middleName" >
+							      <input type="text" id="middleName" ng-model="userDetails.lname">
 							    </div>
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="lastName">Last Name</label>
+							    <label class="control-label" for="lastName" >Last Name</label>
 							    <div class="controls">
-							      <input type="text" id="lastName" >
+							      <input type="text" id="lastName" ng-model="userDetails.lname">
 							    </div>
 							  </div>
 							  
-							  
-							 
-							 
-							 <div class="control-group">
-							    <label class="control-label" for="designation">Designation </label>
+							  <div class="control-group">
+							    <label class="control-label" for="startDate">Date of Birth</label>
 							    <div class="controls">
-							      <input type="text" id="designation" >
-							    </div>
+								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
+				      					<input type="text" name="startDate" datetime-picker  ng-model="ng-model="userDetails.dob" 
+				      										placeholder="Start Date and Time" readonly required ></input>
+				      										<span class="add-on"><i class="icon-th"></i></span>
+				      				</div>
+				      			</div>
 							  </div>
 							  
 							  
-							 	
-							 	<div class="control-group">
-								    <label class="control-label" for="Country">Country :*</label>
-								    <div class="controls">
-										  <select id="Country">
-											  <option>Select Country</option>
-										  </select>
-								    </div>
-								  </div>
-							  
-							  	<div class="control-group">
-								    <label class="control-label" for="Address">Address  :</label>
-								    <div class="controls">
-								      <input type="text" id="Address" >
-								    </div>
-								  </div>
-								  
-								  <div class="control-group">
-								    <label class="control-label" for="country">Country   :</label>
-								    <div class="controls">
-								      <input type="text" id="country" >
-								    </div>
-								  </div>
-							  
-							  
-								  <div class="control-group">
-								    <label class="control-label" for="state">State :*</label>
-								    <div class="controls">
-										  <select id="state">
-											  <option>Select State</option>
-										  </select>
-								    </div>
-								  </div>
-							  
-								  <div class="control-group">
-								    <label class="control-label" for="city">City :*</label>
-								    <div class="controls">
-										  <select id="city">
-											  <option>Select City</option>
-										  </select>
-								    </div>
-								  </div>
-							  
-								  
-							  
-								  <div class="control-group">
-								    <label class="control-label" for="Pincode">Pincode  :</label>
-								    <div class="controls">
-								      <input type="text" id="Pincode" >
-								    </div>
-								  </div>
-								  
-								  <div class="control-group">
+							    <div class="control-group">
 								    <label class="control-label" for="Phone">Phone No  :</label>
 								    <div class="controls">
-								      <input type="text" id="Phone" >
+								      <input type="text" id="Phone" ng-model="userDetails.phone">
 								    </div>
 								  </div>
-							 
-								 <div class="control-group">
-								    <label class="control-label" for="Phone">Phone No  :</label>
+								  <div class="control-group">
+								    <label class="control-label" for="Phone">Mobile :</label>
 								    <div class="controls">
-								      <input type="text" id="Phone" >
+								      <input type="text" id="mPhone" ng-model="userDetails.mobile">
 								    </div>
-								  </div>
-							 
-							 
-							  
+								 </div> 
 							  <div class="control-group">
 							    <div class="controls">
-							    	<button type="button" class="btn">Edite</button> 
 							       <button type="button" class="btn">Cancel</button> 
-							       <button type="button" class="btn">Update</button> 
+							       <button type="button" class="btn" ng-click="updateUser()">Update</button> 
 							    </div>
 							  </div>
 							  
@@ -220,7 +170,7 @@
 									<div class="control-group">
 									    <label class="control-label" for="companyName">Company Name :</label>
 									    <div class="controls">
-									      <input type="text" id="companyName" >
+									      <input type="text" id="companyName" ng-model="userDetails.company">
 									    </div>
 									 </div>
 									  	
@@ -234,46 +184,11 @@
 									 <div class="control-group">
 									    <label class="control-label" for="companyAddress" >Company Address :</label>
 									    <div class="controls">
-									     	<textarea id="companyAddress" rows="3"></textarea>
+									     	<textarea id="companyAddress" rows="3" ng-model="userDetails.officeAddress"></textarea>
 									    </div>
 									 </div>
 									 
-								 	<div class="control-group">
-									    <label class="control-label" for="Country1">Country :*</label>
-									    <div class="controls">
-											  <select id="Country1">
-												  <option>Select Country</option>
-											  </select>
-									    </div>
-									  </div>
-								  
-									  <div class="control-group">
-									    <label class="control-label" for="state1">State :*</label>
-									    <div class="controls">
-											  <select id="state1">
-												  <option>Select State</option>
-											  </select>
-									    </div>
-									  </div>
-								  
-									  <div class="control-group">
-									    <label class="control-label" for="city1">City :*</label>
-									    <div class="controls">
-											  <select id="city1">
-												  <option>Select City</option>
-											  </select>
-									    </div>
-									  </div>
-								  
-									  
-								  
-									  <div class="control-group">
-									    <label class="control-label" for="pinCode1">Pincode  :</label>
-									    <div class="controls">
-									      <input type="text" id="pinCode1" >
-									    </div>
-									  </div>
-									  
+								 									  
 									  <div class="control-group">
 									    <label class="control-label" for="phoneNo">Phone No  :</label>
 									    <div class="controls">
@@ -298,7 +213,7 @@
 									 <div class="control-group">
 									    <label class="control-label" for="coymanyurl">Company URL  :</label>
 									    <div class="controls">
-									      <input type="email" id="coymanyurl" >
+									      <input type="email" id="coymanyurl" ng-model="userDetails.companyUrl">
 									    </div>
 									  </div>
 									  
@@ -311,9 +226,8 @@
 									
 									<div class="control-group">
 							    <div class="controls">
-							    	<button type="button" class="btn">Edite</button> 
 							       <button type="button" class="btn">Cancel</button> 
-							       <button type="button" class="btn">Update</button> 
+							       <button type="button" class="btn" ng-click="updateUser()">Update</button> 
 							    </div>
 							  </div>
 									
