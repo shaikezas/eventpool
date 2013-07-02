@@ -149,7 +149,7 @@ public class OrderServiceImpl implements OrderService {
 
 		OrderRegisterForm orderRegisterForm = createOrderRegisterForm(
 				ticketRegisters, eventRegister);
-
+		orderRegisterForm.setRegistrationLimit(eventRegister.getRegistrationLimit());
 		return orderRegisterForm;
 	}
 

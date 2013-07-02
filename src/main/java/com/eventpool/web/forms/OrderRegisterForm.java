@@ -13,6 +13,8 @@ public class OrderRegisterForm {
 	private String firstName;
 
 	private String lastName;
+	
+	private int registrationLimit;
 
 	@EmailAddressValidation
 	@Size(max = 255)
@@ -191,5 +193,13 @@ public class OrderRegisterForm {
 		this.totalTickets = totalTickets;
 	}
 	
+	
+	public int getRegistrationLimit() {
+		return registrationLimit;
+	}
+	
+	public void setRegistrationLimit(int registrationLimit) {
+		this.registrationLimit = registrationLimit;
+	}
 
 }
