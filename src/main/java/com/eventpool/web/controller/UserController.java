@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,20 +44,20 @@ public class UserController {
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully created user");
     }
     
-    @RequestMapping(value = "/updateuser", method = RequestMethod.POST)
+    @RequestMapping(value = "/account/updateuser", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseMessage updateUser(UserForm userForm){
+    public ResponseMessage updateUser(@RequestBody UserForm userForm){
     	System.out.println("create User");
     	User user = new User();
     	mapper.mapUserForm(userForm, user);
-    	ResultStatus status = userService.saveUser(user);
+    	ResultStatus status = userService.updateUser(user);
     	if(status.equals(ResultStatus.SUCCESS)){
     		return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated user");
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to update user");
     }
     
-    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/getuser", method = RequestMethod.GET)
     @ResponseBody
     public UserForm getUser(){
     	System.out.println("create User");

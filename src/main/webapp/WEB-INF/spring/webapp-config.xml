@@ -61,6 +61,13 @@
 <!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
 	</security:http>
 	
+	<security:http pattern="/account/**" create-session="never">
+		<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
+		<security:intercept-url pattern="/**" access="ROLE_USER" />
+		 
+<!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
+	</security:http>
+	
 	<security:http pattern="/html/**" security="none" />
 	
 	<security:http pattern="/user" create-session="never">
