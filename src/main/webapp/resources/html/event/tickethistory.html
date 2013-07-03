@@ -4,19 +4,23 @@
 			<table class="table table-condensed">
 				      <thead>
 				        <tr>
-						  <th>GROSS AMT</th>
+						  <th>TICKET ID</th>
+				          <th>TOTAL QUANTITY</th>
 				          <th>TICKET PRICE</th>
-				          <th>NET AMT</th>
-				          <th>QUANTITY</th>
+				          <th>TOTAL TICKET PRICE</th>
+				          <th>SOLD QUANTITY</th>
+				          <th>SOLD TICKET PRICE</th>
 				          <th>QUICK LINKS</th>
 				        </tr>
 				      </thead>
 				      <tbody>
 				        <tr ng-repeat="order in subOrdersList" >
-				          <td>{{order.soldQty*order.price}}</td>
+				          <td>{{order.ticketId}}</td>
+				          <td>{{order.maxQty}}</td>
 				          <td>{{order.price}}</td>
-				          <td>{{order.soldQty*order.price}}</td>
+				          <td>{{order.totalTicketsPrice}}</td>
 				          <td>{{order.soldQty}}</td>
+				          <td>{{order.totalTicketSoldPrice}}</td>
 				           <td><a ng-click="fetchAttendees(order.ticketId)" data-toggle="modal" data-target="#attendesModal">View Attendees</a> | 
 				           <a ng-click="fetchBuyers(order.ticketId)" data-toggle="modal" data-target="#buyersModal">View Buyers</a></td>
 				        </tr>   
@@ -29,14 +33,33 @@
 			<h3>Attendees</h3>
 		</div>
 		<div class="modal-body">
-			<p>Attendees List</p>
-					 {{attendeesList.ticketId}},
-				   <div ng-repeat="infoSetting in attendeesList.eventInfoSettings" >
-				          {{infoSetting.name}},
-				          {{infoSetting.type}},
-				          {{infoSetting.value}}				           
-				    </div>   
-
+			<table class="table table-condensed">
+				      <thead>
+				        <tr>
+						  <th>FIRST NAME</th>
+				          <th>LAST NAME</th>
+				          <th>EMAIL</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <!-- tr ng-repeat="infoSetting in attendeesList.eventInfoSettings" -->
+				        <tr>
+				          <td>Ezas</td>
+				          <td>Shaik</td>
+				          <td>ezas.shaik@gmail.com</td>
+				         </tr>
+				         <tr>
+				          <td>Ramu</td>
+				          <td>G</td>
+				          <td>ramu.g@gmail.com</td>
+				         </tr>
+				         <tr>
+				          <td>Sreenu</td>
+				          <td>Singana</td>
+				          <td>onlinesreenu@gmail.com</td>
+				         </tr>   
+				      </tbody>
+			</table>
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -46,16 +69,23 @@
 		<div class="modal-header">
 			<h3>Buyers</h3>
 		</div>
-		<div class="modal-body">
-			<p>Buyers List</p>
-		
-				    {{buyersList.ticketId}},
-				   <div ng-repeat="user in buyersList.userDTOs" >
-				          {{user.fname}},
-				          {{user.lname}},
-				          {{user.email}}				           
-				    </div>   
-		  
+		<div class="modal-body">		
+			<table class="table table-condensed">
+				      <thead>
+				        <tr>
+						  <th>FIRST NAME</th>
+				          <th>LAST NAME</th>
+				          <th>EMAIL</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <tr ng-repeat="user in buyersList.userDTOs" >
+				          <td>{{user.fname}}</td>
+				          <td>{{user.lname}}</td>
+				          <td>{{user.email}}</td>
+				         </tr>   
+				      </tbody>
+			</table> 
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
