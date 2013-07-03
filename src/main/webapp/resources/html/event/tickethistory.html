@@ -29,7 +29,14 @@
 			<h3>Attendees</h3>
 		</div>
 		<div class="modal-body">
-			<p>{{attendeesList}}</p>
+			<p>Attendees List</p>
+					 {{attendeesList.ticketId}},
+				   <div ng-repeat="infoSetting in attendeesList.eventInfoSettings" >
+				          {{infoSetting.name}},
+				          {{infoSetting.type}},
+				          {{infoSetting.value}}				           
+				    </div>   
+
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -40,7 +47,15 @@
 			<h3>Buyers</h3>
 		</div>
 		<div class="modal-body">
-			<p>{{buyersList}}</p>
+			<p>Buyers List</p>
+		
+				    {{buyersList.ticketId}},
+				   <div ng-repeat="user in buyersList.userDTOs" >
+				          {{user.fname}},
+				          {{user.lname}},
+				          {{user.email}}				           
+				    </div>   
+		  
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
