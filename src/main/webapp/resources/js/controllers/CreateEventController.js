@@ -30,16 +30,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
             $scope.setError('Could not update settings.');
         });
       }
-      
-    $scope.openDialog = function () {
-    	$scope.shouldBeOpen = true;
-    	  };
 
-  $scope.opts = {
-    backdrop: true,
-    keyboard: true,
-    controller: 'CreateEventController'
-  };
   $scope.validateeventname = function(eventname) {
 	  if(angular.isUndefined(eventname))
 		  return true;
@@ -49,8 +40,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
   }
   
    $scope.saveAndClose = function () {
-	   $scope.shouldBeOpen = false; 
-	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
+	  alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
 	 /*  $http.post('event/addQuestion', $scope.questionForm).success(function() {
 	   $scope.shouldBeOpen = false; 
 	   alert($scope.questionForm.question + $scope.questionForm.questionType['questionTypeName']);
@@ -135,14 +125,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.fetchBuyers = function(ticketId) {
     	  $http.get('event/myevent/buyers/'+ticketId).success(function(buyersList){
         	$scope.buyersList = buyersList;
-        	alert($scope.buyersList);
-        });
+         });
     }
     
     $scope.fetchAttendees = function(ticketId) {
     	$http.get('event/myevent/attendees/'+ticketId).success(function(attendeesList){
         	$scope.attendeesList = attendeesList;
-        	alert($scope.attendeesList);
         });
     }
 

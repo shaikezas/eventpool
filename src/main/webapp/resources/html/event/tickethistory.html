@@ -1,6 +1,6 @@
         	
-  <div class="span9 contBox"> 
- <div ng-include src="'html/header.html'"></div>
+<div class="span9 contBox"> 
+ 	<div ng-include src="'html/header.html'"></div>
 			<table class="table table-condensed">
 				      <thead>
 				        <tr>
@@ -17,9 +17,33 @@
 				          <td>{{order.ticketPrice}}</td>
 				          <td>{{order.netAmount}}</td>
 				          <td>{{order.ticket.quantity}}</td>
-				           <td><button type="submit" ng-click="fetchAttendees(order.ticket.id)">View Attendees</button> | <a ng-click="fetchBuyers(order.ticket.id)">View Buyers</a></td>
-				        </tr>
-				        
+				           <td><a ng-click="fetchAttendees(order.ticket.id)" data-toggle="modal" data-target="#attendesModal">View Attendees</a> | 
+				           <a ng-click="fetchBuyers(order.ticket.id)" data-toggle="modal" data-target="#buyersModal">View Buyers</a></td>
+				        </tr>   
 				      </tbody>
-			</table>		 
+			</table>
+			
+			
+	<div id="attendesModal" class="modal hide fade" role="dialog">
+		<div class="modal-header">
+			<h3>Attendees</h3>
+		</div>
+		<div class="modal-body">
+			<p>One fine body…</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div>	
+	<div id="buyersModal" class="modal hide fade">
+		<div class="modal-header">
+			<h3>Buyers</h3>
+		</div>
+		<div class="modal-body">
+			<p>One fine body…</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div>	 
 </div>

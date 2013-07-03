@@ -83,9 +83,9 @@
 							 
 						<div style="clear: both" >Your questions: Not finding what you are looking for on this list? Create your own questions with more options.</div>
 						
-						<button type="button" class="btn" data-toggle="modal" ng-click="openDialog()">Create a Question</button>
+						<button type="button" class="btn" data-toggle="modal" data-target="#createQuestion">Create a Question</button>
 						 
-						    <div class="modal" modal="shouldBeOpen" options="opts">
+						    <div id="createQuestion" class="modal hide fade" role="dialog">
 						        <div class="modal-header">
 						            <h3>Question Form</h3>
 						        </div>
@@ -175,8 +175,8 @@
 						        </div>
 						        
 						        <div class="modal-footer">
-						            <button type="button" class="btn" ng-click="saveAndClose()">Save and Close</button>
-						            <button type="button" class="btn" ng-click="close()">Cancel</button>
+						            <button class="btn" ng-click="saveAndClose()" aria-hidden="true">Save and Close</button>
+						            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 						        </div>
 						    </div>
 						  
