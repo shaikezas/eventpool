@@ -13,12 +13,12 @@
 				      </thead>
 				      <tbody>
 				        <tr ng-repeat="order in subOrdersList" >
-				          <td>{{order.grossAmount}}</td>
-				          <td>{{order.ticketPrice}}</td>
-				          <td>{{order.netAmount}}</td>
-				          <td>{{order.ticket.quantity}}</td>
-				           <td><a ng-click="fetchAttendees(order.ticket.id)" data-toggle="modal" data-target="#attendesModal">View Attendees</a> | 
-				           <a ng-click="fetchBuyers(order.ticket.id)" data-toggle="modal" data-target="#buyersModal">View Buyers</a></td>
+				          <td>{{order.soldQty*order.price}}</td>
+				          <td>{{order.price}}</td>
+				          <td>{{order.price}}</td>
+				          <td>{{order.soldQty}}</td>
+				           <td><a ng-click="fetchAttendees(order.ticketId)" data-toggle="modal" data-target="#attendesModal">View Attendees</a> | 
+				           <a ng-click="fetchBuyers(order.ticketId)" data-toggle="modal" data-target="#buyersModal">View Buyers</a></td>
 				        </tr>   
 				      </tbody>
 			</table>

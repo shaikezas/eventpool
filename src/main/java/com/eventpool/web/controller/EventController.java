@@ -28,6 +28,7 @@ import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.TicketNotFoundException;
@@ -295,9 +296,10 @@ public class EventController {
     }
     
     @RequestMapping(value = "/myevent/getTicketHistory/{eventid}", method = RequestMethod.GET)
-    public @ResponseBody List<SuborderDTO> getTicketHistory(@PathVariable("eventid") Long eventId) throws Exception {
+    public @ResponseBody List<TicketInventoryDTO> getTicketHistory(@PathVariable("eventid") Long eventId) throws Exception {
     	//List<SuborderDTO> subOrdersList = 
-    			return eventService.getEventOrderedTickets(eventId);
+    			return eventService.getTicketInventoryDetails(eventId);
+    			//getEventOrderedTickets(eventId);
     }
     
     @RequestMapping(value = "/myevent/attendees/{ticketId}", method = RequestMethod.GET)

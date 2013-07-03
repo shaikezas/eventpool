@@ -208,14 +208,15 @@ public class EventApiImpl implements EventApi{
 				boolean found = false;
 				if(ticketInventorys!=null && ticketInventorys.size()>0){
 					for(TicketInventory ticketInventory:ticketInventorys){
-						TicketInventoryDTO ticketInventoryDTO = new TicketInventoryDTO();
-						eventpoolMapper.map(ticketInventory, ticketInventoryDTO);
-						tiketInventoryDTOS.add(ticketInventoryDTO);
-						
 						if(ticket.getId().compareTo(ticketInventory.getTicketId())==0){
 							Double price = ticket.getPrice();
-							ticketInventoryDTO.setPrice(price);
 							found = true;
+							TicketInventoryDTO ticketInventoryDTO = new TicketInventoryDTO();
+							eventpoolMapper.map(ticketInventory, ticketInventoryDTO);
+							ticketInventoryDTO.setPrice(price);
+							tiketInventoryDTOS.add(ticketInventoryDTO);
+							
+
 						}
 					}
 					if(!found){
@@ -223,6 +224,12 @@ public class EventApiImpl implements EventApi{
 						ticketInventoryDTO.setMaxQty(ticket.getMaxQty());
 						Double price = ticket.getPrice();
 						ticketInventoryDTO.setPrice(price);
+						ticketInventoryDTO.setTicketId(ticket.getId());
+						ticketInventoryDTO.setQty(ticket.getQuantity());
+						ticketInventoryDTO.setBlockingQty(0);
+						ticketInventoryDTO.setMaxQty(ticket.getMaxQty());
+						ticketInventoryDTO.setSoldQty(0);
+						tiketInventoryDTOS.add(ticketInventoryDTO);
 					}
 				}
 			}
