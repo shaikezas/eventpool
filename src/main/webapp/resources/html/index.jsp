@@ -9,6 +9,7 @@
     <meta name="author" content="">
 
     <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
     <link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="resources/bootstrap/css/style.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
@@ -98,6 +99,7 @@
     <!-- check this for datetime picker documentation http://www.malot.fr/bootstrap-datetimepicker -->
     <script type="text/javascript" src="lib/bootstrap/bootstrap-datetimepicker.js"> </script>
     <script src="resources/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="resources/bootstrap/js/jquery.featureCarousel.min.js"></script>
 	<script src="lib/moment.js"></script>
 	<script src="lib/select2/select2.js"></script>
 	<script src="lib/angular/angular.js"></script>

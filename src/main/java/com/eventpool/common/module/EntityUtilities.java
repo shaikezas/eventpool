@@ -25,6 +25,7 @@ public class EntityUtilities {
 	private Map<Integer,String> stateMap =new HashMap<Integer,String>();
 	private Map<Integer,Integer> stateCountryMap =new HashMap<Integer,Integer>();
 	private Map<Integer,String> countryMap = new HashMap<Integer,String>();
+	private Map<Integer,String> countryFlagMap = new HashMap<Integer,String>();
 
 	private boolean initAllMaps=true;
 	
@@ -55,6 +56,7 @@ public class EntityUtilities {
 			if(allCountries!=null && allCountries.size()>0){
 				for(Country country:allCountries){
 					countryMap.put(country.getId(), country.getName());
+					countryFlagMap.put(country.getId(), country.getCode());
 				}
 			}else{
 				countryMap.clear();
@@ -106,6 +108,8 @@ public class EntityUtilities {
 			String cityName  = this.cityMap.get(cityId);
 			String stateName  = this.stateMap.get(stateId);
 			String countryName  = this.countryMap.get(countryId);
+			String countryFlag = this.countryFlagMap.get(countryId);
+					
 			
 			Region region = new Region();
 				region.setCityId(cityId);
@@ -114,6 +118,7 @@ public class EntityUtilities {
 				region.setStateName(stateName);
 				region.setCountryId(countryId);
 				region.setCountryName(countryName);
+				region.setFlag(countryFlag);
 			
 			String cityWithStateAndCountry = cityName + SEPARATOR +stateName+SEPARATOR+countryName;
 			cityMap.put(cityId, region);

@@ -10,6 +10,8 @@ public class Region {
 	private String stateName;
 	private String countryName;
 	
+	private String flag;
+	
 	public static final String SEPARATOR = "|";
 
 	public Integer getCityId() {
@@ -59,6 +61,16 @@ public class Region {
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
+	
+	public String getFlag() {
+		return flag;
+	}
+	
+	
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	
 	
 	
 	@Override

@@ -2,6 +2,7 @@
 
 <div class="tabBody">
 	<div ng-include src="'html/header.html'"></div>
+	<div  style="margin-top:30px"> 
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span3">
@@ -9,7 +10,7 @@
 					<ul class="nav nav-list">
 						<li class="nav-header">Sidebar</li>
 						<li ng-class="{active: templateSelect=='edit'}">
-						<a  href ng-click="template = 'html/event/EventDetails.html';templateSelect= 'edit'">Event Details</a>
+						<a  href ng-click="template = 'html/event/editevent.html';templateSelect= 'edit'">Event Details</a>
 						</li>
 						<li ng-class="{active: templateSelect=='orderForm'}">
 						<a  href ng-click="template = 'html/event/eventsettings.html';templateSelect= 'orderForm';fetchEventSettings()">Order Form</a>
@@ -25,7 +26,7 @@
 			<div ng-include src="template"></div>
 		</div>
 </div>
-
+</div>
 </div>
 
 

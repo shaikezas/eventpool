@@ -15,7 +15,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
    
-      $scope.template = "html/event/EventDetails.html";
+      $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
       $scope.header = "create";
       
@@ -185,7 +185,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.cityFormatResult = function(cityinfo) {
     	cityinfo = cityinfo.text;
         var markup = "<table class='movie-result'><tr>";
-        markup += "<td class='movie-image'><img src='images/india_preview.gif'/></td>";
+        markup += "<td class='movie-image'><div class='flag flag-"+cityinfo.flag+" '></div></td>";
         /*if (cityinfo.posters !== undefined && cityinfo.posters.thumbnail !== undefined) {
             markup += "<td class='movie-image'><img src='" + cityinfo.posters.thumbnail + "'/></td>";
         }*/
