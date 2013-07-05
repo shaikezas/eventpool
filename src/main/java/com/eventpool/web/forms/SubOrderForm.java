@@ -10,6 +10,8 @@ public class SubOrderForm {
 	private String startDate;
 	private String endDate;
 	private String bookedOn;
+	private Long orderId;
+	private Long suborderId;
 	public String getBookedOn() {
 		return bookedOn;
 	}
@@ -58,5 +60,18 @@ public class SubOrderForm {
 	public void setTicketPrice(Double ticketPrice) {
 		this.ticketPrice = ticketPrice;
 	}
-
+	public Long getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+	public Long getSuborderId() {
+		return suborderId;
+	}
+	public void setSuborderId(Long suborderId) {
+		this.suborderId = suborderId;
+	}
+	
+	
 }

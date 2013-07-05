@@ -4,6 +4,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
 	    $scope.orderRegister = Data.getOrderRegisterData();
 	    $scope.status = {};
 	    $scope.enableBookTicket = true;
+	    $scope.totalAmount=0;
                     
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
@@ -16,10 +17,19 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     };
     $scope.eventpage();
     
+    $scope.calcTotalAmount = function(){
+    	var tickets = $scope.event.tickets;
+    	var amount = 0;
+    	for (var i=0;i<tickets.length;i++) 	{    		
+    		amount = amount + parseInt(tickets[i].price) * parseInt(tickets[i].selectedQty);
+    	}
+    	$scope.totalAmount = amount;
+    }
+    
     $scope.cityFormatResult = function(cityinfo) {
     	cityinfo = cityinfo.text;
         var markup = "<table class='movie-result'><tr>";
-        markup += "<td class='movie-image'><img src='images/india_preview.gif'/></td>";
+        markup += "<td class='movie-image'><div class='flag flag-"+cityinfo.flag+" '></div></td>";
         /*if (cityinfo.posters !== undefined && cityinfo.posters.thumbnail !== undefined) {
             markup += "<td class='movie-image'><img src='" + cityinfo.posters.thumbnail + "'/></td>";
         }*/
@@ -111,6 +121,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	 $http.post('order/create',$scope.orderRegister).success(function(data) {
          	$scope.editMode = false;
          	$scope.status = data;
+         	$location.url('/mytickets');
          }).error(function(error) {
              alert(error);
          });

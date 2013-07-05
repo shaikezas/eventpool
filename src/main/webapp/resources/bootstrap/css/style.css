@@ -28,6 +28,7 @@ h3 code {
 
 body > .navbar {
 	font-size: 13px;
+	background: #fff;
 	}
 
 /* Change the docs' brand */
@@ -42,7 +43,7 @@ body > .navbar .brand {
   -webkit-transition: all .2s linear;
      -moz-transition: all .2s linear;
           transition: all .2s linear;
-}
+	}
 body > .navbar .brand:hover {
 	text-decoration: none;
 	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
@@ -50,7 +51,7 @@ body > .navbar .brand:hover {
 
 .nav-tabs > li {
 	margin: 0px 2px;
-}
+	}
 
 .nav-tabs > li a{
 	background-image: -moz-linear-gradient(top, #ffffff, #d9d9d9);
@@ -60,7 +61,7 @@ body > .navbar .brand:hover {
 	background-image: linear-gradient(to bottom, #ffffff, #d9d9d9);
 	margin: 0px 2px;
 	border-radius: 5px;
-}
+	}
 .navbar-inverse .navbar-inner {
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -71,36 +72,48 @@ body > .navbar .brand:hover {
 	background-image: -o-linear-gradient(top, #ffffff, #d9d9d9);
 	background-image: linear-gradient(to bottom, #ffffff, #d9d9d9);
 	background-repeat: repeat-x;
-	border: 1px solid #ffffff;
-	margin-top: 4px;
-	
+	border-bottom: 1px solid #ffffff;
 	}
 
 
 .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus {
-	color: #ffffff;
+	color: #000;
 	background-color: #111111;
-	
 	}
 	
 .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
 	color: #555555;
 	text-decoration: none;
-	background-color: #e5e5e5;
-	-webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);
-	-moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);
-	box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #d9d9d9, #ffffff);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), to(#ffffff));
+	background-image: -webkit-linear-gradient(top, #d9d9d9, #ffffff);
+	background-image: -o-linear-gradient(top, #d9d9d9, #ffffff);
+	background-image: linear-gradient(to bottom, #d9d9d9, #ffffff);
+	background-repeat: repeat-x;
+	border-bottom: 5px solid #ff6600;
 	}
-	
+.navbar .nav > li:first-child {
+	border-left: 1px dotted #000;
+	}	
 .navbar .nav > li > a {
-	padding: 15px 20px;
-	
+	padding: 35px 20px 5px 20px;
+	border-right: 1px dotted #000;
 	}
-
+.navbar .nav > li > a:hover{
+	text-shadow:0 0 0 ;
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #d9d9d9, #ffffff);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), to(#ffffff));
+	background-image: -webkit-linear-gradient(top, #d9d9d9, #ffffff);
+	background-image: -o-linear-gradient(top, #d9d9d9, #ffffff);
+	background-image: linear-gradient(to bottom, #d9d9d9, #ffffff);
+	background-repeat: repeat-x;
+	border-bottom: 5px solid #ccc;
+	}
 .navbar-inverse .brand, .navbar-inverse .nav > li > a {
 	color: #000;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	
 	}
 
 .navbar .nav{
@@ -156,16 +169,23 @@ body > .navbar .brand:hover {
 	background-image: linear-gradient(to bottom, #ffffff, #d9d9d9);
 	background-repeat: repeat-x;
 	border: 1px solid #ffffff;
-	/* -moz-box-shadow:    3px 3px 5px 6px #ccc;
-	-webkit-box-shadow: 3px 3px 5px 6px #ccc;
-	box-shadow:         3px 3px 5px 6px #ccc; */
-	box-shadow:0px 0px 2px 2px #ccc
+	/* -moz-box-shadow:    0px 0px 3px 3px #ccc;
+	-webkit-box-shadow: 0px 0px 3px 3px #ccc;
+	box-shadow:         0px 0px 3px 3px #ccc; */
+	box-shadow: 0px 0px 3px 3px #ccc;
+	margin-bottom: 5px;
 	}
 		
 .headerTopBar .nav > li > a {
 	padding: 5px 10px;
 	color: #000;
 	}
+
+.headerTopBar .container, .headerCont .container{
+	margin: 0px auto;
+	width: 1000px;
+}
+
 
 .homeAdSection{
 	width: 225px;
@@ -198,7 +218,7 @@ body > .navbar .brand:hover {
 
 .gallaryCont{
 	box-shadow: 0px 0px 5px 0px #000;
-	width: 1000px;
+	width: 980px;
 	padding:10px 0px 0px 0px;}
 .gallaryCont .nav {
 	padding: 0px;
@@ -232,6 +252,10 @@ height: 250px;
 /* Desktop large
 ------------------------- */
 @media (min-width: 1200px) {
+	.span3{
+  	width: 250px;
+  	}
+	
   .bs-docs-container {
     max-width: 970px;
   }
@@ -248,11 +272,12 @@ height: 250px;
   	margin: 5px;
   }
   .thumbnails .span3{
-  	width: 236px;
+  	width: 226px;
   }
+  
   .span8 {
-	width: 740px;
-	margin:0px 10px 0px 10px;
+	width: 710px;
+	margin:5px 10px 0px 10px;
 	}
 }
 
@@ -441,6 +466,10 @@ height: 250px;
     bottom: auto;
     left: auto;
   }
+  
+  .clear{
+  	clear: both;
+  }
 
   /* Tighten up footer */
   .footer {
@@ -475,6 +504,7 @@ input[type="color"],
 	border: 1px solid #ddd;
 	padding: 10px;
 	border-radius: 4px;
+	margin-bottom: 10px;
 }
 
 .media-heading, .media{
@@ -501,11 +531,15 @@ input[type="color"],
 	border-radius: 5px;
 }
 
+.eventDetails{
+	margin: 0 0 10px 15px;font-size: 12px;font-weight: bold;
+}
 .eventDetails li{
 	border-bottom: 1px solid #ccc;
 	display: inline-block;
-	width: 90%;
-	padding: 2px 2px 2px 2px;
+	width: 95%;
+	padding: 5px;
+	
 }
 
 
@@ -794,6 +828,26 @@ input[type="color"],
 .flag.flag-ZANZIBAR {background-position: -144px -165px}
 .flag.flag-ZM {background-position: -160px -165px}
 .flag.flag-ZW {background-position: -176px -165px}
+/* Country Flags End
+-------------------------------------------------- */
 
-/* Country Flags Start
+/* Icon  Start
+-------------------------------------------------- */
+.eventDetailsIcon i{
+	width: 24px;
+	height: 24px;
+	background-image:url(../img/glyphicons.png);
+	background-repeat:no-repeat;
+	display: inline-block;
+	margin: 0px 5px}
+
+.eventDetailsIcon .iconTicket{background-position: -74px 0px; }
+
+.eventDetailsIcon .iconCalander{background-position: -50px 0px}
+
+.eventDetailsIcon .iconTime{background-position: -0px 0px}
+	
+.eventDetailsIcon .iconAddress{background-position: -24px 0px}
+
+/* Icon  End
 -------------------------------------------------- */

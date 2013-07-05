@@ -1,7 +1,7 @@
         	
 <div class="span9 contBox"> 
- 	<div ng-include src="'html/header.html'"></div>
-			<table class="table table-condensed">
+ 	<h1>Ticket History</h1>
+			<table class="table table-condensed" id="tickethistory">
 				      <thead>
 				        <tr>
 						  <th>TICKET ID</th>
@@ -92,3 +92,12 @@
 		</div>
 	</div>	 
 </div>
+
+ <script>
+          
+          $(document).ready(function(){
+		$('#tickethistory').dataTable();
+});
+          
+          </script>
+       

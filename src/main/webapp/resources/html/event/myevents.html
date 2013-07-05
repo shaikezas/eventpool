@@ -4,7 +4,7 @@
           <div class="tabBody">
           
  <div ng-include src="'html/header.html'"></div>          
-      <div  style="margin-top:30px"> 
+      <div  style="margin-top:50px"> 
             <h1>My Events</h1>
             			<ul id="myTab" class="nav nav-tabs">
 				              <li class="active">	<a href="#liveEvents" data-toggle="tab" ng-click="fetchLiveEventsList()">Live Events	</a></li>
@@ -16,7 +16,7 @@
          
          <div class="tab-pane fade in active" id="liveEvents">
          		 <div >
-				    <table class="table table-condensed">
+				    <table class="table table-condensed" id="myliveevents">
 				      <thead>
 				        <tr>
 				        	
@@ -48,7 +48,7 @@
               
 			<div class="tab-pane fade " id="draftEvents">
          		 <div>
-				    <table class="table table-condensed">
+				    <table class="table table-condensed" id="mydraft events">
 				      <thead>
 				        <tr>
 				        	
@@ -79,7 +79,7 @@
 			</div>
 			<div class="tab-pane fade" id="pastEvents">
          		 <div >
-				    <table class="table table-condensed">
+				    <table class="table table-condensed" id="mypastevents">
 				      <thead>
 				        <tr>
 				        	
@@ -118,7 +118,21 @@
 
 
 
-
+          <script>
+          
+          $(document).ready(function(){
+		$('#myliveevents').dataTable();
+});
+          
+          $(document).ready(function(){
+      		$('#mydraftevents').dataTable();
+      });
+          
+          $(document).ready(function(){
+      		$('#mypastevents').dataTable();
+      });
+          
+          </script>
        
 
 

@@ -95,7 +95,7 @@ public class Event extends AuditableIdEntity {
 
 	@Column(name="WEBINAR",length=256)
 	@Type(type = "yes_no")
-	private boolean isWebinar;
+	private boolean isWebinar=false;
 	
 	@Column(name="PUBLISH",length=1)
 	@Type(type = "yes_no")

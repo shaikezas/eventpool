@@ -39,7 +39,7 @@ public class EventForm  {
 	private String organizerDescription;
 	private String contactDetails;
 	private List<TicketForm> tickets = new ArrayList<TicketForm>();
-	private boolean isWebinar = false;
+	private Boolean isWebinar = false;
 	private String termsAndConditions;
 	private String keyWords;
 	private Date publishDate;
@@ -52,6 +52,11 @@ public class EventForm  {
 	private String eventWebSiteUrl;
 	private Long addressId;
 	private Long createdBy;
+	private String venueAddress="" ; 
+	private String cityName;
+	private String stateName;
+	private String countryName;
+	
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	
 	public String getTitle() {
@@ -204,10 +209,10 @@ public class EventForm  {
 	public void setTickets(List<TicketForm> tickets) {
 		this.tickets = tickets;
 	}
-	public boolean isIsWebinar() {
+	public Boolean isIsWebinar() {
 		return isWebinar;
 	}
-	public void setIsWebinar(boolean isWebinar) {
+	public void setIsWebinar(Boolean isWebinar) {
 		this.isWebinar = isWebinar;
 	}
 	public String getTermsAndConditions() {
@@ -310,6 +315,48 @@ public Long getEventId() {
 	}
 	public void setBannerFile(File bannerFile) {
 		this.bannerFile = bannerFile;
+	}
+	
+	public String getVenueAddress() {
+		venueAddress =  venueName!=null ? venueName+", ":"" ;
+		venueAddress = venueAddress.concat(address1!=null?address1+", ":"");
+		venueAddress =  venueAddress.concat(address2!=null?address2+", ":"");
+		venueAddress =  venueAddress.concat(cityName!=null?cityName+", ":"");
+		venueAddress =  venueAddress.concat(stateName!=null?stateName+", ":"");
+		venueAddress = venueAddress.concat(countryName!=null?countryName+", ":"");
+		venueAddress = venueAddress.concat(zipCode!=null?zipCode+"":"");
+		
+		if(venueAddress.trim().endsWith(",")){
+		venueAddress = venueAddress.substring(0,venueAddress.lastIndexOf(","));
+		}
+		if(isWebinar!=null && isWebinar){
+			venueAddress = "Webinar";
+		}
+		
+		return venueAddress;
+	}
+	
+	public void setVenueAddress(String venueAddress) {
+		this.venueAddress = venueAddress;
+	}
+	
+	public String getCityName() {
+		return cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	public String getStateName() {
+		return stateName;
+	}
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
+	}
+	public String getCountryName() {
+		return countryName;
+	}
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 	
 	

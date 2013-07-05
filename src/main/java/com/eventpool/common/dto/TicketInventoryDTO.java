@@ -37,7 +37,7 @@ public class TicketInventoryDTO {
 		this.blockingQty = blockingQty;
 	}
 	public int getSoldQty() {
-		return maxQty-(qty+blockingQty);
+		return maxQty-qty;
 	}
 	public void setSoldQty(int soldQty) {
 		this.soldQty = soldQty;

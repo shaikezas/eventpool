@@ -52,7 +52,7 @@ function MainController($scope, $route,$rootScope, $routeParams,$location,signup
      $scope.cityFormatResult = function(cityinfo) {
      	cityinfo = cityinfo.text;
          var markup = "<table class='movie-result'><tr>";
-         markup += "<td class='movie-image'><img src='images/india_preview.gif'/></td>";
+         markup += "<td class='movie-image'><div class='flag flag-"+cityinfo.flag+" '></div></td>";
          /*if (cityinfo.posters !== undefined && cityinfo.posters.thumbnail !== undefined) {
              markup += "<td class='movie-image'><img src='" + cityinfo.posters.thumbnail + "'/></td>";
          }*/

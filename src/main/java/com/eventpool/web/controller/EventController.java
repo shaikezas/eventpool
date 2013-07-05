@@ -11,10 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.dozer.CustomConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
+import com.eventpool.common.dto.Region;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
@@ -33,9 +31,8 @@ import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.module.DateCustomConverter;
+import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
-import com.eventpool.common.module.EventpoolUserDetails;
-import com.eventpool.common.module.EventpoolUserDetailsService;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
@@ -87,6 +84,9 @@ public class EventController {
     @Resource
     private HtmlEmailService htmlEmailService;
     
+    @Resource
+    private EntityUtilities  entityUtilities;
+    
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
     	User user = userService.getCurrentUser();
@@ -114,7 +114,8 @@ public class EventController {
  			String subject = eventDTO.getEventUrl();
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
- 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created.", null);
+ 			//TODO remove comment.
+// 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created.", null);
  			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event");
  		} catch (Exception e) {
  			e.printStackTrace();
@@ -249,7 +250,13 @@ public class EventController {
     		
     		
     	}
-    	 	return form;
+    	
+    	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
+    	Region region = csc.get(form.getCityId());
+    	form.setCityName(region.getCityName());
+    	form.setStateName(region.getStateName());
+    	form.setCountryName(region.getCountryName());
+    	return form;
     }
     
     @RequestMapping(value="/myevent/settings/{eventid}", method = RequestMethod.GET)
@@ -331,6 +338,8 @@ public class EventController {
 			subForm.setStartDate(dateConverter.convertFrom(event.getStartDate()));
 			subForm.setEndDate(dateConverter.convertFrom(event.getEndDate()));
 			subForm.setBookedOn(dateConverter.convertFrom(subOrder.getCreatedDate()));
+			subForm.setSuborderId(subOrder.getId());
+			subForm.setOrderId(subOrder.getOrder().getId());
 			subFormList.add(subForm);
 			
 		}

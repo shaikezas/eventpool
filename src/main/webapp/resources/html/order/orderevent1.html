@@ -1,41 +1,45 @@
 
-<link href="resources/bootstrap/css/entertainment.css" rel="stylesheet">
+
 
           <div class="tabBody">
           	
           	<div ng-include src="'html/eventpageheader.html'"></div>
 			   	
-          	 <div class="eventBanners">  	Banners    </div>
-			
-	<div class="container eventCont">		
-			<div ng-show="editMode==false" >
+          	 <div class="eventBaner">  <img ng-src="bootstrap/img/banner.jpg"/>    </div>
+         
+      
+      
+      
+            	<div ng-show="editMode==false" >
             	{{status.status}} - {{status.orderId}}. 
             	</div>
             	
-			<div class="span8 ">
-				<table class="table table-condensed" >
-				<thead>
-					<tr>
-						<th>Ticket Type</th>
-						<th class="amt">Price</th>
-						<th class="amt">Quantity</th>
-
-					</tr>
-				</thead>
-				<tbody>
-				<tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
+				
+				      	
+            	
+            	<form name="ticketInfoForm" id="ticketInforFormId">            	
+            	<div class="span8 ">
+					<table class="table table-condensed" >
+					<thead>
+						<tr>
+						  <th>Ticket Type</th>
+						  <th class="amt">Price</th>
+						  <th class="amt">Quantity</th>
+						 
+						</tr>
+					</thead>
+					<tbody>
+						  <tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
 						  <td class="amt">{{ticketRegister.ticketName}} </td>
 						  <td class="amt">{{ticketRegister.price}} </td>
 						  <td class="amt"> {{ticketRegister.qty}}</td>
 						</tr>
-				
-				
-				</tbody>
+					</tbody>
 				</table>
 				
-								<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
-							<h4>Ticket Buyer</h4>
-						<div class="control-group">
+				<div ng-show="editMode==true">
+				<h4>Ticket Buyer</h4>
+				<div class="control-group">
 							    <label class="control-label" for="firstName">First Name :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 							      <input type="text" name="firstName" id="firstName" ng-model="orderRegister.firstName" required >
@@ -131,90 +135,65 @@
 							    <div class="controls">
 							      <button type="button" class="btn" ng-click="bookTicket()">Payment</button> 
 							    </div>
-							  </div>	
-							
-				
-							</form>
-							
-							
-							<span class="span8">
-
-	<ul id="myTab" class="nav nav-tabs">
-		<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">  About Event          		</a></li>     
-		<li>					<a href="#termCondition" 	data-toggle="tab"> Term & Condition    		</a></li>  
-		
-	</ul>
-	
-	
-	<div id="myTabContent" class="tab-content">
-		
-		
-			
-		
-		<div class="tab-pane fade in active" id="aboutEvent">
-			<form class="form-horizontal">About Event</form>
-		</div>
-		
-		
-		<div class="tab-pane fade in " id="termCondition">
-			<form class="form-horizontal">Term & Condition  </form>
-		</div>
-			
-	</div>				
-									
-	
-		
-	</span>
-				
-				
-			</div>
-			
-			<div class="span3 ">
-				<div class="contBox">
-					<h5>Order Summary</h5>
-					<ul class="eventDetails eventDetailsIcon">
-						<li > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
-						<!-- <li > <i class="iconCalander">	</i>	July 20, 2013				</li>
-						<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
-						<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
-						<li > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
-						<li > <i class="iconTicket">	</i> 	PPayable Amount : {{orderRegister.netAmount}}		</li>
-						<li > <button class="btn ">Edite Order</button> 					</li>
-					</ul>
-				</div>
-			
-				<div class="contBox">
-					<h5>Event Details</h5>
+							  </div>
+        		</div>
+			  </div>
+			</form>
+			    <div class="span3 ">
 					<div class="contBox">
-					<h5>Event Details</h5>
-					<ul class="eventDetails eventDetailsIcon">
-						<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
-						<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
-						<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
-						<li > <i class="iconAddress"></i>
-							{{ event.venueAddress}}
-						</li>
-						<li >Set Remainder</li>
-						<li class="">Add Calender</li>
-					</ul>
+						Event Details
+						
+						<ul class="eventDetails">
+							<li>
+								{{event.startDate}}
+							</li>
+							<li>
+								{{event.endDate}}	
+							</li>
+							<li>
+								{{ event.address1}}
+							</li>
+							<li>
+								Set Remainder
+							</li>
+							<li>
+								Add Calender
+							</li>
+						</ul>
+					</div>
+					
+					<div class="contBox" >
+						Order Summary
+						
+						<ul class="orderDetails">
+							<li>
+								Not of Tickets : {{ orderRegister.totalTickets}}
+							</li>
+							<li>
+								Gross Amount: {{orderRegister.grossAmount}}
+							</li>
+							<li>
+								Payable Amount : {{orderRegister.netAmount}}	
+								
+							</li>
+							<li>
+							{{ orderRegister.venueName}}
+							</li>
+							<li>
+								{{ orderRegister.venueAddress}}
+							</li>
+							<li>
+								{{orderRegister.startDate}}
+							</li>
+							<li>
+								{{orderRegister.endDate}}	
+							</li>
+							
+						</ul>
+					</div>
 				</div>
-				<div class="contBox">
-					<h5>Contact Details</h5>
-					<ul class="eventDetails eventDetailsIcon">
-						<li > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
-						<li > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
-					</ul>
-				</div>
-			
-			
-			
-			</div>
-			
-			
-			
-			
-	</div>	
-	<div style="clear: both"> </div>			
+				
+				
 				
 
         	

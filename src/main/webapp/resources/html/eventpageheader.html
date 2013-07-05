@@ -1,33 +1,21 @@
-  <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-         
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li >
-                <a href="#/home" >Home</a>
-              </li>
-           <li>
-            <a ng-click="loginuser()" ng-show="user.name==null">Login</a>
-         </li >
-              <li>
-            <a ng-click="logout()" ng-show="user.name">Logout</a>
-         </li >
-        <li>
-            <a ng-show="user.name"> Welcome {{user.name}}</a>
-        </li>
-		 </ul>
-      	 
-         
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="navbar navbar-fixed-top ">
+          
+			<div class="headerTopBar">
+				<div class="container nav-collapse collapse ">
+					<ul class="nav">
+						<li ng-class="activeWhen(path()=='/home')"><a href="#/home">Home</a>
+						</li>
+						<li><a ng-click="loginuser()" ng-show="user.userName==null">Login</a>
+						</li>
+						<li><a ng-click="logout()" ng-show="user.userName">Logout</a>
+						</li>
+						<li ng-class="activeWhen(path()=='/userSettings')"><a
+							href="#/userSettings" ng-show="user.userName"> Welcome
+								{{user.userName}}</a></li>
+					</ul>
+				</div>
+			</div>
+</div>
     <div ng-class="'alert alert-'+message().type" ng-show="message().show">
         <button type="button" class="close" ng-click="message().show=false">×</button>
         <msg >{{message().text}}</msg>

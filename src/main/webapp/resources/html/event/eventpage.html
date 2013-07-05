@@ -1,76 +1,115 @@
 
-
+<link href="resources/bootstrap/css/entertainment.css" rel="stylesheet">
 
           <div class="tabBody">
           	
           	<div ng-include src="'html/eventpageheader.html'"></div>
 			   			
-          	 <div class="eventBaner">  <img ng-src='http://localhost:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/banner.jpg'"/> 
-          	    </div>
-         
-      
-      
-            	<h1 ng-show="event.tickets.length > 0">Book the Ticket </h1>
-            	
-            	
-            	
-            	<div class="span8 " >
-					<table class="table table-condensed"  ng-show="event.tickets.length > 0" >
-					<thead>
-						<tr>
-						  <th>Ticket Type</th>
+          	 <div class="eventBanners">  	 <img ng-src='http://localhost:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/entertainmentBannar.png'"/>     </div>
+			
+	<div class="container eventCont">		
+			<h4 ng-show="event.tickets.length > 0">Book the Ticket</h4>
+			<div class="span8 " ng-show="event.tickets.length > 0">
+				<table class="table table-condensed" >
+				<thead>
+				<tr>
+				  <th>Ticket Type</th>
 						  <th class="amt">Price</th>
 						  <th class="amt">Sale End</th>
 						  <th class="amt">Quantity</th>
-						</tr>
-					</thead>
-					<tbody>
-						  <tr ng-repeat="ticket in event.tickets" >
+				 
+				</tr>
+				</thead>
+				<tbody>
+				 <tr ng-repeat="ticket in event.tickets" >
 						  <td class="amt">{{ticket.name}} </td>
 						  <td class="amt">{{ticket.price}} </td>
 						  <td class="amt">{{ticket.saleEnd}}</td>
 						  <td class="amt"> 
-						  	<select id="Category" ng-model="ticket.selectedQty" ng-init="ticket.selectedQty='0'" 
+						  	<select id="Category" ng-model="ticket.selectedQty" ng-click="calcTotalAmount()" ng-init="ticket.selectedQty='0'" 
 													ng-options="qty.value as qty.key for qty in ticket.qtyList" ng-change="atleastOneTktSelected()">
 										</select>
 						  </td>
 						 
-						</tr>
-					</tbody>
+				</tr>
+				
+				<tr>
+				  <td colspan="3" class="amt"> <b> Total </b> </td>
+				  <td class="amt" > {{totalAmount}} </td>
+				 
+				</tr>
+				
+				</tbody>
 				</table>
-				
-				
+			
+			
 				<div style="text-align: right">
-        		<button type="button" class="btn" ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.tickets.length > 0">Book Ticket</button>
-        		</div>
-        		
+					<button type="button" class="btn btn-primary" ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.tickets.length > 0">Book Ticket</button>
 				</div>
+			
+			
 				
-			    <div class="span3 ">
-					<div class="contBox">
-						Event Details
-						
-						<ul class="eventDetails">
-							<li>
-								{{event.startDate}}
-							</li>
-							<li>
-								{{event.endDate}}	
-							</li>
-							<li>
-								{{ event.address1}}
-							</li>
-							<li>
-								Set Remainder
-							</li>
-							<li>
-								Add Calender
-							</li>
-						</ul>
-					</div>
+				
+							
+							
+							<span class="span8">
+
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">  About Event          		</a></li>     
+		<li>					<a href="#termCondition" 	data-toggle="tab"> Term & Condition    		</a></li>  
+		
+	</ul>
+	
+	
+	<div id="myTabContent" class="tab-content">
+		
+		<div class="tab-pane fade in active" id="aboutEvent">
+			<form class="form-horizontal">About Event</form>
+		</div>
+		
+		
+		<div class="tab-pane fade in " id="termCondition">
+			<form class="form-horizontal">Term & Condition  </form>
+		</div>
+			
+	</div>				
+									
+	
+		
+	</span>
+				
+				
+			</div>
+			
+			<div class="span3 ">
+				<div class="contBox">
+					<h5>Event Details</h5>
+					<ul class="eventDetails eventDetailsIcon">
+						<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
+						<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
+						<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
+						<li > <i class="iconAddress"></i>
+							{{ event.venueAddress}}
+						</li>
+						<li >Set Remainder</li>
+						<li class="">Add Calender</li>
+					</ul>
+				</div>
+				<div class="contBox">
+					<h5>Contact Details</h5>
+					<ul class="eventDetails eventDetailsIcon">
+						<li > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
+						<li > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
+					</ul>
+				</div>
+			
+			
+			
+			</div>
+			
+	</div>	
+	<div style="clear: both"> </div>
 					
-				</div>
-				
         
           </div>
 

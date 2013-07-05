@@ -14,6 +14,8 @@
     <link href="resources/bootstrap/css/style.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
+	<link href="resources/bootstrap/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+	
 
 	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->
 	<style type="text/css">
@@ -125,7 +127,7 @@
 	<script src="lib/fileupload/jquery.iframe-transport.js"></script>
 	<script src="lib/fileupload/jquery.fileupload.js"></script>
 	<script src="lib/fileupload/load-image.min.js"></script>    
-	    
+	<script  src="resources/bootstrap/js/jquery.dataTables.js"></script>
 
   </body>
 </html>

@@ -2,15 +2,16 @@
           
  <div ng-include src="'html/header.html'"></div>          
       
-      <div  style="margin-top:30px"> 
+      <div  style="margin-top:50px"> 
             <h1>My Tickets</h1>
           
           <div >
-				    <table class="table table-condensed">
+				    <table class="table table-condensed" id="mytickets">
 				      <thead>
 				        <tr>
 				        	
-	  	 		
+	  	 				  <th>ORDER ID</th>
+	  	 				  <th>SUBORDER ID</th>
 				          <th>EVENT NAME</th>
 				          <th>TICKET NAME</th>
 				          <th>BOOKED ON</th>
@@ -23,6 +24,8 @@
 				      </thead>
 				      <tbody>
 				        <tr ng-repeat="myTicket in myTicketsList">
+						  <td>{{myTicket.orderId}}</td>
+						  <td>{{myTicket.suborderId}}</td>
 				          <td>{{myTicket.evnetName}}</td>
 				          <td>{{myTicket.ticketName}}</td>
 				          <td>{{myTicket.bookedOn}}</td>
@@ -38,3 +41,10 @@
 				</div>
 				</div>
           </div>
+          <script>
+          
+          $(document).ready(function(){
+		$('#mytickets').dataTable();
+});
+          
+          </script>

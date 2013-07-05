@@ -1,0 +1,83 @@
+
+
+
+          <div class="tabBody">
+          	
+          	<div ng-include src="'html/eventpageheader.html'"></div>
+			   			
+          	 <div class="eventBaner">  <img ng-src='http://localhost:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/banner.jpg'"/> 
+          	    </div>
+         
+      
+      
+            	<h1 ng-show="event.tickets.length > 0">Book the Ticket </h1>
+            	
+            	
+            	
+            	<div class="span8 " >
+					<table class="table table-condensed"  ng-show="event.tickets.length > 0" >
+					<thead>
+						<tr>
+						  <th>Ticket Type</th>
+						  <th class="amt">Price</th>
+						  <th class="amt">Sale End</th>
+						  <th class="amt">Quantity</th>
+						</tr>
+					</thead>
+					<tbody>
+						  <tr ng-repeat="ticket in event.tickets" >
+						  <td class="amt">{{ticket.name}} </td>
+						  <td class="amt">{{ticket.price}} </td>
+						  <td class="amt">{{ticket.saleEnd}}</td>
+						  <td class="amt"> 
+						  	<select id="Category" ng-model="ticket.selectedQty" ng-init="ticket.selectedQty='0'" 
+													ng-options="qty.value as qty.key for qty in ticket.qtyList" ng-change="atleastOneTktSelected()">
+										</select>
+						  </td>
+						 
+						</tr>
+					</tbody>
+				</table>
+				
+				
+				<div style="text-align: right">
+        		<button type="button" class="btn" ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.tickets.length > 0">Book Ticket</button>
+        		</div>
+        		
+				</div>
+				
+			    <div class="span3 ">
+					<div class="contBox">
+						Event Details
+						
+						<ul class="eventDetails">
+							<li>
+								{{event.startDate}}
+							</li>
+							<li>
+								{{event.endDate}}	
+							</li>
+							<li>
+								{{ event.address1}}
+							</li>
+							<li>
+								Set Remainder
+							</li>
+							<li>
+								Add Calender
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+				
+        
+          </div>
+
+
+
+
+
+       
+
+
