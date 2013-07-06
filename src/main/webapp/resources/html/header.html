@@ -17,8 +17,10 @@
 				</div>
 			</div>
 			
-			<div class="navbar-inner headerCont">
+				<div class="navbar-inner headerCont">
 			        <div class="container" >
+						<img src="resources/bootstrap/img/logo.png" style="float: left; margin-top: 10px" />
+						
 						<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -27,23 +29,34 @@
 			         
 						<div class="nav-collapse collapse">
 							<ul class="nav" >
-						 		 <li ng-class="activeWhen(path()=='/findevent')">
-                <a href="#/findevent" >Find Event</a>
-              </li>
-              <li ng-class="activeWhen(path()=='/createevent')">
-                <a href="#/createevent" >Create Event</a>
-              </li>
-              <li ng-class="activeWhen(path()=='/myevents')">
-                <a href="#/myevents" ng-show="user.userName" >My Events</a>
-              </li>
-              <li ng-class="activeWhen(path()=='/mytickets')">
-                <a href="#/mytickets" ng-show="user.userName">My Tickets</a>
-              </li>
+							 	<li ng-class="activeWhen(path()=='/findevent')"> 
+							 		<a href="#/findevent" > 
+							 		<img src="resources/bootstrap/img/search.png" />
+                					<div>Find Event</div>
+                					</a>
+				              </li>
+				              <li ng-class="activeWhen(path()=='/createevent')">
+				              		<a href="#/createevent" >
+				              		<img src="resources/bootstrap/img/creaventEvent.png" />
+				                	<div>Create Event</div>
+				                	</a>
+				              </li>
+				              <li ng-class="activeWhen(path()=='/myevents')"> 
+				               		<a href="#/myevents" ng-show="user.userName" >
+				               		<img src="resources/bootstrap/img/myEvent.png" /> 
+				               		<div>My Events</div> 
+				               		</a>
+				              </li>
+				              <li ng-class="activeWhen(path()=='/mytickets')">
+				              		<a href="#/mytickets" ng-show="user.userName">
+				              		<img src="resources/bootstrap/img/myTicket.png" />
+				                	<div>My Tickets</div>
+				                	</a>
+				              </li>
 							</ul>
 						</div>
 			       </div>
 		    </div>
-
 </div>
       
     <div ng-class="'alert alert-'+message().type" ng-show="message().show" style="margin-top:50px">

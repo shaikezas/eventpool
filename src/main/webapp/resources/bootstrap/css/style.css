@@ -29,6 +29,7 @@ h3 code {
 body > .navbar {
 	font-size: 13px;
 	background: #fff;
+	font-weight: bold;
 	}
 
 /* Change the docs' brand */
@@ -47,6 +48,7 @@ body > .navbar .brand {
 body > .navbar .brand:hover {
 	text-decoration: none;
 	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+	
 	}
 
 .nav-tabs > li {
@@ -63,9 +65,9 @@ body > .navbar .brand:hover {
 	border-radius: 5px;
 	}
 .navbar-inverse .navbar-inner {
-	color: #ffffff;
+	color: #000;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	box-shadow:0 0 0 0;
+	box-shadow: 0 0 0;
 	background-image: -moz-linear-gradient(top, #ffffff, #d9d9d9);
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#d9d9d9));
 	background-image: -webkit-linear-gradient(top, #ffffff, #d9d9d9);
@@ -97,8 +99,9 @@ body > .navbar .brand:hover {
 	border-left: 1px dotted #000;
 	}	
 .navbar .nav > li > a {
-	padding: 35px 20px 5px 20px;
+	padding: 10px 20px 5px 20px;
 	border-right: 1px dotted #000;
+	text-align: center;
 	}
 .navbar .nav > li > a:hover{
 	text-shadow:0 0 0 ;
@@ -113,7 +116,7 @@ body > .navbar .brand:hover {
 	}
 .navbar-inverse .brand, .navbar-inverse .nav > li > a {
 	color: #000;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-shadow: 0 0 0;
 	}
 
 .navbar .nav{
@@ -130,7 +133,7 @@ body > .navbar .brand:hover {
 	background-image:-o-linear-gradient(top, #5988d9 0%, #2f5dad 45%,#477ad1 100%);
 	background-image:-ms-linear-gradient(top, #5988d9 0%, #2f5dad 45%,#477ad1 100%);
 	background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,#5988d9), color-stop(45%,#2f5dad),color-stop(100%,#477ad1));
-	color: #fff;	
+	color: #000;	
 	height: 25px;
 	
 	}
@@ -828,6 +831,7 @@ input[type="color"],
 .flag.flag-ZANZIBAR {background-position: -144px -165px}
 .flag.flag-ZM {background-position: -160px -165px}
 .flag.flag-ZW {background-position: -176px -165px}
+
 /* Country Flags End
 -------------------------------------------------- */
 
@@ -850,4 +854,4 @@ input[type="color"],
 .eventDetailsIcon .iconAddress{background-position: -24px 0px}
 
 /* Icon  End
--------------------------------------------------- */
+-------------------------------------------------- */ 	

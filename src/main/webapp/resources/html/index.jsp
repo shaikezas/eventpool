@@ -4,9 +4,11 @@
   <head>
     <meta charset="utf-8">
     <title ng-Bind-Template="Event Pool : {{title}}"></title>
+    <meta http-equiv="Cache-Control" content="no-store"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
@@ -15,6 +17,7 @@
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
 	<link href="resources/bootstrap/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
 	
 
 	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->
@@ -128,6 +131,6 @@
 	<script src="lib/fileupload/jquery.fileupload.js"></script>
 	<script src="lib/fileupload/load-image.min.js"></script>    
 	<script  src="resources/bootstrap/js/jquery.dataTables.js"></script>
-
+<script  src="resources/bootstrap/js/ui.multiselect.js"></script>
   </body>
 </html>
