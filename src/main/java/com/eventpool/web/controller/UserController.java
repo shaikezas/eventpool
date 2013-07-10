@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,6 +56,20 @@ public class UserController {
     		return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated user");
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to update user");
+    }
+    
+    @RequestMapping(value = "/account/resetpassword/{newPass}/{confirmPass}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseMessage resetPassword(@RequestBody UserForm userForm,@PathVariable("newPass") String newPass,@PathVariable("confirmPass") String confirmPass){
+    	System.out.println("Password resetting...");
+    	User user = new User();
+    	user.updatePassword(userForm.getPassword(),newPass,confirmPass);
+    	mapper.mapUserForm(userForm, user);
+    	ResultStatus status = userService.resetPassword(user);
+    	if(status.equals(ResultStatus.SUCCESS)){
+    		return new ResponseMessage(ResponseMessage.Type.success, "Password reset successfully.");
+    	}
+        return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
     }
     
     @RequestMapping(value = "/account/getuser", method = RequestMethod.GET)

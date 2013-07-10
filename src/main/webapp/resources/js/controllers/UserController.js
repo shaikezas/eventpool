@@ -19,5 +19,15 @@ var UserController = function($scope, $http) {
         
     }
     
+    $scope.resetPassword = function(newPassword, confirmPassword) {
+    	$http.post('account/resetpassword/'+ newPassword +'/'+ confirmPassword).success(function() {
+        	
+        }).error(function() {
+        	alert("Password not updated properly.");
+        });
+    	
+        
+    }
+    
     $scope.fetchUserDetails();
 }
