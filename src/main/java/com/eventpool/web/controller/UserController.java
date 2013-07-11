@@ -60,11 +60,11 @@ public class UserController {
     
     @RequestMapping(value = "/account/resetpassword/{newPass}/{confirmPass}", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseMessage resetPassword(@RequestBody UserForm userForm,@PathVariable("newPass") String newPass,@PathVariable("confirmPass") String confirmPass){
+    public ResponseMessage resetPassword(@PathVariable("newPass") String newPass,@PathVariable("confirmPass") String confirmPass){
     	System.out.println("Password resetting...");
     	User user = new User();
-    	user.updatePassword(userForm.getPassword(),newPass,confirmPass);
-    	mapper.mapUserForm(userForm, user);
+//    	mapper.mapUserForm(userForm, user);
+    	user.updatePassword("cnu",newPass,confirmPass);
     	ResultStatus status = userService.resetPassword(user);
     	if(status.equals(ResultStatus.SUCCESS)){
     		return new ResponseMessage(ResponseMessage.Type.success, "Password reset successfully.");
