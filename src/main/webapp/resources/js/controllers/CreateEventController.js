@@ -14,6 +14,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.startDateBeforeEndDate = false;
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
+    $scope.from="admin@eventhut.com";
    
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
