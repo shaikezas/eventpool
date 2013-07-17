@@ -128,6 +128,10 @@ public class User extends IdEntity{
 	@Column(name = "COMPANY_URL")
 	private String companyUrl;
 
+	@Column(name = "MEMBERSHIP_TYPE")
+	private Integer memberShipType = 1;
+
+	
 	@Column(name = "CREATED_DATE", nullable = false)
 	private Date createdDate = new Date();
 
@@ -329,6 +333,14 @@ public class User extends IdEntity{
 
 		public void setBlog(String blog) {
 			this.blog = blog;
+		}
+
+		public Integer getMemberShipType() {
+			return memberShipType;
+		}
+
+		public void setMemberShipType(Integer memberShipType) {
+			this.memberShipType = memberShipType;
 		}
 		  
 		  
