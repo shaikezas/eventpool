@@ -130,6 +130,9 @@ public class User extends IdEntity{
 
 	@Column(name = "MEMBERSHIP_TYPE")
 	private Integer memberShipType = 1;
+	
+	@Column(name = "MEMBERSHIP_EXP")
+	private Date memberShipExp;
 
 	
 	@Column(name = "CREATED_DATE", nullable = false)
@@ -341,6 +344,14 @@ public class User extends IdEntity{
 
 		public void setMemberShipType(Integer memberShipType) {
 			this.memberShipType = memberShipType;
+		}
+
+		public Date getMemberShipExp() {
+			return memberShipExp;
+		}
+
+		public void setMemberShipExp(Date memberShipExp) {
+			this.memberShipExp = memberShipExp;
 		}
 		  
 		  
