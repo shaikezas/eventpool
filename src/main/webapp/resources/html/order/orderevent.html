@@ -1,3 +1,33 @@
+<!doctype html>
+<html ng-app>
+ <head>
+<script language="JavaScript" type="text/javascript">
+var sec = 00;   // set the seconds
+var min = 15;   // set the minutes
+
+function countDown() {
+   sec--;
+  if (sec == -01) {
+   sec = 59;
+   min = min - 1; }
+  else {
+   min = min; }
+
+if (sec<=9) { sec = "0" + sec; }
+
+  time = (min<=9 ? "0" + min : min) + " min and " + sec + " sec ";
+
+if (document.getElementById) { document.getElementById('theTime').innerHTML = time; }
+
+SD=window.setTimeout("countDown();", 1000);
+if (min == '00' && sec == '00') { alert("Time out ...."); }
+}
+window.onload = countDown();
+// -->
+</script>
+ </head>
+  <body>
+
 
 <link href="resources/bootstrap/css/entertainment.css" rel="stylesheet">
 
@@ -28,13 +58,18 @@
 						  <td class="amt">{{ticketRegister.price}} </td>
 						  <td class="amt"> {{ticketRegister.qty}}</td>
 						</tr>
-				
+								
 				
 				</tbody>
 				</table>
 				
-								<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
+				
+				
+				
+				<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
+							<h2>Time Left to Book: <span id="theTime"></span></h2> 
 							<h4>Ticket Buyer</h4>
+					
 						<div class="control-group">
 							    <label class="control-label" for="firstName">First Name :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
@@ -184,9 +219,7 @@
 				</div>
 			
 				<div class="contBox">
-					<h5>Event Details</h5>
-					<div class="contBox">
-					<h5>Event Details</h5>
+					
 					<ul class="eventDetails eventDetailsIcon">
 						<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
 						<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
@@ -204,6 +237,7 @@
 						<li > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
 						<li > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
 					</ul>
+				
 				</div>
 			
 			
@@ -221,7 +255,8 @@
         
           </div>
 
-
+</body>
+</html>
 
 
 

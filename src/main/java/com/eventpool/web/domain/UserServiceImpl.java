@@ -58,4 +58,10 @@ public class UserServiceImpl implements UserService {
 		
 		return ResultStatus.SUCCESS;
 	}
+	
+	public ResultStatus resetPassword(User user){
+		userRepository.resetPassword(user.getId(), user.getPassword());
+		
+		return ResultStatus.SUCCESS;
+	}
 }

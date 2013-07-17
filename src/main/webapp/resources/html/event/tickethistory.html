@@ -1,6 +1,8 @@
         	
 <div class="span9 contBox"> 
+
  	<h1>Ticket History</h1>
+ 	
 			<table class="table table-condensed" id="tickethistory">
 				      <thead>
 				        <tr>
@@ -22,7 +24,8 @@
 				          <td>{{order.soldQty}}</td>
 				          <td>{{order.totalTicketSoldPrice}}</td>
 				           <td><a ng-click="fetchAttendees(order.ticketId)" data-toggle="modal" data-target="#attendesModal">View Attendees</a> | 
-				           <a ng-click="fetchBuyers(order.ticketId)" data-toggle="modal" data-target="#buyersModal">View Buyers</a></td>
+				           <a ng-click="fetchBuyers(order.ticketId)" data-toggle="modal" data-target="#buyersModal">View Buyers</a> | 
+				           <a ng-click="sentMail()" data-toggle="modal" data-target="#emailModal">Sent Mail</a></td>
 				        </tr>   
 				      </tbody>
 			</table>
@@ -91,6 +94,43 @@
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		</div>
 	</div>	 
+	<div id="emailModal" class="modal hide fade">
+		<div class="modal-header">
+			<h3>Mail</h3>
+		</div>
+		<div class="modal-body">
+		
+	<div class="control-group">
+	<label class="control-label" for="from">From :</label>
+		<div class="controls">	
+			<input type="text" name="input" ng-model="from" disabled="true"></input>
+		</div>
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="to">To :</label>
+		<div class="controls">	
+			 <select>
+				<option>All</option>
+				<option>To Buyers</option>
+				<option>To Attendees</option>
+			</select>
+		</div>
+	</div>
+				
+		    <div class="control-group">
+				<label class="control-label" for="message">Message :</label>
+				<div class="controls">
+				<textarea id="description" name="message" ng-model="message" rows="10" cols="50"></textarea>
+				</div>
+			</div>
+		
+		
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Sent</button>
+		</div>
+	</div>	
 </div>
 
  <script>

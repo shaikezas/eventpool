@@ -71,6 +71,11 @@ public class User extends IdEntity{
 	@Column(name = "ACCOUNT_EXPIRED")
 	  boolean accountExpired = false;
 	
+	@Column(name = "PREFIX")
+	private String prefix;
+	
+	@Column(name = "SUFFIX")
+	private String suffix;
 	 
 	@Column(name = "LNAME")
 	private String lname;
@@ -93,6 +98,12 @@ public class User extends IdEntity{
 	@Column(name = "PHONE")
 	private String phone;
 
+	@Column(name = "WORK_PHONE")
+	private String workPhone;
+
+	@Column(name = "BLOG")
+	private String blog;
+	
 	@Column(name = "MOBILE")
 	private String mobile;
 
@@ -286,6 +297,38 @@ public class User extends IdEntity{
 		}
 		public void setUserName(String userName) {
 			this.userName = userName;
+		}
+
+		public String getPrefix() {
+			return prefix;
+		}
+
+		public void setPrefix(String prefix) {
+			this.prefix = prefix;
+		}
+
+		public String getSuffix() {
+			return suffix;
+		}
+
+		public void setSuffix(String suffix) {
+			this.suffix = suffix;
+		}
+
+		public String getWorkPhone() {
+			return workPhone;
+		}
+
+		public void setWorkPhone(String workPhone) {
+			this.workPhone = workPhone;
+		}
+
+		public String getBlog() {
+			return blog;
+		}
+
+		public void setBlog(String blog) {
+			this.blog = blog;
 		}
 		  
 		  
