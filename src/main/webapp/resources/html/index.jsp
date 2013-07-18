@@ -18,6 +18,7 @@
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
 	<link href="resources/bootstrap/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
 	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
+	<link href="css/wysiwyg.css" rel="stylesheet" media="screen">
 	
 
 	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->
@@ -110,6 +111,8 @@
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-ui-utils.js"></script>
 	<script src="lib/angular/angular-select2.js"></script>
+<!-- 	<script  src="lib/wysiwyg.js"></script>
+	<script  src="lib/wysiwyg-settings.js"></script> -->
 	
 	<!-- Javascript files related to project -->
 	<script src="resources/js/app.js"></script>
@@ -131,6 +134,7 @@
 	<script src="lib/fileupload/jquery.fileupload.js"></script>
 	<script src="lib/fileupload/load-image.min.js"></script>    
 	<script  src="resources/bootstrap/js/jquery.dataTables.js"></script>
-<script  src="resources/bootstrap/js/ui.multiselect.js"></script>
+	<script  src="resources/bootstrap/js/ui.multiselect.js"></script>
+	
   </body>
 </html>
