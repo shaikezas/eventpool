@@ -27,15 +27,15 @@ public class SearchServiceImpl implements SearchService {
 	public SearchServer searchServer;
 
 	
-    public List<EventSearchRecord> getSearchRecords(String query,int rows)
+    public List<EventSearchRecord> getSearchRecords(String query,int rows,int start)
 			throws Exception {
-    	QueryResponse response = getSolrResponse(query, rows); 
+    	QueryResponse response = getSolrResponse(query, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
     	return searchResults;
 	}
 
 
-	private QueryResponse getSolrResponse(String query, int rows)
+	private QueryResponse getSolrResponse(String query, int rows,int start)
 			throws SolrServerException {
 		if(query==null || query.isEmpty()){
     		query = "*:*";
@@ -44,6 +44,7 @@ public class SearchServiceImpl implements SearchService {
 		SolrQuery solrQuery = new SolrQuery();
 		QueryResponse response;
 		
+		solrQuery.setStart(start);
 		solrQuery.setQuery(query);
 		if(rows==0){
 			rows = 10;
@@ -62,9 +63,9 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 
-	public SearchQueryResponse getSearchQueryResponse(String query, int rows)
+	public SearchQueryResponse getSearchQueryResponse(String query, int rows,int start)
 			throws Exception {
-		QueryResponse response = getSolrResponse(query, rows); 
+		QueryResponse response = getSolrResponse(query, rows,start); 
 
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));

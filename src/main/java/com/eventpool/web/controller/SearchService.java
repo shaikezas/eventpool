@@ -8,8 +8,8 @@ import com.eventpool.common.dto.EventDTO;
  */
 public interface SearchService {
 
-	public List<EventSearchRecord> getSearchRecords(String query,int rows) throws Exception;
+	public List<EventSearchRecord> getSearchRecords(String query,int rows,int start) throws Exception;
 	
-	public SearchQueryResponse getSearchQueryResponse(String query,int rows) throws Exception;
+	public SearchQueryResponse getSearchQueryResponse(String query,int rows,int start) throws Exception;
   
 }
