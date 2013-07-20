@@ -12,7 +12,15 @@
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
 	<link href="assets/css/bootstrap-datetimepicker.min.css">
-		
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        todayBtn: false,
+        endDate: new Date(),
+        format: 'dd-M-yyyy hh:ii P',
+        pickerPosition: 'bottom-left',
+        autoclose: true
+    });
+</script>    
   </head>
 
   <body >
@@ -29,18 +37,6 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	         
-	          <!-- div class="nav-collapse collapse">
-	            <ul class="nav">
-	              <li class=""><a href="#/home">Home</a></li>
-	              <li class=""><a href="#/findevent">Find Event</a></li>
-	              <li class=""><a href="#/createevent">Create Event</a></li>
-	              <li class=""><a href="#/myevents">My Events</a></li>
-	              <li class=""> <a href="#/mytickets">My Tickets</a></li>
-	               <li class=""> <a ng-click="logout()">Logout</a></li>
-	              <li class="active"> <a href="MyAccount.html">Welcome {{user.userName}}</a></li>
-	            </ul>
-	          </div-->
 	        </div>
 	      </div>
 	    </div>
@@ -127,17 +123,19 @@
 							  </div>
 							  
 							  <div class="control-group">
-							    <label class="control-label" for="startDate">Date of Birth</label>
+							    <label class="control-label" for="dateOfBirth">Date of Birth</label>
 							    <div class="controls">
-								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
-				      					<input type="text" name="startDate" datetime-picker  ng-model="userDetails.dob" 
-				      										placeholder="Start Date and Time" readonly required ></input>
+								 	<div id="datetimepickerDOB" class="input-append date datetimepicker form_datetime">
+				      					<input type="text" name="dob" datetime-picker ng-model="userDetails.dob" 
+				      										placeholder="Date of birth" readonly ></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 				      				</div>
 				      			</div>
 							  </div>
 							  
 							  
+						  
+		  					  
 							    <div class="control-group">
 								    <label class="control-label" for="Phone">Phone No  :</label>
 								    <div class="controls">
