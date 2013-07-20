@@ -163,7 +163,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.startDateRequired = $scope.eventForm.startDate.$error.required;
     	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
     	$scope.catRequired = $scope.eventForm.category.$error.required;
-    	$scope.subCatRequired = $scope.eventForm.subCategory.$error.required;
+    	/*$scope.subCatRequired = $scope.eventForm.subCategory.$error.required;*/
     	$scope.venueNameReq = $scope.venueForm.venueName.$error.required;
     	$scope.venueAdd1Req = $scope.venueForm.venueAddress1.$error.required;
     	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;
@@ -367,13 +367,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    });
     }
     
-    $scope.fetchSubCategories = function() {
+/*    $scope.fetchSubCategories = function() {
     	subcategories.getsubcategories($scope.category).success(function(subcategories) {
 			$scope.subcategories = subcategories;
 	    }).error(function(data) {
 	    	
 	    });
-    }
+    }*/
     $scope.fetchCategories();
     
     $scope.predicate = 'id'
