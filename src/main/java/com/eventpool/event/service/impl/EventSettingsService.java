@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventOrderSettings;
+import com.eventpool.common.dto.UserEventSettingDTO;
 import com.eventpool.common.entities.EventDefaultSettings;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
@@ -46,6 +47,12 @@ public class EventSettingsService {
 		settings = gson.fromJson(eventSettings.getSettings(), type);
 		}
 		return settings;
+	}
+	
+	public UserEventSettingDTO getUserEventSettings(String json){
+		Gson gson = new Gson();
+		UserEventSettingDTO userEventSettingDTO = gson.fromJson(json, UserEventSettingDTO.class);
+		return userEventSettingDTO;
 	}
 	
 	public EventOrderSettings  getEventOrderSettings(EventDTO event){

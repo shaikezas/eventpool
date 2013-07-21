@@ -21,6 +21,7 @@ import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.OrderFormSettings;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.dto.UserEventSettingDTO;
 import com.eventpool.common.dto.UserSettingJson;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
@@ -536,5 +537,11 @@ public class EventTest extends BaseTest{
     public void testViewBuyers(){
     	TicketBuyerDTO buyers = eventSettingsService.getBuyers(4L);
     	log.info(buyers.getUserDTOs()+" ");
+    }
+    
+    @Test
+    public void testUserEventSettingJson(){
+    	UserEventSettingDTO userEventSettings = eventSettingsService.getUserEventSettings("{showOrgName:true,showOrgDesc:true,contactDetails:true,showHostWebsite:true,showAttendeDetails:true}");
+    	log.info(userEventSettings.toString());
     }
 }
