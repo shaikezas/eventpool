@@ -67,6 +67,12 @@ public class SearchController {
     }
     
     
+    @RequestMapping(value = "/getEventsByNumberResults", method = RequestMethod.GET)
+    public @ResponseBody SearchQueryResponse getEventsByNumberResults() throws Exception {
+    	return searchService.getSearchQueryResponse("title", 10, 0);
+      }
+    
+    
     public static String getNextKey(String key1){
         int len = key1.length();
         String allButLast = key1.substring(0, len - 1);
