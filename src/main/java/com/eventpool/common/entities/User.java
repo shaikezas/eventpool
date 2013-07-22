@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -134,6 +136,9 @@ public class User extends IdEntity{
 	@Column(name = "MEMBERSHIP_EXP")
 	private Date memberShipExp;
 
+	@ManyToOne
+	@JoinColumn(name = "MEMBERSHIP_TYPE", insertable=false,updatable=false)
+	private MemberShip memberShip;
 	
 	@Column(name = "CREATED_DATE", nullable = false)
 	private Date createdDate = new Date();
@@ -352,6 +357,14 @@ public class User extends IdEntity{
 
 		public void setMemberShipExp(Date memberShipExp) {
 			this.memberShipExp = memberShipExp;
+		}
+
+		public MemberShip getMemberShip() {
+			return memberShip;
+		}
+
+		public void setMemberShip(MemberShip memberShip) {
+			this.memberShip = memberShip;
 		}
 		  
 		  

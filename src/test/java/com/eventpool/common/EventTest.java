@@ -27,6 +27,7 @@ import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Ticket;
+import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.image.SaveImage;
 import com.eventpool.common.module.CategoryTree;
@@ -36,6 +37,7 @@ import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
+import com.eventpool.common.repositories.UserRepository;
 import com.eventpool.common.type.CurrencyType;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.EventStatus;
@@ -544,4 +546,15 @@ public class EventTest extends BaseTest{
     	UserEventSettingDTO userEventSettings = eventSettingsService.getUserEventSettings("{showOrgName:true,showOrgDesc:true,contactDetails:true,showHostWebsite:true,showAttendeDetails:true}");
     	log.info(userEventSettings.toString());
     }
+
+    @Resource
+    private UserRepository userRepository;
+    
+    @Test
+    @Transactional(readOnly=true)
+    public void testUser(){
+    	User user = userRepository.findOne(1L);
+    	log.info("user"+user.getMemberShip());
+    }
+
 }

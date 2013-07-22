@@ -25,6 +25,7 @@
 		<class>com.eventpool.common.entities.EventSettings</class>
 		<class>com.eventpool.common.entities.User</class>
 		<class>com.eventpool.common.entities.EventDefaultSettings</class>
+		<class>com.eventpool.common.entities.MemberShip</class>
 		<!-- Jboss recognizes only the entities listed here -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 

@@ -30,6 +30,10 @@ public class MemberShip extends AbstractEntity{
 	@Column(name = "SETTINGS")
 	private String settings;
 
+	@Column(name="FEE")
+	private Double fee;
+
+	
 	public Integer getId() {
 		return id;
 	}
@@ -68,6 +72,14 @@ public class MemberShip extends AbstractEntity{
 
 	public void setSettings(String settings) {
 		this.settings = settings;
+	}
+
+	public Double getFee() {
+		return fee;
+	}
+
+	public void setFee(Double fee) {
+		this.fee = fee;
 	}
 
 	
