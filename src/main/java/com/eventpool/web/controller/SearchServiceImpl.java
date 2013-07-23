@@ -11,8 +11,12 @@ import org.apache.solr.client.solrj.response.FacetField.Count;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.eventpool.common.module.CategoryNode;
+import com.eventpool.common.module.CategoryTree;
+import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.event.module.EventApiImpl;
 
 /**
@@ -26,6 +30,12 @@ public class SearchServiceImpl implements SearchService {
 	@Resource
 	public SearchServer searchServer;
 
+	@Resource
+	CategoryTree categoryTree;
+	
+	@Resource
+	EntityUtilities entityUtilities;
+	
 	
     public List<EventSearchRecord> getSearchRecords(String query,int rows,int start)
 			throws Exception {
@@ -74,7 +84,13 @@ public class SearchServiceImpl implements SearchService {
 		List<Count> facetValues = response.getFacetField("subCategoryId").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
-				subCategoryIdMap.put(facet.getName(), facet.getCount());
+				if(facet == null) continue;
+				if(facet.getName()!=null){
+					CategoryNode node = categoryTree.getNode(Long.parseLong(facet.getName()));
+					if(node!=null){
+						subCategoryIdMap.put(node.getName(), facet.getCount());
+					}
+				}
 			}
 		}
 		
@@ -94,11 +110,19 @@ public class SearchServiceImpl implements SearchService {
 			}
 		}
 		
+		Map<Integer, String> cityMap = entityUtilities.getCityMap();
 		Map<String, Long> cityIdMap = searchQueryResponse.getCityIdMap();
 		facetValues = response.getFacetField("cityId").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
-				cityIdMap.put(facet.getName(), facet.getCount());
+				String facetName = facet.getName();
+				String cityName = null;
+				if(cityIdMap!=null) {
+					cityName = cityMap.get(Integer.parseInt(facetName));
+				}
+				if(cityName!=null){
+					cityIdMap.put(cityName, facet.getCount());
+				}
 			}
 		}
 		return searchQueryResponse;
