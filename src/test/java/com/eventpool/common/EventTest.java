@@ -53,6 +53,7 @@ import com.eventpool.event.service.impl.TicketAttendeeDTO;
 import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.controller.EventSearchRecord;
+import com.eventpool.web.controller.SearchQueryResponse;
 import com.eventpool.web.controller.SearchService;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.TicketForm;
@@ -519,8 +520,8 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testSearchService() throws Exception{
-    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords("title",10,0);
-    	log.info(eventSearchRecords.size()+" size");
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("title", 10, 0);
+    	log.info(searchQueryResponse+" size");
     }
     
     @Test

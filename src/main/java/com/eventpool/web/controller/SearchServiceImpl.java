@@ -1,5 +1,7 @@
 package com.eventpool.web.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +38,7 @@ public class SearchServiceImpl implements SearchService {
 	@Resource
 	EntityUtilities entityUtilities;
 	
+	SimpleDateFormat sdf = new SimpleDateFormat();
 	
     public List<EventSearchRecord> getSearchRecords(String query,int rows,int start)
 			throws Exception {
@@ -87,7 +90,7 @@ public class SearchServiceImpl implements SearchService {
 				if(facet == null) continue;
 				if(facet.getName()!=null){
 					CategoryNode node = categoryTree.getNode(Long.parseLong(facet.getName()));
-					if(node!=null){
+					if(node!=null && facet.getCount()>0){
 						subCategoryIdMap.put(node.getName(), facet.getCount());
 					}
 				}
@@ -98,7 +101,11 @@ public class SearchServiceImpl implements SearchService {
 		facetValues = response.getFacetField("eventDate").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
-				eventDateMap.put(facet.getName(), facet.getCount());
+				//Date eventDate = sdf.parse("yyyy-MM-dd");
+				//int dateFilter = getDayFilter(eventDate);
+				if(facet.getCount()>0){
+					eventDateMap.put(facet.getName(), facet.getCount());
+				}
 			}
 		}
 		
@@ -106,7 +113,9 @@ public class SearchServiceImpl implements SearchService {
 		facetValues = response.getFacetField("eventType").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
-				eventTypeMap.put(facet.getName(), facet.getCount());
+				if(facet.getCount()>0){
+					eventTypeMap.put(facet.getName(), facet.getCount());
+				}
 			}
 		}
 		
@@ -120,12 +129,19 @@ public class SearchServiceImpl implements SearchService {
 				if(cityIdMap!=null) {
 					cityName = cityMap.get(Integer.parseInt(facetName));
 				}
-				if(cityName!=null){
+				if(cityName!=null && facet.getCount()>0){
 					cityIdMap.put(cityName, facet.getCount());
 				}
 			}
 		}
 		return searchQueryResponse;
+	}
+
+
+	private int getDayFilter(Date eventDate) {
+		Date currentDate = new Date();
+	
+		return 0;
 	}
 
 }
