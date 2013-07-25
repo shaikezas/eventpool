@@ -1,6 +1,7 @@
 package com.eventpool.web.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,19 @@ import com.eventpool.event.module.EventApiImpl;
 @Service("SearchService")
 public class SearchServiceImpl implements SearchService {
     
+	private static final int REST = 6;
+
+	private static final int CURRENT_MONTH = 5;
+
+	private static final int NEXT_WEEK = 4;
+
+	private static final int TOMORROW = 2;
+
+	private static final int TODAY = 1;
+
 	private static final Logger logger = LoggerFactory.getLogger(EventApiImpl.class);
+
+	private static final int CURRENT_WEEK = 0;
 	
 	@Resource
 	public SearchServer searchServer;
@@ -38,7 +51,7 @@ public class SearchServiceImpl implements SearchService {
 	@Resource
 	EntityUtilities entityUtilities;
 	
-	SimpleDateFormat sdf = new SimpleDateFormat();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
     public List<EventSearchRecord> getSearchRecords(String query,int rows,int start)
 			throws Exception {
@@ -101,10 +114,45 @@ public class SearchServiceImpl implements SearchService {
 		facetValues = response.getFacetField("eventDate").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
-				//Date eventDate = sdf.parse("yyyy-MM-dd");
-				//int dateFilter = getDayFilter(eventDate);
+				Date eventDate = sdf.parse(facet.getName());
+				int dateFilter = getDayFilter(eventDate);
 				if(facet.getCount()>0){
-					eventDateMap.put(facet.getName(), facet.getCount());
+					if(dateFilter == TODAY){
+						long count = facet.getCount();
+						Long todayCount = eventDateMap.get("Today");
+						if(todayCount==null)todayCount=0L;
+						eventDateMap.put("Today", count+todayCount);
+					}else
+					if(dateFilter == TOMORROW){
+						long count = facet.getCount();
+						Long todayCount = eventDateMap.get("Tommorrow");
+						if(todayCount==null)todayCount=0L;
+						eventDateMap.put("Tommorrow", count+todayCount);
+					}else
+					if(dateFilter == CURRENT_WEEK){
+						long count = facet.getCount();
+						Long todayCount = eventDateMap.get("This Week");
+						if(todayCount==null)todayCount=0L;
+						eventDateMap.put("This Week", count+todayCount);
+					}else
+					if(dateFilter == NEXT_WEEK){
+						long count = facet.getCount();
+						Long todayCount = eventDateMap.get("Next Week");
+						if(todayCount==null)todayCount=0L;
+						eventDateMap.put("Next Week", count+todayCount);
+					}else
+					if(dateFilter == CURRENT_MONTH){
+						long count = facet.getCount();
+						Long todayCount = eventDateMap.get("This month");
+						if(todayCount==null)todayCount=0L;
+						eventDateMap.put("This month", count+todayCount);
+					}else{
+						long count = facet.getCount();
+						Long todayCount = eventDateMap.get("Rest");
+						if(todayCount==null)todayCount=0L;
+						eventDateMap.put("Rest", count+todayCount);
+					}
+
 				}
 			}
 		}
@@ -139,9 +187,38 @@ public class SearchServiceImpl implements SearchService {
 
 
 	private int getDayFilter(Date eventDate) {
-		Date currentDate = new Date();
-	
-		return 0;
+		Calendar cal = Calendar.getInstance();
+	    
+		cal.setTime(eventDate);
+	    int year = cal.get(Calendar.YEAR);
+	    int month = cal.get(Calendar.MONTH);
+	    int date = cal.get(Calendar.DATE);
+	    int day = cal.get(Calendar.DAY_OF_MONTH);
+	    int week = cal.get(Calendar.WEEK_OF_MONTH);
+	    
+	    cal.setTime(new Date());
+	    int currentYear = cal.get(Calendar.YEAR);
+	    int currentMonth = cal.get(Calendar.MONTH);
+	    int currentDay = cal.get(Calendar.DAY_OF_MONTH);
+	    int currentDate = cal.get(Calendar.DATE);
+	    int currentWeek = cal.get(Calendar.WEEK_OF_MONTH);
+	    
+	    if(currentDate == date && currentMonth == month && currentYear == year){
+	    	return TODAY; // today
+	    }
+	    if(currentDate == date-1 && currentMonth == month && currentYear == year ){
+	    	return TOMORROW;//tomorrow
+	    }
+	    if(week == currentWeek && currentMonth == month && currentYear == year){
+			return CURRENT_WEEK;//this week
+	    }
+	    if(week-1 == currentWeek && currentMonth == month && currentYear == year){
+	    	return NEXT_WEEK;//next week
+	    }
+	    if(currentMonth == month && currentYear == year){
+	    	return CURRENT_MONTH;//this month
+	    }
+	    return REST;//Rest 
 	}
 
 }
