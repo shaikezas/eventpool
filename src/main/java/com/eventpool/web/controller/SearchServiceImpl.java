@@ -116,35 +116,36 @@ public class SearchServiceImpl implements SearchService {
 			for(Count facet:facetValues){
 				Date eventDate = sdf.parse(facet.getName());
 				int dateFilter = getDayFilter(eventDate);
+				eventDateMap.put("Today", 0L);
+				eventDateMap.put("Tommorrow", 0L);
+				eventDateMap.put("This Week", 0L);
+				eventDateMap.put("Next Week", 0L);
+				eventDateMap.put("This month", 0L);
+				
 				if(facet.getCount()>0){
 					if(dateFilter == TODAY){
 						long count = facet.getCount();
 						Long todayCount = eventDateMap.get("Today");
-						if(todayCount==null)todayCount=0L;
 						eventDateMap.put("Today", count+todayCount);
 					}else
 					if(dateFilter == TOMORROW){
 						long count = facet.getCount();
 						Long todayCount = eventDateMap.get("Tommorrow");
-						if(todayCount==null)todayCount=0L;
 						eventDateMap.put("Tommorrow", count+todayCount);
 					}else
 					if(dateFilter == CURRENT_WEEK){
 						long count = facet.getCount();
 						Long todayCount = eventDateMap.get("This Week");
-						if(todayCount==null)todayCount=0L;
 						eventDateMap.put("This Week", count+todayCount);
 					}else
 					if(dateFilter == NEXT_WEEK){
 						long count = facet.getCount();
 						Long todayCount = eventDateMap.get("Next Week");
-						if(todayCount==null)todayCount=0L;
 						eventDateMap.put("Next Week", count+todayCount);
 					}else
 					if(dateFilter == CURRENT_MONTH){
 						long count = facet.getCount();
 						Long todayCount = eventDateMap.get("This month");
-						if(todayCount==null)todayCount=0L;
 						eventDateMap.put("This month", count+todayCount);
 					}else{
 						long count = facet.getCount();
