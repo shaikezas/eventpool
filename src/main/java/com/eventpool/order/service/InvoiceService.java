@@ -10,12 +10,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.Resource;
+
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.eventpool.common.module.DateCustomConverter;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
 
@@ -24,16 +27,22 @@ import com.lowagie.text.pdf.PdfStamper;
 public class InvoiceService {
     Logger logger = LoggerFactory.getLogger(InvoiceService.class);
 
-    public String sendInvoice(Invoice invoice,String emailAddress) throws FileNotFoundException, IOException, DocumentException, Exception {
-      
-        String successmsg = "";
+    @Resource
+    DateCustomConverter customConverter;
+    
+    public void sendInvoice(Invoice invoice,String emailAddress) throws FileNotFoundException, IOException, DocumentException, Exception {
+    }
+    public ByteArrayOutputStream generateInvoice(Invoice invoice) throws FileNotFoundException, IOException, DocumentException, Exception {
+     logger.info("Generating invoice for registrationId :"+invoice.getRegistrationId());
+    	
+    	ByteArrayOutputStream out = new ByteArrayOutputStream();
         InputStream is = null;
         try {
             Properties prop = new Properties();
             prop.load(InvoiceService.class.getResourceAsStream("/invoice.properties"));
             is = InvoiceService.class.getResourceAsStream("/invoice.pdf");
             PdfReader pdfTemplate = new PdfReader(is);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            
             PdfStamper stamper = new PdfStamper(pdfTemplate, out);
             stamper.setFormFlattening(true);
 
@@ -45,86 +54,58 @@ public class InvoiceService {
 
             stamper.close();
             pdfTemplate.close();
-            logger.info("ByteArrayOutputStream size " + out.size());
-//            MailUtil mailUtil = new MailUtil();
-//            successmsg = mailUtil.sendInvoiceMail(emailAddress, out,invoice.getId().toString());
-           
         } catch (Exception e) {
 
         }finally{
             if(is!=null) is.close();
         }
-        logger.info("sendInvoice "+successmsg);
         
-        return successmsg;
+        return out;
 
     }
 
     private Map<String, String> assignValuesToMap(Properties prop, Invoice invoice) {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         LangUtils langUtils = new LangUtils();
-       String amountInWords = langUtils.convertNumToWord(invoice.getItemInfo().getAmount().intValue());
+       String amountInWords = langUtils.convertNumToWord(invoice.getTotalAmount().intValue());
         Map<String, String> invoiceMap = new HashMap<String, String>();
-        invoiceMap.put(prop.getProperty("legalName"), invoice.getSellerInfo().getLegalName() + "\n" + invoice.getReversePickup());
-        invoiceMap.put(prop.getProperty("invoiceNumber"), invoice.getInvoiceNumber());
-        invoiceMap.put(prop.getProperty("invoiceDate"), dateFormatter.format(invoice.getInvoiceDate()));
-        invoiceMap.put(prop.getProperty("modeOfPayment"), invoice.getPaymentDescription());
-        invoiceMap.put(prop.getProperty("orderNo"), invoice.getId().toString());
-        invoiceMap.put(prop.getProperty("suborderNo"), invoice.getOrderId().toString());
-        invoiceMap.put(prop.getProperty("orderDate"), dateFormatter.format(invoice.getOrderDate()));
-        if(invoice.getImei()!=null && !invoice.getImei().equals(""))
-        {
-            invoiceMap.put(prop.getProperty("remarks"), invoice.getRemarks()+" , IMEI number : "+invoice.getImei());
-        }
-        else
-        {
-            invoiceMap.put(prop.getProperty("remarks"), invoice.getRemarks());
-        }
-        String name = "";
+        invoiceMap.put(prop.getProperty("event"), invoice.getEvent());
+        invoiceMap.put(prop.getProperty("eventDate"), invoice.getEventDate());
+        invoiceMap.put(prop.getProperty("eventId"), String.valueOf(invoice.getEventId()));
+        invoiceMap.put(prop.getProperty("modeOfPayment"), invoice.getModeOfPayment());
+        invoiceMap.put(prop.getProperty("organizerName"), invoice.getOrganizerName());
+        invoiceMap.put(prop.getProperty("organizerContact"), invoice.getOrganizerContact());
+        invoiceMap.put(prop.getProperty("attendee"), invoice.getAttendee());
+        invoiceMap.put(prop.getProperty("ticketType"), invoice.getTicketType());
+        invoiceMap.put(prop.getProperty("termsAndConditions"), invoice.getTermsAndConditions());
+        invoiceMap.put(prop.getProperty("declarations"), invoice.getDeclarations());
         
-        if(invoice.getBuyer().getMiddleName() != null){
-            name = invoice.getBuyer().getFirstName() + " "+invoice.getBuyer().getMiddleName() + " "
-                     + invoice.getBuyer().getLastName();
-        } else {
-            name = invoice.getBuyer().getFirstName() + " "
-                    + invoice.getBuyer().getLastName();
+        if(invoice.getTaxRate()!=null){
+        invoiceMap.put(prop.getProperty("taxAmountLabel"), "Tax");
+        invoiceMap.put(prop.getProperty("taxRate"), String.valueOf(invoice.getTaxRate()));
+        invoiceMap.put(prop.getProperty("taxAmount"), String.valueOf(invoice.getTaxAmount()));
         }
-        invoiceMap.put(prop.getProperty("address"), " Buyer: \n " + name + "\n " + invoice.getBuyer().getAddress() + " \n " + invoice.getBuyer().getCity() + "\n" + invoice.getBuyer().getCountry() + "\n" + invoice.getBuyer().getZip());
-        invoiceMap.put(prop.getProperty("documentNo"), invoice.getDespatchInfo().getDocumentNumber());
-        if(invoice.getDespatchInfo().getDate()!=null)
-        {
-        invoiceMap.put(prop.getProperty("shippmentDate"),dateFormatter.format(invoice.getDespatchInfo().getDate()));
-        }
-        invoiceMap.put(prop.getProperty("courierName"), invoice.getDespatchInfo().getCourier());
-        invoiceMap.put(prop.getProperty("destination"), invoice.getDespatchInfo().getDestination());
-        invoiceMap.put(prop.getProperty("description"), invoice.getItemInfo().getDescription());
-        invoiceMap.put(prop.getProperty("quantity"), new Integer(invoice.getItemInfo().getQuantity()).toString());
-       // invoiceMap.put(prop.getProperty("shippingquantity"), new Integer(invoice.getItemInfo().getQuantity()).toString());
-        invoiceMap.put(prop.getProperty("rate"), (invoice.getItemInfo().getRate()).toString());
-       // invoiceMap.put(prop.getProperty("shippingrate"), (invoice.getItemInfo().getShippingCharge()).toString());
-        invoiceMap.put(prop.getProperty("price"), String.valueOf(invoice.getItemInfo().getRate().doubleValue() *  invoice.getItemInfo().getQuantity()));
-        invoiceMap.put(prop.getProperty("shippingprice"), String.valueOf(invoice.getItemInfo().getShippingCharge().doubleValue() *  invoice.getItemInfo().getQuantity()));
-        invoiceMap.put(prop.getProperty("discountAmount"), String.valueOf(invoice.getItemInfo().getDiscountAmount()));
-        invoiceMap.put(prop.getProperty("totalQuantity"), new Integer(invoice.getItemInfo().getQuantity()).toString());
-        invoiceMap.put(prop.getProperty("totalPrice"), (invoice.getItemInfo().getAmount()).toString());
+        
+        if(invoice.getDiscountAmount()!=null){
+            invoiceMap.put(prop.getProperty("discountLabel"), "Tax");
+            invoiceMap.put(prop.getProperty("discountAmount"), String.valueOf(invoice.getDiscountAmount()));
+            }
+        
+        
+        invoiceMap.put(prop.getProperty("registrationNo"), String.valueOf(invoice.getRegistrationId()));
+        invoiceMap.put(prop.getProperty("registrationDate"), customConverter.convertFrom(invoice.getRegistrationDate()));
+        invoiceMap.put(prop.getProperty("modeOfPayment"), invoice.getModeOfPayment());
+        invoiceMap.put(prop.getProperty("orderNo"), String.valueOf(invoice.getOrderId()));
+        invoiceMap.put(prop.getProperty("remarks"), invoice.getRemarks());
+        invoiceMap.put(prop.getProperty("venue"),invoice.getVenue());
+        invoiceMap.put(prop.getProperty("quantity"), String.valueOf(invoice.getQuantity()));
+        invoiceMap.put(prop.getProperty("price"), String.valueOf(invoice.getPrice()));
+        invoiceMap.put(prop.getProperty("totalPrice"), String.valueOf(invoice.getQuantity() *  invoice.getPrice()));
+        invoiceMap.put(prop.getProperty("discountAmount"), String.valueOf(invoice.getDiscountAmount()));
+        invoiceMap.put(prop.getProperty("totalAmount"), String.valueOf(invoice.getTotalAmount()));
         invoiceMap.put(prop.getProperty("amountinWords"), amountInWords);
-        invoiceMap.put(prop.getProperty("remarkslegalName"), invoice.getSellerInfo().getLegalName());
-        invoiceMap.put(prop.getProperty("salesTaxNumber"), invoice.getSellerInfo().getLocalSalesTaxNumber());
         
         return invoiceMap;
 
     }
-   
-    public static void main(String[] args) throws FileNotFoundException, IOException, DocumentException, Exception {
-		System.out.println("sending invoice");
-    	Invoice invoice = new Invoice();
-		invoice.setId(12345L);
-		invoice.setInvoiceDate(new Date());
-		invoice.setInvoiceNumber("98765");
-		invoice.setOrderId(34567L);
-		InvoiceService service = new InvoiceService();
-		service.sendInvoice(invoice, "shaikezas@gmail.com");
-		System.out.println("Invoice sent");
-	}
-    
 }
+
