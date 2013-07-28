@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,6 +71,19 @@ public class SearchController {
     @RequestMapping(value = "/getEventsByNumberResults", method = RequestMethod.GET)
     public @ResponseBody SearchQueryResponse getEventsByNumberResults() throws Exception {
     	return searchService.getSearchQueryResponse("title", 10, 0);
+      }
+    
+    @RequestMapping(value = "/executeSearch/{searchType}/{cityId}", method = RequestMethod.GET)
+    public @ResponseBody List<EventSearchRecord> getSearchResultsByQuery(@PathVariable("searchType") String searchType,@PathVariable("cityId") Long cityId) throws Exception {
+    	String query = searchType + "," + cityId.toString();
+    	return searchService.getSearchRecords(query, 10, 0);
+      }
+    
+    @RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{cityId}", method = RequestMethod.GET)
+    public @ResponseBody List<EventSearchRecord> getSearchResultsByFilterType(@PathVariable("filterType") String filterType,@PathVariable("searchType") String searchType,@PathVariable("cityId") Long cityId) throws Exception {
+    	String query = filterType+","+searchType + "," + cityId.toString();
+    	System.out.println("User entered query from the ui...:::" + query);
+    	return searchService.getSearchRecords(query, 10, 0);
       }
     
     
