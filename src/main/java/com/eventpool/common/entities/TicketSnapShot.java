@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -46,6 +49,10 @@ public class TicketSnapShot extends AuditableIdEntity{
 	
 	@Column(name="EVENT_ID")
 	private Long eventId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    private Event event;
 	
 	@Column(name="MIN_QTY")
 	private Integer minQty;
@@ -159,4 +166,14 @@ public class TicketSnapShot extends AuditableIdEntity{
 		this.ticketPrice = ticketPrice;
 	}
 
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	
+	
 }

@@ -26,6 +26,7 @@ import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
+import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketRegister;
 import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.exceptions.EventNotFoundException;
@@ -72,7 +73,9 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private EventService eventService;
 	
-
+	@Autowired
+	InvoiceService invoiceService;
+	
 	@Resource
 	TicketInventoryService inventoryService;
 
@@ -95,11 +98,13 @@ public class OrderServiceImpl implements OrderService {
 		eventpoolMapper.mapOrder(orderDTO, order);
 		
 		order = orderRepository.save(order);
-
 		for (SuborderDTO suborderDTO : orderDTO.getSuborders()) {
 			deleteTicketRegister(suborderDTO);
 		}
 
+		for(Suborder suborder :  order.getSuborders()){
+			invoiceService.generateInvoice(suborder);
+		}
 		return order;
 
 	}

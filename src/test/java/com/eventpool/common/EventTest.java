@@ -260,7 +260,7 @@ public class EventTest extends BaseTest{
     	List<String> toList = new ArrayList<String>();
     	toList.add("ramuenugurthi@gmail.com");
     	
-    	htmlEmailService.sendMail(null,"subject","body",toList);
+    	htmlEmailService.sendMail(null,"subject","body",toList,null);
     }
     
     @Resource
