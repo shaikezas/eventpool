@@ -51,7 +51,7 @@ public class UserForm {
 
 	private Gender geneder;
 
-	private Date dob;
+	private String dob;
 
 	private String companyUrl;
 
@@ -145,11 +145,11 @@ public class UserForm {
 		this.shippingAddress = shippingAddress;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 

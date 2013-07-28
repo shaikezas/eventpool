@@ -101,7 +101,7 @@
 			<field><a>officeAddress</a><b>officeAddress</b></field>
 			<field><a>shippingAddress</a><b>shippingAddress</b></field>
 			<field><a>geneder</a><b>geneder</b></field>
-			<field><a>dob</a><b>dob</b></field>
+			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>dob</a><b>dob</b></field>
 			<field><a>companyUrl</a><b>companyUrl</b></field>
 			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>createdDate</a><b>createdDate</b></field>
 	</mapping>
