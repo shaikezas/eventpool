@@ -1,30 +1,36 @@
-package com.eventpool.order.service;
+package com.eventpool.common.dto;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
-public class Invoice implements Serializable {
+import com.eventpool.common.type.TicketType;
+
+
+public class InvoiceDTO   {
 	
+	private Long createdBy;
 	
-	private Long registrationId;
+	private String createdDate;
+
+	private Long id;
 	
 	private Long orderId;
 	
+	private Long suborderId;
+	
 	private Long eventId;
 
-	private Date registrationDate;
-	
 	private String eventDate;
 
-	private String modeOfPayment;
-	
 	private String organizerName;
 	
 	private String organizerContact;
 	
-	private String attendee;
+	private String buyer;
 
 	private String remarks;
 	
@@ -40,24 +46,37 @@ public class Invoice implements Serializable {
 	
 	private String termsAndConditions;
 	
-	private String declarations;
-	
-	private Double taxRate;
-	
-	private Double taxAmount;
-	
+
 	private Double discountAmount;
 	
-	private String event;
+	private String eventName;
+	
+	private String ticketNmae;
 	
 	private String venue;
 
-	public Long getRegistrationId() {
-		return registrationId;
+	public Long getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setRegistrationId(Long registrationId) {
-		this.registrationId = registrationId;
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getOrderId() {
@@ -68,6 +87,14 @@ public class Invoice implements Serializable {
 		this.orderId = orderId;
 	}
 
+	public Long getSuborderId() {
+		return suborderId;
+	}
+
+	public void setSuborderId(Long suborderId) {
+		this.suborderId = suborderId;
+	}
+
 	public Long getEventId() {
 		return eventId;
 	}
@@ -76,28 +103,12 @@ public class Invoice implements Serializable {
 		this.eventId = eventId;
 	}
 
-	public Date getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
-
 	public String getEventDate() {
 		return eventDate;
 	}
 
 	public void setEventDate(String eventDate) {
 		this.eventDate = eventDate;
-	}
-
-	public String getModeOfPayment() {
-		return modeOfPayment;
-	}
-
-	public void setModeOfPayment(String modeOfPayment) {
-		this.modeOfPayment = modeOfPayment;
 	}
 
 	public String getOrganizerName() {
@@ -116,12 +127,12 @@ public class Invoice implements Serializable {
 		this.organizerContact = organizerContact;
 	}
 
-	public String getAttendee() {
-		return attendee;
+	public String getBuyer() {
+		return buyer;
 	}
 
-	public void setAttendee(String attendee) {
-		this.attendee = attendee;
+	public void setBuyer(String buyer) {
+		this.buyer = buyer;
 	}
 
 	public String getRemarks() {
@@ -180,29 +191,6 @@ public class Invoice implements Serializable {
 		this.termsAndConditions = termsAndConditions;
 	}
 
-	public String getDeclarations() {
-		return declarations;
-	}
-
-	public void setDeclarations(String declarations) {
-		this.declarations = declarations;
-	}
-
-	public Double getTaxRate() {
-		return taxRate;
-	}
-
-	public void setTaxRate(Double taxRate) {
-		this.taxRate = taxRate;
-	}
-
-	public Double getTaxAmount() {
-		return taxAmount;
-	}
-
-	public void setTaxAmount(Double taxAmount) {
-		this.taxAmount = taxAmount;
-	}
 
 	public Double getDiscountAmount() {
 		return discountAmount;
@@ -212,12 +200,20 @@ public class Invoice implements Serializable {
 		this.discountAmount = discountAmount;
 	}
 
-	public String getEvent() {
-		return event;
+	public String getEventName() {
+		return eventName;
 	}
 
-	public void setEvent(String event) {
-		this.event = event;
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public String getTicketNmae() {
+		return ticketNmae;
+	}
+
+	public void setTicketNmae(String ticketNmae) {
+		this.ticketNmae = ticketNmae;
 	}
 
 	public String getVenue() {
@@ -227,7 +223,8 @@ public class Invoice implements Serializable {
 	public void setVenue(String venue) {
 		this.venue = venue;
 	}
-	
+
+
 	
 	 
 }
