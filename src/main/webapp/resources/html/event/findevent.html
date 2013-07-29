@@ -19,51 +19,30 @@
 			<ul class="nav ">
 					<li>Date</li>
 					<li ng-repeat="(key, value) in searchResults.eventDateMap">
-						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
-					<!-- <li><a href="#">Today <span>(2)</span></a></li>
-					<li><a href="#">Tomorrow <span>(2)</span></a></li>
-					<li><a href="#">This Week <span>(2)</span></a></li>
-					<li><a href="#">This Weekend <span>(2)</span></a></li>
-					<li><a href="#">Next Week <span>(11)</span></a></li>
-					<li><a href="#">Next Month <span>(41)</span></a></li> -->
 				</ul>
 				<ul class="nav ">
 					<li>Price</li>
 					<li ng-repeat="(key, value) in searchResults.eventTypeMap">
-						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
-				<!-- 	<li><a href="#">Free <span>(71)</span></a></li>
-					<li><a href="#">$ <span>(71)</span></a></li>
-					<li><a href="#">$$ <span>(71)</span></a></li>
-					<li><a href="#">$$$ <span>(71)</span></a></li> -->
 				</ul>
 
 				<ul class="nav ">
 					<li>Category</li>
 					<li ng-repeat="(key, value) in searchResults.subCategoryIdMap">
-						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
-					<!-- <li><a href="#">Classes <span>(71)</span></a></li>
-					<li><a href="#">Conferences <span>(71)</span></a></li>
-					<li><a href="#">Other Events <span>(71)</span></a></li>
-					<li><a href="#">Business <span>(71)</span></a></li>
-					<li><a href="#">Social Events <span>(71)</span></a></li>
-					<li><a href="#">Food/Wine <span>(71)</span></a></li>
-					<li><a href="#">Festivals <span>(71)</span></a></li>
-					<li><a href="#">Networking <span>(71)</span></a></li>
-					<li><a href="#">Sporting Events <span>(71)</span></a></li> -->
 				</ul>
 
 
 				<ul class="nav ">
 					<li>Location</li>
 					<li ng-repeat="(key, value) in searchResults.cityIdMap">
-						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
-					<!-- <li><a href="#">Bengaluru <span>(71)</span></a></li>
-					<li><a href="#">Bangalore City <span>(71)</span></a></li> -->
-				</ul>
+			   </ul>
 
 
 
@@ -73,8 +52,7 @@
 
 				<input class="input-xlarge" type="text" placeholder=".input-large "
 					value="Search for (e.g. music, networking)" ng-model="searchType"/> 
-				<!-- <input class="input-xlarge" type="text" placeholder=".input-large"
-					value="Enter a location" ng-model="search.location"/> -->
+				
 				<input ui-select2="cityselect2options" ng-model="byCity" ng-change="selectCity(byCity)" required />
 
 				<button type="button" class="btn btn-primary" ng-click="fetchResultsByFilterType(null)">Search</button>
