@@ -60,30 +60,16 @@ public class SearchController {
     }
     
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
-    public @ResponseBody List<EventSearchRecord> getDefaultResults() throws Exception {
-    	List<EventSearchRecord> srList = new ArrayList<EventSearchRecord>();
-    	//Need to add service code here to get search records and has to assign to srList variable.
-    	srList = searchService.getSearchRecords("title", 10,0);
-       	return srList;
+    public @ResponseBody SearchQueryResponse getDefaultResults() throws Exception {
+    	return searchService.getSearchQueryResponse(null, 10, 0);
     }
     
     
-    @RequestMapping(value = "/getEventsByNumberResults", method = RequestMethod.GET)
-    public @ResponseBody SearchQueryResponse getEventsByNumberResults() throws Exception {
-    	return searchService.getSearchQueryResponse("title", 10, 0);
-      }
-    
-    @RequestMapping(value = "/executeSearch/{searchType}/{cityId}", method = RequestMethod.GET)
-    public @ResponseBody List<EventSearchRecord> getSearchResultsByQuery(@PathVariable("searchType") String searchType,@PathVariable("cityId") Long cityId) throws Exception {
-    	String query = searchType + "," + cityId.toString();
-    	return searchService.getSearchRecords(query, 10, 0);
-      }
-    
     @RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{cityId}", method = RequestMethod.GET)
-    public @ResponseBody List<EventSearchRecord> getSearchResultsByFilterType(@PathVariable("filterType") String filterType,@PathVariable("searchType") String searchType,@PathVariable("cityId") Long cityId) throws Exception {
+    public @ResponseBody SearchQueryResponse getSearchResultsByFilterType(@PathVariable("filterType") String filterType,@PathVariable("searchType") String searchType,@PathVariable("cityId") Long cityId) throws Exception {
     	String query = filterType+","+searchType + "," + cityId.toString();
     	System.out.println("User entered query from the ui...:::" + query);
-    	return searchService.getSearchRecords(query, 10, 0);
+    	return searchService.getSearchQueryResponse(query, 10, 0);
       }
     
     

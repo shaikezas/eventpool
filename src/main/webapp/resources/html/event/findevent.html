@@ -18,7 +18,7 @@
 
 			<ul class="nav ">
 					<li>Date</li>
-					<li ng-repeat="(key, value) in eventsByNumberResults.eventDateMap">
+					<li ng-repeat="(key, value) in searchResults.eventDateMap">
 						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
 					<!-- <li><a href="#">Today <span>(2)</span></a></li>
@@ -30,7 +30,7 @@
 				</ul>
 				<ul class="nav ">
 					<li>Price</li>
-					<li ng-repeat="(key, value) in eventsByNumberResults.eventTypeMap">
+					<li ng-repeat="(key, value) in searchResults.eventTypeMap">
 						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
 				<!-- 	<li><a href="#">Free <span>(71)</span></a></li>
@@ -41,7 +41,7 @@
 
 				<ul class="nav ">
 					<li>Category</li>
-					<li ng-repeat="(key, value) in eventsByNumberResults.subCategoryIdMap">
+					<li ng-repeat="(key, value) in searchResults.subCategoryIdMap">
 						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
 					<!-- <li><a href="#">Classes <span>(71)</span></a></li>
@@ -58,7 +58,7 @@
 
 				<ul class="nav ">
 					<li>Location</li>
-					<li ng-repeat="(key, value) in eventsByNumberResults.cityIdMap">
+					<li ng-repeat="(key, value) in searchResults.cityIdMap">
 						<a href="#" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
 					</li>
 					<!-- <li><a href="#">Bengaluru <span>(71)</span></a></li>
@@ -85,7 +85,7 @@
 
 				<ul class="media-list">
 
-					<li class="media" ng-repeat="event in searchResults">
+					<li class="media" ng-repeat="event in searchResults.eventSearchRecords">
 					<a class="pull-left" href="#"> <img
 							class="media-object" data-src="holder.js/64x64" alt="64x64"
 							style="width: 64px; height: 64px;"

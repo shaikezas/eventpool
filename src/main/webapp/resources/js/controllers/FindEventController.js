@@ -1,7 +1,7 @@
 var FindEventController = function($scope, $http) {
 	
 	$scope.searchResults = {};
-	$scope.eventsByNumberResults = {};
+	
 	
     $scope.fetchSearchResults = function() {
     	$http.get('search/getDefaultResults').success(function(searchResults){
@@ -10,19 +10,6 @@ var FindEventController = function($scope, $http) {
         
       }
     
-    $scope.fetchEventsByNumberResults = function() {
-    	$http.get('search/getEventsByNumberResults').success(function(eventsByNumberResults){
-        	$scope.eventsByNumberResults = eventsByNumberResults;
-        });
-        
-      }
-    
-/*    $scope.executeSearch = function() {
-    	 	$http.get('search/executeSearch/'+$scope.searchType+'/'+$scope.cityId).success(function(searchResults){
-    		$scope.searchResults = searchResults;
-        });
-        
-      }*/
     $scope.fetchResultsByFilterType = function(key) {
     	
     	if(angular.isUndefined($scope.searchType) || $scope.searchType == null){
@@ -44,6 +31,6 @@ var FindEventController = function($scope, $http) {
        $scope.cityId = region.text.cityId;
         
     };
-    $scope.fetchEventsByNumberResults();
+    
     $scope.fetchSearchResults();
 }
