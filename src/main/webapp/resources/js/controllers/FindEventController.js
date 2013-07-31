@@ -8,7 +8,12 @@ var FindEventController = function($scope, $http) {
 	$scope.eventType = "type";
 	$scope.location = "location";
 	$scope.empty = "null";
-	$scope.query = "";
+	$scope.filterType = new Object();
+	$scope.filterType['cat']="null";
+	$scope.filterType['type']="null";
+	$scope.filterType['loc']="null";
+	$scope.filterType['date']="null";
+	$scope.filterText = "";
 		
 	
     $scope.fetchSearchResults = function() {
@@ -27,26 +32,42 @@ var FindEventController = function($scope, $http) {
     
     $scope.fetchResultsByFilterType = function(filterText,filterType) {
     	
-    	if(angular.isUndefined($scope.searchType) || $scope.searchType == null){
-    		$scope.searchType = null;
+    	if(angular.isUndefined($scope.searchText) || $scope.searchText == null){
+    		$scope.searchText = null;
     	}
     	if(angular.isUndefined($scope.cityId) || $scope.cityId == null){
     		$scope.loc = 0;
     	}
-    	
+    	/*$scope.filterType = "null";*/
     		if(filterType == 'category'){
-    			$scope.query = $scope.query + "cat:" + filterText;
+    			$scope.filterType['cat'] = "cat:" + filterText;
     			}
     		if(filterType == 'date'){
-    			$scope.query = $scope.query + "date:" + filterText;
+    			$scope.filterType['date'] = "date:" + filterText;
     			}
 			if(filterType == 'type'){
-				$scope.query = $scope.query + "type:" + filterText;
+				$scope.filterType['type'] = "type:" + filterText;
 				}
 			if(filterType == 'location'){
-				$scope.query = $scope.query + "loc:" + filterText;
+				$scope.filterType['loc'] = "loc:" + filterText;
 				}
-		  $http.get('search/fetchResultsByFilterType/'+$scope.query+'/'+$scope.searchType+'/'+$scope.loc).success(function(searchResults){
+			$scope.filterText = "";
+			if($scope.filterType['cat'] != 'null'){
+			$scope.filterText = $scope.filterText + $scope.filterType['cat'] + ",";
+			}
+			if($scope.filterType['date'] != 'null'){
+				$scope.filterText = $scope.filterText +  $scope.filterType['date'] + ",";
+				}
+			if($scope.filterType['loc'] != 'null'){
+				$scope.filterText = $scope.filterText + $scope.filterType['loc'] + ",";
+				}
+			if($scope.filterType['type'] != 'null'){
+				$scope.filterText = $scope.filterText + $scope.filterType['type'];
+				}
+			if($scope.filterText == ""){
+				$scope.filterText = "null";				
+			}
+			$http.get('search/fetchResultsByFilterType/'+$scope.filterText+'/'+$scope.searchText+'/'+$scope.loc).success(function(searchResults){
         		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
             	{ 
         			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
