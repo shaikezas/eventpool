@@ -64,7 +64,7 @@ var FindEventController = function($scope, $http) {
 			if($scope.filterType['type'] != 'null'){
 				$scope.filterText = $scope.filterText + $scope.filterType['type'];
 				}
-			if($scope.filterText == ""){
+			if($scope.filterText == "" || filterText == 'null' && filterType == 'null'){
 				$scope.filterText = "null";				
 			}
 			$http.get('search/fetchResultsByFilterType/'+$scope.filterText+'/'+$scope.searchText+'/'+$scope.loc).success(function(searchResults){
