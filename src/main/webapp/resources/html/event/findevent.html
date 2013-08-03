@@ -43,11 +43,11 @@
 			<div class="span10 contBox">
 
 				<input class="input-xlarge" type="text" placeholder=".input-large "
-					value="Search for (e.g. music, networking)" ng-model="searchType"/> 
+					value="Search for (e.g. music, networking)" ng-model="searchText"/> 
 				
 				<input ui-select2="cityselect2options" ng-model="byCity" ng-change="selectCity(byCity)" required />
 
-				<button type="button" class="btn btn-primary" ng-click="fetchResultsByFilterType(null)">Search</button>
+				<button type="button" class="btn btn-primary" ng-click="fetchResultsByFilterType(empty,empty)">Search</button>
 
 				<h3 class="media-heading">
 					Local Events <span> Near Bangalore </span>
@@ -55,7 +55,7 @@
 
 				<ul class="media-list">
 
-					<li class="media" ng-repeat="event in searchResults.eventSearchRecords">
+					<li class="media" ng-repeat="event in searchRecords">
 					<a class="pull-left" href="#"> <img
 							class="media-object" data-src="holder.js/64x64" alt="64x64"
 							style="width: 64px; height: 64px;"
