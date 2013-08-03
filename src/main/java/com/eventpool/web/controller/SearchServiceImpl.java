@@ -128,11 +128,13 @@ public class SearchServiceImpl implements SearchService {
 			searchQueryResponse.setEventTypeFilterItems(eventTypeFilterItems);
 		}
 		
+		
 		facetValues = response.getFacetField("eventType").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				if(facet.getCount()>0){
-					getFilterItem(facet.getCount(), facet.getName(), "eventType:"+facet.getName());
+					FilterItem filterItem = getFilterItem(facet.getCount(), facet.getName(), "eventType:"+facet.getName());
+					eventTypeFilterItems.add(filterItem);
 				}
 			}
 		}
@@ -153,7 +155,8 @@ public class SearchServiceImpl implements SearchService {
 					try {
 						cityName = cityMap.get(Integer.parseInt(facetName));
 						if(cityName!=null && facet.getCount()>0){
-							getFilterItem(facet.getCount(), cityName, "cityId:"+facetName);
+							FilterItem filterItem = getFilterItem(facet.getCount(), cityName, "cityId:"+facetName);
+							cityIdFilterItems.add(filterItem);
 						}
 					} catch (NumberFormatException e) {
 						logger.info("parsing error for city");
