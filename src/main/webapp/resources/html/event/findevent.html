@@ -19,22 +19,22 @@
 				<ul class="nav ">
 					<li>Date</li>
 					<li ng-repeat="filterItem in searchResults.eventDateFilterItems">
-						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li>Price</li>
 					<li ng-repeat="filterItem in searchResults.eventTypeFilterItems">
-						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li>Category</li>
 					<li ng-repeat="filterItem in searchResults.subCategoryFilterItems">
-						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li>Location</li>
 					<li ng-repeat="filterItem in searchResults.cityIdFilterItems">
-						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 					
 				</ul>

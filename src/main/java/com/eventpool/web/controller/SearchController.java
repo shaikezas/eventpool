@@ -8,6 +8,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,7 +61,8 @@ public class SearchController {
     }
     
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
-    public @ResponseBody SearchQueryResponse getDefaultResults() throws Exception {
+    public @ResponseBody SearchQueryResponse getDefaultResults(@RequestParam(value = "fq", defaultValue="") String fq) throws Exception {
+    	System.out.println("fq   "+fq);
     	return searchService.getSearchQueryResponse(null,null, 10, 0);
     }
     
