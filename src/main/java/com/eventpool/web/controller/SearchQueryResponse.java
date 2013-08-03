@@ -8,10 +8,10 @@ import java.util.Map;
 public class SearchQueryResponse {
 
 	List<EventSearchRecord> eventSearchRecords = new ArrayList<EventSearchRecord>();
-	Map<String,Long> subCategoryIdMap = new HashMap<String, Long>();
-	Map<String,Long> eventDateMap = new HashMap<String, Long>();
-	Map<String,Long> eventTypeMap = new HashMap<String, Long>();
-	Map<String,Long> cityIdMap = new HashMap<String, Long>();
+	List<FilterItem> subCategoryFilterItems = new ArrayList<FilterItem>();
+	List<FilterItem> eventDateFilterItems = new ArrayList<FilterItem>();
+	List<FilterItem> eventTypeFilterItems = new ArrayList<FilterItem>();
+	List<FilterItem> cityIdFilterItems = new ArrayList<FilterItem>();
 	
 	public List<EventSearchRecord> getEventSearchRecords() {
 		return eventSearchRecords;
@@ -19,29 +19,29 @@ public class SearchQueryResponse {
 	public void setEventSearchRecords(List<EventSearchRecord> eventSearchRecords) {
 		this.eventSearchRecords = eventSearchRecords;
 	}
-	public Map<String, Long> getSubCategoryIdMap() {
-		return subCategoryIdMap;
+	public List<FilterItem> getSubCategoryFilterItems() {
+		return subCategoryFilterItems;
 	}
-	public void setSubCategoryIdMap(Map<String, Long> subCategoryIdMap) {
-		this.subCategoryIdMap = subCategoryIdMap;
+	public void setSubCategoryFilterItems(List<FilterItem> subCategoryFilterItems) {
+		this.subCategoryFilterItems = subCategoryFilterItems;
 	}
-	public Map<String, Long> getEventDateMap() {
-		return eventDateMap;
+	public List<FilterItem> getEventDateFilterItems() {
+		return eventDateFilterItems;
 	}
-	public void setEventDateMap(Map<String, Long> eventDateMap) {
-		this.eventDateMap = eventDateMap;
+	public void setEventDateFilterItems(List<FilterItem> eventDateFilterItems) {
+		this.eventDateFilterItems = eventDateFilterItems;
 	}
-	public Map<String, Long> getEventTypeMap() {
-		return eventTypeMap;
+	public List<FilterItem> getEventTypeFilterItems() {
+		return eventTypeFilterItems;
 	}
-	public void setEventTypeMap(Map<String, Long> eventTypeMap) {
-		this.eventTypeMap = eventTypeMap;
+	public void setEventTypeFilterItems(List<FilterItem> eventTypeFilterItems) {
+		this.eventTypeFilterItems = eventTypeFilterItems;
 	}
-	public Map<String, Long> getCityIdMap() {
-		return cityIdMap;
+	public List<FilterItem> getCityIdFilterItems() {
+		return cityIdFilterItems;
 	}
-	public void setCityIdMap(Map<String, Long> cityIdMap) {
-		this.cityIdMap = cityIdMap;
+	public void setCityIdFilterItems(List<FilterItem> cityIdFilterItems) {
+		this.cityIdFilterItems = cityIdFilterItems;
 	}
 	
 }

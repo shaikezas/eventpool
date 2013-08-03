@@ -16,36 +16,28 @@
 		<div class="row-fluid">
 			<div class="span2 contBox">
 
-			<ul class="nav ">
+				<ul class="nav ">
 					<li>Date</li>
-					<li ng-repeat="(key, value) in searchResults.eventDateMap">
-						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+					<li ng-repeat="filterItem in searchResults.eventDateFilterItems">
+						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
-				</ul>
-				<ul class="nav ">
+
 					<li>Price</li>
-					<li ng-repeat="(key, value) in searchResults.eventTypeMap">
-						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+					<li ng-repeat="filterItem in searchResults.eventTypeFilterItems">
+						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
-				</ul>
 
-				<ul class="nav ">
 					<li>Category</li>
-					<li ng-repeat="(key, value) in searchResults.subCategoryIdMap">
-						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+					<li ng-repeat="filterItem in searchResults.subCategoryFilterItems">
+						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
-				</ul>
 
-
-				<ul class="nav ">
 					<li>Location</li>
-					<li ng-repeat="(key, value) in searchResults.cityIdMap">
-						<a href="" ng-click="fetchResultsByFilterType(key)">{{key}} <span>({{value}})</span></a>
+					<li ng-repeat="filterItem in searchResults.cityIdFilterItems">
+						<a href="">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
-			   </ul>
-
-
-
+					
+				</ul>
 
 			</div>
 			<div class="span10 contBox">

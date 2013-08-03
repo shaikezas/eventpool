@@ -1,6 +1,8 @@
 package com.eventpool.web.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -55,13 +57,13 @@ public class SearchServiceImpl implements SearchService {
 	
     public List<EventSearchRecord> getSearchRecords(String query,int rows,int start)
 			throws Exception {
-    	QueryResponse response = getSolrResponse(query, rows,start); 
+    	QueryResponse response = getSolrResponse(query,null, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
     	return searchResults;
 	}
 
 
-	private QueryResponse getSolrResponse(String query, int rows,int start)
+	private QueryResponse getSolrResponse(String query, String filterQuery,int rows,int start)
 			throws SolrServerException {
 		if(query==null || query.isEmpty()){
     		query = "*:*";
@@ -82,21 +84,27 @@ public class SearchServiceImpl implements SearchService {
 		solrQuery.addFacetField("cityId");
 		
 		solrQuery.setIncludeScore(true);
-		
+		//String fq="cityId:6453";
+		//solrQuery.setFilterQueries(fq);
 		logger.debug("RawQuery :" + query);
 		response = searchServer.solrServer.query(solrQuery);
 		return response;
 	}
 
 
-	public SearchQueryResponse getSearchQueryResponse(String query, int rows,int start)
+	public SearchQueryResponse getSearchQueryResponse(String query,String filterQuery, int rows,int start)
 			throws Exception {
-		QueryResponse response = getSolrResponse(query, rows,start); 
+		QueryResponse response = getSolrResponse(query,filterQuery, rows,start); 
 
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
 		
-		Map<String, Long> subCategoryIdMap = searchQueryResponse.getSubCategoryIdMap();
+		List<FilterItem> subCategoryFilterItems = searchQueryResponse.getSubCategoryFilterItems();
+		if(subCategoryFilterItems==null) {
+			subCategoryFilterItems = new ArrayList<FilterItem>();
+			searchQueryResponse.setSubCategoryFilterItems(subCategoryFilterItems);
+		}
+		
 		List<Count> facetValues = response.getFacetField("subCategoryId").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
@@ -104,86 +112,171 @@ public class SearchServiceImpl implements SearchService {
 				if(facet.getName()!=null){
 					CategoryNode node = categoryTree.getNode(Long.parseLong(facet.getName()));
 					if(node!=null && facet.getCount()>0){
-						subCategoryIdMap.put(node.getName(), facet.getCount());
+						String filterFacetQuery = "subCategoryId:"+node.getId();
+						FilterItem filterItem = getFilterItem(facet.getCount(), node.getName(),filterFacetQuery);
+						subCategoryFilterItems.add(filterItem);
 					}
 				}
 			}
 		}
 		
-		Map<String, Long> eventDateMap = searchQueryResponse.getEventDateMap();
-		facetValues = response.getFacetField("eventDate").getValues();
-		if(facetValues!=null && facetValues.size()>0){
-			for(Count facet:facetValues){
-				Date eventDate = sdf.parse(facet.getName());
-				int dateFilter = getDayFilter(eventDate);
-				eventDateMap.put("Today", 0L);
-				eventDateMap.put("Tommorrow", 0L);
-				eventDateMap.put("This Week", 0L);
-				eventDateMap.put("Next Week", 0L);
-				eventDateMap.put("This month", 0L);
-				
-				if(facet.getCount()>0){
-					if(dateFilter == TODAY){
-						long count = facet.getCount();
-						Long todayCount = eventDateMap.get("Today");
-						eventDateMap.put("Today", count+todayCount);
-					}else
-					if(dateFilter == TOMORROW){
-						long count = facet.getCount();
-						Long todayCount = eventDateMap.get("Tommorrow");
-						eventDateMap.put("Tommorrow", count+todayCount);
-					}else
-					if(dateFilter == CURRENT_WEEK){
-						long count = facet.getCount();
-						Long todayCount = eventDateMap.get("This Week");
-						eventDateMap.put("This Week", count+todayCount);
-					}else
-					if(dateFilter == NEXT_WEEK){
-						long count = facet.getCount();
-						Long todayCount = eventDateMap.get("Next Week");
-						eventDateMap.put("Next Week", count+todayCount);
-					}else
-					if(dateFilter == CURRENT_MONTH){
-						long count = facet.getCount();
-						Long todayCount = eventDateMap.get("This month");
-						eventDateMap.put("This month", count+todayCount);
-					}else{
-						long count = facet.getCount();
-						Long todayCount = eventDateMap.get("Rest");
-						if(todayCount==null)todayCount=0L;
-						eventDateMap.put("Rest", count+todayCount);
-					}
+		getDateFilters(response, searchQueryResponse);
 
-				}
-			}
+		List<FilterItem> eventTypeFilterItems = searchQueryResponse.getEventTypeFilterItems();
+		if(eventTypeFilterItems==null){
+			eventTypeFilterItems = new ArrayList<FilterItem>();
+			searchQueryResponse.setEventTypeFilterItems(eventTypeFilterItems);
 		}
 		
-		Map<String, Long> eventTypeMap = searchQueryResponse.getEventTypeMap();
 		facetValues = response.getFacetField("eventType").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				if(facet.getCount()>0){
-					eventTypeMap.put(facet.getName(), facet.getCount());
+					getFilterItem(facet.getCount(), facet.getName(), "eventType:"+facet.getName());
 				}
 			}
 		}
 		
 		Map<Integer, String> cityMap = entityUtilities.getCityMap();
-		Map<String, Long> cityIdMap = searchQueryResponse.getCityIdMap();
+		List<FilterItem> cityIdFilterItems = searchQueryResponse.getCityIdFilterItems();
+		if(cityIdFilterItems==null){
+			cityIdFilterItems = new ArrayList<FilterItem>();
+			searchQueryResponse.setCityIdFilterItems(cityIdFilterItems);
+		}
+		
 		facetValues = response.getFacetField("cityId").getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				String facetName = facet.getName();
 				String cityName = null;
-				if(cityIdMap!=null) {
-					cityName = cityMap.get(Integer.parseInt(facetName));
-				}
-				if(cityName!=null && facet.getCount()>0){
-					cityIdMap.put(cityName, facet.getCount());
+				if(cityMap!=null){
+					try {
+						cityName = cityMap.get(Integer.parseInt(facetName));
+						if(cityName!=null && facet.getCount()>0){
+							getFilterItem(facet.getCount(), cityName, "cityId:"+facetName);
+						}
+					} catch (NumberFormatException e) {
+						logger.info("parsing error for city");
+					}
 				}
 			}
 		}
 		return searchQueryResponse;
+	}
+
+
+	private void getDateFilters(QueryResponse response,
+			SearchQueryResponse searchQueryResponse) throws ParseException {
+		List<Count> facetValues;
+		List<FilterItem> eventDateFilterItems = searchQueryResponse.getEventDateFilterItems();
+		if(eventDateFilterItems==null){
+			eventDateFilterItems = new ArrayList<FilterItem>();
+			searchQueryResponse.setEventDateFilterItems(eventDateFilterItems);
+		}
+		
+		facetValues = response.getFacetField("eventDate").getValues();
+		long todayCount =0L;
+		long tomorrowCount=0L;
+		long currentWeekCount=0L;
+		long nextWeekCount=0L;
+		long currentMonthCount=0L;
+		long otherDatesCount=0L;
+		if(facetValues!=null && facetValues.size()>0){
+			for(Count facet:facetValues){
+				Date eventDate = sdf.parse(facet.getName());
+				int dateFilter = getDayFilter(eventDate);
+				if(facet.getCount()>0){
+					if(dateFilter == TODAY){
+						long count = facet.getCount();
+						todayCount = count + todayCount;
+					}else
+					if(dateFilter == TOMORROW){
+						long count = facet.getCount();
+						tomorrowCount = count + tomorrowCount;
+					}else
+					if(dateFilter == CURRENT_WEEK){
+						long count = facet.getCount();
+						currentWeekCount = currentWeekCount + count;
+					}else
+					if(dateFilter == NEXT_WEEK){
+						long count = facet.getCount();
+						nextWeekCount = nextWeekCount + count;
+					}else
+					if(dateFilter == CURRENT_MONTH){
+						long count = facet.getCount();
+						currentMonthCount = currentMonthCount +count;
+					}else{
+						long count = facet.getCount();
+						otherDatesCount = otherDatesCount +count;
+					}
+
+				}
+			}
+		}
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		Date date = cal.getTime();
+		String dateFormat = sdf.format(date);
+		FilterItem filterItem = getFilterItem(todayCount,"Today", "eventDate:"+dateFormat);
+		eventDateFilterItems.add(filterItem);
+		
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+		date = cal.getTime();
+		dateFormat = sdf.format(date);
+		filterItem = getFilterItem(tomorrowCount,"Tommorrow", "eventDate:"+dateFormat);
+		eventDateFilterItems.add(filterItem);
+
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_MONTH, 0);
+		date = cal.getTime();
+		dateFormat = sdf.format(date);
+		
+		int dayOftheWeek = cal.get(Calendar.DAY_OF_WEEK);
+		int i = Calendar.SATURDAY - dayOftheWeek;
+		
+		cal.add(Calendar.DAY_OF_MONTH, i+1);
+		date = cal.getTime();
+		String endDateFormat = sdf.format(date);
+
+		filterItem = getFilterItem(currentWeekCount,"This Week", "eventDate:["+dateFormat+" TO "+endDateFormat+"]");
+		eventDateFilterItems.add(filterItem);
+
+	
+		cal.setTime(new Date());
+		cal.add(Calendar.WEEK_OF_MONTH, 1);
+		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+		date = cal.getTime();
+		dateFormat = sdf.format(date);
+
+		cal.setTime(new Date());
+		cal.add(Calendar.WEEK_OF_MONTH, 2);
+		cal.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+
+		date = cal.getTime();
+		endDateFormat = sdf.format(date);
+
+		filterItem = getFilterItem(nextWeekCount,"Next Week", "eventDate:["+dateFormat+" TO "+endDateFormat+"]");
+		eventDateFilterItems.add(filterItem);
+
+		cal.setTime(new Date());
+		cal.add(Calendar.WEEK_OF_MONTH, 2);
+		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+		date = cal.getTime();
+		dateFormat = sdf.format(date);
+		filterItem = getFilterItem(otherDatesCount,"Other Dates", "eventDate:["+dateFormat+" TO *]");
+		eventDateFilterItems.add(filterItem);
+	}
+
+
+	private FilterItem getFilterItem(Long count, String  name,
+			String filterQuery) {
+		FilterItem filterItem = new FilterItem();
+		filterItem.setCount(count);
+		filterItem.setName(name);
+		filterItem.setQuery(filterQuery);
+		return filterItem;
 	}
 
 

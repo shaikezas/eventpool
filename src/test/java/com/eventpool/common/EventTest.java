@@ -520,7 +520,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testSearchService() throws Exception{
-    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("title", 10, 0);
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("title", null,10, 0);
     	log.info(searchQueryResponse+" size");
     }
     

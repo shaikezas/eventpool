@@ -165,11 +165,11 @@ public class EventController {
         MyEventForm form  = null;
         String sold = "";
         for(EventDTO dto : eventDTOs){
-       	 form =  convertToMyEventForm(dto);
-       	 sold = ticketInventoryService.getAggregateTicketInventoryByEvent(dto.getId());
-       	 form.setSold(sold);
-       	 forms.add(form);
-        }
+	       	 form =  convertToMyEventForm(dto);
+	       	 sold = ticketInventoryService.getAggregateTicketInventoryByEvent(dto.getId());
+	       	 form.setSold(sold);
+	       	 forms.add(form);
+	    }
          
          return forms;
         
@@ -221,7 +221,7 @@ public class EventController {
     	EventForm form = new EventForm();
     	EventDTO eventDTO = eventService.getEventById(eventId);
     	mapper.mapEventForm(eventDTO, form);
-    	 	return form;
+    	return form;
     }
     
     @RequestMapping(value="/url/{eventurl}", method = RequestMethod.GET)

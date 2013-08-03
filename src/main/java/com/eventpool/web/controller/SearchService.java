@@ -10,6 +10,6 @@ public interface SearchService {
 
 	public List<EventSearchRecord> getSearchRecords(String query,int rows,int start) throws Exception;
 	
-	public SearchQueryResponse getSearchQueryResponse(String query,int rows,int start) throws Exception;
+	public SearchQueryResponse getSearchQueryResponse(String query,String filterQuery,int rows,int start) throws Exception;
   
 }

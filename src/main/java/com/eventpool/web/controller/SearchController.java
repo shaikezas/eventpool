@@ -61,7 +61,7 @@ public class SearchController {
     
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
     public @ResponseBody SearchQueryResponse getDefaultResults() throws Exception {
-    	return searchService.getSearchQueryResponse(null, 10, 0);
+    	return searchService.getSearchQueryResponse(null,null, 10, 0);
     }
     
     
@@ -69,7 +69,7 @@ public class SearchController {
     public @ResponseBody SearchQueryResponse getSearchResultsByFilterType(@PathVariable("filterType") String filterType,@PathVariable("searchType") String searchType,@PathVariable("cityId") Long cityId) throws Exception {
     	String query = filterType+","+searchType + "," + cityId.toString();
     	System.out.println("User entered query from the ui...:::" + query);
-    	return searchService.getSearchQueryResponse(query, 10, 0);
+    	return searchService.getSearchQueryResponse(searchType, filterType,10, 0);
       }
     
     
