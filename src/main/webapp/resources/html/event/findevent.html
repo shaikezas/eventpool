@@ -18,6 +18,8 @@
 
 				<ul class="nav ">
 					<li>Date</li>
+					<li><a href="#/findevent?fq=testing1">test1</a></li>
+					<li><a href="#/findevent?fq=testing2">test2</a></li>
 					<li ng-repeat="filterItem in searchResults.eventDateFilterItems">
 						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>

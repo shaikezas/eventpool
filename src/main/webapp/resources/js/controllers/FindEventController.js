@@ -1,4 +1,4 @@
-var FindEventController = function($scope, $http, $location) {
+var FindEventController = function($scope, $http,$routeParams, $location) {
 	
 	$scope.searchResults = {};
 	$scope.searchRecords = {};
@@ -17,7 +17,8 @@ var FindEventController = function($scope, $http, $location) {
 		
 	
     $scope.fetchSearchResults = function() {
-    	$http.get('search/getDefaultResults').success(function(searchResults){
+    	alert("foo-"+$routeParams.fq);
+    	$http.get('search/getDefaultResults?fq='+$routeParams.fq).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
     			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
