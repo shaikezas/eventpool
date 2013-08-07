@@ -1,6 +1,6 @@
 var MyTicketsController = function($scope, $http) {
 	$scope.header = "mytickets";
-	
+	$scope.invoice = {};
 	$scope.myTicketsList = {};
 	
     $scope.fetchMyTicketsList = function() {
@@ -9,6 +9,21 @@ var MyTicketsController = function($scope, $http) {
         });
         
       }
+    
+    $scope.openPrintTicket = function(suborderId){
+    	$scope.shouldBeOpen = true;
+    	$http.get('event/myevent/print/'+suborderId).success(function(data){
+    		$scope.invoice = data;
+        });
+    }
+    $scope.closePrintTicket = function () {
+        $scope.shouldBeOpen = false;
+        $scope.invoice = {};
+      };
+      $scope.opts = {
+    		    backdropFade: true,
+    		    dialogFade:true,
+    		  };
     $scope.fetchMyTicketsList();
 	
 }

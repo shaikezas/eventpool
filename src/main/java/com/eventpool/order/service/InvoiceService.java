@@ -145,6 +145,12 @@ public class InvoiceService {
     	return dto;
     }
     
+    
+    public Invoice printInvoice(Long suborderId){
+    	Invoice invoice = invoiceRepository.findBySuborderId(suborderId);
+    	return invoice;
+    }
+    
     public Boolean sendInvoiceToMail(Long suborderId) throws FileNotFoundException, IOException, DocumentException, Exception{
     	Invoice invoice = invoiceRepository.findBySuborderId(suborderId);
     	return sendInvoice(invoice);
