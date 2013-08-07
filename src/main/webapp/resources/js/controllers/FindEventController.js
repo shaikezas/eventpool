@@ -17,7 +17,6 @@ var FindEventController = function($scope, $http,$routeParams, $location) {
 		
 	
     $scope.fetchSearchResults = function() {
-    	alert("foo-"+$routeParams.fq);
     	$http.get('search/getDefaultResults?fq='+$routeParams.fq).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 

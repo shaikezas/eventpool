@@ -63,7 +63,7 @@ public class SearchController {
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
     public @ResponseBody SearchQueryResponse getDefaultResults(@RequestParam(value = "fq", defaultValue="") String fq) throws Exception {
     	System.out.println("fq   "+fq);
-    	return searchService.getSearchQueryResponse(null,null, 10, 0);
+    	return searchService.getSearchQueryResponse(null,fq, 10, 0);
     }
     
     

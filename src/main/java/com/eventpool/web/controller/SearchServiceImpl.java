@@ -85,7 +85,9 @@ public class SearchServiceImpl implements SearchService {
 		
 		solrQuery.setIncludeScore(true);
 		//String fq="cityId:6453";
-		//solrQuery.setFilterQueries(fq);
+		if(filterQuery.contains(":")){
+			solrQuery.setFilterQueries(filterQuery);
+		}
 		logger.debug("RawQuery :" + query);
 		response = searchServer.solrServer.query(solrQuery);
 		return response;
@@ -243,7 +245,7 @@ public class SearchServiceImpl implements SearchService {
 		date = cal.getTime();
 		String endDateFormat = sdf.format(date);
 
-		filterItem = getFilterItem(currentWeekCount,"This Week", "eventDate:["+dateFormat+" TO "+endDateFormat+"]");
+		filterItem = getFilterItem(currentWeekCount,"This Week", "eventDate:("+dateFormat+" TO "+endDateFormat+")");
 		eventDateFilterItems.add(filterItem);
 
 	
@@ -260,7 +262,7 @@ public class SearchServiceImpl implements SearchService {
 		date = cal.getTime();
 		endDateFormat = sdf.format(date);
 
-		filterItem = getFilterItem(nextWeekCount,"Next Week", "eventDate:["+dateFormat+" TO "+endDateFormat+"]");
+		filterItem = getFilterItem(nextWeekCount,"Next Week", "eventDate:("+dateFormat+" TO "+endDateFormat+")");
 		eventDateFilterItems.add(filterItem);
 
 		cal.setTime(new Date());
@@ -268,7 +270,7 @@ public class SearchServiceImpl implements SearchService {
 		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
 		date = cal.getTime();
 		dateFormat = sdf.format(date);
-		filterItem = getFilterItem(otherDatesCount,"Other Dates", "eventDate:["+dateFormat+" TO *]");
+		filterItem = getFilterItem(otherDatesCount,"Other Dates", "eventDate:("+dateFormat+" TO *)");
 		eventDateFilterItems.add(filterItem);
 	}
 
