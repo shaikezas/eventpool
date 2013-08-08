@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
+import com.eventpool.common.dto.InvoiceDTO;
 import com.eventpool.common.dto.Region;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
@@ -41,6 +42,7 @@ import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.event.service.impl.TicketAttendeeDTO;
 import com.eventpool.event.service.impl.TicketBuyerDTO;
+import com.eventpool.order.service.InvoiceService;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.UserService;
@@ -71,6 +73,9 @@ public class EventController {
     
     @Resource
     EventSettingsService infoService;
+    
+    @Resource
+    InvoiceService invoiceService;
 
     @Resource
     private TicketInventoryService ticketInventoryService;
@@ -153,7 +158,6 @@ public class EventController {
          }
          
          
-         
          return forms;
     }
     
@@ -202,6 +206,12 @@ public class EventController {
         eventService.publishEvent(eventId, true);
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully published event");
     }
+    
+    @RequestMapping(value = "/myevent/print/{suborderid}", method = RequestMethod.GET)
+    public @ResponseBody InvoiceDTO printEvent(@PathVariable("suborderid") Long suborderId) throws Exception {
+    	return invoiceService.viewInvoice(suborderId);
+    }
+
 
     @RequestMapping(value = "/myevent/removeAllEvents", method = RequestMethod.DELETE)
     public @ResponseBody void removeAllEvents() {
@@ -449,8 +459,6 @@ public class EventController {
 		
 		
 	} 
-    
-    
 
 }
 
