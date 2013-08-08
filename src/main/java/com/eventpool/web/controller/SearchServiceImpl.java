@@ -121,7 +121,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		
 		QueryResponse response = getSolrResponse(query,fq, rows,start); 
-		Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
+		
 
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
@@ -146,6 +146,7 @@ public class SearchServiceImpl implements SearchService {
 								subcategoryFilter = subcategoryFilter.replace("(", "").replace(")", "");
 								subcategoryFilter = "("+subcategoryFilter + " OR " + node.getId()+")";
 							}else{
+								subcategoryFilter = subcategoryFilter.replace("(", "").replace(")", "");
 								subcategoryFilter = subcategoryFilter.replace(node.getId().toString(), "");
 								if(subcategoryFilter.startsWith(" OR ")){
 									subcategoryFilter = subcategoryFilter.substring(4);
@@ -153,11 +154,16 @@ public class SearchServiceImpl implements SearchService {
 								if(subcategoryFilter.endsWith(" OR ")){
 									subcategoryFilter = subcategoryFilter.substring(0,subcategoryFilter.length()-5);
 								}
-
+								if(subcategoryFilter!=null && !subcategoryFilter.isEmpty()){
+									subcategoryFilter = "("+subcategoryFilter + ")";
+								}else{
+									subcategoryFilter = null;
+								}
 							}
 						}else{
 							subcategoryFilter = node.getId().toString();
 						}
+						Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
 						String filterFacetQuery = "subCategoryId="+subcategoryFilter;
 						newFilterMap.put("subCategoryId", subcategoryFilter);
 						FilterItem filterItem = getFilterItem(facet.getCount(), node.getName(),filterFacetQuery,newFilterMap);
@@ -191,6 +197,7 @@ public class SearchServiceImpl implements SearchService {
 						eventTypeFilter = facet.getName();
 					}
 					String filterFacetQuery = "eventType="+eventTypeFilter;
+					Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
 					newFilterMap.put("eventType", eventTypeFilter);
 					FilterItem filterItem = getFilterItem(facet.getCount(), facet.getName(), filterFacetQuery,newFilterMap);
 					eventTypeFilterItems.add(filterItem);
@@ -225,7 +232,7 @@ public class SearchServiceImpl implements SearchService {
 								cityIdFilter = facetName;
 							}
 							String filterFacetQuery = "cityId="+cityIdFilter;
-
+							Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
 							newFilterMap.put("cityId", cityIdFilter);		
 							FilterItem filterItem = getFilterItem(facet.getCount(), cityName,filterFacetQuery,newFilterMap);
 							cityIdFilterItems.add(filterItem);
@@ -431,8 +438,14 @@ public class SearchServiceImpl implements SearchService {
 	    		filterQuery=filterQuery+"&eventDate="+fq;
 	    	}
 		}
-		if(filterQuery!=null && !filterQuery.isEmpty() && filterQuery.startsWith("&")){
+		if(filterQuery!=null && !filterQuery.isEmpty() && filterQuery.startsWith("&") && filterQuery.length()>1){
 			filterQuery = filterQuery.substring(1);
+		}
+		if(filterQuery!=null && !filterQuery.isEmpty() && filterQuery.endsWith("&") && filterQuery.length()>1){
+			filterQuery = filterQuery.substring(0,filterQuery.length()-1);;
+		}
+		if(filterQuery!=null && !filterQuery.isEmpty() && filterQuery.equals("&")){
+			filterQuery = "";
 		}
 		filterItem.setQuery(filterQuery);
 		return filterItem;
