@@ -145,6 +145,15 @@ public class SearchServiceImpl implements SearchService {
 							if(!subcategoryFilter.contains(node.getId().toString())){
 								subcategoryFilter = subcategoryFilter.replace("(", "").replace(")", "");
 								subcategoryFilter = "("+subcategoryFilter + " OR " + node.getId()+")";
+							}else{
+								subcategoryFilter = subcategoryFilter.replace(node.getId().toString(), "");
+								if(subcategoryFilter.startsWith(" OR ")){
+									subcategoryFilter = subcategoryFilter.substring(4);
+								}
+								if(subcategoryFilter.endsWith(" OR ")){
+									subcategoryFilter = subcategoryFilter.substring(0,subcategoryFilter.length()-5);
+								}
+
 							}
 						}else{
 							subcategoryFilter = node.getId().toString();
@@ -407,18 +416,18 @@ public class SearchServiceImpl implements SearchService {
 		filterQuery = "";
 		for(String key:filterMap.keySet()){
 			String fq = filterMap.get(key);
-	    	if(fq!=null && key.equalsIgnoreCase("subCategoryId")){
+	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("subCategoryId")){
 	    		filterQuery=filterQuery+"&subCategoryId="+fq;
 	    	}
-	    	if(fq!=null && key.equalsIgnoreCase("cityId")){
+	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("cityId")){
 	    		filterQuery=filterQuery+"&cityId="+fq;
 	    	}
 
-	    	if(fq!=null && key.equalsIgnoreCase("eventType")){
+	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("eventType")){
 	    		filterQuery=filterQuery+"&eventType="+fq;
 	    	}
 
-	    	if(fq!=null && key.equalsIgnoreCase("eventDate")){
+	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("eventDate")){
 	    		filterQuery=filterQuery+"&eventDate="+fq;
 	    	}
 		}
