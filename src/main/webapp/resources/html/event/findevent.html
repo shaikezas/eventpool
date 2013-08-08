@@ -18,25 +18,23 @@
 
 				<ul class="nav ">
 					<li>Date</li>
-					<li><a href="#/findevent?fq=testing1">test1</a></li>
-					<li><a href="#/findevent?fq=testing2">test2</a></li>
 					<li ng-repeat="filterItem in searchResults.eventDateFilterItems">
-						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li>Price</li>
 					<li ng-repeat="filterItem in searchResults.eventTypeFilterItems">
-						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li>Category</li>
 					<li ng-repeat="filterItem in searchResults.subCategoryFilterItems">
-						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li>Location</li>
 					<li ng-repeat="filterItem in searchResults.cityIdFilterItems">
-						<a href="#/findevent?fq={{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 					
 				</ul>

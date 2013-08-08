@@ -17,7 +17,8 @@ var FindEventController = function($scope, $http,$routeParams, $location) {
 		
 	
     $scope.fetchSearchResults = function() {
-    	$http.get('search/getDefaultResults?fq='+$routeParams.fq).success(function(searchResults){
+    	alert("foo-"+JSON.stringify($routeParams).replace('{','').replace('}','').replace(',','&').replace(':','=')); 
+    	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
     			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");

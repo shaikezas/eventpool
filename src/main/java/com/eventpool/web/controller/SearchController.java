@@ -1,6 +1,7 @@
 package com.eventpool.web.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -9,12 +10,15 @@ import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.Region;
@@ -32,6 +36,9 @@ public class SearchController {
     
     @Resource
     private SearchService searchService;
+    
+    @Autowired
+    private HttpServletRequest context;
     
     TreeMap<String, Region> citySearch = null;
 	
@@ -61,18 +68,55 @@ public class SearchController {
     }
     
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
-    public @ResponseBody SearchQueryResponse getDefaultResults(@RequestParam(value = "fq", defaultValue="") String fq) throws Exception {
-    	System.out.println("fq   "+fq);
-    	return searchService.getSearchQueryResponse(null,fq, 10, 0);
+    public @ResponseBody SearchQueryResponse getDefaultResults(HttpServletRequest request
+    		
+    		) throws Exception {
+    	String subCategoryId = request.getParameter("subCategoryId");
+    	String cityId = request.getParameter("cityId");
+    	String eventType = request.getParameter("eventType");
+    	String eventDate = request.getParameter("eventDate");
+    	String fq = null;
+    	
+    	Map<String,String> filterMap = new HashMap<String, String>();
+    	subCategoryId = checkIfUndefined(subCategoryId);
+    	if(subCategoryId!=null && !subCategoryId.isEmpty()){
+    		filterMap.put("subCategoryId", subCategoryId);
+    	}
+
+    	cityId = checkIfUndefined(cityId);
+    	if(cityId!=null && !cityId.isEmpty()){
+    		filterMap.put("cityId", cityId);
+    	}
+
+    	eventType = checkIfUndefined(eventType);
+    	if(eventType!=null && !eventType.isEmpty()){
+    		filterMap.put("eventType", eventType);
+    	}
+
+    	eventDate = checkIfUndefined(eventDate);
+    	if(eventDate!=null && !eventDate.isEmpty()){
+    		filterMap.put("eventDate", eventDate);
+    	}
+
+    	String q = request.getParameter("q");
+    	q = checkIfUndefined(q);
+		return searchService.getSearchQueryResponse(q,filterMap, 10, 0);
     }
     
     
-    @RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{loc}", method = RequestMethod.GET)
+    private String checkIfUndefined(String q) {
+    	if(q!=null && !q.isEmpty() && q.equalsIgnoreCase("undefined")){
+    		return null;
+    	}
+    	return q;
+	}
+
+	@RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{loc}", method = RequestMethod.GET)
     public @ResponseBody SearchQueryResponse getSearchResultsByFilterType(@PathVariable("filterType") String filterType,@PathVariable("searchType") String searchType,@PathVariable("loc") String loc) throws Exception {
     	String query = filterType+","+searchType + "," + loc;
     	
     	System.out.println("User entered query from the ui...:::" + query);
-    	return searchService.getSearchQueryResponse(searchType, filterType,10, 0);
+    	return searchService.getSearchQueryResponse(searchType, null,10, 0);
       }
     
     

@@ -12,6 +12,7 @@ public class SearchQueryResponse {
 	List<FilterItem> eventDateFilterItems = new ArrayList<FilterItem>();
 	List<FilterItem> eventTypeFilterItems = new ArrayList<FilterItem>();
 	List<FilterItem> cityIdFilterItems = new ArrayList<FilterItem>();
+	String query;
 	
 	public List<EventSearchRecord> getEventSearchRecords() {
 		return eventSearchRecords;
@@ -42,6 +43,12 @@ public class SearchQueryResponse {
 	}
 	public void setCityIdFilterItems(List<FilterItem> cityIdFilterItems) {
 		this.cityIdFilterItems = cityIdFilterItems;
+	}
+	public String getQuery() {
+		return query;
+	}
+	public void setQuery(String query) {
+		this.query = query;
 	}
 	
 }
