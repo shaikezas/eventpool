@@ -239,21 +239,21 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 
-	private String removeOldFilter(String oldFilter, String subcategoryFilter) {
-		subcategoryFilter = subcategoryFilter.replace("(", "").replace(")", "");
-		subcategoryFilter = subcategoryFilter.replace(oldFilter, "");
-		if(subcategoryFilter.startsWith(" OR ")){
-			subcategoryFilter = subcategoryFilter.substring(4);
+	private String removeOldFilter(String oldFilter, String filter) {
+		filter = filter.replace("(", "").replace(")", "");
+		filter = filter.replace(oldFilter, "");
+		if(filter.startsWith(" OR ")){
+			filter = filter.substring(4);
 		}
-		if(subcategoryFilter.endsWith(" OR ")){
-			subcategoryFilter = subcategoryFilter.substring(0,subcategoryFilter.length()-5);
+		if(filter.endsWith(" OR ")){
+			filter = filter.substring(0,filter.length()-5);
 		}
-		if(subcategoryFilter!=null && !subcategoryFilter.isEmpty()){
-			subcategoryFilter = "("+subcategoryFilter + ")";
+		if(filter!=null && !filter.isEmpty()){
+			filter = "("+filter + ")";
 		}else{
-			subcategoryFilter = null;
+			filter = null;
 		}
-		return subcategoryFilter;
+		return filter;
 	}
 
 
@@ -421,14 +421,14 @@ public class SearchServiceImpl implements SearchService {
 
 		eventDateFilter = listOfFilters.get("eventDate");
 		if(eventDateFilter!=null){
-			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
+			if(!eventDateFilter.contains(dateFormat+" TO *")){
 				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO "+endDateFormat+")";
+				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO *)";
 			}else{
-				eventDateFilter = removeOldFilter(dateFormat+" TO "+endDateFormat, eventDateFilter);
+				eventDateFilter = removeOldFilter(dateFormat+" TO *", eventDateFilter);
 			}
 		}else{
-			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
+			eventDateFilter = "("+dateFormat+" TO *)";
 		}
 		filterFacetQuery = "eventDate="+eventDateFilter;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
