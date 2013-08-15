@@ -22,7 +22,7 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 
 	@Modifying
 	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN' WHERE event.eventUrl = ?1")
-	public void publish(String id,boolean publish);
+	public void publish(String eventUrl,boolean publish);
 
 	@Query(value="SELECT event FROM Event event WHERE event.eventUrl =?1")
 	public Event getByEventUrl(String eventUrl);
@@ -38,6 +38,5 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	
 	@Query(value="SELECT event FROM Event event WHERE event.eventUrl=?1")
 	public Event findEventUrl(String eventUrl);
-
 
 }

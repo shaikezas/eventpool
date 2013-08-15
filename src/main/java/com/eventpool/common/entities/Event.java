@@ -116,6 +116,8 @@ public class Event extends AuditableIdEntity {
 	@Column(name = "EVENT_URL")
 	private String eventUrl;
 
+	@Column(name="CLASSIFICAION_TYPE")
+	private Integer classificationType;
 	
 	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="event")
 	private EventSettings eventSettings; 
@@ -347,6 +349,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
+	}
+
+	public Integer getClassificationType() {
+		return classificationType;
+	}
+
+	public void setClassificationType(Integer classificationType) {
+		this.classificationType = classificationType;
 	}
 
 }

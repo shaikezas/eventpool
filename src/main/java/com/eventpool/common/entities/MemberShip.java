@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MEMBERSHIP")
@@ -24,14 +23,17 @@ public class MemberShip extends AbstractEntity{
 	@Column(name="EXP_DAYS")
 	private Integer expDays;
 
-	@Column(name="NO_OF_EVENTS")
-	private Integer noOfEvents;
+	@Column(name="TOTAL_POINTS")
+	private Integer totalPoints;
 
 	@Column(name = "SETTINGS")
 	private String settings;
 
 	@Column(name="FEE")
 	private Double fee;
+
+	@Column(name="POINTS_PER_EVENT")
+	private Integer pointsPerEvent;
 
 	
 	public Integer getId() {
@@ -58,14 +60,6 @@ public class MemberShip extends AbstractEntity{
 		this.expDays = expDays;
 	}
 
-	public Integer getNoOfEvents() {
-		return noOfEvents;
-	}
-
-	public void setNoOfEvents(Integer noOfEvents) {
-		this.noOfEvents = noOfEvents;
-	}
-
 	public String getSettings() {
 		return settings;
 	}
@@ -80,6 +74,22 @@ public class MemberShip extends AbstractEntity{
 
 	public void setFee(Double fee) {
 		this.fee = fee;
+	}
+
+	public Integer getTotalPoints() {
+		return totalPoints;
+	}
+
+	public void setTotalPoints(Integer totalPoints) {
+		this.totalPoints = totalPoints;
+	}
+
+	public Integer getPointsPerEvent() {
+		return pointsPerEvent;
+	}
+
+	public void setPointsPerEvent(Integer pointsPerEvent) {
+		this.pointsPerEvent = pointsPerEvent;
 	}
 
 	

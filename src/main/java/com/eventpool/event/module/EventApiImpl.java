@@ -1,6 +1,7 @@
 package com.eventpool.event.module;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,18 +19,22 @@ import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.EventSettings;
+import com.eventpool.common.entities.MemberShip;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketInventory;
+import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.EventSettingsRepository;
+import com.eventpool.common.repositories.MemberShipRepository;
 import com.eventpool.common.repositories.SuborderRepository;
 import com.eventpool.common.repositories.TicketInventoryRepository;
 import com.eventpool.common.repositories.TicketRepository;
+import com.eventpool.common.repositories.UserRepository;
 import com.eventpool.common.type.EventStatus;
 
 
@@ -58,7 +63,13 @@ public class EventApiImpl implements EventApi{
     
     @Resource
     TicketRepository ticketRepository;
-    
+
+    @Resource
+    UserRepository userRepository;
+
+    @Resource
+    MemberShipRepository memberShipRepository;
+
     @Transactional(rollbackFor=RuntimeException.class)
     public EventDTO saveEventDTO(EventDTO eventDTO){
     	if(eventDTO==null) throw new IllegalArgumentException("Input event DTO is null");
@@ -252,6 +263,24 @@ public class EventApiImpl implements EventApi{
     	TicketDTO ticketDTO = new TicketDTO();
     	eventpoolMapper.mapTicketDTO(ticket, ticketDTO);
     	return ticketDTO;
+	}
+
+	@Transactional
+	public void updateEventClassification(Long eventId,Integer classificationType) throws Exception {
+		Event event = eventRepository.findOne(eventId);
+		Long userId = event.getCreatedBy();
+		User user = userRepository.findOne(userId);
+		Integer totalPoints = user.getTotalPoints();
+		MemberShip classification = memberShipRepository.findOne(classificationType);
+		Integer pointsPerEvent = classification.getPointsPerEvent();
+		if(pointsPerEvent>totalPoints || user.getMemberShipExp().compareTo(new Date())>=0){
+			throw new Exception("Event can't be calssified, point are less or membership expired");
+		}else{
+			event.setClassificationType(classificationType);
+			eventRepository.save(event);
+			user.setTotalPoints(totalPoints-pointsPerEvent);
+			userRepository.save(user);
+		}
 	}
 
 }

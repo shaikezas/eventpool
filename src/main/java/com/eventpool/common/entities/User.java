@@ -136,6 +136,10 @@ public class User extends IdEntity{
 	@Column(name = "MEMBERSHIP_EXP")
 	private Date memberShipExp;
 
+	@Column(name = "TOTAL_POINTS")
+	private Integer totalPoints;
+
+	
 	@ManyToOne
 	@JoinColumn(name = "MEMBERSHIP_TYPE", insertable=false,updatable=false)
 	private MemberShip memberShip;
@@ -365,6 +369,14 @@ public class User extends IdEntity{
 
 		public void setMemberShip(MemberShip memberShip) {
 			this.memberShip = memberShip;
+		}
+
+		public Integer getTotalPoints() {
+			return totalPoints;
+		}
+
+		public void setTotalPoints(Integer totalPoints) {
+			this.totalPoints = totalPoints;
 		}
 		  
 		  

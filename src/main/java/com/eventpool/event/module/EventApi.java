@@ -44,4 +44,6 @@ public interface EventApi {
 	public List<TicketInventoryDTO> getTicketInventoryDetails(Long eventId);
 	
 	public List<SuborderDTO> getEventOrderedTickets(Long eventId);
+	
+	public void updateEventClassification(Long eventId,Integer classificationType) throws Exception;
 }

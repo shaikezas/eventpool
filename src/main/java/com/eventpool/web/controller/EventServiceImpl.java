@@ -106,4 +106,10 @@ public class EventServiceImpl implements EventService {
 		
 		return eventApi.getTicketById(ticketId);
 	}
+
+	public void updateEventClassification(Long eventId,
+			Integer classificationType) throws Exception {
+		eventApi.updateEventClassification(eventId, classificationType);
+		
+	}
 }
