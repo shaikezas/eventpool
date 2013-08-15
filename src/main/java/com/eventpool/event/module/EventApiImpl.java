@@ -273,7 +273,7 @@ public class EventApiImpl implements EventApi{
 		Integer totalPoints = user.getTotalPoints();
 		MemberShip classification = memberShipRepository.findOne(classificationType);
 		Integer pointsPerEvent = classification.getPointsPerEvent();
-		if((pointsPerEvent>totalPoints || user.getMemberShipExp().compareTo(new Date())>=0) && user.getMemberShip().getId()<=classificationType){
+		if(pointsPerEvent>totalPoints || user.getMemberShipExp().compareTo(new Date())>=0 || user.getMemberShip().getId()<classificationType){
 			throw new Exception("Event can't be calssified, point are less or membership expired");
 		}else{
 			event.setClassificationType(classificationType);
