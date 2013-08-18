@@ -25,6 +25,7 @@
 		<field><a>privacyType</a><b>privacyType</b></field>
 		<field><a>createdBy</a><b>createdBy</b></field>
 		<field><a>eventUrl      </a><b>eventUrl     </b></field>
+		<field><a>classificationType      </a><b>classificationType     </b></field>
 <!-- 		<field><a>isPublish            	  </a></field>
 		<field><a>selectedformid       	  </a></field>
  -->

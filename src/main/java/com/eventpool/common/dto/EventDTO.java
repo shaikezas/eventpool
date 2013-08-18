@@ -39,6 +39,7 @@ public class EventDTO extends AuditableIdDTO {
 	private String privacyType;
 	private EventSettingsDTO eventSettingsDTO;
 	private String eventUrl;
+	private Integer classificationType;
 	
 	public String getTitle() {
 		return title;
@@ -247,6 +248,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
+	}
+
+	public Integer getClassificationType() {
+		return classificationType;
+	}
+
+	public void setClassificationType(Integer classificationType) {
+		this.classificationType = classificationType;
 	}
 	
 	

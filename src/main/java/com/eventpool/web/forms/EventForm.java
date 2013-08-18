@@ -56,6 +56,7 @@ public class EventForm  {
 	private String cityName;
 	private String stateName;
 	private String countryName;
+	private Integer classificationType;
 	
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	
@@ -357,6 +358,12 @@ public Long getEventId() {
 	}
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
+	}
+	public Integer getClassificationType() {
+		return classificationType;
+	}
+	public void setClassificationType(Integer classificationType) {
+		this.classificationType = classificationType;
 	}
 	
 	

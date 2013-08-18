@@ -166,6 +166,12 @@ public class EventpoolMapper {
 			}
 			eventDTO.setTickets(ticketDTOs);
 		}
+		Integer classificationType = event.getClassificationType();
+		if(classificationType!=null){
+			eventDTO.setClassificationType(classificationType);
+		}else{
+			eventDTO.setClassificationType(1);
+		}
 	}
 	
 	public void mapEvent(EventDTO eventDTO,Event event){
@@ -191,6 +197,16 @@ public class EventpoolMapper {
 					mapper.map(ticketDTO, ticket);
 					tickets.add(ticket);
 				}
+			}
+		}
+		Integer classificationType = eventDTO.getClassificationType();
+		if(classificationType==null){
+			if(event.getClassificationType()==null){
+				event.setClassificationType(1);
+			}
+		}else{
+			if(event.getClassificationType()==null || event.getClassificationType()<=classificationType){
+				event.setClassificationType(classificationType);
 			}
 		}
 	}
