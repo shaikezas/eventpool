@@ -40,6 +40,7 @@ public class EventDTO extends AuditableIdDTO {
 	private EventSettingsDTO eventSettingsDTO;
 	private String eventUrl;
 	private Integer classificationType;
+	private UserEventSettingDTO userEventSettingDTO;
 	
 	public String getTitle() {
 		return title;
@@ -256,6 +257,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setClassificationType(Integer classificationType) {
 		this.classificationType = classificationType;
+	}
+
+	public UserEventSettingDTO getUserEventSettingDTO() {
+		return userEventSettingDTO;
+	}
+
+	public void setUserEventSettingDTO(UserEventSettingDTO userEventSettingDTO) {
+		this.userEventSettingDTO = userEventSettingDTO;
 	}
 	
 	

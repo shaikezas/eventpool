@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 import com.eventpool.common.dto.OrderFormSettings;
+import com.eventpool.common.dto.UserEventSettingDTO;
 import com.eventpool.common.module.EventPoolConstants;
 
 public class EventForm  {
@@ -57,7 +58,7 @@ public class EventForm  {
 	private String stateName;
 	private String countryName;
 	private Integer classificationType;
-	
+	private UserEventSettingDTO userEventSettingDTO;
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	
 	public String getTitle() {
@@ -364,6 +365,12 @@ public Long getEventId() {
 	}
 	public void setClassificationType(Integer classificationType) {
 		this.classificationType = classificationType;
+	}
+	public UserEventSettingDTO getUserEventSettingDTO() {
+		return userEventSettingDTO;
+	}
+	public void setUserEventSettingDTO(UserEventSettingDTO userEventSettingDTO) {
+		this.userEventSettingDTO = userEventSettingDTO;
 	}
 	
 	
