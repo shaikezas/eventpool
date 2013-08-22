@@ -17,6 +17,7 @@ import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
+import com.eventpool.common.dto.UserEventSettingDTO;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.EventSettings;
 import com.eventpool.common.entities.MemberShip;
@@ -36,6 +37,7 @@ import com.eventpool.common.repositories.TicketInventoryRepository;
 import com.eventpool.common.repositories.TicketRepository;
 import com.eventpool.common.repositories.UserRepository;
 import com.eventpool.common.type.EventStatus;
+import com.google.gson.Gson;
 
 
 @Component
@@ -104,6 +106,14 @@ public class EventApiImpl implements EventApi{
     	if(event == null) throw new EventNotFoundException();
     	EventDTO eventDTO = new EventDTO();
     	eventpoolMapper.mapEventDTO(event, eventDTO);
+    	if(event.getClassificationType()!=null){
+    		MemberShip memberShip = memberShipRepository.findOne(event.getClassificationType());
+    		if(memberShip.getSettings()!=null){
+				Gson gson = new Gson();
+				UserEventSettingDTO userEventSettingDTO = gson.fromJson(memberShip.getSettings(), UserEventSettingDTO.class);
+				eventDTO.setUserEventSettingDTO(userEventSettingDTO);
+    		}
+    	}
     	return eventDTO;
     }
 

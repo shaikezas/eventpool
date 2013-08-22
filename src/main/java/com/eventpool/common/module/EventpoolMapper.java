@@ -348,6 +348,7 @@ public class EventpoolMapper {
 			}
 			eventForm.setTickets(ticketForms);
 		}
+		eventForm.setUserEventSettingDTO(eventDTO.getUserEventSettingDTO());
 /*		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
 		if(eventSettingsDTO!=null){
 			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();
