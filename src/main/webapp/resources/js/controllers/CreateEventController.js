@@ -79,10 +79,22 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
     	srvevent.myevent($routeParams).success(function(data) {
-		 $scope.event = data;
+		$scope.event = data;
+		$scope.showOrgName = $scope.event.userEventSettingDTO.showOrgName;
+	    $scope.showOrgDesc = $scope.event.userEventSettingDTO.showOrgDesc;
+	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
+	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
+	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
+		 
     }).error(function(data) {
     	
     });
+    } else {
+    	$scope.showOrgName = true;
+    	$scope.showOrgDesc = true;
+    	$scope.contactDetails = true;
+    	$scope.showHostWebsite = true;
+    	$scope.showAttendeDetails = true;
     }
     };
     $scope.myevent();
