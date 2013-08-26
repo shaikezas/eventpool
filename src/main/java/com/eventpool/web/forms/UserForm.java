@@ -57,6 +57,8 @@ public class UserForm {
 
 	private String createdDate ;
 
+	private Integer memberShipType;
+	
 	public String getFname() {
 		return fname;
 	}
@@ -211,5 +213,13 @@ public class UserForm {
 		  
 		  public void setId(Long id) {
 			this.id = id;
+		}
+
+		public Integer getMemberShipType() {
+			return memberShipType;
+		}
+
+		public void setMemberShipType(Integer memberShipType) {
+			this.memberShipType = memberShipType;
 		}
 }

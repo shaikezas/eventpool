@@ -40,6 +40,7 @@ public class EventDTO extends AuditableIdDTO {
 	private EventSettingsDTO eventSettingsDTO;
 	private String eventUrl;
 	private Integer classificationType;
+	private Integer memberShipType;
 	private UserEventSettingDTO userEventSettingDTO;
 	
 	public String getTitle() {
@@ -265,6 +266,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setUserEventSettingDTO(UserEventSettingDTO userEventSettingDTO) {
 		this.userEventSettingDTO = userEventSettingDTO;
+	}
+
+	public Integer getMemberShipType() {
+		return memberShipType;
+	}
+
+	public void setMemberShipType(Integer memberShipType) {
+		this.memberShipType = memberShipType;
 	}
 	
 	
