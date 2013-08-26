@@ -53,28 +53,16 @@
 			<table class="table table-condensed">
 				      <thead>
 				        <tr>
-						  <th>FIRST NAME</th>
-				          <th>LAST NAME</th>
-				          <th>EMAIL</th>
+						  <th>NAME</th>
+				          <th>VALUE</th>
+				          
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <!-- tr ng-repeat="infoSetting in attendeesList.eventInfoSettings" -->
-				        <tr>
-				          <td>Ezas</td>
-				          <td>Shaik</td>
-				          <td>ezas.shaik@gmail.com</td>
+				        <tr ng-repeat="infoSetting in attendeesList.eventInfoSettings">
+				          <td>{{infoSetting.name}}</td>
+				          <td>{{infoSetting.value}}</td>
 				         </tr>
-				         <tr>
-				          <td>Ramu</td>
-				          <td>G</td>
-				          <td>ramu.g@gmail.com</td>
-				         </tr>
-				         <tr>
-				          <td>Sreenu</td>
-				          <td>Singana</td>
-				          <td>onlinesreenu@gmail.com</td>
-				         </tr>   
 				      </tbody>
 			</table>
 		</div>
