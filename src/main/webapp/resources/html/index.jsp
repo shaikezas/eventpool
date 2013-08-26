@@ -20,6 +20,7 @@
 	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
 	<link href="css/wysiwyg.css" rel="stylesheet" media="screen">
 	
+	<link type="text/css" rel="stylesheet" href="resources/js/jquery.rte.css" />
 
 	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->
 	<style type="text/css">
@@ -135,6 +136,10 @@
 	<script src="lib/fileupload/load-image.min.js"></script>    
 	<script  src="resources/bootstrap/js/jquery.dataTables.js"></script>
 	<script  src="resources/bootstrap/js/ui.multiselect.js"></script>
+	
+	<script type="text/javascript" src="js/jquery.rte.js"></script>
+	<script type="text/javascript" src="js/jquery.rte.tb.js"></script>
+	<script type="text/javascript" src="js/jquery.ocupload-1.1.4.js"></script>
 	
   </body>
 </html>
