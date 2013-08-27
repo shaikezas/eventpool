@@ -55,8 +55,8 @@
 							<span class="span8">
 
 	<ul id="myTab" class="nav nav-tabs">
-		<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">  About Event          		</a></li>     
-		<li>					<a href="#termCondition" 	data-toggle="tab"> Term & Condition    		</a></li>  
+		<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">About Event</a></li>     
+		<li ng-show="event.eventSettingsDTO.showTermsAndConditions == 'true'"><a href="#termCondition" 	data-toggle="tab" >Term & Condition</a></li>  
 		
 	</ul>
 	
@@ -98,8 +98,8 @@
 				<div class="contBox">
 					<h5>Contact Details</h5>
 					<ul class="eventDetails eventDetailsIcon">
-						<li > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
-						<li > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
+						<li ng-show="event.eventSettingsDTO.showOrganizerName == 'true'"> <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
+						<li ng-show="event.eventSettingsDTO.showContactDetails == 'true'"> <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
 					</ul>
 				</div>
 			
