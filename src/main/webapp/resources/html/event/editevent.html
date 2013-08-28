@@ -94,7 +94,8 @@ $(document).ready(function() {
 							    <label class="control-label" for="classificationType">Classification Type :</label>
 							    <div class="controls">
 									  <select id="classificationType" ng-model="event.classificationType"
-													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo: 1">
+													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo: membership">
+												<option value="">-- Select Classification --</option>
 										</select>
 							    </div>
 							  </div>

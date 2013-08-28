@@ -336,6 +336,13 @@ public class EventController {
     			return converSubDTOtoForm(subOrdersList);
     }
     
+    @RequestMapping(value = "/myevent/userMembershipId")
+    public @ResponseBody int getMembershipIdOfUser() throws Exception {
+    				User user = userService.getCurrentUser();
+    			if(user != null)
+    				return user.getMemberShipType();
+    			return 0;
+    }
 
 	private List<SubOrderForm> converSubDTOtoForm(List<SuborderDTO> subOrdersList) throws EventNotFoundException, TicketNotFoundException {
 		List<SubOrderForm> subFormList = new ArrayList<SubOrderForm>();
