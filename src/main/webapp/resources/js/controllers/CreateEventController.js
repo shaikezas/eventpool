@@ -70,10 +70,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	                    {questionTypeName : 'Radio Buttons' }, 
     	                    {questionTypeName : 'Checkboxes' }];
    		  
-   $scope.statuses = 		[  {statusName : 'Draft' },      
-    	                    {statusName : 'Open' },
-    	                    {statusName : 'Closed' }, 
-    	                    {statusName : 'Cancelled' }];
+   $scope.classificationTypes = 		[{classificationType : 'CLASSIC', id : 1 },      
+    	                    {classificationType : 'SILVER' , id : 2 },
+    	                    {classificationType : 'GOLD' , id : 3 }, 
+    	                    {classificationType : 'PLATINUM' , id : 4 },
+    	                    {classificationType : 'DIAMOND', id : 5 }];
    
    
     $scope.myevent = function() {
@@ -121,6 +122,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         });
     }
     
+    
     $scope.fetchEventSettings = function() {
     	eventsettings.geteventsettings($scope.event.id).success(function(eventFormSettings) {
 			$scope.eventFormSettings = eventFormSettings;
@@ -149,6 +151,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
 
     $scope.addNewEvent = function() {
+    	alert($scope.event.classificationType);
         $scope.resetError();
         $scope.validations();
         if($scope.stopSubmitAction === true){
@@ -156,6 +159,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
          }
         else {        	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
+        	alert();
         	$location.url('myevents');
         }).error(function() {
         });

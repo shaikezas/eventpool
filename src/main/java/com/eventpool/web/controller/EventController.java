@@ -146,7 +146,7 @@ public class EventController {
     @RequestMapping("/myevent/draftEventList")
     public @ResponseBody List<MyEventForm> getDraftEventList() throws Exception {
     	User user = userService.getCurrentUser();
-         List<EventDTO> eventDTOs = eventService.getAllEvents(user.getId(),EventStatus.DRAFT);
+    	List<EventDTO> eventDTOs = eventService.getAllEvents(user.getId(),EventStatus.DRAFT);
          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
          MyEventForm form  = null;
          String sold = "";
@@ -160,6 +160,7 @@ public class EventController {
          
          return forms;
     }
+
     
     @RequestMapping("/myevent/liveEventList")
     public @ResponseBody List<MyEventForm> getLiveEventList() throws Exception {

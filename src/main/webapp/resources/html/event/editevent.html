@@ -90,15 +90,15 @@ $(document).ready(function() {
 							    </div>
 							  </div>
 							  
-							 <!-- <div class="control-group">
-							    <label class="control-label" for="status">Status :</label>
+							 <div class="control-group">
+							    <label class="control-label" for="classificationType">Classification Type :</label>
 							    <div class="controls">
-									  <select id="status" ng-model="event.status"
-													ng-options="status.statusName for status in statuses"">
+									  <select id="classificationType" ng-model="event.classificationType"
+													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo: 1">
 										</select>
 							    </div>
 							  </div>
-							 -->
+							 
 							  
 							  <div class="control-group ">
 							    <div class="controls">
