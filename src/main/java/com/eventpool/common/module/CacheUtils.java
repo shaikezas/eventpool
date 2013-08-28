@@ -24,6 +24,7 @@ public class CacheUtils {
 	private MemberShipRepository memberShipRepository;
 	
 	private HashMap<Integer,UserEventSettingDTO> memberShipMap = new HashMap<Integer, UserEventSettingDTO>();
+	private HashMap<Integer,Integer> memberShipPointsMap = new HashMap<Integer, Integer>();
 	
 	@PostConstruct
 	public void initCache(){
@@ -35,7 +36,25 @@ public class CacheUtils {
 				Gson gson = new Gson();
 				UserEventSettingDTO userEventSettingDTO = gson.fromJson(settings, UserEventSettingDTO.class);
 				memberShipMap.put(memberShip.getId(), userEventSettingDTO);
+				memberShipPointsMap.put(memberShip.getId(), memberShip.getPointsPerEvent());
 			}
 		}
 	}
+
+	public HashMap<Integer, UserEventSettingDTO> getMemberShipMap() {
+		return memberShipMap;
+	}
+
+	public void setMemberShipMap(HashMap<Integer, UserEventSettingDTO> memberShipMap) {
+		this.memberShipMap = memberShipMap;
+	}
+
+	public HashMap<Integer, Integer> getMemberShipPointsMap() {
+		return memberShipPointsMap;
+	}
+
+	public void setMemberShipPointsMap(HashMap<Integer, Integer> memberShipPointsMap) {
+		this.memberShipPointsMap = memberShipPointsMap;
+	}
+
 }

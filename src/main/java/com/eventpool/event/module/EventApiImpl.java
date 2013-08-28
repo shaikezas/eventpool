@@ -27,6 +27,7 @@ import com.eventpool.common.entities.TicketInventory;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.TicketNotFoundException;
+import com.eventpool.common.module.CacheUtils;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.EventMediaRepository;
 import com.eventpool.common.repositories.EventRepository;
@@ -70,6 +71,9 @@ public class EventApiImpl implements EventApi{
     UserRepository userRepository;
 
     @Resource
+    private CacheUtils cacheUtils;
+    
+    @Resource
     MemberShipRepository memberShipRepository;
 
     @Transactional(rollbackFor=RuntimeException.class)
@@ -77,10 +81,23 @@ public class EventApiImpl implements EventApi{
     	if(eventDTO==null) throw new IllegalArgumentException("Input event DTO is null");
     	Long id = eventDTO.getId();
     	Event event = null;
+    	
+    	Integer classificationType = eventDTO.getClassificationType();
+    	Integer pointsPerEvent = cacheUtils.getMemberShipPointsMap().get(classificationType);
+    	User user = userRepository.findOne(eventDTO.getCreatedBy());
+    	
     	if(id == null){
     		event = new Event();
+			if(classificationType!=null && classificationType>1){
+    			user.setTotalPoints(user.getTotalPoints()-pointsPerEvent);
+    			userRepository.save(user);
+    		}
     	}else{
     		event = eventRepository.findOne(id);
+			if(classificationType!=null && event.getClassificationType()<classificationType){
+    			user.setTotalPoints(user.getTotalPoints()-pointsPerEvent+cacheUtils.getMemberShipPointsMap().get(event.getClassificationType()));
+    			userRepository.save(user);
+    		}
     	}
     	eventpoolMapper.mapEvent(eventDTO, event);
     	if(event.getSubCategoryId()  == null){
@@ -88,6 +105,7 @@ public class EventApiImpl implements EventApi{
     	}
     	setDefaultValues(event);
     	eventRepository.save(event);
+    	
     	eventpoolMapper.mapEventDTO(event, eventDTO);
     	logger.info("event saved before commit {}",event.getId());
     	return eventDTO;

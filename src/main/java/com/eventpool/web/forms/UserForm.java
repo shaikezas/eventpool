@@ -22,9 +22,9 @@ public class UserForm {
 	
 	private String fname;
 	
-	  boolean accountEnabled =true; // This would depend upon business requirements
+	boolean accountEnabled =true; // This would depend upon business requirements
 
-	  boolean accountExpired = false;
+	boolean accountExpired = false;
 	
 	private String lname;
 	

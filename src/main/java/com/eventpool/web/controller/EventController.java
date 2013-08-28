@@ -28,9 +28,11 @@ import com.eventpool.common.dto.Region;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
+import com.eventpool.common.dto.UserEventSettingDTO;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.TicketNotFoundException;
+import com.eventpool.common.module.CacheUtils;
 import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
@@ -91,6 +93,9 @@ public class EventController {
     
     @Resource
     private EntityUtilities  entityUtilities;
+    
+    @Resource
+    private CacheUtils cacheUtils;
     
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
@@ -339,9 +344,24 @@ public class EventController {
     @RequestMapping(value = "/myevent/userMembershipId")
     public @ResponseBody int getMembershipIdOfUser() throws Exception {
     				User user = userService.getCurrentUser();
-    			if(user != null)
-    				return user.getMemberShipType();
-    			return 0;
+    			if(user != null){
+    				Integer memberShipType = user.getMemberShipType();
+    				Integer totalPoints = user.getTotalPoints();
+    				HashMap<Integer, Integer> memberShipPointMap = cacheUtils.getMemberShipPointsMap();
+    				Integer pointsPerEvent = memberShipPointMap.get(memberShipType);
+    				if(user.getMemberShipExp().compareTo(new Date())>=0){
+    					if(pointsPerEvent<totalPoints){
+    						return memberShipType;
+    					}
+    					for(int i=memberShipType;i>1;i--){
+    						pointsPerEvent = memberShipPointMap.get(i);
+        					if(pointsPerEvent<totalPoints){
+        						return i;
+        					}
+    					}
+    				}
+    			}
+    			return 1;
     }
 
 	private List<SubOrderForm> converSubDTOtoForm(List<SuborderDTO> subOrdersList) throws EventNotFoundException, TicketNotFoundException {
