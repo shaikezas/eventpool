@@ -59,7 +59,15 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      });
    }
    
+   $scope.getMembershipId = function(){
+	   $http.get('event/myevent/userMembershipId').success(function(membership) {
+		   $scope.membership = membership;
+     }).error(function() {
+     });
+   }
+
    $scope.createevent();
+   $scope.getMembershipId();
    
     $scope.close = function(){
     	$scope.shouldBeOpen = false;
@@ -103,7 +111,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.updateUrl = function() {
     	$scope.event.eventUrl = $scope.event.title;
     	};
-   
+    
+  
     	     	
     
    
@@ -151,15 +160,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
 
     $scope.addNewEvent = function() {
-    	alert($scope.event.classificationType);
-        $scope.resetError();
+    	$scope.resetError();
         $scope.validations();
         if($scope.stopSubmitAction === true){
         	$scope.stopSubmitAction = false;
          }
         else {        	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
-        	alert();
         	$location.url('myevents');
         }).error(function() {
         });
