@@ -434,6 +434,7 @@ public class EventController {
     	form.setEndDate(getDateString(dto.getEndDate()));
     	form.setId(dto.getId());
     	form.setEventUrl(dto.getEventUrl());
+    	form.setStatus(dto.getStatus());
     	
     	return form;
     }
