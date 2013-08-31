@@ -32,6 +32,7 @@ public class DropdownController {
         	categories = new ArrayList<Dropdown>();
         }
 		Long[] allCategoryIds = categoryTree.getAllCategoryIds();
+		categories.clear();
 		for(Long categoryId:allCategoryIds){
 			CategoryNode node = categoryTree.getNode(categoryId);
 			if(node.getLevel()==1){
