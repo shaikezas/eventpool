@@ -57,7 +57,7 @@ public class EventForm  {
 	private String cityName;
 	private String stateName;
 	private String countryName;
-	private Integer classificationType;
+	private Integer classificationType = 1;
 	private UserEventSettingDTO userEventSettingDTO;
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	
