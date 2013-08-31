@@ -119,13 +119,15 @@ public class EventSettingsService {
 		
 		List<List<String>> eventSettingValueList = new ArrayList<List<String>>();
 		
-		for(String header:headers){
-			List<String> valueList = new ArrayList<String>();
+		
+			
 			for(Map<String,String> map:eventInfoSettingList){
-				valueList.add(map.get(header));
+				List<String> valueList = new ArrayList<String>();
+				for(String header:headers){
+					valueList.add(map.get(header));
+				}
 				eventSettingValueList.add(valueList);
 			}
-		}
 		
 		ticketAttendeeDTO.setValueList(eventSettingValueList);
 		return ticketAttendeeDTO;
