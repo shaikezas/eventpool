@@ -7,7 +7,7 @@ public enum EventStatus {
   OPEN("Open"),
   CLOSED("Closed"),
   CANCELLED("Cancelled"),
-  DRAFT("DRAFT");
+  DRAFT("Draft");
   
 
   private String description;

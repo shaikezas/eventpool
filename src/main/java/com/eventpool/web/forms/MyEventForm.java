@@ -9,7 +9,7 @@ public class MyEventForm {
 	private String startDate;
 	private String endDate;
 	private String createdDate;
-	private EventStatus status;
+	private String status;
 	private String eventUrl;
 	private String sold;
 	public String getTitle() {
@@ -36,10 +36,10 @@ public class MyEventForm {
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
-	public EventStatus getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(EventStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public String getSold() {
