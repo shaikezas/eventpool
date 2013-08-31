@@ -2,8 +2,12 @@ package com.eventpool.event.service.impl;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -79,6 +83,7 @@ public class EventSettingsService {
 		Gson gson = new Gson();
 		Type type = new TypeToken<LinkedList<EventInfoSettings>>(){}.getType();
 		eventSettings = gson.fromJson(data, type);
+		
 		return eventSettings;
 	}
 	
@@ -86,17 +91,26 @@ public class EventSettingsService {
 	public TicketAttendeeDTO getAttendes(Long ticketId){
 		TicketAttendeeDTO ticketAttendeeDTO = new TicketAttendeeDTO();
 		ticketAttendeeDTO.setTicketId(ticketId);
-		List<EventInfoSettings> eventInfoSettings = new ArrayList<EventInfoSettings>();
-		ticketAttendeeDTO.setEventInfoSettings(eventInfoSettings );
+		List<Map<String,String>> eventInfoSettingList = new ArrayList<Map<String,String>>();
+		Set<String> headers = new HashSet<String>();
+		ticketAttendeeDTO.setHeaders(headers);
+		ticketAttendeeDTO.setAttendeeListMap(eventInfoSettingList);
+		
 		List<Suborder> suborders = suborderRepository.getAttendes(ticketId);
 		if(suborders!=null && suborders.size()>0){
 			for(Suborder suborder:suborders){
+				Map<String,String> attendeeMap = new HashMap<String, String>();
+				eventInfoSettingList.add(attendeeMap);
 				List<Registration> registrations = suborder.getRegistrations();
 				if(registrations!=null && registrations.size()>0){
 					for(Registration registration:registrations){
 						String attendeeInfo = registration.getAttendeeInfo();
 						if(attendeeInfo!=null){
-							eventInfoSettings.addAll(getEventInfoSettings(attendeeInfo));
+							List<EventInfoSettings> eventInfoSettings = getEventInfoSettings(attendeeInfo);
+							for(EventInfoSettings eventInfoSetting:eventInfoSettings){
+								headers.add(eventInfoSetting.getName());
+								attendeeMap.put(eventInfoSetting.getName(), eventInfoSetting.getValue());
+							}
 						}
 					}
 				}

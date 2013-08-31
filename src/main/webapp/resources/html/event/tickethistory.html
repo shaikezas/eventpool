@@ -52,15 +52,12 @@
 		<div class="modal-body">
 			<table class="table table-condensed">
 				      <thead>
-				        <tr>
-						  <th>NAME</th>
-				          <th>VALUE</th>
-				          
+				        <tr >
+				        	<th ng-repeat="infoSetting in attendeesList.eventInfoSettings">{{infoSetting.name}}</th>
 				        </tr>
 				      </thead>
 				      <tbody>
 				        <tr ng-repeat="infoSetting in attendeesList.eventInfoSettings">
-				          <td>{{infoSetting.name}}</td>
 				          <td>{{infoSetting.value}}</td>
 				         </tr>
 				      </tbody>

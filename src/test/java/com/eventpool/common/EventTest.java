@@ -533,7 +533,7 @@ public class EventTest extends BaseTest{
     @Test
     public void testViewAttendes(){
     	TicketAttendeeDTO attendes = eventSettingsService.getAttendes(4L);
-    	log.info(attendes.getEventInfoSettings()+" ");
+    	log.info(attendes.getAttendeeListMap()+" ");
     }
     
     @Test
