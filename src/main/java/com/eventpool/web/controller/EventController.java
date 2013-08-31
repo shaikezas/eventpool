@@ -124,8 +124,7 @@ public class EventController {
  			String subject = eventDTO.getEventUrl();
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
- 			//TODO remove comment.
-// 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created.", null);
+ 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created.", null,null);
  			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event");
  		} catch (Exception e) {
  			e.printStackTrace();

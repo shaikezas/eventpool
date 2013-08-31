@@ -24,6 +24,7 @@ import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
+import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.order.service.OrderService;
@@ -44,7 +45,6 @@ public class OrderController {
 	@Resource
 	UserService  userService;
 	
-	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
 	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
 		  OrderRegisterForm orderRegisterForm = null;  
@@ -61,22 +61,21 @@ public class OrderController {
 	  
 	  @RequestMapping(value = "/create", method = RequestMethod.POST)
 	    public @ResponseBody ResponseMessage createOrder(@RequestBody OrderRegisterForm orderRegisterForm)  {
-		  OrderStatusDTO status = new OrderStatusDTO();
-		  User user = userService.getCurrentUser();
-		  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
-		  
-		  Order order = null;
-		  try {
-			order = orderService.createOrder(orderDTO);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			 return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
-		}
-		  if(order==null){
+			  OrderStatusDTO status = new OrderStatusDTO();
+			  User user = userService.getCurrentUser();
+			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
+			  
+			  Order order = null;
+			  try {
+				order = orderService.createOrder(orderDTO);
+				
+			} catch (Exception e) {
+				 return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
+			}
+		    if(order==null){
 			  return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order");
 			}
-		  return new ResponseMessage(ResponseMessage.Type.success, "Successfully created the order, your orderId is :"+order.getId());
+			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created the order, your orderId is :"+order.getId());
 	    }
 	  
 	  private OrderDTO convertToOrderDTO(OrderRegisterForm orderRegisterForm,Long userId){
