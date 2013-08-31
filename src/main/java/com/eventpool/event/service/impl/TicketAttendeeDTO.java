@@ -10,10 +10,10 @@ import com.eventpool.common.dto.EventInfoSettings;
 public class TicketAttendeeDTO implements Serializable{
 
 	public Long ticketId;
-	//public List<EventInfoSettings> eventInfoSettings;
 	
 	public Set<String> headers;
 	public List<Map<String,String>> attendeeListMap;
+	public List<List<String>> valueList;
 	
 	public Long getTicketId() {
 		return ticketId;
@@ -32,6 +32,12 @@ public class TicketAttendeeDTO implements Serializable{
 	}
 	public void setAttendeeListMap(List<Map<String, String>> attendeeListMap) {
 		this.attendeeListMap = attendeeListMap;
+	}
+	public List<List<String>> getValueList() {
+		return valueList;
+	}
+	public void setValueList(List<List<String>> valueList) {
+		this.valueList = valueList;
 	}
 	
 }
