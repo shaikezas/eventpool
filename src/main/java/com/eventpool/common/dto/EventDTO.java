@@ -39,7 +39,7 @@ public class EventDTO extends AuditableIdDTO {
 	private String privacyType;
 	private EventSettingsDTO eventSettingsDTO;
 	private String eventUrl;
-	private Integer classificationType;
+	private Integer classificationType = 1;
 	private Integer memberShipType;
 	private UserEventSettingDTO userEventSettingDTO;
 	
