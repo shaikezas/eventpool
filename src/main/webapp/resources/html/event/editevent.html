@@ -121,7 +121,7 @@ $(document).ready(function() {
 							  <div class="control-group">
 							    <label class="control-label" for="category">Category :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-									  <select name="category" id="Category" ng-model="category"
+									  <select name="category" id="Category" ng-model="event.subCategoryId"
 													ng-options="cat.value as cat.key for cat in categories" required>
 													<option value="">-- Select Category --</option>
 										</select>

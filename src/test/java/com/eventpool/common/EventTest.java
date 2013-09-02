@@ -307,7 +307,7 @@ public class EventTest extends BaseTest{
     	eventForm.setPublishDate(new Date());
     	eventForm.setShowEvent(true);
     	eventForm.setStartDate("05-MAY-2013 11:11");
-    	eventForm.setSubCategoryId("2");
+    	eventForm.setSubCategoryId(2L);
     	eventForm.setTermsAndConditions("terms and conditions");
     	eventForm.setTitle("title");
     	eventForm.setVenueName("venue name");
