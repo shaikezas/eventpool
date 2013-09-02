@@ -82,7 +82,7 @@ $(document).ready(function() {
 							    <label class="control-label" for="endDate">End Date & Time :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 								 	<div id="datetimepickerEnd" class="input-append date datetimepicker">
-				      					<input type="text" name="endDate" ng-model="event.endDate" 
+				      					<input type="text" name="endDate" datetime-picker ng-model="event.endDate" 
 				      										placeholder="End Date and Time" readonly required></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 				      				</div>
@@ -378,7 +378,7 @@ $(document).ready(function() {
 							    <label class="control-label" for="ticketStartDate">Ticket Sale Start On :</label>
 							    <div class="controls">
 								 	<div id="datetimepickerStart1" class="input-append date datetimepicker">
-				      					<input type="text" ng-model="ticket.saleStart" 
+				      					<input type="text" datetime-picker ng-model="ticket.saleStart" 
 				      										placeholder="Sale Start On" readonly></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
