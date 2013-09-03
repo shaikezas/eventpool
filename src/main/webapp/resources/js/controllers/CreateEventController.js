@@ -67,7 +67,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
    }
 
    $scope.createevent();
-   $scope.getMembershipId();
+   
    
     $scope.close = function(){
     	$scope.shouldBeOpen = false;
@@ -78,13 +78,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	                    {questionTypeName : 'Radio Buttons' }, 
     	                    {questionTypeName : 'Checkboxes' }];
    		  
-   $scope.classificationTypes = 		[{classificationType : 'CLASSIC', id : 1 },      
-    	                    {classificationType : 'SILVER' , id : 2 },
-    	                    {classificationType : 'GOLD' , id : 3 }, 
-    	                    {classificationType : 'PLATINUM' , id : 4 },
-    	                    {classificationType : 'DIAMOND', id : 5 }];
+   $scope.classificationTypes = 		[{id : 0 , classificationType : 'CLASSIC'},      
+                                		 {id : 1 , classificationType : 'SILVER'},
+                                		 {id : 2 , classificationType : 'GOLD'}, 
+                                		 {id : 3 , classificationType : 'PLATINUM'},
+                                		 {id : 4 , classificationType : 'DIAMOND'}];
    
-   
+    $scope.getMembershipId();
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
     	srvevent.myevent($routeParams).success(function(data) {

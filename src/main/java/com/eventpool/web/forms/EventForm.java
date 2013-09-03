@@ -19,7 +19,7 @@ public class EventForm  {
 	private String endDate;
 	private Boolean isActive;
 	private String description;
-	private String subCategoryId;
+	private Long subCategoryId;
 	private File organizerLogo;
 	private String banner;
 	private File bannerFile;
@@ -91,10 +91,10 @@ public class EventForm  {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getSubCategoryId() {
+	public Long getSubCategoryId() {
 		return subCategoryId;
 	}
-	public void setSubCategoryId(String subCategoryId) {
+	public void setSubCategoryId(Long subCategoryId) {
 		this.subCategoryId = subCategoryId;
 	}
 	public File getOrganizerLogo() {
