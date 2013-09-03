@@ -10,10 +10,18 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<script type="text/javascript" src="ckeditor.js"></script>
+	<script type="text/javascript" src="build-config.js"></script>
+	<script type="text/javascript" src="config.js"></script>
+	<script type="text/javascript" src="styles.js"></script>
+	<script type="text/javascript" src="lang/en.js"></script>
+	<link rel="stylesheet" href="resources/bootstrap/css/sample.css">
+	<link rel="stylesheet" href="skins/moono/editor.css">
+
+	<link href="resources/bootstrap/css/style.css" rel="stylesheet">
     <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
     <link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="resources/bootstrap/css/style.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
 	<link href="resources/bootstrap/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>

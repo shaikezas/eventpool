@@ -182,7 +182,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     }
     $scope.validations = function() {
     	$scope.nameRequired = $scope.eventForm.eName.$error.required;
-    	$scope.descRequired = $scope.eventForm.description.$error.required;
+/*    	alert('xyz'+JSON.stringify($scope.eventForm.description));
+*/    	$scope.descRequired = $scope.eventForm.description.$error.required;
     	$scope.startDateRequired = $scope.eventForm.startDate.$error.required;
     	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
     	$scope.catRequired = $scope.eventForm.category.$error.required;
