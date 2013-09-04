@@ -64,7 +64,7 @@
 	<div id="myTabContent" class="tab-content">
 		
 		<div class="tab-pane fade in active" id="aboutEvent">
-			<form class="form-horizontal"> {{event.description}}</form>
+			<form class="form-horizontal"> <div ng-bind-html-unsafe="event.description" ></div></form>
 		</div>
 		
 		

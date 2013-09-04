@@ -209,7 +209,9 @@ window.onload = countDown();
 			
 		
 		<div class="tab-pane fade in active" id="aboutEvent">
-			{{event.description}}
+			<form class="form-horizontal">
+			<div ng-bind-html-unsafe="event.description" ></div>
+			</form>
 		</div>
 		
 		
