@@ -132,6 +132,43 @@ public class EventController {
  		}
     }
     
+    @RequestMapping(value = "/myevent/addEventAndPublish", method = RequestMethod.POST)
+    public @ResponseBody ResponseMessage  addEventAndPublish(@RequestBody EventForm event) throws Exception {
+    	User user = userService.getCurrentUser();
+    	
+    	if(event.getTickets()!=null){
+    		int i=1;
+    		for(TicketForm ticket :event.getTickets()){
+    			ticket.setCreatedBy(user.getId());
+    			ticket.setTicketOrder(i);
+    			i++;
+    		}
+    	
+    	
+    	}else
+    		System.out.println("tickets are null");
+    	
+    	System.out.println("user Id "+user.getId());
+    	EventDTO eventDTO = new EventDTO();
+    	mapper.mapEventDTO(event, eventDTO);
+    	eventDTO.setCreatedBy(user.getId());
+//    	updateEventType(eventDTO);
+    	 try {
+ 			eventService.addEvent(eventDTO);
+ 			String email = user.getEmail();
+ 			String subject = eventDTO.getEventUrl();
+ 			eventService.publishEvent(subject, true);
+ 			List<String> toList = new ArrayList<String>();
+ 			toList.add(email);
+ 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created and published.", null,null);
+ 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event and published.");
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 			return new ResponseMessage(ResponseMessage.Type.error, "Failed to create event : reason -"+e.getMessage());
+ 		}
+    }
+    
+    
 
     @RequestMapping(value = "/myevent/updateevent", method = RequestMethod.PUT)
     public @ResponseBody ResponseMessage updateEvent(@RequestBody EventDTO event) throws Exception {

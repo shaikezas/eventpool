@@ -173,6 +173,21 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         }
         
     }
+    
+    $scope.addNewEventAndPublish = function() {
+    	$scope.resetError();
+        $scope.validations();
+        if($scope.stopSubmitAction === true){
+        	$scope.stopSubmitAction = false;
+         }
+        else {        	
+        $http.post('event/myevent/addEventAndPublish', $scope.event).success(function() {
+        	$location.url('myevents');
+        }).error(function() {
+        });
+        }
+        
+    }
     $scope.setRequiredFields = function() {
     	$scope.isWebinarChecked=!$scope.isWebinarChecked;
     	$scope.venueForm.venueName.$error.required = !$scope.isWebinarChecked;
