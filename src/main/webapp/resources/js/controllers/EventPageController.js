@@ -1,4 +1,4 @@
-var EventPageController = function($scope, $http,$routeParams, srvevent,$location,Data,search$rootScope,currentuser) {
+var EventPageController = function($scope, $http,$routeParams, srvevent,$location,Data,search,$rootScope,currentuser) {
 		$scope.event = Data.getEventData();
 	    $scope.editMode = true;
 	    $scope.orderRegister = Data.getOrderRegisterData();

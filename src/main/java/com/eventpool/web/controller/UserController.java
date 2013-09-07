@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.eventpool.common.entities.MemberShip;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.web.domain.ResponseMessage;
@@ -44,6 +45,7 @@ public class UserController {
     	}
     	User user = new User(userName,password);
     	user.setMemberShipExp(new Date());
+    	user.setMemberShipType(1);
         userService.saveUser(user);
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully created user");
     }

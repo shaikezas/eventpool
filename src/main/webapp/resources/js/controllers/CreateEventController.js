@@ -78,11 +78,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	                    {questionTypeName : 'Radio Buttons' }, 
     	                    {questionTypeName : 'Checkboxes' }];
    		  
-   $scope.classificationTypes = 		[{id : 0 , classificationType : 'CLASSIC'},      
-                                		 {id : 1 , classificationType : 'SILVER'},
-                                		 {id : 2 , classificationType : 'GOLD'}, 
-                                		 {id : 3 , classificationType : 'PLATINUM'},
-                                		 {id : 4 , classificationType : 'DIAMOND'}];
+   $scope.classificationTypes = 		[{id : 1 , classificationType : 'CLASSIC'},      
+                                		 {id : 2 , classificationType : 'SILVER'},
+                                		 {id : 3 , classificationType : 'GOLD'}, 
+                                		 {id : 4 , classificationType : 'PLATINUM'},
+                                		 {id : 5 , classificationType : 'DIAMOND'}];
    
     $scope.getMembershipId();
     $scope.myevent = function() {
