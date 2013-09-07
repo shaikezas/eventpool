@@ -4,7 +4,7 @@
  * CreateEventController
  * @constructor
  */
-var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent,eventsettings, $dialog,$location) {
+var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent,eventsettings, $dialog,$location,$rootScope,currentuser) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
@@ -418,6 +418,19 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    	
 	    });
     }*/
+     
+     $scope.getcurrentuser = function(){
+     	
+     	if ($rootScope.user == undefined) {
+     		currentuser.getcurrentuser().success(function(data) {
+     			$rootScope.user = data;
+         	});
+         }
+     	
+     }
+     
+     $scope.getcurrentuser();
+     
     $scope.fetchCategories();
     
     $scope.predicate = 'id'

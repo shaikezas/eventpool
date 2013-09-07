@@ -18,7 +18,14 @@ public class UserServiceImpl implements UserService {
 	
 	public User getCurrentUser() {
 
-       return  ((EventpoolUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+       User user = null;
+       try{
+       user = ((EventpoolUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+       }catch(Exception e){
+    	 return null;  
+       }
+       
+       return user;
     }
 
 	public ResultStatus saveUser(User user) {

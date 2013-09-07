@@ -1,4 +1,4 @@
-var FindEventController = function($scope, $http,$routeParams, $location) {
+var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser) {
 	
 	$scope.searchResults = {};
 	$scope.searchRecords = {};
@@ -27,8 +27,19 @@ var FindEventController = function($scope, $http,$routeParams, $location) {
         	$scope.searchResults = searchResults;
         	$scope.searchRecords = searchResults.eventSearchRecords;
         });
+    	
         
       }
+    
+    $scope.getcurrentuser = function(){
+    	
+    	if ($rootScope.user == undefined) {
+    		currentuser.getcurrentuser().success(function(data) {
+    			$rootScope.user = data;
+        	});
+        }
+    	
+    }
     
     $scope.fetchResultsByFilterType = function(filterText,filterType) {
     	    	
@@ -96,5 +107,7 @@ var FindEventController = function($scope, $http,$routeParams, $location) {
        $scope.loc = $scope.cityId+","+$scope.state+","+$scope.country;
     };
     
-    $scope.fetchSearchResults();
+    
+    $scope.fetchSearchResults($rootScope.user);
+    $scope.getcurrentuser();
 }

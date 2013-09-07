@@ -105,6 +105,22 @@ geteventsettings: function(eventid) {
     }
 });
 
+AppServices.service('currentuser', function ($http) {
+
+    return {
+getcurrentuser: function() {
+	  var config = {
+        method: "GET",
+        url: "user"
+    };
+	  return $http(config);
+}
+    
+    }
+});
+
+
+
 
 AppServices.service('signupSrv', function ($http) {
 

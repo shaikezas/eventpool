@@ -160,7 +160,7 @@ public class EventController {
  			eventService.publishEvent(subject, true);
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
- 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created and published.", null,null);
+// 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created and published.", null,null);
  			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event and published.");
  		} catch (Exception e) {
  			e.printStackTrace();

@@ -1,5 +1,7 @@
 package com.eventpool.web.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,6 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
     public User getCurrentUser() {
-    	System.out.println("getCurrentUser");
         return userService.getCurrentUser();
     }
     
@@ -41,7 +42,9 @@ public class UserController {
     	if(validate.equals(ResultStatus.USER_EXISTS)){
     		return new ResponseMessage(ResponseMessage.Type.error, "User already registered ");
     	}
-        userService.saveUser(new User(userName,password));
+    	User user = new User(userName,password);
+    	user.setMemberShipExp(new Date());
+        userService.saveUser(user);
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully created user");
     }
     

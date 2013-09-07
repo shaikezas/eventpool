@@ -1,4 +1,4 @@
-var UserController = function($scope, $http) {
+var UserController = function($scope, $http,$rootScope,currentuser) {
 	
 	$scope.userDetails = {};
 	
@@ -28,6 +28,18 @@ var UserController = function($scope, $http) {
     	
         
     }
+    
+    $scope.getcurrentuser = function(){
+       	
+       	if ($rootScope.user == undefined) {
+       		currentuser.getcurrentuser().success(function(data) {
+       			$rootScope.user = data;
+           	});
+           }
+       	
+       }
+       
+       $scope.getcurrentuser();
     
     $scope.fetchUserDetails();
 }

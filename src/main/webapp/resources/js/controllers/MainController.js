@@ -1,4 +1,4 @@
-function MainController($scope, $route,$rootScope, $routeParams,$location,signupSrv,search) {
+function MainController($scope, $route,$rootScope, $routeParams,$location,signupSrv,search,currentuser) {
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
@@ -97,4 +97,16 @@ function MainController($scope, $route,$rootScope, $routeParams,$location,signup
          
          
      };
+     
+     $scope.getcurrentuser = function(){
+      	
+      	if ($rootScope.user == undefined) {
+      		currentuser.getcurrentuser().success(function(data) {
+      			$rootScope.user = data;
+          	});
+          }
+      	
+      }
+      
+      $scope.getcurrentuser();
 }

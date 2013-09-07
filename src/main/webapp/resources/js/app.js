@@ -157,5 +157,7 @@ App.run(function ($rootScope, $http, base64) {
      */
     $rootScope.$on('event:logoutRequest', function () {
         httpHeaders.common['Authorization'] = null;
+        $http.get('signout').success(function () {
+        });
     });
 });

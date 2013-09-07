@@ -45,44 +45,20 @@
 		<property name="suffix" value=".jsp" />
 		<property name="exposeSpringMacroHelpers" value="true" />
 	</bean>
-	<security:http pattern="/event/myevent/**" >
-		<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
-		<security:intercept-url pattern="/**" access="ROLE_USER" />
-		 
-<!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
-	</security:http>
-	<security:http pattern="/html/event/myevent/**" >
-		<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
-		<security:intercept-url pattern="/**" access="ROLE_USER" />
-		 
-<!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
-	</security:http>
-	
-	<security:http pattern="/order/**" >
-		<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
-		<security:intercept-url pattern="/**" access="ROLE_USER" />
-		 
-<!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
-	</security:http>
-	
-	<security:http pattern="/account/**" >
-		<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
-		<security:intercept-url pattern="/**" access="ROLE_USER" />
-		 
-<!-- <security:access-denied-handler ref="accessDeniedHandler" /> -->
-	</security:http>
-	
-	<security:http pattern="/html/**" security="none" />
-	
-	<security:http pattern="/user" >
-        <security:http-basic entry-point-ref="restAuthenticationEntryPoint"/>
-        <security:intercept-url pattern="/**" access="ROLE_USER"/>
-    </security:http>
-	<security:http pattern="/**" security="none" />
-<!-- 	<bean id="accessDeniedHandler"
-class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
-<property name="errorPage" value="/denied.jsp" />
-</bean> -->
+
+
+<security:http auto-config="true" >	
+<security:http-basic entry-point-ref="restAuthenticationEntryPoint" />
+<security:intercept-url pattern="/html/**"  />
+<security:intercept-url pattern="/**"  />
+<security:intercept-url pattern="/account/**" access="ROLE_USER" />
+ <security:intercept-url pattern="/user/*" access="ROLE_USER"/>
+ <security:intercept-url pattern="/html/event/myevent/**" access="ROLE_USER" />
+ <security:intercept-url pattern="/order/**" access="ROLE_USER" />
+ <security:intercept-url pattern="/event/myevent/**" access="ROLE_USER" />
+ <security:intercept-url pattern="/signout" access="ROLE_USER" />
+ <security:logout  invalidate-session="true" logout-success-url="/" logout-url="/signout" delete-cookies="JSESSIONID" />
+</security:http>
 
 	<bean id="restAuthenticationEntryPoint"
 		class="com.eventpool.web.controller.RestAuthenticationEntryPoint" /> 
