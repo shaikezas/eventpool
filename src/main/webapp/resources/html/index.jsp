@@ -96,13 +96,13 @@
 
 					</div>
 				</div>
+				</form>
 			</div>
         <div class="modal-footer">
             <a ng-click="login()" class="btn btn-primary" ng-disabled="userForm.username.$pristine || userForm.username.$dirty && userForm.username.$invalid">Login</a>
             <a data-dismiss="modal" class="btn" ng-click="cancel()">Cancel</a>
         </div>
     </div>
-   </form>
 <div ng-view></div>
  
       </div>
