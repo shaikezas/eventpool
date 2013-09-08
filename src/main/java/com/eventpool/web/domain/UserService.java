@@ -15,7 +15,7 @@ public interface UserService {
 	ResultStatus validateEmailAndId(String email, Long id);
 	public User getUserByUsername(String username);
 	public User getUserByUserId(String userId);
-	public ResultStatus validateUserName(String userName);
+	public ResultStatus validateUser(String user);
 	public ResultStatus updateUser(User user);
 	public ResultStatus resetPassword(User user);
 	

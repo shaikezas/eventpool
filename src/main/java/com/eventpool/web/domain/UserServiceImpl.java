@@ -48,11 +48,11 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 	
-	public ResultStatus validateUserName(String userName) {
-		if(userName.isEmpty()) {
+	public ResultStatus validateUser(String user) {
+		if(user.isEmpty()) {
 			return ResultStatus.FAILURE;
 		}
-		User b = userRepository.findByUserName(userName);
+		User b = userRepository.findByEmail(user);
 		if(null == b) {
 			return ResultStatus.SUCCESS;
 		}

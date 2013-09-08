@@ -39,13 +39,11 @@ public class UserController {
     @ResponseBody
     public ResponseMessage createUser(@RequestParam("userName")String userName,@RequestParam("password") String password){
     	System.out.println("create User");
-    	ResultStatus validate = userService.validateUserName(userName);
+    	ResultStatus validate = userService.validateUser(userName);
     	if(validate.equals(ResultStatus.USER_EXISTS)){
     		return new ResponseMessage(ResponseMessage.Type.error, "User already registered ");
     	}
     	User user = new User(userName,password);
-    	user.setMemberShipExp(new Date());
-    	user.setMemberShipType(1);
         userService.saveUser(user);
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully created user");
     }
