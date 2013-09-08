@@ -83,7 +83,7 @@
                 <label class="control-label" for="password">Password</label>
 
                 <div class="controls">
-                    <input type="password" id="password" name="password" ng-model="password" required/>
+                    <input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
                      <div  ng-show="userForm.password.$dirty && userForm.password.$invalid" ng-style="{color:'red'}">Invalid:
 						<span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span>
                		 </div>
@@ -98,7 +98,7 @@
 				</div>
 			</div>
         <div class="modal-footer">
-            <a ng-click="login()" class="btn btn-primary">Login</a>
+            <a ng-click="login()" class="btn btn-primary" ng-disabled="userForm.username.$pristine || userForm.username.$dirty && userForm.username.$invalid">Login</a>
             <a data-dismiss="modal" class="btn" ng-click="cancel()">Cancel</a>
         </div>
     </div>
