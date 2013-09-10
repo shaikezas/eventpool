@@ -34,6 +34,7 @@ import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.module.CacheUtils;
 import com.eventpool.common.module.DateCustomConverter;
+import com.eventpool.common.module.EmailAttachment;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.HtmlEmailService;
@@ -44,6 +45,7 @@ import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.event.service.impl.TicketAttendeeDTO;
 import com.eventpool.event.service.impl.TicketBuyerDTO;
+import com.eventpool.event.service.impl.UserDTO;
 import com.eventpool.order.service.InvoiceService;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.web.domain.ResponseMessage;
@@ -369,6 +371,32 @@ public class EventController {
     @RequestMapping(value = "/myevent/buyers/{ticketId}", method = RequestMethod.GET)
     public @ResponseBody TicketBuyerDTO getBuyers(@PathVariable("ticketId") Long ticketId) throws Exception {
     				return infoService.getBuyers(ticketId);
+    }
+    
+    @RequestMapping(value = "/myevent/sendmail/{mailString}", method = RequestMethod.POST)
+    public @ResponseBody ResponseMessage sendMail(@PathVariable("mailString") String mailString) throws Exception {
+    	Long tktId=1L;
+    	String toValue=null;
+    	System.out.println("QQWEQWEWEADFFASFDADFASFASFASFSDFSADFSDF");
+    	List<String> toList = new ArrayList<String>();
+    	List<String> ccList = new ArrayList<String>();
+    	EmailAttachment attachment = new EmailAttachment();
+    	if(toValue.equalsIgnoreCase("buyers")||toValue.equalsIgnoreCase("all")){
+    		TicketBuyerDTO buyersList = infoService.getBuyers(tktId);
+    		for(UserDTO buyer : buyersList.getUserDTOs()){
+    			toList.add(buyer.getEmail());
+    		}
+    		}
+    	if(toValue.equalsIgnoreCase("attendees")||toValue.equalsIgnoreCase("all")){
+    		TicketAttendeeDTO attendeeList = infoService.getAttendes(tktId);
+    		for(Map<String, String> attendee : attendeeList.getAttendeeListMap()){
+    			
+    		}
+    		}
+    	System.out.println("QQWEQWEWEADFFASFDADFASFASFASFSDFSADFSDF");
+    	htmlEmailService.sendMail(toList, "SUBBJECT", "Body", ccList, attachment);
+    	
+    	return new ResponseMessage(ResponseMessage.Type.success, "Successfully sent the mail.");
     }
     
     @RequestMapping(value = "/myevent/myTickets", method = RequestMethod.GET)

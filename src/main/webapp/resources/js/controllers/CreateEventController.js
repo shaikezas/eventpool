@@ -14,6 +14,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.startDateBeforeEndDate = false;
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
+    $scope.tktId = "";
+    $scope.subject = "";
+    $scope.toValue = "";
+    $scope.message = "";
+    var map = [];
     $scope.from="admin@eventhut.com";
    
       $scope.template = "html/event/editevent.html";
@@ -151,6 +156,22 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	$scope.buyersList = buyersList;
          });
     }
+    
+    $scope.storeTicketId = function(ticketId) {
+    	$scope.tktId = ticketId;
+  }
+    
+    $scope.sendMail = function() {
+        alert($scope.tktId);
+        alert($scope.subject);
+        alert($scope.toValue);
+        alert($scope.message);
+        alert($scope.from);
+    	
+  	  $http.post('event/myevent/sendmail/'+$scope.mailString).success(function(){
+  		 
+       });
+  }
     
     $scope.fetchAttendees = function(ticketId) {
     	$http.get('event/myevent/attendees/'+ticketId).success(function(attendeesList){
