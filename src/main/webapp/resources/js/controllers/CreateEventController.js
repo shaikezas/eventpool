@@ -161,12 +161,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.tktId = ticketId;
   }
     
-    $scope.sendMail = function() {
-        alert($scope.tktId);
-        alert($scope.subject);
-        alert($scope.toValue);
-        alert($scope.message);
-        alert($scope.from);
+    $scope.sendMail = function(mail) {
+    	$scope.mailString = $scope.tktId;
+    	$scope.mailString  = $scope.mailString + "~" + mail.subject;
+    	$scope.mailString  = $scope.mailString + "~" + mail.toValue;
+    	$scope.mailString  = $scope.mailString + "~" + mail.message;
     	
   	  $http.post('event/myevent/sendmail/'+$scope.mailString).success(function(){
   		 

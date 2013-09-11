@@ -110,7 +110,7 @@
 	<div class="control-group">
 	<label class="control-label" for="to">To :</label>
 		<div class="controls">	
-			 <select ng-model="toValue">
+			 <select ng-model="mail.toValue">
 				<option value="all">All</option>
 				<option value="buyers">To Buyers</option>
 				<option value="attendees">To Attendees</option>
@@ -120,14 +120,14 @@
 	<div class="control-group">
 	<label class="control-label" for="subject">Subject :</label>
 		<div class="controls">	
-			<input type="text" name="subject" ng-model="subject"></input>
+			<input type="text" name="subject" ng-model="mail.subject"></input>
 		</div>
 	</div>
 				
 		    <div class="control-group">
 				<label class="control-label" for="message">Message :</label>
 				<div class="controls">
-				<textarea id="emailMsg" name="message" ng-model="message" rows="10" style="width:90%"></textarea>
+				<textarea id="emailMsg" name="message" ng-model="mail.message" rows="10" style="width:90%"></textarea>
 				</div>
 			</div>
 		
@@ -135,7 +135,7 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			<button class="btn" data-dismiss="modal" aria-hidden="true" ng-click="sendMail()">Send</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true" ng-click="sendMail(mail)">Send</button>
 		</div>
 	</div>	
 </div>

@@ -375,8 +375,11 @@ public class EventController {
     
     @RequestMapping(value = "/myevent/sendmail/{mailString}", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage sendMail(@PathVariable("mailString") String mailString) throws Exception {
-    	Long tktId=1L;
-    	String toValue=null;
+    	String[] splits = mailString.split("~");
+    	Long tktId=Long.parseLong(splits[0]);
+    	String subject=splits[1];
+    	String toValue=splits[2];
+    	String message=splits[3];
     	System.out.println("QQWEQWEWEADFFASFDADFASFASFASFSDFSADFSDF");
     	List<String> toList = new ArrayList<String>();
     	List<String> ccList = new ArrayList<String>();
@@ -394,7 +397,7 @@ public class EventController {
     		}
     		}
     	System.out.println("QQWEQWEWEADFFASFDADFASFASFASFSDFSADFSDF");
-    	htmlEmailService.sendMail(toList, "SUBBJECT", "Body", ccList, attachment);
+    	htmlEmailService.sendMail(toList, subject, message, ccList, attachment);
     	
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully sent the mail.");
     }
