@@ -21,13 +21,13 @@ public class EventpoolUserDetailsServiceImpl implements EventpoolUserDetailsServ
 		System.out.println("Trying to login with login name"+loginName);
 		 User user = null;
 		try{
-		user = userRepository.findByUserName(loginName);
+		user = userRepository.findByEmail(loginName);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		System.out.println("Test");
-        if (user==null) throw new UsernameNotFoundException("Username not found: "+loginName);
+        if (user==null) throw new UsernameNotFoundException("User not found: "+loginName);
         
 		UserDetails userDetails = new EventpoolUserDetails(user);
 		return userDetails;

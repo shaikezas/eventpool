@@ -211,7 +211,8 @@ public class EventForm  {
 	public void setTickets(List<TicketForm> tickets) {
 		this.tickets = tickets;
 	}
-	public Boolean isIsWebinar() {
+	
+	public Boolean getIsWebinar() {
 		return isWebinar;
 	}
 	public void setIsWebinar(Boolean isWebinar) {

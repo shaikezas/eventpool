@@ -1,4 +1,4 @@
-var EventPageController = function($scope, $http,$routeParams, srvevent,$location,Data,search) {
+var EventPageController = function($scope, $http,$routeParams, srvevent,$location,Data,search,$rootScope,currentuser) {
 		$scope.event = Data.getEventData();
 	    $scope.editMode = true;
 	    $scope.orderRegister = Data.getOrderRegisterData();
@@ -155,4 +155,16 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     		$scope.enableBookTicket = true;
     	}
     }
+    
+ $scope.getcurrentuser = function(){
+     	
+     	if ($rootScope.user == undefined) {
+     		currentuser.getcurrentuser().success(function(data) {
+     			$rootScope.user = data;
+         	});
+         }
+     	
+     }
+     
+     $scope.getcurrentuser();
 }

@@ -1,4 +1,4 @@
-var MyEventsController = function($scope, $http,search,subcategories,categories) {
+var MyEventsController = function($scope, $http,search,subcategories,categories,$rootScope,currentuser) {
     $scope.draftEvents = {};
     $scope.liveEvents = {};
     $scope.pastEvents = {};
@@ -27,6 +27,17 @@ var MyEventsController = function($scope, $http,search,subcategories,categories)
         });
     }
     
+ $scope.getcurrentuser = function(){
+     	
+     	if ($rootScope.user == undefined) {
+     		currentuser.getcurrentuser().success(function(data) {
+     			$rootScope.user = data;
+         	});
+         }
+     	
+     }
+     
+     $scope.getcurrentuser();
     $scope.fetchLiveEventsList();
 }
 

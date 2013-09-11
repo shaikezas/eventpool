@@ -100,7 +100,7 @@ public class EventpoolUserDetails implements UserDetails {
         }
 
         public String getUsername() {
-                return user.getUserName();
+                return user.getEmail();
         }
 
         public boolean isAccountNonExpired() {

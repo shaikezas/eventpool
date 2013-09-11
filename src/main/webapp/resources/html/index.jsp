@@ -65,19 +65,28 @@
         <msg>{{access().text}}</msg>
         
     </div>
-        
+        <form class="form-horizontal" name="userForm">
             <div class="control-group">
-                <label class="control-label" for="username">Username</label>
+                <label class="control-label" for="username">Email</label>
 
                 <div class="controls">
-                    <input id="username" ng-model="username"/>
+                    <input id="username" ng-model="username" type="email" name="username"/>
+                         <div  ng-show="userForm.username.$dirty && userForm.username.$invalid" ng-style="{color:'red'}">Invalid:
+<span ng-show="userForm.username.$error.required" ng-style="{color:'red'}">Email is required.</span>
+<span
+                    ng-show="userForm.username.$error.email" ng-style="{color:'red'}">Please, write a valid email address.</span>
+                </div>
+                    
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="password">Password</label>
 
                 <div class="controls">
-                    <input type="password" id="password" ng-model="password"/>
+                    <input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
+                     <div  ng-show="userForm.password.$dirty && userForm.password.$invalid" ng-style="{color:'red'}">Invalid:
+						<span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span>
+               		 </div>
                 </div>
             </div>
 				<div class="control-group">
@@ -87,13 +96,13 @@
 
 					</div>
 				</div>
+				</form>
 			</div>
         <div class="modal-footer">
-            <a ng-click="login()" class="btn btn-primary">Login</a>
+            <a ng-click="login()" class="btn btn-primary" ng-disabled="userForm.username.$pristine || userForm.username.$dirty && userForm.username.$invalid">Login</a>
             <a data-dismiss="modal" class="btn" ng-click="cancel()">Cancel</a>
         </div>
     </div>
-   
 <div ng-view></div>
  
       </div>

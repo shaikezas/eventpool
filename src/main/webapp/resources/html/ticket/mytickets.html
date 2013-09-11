@@ -31,25 +31,32 @@
       <div  style="margin-top:50px"> 
             <h1>My Tickets</h1>
           
-          <div >
+          <div>
+          		<form class="form-horizontal" class="row-fluid">
+         		 	 <div class="span7" align="left"> Show: <select ng-model="showtickets" ng-init="showtickets=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
+         		 	 <div class="span4" align="right">Search Text: <input type="text" id="searchTextTickets" ng-model="searchTextTickets"></div>
+         		 	 <br>
+         		    </form> 
+          
+          
 				    <table class="table table-condensed" id="mytickets">
 				      <thead>
 				        <tr>
 				        	
-	  	 				  <th>ORDER ID</th>
-	  	 				  <th>SUBORDER ID</th>
-				          <th>EVENT NAME</th>
-				          <th>TICKET NAME</th>
-				          <th>BOOKED ON</th>
-				          <th>EVENT STARTS ON</th>
-				          <th>EVENT ENDS ON</th>
-				          <th>QTY</th>
-				          <th>AMOUNT</th>
+	  	 				  <th><a href="" ng-click="predicate = 'orderId'; reverse=!reverse">ORDER ID</a></th>
+	  	 				  <th><a href="" ng-click="predicate = 'suborderId'; reverse=!reverse">SUBORDER ID</a></th>
+				          <th><a href="" ng-click="predicate = 'evnetName'; reverse=!reverse">EVENT NAME</a></th>
+				          <th><a href="" ng-click="predicate = 'ticketName'; reverse=!reverse">TICKET NAME</a></th>
+				          <th><a href="" ng-click="predicate = 'bookedOn'; reverse=!reverse">BOOKED ON</a></th>
+				          <th><a href="" ng-click="predicate = 'startDate'; reverse=!reverse">EVENT STARTS ON</a></th>
+				          <th><a href="" ng-click="predicate = 'endDate'; reverse=!reverse">EVENT ENDS ON</a></th>
+				          <th><a href="" ng-click="predicate = 'quantity'; reverse=!reverse">QTY</a></th>
+				          <th><a href="" ng-click="predicate = 'ticketPrice'; reverse=!reverse">AMOUNT</a></th>
 				          <th>QUICK LINKS</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr ng-repeat="myTicket in myTicketsList">
+				        <tr ng-repeat="myTicket in myTicketsList  | filter:searchTextTickets | limitTo:showtickets |orderBy:predicate:reverse">
 						  <td>{{myTicket.orderId}}</td>
 						  <td>{{myTicket.suborderId}}</td>
 				          <td>{{myTicket.evnetName}}</td>
@@ -145,10 +152,4 @@
             <button class="btn btn-warning cancel" ng-click="closePrintTicket()">Cancel</button>
         </div>
     </div>
-          <script>
-          
-          $(document).ready(function(){
-		$('#mytickets').dataTable();
-});
-          
-          </script>
+

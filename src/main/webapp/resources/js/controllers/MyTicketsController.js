@@ -1,4 +1,4 @@
-var MyTicketsController = function($scope, $http) {
+var MyTicketsController = function($scope, $http,$rootScope,currentuser) {
 	$scope.header = "mytickets";
 	$scope.invoice = {};
 	$scope.myTicketsList = {};
@@ -24,6 +24,18 @@ var MyTicketsController = function($scope, $http) {
     		    backdropFade: true,
     		    dialogFade:true,
     		  };
+      
+      $scope.getcurrentuser = function(){
+       	
+       	if ($rootScope.user == undefined) {
+       		currentuser.getcurrentuser().success(function(data) {
+       			$rootScope.user = data;
+           	});
+           }
+       	
+       }
+       
+       $scope.getcurrentuser();
     $scope.fetchMyTicketsList();
 	
 }

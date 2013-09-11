@@ -4,7 +4,7 @@
  * CreateEventController
  * @constructor
  */
-var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent,eventsettings, $dialog,$location) {
+var CreateEventController = function($scope, $http,search,subcategories,categories, $routeParams, $timeout, srvevent,eventsettings, $dialog,$location,$rootScope,currentuser) {
     $scope.event = {};
     $scope.editMode = false;
     $scope.$parent.title="Create Event";
@@ -14,6 +14,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.startDateBeforeEndDate = false;
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
+    $scope.tktId = "";
+    $scope.subject = "";
+    $scope.toValue = "";
+    $scope.message = "";
+    var map = [];
     $scope.from="admin@eventhut.com";
    
       $scope.template = "html/event/editevent.html";
@@ -78,11 +83,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	                    {questionTypeName : 'Radio Buttons' }, 
     	                    {questionTypeName : 'Checkboxes' }];
    		  
-   $scope.classificationTypes = 		[{id : 0 , classificationType : 'CLASSIC'},      
-                                		 {id : 1 , classificationType : 'SILVER'},
-                                		 {id : 2 , classificationType : 'GOLD'}, 
-                                		 {id : 3 , classificationType : 'PLATINUM'},
-                                		 {id : 4 , classificationType : 'DIAMOND'}];
+   $scope.classificationTypes = 		[{id : 1 , classificationType : 'CLASSIC'},      
+                                		 {id : 2 , classificationType : 'SILVER'},
+                                		 {id : 3 , classificationType : 'GOLD'}, 
+                                		 {id : 4 , classificationType : 'PLATINUM'},
+                                		 {id : 5 , classificationType : 'DIAMOND'}];
    
     $scope.getMembershipId();
     $scope.myevent = function() {
@@ -152,6 +157,22 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
          });
     }
     
+    $scope.storeTicketId = function(ticketId) {
+    	$scope.tktId = ticketId;
+  }
+    
+    $scope.sendMail = function() {
+        alert($scope.tktId);
+        alert($scope.subject);
+        alert($scope.toValue);
+        alert($scope.message);
+        alert($scope.from);
+    	
+  	  $http.post('event/myevent/sendmail/'+$scope.mailString).success(function(){
+  		 
+       });
+  }
+    
     $scope.fetchAttendees = function(ticketId) {
     	$http.get('event/myevent/attendees/'+ticketId).success(function(attendeesList){
         	$scope.attendeesList = attendeesList;
@@ -167,6 +188,21 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
          }
         else {        	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
+        	$location.url('myevents');
+        }).error(function() {
+        });
+        }
+        
+    }
+    
+    $scope.addNewEventAndPublish = function() {
+    	$scope.resetError();
+        $scope.validations();
+        if($scope.stopSubmitAction === true){
+        	$scope.stopSubmitAction = false;
+         }
+        else {        	
+        $http.post('event/myevent/addEventAndPublish', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
         });
@@ -403,6 +439,19 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    	
 	    });
     }*/
+     
+     $scope.getcurrentuser = function(){
+     	
+     	if ($rootScope.user == undefined) {
+     		currentuser.getcurrentuser().success(function(data) {
+     			$rootScope.user = data;
+         	});
+         }
+     	
+     }
+     
+     $scope.getcurrentuser();
+     
     $scope.fetchCategories();
     
     $scope.predicate = 'id'

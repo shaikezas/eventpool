@@ -31,13 +31,15 @@ public class User extends IdEntity{
 		this.userName = userName;
 		
 	}
-	public User(String userName, String password) {
+	public User(String email, String password) {
 	    // By default account enabled should be false, once the user clicks on confirmation email, this flag should be set
 	    // to true
 	    accountExpired = false;
 
-	    this.userName = userName;
+	    this.email = email;
 	    this.password = encode(password);
+	    this.memberShipExp = new Date();
+	    this.memberShipType = 1;
 	  }
 	 public String encode(String password) {
 		    return new Md5PasswordEncoder().encodePassword(password, SALT);

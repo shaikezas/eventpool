@@ -39,7 +39,7 @@
 				          <td>{{order.totalTicketSoldPrice}}</td>
 				           <td><a ng-click="fetchAttendees(order.ticketId)" data-toggle="modal" data-target="#attendesModal" ng-show="showAttendeDetails">View Attendees</a> | 
 				           <a ng-click="fetchBuyers(order.ticketId)" data-toggle="modal" data-target="#buyersModal">View Buyers</a> | 
-				           <a ng-click="sentMail()" data-toggle="modal" data-target="#emailModal">Send Mail</a></td>
+				           <a ng-click="storeTicketId(order.ticketId)" data-toggle="modal" data-target="#emailModal">Send Mail</a></td>
 				        </tr>   
 				      </tbody>
 			</table>
@@ -110,11 +110,17 @@
 	<div class="control-group">
 	<label class="control-label" for="to">To :</label>
 		<div class="controls">	
-			 <select>
-				<option>All</option>
-				<option>To Buyers</option>
-				<option>To Attendees</option>
+			 <select ng-model="toValue">
+				<option value="all">All</option>
+				<option value="buyers">To Buyers</option>
+				<option value="attendees">To Attendees</option>
 			</select>
+		</div>
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="subject">Subject :</label>
+		<div class="controls">	
+			<input type="text" name="subject" ng-model="subject"></input>
 		</div>
 	</div>
 				
@@ -129,7 +135,7 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Send</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true" ng-click="sendMail()">Send</button>
 		</div>
 	</div>	
 </div>

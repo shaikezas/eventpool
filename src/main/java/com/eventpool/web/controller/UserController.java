@@ -1,5 +1,7 @@
 package com.eventpool.web.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.eventpool.common.entities.MemberShip;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.web.domain.ResponseMessage;
@@ -29,7 +32,6 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
     public User getCurrentUser() {
-    	System.out.println("getCurrentUser");
         return userService.getCurrentUser();
     }
     
@@ -37,11 +39,12 @@ public class UserController {
     @ResponseBody
     public ResponseMessage createUser(@RequestParam("userName")String userName,@RequestParam("password") String password){
     	System.out.println("create User");
-    	ResultStatus validate = userService.validateUserName(userName);
+    	ResultStatus validate = userService.validateUser(userName);
     	if(validate.equals(ResultStatus.USER_EXISTS)){
     		return new ResponseMessage(ResponseMessage.Type.error, "User already registered ");
     	}
-        userService.saveUser(new User(userName,password));
+    	User user = new User(userName,password);
+        userService.saveUser(user);
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully created user");
     }
     
