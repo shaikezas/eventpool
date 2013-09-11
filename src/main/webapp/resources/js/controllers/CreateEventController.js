@@ -322,27 +322,27 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         
     }
 
-    $scope.removeEvent = function(id) {
+/*    $scope.removeEvent = function(id) {
         $scope.resetError();
 
-        $http.delete('event/removeEvent/' + id).success(function() {
+        $http.delete('event/myevent/removeEvent/' + id).success(function() {
             $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not remove event');
         });
-    }
+    };
     
 
     $scope.removeAllEvents = function() {
         $scope.resetError();
 
-        $http.delete('event/removeAllEvents').success(function() {
+        $http.delete('event/myevent/removeAllEvents').success(function() {
             $scope.fetchEventsList();
         }).error(function() {
             $scope.setError('Could not remove all events');
         });
 
-    };
+    };*/
     
     $scope.getsearchResults = function(query) {
 		search.getbasicsearchresults(query).success(function(data) {

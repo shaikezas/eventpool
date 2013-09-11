@@ -201,11 +201,11 @@ public class EventController {
          
          return forms;
     }
-    @RequestMapping(value = "/myevent/removeEvent/{id}", method = RequestMethod.DELETE)
+/*    @RequestMapping(value = "/myevent/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
-      //  eventService.deleteEventById(id);
+    	return;
     }
-    
+ */   
     @RequestMapping(value = "/myevent/publishevent/{eventid}", method = RequestMethod.GET)
     public @ResponseBody ResponseMessage publishEvent(@PathVariable("eventid") Long eventId) throws Exception {
         eventService.publishEvent(eventId, true);
@@ -218,10 +218,10 @@ public class EventController {
     }
 
 
-    @RequestMapping(value = "/myevent/removeAllEvents", method = RequestMethod.DELETE)
+ /*   @RequestMapping(value = "/myevent/removeAllEvents", method = RequestMethod.DELETE)
     public @ResponseBody void removeAllEvents() {
-        //eventService.deleteAll();
-    }
+    	return ;
+    }*/
     
     @RequestMapping(value="/{eventurl}", method = RequestMethod.GET)
     public ModelAndView getEventByUrl(@PathVariable String eventurl) {
