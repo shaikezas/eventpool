@@ -155,7 +155,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testIpLocation(){
-    	//ipLocation.getLocation("14.99.224.122");
+    	ipLocation.getLocation("14.99.13.184");
     }
 
     

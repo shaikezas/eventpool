@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.dto.Region;
 import com.eventpool.common.module.EntityUtilities;
+import com.eventpool.common.module.IPLocation;
 import com.eventpool.web.forms.SearchResponse;
 
 
@@ -37,8 +38,8 @@ public class SearchController {
     @Resource
     private SearchService searchService;
     
-    @Autowired
-    private HttpServletRequest context;
+    @Resource
+    IPLocation ipLocation;
     
     TreeMap<String, Region> citySearch = null;
 	
@@ -127,4 +128,13 @@ public class SearchController {
         return newTitleSearch;
       }
 
+    @RequestMapping(value = "/getSearchResults", method = RequestMethod.GET)
+    public @ResponseBody SearchQueryResponse getHomepageResults() throws Exception {
+    	String ip=null;
+		Integer countryId = ipLocation.getCountryId(ip);
+    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords(20, 0, null, countryId);
+    	SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
+    	searchQueryResponse.setEventSearchRecords(eventSearchRecords);
+    	return searchQueryResponse;
+    }
 }

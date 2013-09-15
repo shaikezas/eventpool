@@ -244,6 +244,8 @@ public class EventpoolMapper {
 			mapper.map(eventForm, media);
 			if(eventForm.getBannerFile()!=null){
 				media.setBannerUrl(eventForm.getBannerFile().getPath());
+			}else{
+				media.setBannerUrl(eventForm.getBanner());
 			}
 		}
 		else{ 

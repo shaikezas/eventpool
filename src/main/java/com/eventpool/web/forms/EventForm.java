@@ -60,6 +60,7 @@ public class EventForm  {
 	private Integer classificationType = 1;
 	private UserEventSettingDTO userEventSettingDTO;
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
+	private String logo;
 	
 	public String getTitle() {
 		return title;
@@ -373,8 +374,11 @@ public Long getEventId() {
 	public void setUserEventSettingDTO(UserEventSettingDTO userEventSettingDTO) {
 		this.userEventSettingDTO = userEventSettingDTO;
 	}
-	
-	
-
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
 	
 }

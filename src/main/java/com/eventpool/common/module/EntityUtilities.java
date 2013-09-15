@@ -25,6 +25,7 @@ public class EntityUtilities {
 	private Map<Integer,String> stateMap =new HashMap<Integer,String>();
 	private Map<Integer,Integer> stateCountryMap =new HashMap<Integer,Integer>();
 	private Map<Integer,String> countryMap = new HashMap<Integer,String>();
+	private Map<String,Integer> countryNameMap = new HashMap<String,Integer>();
 	private Map<Integer,String> countryFlagMap = new HashMap<Integer,String>();
 
 	private boolean initAllMaps=true;
@@ -56,6 +57,7 @@ public class EntityUtilities {
 			if(allCountries!=null && allCountries.size()>0){
 				for(Country country:allCountries){
 					countryMap.put(country.getId(), country.getName());
+					countryNameMap.put(country.getName(), country.getId());
 					countryFlagMap.put(country.getId(), country.getCode());
 				}
 			}else{
@@ -156,6 +158,14 @@ public class EntityUtilities {
 
 	public void setRepositoryPool(RepositoryPool repositoryPool) {
 		this.repositoryPool = repositoryPool;
+	}
+
+	public Map<String, Integer> getCountryNameMap() {
+		return countryNameMap;
+	}
+
+	public void setCountryNameMap(Map<String, Integer> countryNameMap) {
+		this.countryNameMap = countryNameMap;
 	}
 	
 }

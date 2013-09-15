@@ -56,9 +56,19 @@ public class SearchServiceImpl implements SearchService {
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
-    public List<EventSearchRecord> getSearchRecords(String query,int rows,int start)
+    public List<EventSearchRecord> getSearchRecords(int rows,int start,Integer cityId,Integer countryId)
 			throws Exception {
-    	QueryResponse response = getSolrResponse(query,null, rows,start); 
+    
+    	String fq=null;
+    	if(cityId!=null){
+    		fq = fq+"cityId:"+cityId;
+    	}
+    	if(countryId!=null){
+    		if(fq!=null) fq = fq+" AND "; 
+    		fq=fq+"countryId:"+countryId;
+    	}
+    	
+    	QueryResponse response = getSolrResponse("",fq, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
     	return searchResults;
 	}
@@ -83,10 +93,11 @@ public class SearchServiceImpl implements SearchService {
 		solrQuery.addFacetField("eventDate");
 		solrQuery.addFacetField("eventType");
 		solrQuery.addFacetField("cityId");
+		solrQuery.addFacetField("countryId");
 		
 		solrQuery.setIncludeScore(true);
 		//String fq="cityId:6453";
-		if(filterQuery.contains(":")){
+		if(filterQuery!=null && filterQuery.contains(":")){
 			solrQuery.setFilterQueries(filterQuery);
 		}
 		logger.debug("RawQuery :" + query);

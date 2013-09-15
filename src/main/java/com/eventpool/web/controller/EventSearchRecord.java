@@ -83,6 +83,8 @@ public class EventSearchRecord  implements Serializable{
 	@Field
 	private String companyLogoUrl;
 	
+	@Field
+	private Integer countryId;
 	
 	public String getTitle() {
 		return title;
@@ -307,6 +309,12 @@ public class EventSearchRecord  implements Serializable{
 	}
 	public void setSubCategoryId(Long subCategoryId) {
 		this.subCategoryId = subCategoryId;
+	}
+	public Integer getCountryId() {
+		return countryId;
+	}
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
 	}
 	
 }
