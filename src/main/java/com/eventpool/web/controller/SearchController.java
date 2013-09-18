@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import sun.net.util.IPAddressUtil;
 
 import com.eventpool.common.dto.Region;
 import com.eventpool.common.module.EntityUtilities;
@@ -129,12 +132,34 @@ public class SearchController {
       }
 
     @RequestMapping(value = "/getSearchResults", method = RequestMethod.GET)
-    public @ResponseBody SearchQueryResponse getHomepageResults() throws Exception {
-    	String ip=null;
+    public @ResponseBody SearchQueryResponse getHomepageResults(HttpServletRequest httpServletRequest) throws Exception {
+    	String ip=getRemoteIp(httpServletRequest);
 		Integer countryId = ipLocation.getCountryId(ip);
     	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords(20, 0, null, countryId);
     	SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
     	searchQueryResponse.setEventSearchRecords(eventSearchRecords);
     	return searchQueryResponse;
     }
+    
+	public static String getRemoteIp(HttpServletRequest request) {
+		String clientIp = request.getRemoteAddr();
+		String xForwardedFor = request.getHeader("X-FORWARDED-FOR");
+		if (StringUtils.isBlank(xForwardedFor))
+			return clientIp;
+
+		String[] ips = xForwardedFor.split(",");
+		for (String ip : ips) {
+			ip = ip.trim();
+			if (isValidIpAddress(ip)) {
+				return ip;
+			}
+		}
+
+		return clientIp;
+	}
+
+	public static boolean isValidIpAddress(String ip) {
+		return (IPAddressUtil.isIPv4LiteralAddress(ip) || IPAddressUtil.isIPv6LiteralAddress(ip));
+	}
+
 }
