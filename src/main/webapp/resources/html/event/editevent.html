@@ -70,7 +70,7 @@
 							    <label class="control-label" for="classificationType">Classification Type :</label>
 							    <div class="controls">
 									  <select id="classificationType" ng-model="event.classificationType"
-													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo: membership">
+													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo : membership">
 												<option value="">--Select ClassificationType--</option> 
 										</select>
 							    </div>
@@ -348,7 +348,7 @@
 							      <!-- <button id="hide" type="button" class="close" ng-click="showticketsettings(ticket, false)">X</button> -->
 							      
 							    </div>
-								    <label class="control-label" for="ticketDescription">Ticket Description :*</label>
+								    <label class="control-label" for="ticketDescription">Ticket Description :</label>
 								    <div class="controls">
 								      <textarea id="ticketDescription" rows="3" ng-model="ticket.description" ></textarea>
 								    </div>

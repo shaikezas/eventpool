@@ -19,6 +19,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.toValue = "";
     $scope.message = "";
     var map = [];
+    var classificationTypes1 = [];
+    var upgrades = [];
+    var i;
     $scope.from="admin@eventhut.com";
    
       $scope.template = "html/event/editevent.html";
@@ -99,6 +102,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
+	    i = $scope.event.classificationType;
+	    upgrades = $scope.classificationTypes;
+	    while(i <= $scope.membership){
+	    	classificationTypes1.push(upgrades[i-1]);
+	    	i = i + 1;
+	    }
+	    
+	    $scope.classificationTypes = classificationTypes1;
 		 
     }).error(function(data) {
     	

@@ -12,6 +12,7 @@
 	  </repository>
 	</repositories>
 	<properties>
+		<app>eventpool</app>
 		<commons-fileupload-version>1.2.1</commons-fileupload-version>
         <commons-io-version>2.0.1</commons-io-version>
 	</properties>
@@ -173,13 +174,73 @@
 		</dependency>
   </dependencies>
     <build>
-        <finalName>eventpool</finalName>
+        <finalName>${app}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/webapp/WEB-INF</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>web.xml</include>
+				</includes>
+			</resource>
+		</resources>
         <plugins>
         	<plugin>
         		<groupId>org.apache.tomcat.maven</groupId>
         		<artifactId>tomcat7-maven-plugin</artifactId>
         		<version>2.1</version>
+        		<configuration>
+					<path>/</path>
+				</configuration>
         	</plugin>
+        	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1-alpha-2</version>
+				<configuration>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<warName>${app}</warName>
+					<webResources>
+						<resource>
+							<targetPath>WEB-INF</targetPath>
+							<directory>src/main/webapp/WEB-INF</directory>
+							<includes>
+								<include>**/*.cfg</include>
+								<include>**/*.properties</include>
+								<include>**/*.xml</include>
+							</includes>
+							<excludes>
+								<exclude>**/*.jar</exclude>
+							</excludes>
+							<filtering>true</filtering>
+						</resource>
+						<resource>
+							<targetPath>WEB-INF/classes</targetPath>
+							<directory>src/main/java</directory>
+							<includes>
+								<include>**/*.properties</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-war</id>
+						<phase>package</phase>
+						<goals>
+							<goal>war</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 </project>

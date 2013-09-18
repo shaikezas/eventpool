@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
+import com.eventpool.common.dto.EventOrderSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.InvoiceDTO;
 import com.eventpool.common.dto.Region;
@@ -36,7 +37,9 @@ import com.eventpool.common.module.CacheUtils;
 import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EmailAttachment;
 import com.eventpool.common.module.EntityUtilities;
+import com.eventpool.common.module.EventPoolConstants;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.module.EventpoolUserDetails;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
@@ -346,9 +349,15 @@ public class EventController {
     	if(eventDTO.getEventSettingsDTO()==null){
     		eventDTO.setEventSettingsDTO(new EventSettingsDTO());
     	}
+    	
+    	EventOrderSettings orderSettings = form.getOrderSettings();
+    	
+    	if(orderSettings.getRegistrationLimit() < EventPoolConstants.MIN_REGISTRATION_TIME_LIMIT){
+    		orderSettings.setRegistrationLimit(EventPoolConstants.MIN_REGISTRATION_TIME_LIMIT);
+    	}
     	eventDTO.setInfoType(form.getInfoType());
     	eventDTO.getEventSettingsDTO().setEventInfoSettings(gson.toJson(eventInfoSettings));
-    	eventDTO.getEventSettingsDTO().setOrderFromSettings(gson.toJson(form.getOrderSettings()));
+    	eventDTO.getEventSettingsDTO().setOrderFromSettings(gson.toJson(orderSettings));
     	eventDTO.getEventSettingsDTO().setEventId(form.getEventId());
     	eventDTO.getEventSettingsDTO().setCreatedBy(eventDTO.getCreatedBy());
     	eventService.addEvent(eventDTO);

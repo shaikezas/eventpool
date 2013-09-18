@@ -29,6 +29,7 @@ import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketRegister;
 import com.eventpool.common.entities.TicketSnapShot;
+import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
@@ -44,6 +45,7 @@ import com.eventpool.ticket.commands.TicketOrderedCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.ticket.service.TicketInventoryUnblockedService;
 import com.eventpool.web.controller.EventService;
+import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
 
@@ -78,6 +80,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Resource
 	TicketInventoryService inventoryService;
+	
+	 @Autowired
+	    private UserService userService;
 
 	private static final Logger log = LoggerFactory
 			.getLogger(OrderServiceImpl.class);
@@ -161,8 +166,12 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRegisterForm createOrderRegisterForm(
 			List<TicketRegister> ticketRegisters, EventRegisterDTO eventRegister)
 			throws EventNotFoundException {
-
+		
 		OrderRegisterForm orderRegisterForm = new OrderRegisterForm();
+		User user = userService.getCurrentUser();
+		orderRegisterForm.setFirstName(user.getFname());
+		orderRegisterForm.setLastName(user.getLname());
+		orderRegisterForm.setEmail(user.getEmail());
 		EventDTO event = eventService.getEventById(eventRegister.getEventId());
 		EventInfoType infoType = event.getInfoType();
 		boolean isAttendeeRequired = false;
