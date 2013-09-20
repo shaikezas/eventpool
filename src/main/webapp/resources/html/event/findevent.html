@@ -38,7 +38,7 @@
 				
 				
 				
-				<ul class="nav nav-list">
+			<!-- 	 <ul class="nav nav-list">
 				  <li class="nav-header">List header</li>
 				  <li class="active"><a href="#">Home</a></li>
 				  <li><a href="#">Conferences (19)</a></li>
@@ -55,32 +55,31 @@
 				  <li><a href="#">Networking (1)</a></li>
 				  <li><a href="#">Outdoors (1)</a></li>
 				  <li><a href="#">Reunions (1)</a></li>
-				</ul>
-			</div>	
+				</ul> -->
 				
-				<ul class="nav ">
-					<li>Date</li>
+				
+				<ul class="nav nav-list">
+					<li class="nav-header">Date</li>
 					<li ng-repeat="filterItem in searchResults.eventDateFilterItems">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
-					<li>Price</li>
+					<li class="nav-header">Price</li>
 					<li ng-repeat="filterItem in searchResults.eventTypeFilterItems">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
-					<li>Category</li>
+					<li class="nav-header">Category</li>
 					<li ng-repeat="filterItem in searchResults.subCategoryFilterItems">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
-					<li>Location</li>
+					<li class="nav-header">Location</li>
 					<li ng-repeat="filterItem in searchResults.cityIdFilterItems">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
-					</li>
-					
+					</li>					
 				</ul>
-				
+			</div>
 				
 
 			</div>
@@ -89,12 +88,12 @@
 			
 			<div class="span3 ">
 
-				<input class="input-xlarge" type="text" placeholder=".input-large "
+				<!-- <input class="input-xlarge" type="text" placeholder=".input-large "
 					value="Search for (e.g. music, networking)" ng-model="searchText"/> 
 				
-				<input ui-select2="cityselect2options" ng-model="byCity" ng-change="selectCity(byCity)" required />
+				<input ui-select2="cityselect2options" ng-model="byCity" ng-change="selectCity(byCity)" required /> 
 
-				<button type="button" class="btn btn-primary" ng-click="fetchResultsByFilterType(empty,empty)">Search</button>
+				<button type="button" class="btn btn-primary" ng-click="fetchResultsByFilterType(empty,empty)">Search</button> -->
 
 
 					<div class="searchFilter">
@@ -108,50 +107,31 @@
 							<input class="span4 inputFindEvent" id="appendedPrependedDropdownButton" type="text">
 							<input class="span2 btn" id="appendedPrependedDropdownButton" type="text">
 							<div class="btn-group">
-							<button class="btn" data-toggle="dropdown"> <span class="icon-search"></span></button>
+							<button class="btn" data-toggle="dropdown" ng-click="fetchResultsByFilterType(empty,empty)"> <span class="icon-search"></span></button>
 							</div>
 						</div>
 					</div>
 				
-				
-					<ul class="thumbnails">
+				    <button class="btn btnBookTicket" ng-click="toggleViewMode()">{{viewModeBtnText}}</button>
+					<div ng-show="viewMode"><ul class="thumbnails">
 		
-					<li class="span1">
+					<li class="span1" ng-repeat="event in searchRecords">
 						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img01.png" data-src="holder.js/300x200" alt="" >
+							<a href="#event/{{event.eventUrl}}"><img src="resources/bootstrap/img/img01.png" data-src="holder.js/300x200" alt="" ></a>
 						</div>	
-						<div class="desc">Problem Solving With Data  Structures And Algo..</div>
+						<div class="desc">{{event.title}}</div>
 							<div class="type" >Training</div>
 							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Cource</button>
+							<div class="date" >Start Date: {{event.startDate}}</div>
+							<div class="date" >End Date  : {{event.endDate}}</div>
+							<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
 					</li>
 					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img02.png" data-src="holder.js/300x200" alt="" >
-						</div>
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Cource</button>
-					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img03.png" data-src="holder.js/300x200" alt="" >
-						</div>	
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Cource</button>
-					</li>
-
-				</ul>
+			    	</ul>
+			    	</div>
 
 				
+				<div ng-show="!viewMode">
 				<ul class="media-list">
 
 					<li class="media" ng-repeat="event in searchRecords">
@@ -168,6 +148,7 @@
 							<div>End Date  : {{event.endDate}}</div>
 						</div></li>
 				</ul>
+				</div>
 
 
 			</div>

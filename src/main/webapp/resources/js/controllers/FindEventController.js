@@ -14,7 +14,20 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.filterType['loc']=null;
 	$scope.filterType['date']=null;
 	$scope.filterText = "";
+	$scope.viewMode=true;
+	$scope.viewModeBtnText="List";
 		
+	$scope.toggleViewMode = function() {
+	if($scope.viewMode){
+		$scope.viewModeBtnText="Thumbnail";
+		$scope.viewMode = false;
+	}
+	else {
+		$scope.viewModeBtnText="List";
+		$scope.viewMode = true;
+	}
+	
+	}
 	
     $scope.fetchSearchResults = function() {
     	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
