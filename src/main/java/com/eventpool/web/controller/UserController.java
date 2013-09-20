@@ -1,7 +1,5 @@
 package com.eventpool.web.controller;
 
-import java.util.Date;
-
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.eventpool.common.entities.MemberShip;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.ResultStatus;
 import com.eventpool.web.domain.UserService;
+import com.eventpool.web.forms.SignupForm;
 import com.eventpool.web.forms.UserForm;
 
 @Controller
@@ -35,7 +33,7 @@ public class UserController {
         return userService.getCurrentUser();
     }
     
-    @RequestMapping(value = "/createuser", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/createuser", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage createUser(@RequestParam("userName")String userName,@RequestParam("password") String password){
     	System.out.println("create User");
@@ -46,7 +44,25 @@ public class UserController {
     	User user = new User(userName,password);
         userService.saveUser(user);
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully created user");
+    }*/
+    
+    @RequestMapping(value = "/signupuser", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseMessage signupUser(@RequestBody SignupForm signupForm){
+    	System.out.println("create User");
+    	
+    	ResultStatus validate = userService.validateUser(signupForm.getEmail());
+    	if(validate.equals(ResultStatus.USER_EXISTS)){
+    		return new ResponseMessage(ResponseMessage.Type.error, "User already registered ");
+    	}
+    	if(validate.equals(ResultStatus.FAILURE)){
+    		return new ResponseMessage(ResponseMessage.Type.error, "Enter user details ");
+    	}
+    	User user = new User(signupForm.getEmail(),signupForm.getPassword(),signupForm.getFname(),signupForm.getLname());
+        userService.saveUser(user);
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully created user");
     }
+    
     
     @RequestMapping(value = "/account/updateuser", method = RequestMethod.POST)
     @ResponseBody

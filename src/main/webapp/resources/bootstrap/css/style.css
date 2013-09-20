@@ -1,857 +1,415 @@
-/* Add additional stylesheets below
--------------------------------------------------- */
-/*
-  Bootstrap's documentation styles
-  Special styles for presenting Bootstrap's documentation and examples
-*/
-
-
-
-/* Body and structure
--------------------------------------------------- */
-
-body {
-	position: relative;
-	padding-top: 40px;
+body{
+	font-family: "Coda" !important;
 	}
-
-/* Code in headings */
-h3 code {
-	font-size: 14px;
+h1, h2, h3, h4, h5, h6, input, button, select{
+	font-family: "Coda" !important;
 	font-weight: normal;
 	}
-
-
-
-/* Tweak navbar brand link to be super sleek
--------------------------------------------------- */
-
-body > .navbar {
-	font-size: 13px;
-	background: #fff;
-	font-weight: bold;
+h1{
+	font-size: 22px;
+	}
+h2{
+	font-size: 18px;
+	}
+h3{
+	font-size: 14px;
 	}
 
-/* Change the docs' brand */
-body > .navbar .brand {
-  padding-right: 0;
-  padding-left: 0;
-  margin-left: 20px;
-  float: right;
-  font-weight: bold;
-  color: #000;
-  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
-  -webkit-transition: all .2s linear;
-     -moz-transition: all .2s linear;
-          transition: all .2s linear;
+.navbar-fixed-top{ }
+.input-append, .input-prepend{
+	margin: 0px;
 	}
-body > .navbar .brand:hover {
+
+/* Header Top Strip Start */
+.headerStrip{
+	background-color: #373737;
+	background-image: -moz-linear-gradient(top, #373737, #151515);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#373737), to(#151515));
+	background-image: -webkit-linear-gradient(top, #373737, #151515);
+	background-image: -o-linear-gradient(top, #373737, #151515);
+	background-image: linear-gradient(to bottom, #373737, #151515);
+	border-bottom:1px solid #ccc;
+	}
+
+.navCityLogin{
+	text-align: right;
+	padding:5px ;	
+	}
+.navCityLogin a{
+	color: #fff;
+	margin:10px;
+	font-size: 12px;
+	}
+
+.navCityLogin a:hover{
+	color: #ff6600;
 	text-decoration: none;
-	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
-	
 	}
-
-.nav-tabs > li {
-	margin: 0px 2px;
-	}
-
-.nav-tabs > li a{
-	background-image: -moz-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#d9d9d9));
-	background-image: -webkit-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -o-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: linear-gradient(to bottom, #ffffff, #d9d9d9);
-	margin: 0px 2px;
-	border-radius: 5px;
-	}
-.navbar-inverse .navbar-inner {
-	color: #000;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	box-shadow: 0 0 0;
-	background-image: -moz-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#d9d9d9));
-	background-image: -webkit-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -o-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: linear-gradient(to bottom, #ffffff, #d9d9d9);
-	background-repeat: repeat-x;
-	border-bottom: 1px solid #ffffff;
-	}
-
-
-.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus {
-	color: #000;
-	background-color: #111111;
-	}
-	
-.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
-	color: #555555;
-	text-decoration: none;
-	background-color: #f5f5f5;
-	background-image: -moz-linear-gradient(top, #d9d9d9, #ffffff);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), to(#ffffff));
-	background-image: -webkit-linear-gradient(top, #d9d9d9, #ffffff);
-	background-image: -o-linear-gradient(top, #d9d9d9, #ffffff);
-	background-image: linear-gradient(to bottom, #d9d9d9, #ffffff);
-	background-repeat: repeat-x;
-	border-bottom: 5px solid #ff6600;
-	}
-.navbar .nav > li:first-child {
-	border-left: 1px dotted #000;
-	}	
-.navbar .nav > li > a {
-	padding: 10px 20px 5px 20px;
-	border-right: 1px dotted #000;
-	text-align: center;
-	}
-.navbar .nav > li > a:hover{
-	text-shadow:0 0 0 ;
-	background-color: #f5f5f5;
-	background-image: -moz-linear-gradient(top, #d9d9d9, #ffffff);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d9d9d9), to(#ffffff));
-	background-image: -webkit-linear-gradient(top, #d9d9d9, #ffffff);
-	background-image: -o-linear-gradient(top, #d9d9d9, #ffffff);
-	background-image: linear-gradient(to bottom, #d9d9d9, #ffffff);
-	background-repeat: repeat-x;
-	border-bottom: 5px solid #ccc;
-	}
-.navbar-inverse .brand, .navbar-inverse .nav > li > a {
-	color: #000;
-	text-shadow: 0 0 0;
+.mainNav{
+	float: right;
+	margin-top: -12px
 	}
 
 .navbar .nav{
-	float: right
-	}
-
-/* home Nav */
-
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-	
-	background-image:-moz-linear-gradient(top, #5988d9 0%, #2f5dad 45%,#477ad1 100%);
-	background-image:linear-gradient(top, #5988d9 0%, #2f5dad 45%,#477ad1 100%);
-	background-image:-webkit-linear-gradient(top, #5988d9 0%, #2f5dad 45%,#477ad1 100%);
-	background-image:-o-linear-gradient(top, #5988d9 0%, #2f5dad 45%,#477ad1 100%);
-	background-image:-ms-linear-gradient(top, #5988d9 0%, #2f5dad 45%,#477ad1 100%);
-	background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,#5988d9), color-stop(45%,#2f5dad),color-stop(100%,#477ad1));
-	color: #000;	
-	height: 25px;
-	
-	}
-/* here */
-.tabBody{
-	padding-top: 20px;
-	}
-
-.homeSearch{
-	background: #477ad1;
-	padding: 0px;
-	}
-	
-.homeSearch form {
-	padding:5px 3px
-	}
-
-.homeSearch input{
-	border-radius: 4px;
-	}
-	
-.tab-content{
-	border: 1px solid #477ad1;
-	padding: 10px;
-	border-radius: 4px;
-	margin-bottom: 10px;
-	}
-/* Header Home Bar
--------------------------------------------------- */	
-.headerTopBar{
-	background-color: #f5f5f5;
-	background-image: -moz-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#d9d9d9));
-	background-image: -webkit-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -o-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: linear-gradient(to bottom, #ffffff, #d9d9d9);
+	border-radius:4px 4px 0px 0px;
+	color: #fff;
+	background-color: #363636;
+	background-image: -moz-linear-gradient(top, #444444, #222222);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+	background-image: -webkit-linear-gradient(top, #444444, #222222);
+	background-image: -o-linear-gradient(top, #444444, #222222);
+	background-image: linear-gradient(to bottom, #444444, #222222);
 	background-repeat: repeat-x;
-	border: 1px solid #ffffff;
-	/* -moz-box-shadow:    0px 0px 3px 3px #ccc;
-	-webkit-box-shadow: 0px 0px 3px 3px #ccc;
-	box-shadow:         0px 0px 3px 3px #ccc; */
-	box-shadow: 0px 0px 3px 3px #ccc;
-	margin-bottom: 5px;
+	border-color: #222222 #222222 #000000;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	border: 1px solid #000;
 	}
-		
-.headerTopBar .nav > li > a {
-	padding: 5px 10px;
-	color: #000;
+.navbar .nav > li > a{
+	text-shadow: 0 0 0;
+	color: #fff;
+	border-bottom: 3px solid #333333;
+	border-right: 1px solid #000;
+	border-left: 1px solid #575757;
+	}
+.navbar .nav > li > a:hover{
+	text-shadow: 0 0 0;
+	color: #fff;
+	border-bottom: 3px solid #ff6600;
+	}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus{
+	border-bottom: 3px solid #ff6600;
+	background-color: none;
+	background: none;
+	color: #fff;
 	}
 
-.headerTopBar .container, .headerCont .container{
-	margin: 0px auto;
-	width: 1000px;
-}
+.firstNav{
+	border-left: 0px !important;
+	}
+.lastNav{
+	border-right: 0px !important;
+	}
+.splitter {
+	border-left: 1px solid #ccc;
+	}
+/* Header Top Strip End */
 
+/* Header Start */
+.headerContainer {
+	background-image: -moz-linear-gradient(top, #ffffff, #d8d8d8);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#d8d8d8));
+	background-image: -webkit-linear-gradient(top, #ffffff, #d8d8d8);
+	background-image: -o-linear-gradient(top, #ffffff, #d8d8d8);
+	background-image: linear-gradient(to bottom, #ffffff, #d8d8d8);
+	background-repeat: repeat-x;
+	border-bottom: 1px solid #ffffff;
+	}
+.headerContainer .container{
+	margin: auto;
+	}
 
-.homeAdSection{
-	width: 225px;
+.header-logo{
+	margin: 5px 0px;
+	}
+/* Header End */
+/* find Event Start */
+
+.searchFilter{
+	border: 1px solid #cccccc;
+	border-bottom: 5px solid #011f51;
+	margin-bottom: 10px;
+	padding:5px 10px
+	}
+/* find Event End */
+
+/* Page LeftPanel  Start */
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
+color: #ff6600;
+text-shadow:0 0 0;
+background-color: #fff;
+border-left: 5px solid #ff6600;
+	}
+.leftPanel{
+		margin-right: 10px;
+		background: #eeeeee;
+	}
+.rightPanel{
+	margin-left: 10px !important;
+	background: #eeeeee;
+	}
+.filterControl{
+	padding:15px 5px 5px;
+	background: #eeeeee;
+	border-radius:0px 0px 5px 5px;
+	}
+.filterDateinput{
+	width: 189px;
+	}
+.leftPanel h3{
+	font-size: 14px;
+	background: #494a4b;
+	padding: 10px;
 	margin: 0px;
+	line-height: normal;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
+	}
+h3 i{
+		background-image:url(../img/titleArow.png);
+		display: inline-block;
+		width: 17px;
+		height: 12px;
+		float: left;
+		margin-top: 27px;
 }
-/* Footer
--------------------------------------------------- */
+.filterControl, .nav-list > li > a, .nav-list .nav-header {
+	font-weight: normal;
+	}
+.filterControl .nav-list li a {
+	border-left:2px solid #0048ff;
+	font-size: 10px;
+	padding:2px 2px 2px 10px;
+	margin: 1px 0px;
+	background: #fff;
+}
+.filterControl .nav-list .active a {
+	border-left:2px solid #ff6600;
+	color:#fff;
+	background: #0088cc;
+}
+.filterControl .nav-list a:hover {
+	border-left:2px solid #ff6600;
+	color:#fff;
+	background: #0088cc;
+}
+/* Page LeftPanel End */
 
-.footer {
-  text-align: center;
-  padding: 30px 0;
-  margin-top: 10px;
-  border-top: 1px solid #e5e5e5;
-  background-color: #f5f5f5;
-}
-.footer p {
-  margin-bottom: 0;
-  color: #777;
-}
-.footer-links {
-  margin: 10px 0;
-}
-.footer-links li {
-  display: inline;
-  padding: 0 2px;
-}
-.footer-links li:first-child {
-  padding-left: 0;
-}
 
-.gallaryCont{
-	box-shadow: 0px 0px 5px 0px #000;
-	width: 980px;
-	padding:10px 0px 0px 0px;}
-.gallaryCont .nav {
-	padding: 0px;
-	margin: 0px;
+/* Header Main Nav Start */
+.nav-tabs{
 	border: 0px;
 }
-.thumbnail {border:1px solid #000;padding: 5px }
-.span3 img{
-	margin-bottom: 10px;
-	
+.nav-tabs > li > a:hover{
+	background:none;
+	line-height: normal;
+	padding-bottom: 15px;
+	border: 0px;
 }
-.thumbnail div{
-	font-size: 12px;
-	font-weight: bold;
-	padding: 0px;
-	margin: 0px;
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+	background-image:url(../img/activeTap.png);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	line-height: normal;
+	padding-bottom: 15px;
+	border: 0px;
 }
-
-.thumbnail img{
-width: 300px;
-height: 250px;	
-}
-.thumbnail .desc{color: #000 }
-.thumbnail .type{color: #477ad1 }
-.thumbnail .price{color: #ff0000 }
-.thumbnail .date{color: #52545f }
-
-/* Responsive
--------------------------------------------------- */
-
-/* Desktop large
-------------------------- */
-@media (min-width: 1200px) {
-	.span3{
-  	width: 250px;
-  	}
-	
-  .bs-docs-container {
-    max-width: 970px;
-  }
-  .bs-docs-sidenav {
-    width: 258px;
-  }
-  .bs-docs-sidenav > li > a {
-    width: 230px \9; /* Override the previous IE8-9 hack */
-  }
-  .thumbnails{
-  	margin: 0px;
-  }
-  .thumbnails > li{
-  	margin: 5px;
-  }
-  .thumbnails .span3{
-  	width: 226px;
-  }
-  
-  .span8 {
-	width: 710px;
-	margin:5px 10px 0px 10px;
-	}
-}
-
-/* Desktop
-------------------------- */
-@media (max-width: 980px) {
-  /* Unfloat brand */
-  body > .navbar-fixed-top .brand {
-    float: left;
-    margin-left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #f5f5f5;
-	background-image: -moz-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#d9d9d9));
-	background-image: -webkit-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: -o-linear-gradient(top, #ffffff, #d9d9d9);
-	background-image: linear-gradient(to bottom, #ffffff, #d9d9d9);
-	background-repeat: repeat-x;
-	border: 1px solid #ffffff;
-	border-color: #0044cc #0044cc #002a80;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-	box-shadow:0 0 0 0;
-  }
-
-  /* Inline-block quick links for more spacing */
-  .quick-links li {
-    display: inline-block;
-    margin: 5px;
-  }
-
-  /* When affixed, space properly */
-  .bs-docs-sidenav {
-    top: 0;
-    width: 218px;
-    margin-top: 30px;
-    margin-right: 0;
-  }
-}
-
-/* Tablet
-------------------------- */
-@media (max-width: 767px) {
-  /* Remove any padding from the body */
-  body {
-    padding-top: 0;
-  }
-
-  /* Widen masthead and social buttons to fill body padding */
-  .jumbotron {
-    padding: 40px 20px;
-    margin-top:   -20px; /* Offset bottom margin on .navbar */
-    margin-right: -20px;
-    margin-left:  -20px;
-  }
-  .masthead h1 {
-    font-size: 90px;
-  }
-  .masthead p,
-  .masthead .btn {
-    font-size: 24px;
-  }
-  .marketing .span4 {
-    margin-bottom: 40px;
-  }
-  .bs-docs-social {
-    margin: 0 -20px;
-  }
-
-  /* Space out the show-grid examples */
-  .show-grid [class*="span"] {
-    margin-bottom: 5px;
-  }
-
-  /* Sidenav */
-  .bs-docs-sidenav {
-    width: auto;
-    margin-bottom: 20px;
-  }
-  .bs-docs-sidenav.affix {
-    position: static;
-    width: auto;
-    top: 0;
-  }
-
-  /* Unfloat the back to top link in footer */
-  .footer {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .footer p {
-    margin-bottom: 9px;
-  }
-}
-
-/* Landscape phones
-------------------------- */
-@media (max-width: 480px) {
-  /* Remove padding above jumbotron */
-  body {
-    padding-top: 0;
-  }
-
-  /* Change up some type stuff */
-  h2 small {
-    display: block;
-  }
-
-  /* Downsize the jumbotrons */
-  .jumbotron h1 {
-    font-size: 45px;
-  }
-  .jumbotron p,
-  .jumbotron .btn {
-    font-size: 18px;
-  }
-  .jumbotron .btn {
-    display: block;
-    margin: 0 auto;
-  }
-
-  /* center align subhead text like the masthead */
-  .subhead h1,
-  .subhead p {
-    text-align: center;
-  }
-
-  /* Marketing on home */
-  .marketing h1 {
-    font-size: 30px;
-  }
-  .marketing-byline {
-    font-size: 18px;
-  }
-
-  /* center example sites */
-  .example-sites {
-    margin-left: 0;
-  }
-  .example-sites > li {
-    float: none;
-    display: block;
-    max-width: 280px;
-    margin: 0 auto 18px;
-    text-align: center;
-  }
-  .example-sites .thumbnail > img {
-    max-width: 270px;
-  }
-
-  /* Do our best to make tables work in narrow viewports */
-  table code {
-    white-space: normal;
-    word-wrap: break-word;
-    word-break: break-all;
-  }
-
-  /* Examples: dropdowns */
-  .bs-docs-example-submenus > .pull-left {
-    float: none;
-    clear: both;
-  }
-  .bs-docs-example-submenus > .pull-left,
-  .bs-docs-example-submenus > .pull-left + .pull-left {
-    margin-left: 0;
-  }
-  .bs-docs-example-submenus p {
-    margin-bottom: 0;
-  }
-  .bs-docs-example-submenus .dropup > .dropdown-menu,
-  .bs-docs-example-submenus .dropdown > .dropdown-menu {
-    margin-bottom: 10px;
-    float: none;
-    max-width: 180px;
-  }
-
-  /* Examples: modal */
-  .modal-example .modal {
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-  }
-  
-  .clear{
-  	clear: both;
-  }
-
-  /* Tighten up footer */
-  .footer {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-}
-
-
-select,
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
- 
-  margin-bottom:0px;
- 
-}
-.contBox{
-	border: 1px solid #ddd;
-	padding: 10px;
-	border-radius: 4px;
-	margin-bottom: 10px;
-}
-
-.media-heading, .media{
-	border-bottom: 1px solid #999;
-}
-
+.floatLeft{float: left}
+.floatRight{float: right}
 
 .table{
 	border:1px solid #dddddd;
 	padding: 5px;
+	margin: 0px;
 }
 .table td, th{
 	border:1px solid #dddddd;
 	padding: 5px;
+	font-weight: normal !important;
+	font-size: 12px;
 }
-
+.table th{
+	font-size: 13px;
+	color: #005580;
+}
 .amt{
 	text-align: right !important;
 }
+/* Header Main Nav End */
 
-.eventBaner{
-	background:#e5e5e5; 
-	height: 200px; 
+/* pageBanner  Start */
+/* pageBanner  End */
+
+
+
+/* Login View Start */
+.newModel{
+	width: 650px;
+}
+.userLogin{
+	width: 45%;
+	float: left;
+}
+.newUserLogin{
+	width: 45%;
+	float: right;
+}
+
+.newModel label{
+	font-size: 11px;
+}
+.newModel input{
+	font-size: 11px;
+	height: 15px;
+	margin-bottom: 5px;
+}
+
+.newModel legend{
+	font-size: 14px;
+	color: #ff6600;
+	margin:0px 0px 5px 0px;
+	height: 30px;
+}
+/* Login View End */
+
+
+.copyright{
+	clear: both;
+	text-align: center;
+}
+/* Footer Start */
+.footer{
+	font-size: 10px;
+	background: #363636;
+	padding-bottom:10px;
+	color: #fff;
+}
+
+.footer h3 {
+	color: #fff;
+	margin: 5px 0px ;
+	padding:10px 0px;
+	line-height: normal; 
+}
+.footer ul{
+	margin: 0px;
+	list-style: none;
+}
+.footer li a{
+	color: #fff;
+}
+
+.followUs i{
+	width: 32px;
+	height: 32px;
+	background-image: url("../img/glyphicons-halflings.png");
+}
+.icon-facebook{
+	background-position: -0px -164px;
+	}
+.icon-twitter{
+	background-position: -40px -164px;
+	}
+.icon-youtube{
+	background-position: -79px -164px;
+	}
+.icon-googleplus{
+	background-position: -120px -164px;
+	
+	}
+/* Footer End */
+
+@media (min-width: 1200px){
+.pageContainer{
+	margin-top: 130px;
+}
+.inPageContainer{
+	margin-top: 130px;
+	margin-bottom: 25px;
+}
+
+
+.span1{
+	width: 240px;
+	margin-left: 0px !important; ;
+}	
+
+.span2{
+	width: 495px;
+	margin-left: 0px !important;
+}
+.span3{
+	width: 740px;
+	margin-left: 0px !important;
+}
+
+
+.inputFindEvent{
+	width: 403px !important;
+	border-right: 0px !important;
+}
+
+.quant{
+width: 50px
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.thumbnails{
+	margin: 5px 0px;
+	}
+.thumbnails > li {
+	margin:0px 6px 5px 6px;
+	text-align: center;
+	font-size: 12px;
+	padding-bottom: 10px;
 	border-radius: 5px;
+	}
+.thumbnails li:hover{
+		box-shadow: 0px 0px 2px 2px #3887be;
+		-webkit-transition: all 0.30s ease-in-out;
+	  -moz-transition: all 0.30s ease-in-out;
+	  -ms-transition: all 0.30s ease-in-out;
+	  -o-transition: all 0.30s ease-in-out;
+	}
+.thumbnails .desc{color: #000 }
+.thumbnails .type{color: #477ad1 }
+.thumbnails .price{color: #ff0000 }
+.thumbnails .date{color: #52545f }
+
+
+.btnBookTicket {
+	color: #fff;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+	text-shadow: 0 2px 2px #000;
+}
+.btnBookTicket:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
 }
 
-.eventDetails{
-	margin: 0 0 10px 15px;font-size: 12px;font-weight: bold;
+
+/* Header Top Strip Start */
+.navCityLogin{
+	width: 980px;
+	margin: auto;
 }
-.eventDetails li{
-	border-bottom: 1px solid #ccc;
-	display: inline-block;
-	width: 95%;
-	padding: 5px;
-	
+.container{
+	width: 990px;
 }
+/* Header Top Strip End */
 
-
-.smmary li{
-	padding:2px;
-	border-bottom: 1px dotted #ccc;
+/* Header Start */
+.headerContainer .container{
+	width: 990px;
 }
-
-.orderFrom{
-	border-right: 1px solid #ddd;
 }
-.orderFrom .control-group{
-	margin: 0px
-} 
-
-.orderFrom .control-label {
-	margin: 0px
-} 
-
-.max-label   {
-	width: 410px !important;
-	padding-right: 10px;
-}
-.checkbox1 input[type="checkbox"] {
-	margin:0px 10px 0px 0px 
-}
-
-/* Country Flags Start
--------------------------------------------------- */
-.flag {
-	width: 16px;
-	height: 11px;
-	background:url(../img/flags.png) no-repeat;
-	margin: 5px;
-	display: inline-block;
-}
-
-.flag.flag-AD {background-position: -16px 0}
-.flag.flag-AE {background-position: -32px 0}
-.flag.flag-AF {background-position: -48px 0}
-.flag.flag-AG {background-position: -64px 0}
-.flag.flag-AI {background-position: -80px 0}
-.flag.flag-AL {background-position: -96px 0}
-.flag.flag-AM {background-position: -112px 0}
-.flag.flag-AN {background-position: -128px 0}
-.flag.flag-AO {background-position: -144px 0}
-.flag.flag-AR {background-position: -160px 0}
-.flag.flag-AS {background-position: -176px 0}
-.flag.flag-AT {background-position: -192px 0}
-.flag.flag-AU {background-position: -208px 0}
-.flag.flag-AW {background-position: -224px 0}
-.flag.flag-AZ {background-position: -240px 0}
-.flag.flag-BA {background-position: 0 -11px}
-.flag.flag-BB {background-position: -16px -11px}
-.flag.flag-BD {background-position: -32px -11px}
-.flag.flag-BE {background-position: -48px -11px}
-.flag.flag-BF {background-position: -64px -11px}
-.flag.flag-BG {background-position: -80px -11px}
-.flag.flag-BH {background-position: -96px -11px}
-.flag.flag-BI {background-position: -112px -11px}
-.flag.flag-BJ {background-position: -128px -11px}
-.flag.flag-BM {background-position: -144px -11px}
-.flag.flag-BN {background-position: -160px -11px}
-.flag.flag-BO {background-position: -176px -11px}
-.flag.flag-BR {background-position: -192px -11px}
-.flag.flag-BS {background-position: -208px -11px}
-.flag.flag-BT {background-position: -224px -11px}
-.flag.flag-BV {background-position: -240px -11px}
-.flag.flag-BW {background-position: 0 -22px}
-.flag.flag-BY {background-position: -16px -22px}
-.flag.flag-BZ {background-position: -32px -22px}
-.flag.flag-CA {background-position: -48px -22px}
-.flag.flag-CATALONIA {background-position: -64px -22px}
-.flag.flag-CD {background-position: -80px -22px}
-.flag.flag-CF {background-position: -96px -22px}
-.flag.flag-CG {background-position: -112px -22px}
-.flag.flag-CH {background-position: -128px -22px}
-.flag.flag-CI {background-position: -144px -22px}
-.flag.flag-CK {background-position: -160px -22px}
-.flag.flag-CL {background-position: -176px -22px}
-.flag.flag-CM {background-position: -192px -22px}
-.flag.flag-CN {background-position: -208px -22px}
-.flag.flag-CO {background-position: -224px -22px}
-.flag.flag-CR {background-position: -240px -22px}
-.flag.flag-CU {background-position: 0 -33px}
-.flag.flag-CV {background-position: -16px -33px}
-.flag.flag-CW {background-position: -32px -33px}
-.flag.flag-CY {background-position: -48px -33px}
-.flag.flag-CZ {background-position: -64px -33px}
-.flag.flag-DE {background-position: -80px -33px}
-.flag.flag-DJ {background-position: -96px -33px}
-.flag.flag-DK {background-position: -112px -33px}
-.flag.flag-DM {background-position: -128px -33px}
-.flag.flag-DO {background-position: -144px -33px}
-.flag.flag-DZ {background-position: -160px -33px}
-.flag.flag-EC {background-position: -176px -33px}
-.flag.flag-EE {background-position: -192px -33px}
-.flag.flag-EG {background-position: -208px -33px}
-.flag.flag-EH {background-position: -224px -33px}
-.flag.flag-UK {background-position: -240px -33px}
-.flag.flag-ER {background-position: 0 -44px}
-.flag.flag-ES {background-position: -16px -44px}
-.flag.flag-ET {background-position: -32px -44px}
-.flag.flag-EU {background-position: -48px -44px}
-.flag.flag-FI {background-position: -64px -44px}
-.flag.flag-FJ {background-position: -80px -44px}
-.flag.flag-FK {background-position: -96px -44px}
-.flag.flag-FM {background-position: -112px -44px}
-.flag.flag-FO {background-position: -128px -44px}
-.flag.flag-FR {background-position: -144px -44px}
-.flag.flag-GA {background-position: -160px -44px}
-.flag.flag-GB {background-position: -176px -44px}
-.flag.flag-GD {background-position: -192px -44px}
-.flag.flag-GE {background-position: -208px -44px}
-.flag.flag-GF {background-position: -224px -44px}
-.flag.flag-GG {background-position: -240px -44px}
-.flag.flag-GH {background-position: 0 -55px}
-.flag.flag-GI {background-position: -16px -55px}
-.flag.flag-GL {background-position: -32px -55px}
-.flag.flag-GM {background-position: -48px -55px}
-.flag.flag-GN {background-position: -64px -55px}
-.flag.flag-GP {background-position: -80px -55px}
-.flag.flag-GQ {background-position: -96px -55px}
-.flag.flag-GR {background-position: -112px -55px}
-.flag.flag-GS {background-position: -128px -55px}
-.flag.flag-GT {background-position: -144px -55px}
-.flag.flag-GU {background-position: -160px -55px}
-.flag.flag-GW {background-position: -176px -55px}
-.flag.flag-GY {background-position: -192px -55px}
-.flag.flag-HK {background-position: -208px -55px}
-.flag.flag-HM {background-position: -224px -55px}
-.flag.flag-HN {background-position: -240px -55px}
-.flag.flag-HR {background-position: 0 -66px}
-.flag.flag-HT {background-position: -16px -66px}
-.flag.flag-HU {background-position: -32px -66px}
-.flag.flag-IC {background-position: -48px -66px}
-.flag.flag-ID {background-position: -64px -66px}
-.flag.flag-IE {background-position: -80px -66px}
-.flag.flag-IL {background-position: -96px -66px}
-.flag.flag-IM {background-position: -112px -66px}
-.flag.flag-IN {background-position: -128px -66px}
-.flag.flag-IO {background-position: -144px -66px}
-.flag.flag-IQ {background-position: -160px -66px}
-.flag.flag-IR {background-position: -176px -66px}
-.flag.flag-IS {background-position: -192px -66px}
-.flag.flag-IT {background-position: -208px -66px}
-.flag.flag-JE {background-position: -224px -66px}
-.flag.flag-JM {background-position: -240px -66px}
-.flag.flag-JO {background-position: 0 -77px}
-.flag.flag-JP {background-position: -16px -77px}
-.flag.flag-KE {background-position: -32px -77px}
-.flag.flag-KG {background-position: -48px -77px}
-.flag.flag-KH {background-position: -64px -77px}
-.flag.flag-KI {background-position: -80px -77px}
-.flag.flag-KM {background-position: -96px -77px}
-.flag.flag-KN {background-position: -112px -77px}
-.flag.flag-KP {background-position: -128px -77px}
-.flag.flag-KR {background-position: -144px -77px}
-.flag.flag-KURDISTAN {background-position: -160px -77px}
-.flag.flag-KW {background-position: -176px -77px}
-.flag.flag-KY {background-position: -192px -77px}
-.flag.flag-KZ {background-position: -208px -77px}
-.flag.flag-LA {background-position: -224px -77px}
-.flag.flag-LB {background-position: -240px -77px}
-.flag.flag-LC {background-position: 0 -88px}
-.flag.flag-LI {background-position: -16px -88px}
-.flag.flag-LK {background-position: -32px -88px}
-.flag.flag-LR {background-position: -48px -88px}
-.flag.flag-LS {background-position: -64px -88px}
-.flag.flag-LT {background-position: -80px -88px}
-.flag.flag-LU {background-position: -96px -88px}
-.flag.flag-LV {background-position: -112px -88px}
-.flag.flag-LY {background-position: -128px -88px}
-.flag.flag-MA {background-position: -144px -88px}
-.flag.flag-MC {background-position: -160px -88px}
-.flag.flag-MD {background-position: -176px -88px}
-.flag.flag-ME {background-position: -192px -88px}
-.flag.flag-MG {background-position: -208px -88px}
-.flag.flag-MH {background-position: -224px -88px}
-.flag.flag-MK {background-position: -240px -88px}
-.flag.flag-ML {background-position: 0 -99px}
-.flag.flag-MM {background-position: -16px -99px}
-.flag.flag-MN {background-position: -32px -99px}
-.flag.flag-MO {background-position: -48px -99px}
-.flag.flag-MP {background-position: -64px -99px}
-.flag.flag-MQ {background-position: -80px -99px}
-.flag.flag-MR {background-position: -96px -99px}
-.flag.flag-MS {background-position: -112px -99px}
-.flag.flag-MT {background-position: -128px -99px}
-.flag.flag-MU {background-position: -144px -99px}
-.flag.flag-MV {background-position: -160px -99px}
-.flag.flag-MW {background-position: -176px -99px}
-.flag.flag-MX {background-position: -192px -99px}
-.flag.flag-MY {background-position: -208px -99px}
-.flag.flag-MZ {background-position: -224px -99px}
-.flag.flag-NA {background-position: -240px -99px}
-.flag.flag-NC {background-position: 0 -110px}
-.flag.flag-NE {background-position: -16px -110px}
-.flag.flag-NF {background-position: -32px -110px}
-.flag.flag-NG {background-position: -48px -110px}
-.flag.flag-NI {background-position: -64px -110px}
-.flag.flag-NL {background-position: -80px -110px}
-.flag.flag-NO {background-position: -96px -110px}
-.flag.flag-NP {background-position: -112px -110px}
-.flag.flag-NR {background-position: -128px -110px}
-.flag.flag-NU {background-position: -144px -110px}
-.flag.flag-NZ {background-position: -160px -110px}
-.flag.flag-OM {background-position: -176px -110px}
-.flag.flag-PA {background-position: -192px -110px}
-.flag.flag-PE {background-position: -208px -110px}
-.flag.flag-PF {background-position: -224px -110px}
-.flag.flag-PG {background-position: -240px -110px}
-.flag.flag-PH {background-position: 0 -121px}
-.flag.flag-PK {background-position: -16px -121px}
-.flag.flag-PL {background-position: -32px -121px}
-.flag.flag-PM {background-position: -48px -121px}
-.flag.flag-PN {background-position: -64px -121px}
-.flag.flag-PR {background-position: -80px -121px}
-.flag.flag-PS {background-position: -96px -121px}
-.flag.flag-PT {background-position: -112px -121px}
-.flag.flag-PW {background-position: -128px -121px}
-.flag.flag-PY {background-position: -144px -121px}
-.flag.flag-QA {background-position: -160px -121px}
-.flag.flag-RE {background-position: -176px -121px}
-.flag.flag-RO {background-position: -192px -121px}
-.flag.flag-RS {background-position: -208px -121px}
-.flag.flag-RU {background-position: -224px -121px}
-.flag.flag-RW {background-position: -240px -121px}
-.flag.flag-SA {background-position: 0 -132px}
-.flag.flag-SB {background-position: -16px -132px}
-.flag.flag-SC {background-position: -32px -132px}
-.flag.flag-SCOTLAND {background-position: -48px -132px}
-.flag.flag-SD {background-position: -64px -132px}
-.flag.flag-SE {background-position: -80px -132px}
-.flag.flag-SG {background-position: -96px -132px}
-.flag.flag-SH {background-position: -112px -132px}
-.flag.flag-SI {background-position: -128px -132px}
-.flag.flag-SK {background-position: -144px -132px}
-.flag.flag-SL {background-position: -160px -132px}
-.flag.flag-SM {background-position: -176px -132px}
-.flag.flag-SN {background-position: -192px -132px}
-.flag.flag-SO {background-position: -208px -132px}
-.flag.flag-SOMALILAND {background-position: -224px -132px}
-.flag.flag-SR {background-position: -240px -132px}
-.flag.flag-SS {background-position: 0 -143px}
-.flag.flag-ST {background-position: -16px -143px}
-.flag.flag-SV {background-position: -32px -143px}
-.flag.flag-SX {background-position: -48px -143px}
-.flag.flag-SY {background-position: -64px -143px}
-.flag.flag-SZ {background-position: -80px -143px}
-.flag.flag-TC {background-position: -96px -143px}
-.flag.flag-TD {background-position: -112px -143px}
-.flag.flag-TF {background-position: -128px -143px}
-.flag.flag-TG {background-position: -144px -143px}
-.flag.flag-TH {background-position: -160px -143px}
-.flag.flag-TJ {background-position: -176px -143px}
-.flag.flag-TK {background-position: -192px -143px}
-.flag.flag-TL {background-position: -208px -143px}
-.flag.flag-TM {background-position: -224px -143px}
-.flag.flag-TN {background-position: -240px -143px}
-.flag.flag-TO {background-position: 0 -154px}
-.flag.flag-TR {background-position: -16px -154px}
-.flag.flag-TT {background-position: -32px -154px}
-.flag.flag-TV {background-position: -48px -154px}
-.flag.flag-TW {background-position: -64px -154px}
-.flag.flag-TZ {background-position: -80px -154px}
-.flag.flag-UA {background-position: -96px -154px}
-.flag.flag-UG {background-position: -112px -154px}
-.flag.flag-UM {background-position: -128px -154px}
-.flag.flag-US {background-position: -144px -154px}
-.flag.flag-UY {background-position: -160px -154px}
-.flag.flag-UZ {background-position: -176px -154px}
-.flag.flag-VA {background-position: -192px -154px}
-.flag.flag-VC {background-position: -208px -154px}
-.flag.flag-VE {background-position: -224px -154px}
-.flag.flag-VG {background-position: -240px -154px}
-.flag.flag-VI {background-position: 0 -165px}
-.flag.flag-VN {background-position: -16px -165px}
-.flag.flag-VU {background-position: -32px -165px}
-.flag.flag-WALES {background-position: -48px -165px}
-.flag.flag-WF {background-position: -64px -165px}
-.flag.flag-WS {background-position: -80px -165px}
-.flag.flag-YE {background-position: -96px -165px}
-.flag.flag-YT {background-position: -112px -165px}
-.flag.flag-ZA {background-position: -128px -165px}
-.flag.flag-ZANZIBAR {background-position: -144px -165px}
-.flag.flag-ZM {background-position: -160px -165px}
-.flag.flag-ZW {background-position: -176px -165px}
-
-/* Country Flags End
--------------------------------------------------- */
-
-/* Icon  Start
--------------------------------------------------- */
-.eventDetailsIcon i{
-	width: 24px;
-	height: 24px;
-	background-image:url(../img/glyphicons.png);
-	background-repeat:no-repeat;
-	display: inline-block;
-	margin: 0px 5px}
-
-.eventDetailsIcon .iconTicket{background-position: -74px 0px; }
-
-.eventDetailsIcon .iconCalander{background-position: -50px 0px}
-
-.eventDetailsIcon .iconTime{background-position: -0px 0px}
-	
-.eventDetailsIcon .iconAddress{background-position: -24px 0px}
-
-/* Icon  End
--------------------------------------------------- */ 	
+ 

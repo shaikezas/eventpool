@@ -17,7 +17,7 @@ import org.springframework.security.core.GrantedAuthority;
 import com.eventpool.common.type.Gender;
 
 @Entity
-@Table(name="USER", uniqueConstraints = {@UniqueConstraint (columnNames = "USERNAME"),      @UniqueConstraint (columnNames = "EMAIL")})
+@Table(name="USER", uniqueConstraints = { @UniqueConstraint (columnNames = "EMAIL")})
 public class User extends IdEntity{
 	
 	private static final String SALT = "cewuiqwzie"; // This is required for password change through Spring security
@@ -26,18 +26,16 @@ public class User extends IdEntity{
 		
 	}
 	
-	public User(String userName){
-		
-		this.userName = userName;
-		
-	}
-	public User(String email, String password) {
+	public User(String email, String password,String fname,String lname) {
 	    // By default account enabled should be false, once the user clicks on confirmation email, this flag should be set
 	    // to true
 	    accountExpired = false;
 
 	    this.email = email;
 	    this.password = encode(password);
+	    this.fname = fname;
+	    this.lname = lname;
+	    this.userName = fname +" "+lname;
 	    this.memberShipExp = new Date();
 	    this.memberShipType = 1;
 	  }
@@ -85,7 +83,6 @@ public class User extends IdEntity{
 	private String lname;
 	
 	@Column(name = "USERNAME")
-	@NotNull
 	private String userName;
 	
 	@Column(name="PASSWORD")

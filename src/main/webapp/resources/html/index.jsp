@@ -15,13 +15,12 @@
 	<script type="text/javascript" src="config.js"></script>
 	<script type="text/javascript" src="styles.js"></script>
 	<script type="text/javascript" src="lang/en.js"></script>
-	<link rel="stylesheet" href="resources/bootstrap/css/sample.css">
 	<link rel="stylesheet" href="skins/moono/editor.css">
 
-	<link href="resources/bootstrap/css/style.css" rel="stylesheet">
-    <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+	
+	
+    
     <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
-    <link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
 	<link href="resources/bootstrap/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
@@ -30,6 +29,12 @@
 	
 	<link type="text/css" rel="stylesheet" href="resources/js/jquery.rte.css" />
 
+	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    
+    <link href="resources/bootstrap/css/style.css" rel="stylesheet">
+    
+    
 	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->
 	<style type="text/css">
         .movie-result td {vertical-align: top }
@@ -46,66 +51,132 @@
 
   <body >
 
-
-
- 
-
-  <div class="container">
-
-
-    <div class="modal" style="display: none" id="login">
-        <div class="modal-header">
-            <a class="close" data-dismiss="modal" ng-click="cancel()">x</a>
-
-            <h3>Login</h3>
-        </div>
-        <div class="modal-body">
-        		 <div ng-class="'alert alert-'+access().type" ng-show="access().show">
-        <button type="button" class="close" ng-click="access().show=false">×</button>
-        <msg>{{access().text}}</msg>
-        
-    </div>
-        <form class="form-horizontal" name="userForm">
-            <div class="control-group">
-                <label class="control-label" for="username">Email</label>
-
-                <div class="controls">
-                    <input id="username" ng-model="username" type="email" name="username"/>
-                         <div  ng-show="userForm.username.$dirty && userForm.username.$invalid" ng-style="{color:'red'}">Invalid:
-<span ng-show="userForm.username.$error.required" ng-style="{color:'red'}">Email is required.</span>
-<span
-                    ng-show="userForm.username.$error.email" ng-style="{color:'red'}">Please, write a valid email address.</span>
-                </div>
-                    
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="password">Password</label>
-
-                <div class="controls">
-                    <input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
-                     <div  ng-show="userForm.password.$dirty && userForm.password.$invalid" ng-style="{color:'red'}">Invalid:
-						<span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span>
-               		 </div>
-                </div>
-            </div>
-				<div class="control-group">
-					<div class="controls">
-						<input type="checkbox"  ng-model="newuser">
-						Are you new to Eventpool?
-
-					</div>
-				</div>
-				</form>
-			</div>
-        <div class="modal-footer">
-            <a ng-click="login()" class="btn btn-primary" ng-disabled="userForm.username.$pristine || userForm.username.$dirty && userForm.username.$invalid">Login</a>
-            <a data-dismiss="modal" class="btn" ng-click="cancel()">Cancel</a>
-        </div>
-    </div>
 <div ng-view></div>
+
  
-      </div>
+
+	<div >
+		    <div class="modal newModel" style="display: none" id="login">
+				        
+				     	<div class="modal-header">
+				            <a class="close" data-dismiss="modal" ng-click="cancel()">x</a>
+				            <h3>Login</h3>
+				        </div>
+				     
+				     <!-- Old User Login Start -->
+				  		<div class="userLogin"> 
+							<div class="modal-body">
+				        		 <div ng-class="'alert alert-'+access().type" ng-show="access().show">
+				        		 <button type="button" class="close" ng-click="access().show=false">x</button>
+				        		 <msg>{{access().text}}</msg>
+				    			</div>
+							<form class="form-horizontal" name="userForm">
+				         
+								  <fieldset>
+								   		<legend>Login User</legend>
+								    	<label for="username">Email</label>
+								    	<input id="username" ng-model="username" type="email" name="username"/>
+				                         <div  ng-show="userForm.username.$dirty && userForm.username.$invalid" ng-style="{color:'red'}">Invalid:
+											<span ng-show="userForm.username.$error.required" ng-style="{color:'red'}">Email is required.</span>
+											<span ng-show="userForm.username.$error.email" ng-style="{color:'red'}">Please, write a valid email address.</span>
+				                		</div>
+								   
+								   		<label for="password">Password</label>
+								 		<input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
+					                     <div  ng-show="userForm.password.$dirty && userForm.password.$invalid" ng-style="{color:'red'}">Invalid:
+											<span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span>
+					               		 </div>
+								
+								  </fieldset>
+
+							</form>
+						
+							 <div class="modal-footer">
+			        			<a ng-click="login()" class="btn btn-primary" ng-disabled="userForm.username.$pristine || userForm.username.$dirty && userForm.username.$invalid">Sign In</a>
+			        			
+			    			</div>
+						 <br><br>
+						 <a herf="#">I cannot access my account. </a>
+						</div></div> 
+						<!-- Old User Login End -->
+					
+					
+						<!-- New User Login End -->
+						<div class="newUserLogin"> 
+							
+							<div class="modal-body">
+				        		 <div ng-class="'alert alert-'+signupmessage().type" ng-show="signupmessage().show">
+				        		 <button type="button" class="close" ng-click="signupmessage().show=false">x</button>
+				        		 <msg>{{signupmessage().text}}</msg>
+				    		</div>
+							
+							<form name="signupForm">
+							  <fieldset>
+							    <legend>New User Sign Up Here</legend>
+							    <label for="firstName">First Name</label>
+								<input id="firstName" type="text" ng-model="signupuserform.fname" name="firstName"/>
+								
+								<label for="lastName">Last Name</label>
+								<input id="lastName" type="text" ng-model="signupuserform.lname" name="lastName"/>
+								
+							    <label for="newUserEmail">Email</label>
+								<input id="newUserEmail" type="email" ng-model="signupuserform.email" name="newUserEmail"/>
+								<div  ng-show="signupForm.newUserEmail.$dirty && signupForm.newUserEmail.$invalid" ng-style="{color:'red'}">Invalid:
+											<span ng-show="signupForm.newUserEmail.$error.required" ng-style="{color:'red'}">Email is required.</span>
+											<span ng-show="signupForm.newUserEmail.$error.email" ng-style="{color:'red'}">Please, write a valid email address.</span>
+				                		</div>
+								
+								<label for="newUserPassword">Password</label>
+								<input id="newUserPassword" type="password" ng-model="signupuserform.password" name="newUserPassword"/>
+								
+								<label for="newUserPasswordCF">Confirm Password</label>
+								<input id="newUserPasswordCF" type="password" name="newUserPasswordCF"/>
+								
+								
+								<div class="modal-footer">
+				        			<a class="btn btn-primary" ng-click="signup()">Sign Up</a>
+			    				</div>
+							  </fieldset>
+							</form>
+						</div>
+				     
+				        <!-- New User Login End -->
+				       
+				        
+				       
+				        
+			
+						
+			
+			
+		  
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</div>
+		   
+	</div>
+
+	
+ 
+      
 
 
 
@@ -113,7 +184,50 @@
     ================================================== -->
     <footer class="footer">
       <div class="container">
-        Â© 2009-2013, Copyright @ Company Name. All Rights Reserved.
+      
+      	<div class="span1">
+      		<h3>Quick Link</h3>
+      		<ul>
+      			<li><a herf="#">Home</a></li>
+      			<li><a herf="#">Find Event</a></li>
+      			<li><a herf="#">Create Event</a></li>
+      			<li><a herf="#">My Events</a></li>
+      			<li><a herf="#">My Tickets</a></li>
+      			<li><a herf="#">SignUp</a></li>
+      		</ul>
+		</div>
+      	<div class="span1">
+      		<h3>Categories</h3>
+      		<ul>
+      			<li><a herf="#">Professional</a></li>
+      			<li><a herf="#">Entertainment</a></li>
+      			<li><a herf="#">Campus</a></li>
+      			<li><a herf="#">Trade shows</a></li>
+      			<li><a herf="#">Training</a></li>
+      			<li><a herf="#">Spiritual</a></li>
+      			<li><a herf="#">Special Occasion</a></li>
+      		</ul>
+		</div>
+      	<div class="span1">
+      		<h3>Follow Us</h3>
+      		<div class="followUs">
+      		<a href="#"><i class="icon-facebook"></i></a> 
+			<a href="#"><i class="icon-twitter "></i></a> 
+			<a href="#"><i class="icon-youtube"></i></a> 
+			<a href="#"><i class="icon-googleplus"></i></a>
+			</div>
+		</div>
+      	<div class="span1">
+      		<h3>Subscribe and Get Updates</h3>
+      		Subscribe to email newsletter for latest 
+			events sent out everyday.
+			<input type="text" value="asd" >    
+			<button class="btn" style="float: right">Subscribe</button>  	
+      	</div>
+      	
+      	<div class="copyright">
+       			 &copy; 2013, Copyright @ Company Name. All Rights Reserved.
+         </div>
       </div>
     </footer>
 

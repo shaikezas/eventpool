@@ -4,6 +4,7 @@ var EventPool = {};
 var httpHeaders;
 var message;
 var access;
+var signupmessage;
 var App = angular.module('EventPool', 
 		['EventPool.filters', 'EventPool.services', 'EventPool.directives','ui.bootstrap', 'ui.utils', 'ui.select2']);
 App.factory('Data', function() {
@@ -106,6 +107,10 @@ App.run(function ($rootScope, $http, base64) {
     $rootScope.access = function () {
         return access;
     };
+    
+    $rootScope.signupmessage = function () {
+        return signupmessage;
+    };
 
     /**
      * Holds all the requests which failed due to 401 response.
@@ -143,6 +148,7 @@ App.run(function ($rootScope, $http, base64) {
             $rootScope.user = data;
             access = "";
             message = "";
+            signupmessage = "";
             $rootScope.$broadcast('event:loginConfirmed');
         });
        access = {

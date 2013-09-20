@@ -1,7 +1,8 @@
-function MainController($scope, $route,$rootScope, $routeParams,$location,signupSrv,search,currentuser) {
+function MainController($scope,$http, $route,$rootScope, $routeParams,$location,search,currentuser) {
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
+	$scope.signupuserform = {};
 	 $scope.shows = [
 	                  {id:10, value:10},
 	                  {id:20, value:20},
@@ -22,12 +23,16 @@ function MainController($scope, $route,$rootScope, $routeParams,$location,signup
      };
      
      $scope.login = function () {
-    	 if($scope.newuser== true){
-    		 signupSrv.createUser($scope.username, $scope.password).success(function(data) {
+    		 $scope.signin();
+     };
+     $scope.signup = function () {
+    	 $http.post('signupuser', $scope.signupuserform).success(function(data) {
         		 if(data.type=="success"){
+        			 $scope.username = $scope.signupuserform.email;
+        			 $scope.password = $scope.signupuserform.password;
         			 $scope.signin();
         		 }else{
-        			 access = {
+        			 signupmessage = {
         		               text: data.text,
         		               type: data.type,
         		               show: true
@@ -35,9 +40,6 @@ function MainController($scope, $route,$rootScope, $routeParams,$location,signup
         		 }
              }).error(function() {
              });
-    	 }else{
-    		 $scope.signin();
-    	 }
     	
      };
      $scope.loginuser = function () {
@@ -51,6 +53,7 @@ function MainController($scope, $route,$rootScope, $routeParams,$location,signup
      };
      $scope.cancel = function (){
     	 access = "";
+    	 signupmessage = "";
          message = "";
          $('#login').modal('hide');
     	 $location.url('home');

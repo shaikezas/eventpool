@@ -1,25 +1,49 @@
 <div class="navbar navbar-fixed-top ">
           
 
-			<div class="headerTopBar">
-				<div class="container nav-collapse collapse ">
-					<ul class="nav">
-						<li ng-class="activeWhen(path()=='/home')"><a href="#/home"><img src="resources/bootstrap/img/home.png" />Home</a>
-						</li>
-						<li><a ng-click="loginuser()" ng-show="user.userName==null"><img src="resources/bootstrap/img/login.png" />Login</a>
-						</li>
-						<li><a ng-click="logout()" ng-show="user.userName">Logout</a>
-						</li>
-						<li ng-class="activeWhen(path()=='/userSettings')"><a
-							href="#/userSettings" ng-show="user.userName"> Welcome
-								{{user.userName}}</a></li>
-					</ul>
+			<div class="headerStrip">
+				<div class="navCityLogin">
+					
+					<a href="#/userSettings" ng-show="user.userName"> Welcome {{user.userName}}</a></span>
+					<i class="splitter "></i> 
+					<a href="#">India (Change)</a>   <span></a>
+					<i class="splitter "></i>     
+					<a href="#/home">Home</a>
+					<i class="splitter "></i>   
+					<a ng-click="loginuser()" ng-show="user.userName==null">Login</a>
+					
+					<a ng-click="logout()" ng-show="user.userName">Logout</a>
+					<span ng-class="activeWhen(path()=='/userSettings')">
+					
 				</div>
 			</div>
 			
-				<div class="navbar-inner headerCont">
+				<div class="navbar-inner headerContainer">
 			        <div class="container" >
-						<img src="resources/bootstrap/img/logo.png" style="float: left; margin-top: 10px" />
+						
+						
+							<img class="header-logo" src="resources/bootstrap/img/logo.png"  />
+							<br>						
+				            <div class="input-prepend input-append">
+				              <div class="btn-group">
+				                <button class="btn dropdown-toggle" data-toggle="dropdown">Categorys <span class="caret"></span></button>
+				                <ul class="dropdown-menu">
+				                  <li><a href="#">Professional</a></li>
+				                  <li><a href="#">Entertainment</a></li>
+				                  <li><a href="#">Campus</a></li>
+				                  <li><a href="#">Trade shows</a></li>
+				                  <li><a href="#">Training</a></li>
+				                  <li><a href="#">Spiritual</a></li>
+				                  <li><a href="#">Special Occasion</a></li>
+				                </ul>
+				              </div><!-- /btn-group -->
+				              <input class="span3" id="appendedPrependedDropdownButton" type="text">
+				              <div class="btn-group">
+				                <button class="btn" data-toggle="dropdown"> <span class="icon-search"></span></button>
+				              </div>
+				            </div>
+         				
+						
 						
 						<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 							<span class="icon-bar"></span>
@@ -27,41 +51,25 @@
 							<span class="icon-bar"></span>
 						</button>
 			         
-						<div class="nav-collapse collapse">
+						<div class="nav-collapse collapse mainNav">
 							<ul class="nav" >
-							 	<li ng-class="activeWhen(path()=='/findevent')"> 
-							 		<a href="#/findevent" > 
-							 		<img src="resources/bootstrap/img/search.png" />
-                					<div>Find Event</div>
-                					</a>
-				              </li>
-				              <li ng-class="activeWhen(path()=='/createevent')">
-				              		<a href="#/createevent" >
-				              		<img src="resources/bootstrap/img/creaventEvent.png" />
-				                	<div>Create Event</div>
-				                	</a>
-				              </li>
-				              <li ng-class="activeWhen(path()=='/myevents')"> 
-				               		<a href="#/myevents" ng-show="user.userName" >
-				               		<img src="resources/bootstrap/img/myEvent.png" /> 
-				               		<div>My Events</div> 
-				               		</a>
-				              </li>
-				              <li ng-class="activeWhen(path()=='/mytickets')">
-				              		<a href="#/mytickets" ng-show="user.userName">
-				              		<img src="resources/bootstrap/img/myTicket.png" />
-				                	<div>My Tickets</div>
-				                	</a>
-				              </li>
+								<li ng-class="activeWhen(path()=='/findevent')" > 	<a href="#/findevent" class="firstNav"> Find Event </a> </li>
+								<li ng-class="activeWhen(path()=='/createevent')"> 	<a href="#/createevent" >Create Event</a></li>
+								<li ng-class="activeWhen(path()=='/myevents')">		<a href="#/myevents" ng-show="user.userName" >My Events</a></li>
+								<li ng-class="activeWhen(path()=='/mytickets')">	<a href="#/mytickets" ng-show="user.userName">My Tickets</a></li>
+								<li>	<a href="#/mytickets" class="lastNav" >Packages</a></li>
 							</ul>
 						</div>
 			       </div>
 		    </div>
+
+
+
 </div>
       
-    <div ng-class="'alert alert-'+message().type" ng-show="message().show" style="margin-top:50px">
-        <button type="button" class="close" ng-click="message().show=false">×</button>
-        <msg>{{message().text}}</msg>
-    </div>
+<div ng-class="'alert alert-'+message().type" ng-show="message().show" >
+    <button type="button" class="close" ng-click="message().show=false">x</button>
+    <msg>{{message().text}}</msg>
+</div>
     
       

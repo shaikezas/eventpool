@@ -1,23 +1,24 @@
 <div class="navbar navbar-fixed-top ">
           
-			<div class="headerTopBar">
-				<div class="container nav-collapse collapse ">
-					<ul class="nav">
-						<li ng-class="activeWhen(path()=='/home')"><a href="#/home">Home</a>
-						</li>
-						<li><a ng-click="loginuser()" ng-show="user.userName==null">Login</a>
-						</li>
-						<li><a ng-click="logout()" ng-show="user.userName">Logout</a>
-						</li>
-						<li ng-class="activeWhen(path()=='/userSettings')"><a
+
+			<div class="headerStrip">
+				<div class="navCityLogin">
+					
+						<span ng-class="activeWhen(path()=='/home')"><a href="#/home">Home</a>
+						</span>
+						<span><a ng-click="loginuser()" ng-show="user.userName==null">Login</a>
+						</span>
+						<span><a ng-click="logout()" ng-show="user.userName">Logout</a>
+						</span>
+						<span ng-class="activeWhen(path()=='/userSettings')"><a
 							href="#/userSettings" ng-show="user.userName"> Welcome
-								{{user.userName}}</a></li>
-					</ul>
+								{{user.userName}}</a></span>
+					
 				</div>
 			</div>
 </div>
     <div ng-class="'alert alert-'+message().type" ng-show="message().show">
-        <button type="button" class="close" ng-click="message().show=false">×</button>
+        <button type="button" class="close" ng-click="message().show=false">ï¿½</button>
         <msg >{{message().text}}</msg>
         
     </div>

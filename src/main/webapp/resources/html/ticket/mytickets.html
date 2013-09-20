@@ -1,48 +1,18 @@
-<div class="tabBody">
-          <style>
-		.dl-horizontal{
-		margin: 0px;
-		}
-		.inviceBlock h3{
-			margin: 0px;
-			padding: 0px;
-		}
-		.dl-horizontal dt, dd{
-			font-size: 15px;
-			border-bottom: 1px solid #ccc;
-			padding: 2px 10px;
-			
-		}
-		.dl-horizontal dd {
-			margin-left: 0px;
-		}
-		.inviceBlock{
-			float: left;
-			width: 550px;
-			height: 150px;
-			border:1px solid #000;
-			margin: 5px;
-			padding: 10px;
-		}
-	</style> 
+
           
- <div ng-include src="'html/header.html'"></div>          
+ 		<div ng-include src="'html/header.html'"></div>          
       
-      <div  style="margin-top:50px"> 
+		<div class="container inPageContainer" > 
             <h1>My Tickets</h1>
-          
-          <div>
           		<form class="form-horizontal" class="row-fluid">
-         		 	 <div class="span7" align="left"> Show: <select ng-model="showtickets" ng-init="showtickets=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
-         		 	 <div class="span4" align="right">Search Text: <input type="text" id="searchTextTickets" ng-model="searchTextTickets"></div>
+         		 	 <div class="floatLeft" > Show: <select ng-model="showtickets" ng-init="showtickets=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
+         		 	 <div class="floatRight" >Search Text: <input type="text" id="searchTextTickets" ng-model="searchTextTickets"></div>
          		 	 <br>
-         		    </form> 
-          
-          
-				    <table class="table table-condensed" id="mytickets">
+         		 </form> 
+         		 
+				 <table class="table table-condensed" id="mytickets">
 				      <thead>
 				        <tr>
-				        	
 	  	 				  <th><a href="" ng-click="predicate = 'orderId'; reverse=!reverse">ORDER ID</a></th>
 	  	 				  <th><a href="" ng-click="predicate = 'suborderId'; reverse=!reverse">SUBORDER ID</a></th>
 				          <th><a href="" ng-click="predicate = 'evnetName'; reverse=!reverse">EVENT NAME</a></th>
@@ -50,8 +20,8 @@
 				          <th><a href="" ng-click="predicate = 'bookedOn'; reverse=!reverse">BOOKED ON</a></th>
 				          <th><a href="" ng-click="predicate = 'startDate'; reverse=!reverse">EVENT STARTS ON</a></th>
 				          <th><a href="" ng-click="predicate = 'endDate'; reverse=!reverse">EVENT ENDS ON</a></th>
-				          <th><a href="" ng-click="predicate = 'quantity'; reverse=!reverse">QTY</a></th>
-				          <th><a href="" ng-click="predicate = 'ticketPrice'; reverse=!reverse">AMOUNT</a></th>
+				          <th class="amt"><a href="" ng-click="predicate = 'quantity'; reverse=!reverse">QTY</a></th>
+				          <th class="amt"><a href="" ng-click="predicate = 'ticketPrice'; reverse=!reverse">AMOUNT</a></th>
 				          <th>QUICK LINKS</th>
 				        </tr>
 				      </thead>
@@ -64,92 +34,94 @@
 				          <td>{{myTicket.bookedOn}}</td>
 				          <td>{{myTicket.startDate}}</td>
 				          <td>{{myTicket.endDate}}</td>
-				          <td>{{myTicket.quantity}}</td>
-				          <td>{{myTicket.ticketPrice}}</td>
+				          <td class="amt">{{myTicket.quantity}}</td>
+				          <td class="amt">{{myTicket.ticketPrice}}</td>
 				          <td><a ng-click="openPrintTicket(myTicket.suborderId)" >Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a></td>
 				        </tr>
 				        
 				      </tbody>
 				    </table>
-				</div>
-				</div>
-				</div>
-				<div  modal="shouldBeOpen"  close="closePrintTicket()" options="opts">
-        <div class="modal-header">
-            <h3>TICKET INVOICE</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal">
-            	<div class="inviceBlock">
-				    <img src="resources/bootstrap/img/logo.png" style="float: left; margin-top: 10px" />
-				    <p>{{invoice.eventName}}</p>
-				</div>
-				<div class="inviceBlock">
-					<dl class="dl-horizontal">
-						<dt> Registration No : 		</dt><dd> {{invoice.id}}</dd>
-						<dt> Registration Date :		</dt><dd>{{invoice.createdDate}}</dd>
-						<dt> Order No : 				</dt><dd> {{invoice.orderId}}</dd>
-						<dt> Event Date :				</dt><dd> {{invoice.eventDate}}</dd>
-						<dt> Event Id : 				</dt><dd> {{invoice.eventId}}</dd>
-          			</dl>
+		
+		</div>
+				
+		<div  modal="shouldBeOpen"  close="closePrintTicket()" options="opts">
+			<div class="modal-header">
+				<h3>TICKET INVOICE</h3>
+			</div>
 
-
-				</div>
-				<div class="inviceBlock">
-				    <h3>Venue:</h3>
-				    <p>{{invoice.venue}}</p>
-				</div>
-				<div class="inviceBlock">
-				    <dl class="dl-horizontal">
-						<dt> Organizer Name :</dt><dd> {{invoice.organizerName}}</dd>
-					<dt> Organizer Contact :</dt><dd> {{invoice.organizerContact}}</dd>
-					<dt> Attendee Name :</dt><dd> {{invoice.buyer}}</dd>
-          			</dl>
-				</div>
-				  
-				 
-				  <div>
-				    <table class="table table-condensed">
-				      <thead>
-				        <tr>
-				          <th>Ticket Type</th>
-				          <th>Quantity</th>
-				          <th>Price/unit</th>
-				          <th>Total Price</th>
-				        </tr>
-				      </thead>
-				      <tbody>
-				        <tr>
-				          <td class="amt"> {{invoice.ticketType}}</td>
-				          <td class="amt">  {{invoice.quantity}}</td>
-				          <td class="amt">  {{invoice.price}}</td>
-				          <td class="amt">  {{invoice.totalPrice}}</td>
-				        </tr>
-				        <tr>
-				          <td class="amt">Total Amount </td>
-				          <td class="amt"> </td>
-				          <td class="amt">  </td>
-				          <td class="amt">  {{invoice.totalAmount}}</td>
-				        </tr>
-				      </tbody>
-				    </table>
-				</div>
-				  
-				<div style="border: 1px solid #ccc;padding: 10px;">
-					<h5>Terms and Conditions:</h5>
-					<p>Terms</p>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="inviceBlock">
+						<img src="resources/bootstrap/img/logo.png" style="float: left; margin-top: 10px" />
+						<p>{{invoice.eventName}}</p>
+					</div>
+					<div class="inviceBlock">
+						<dl class="dl-horizontal">
+							<dt> Registration No : 		</dt><dd> {{invoice.id}}</dd>
+							<dt> Registration Date :		</dt><dd>{{invoice.createdDate}}</dd>
+							<dt> Order No : 				</dt><dd> {{invoice.orderId}}</dd>
+							<dt> Event Date :				</dt><dd> {{invoice.eventDate}}</dd>
+							<dt> Event Id : 				</dt><dd> {{invoice.eventId}}</dd>
+						</dl>
+					</div>
+				
+					<div class="inviceBlock">
+						<h3>Venue:</h3>
+						<p>{{invoice.venue}}</p>
+					</div>
 					
-					<h5>Declaration:</h5>
-					<p>declations</p>
-				</div>  
-				  
-			</form>
-            
-      </div>
+					<div class="inviceBlock">
+						<dl class="dl-horizontal">
+							<dt> Organizer Name :</dt><dd> {{invoice.organizerName}}</dd>
+							<dt> Organizer Contact :</dt><dd> {{invoice.organizerContact}}</dd>
+							<dt> Attendee Name :</dt><dd> {{invoice.buyer}}</dd>
+						</dl>
+					</div>
+  		<div>
 
 
-        <div class="modal-footer">
-            <button class="btn btn-warning cancel" ng-click="closePrintTicket()">Cancel</button>
-        </div>
-    </div>
+		<table class="table table-condensed">
+		  <thead>
+			<tr>
+			  <th>Ticket Type</th>
+			  <th>Quantity</th>
+			  <th>Price/unit</th>
+			  <th>Total Price</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td class="amt"> {{invoice.ticketType}}</td>
+			  <td class="amt">  {{invoice.quantity}}</td>
+			  <td class="amt">  {{invoice.price}}</td>
+			  <td class="amt">  {{invoice.totalPrice}}</td>
+			</tr>
+			<tr>
+			  <td class="amt">Total Amount </td>
+			  <td class="amt"> </td>
+			  <td class="amt">  </td>
+			  <td class="amt">  {{invoice.totalAmount}}</td>
+			</tr>
+		  </tbody>
+		</table>
+		
+</div>
+  
+		<div style="border: 1px solid #ccc;padding: 10px;">
+			<h5>Terms and Conditions:</h5>
+			<p>Terms</p>
+	
+			<h5>Declaration:</h5>
+			<p>declations</p>
+		</div>  
+  
+</form>
+        
+  			</div>
+
+
+			<div class="modal-footer">
+			<button class="btn btn-warning cancel" ng-click="closePrintTicket()">Cancel</button>
+			</div>
+		</div>
 

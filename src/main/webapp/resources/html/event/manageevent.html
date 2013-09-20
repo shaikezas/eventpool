@@ -1,14 +1,13 @@
-<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
 
-<div class="tabBody">
+
+
 	<div ng-include src="'html/header.html'"></div>
-	<div  style="margin-top:50px"> 
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="well sidebar-nav" >
+	<div class="container inPageContainer" > 
+	<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+			<div class="span1 leftPanel ">
 					<ul class="nav nav-list">
-						<li class="nav-header">Sidebar</li>
+						<h3 class="nav-header">Sidebar <i class="titleArow"></i></h3>
+						<br />
 						<li ng-class="{active: templateSelect=='edit'}">
 						<a  href ng-click="template = 'html/event/editevent.html';templateSelect= 'edit'">Event Details</a>
 						</li>
@@ -19,14 +18,13 @@
 						<a  href ng-click="template = 'html/event/tickethistory.html';templateSelect= 'ticketHistory';fetchTicketsHistory(event.id)">Tickets History</a>
 						</li>						
 					</ul>
-				</div>
 				<!--/.well -->
 			</div>
 			<!--/span-->
+			<span class="span3">
 			<div ng-include src="template"></div>
-		</div>
-</div>
-</div>
+			</span>
+
 </div>
 
 
