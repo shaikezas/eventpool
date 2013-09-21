@@ -1,4 +1,4 @@
-function MainController($scope,$http, $route,$rootScope, $routeParams,$location,search,currentuser) {
+function MainController($scope,$http, $route,$rootScope, $routeParams,$location,search,currentuser,categories) {
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
@@ -108,6 +108,14 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
          
      };
      
+     $scope.fetchCategories = function() {
+     	categories.getcategories($scope.category).success(function(categories) {
+     		$scope.categories = categories;
+ 	    }).error(function(data) {
+ 	    	
+ 	    });
+     }
+     
      $scope.getcurrentuser = function(){
       	
       	if ($rootScope.user == undefined) {
@@ -119,4 +127,5 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
       }
       
       $scope.getcurrentuser();
+      $scope.fetchCategories();
 }

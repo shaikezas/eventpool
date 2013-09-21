@@ -216,8 +216,7 @@ CREATE TABLE USER(
  -- Address Information
  HOME_ADDRESS bigint(20) NULL,
  OFFICE_ADDRESS bigint(20) NULL,
- SHIPPING_ADDRESS bigint(20) NULL,
-
+ 
  -- Work
  JOBTITLE varchar(256) NULL,
  COMPANY varchar(128) NULL,

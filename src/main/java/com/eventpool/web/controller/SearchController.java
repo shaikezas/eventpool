@@ -26,6 +26,7 @@ import sun.net.util.IPAddressUtil;
 
 import com.eventpool.common.dto.Region;
 import com.eventpool.common.module.EntityUtilities;
+import com.eventpool.common.module.EventPoolConstants;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.web.forms.SearchResponse;
 
@@ -104,7 +105,7 @@ public class SearchController {
 
     	String q = request.getParameter("q");
     	q = checkIfUndefined(q);
-		return searchService.getSearchQueryResponse(q,filterMap, 10, 0);
+		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, 0);
     }
     
     

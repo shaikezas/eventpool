@@ -1,4 +1,4 @@
-var UserController = function($scope, $http,$rootScope,currentuser) {
+var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
 	
 	$scope.userDetails = {};
 	
@@ -20,8 +20,7 @@ var UserController = function($scope, $http,$rootScope,currentuser) {
     }
     
     $scope.resetPassword = function(newPassword, confirmPassword) {
-    	$http.post('account/resetpassword/'+ newPassword + confirmPassword).success(function() {
-        	
+    	resetSrv.createUser($scope.newPassword).success(function() {
         }).error(function() {
         	alert("Password not updated properly.");
         });

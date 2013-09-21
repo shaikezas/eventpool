@@ -100,8 +100,7 @@
 			<field><a>altEmail</a><b>altEmail</b></field>
 			<field><a>homeAddress</a><b>homeAddress</b></field>
 			<field><a>officeAddress</a><b>officeAddress</b></field>
-			<field><a>shippingAddress</a><b>shippingAddress</b></field>
-			<field><a>geneder</a><b>geneder</b></field>
+			<field><a>gender</a><b>gender</b></field>
 			<field><a>memberShipType</a><b>memberShipType</b></field>
 			<field><a>totalPoints</a><b>totalPoints</b></field>
 			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>dob</a><b>dob</b></field>

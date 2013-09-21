@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public User getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.findByEmail(email);
+	}
 
 	public User getUserByUserId(String userId) {
 		// TODO Auto-generated method stub
@@ -60,8 +65,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public ResultStatus updateUser(User user){
-		userRepository.updateUser(user.getId(), user.getCompany(), user.getPhone(), user.getEmail(), user.getMobile(), user.getAltEmail(),
-				user.getHomeAddress(), user.getOfficeAddress(), user.getShippingAddress(), user.getGeneder(), user.getCompanyUrl(), user.getFname(), user.getLname(), user.getDob());
+		userRepository.updateUser(user.getId(), user.getCompany(), user.getPhone(),  user.getMobile(), user.getAltEmail(),
+				user.getHomeAddress(), user.getOfficeAddress(), user.getGender(), user.getCompanyUrl(), user.getFname(), user.getLname(), user.getDob());
 		
 		return ResultStatus.SUCCESS;
 	}

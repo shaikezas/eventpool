@@ -32,7 +32,7 @@ public class SearchServer {
     public SearchServer(boolean useHttpSolrServer) throws ParserConfigurationException, SAXException, IOException {
         logger.info("Using httpSolrServer:" + useHttpSolrServer);
         if(useHttpSolrServer){
-            String solrUrl = "http://localhost:7924/solr";
+            String solrUrl = "http://zeoevent.com:7924/solr";
             solrServer = new HttpSolrServer(solrUrl);
         }else{
             System.setProperty("solr.solr.home", "C:/solr-suggest-4.0-logs/solr");

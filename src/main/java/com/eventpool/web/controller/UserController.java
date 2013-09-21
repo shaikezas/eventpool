@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.entities.User;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.module.PasswordGenerator;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.ResultStatus;
 import com.eventpool.web.domain.UserService;
@@ -77,13 +78,32 @@ public class UserController {
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to update user");
     }
     
-    @RequestMapping(value = "/account/resetpassword/{newPass}/{confirmPass}", method = RequestMethod.POST)
+    @RequestMapping(value = "/account/resetpassword", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseMessage resetPassword(@PathVariable("newPass") String newPass,@PathVariable("confirmPass") String confirmPass){
+    public ResponseMessage resetPassword(@RequestParam ("password") String password){
     	System.out.println("Password resetting...");
     	User user = new User();
 //    	mapper.mapUserForm(userForm, user);
-    	user.updatePassword("cnu",newPass,confirmPass);
+    	user.updatePassword(password);
+    	ResultStatus status = userService.resetPassword(user);
+    	if(status.equals(ResultStatus.SUCCESS)){
+    		return new ResponseMessage(ResponseMessage.Type.success, "Password reset successfully.");
+    	}
+        return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
+    }
+    
+    
+    @RequestMapping(value = "/account/forgotpassword", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseMessage forgotPassword(@RequestParam("email")  String email){
+    	System.out.println("Password forgot...");
+    	User user =userService.getUserByEmail(email);
+    	
+    	if(user==null){
+    		return new ResponseMessage(ResponseMessage.Type.error, "User does not exist.");
+    	}
+    	String tmpPassword = PasswordGenerator.generatePassword();
+    	user.updatePassword(tmpPassword);
     	ResultStatus status = userService.resetPassword(user);
     	if(status.equals(ResultStatus.SUCCESS)){
     		return new ResponseMessage(ResponseMessage.Type.success, "Password reset successfully.");
@@ -94,7 +114,7 @@ public class UserController {
     @RequestMapping(value = "/account/getuser", method = RequestMethod.GET)
     @ResponseBody
     public UserForm getUser(){
-    	System.out.println("create User");
+    	System.out.println("get User");
     	User user = userService.getCurrentUser();
     	UserForm userForm = new UserForm();
     	mapper.mapUser(user, userForm);

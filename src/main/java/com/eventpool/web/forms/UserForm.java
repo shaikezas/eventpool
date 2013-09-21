@@ -47,9 +47,7 @@ public class UserForm {
 
 	private String officeAddress;
 
-	private String shippingAddress;
-
-	private Gender geneder;
+	private Gender gender;
 
 	private String dob;
 
@@ -141,13 +139,6 @@ public class UserForm {
 		this.officeAddress = officeAddress;
 	}
 
-	public String getShippingAddress() {
-		return shippingAddress;
-	}
-
-	public void setShippingAddress(String shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
 
 	public String getDob() {
 		return dob;
@@ -166,16 +157,18 @@ public class UserForm {
 	}
 
 
-	public Gender getGeneder() {
-		return geneder;
+	  public Gender getGender() {
+		return gender;
 	}
 
-	public void setGeneder(Gender geneder) {
-		this.geneder = geneder;
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
-	
-		
-	  public enum Roles implements GrantedAuthority {
+
+
+
+
+	public enum Roles implements GrantedAuthority {
 		    ROLE_USER, ROLE_ADMIN;
 		    public String getAuthority() {
 		      return name();

@@ -58,6 +58,9 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 
 	private String getDateString(Date source, String pattern) {
 		String destination;
+		if(source==null){
+			return "";
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		destination = sdf.format(source);
 		return destination;

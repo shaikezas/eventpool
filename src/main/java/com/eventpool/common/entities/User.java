@@ -53,13 +53,7 @@ public class User extends IdEntity{
 		    System.out.println("Password entered  is: " + encode(password));
 		    return false;
 		  }
-	 public void updatePassword(String old, String newPass1, String newPass2) {
-		    if (!password.equals(old)) {
-		      throw new IllegalArgumentException("Existing Password invalid");
-		    }
-		    if (!newPass1.equals(newPass2)) {
-		      throw new IllegalArgumentException("New Passwords don't match");
-		    }
+	 public void updatePassword( String newPass1) {
 		    password = encode(newPass1);
 	}
 
@@ -117,11 +111,8 @@ public class User extends IdEntity{
 	@Column(name = "OFFICE_ADDRESS")
 	private String officeAddress;
 
-	@Column(name = "SHIPPING_ADDRESS")
-	private String shippingAddress;
-
 	@Column(name = "GENDER")
-	private Gender geneder;
+	private Gender gender;
 
 	@Column(name = "DOB")
 	private Date dob;
@@ -229,14 +220,6 @@ public class User extends IdEntity{
 		this.officeAddress = officeAddress;
 	}
 
-	public String getShippingAddress() {
-		return shippingAddress;
-	}
-
-	public void setShippingAddress(String shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
-
 	public Date getDob() {
 		return dob;
 	}
@@ -269,16 +252,19 @@ public class User extends IdEntity{
 		this.modifiedDate = modifiedDate;
 	}
 
-	public Gender getGeneder() {
-		return geneder;
-	}
-
-	public void setGeneder(Gender geneder) {
-		this.geneder = geneder;
-	}
 	
 		
-	  public enum Roles implements GrantedAuthority {
+	  public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+
+
+	public enum Roles implements GrantedAuthority {
 		    ROLE_USER, ROLE_ADMIN;
 		    public String getAuthority() {
 		      return name();

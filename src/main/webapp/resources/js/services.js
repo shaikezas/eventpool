@@ -120,4 +120,22 @@ getcurrentuser: function() {
 });
 
 
+AppServices.service('resetSrv', function ($http) {
+
+    return {
+resetPassword: function(password) {
+	  var datatosend = {
+			  "password":password
+	  };
+	  var config = {
+        method: "POST",
+        params: datatosend,
+        url: "account/resetpassword"
+    };
+	  return $http(config);
+}
+    
+    }
+});
+
 

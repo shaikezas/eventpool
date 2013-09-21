@@ -26,15 +26,11 @@
 							<br/>					
 				            <div class="input-prepend input-append headerSearch">
 				              <div class="btn-group">
-				                <button class="btn dropdown-toggle btn btn-inverse" data-toggle="dropdown">Categorys <span class="caret"></span></button>
+				                <button class="btn dropdown-toggle btn btn-inverse" data-toggle="dropdown">Categories <span class="caret"></span></button>
 				                <ul class="dropdown-menu">
-				                  <li><a href="#">Professional</a></li>
-				                  <li><a href="#">Entertainment</a></li>
-				                  <li><a href="#">Campus</a></li>
-				                  <li><a href="#">Trade shows</a></li>
-				                  <li><a href="#">Training</a></li>
-				                  <li><a href="#">Spiritual</a></li>
-				                  <li><a href="#">Special Occasion</a></li>
+				                  <li ng-repeat="cat in categories">
+									<a href="#">{{cat.key}}</a>
+								</li>
 				                </ul>
 				              </div><!-- /btn-group -->
 				              <input class="span3" id="appendedPrependedDropdownButton" type="text">
