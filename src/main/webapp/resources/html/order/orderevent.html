@@ -35,9 +35,19 @@ window.onload = countDown();
           	
           	<div ng-include src="'html/eventpageheader.html'"></div>
 			   	
+			<div ng-class="'alert alert-'+message().type" ng-show="message().show" >
+			    <button type="button" class="close" ng-click="message().show=false">x</button>
+			    <msg>{{message().text}}</msg>
+			</div>
+			   	
+			   	
           	 <div class="eventBanners">  	Banners    </div>
 			
-	<div class="container eventCont">		
+	<div class="container eventCont">	
+	
+	
+	
+		
 			<div ng-show="editMode==false" >
             	{{status.status}} - {{status.orderId}}. 
             	</div>

@@ -10,24 +10,17 @@
 	
 
 <div class="container inPageContainer" >
+
+<div ng-class="'alert alert-'+message().type" ng-show="message().show" >
+    <button type="button" class="close" ng-click="message().show=false">x</button>
+    <msg>{{message().text}}</msg>
+</div>
+
+
 			<div class="span1 leftPanel ">
 
 			<h3>Filter Your Search <i class="titleArow"></i></h3>
 			<div class="filterControl"> 
-				
-				<div class="control-group ">
-				 <label class="control-label" for="inputWarning">Date</label>
-				 <div class="controls">
-				 	<div id="datetimepickerStart" class="input-append date">
-						<input class="filterDateinput" type="text" id="startDate">
-					    <span class="add-on">
-					        <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i>
-					    </span>
-					</div>
-				</div>
-				</div>
-
-			
 				<div id="slider"></div>
 			
 				<script>
@@ -96,24 +89,12 @@
 				<button type="button" class="btn btn-primary" ng-click="fetchResultsByFilterType(empty,empty)">Search</button> -->
 
 
-					<div class="searchFilter">
-						<div class="input-prepend input-append">
-							<div class="btn-group">
-								<button class="btn dropdown-toggle" data-toggle="dropdown">Category <span class="caret"></span></button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-								</ul>
-							</div><!-- /btn-group -->
-							<input class="span4 inputFindEvent" id="appendedPrependedDropdownButton" type="text">
-							<input class="span2 btn" id="appendedPrependedDropdownButton" type="text">
-							<div class="btn-group">
-							<button class="btn" data-toggle="dropdown" ng-click="fetchResultsByFilterType(empty,empty)"> <span class="icon-search"></span></button>
-							</div>
-						</div>
-					</div>
+					
 				
-				    <button class="btn btnBookTicket" ng-click="toggleViewMode()">{{viewModeBtnText}}</button>
-					<div ng-show="viewMode"><ul class="thumbnails">
+					<div class="viewOption"> View  <a title="Thumbnails View" ng-click="viewList=false;viewThumbs=true"><i class="icon-th-large"></i></a> 
+					<a ng-click="viewList=true;viewThumbs=false" title="List View"><i class="icon-th-list"></i></a></div>
+					 
+				  <div ng-show="viewThumbs"><ul class="thumbnails">
 		
 					<li class="span1" ng-repeat="event in searchRecords">
 						<div class="thumbnail">
@@ -131,7 +112,7 @@
 			    	</div>
 
 				
-				<div ng-show="!viewMode">
+				<div ng-show="viewList">
 				<ul class="media-list">
 
 					<li class="media" ng-repeat="event in searchRecords">

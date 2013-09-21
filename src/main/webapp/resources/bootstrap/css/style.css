@@ -1,8 +1,16 @@
+@font-face
+{
+font-family: myFirstFont;
+src: url('../font/Coda-Regular.ttf'),
+	 url('../font/Coda-Heavy.ttf'),
+     url('../font/Coda-Regular.eot'); /* IE9 */
+}
 body{
 	font-family: "Coda" !important;
 	}
 h1, h2, h3, h4, h5, h6, input, button, select{
 	font-family: "Coda" !important;
+	
 	font-weight: normal;
 	}
 h1{
@@ -14,7 +22,11 @@ h2{
 h3{
 	font-size: 14px;
 	}
-
+.viewOption{
+	padding: 5px; 
+	border-bottom:1px solid #000 ;
+	text-align: right
+}
 .navbar-fixed-top{ }
 .input-append, .input-prepend{
 	margin: 0px;

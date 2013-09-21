@@ -3,6 +3,13 @@
  		<div ng-include src="'html/header.html'"></div>          
       
 		<div class="container inPageContainer" > 
+		
+		<div ng-class="'alert alert-'+message().type" ng-show="message().show" >
+		    <button type="button" class="close" ng-click="message().show=false">x</button>
+		    <msg>{{message().text}}</msg>
+		</div>
+		
+		
             <h1>My Tickets</h1>
           		<form class="form-horizontal" class="row-fluid">
          		 	 <div class="floatLeft" > Show: <select ng-model="showtickets" ng-init="showtickets=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>

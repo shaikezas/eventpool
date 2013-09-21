@@ -2,6 +2,13 @@
 
 <div ng-include src="'html/eventpageheader.html'"></div>
 
+
+<div ng-class="'alert alert-'+message().type" ng-show="message().show" >
+    <button type="button" class="close" ng-click="message().show=false">x</button>
+    <msg>{{message().text}}</msg>
+</div>
+
+
 	<div class="eventBanners"><img ng-src='http://localhost:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/entertainmentBannar.png'"/>     </div>
 <div class="container eventPage " >			
 		<div class="span3">

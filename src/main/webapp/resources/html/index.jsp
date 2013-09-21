@@ -15,10 +15,10 @@
 	<script type="text/javascript" src="config.js"></script>
 	<script type="text/javascript" src="styles.js"></script>
 	<script type="text/javascript" src="lang/en.js"></script>
-	<link rel="stylesheet" href="skins/moono/editor.css">
-
+	<link rel="stylesheet" href="skins/moono/editor.css">	
 	
-	
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Coda">
+    
     
     <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">

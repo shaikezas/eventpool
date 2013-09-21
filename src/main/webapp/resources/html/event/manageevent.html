@@ -3,6 +3,10 @@
 
 	<div ng-include src="'html/header.html'"></div>
 	<div class="container inPageContainer" > 
+	<div ng-class="'alert alert-'+message().type" ng-show="message().show" >
+	    <button type="button" class="close" ng-click="message().show=false">x</button>
+	    <msg>{{message().text}}</msg>
+	</div>
 	<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
 			<div class="span1 leftPanel ">
 					<ul class="nav nav-list">
