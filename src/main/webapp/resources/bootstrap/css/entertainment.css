@@ -23,11 +23,7 @@ body {
 	border: 1px solid #ccc;
 	background-image: url(../img/entContBg.png );
 	}
-.contBox{
-	padding: 0px;
-	background: #fff;
-	border-radius: 6px 6px 0px 0px;
-	}
+
 
 h4{
 	padding-left: 10px;
@@ -44,7 +40,7 @@ h3{
 }	
 
 .leftPanel{
-		margin-right: 10px;
+	margin-right: 20px !important;
 }
 .rightPanel{
 	margin-left: 10px !important;
@@ -78,3 +74,53 @@ h3{
 	padding: 5px;
 	border-radius: 4px;
 }
+
+/*  Tab Style */
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+	background-image:none;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	line-height: normal;
+	padding-bottom: 15px;
+	border: 0px;
+	border: 1px solid #ccc;
+	border-bottom: 0px;
+}
+
+.nav{
+	margin-bottom: 0px;
+	margin-left: 10px;
+}
+.tab-content{
+	background: #fff;
+	width: 690px;
+	padding:20px 10px;
+	border-radius:6px;
+	border: 1px solid #ccc;
+}
+/*  Tab Style */
+
+.footer h3{
+	background: none;
+}
+
+.eventDetails  {
+	list-style: none;
+	margin:0px 0px 5px ;
+}
+
+.eventDetailsIcon i{
+ width: 24px;
+ height: 24px;
+ background-image:url(../img/glyphicons.png);
+ background-repeat:no-repeat;
+ display: inline-block;
+ margin: 0px 5px}
+
+.eventDetailsIcon .iconTicket{background-position: -74px 0px; }
+
+.eventDetailsIcon .iconCalander{background-position: -50px 0px}
+
+.eventDetailsIcon .iconTime{background-position: -0px 0px}
+ 
+.eventDetailsIcon .iconAddress{background-position: -24px 0px}

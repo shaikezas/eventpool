@@ -1,17 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Company Name</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/bootstrap-datetimepicker.min.css">
 <script type="text/javascript">
     $(".form_datetime").datetimepicker({
         todayBtn: false,
@@ -21,47 +8,44 @@
         autoclose: true
     });
 </script>    
-  </head>
 
-  <body >
+	    <!-- Navbar
+	    ================================================== -->
+	  
+	  
+
+
 
 
 	
-	    <!-- Navbar
-	    ================================================== -->
-	    <div class="navbar navbar-inverse navbar-fixed-top">
-	      <div class="navbar-inner">
-	        <div class="container">
-	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	        </div>
-	      </div>
-	    </div>
-
-
-
-
-		<div class="container">
 		    	
-		          <div class="tabBody">
+		          
 		           <div ng-include src="'html/header.html'"></div>  
 		      
-			            <h1>User Settings</h1>
+			       
+			         	  
+			       
 			            
+<div class="container inPageContainer" >      
+
+<div ng-class="'alert alert-'+message().type" ng-show="message().show" >
+    <button type="button" class="close" ng-click="message().show=false">x</button>
+    <msg>{{message().text}}</msg>
+</div>      
+			            <h1>My Account</h1> 
 			 <!--  Create Event Nav Tab  
 			 ================================================== -->           
-			            <ul id="myTab" class="nav nav-tabs">
-				              <li class="active">	<a href="#personalDetails" data-toggle="tab">	Personal Details	</a></li>
-				              <li>					<a href="#companyDetails" data-toggle="tab">	Company Details		</a></li>
-				              <li>					<a href="#changePassword" data-toggle="tab">	Change Password		</a></li>
-				              <li>					<a href="#socialPlugins" data-toggle="tab">		Social Plugins		</a></li>
+		            <ul id="myTab" class="nav nav-tabs">
+			              <li class="active">	<a href="#personalDetails" data-toggle="tab">	Personal Details	</a></li>
+			              <li>					<a href="#companyDetails" data-toggle="tab">	Company Details		</a></li>
+			              <li>					<a href="#changePassword" data-toggle="tab">	Change Password		</a></li>
+			              <li>					<a href="#socialPlugins" data-toggle="tab">		Social Plugins		</a></li>
 
-			            </ul>
+		            </ul>
 			 <!--  Create Event Nav Tab -->  
 			 
+			
+			
 			 <!-- Create Event Tab Content Start  
 			 ================================================== -->
 			            
@@ -71,7 +55,7 @@
 			                
 								<form class="form-horizontal">
 								
-							<h4>My Account</h4>
+						
 							
 							
 							  <div class="control-group">
@@ -322,25 +306,8 @@
 			            </div>
 			          
 			 <!-- Create Event Tab Content End -->           
-		          
-		          </div>
-		
-		</div>
-    
-    
-   
-
-
-
-
-
-    <!-- Footer
-    ================================================== -->
-    <!-- footer class="footer">
-      <div class="container">
-        © 2009-2013, Copyright @ Company Name. All Rights Reserved.
-      </div>
-    </footer -->
+</div>					          
+	
 
 
  	
@@ -348,7 +315,3 @@
 
 
 
-
-
-  </body>
-</html>

@@ -52,7 +52,7 @@ window.onload = countDown();
             	{{status.status}} - {{status.orderId}}. 
             	</div>
             	
-			<div class="span8 ">
+			<div class="span3 leftPanel">
 				<table class="table table-condensed" >
 				<thead>
 					<tr>
@@ -204,86 +204,82 @@ window.onload = countDown();
 							</form>
 							
 							
-							<span class="span8">
+							<div class="span">
 
-	<ul id="myTab" class="nav nav-tabs">
-		<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">  About Event          		</a></li>     
-		<li>					<a href="#termCondition" 	data-toggle="tab"> Term & Condition    		</a></li>  
-		
-	</ul>
-	
-	
-	<div id="myTabContent" class="tab-content">
-		
-		
-			
-		
-		<div class="tab-pane fade in active" id="aboutEvent">
-			<form class="form-horizontal">
-			<div ng-bind-html-unsafe="event.description" ></div>
-			</form>
-		</div>
-		
-		
-		<div class="tab-pane fade in " id="termCondition">
-			<form class="form-horizontal">Term & Condition  </form>
-		</div>
-			
-	</div>				
+								<ul id="myTab" class="nav nav-tabs">
+									<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">  About Event          		</a></li>     
+									<li>					<a href="#termCondition" 	data-toggle="tab"> Term & Condition    		</a></li>  
 									
-	
+								</ul>
 		
-	</span>
+		
+								<div id="myTabContent" class="tab-content">
+									
+									<div class="tab-pane fade in active" id="aboutEvent">
+										<form class="form-horizontal">
+										asdasd
+										<div ng-bind-html-unsafe="event.description" >ddd</div>
+										</form>
+									</div>
+									
+									<div class="tab-pane fade in " id="termCondition">
+										<form class="form-horizontal">Term & Condition  </form>
+									</div>
+										
+								</div>		
+			
+							</div>
 				
 				
 			</div>
 			
-			<div class="span3 ">
-				<div class="contBox">
-					<h5>Order Summary</h5>
-					<ul class="eventDetails eventDetailsIcon">
-						<li > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
-						<!-- <li > <i class="iconCalander">	</i>	July 20, 2013				</li>
-						<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
-						<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
-						<li > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
-						<li > <i class="iconTicket">	</i> 	PPayable Amount : {{orderRegister.netAmount}}		</li>
-						<li > <button class="btn ">Edite Order</button> 					</li>
-					</ul>
-				</div>
+		
+									<div class="span1 ">
+									<h3>Order Summary</h3>
+										<div class="filterControl">
+											
+											<ul class="eventDetails eventDetailsIcon">
+												<li > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
+												<!-- <li > <i class="iconCalander">	</i>	July 20, 2013				</li>
+												<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
+												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
+												<li > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
+												<li > <i class="iconTicket">	</i> 	PPayable Amount : {{orderRegister.netAmount}}		</li>
+											</ul>
+											<button class="btn ">Edite Order</button>
+										</div>
+									</div>
 			
-				<div class="contBox">
-					
-					<div class="contBox">
-					<h5>Event Details</h5>
-					<ul class="eventDetails eventDetailsIcon">
-						<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
-						<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
-						<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
-						<li > <i class="iconAddress"></i>
-							{{ event.venueAddress}}
-						</li>
-						<li >Set Remainder</li>
-						<li class="">Add Calender</li>
-					</ul>
-				</div>
-				<div class="contBox">
-					<h5>Contact Details</h5>
-					<ul class="eventDetails eventDetailsIcon">
-						<li > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
-						<li > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
-					</ul>
-				
-				</div>
+									<div class="span1">
+											<h3>Event Details</h3>
+											<div class="filterControl">
+												<ul class="eventDetails eventDetailsIcon">
+													<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
+													<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
+													<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
+													<li > <i class="iconAddress"></i>
+														{{ event.venueAddress}}
+													</li>
+													<li >Set Remainder</li>
+													<li class="">Add Calender</li>
+												</ul>
+											</div>
+									</div>
 			
-			
-			
+								<div class="span1">
+										<h3>Contact Details</h3>
+										<div class="filterControl">
+											<ul class="eventDetails eventDetailsIcon">
+												<li > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
+												<li > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
+											</ul>
+										</div>
+								
+									
+			<div style="clear: both"> </div>	
 			</div>
 			
 			
-			
-			
-	</div>	
 	<div style="clear: both"> </div>			
 				
 

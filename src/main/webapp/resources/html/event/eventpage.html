@@ -78,8 +78,9 @@
 		</div>	
 			
 			<div class="span1 rightPanel ">
-				<div class="contBox">
-					<h3>Event Details <i class="titleArow"></i></h3>
+				<h3>Event Details <i class="titleArow"></i></h3>
+				<div class="filterControl">
+					
 					<ul class="eventDetails eventDetailsIcon">
 						<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
 						<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
@@ -91,15 +92,15 @@
 						<li class="">Add Calender</li>
 					</ul>
 				</div>
-				<div class="contBox">
-					<h3>Contact Details <i class="titleArow"></i></h3>
+			</div>
+			
+			<div class="span1 rightPanel ">
+				<h3>Contact Details <i class="titleArow"></i></h3>
+				<div class="filterControl">
 					<ul class="eventDetails eventDetailsIcon">
 						<li ng-show="event.eventSettingsDTO.showOrganizerName == 'true'"> <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
 						<li ng-show="event.eventSettingsDTO.showContactDetails == 'true'"> <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
 					</ul>
 				</div>
-			
-			
-			
 			</div>
 	</div>		
