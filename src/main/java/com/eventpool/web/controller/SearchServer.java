@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -35,11 +36,12 @@ public class SearchServer {
     public SearchServer() throws ParserConfigurationException, SAXException, IOException {
     	// String solrUrl = "http://10.50.27.13:7923/solr";
          //solrServer = new HttpSolrServer(solrUrl);
-        this(System.getProperty("useHttpSolrServer","true").equals("true"));
+//        this(System.getProperty("useHttpSolrServer","true").equals("true"));
     }
 
-    public SearchServer(boolean useHttpSolrServer) throws ParserConfigurationException, SAXException, IOException {
-        logger.info("Using httpSolrServer:" + useHttpSolrServer);
+    @PostConstruct
+    public void init() throws ParserConfigurationException, SAXException, IOException {
+/*        logger.info("Using httpSolrServer:" + useHttpSolrServer);
         if(useHttpSolrServer){
             String solrUrl = "http://"+server+":"+port+"/solr";
             solrServer = new HttpSolrServer(solrUrl);
@@ -48,6 +50,9 @@ public class SearchServer {
             CoreContainer coreContainer = new CoreContainer.Initializer().initialize();
             solrServer = new EmbeddedSolrServer(coreContainer, "collection1");
         }
+*/        
+        String solrUrl = "http://"+server+":"+port+"/solr";
+        solrServer = new HttpSolrServer(solrUrl);
     }
 
     @PreDestroy
