@@ -1,3 +1,9 @@
+DELETE FROM STATE;
+DELETE FROM CITY;
+DELETE FROM COUNTRY;
+DELETE FROM CATEGORY;
+
+
 INSERT INTO COUNTRY VALUES (1,'Afghanistan','AF','AF','AFG','4','AF','Kabul ','Asia ','Afghan','Afghans','Afghani ','AFA',26813057,'Afghanistan','');
 INSERT INTO COUNTRY VALUES (2,'Albania','AL','AL','ALB','8','AL','Tirana ','Europe ','Albanian','Albanians','Lek ','ALL',3510484,'Albania','');
 INSERT INTO COUNTRY VALUES (3,'Algeria','AG','DZ','DZA','12','DZ','Algiers ','Africa ','Algerian','Algerians','Algerian Dinar ','DZD',31736053,'Algeria','');
@@ -273,10 +279,6 @@ INSERT INTO COUNTRY VALUES (271,'Yugoslavia','YI','YU','YUG','891','YU','Belgrad
 INSERT INTO COUNTRY VALUES (272,'Zaire','--','--','-- ','--','--','','','','','','',0,'Zaire','see Democratic Republic of the Congo');
 INSERT INTO COUNTRY VALUES (273,'Zambia','ZA','ZM','ZWB','894','ZM','Lusaka ','Africa ','Zambian','Zambians','Kwacha','ZMK',9770199,'Zambia','');
 INSERT INTO COUNTRY VALUES (274,'Zimbabwe','ZI','ZW','ZWE','716','ZW','Harare ','Africa ','Zimbabwean','Zimbabweans','Zimbabwe Dollar','ZWD',11365366,'Zimbabwe','');
-
-
-
-
 
 
 INSERT INTO CITY VALUES (42231,1,833,"Herat","34.333","62.2","+04:30",0,"HERA");
@@ -39620,12 +39622,6 @@ INSERT INTO CITY VALUES (41921,274,5271,"chitungwiza","-18","31.1","+02:00",0,"C
 INSERT INTO CITY VALUES (42026,275,5387,"Hebron","31.54","35.09","+02:00",0,"HEBR");
 INSERT INTO CITY VALUES (17810,275,5388,"Gaza City","31.5","34.467","+02:00",0,"GCIT");
 
-
-
-
-
-
-
 INSERT INTO STATE VALUES (1,14,"Victoria","VI","AS07");
 INSERT INTO STATE VALUES (2,14,"Tasmania","TS","AS06");
 INSERT INTO STATE VALUES (3,14,"Queensland","QL","AS04");
@@ -43580,7 +43576,7 @@ INSERT INTO STATE VALUES (5397,240,"Savanes","SA","    ");
 INSERT INTO STATE VALUES (5398,221,"Imo","IM","NI28");
 INSERT INTO STATE VALUES (5399,181,"Katsina","KT","NI24");
 
-
+COMMIT;
 
 INSERT INTO CATEGORY(ID,NAME,DESCRIPTION,CODE,PARENT_CATEGORYID,ACTIVE) VALUES (1,'Education','Education','EDU',null,'Y');
 INSERT INTO CATEGORY(ID,NAME,DESCRIPTION,CODE,PARENT_CATEGORYID,ACTIVE) VALUES (2,'Entertainment','Entertainment','ENT',null,'Y');
@@ -43598,3 +43594,4 @@ INSERT INTO CATEGORY(ID,NAME,DESCRIPTION,CODE,PARENT_CATEGORYID,ACTIVE) VALUES (
 INSERT INTO CATEGORY(ID,NAME,DESCRIPTION,CODE,PARENT_CATEGORYID,ACTIVE) VALUES (13,'Auyrvedic','Auyrvedic','EDU',10,'Y');
 INSERT INTO CATEGORY(ID,NAME,DESCRIPTION,CODE,PARENT_CATEGORYID,ACTIVE) VALUES (14,'Allopathy','allopathy','EDU',11,'Y');
 INSERT INTO CATEGORY(ID,NAME,DESCRIPTION,CODE,PARENT_CATEGORYID,ACTIVE) VALUES (15,'Homeo','Homeo','EDU',12,'Y');
+COMMIT;
