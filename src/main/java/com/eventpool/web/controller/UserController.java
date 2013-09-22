@@ -69,7 +69,7 @@ public class UserController {
     @ResponseBody
     public ResponseMessage updateUser(@RequestBody UserForm userForm){
     	System.out.println("create User");
-    	User user = new User();
+    	User user = userService.getCurrentUser();
     	mapper.mapUserForm(userForm, user);
     	ResultStatus status = userService.updateUser(user);
     	if(status.equals(ResultStatus.SUCCESS)){
@@ -82,12 +82,12 @@ public class UserController {
     @ResponseBody
     public ResponseMessage resetPassword(@RequestParam ("password") String password){
     	System.out.println("Password resetting...");
-    	User user = new User();
+    	User user = userService.getCurrentUser();
 //    	mapper.mapUserForm(userForm, user);
     	user.updatePassword(password);
     	ResultStatus status = userService.resetPassword(user);
     	if(status.equals(ResultStatus.SUCCESS)){
-    		return new ResponseMessage(ResponseMessage.Type.success, "Password reset successfully.");
+    		return new ResponseMessage(ResponseMessage.Type.success, "Password updated successfully.");
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
     }

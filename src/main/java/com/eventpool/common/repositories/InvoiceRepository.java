@@ -8,5 +8,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long>{
 
 	
 	public Invoice findBySuborderId(Long suborderId);
+	
+	public Invoice findBySuborderIdAndCreatedBy(Long suborderId,Long createdBy);
 
 }

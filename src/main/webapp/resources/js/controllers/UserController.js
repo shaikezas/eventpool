@@ -20,7 +20,11 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
     }
     
     $scope.resetPassword = function(newPassword, confirmPassword) {
-    	resetSrv.createUser($scope.newPassword).success(function() {
+    	if(newPassword !== confirmPassword){
+    		alert("password mismatch");
+    		return;
+    	}
+    	resetSrv.resetPassword(newPassword).success(function() {
         }).error(function() {
         	alert("Password not updated properly.");
         });
