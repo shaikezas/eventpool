@@ -54,6 +54,9 @@ public class InvoiceService {
     HtmlEmailService htmlEmailService;
     
     public Boolean sendInvoice(Invoice invoice) throws FileNotFoundException, IOException, DocumentException, Exception {
+    	if(invoice==null){
+    		return false;
+    	}
     	logger.info("Sending mail to :"+invoice.getBuyerMail());
     	ByteArrayOutputStream invoiceAttachemnt = generateInvoice(invoice);
     	String buyerMail = invoice.getBuyerMail();
@@ -151,8 +154,8 @@ public class InvoiceService {
     	return invoice;
     }
     
-    public Boolean sendInvoiceToMail(Long suborderId) throws FileNotFoundException, IOException, DocumentException, Exception{
-    	Invoice invoice = invoiceRepository.findBySuborderId(suborderId);
+    public Boolean sendInvoiceToMail(Long suborderId,Long createdBy) throws FileNotFoundException, IOException, DocumentException, Exception{
+    	Invoice invoice = invoiceRepository.findBySuborderIdAndCreatedBy(suborderId, createdBy);
     	return sendInvoice(invoice);
     }
     

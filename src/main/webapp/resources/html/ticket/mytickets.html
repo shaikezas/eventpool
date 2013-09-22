@@ -43,7 +43,7 @@
 				          <td>{{myTicket.endDate}}</td>
 				          <td class="amt">{{myTicket.quantity}}</td>
 				          <td class="amt">{{myTicket.ticketPrice}}</td>
-				          <td><a ng-click="openPrintTicket(myTicket.suborderId)" >Print Ticket</a> | <a href="#event/{{myevent.eventUrl}}">Preview</a></td>
+				          <td><a ng-click="openPrintTicket(myTicket.suborderId)" >Print Ticket</a> | <a ng-click="sendTicket(myTicket.suborderId)">send mail</a></td>
 				        </tr>
 				        
 				      </tbody>

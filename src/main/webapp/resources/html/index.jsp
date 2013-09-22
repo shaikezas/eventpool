@@ -92,7 +92,7 @@
 							</form>
 						
 							 <div class="modal-footer">
-			        			<a ng-click="login()" class="btn btn-primary" ng-disabled="userForm.username.$pristine || userForm.username.$dirty && userForm.username.$invalid">Sign In</a>
+			        			<a ng-click="login()" class="btn btn-primary" >Sign In</a>
 			        			
 			    			</div>
 						 <br><br>
