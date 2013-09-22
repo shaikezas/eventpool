@@ -189,10 +189,10 @@
       		<h3>Quick Link</h3>
       		<ul>
       			<li><a herf="#">Home</a></li>
-      			<li><a herf="#">Find Event</a></li>
-      			<li><a herf="#">Create Event</a></li>
-      			<li><a herf="#">My Events</a></li>
-      			<li><a herf="#">My Tickets</a></li>
+      			<li><a herf="#/findevent">Find Event</a></li>
+      			<li><a herf="#/createevent">Create Event</a></li>
+      			<li><a herf="#/myevents">My Events</a></li>
+      			<li><a herf="#/mytickets">My Tickets</a></li>
       			<li><a herf="#">SignUp</a></li>
       		</ul>
 		</div>
