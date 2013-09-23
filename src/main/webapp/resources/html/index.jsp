@@ -10,12 +10,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<script type="text/javascript" src="ckeditor.js"></script>
-	<script type="text/javascript" src="build-config.js"></script>
-	<script type="text/javascript" src="config.js"></script>
-	<script type="text/javascript" src="styles.js"></script>
-	<script type="text/javascript" src="lang/en.js"></script>
-	<link rel="stylesheet" href="skins/moono/editor.css">	
+	
+	
 	
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Coda">
     
@@ -23,12 +19,9 @@
     <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
-	<link href="resources/bootstrap/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
 	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
 	<link href="css/wysiwyg.css" rel="stylesheet" media="screen">
 	
-	<link type="text/css" rel="stylesheet" href="resources/js/jquery.rte.css" />
-
 	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     
@@ -240,7 +233,7 @@
     <script src="resources/bootstrap/js/jquery.featureCarousel.min.js"></script>
 	<script src="lib/moment.js"></script>
 	<script src="lib/select2/select2.js"></script>
-	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
 	<script src="lib/angular/angular-ui-utils.js"></script>
 	<script src="lib/angular/angular-select2.js"></script>
 <!-- 	<script  src="lib/wysiwyg.js"></script>
@@ -265,12 +258,10 @@
 	<script src="lib/fileupload/jquery.iframe-transport.js"></script>
 	<script src="lib/fileupload/jquery.fileupload.js"></script>
 	<script src="lib/fileupload/load-image.min.js"></script>    
-	<script  src="resources/bootstrap/js/jquery.dataTables.js"></script>
 	<script  src="resources/bootstrap/js/ui.multiselect.js"></script>
 	
-	<script type="text/javascript" src="js/jquery.rte.js"></script>
-	<script type="text/javascript" src="js/jquery.rte.tb.js"></script>
 	<script type="text/javascript" src="js/jquery.ocupload-1.1.4.js"></script>
+
 	
   </body>
 </html>
