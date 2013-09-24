@@ -480,7 +480,7 @@ public class EventController {
     			isFree = true;
     		}
     		if(ticket.getTicketType().equals(TicketType.PAID)){
-    			isFree = true;
+    			isPaid = true;
     		}
     	}
     	}
