@@ -21,35 +21,6 @@
 
 			<h3>Filter Your Search <i class="titleArow"></i></h3>
 			<div class="filterControl"> 
-				<div id="slider"></div>
-			
-				<script>
-					  $(function() {
-					    $( "#slider" ).slider();
-					  });
-				</script>
-				
-				
-				
-			<!-- 	 <ul class="nav nav-list">
-				  <li class="nav-header">List header</li>
-				  <li class="active"><a href="#">Home</a></li>
-				  <li><a href="#">Conferences (19)</a></li>
-				  <li><a href="#">Classes (8)</a></li>
-				  <li><a href="#">Social Events (5)</a></li>
-				  <li><a href="#">Other Events (4)</a></li>
-				  <li><a href="#">Business (4)</a></li>
-				  <li><a href="#">Religion (2)</a></li>
-				  <li><a href="#">Travel (2)</a></li>
-				  <li><a href="#">Comedy (1)</a></li>
-				  <li><a href="#">Conventions (1)</a></li>
-				  <li><a href="#">Food/Wine (1)</a></li>
-				  <li><a href="#">Fundraisers (1)</a></li>
-				  <li><a href="#">Networking (1)</a></li>
-				  <li><a href="#">Outdoors (1)</a></li>
-				  <li><a href="#">Reunions (1)</a></li>
-				</ul> -->
-				
 				
 				<ul class="nav nav-list">
 					<li class="nav-header">Date</li>
@@ -81,24 +52,36 @@
 			
 			<div class="span3 ">
 
-				<!-- <input class="input-xlarge" type="text" placeholder=".input-large "
-					value="Search for (e.g. music, networking)" ng-model="searchText"/> 
 				
-				<input ui-select2="cityselect2options" ng-model="byCity" ng-change="selectCity(byCity)" required /> 
-
-				<button type="button" class="btn btn-primary" ng-click="fetchResultsByFilterType(empty,empty)">Search</button> -->
 
 
 					
 				
-					<div class="viewOption"> View  <a title="Thumbnails View" ng-click="viewList=false;viewThumbs=true"><i class="icon-th-large"></i></a> 
-					<a ng-click="viewList=true;viewThumbs=false" title="List View"><i class="icon-th-list"></i></a></div>
+					<div class="viewControl">
+						
+						<div  class="btn-group countrySelect">
+				                <button class="btn dropdown-toggle noRadius headerCatBtn" data-toggle="dropdown">Country <span class="caret"></span></button>
+				                <ul class="dropdown-menu">
+				                  <li ng-repeat="cat in categories">
+									India
+									</li>
+				                </ul>
+				              </div><!-- /btn-group -->
+						
+						
+						<div class="viewButton">
+						 View  <a title="Thumbnails View" ng-click="viewList=false;viewThumbs=true"><i class="icon-th-large"></i></a> 
+								<a ng-click="viewList=true;viewThumbs=false" title="List View"><i class="icon-th-list"></i></a>
+						
+						</div>
+						
+					</div>
 					 
 				  <div ng-show="viewThumbs"><ul class="thumbnails">
 		
 					<li class="span1" ng-repeat="event in searchRecords">
 						<div class="thumbnail">
-							<a href="#event/{{event.eventUrl}}"><img src="resources/bootstrap/img/img01.png" data-src="holder.js/300x200" alt="" ></a>
+							<a href="#event/{{event.eventUrl}}"><img src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" ></a>
 						</div>	
 						<div class="desc">{{event.title}}</div>
 							<div class="type" >Training</div>

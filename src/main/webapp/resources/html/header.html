@@ -6,7 +6,7 @@
 					
 					<a href="#/userSettings" ng-show="user.userName"> Welcome {{user.userName}}</a></span>
 					<i class="splitter "></i> 
-					<a href="#">India (Change)</a>   <span></a>
+					<a href="#"><i class="flag flag-IN"></i> India </a>   <span></a>
 					<i class="splitter "></i>     
 					<a href="#/home">Home</a>
 					<i class="splitter "></i>   
@@ -24,20 +24,7 @@
 						
 							<img class="header-logo" src="resources/bootstrap/img/logo.png"  />
 							<br/>					
-				            <div class="input-prepend input-append headerSearch">
-				              <div class="btn-group">
-				                <button class="btn dropdown-toggle btn btn-inverse" data-toggle="dropdown">Categories <span class="caret"></span></button>
-				                <ul class="dropdown-menu">
-				                  <li ng-repeat="cat in categories">
-									<a href="#">{{cat.key}}</a>
-								</li>
-				                </ul>
-				              </div><!-- /btn-group -->
-				              <input class="span3" id="appendedPrependedDropdownButton" type="text">
-				              <div class="btn-group">
-				                <button class="btn btn btn-inverse" data-toggle="dropdown"> <span class="icon-search searchWhiteIcon"></span></button>
-				              </div>
-				            </div>
+				           
          				
 						
 						
@@ -48,13 +35,32 @@
 						</button>
 			         
 						<div class="nav-collapse collapse mainNav">
+							
+							 <div class="input-prepend input-append headerSearch">
+				              <div class="btn-group">
+				                <button class="btn dropdown-toggle noRadius headerCatBtn " data-toggle="dropdown">Categories <span class="caret"></span></button>
+				                <ul class="dropdown-menu">
+				                  <li ng-repeat="cat in categories">
+									<a href="#">{{cat.key}}</a>
+								</li>
+				                </ul>
+				              </div><!-- /btn-group -->
+				              <input class="span3 headerCatBtn" id="appendedPrependedDropdownButton" type="text">
+				              <div class="btn-group">
+				                <button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown"> <span class="icon-search "></span></button>
+				              </div>
+				            </div>
+							
+							
 							<ul class="nav" >
-								<li ng-class="activeWhen(path()=='/findevent')" > 	<a href="#/findevent" class="firstNav"> Find Event </a> </li>
+								<li ng-class="activeWhen(path()=='/findevent')" > 	<a href="#/findevent" > Find Event </a> </li>
 								<li ng-class="activeWhen(path()=='/createevent')"> 	<a href="#/createevent" >Create Event</a></li>
 								<li ng-class="activeWhen(path()=='/myevents')">		<a href="#/myevents" ng-show="user.userName" >My Events</a></li>
 								<li ng-class="activeWhen(path()=='/mytickets')">	<a href="#/mytickets" ng-show="user.userName">My Tickets</a></li>
 								<li>	<a href="#/mytickets" class="lastNav" >Packages</a></li>
 							</ul>
+							
+							<div style="clear: both"></div>
 						</div>
 			       </div>
 		    </div>

@@ -2,14 +2,14 @@
 
 <div ng-include src="'html/eventpageheader.html'"></div>
 
-
+<div style="display: none">
 <div ng-class="'alert alert-'+message().type" ng-show="message().show" >
     <button type="button" class="close" ng-click="message().show=false">x</button>
     <msg>{{message().text}}</msg>
 </div>
 
-
-	<div class="eventBanners"><img ng-src='http://zeoevent.com:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/entertainmentBannar.png'"/>     </div>
+</div>
+	<div class="eventBanners"><img ng-src='http://zeoevent.com:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/entertainmentBannar.jpg'"/>     </div>
 <div class="container eventPage " >			
 		<div class="span3">
 			
@@ -45,7 +45,7 @@
 			
 			
 				<div style="text-align: right">
-					<button type="button" class="btn btn-primary" ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.tickets.length > 0">Book Ticket</button>
+					<button type="button" class="btn " ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.tickets.length > 0">Book Ticket</button>
 				</div>	
 							
 		<div >
@@ -59,6 +59,9 @@
 		<div id="myTabContent" class="tab-content">
 			
 			<div class="tab-pane fade in active" id="aboutEvent">
+				
+				
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 				<form class="form-horizontal"> <div ng-bind-html-unsafe="event.description" ></div></form>
 			</div>
 			

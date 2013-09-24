@@ -85,7 +85,7 @@
 							</form>
 						
 							 <div class="modal-footer">
-			        			<a ng-click="login()" class="btn btn-primary" >Sign In</a>
+			        			<a ng-click="login()" class="btn " >Sign In</a>
 			        			
 			    			</div>
 						 <br><br>
@@ -127,7 +127,7 @@
 								
 								
 								<div class="modal-footer">
-				        			<a class="btn btn-primary" ng-click="signup()">Sign Up</a>
+				        			<a class="btn" ng-click="signup()">Sign Up</a>
 			    				</div>
 							  </fieldset>
 							</form>
