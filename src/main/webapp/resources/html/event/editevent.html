@@ -322,6 +322,11 @@
 								          <td> <input class="quant" type="text" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
 								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="text" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" ></td>
 								          <td>
+									          <select>
+												  <option>On Sale</option>
+											  </select>
+										  </td>
+								          <td>
 								        	<button class="btn " ng-click="isCollapsed = !isCollapsed"><div tooltip="Sales Start : {{ticket.saleStart}} <br> Sales End : {{ticket.saleEnd}} Minimum Tickets : {{ticket.minQty}} Maximum Tickets : {{ticket.maxQty}}">Setting</div></button>
 								        	</td>
 								          <td>

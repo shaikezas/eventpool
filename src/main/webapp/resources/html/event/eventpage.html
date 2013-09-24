@@ -21,7 +21,7 @@
 						  <th>Ticket Type</th>
 						  <th class="amt">Price</th>
 						  <th class="amt">Sale End</th>
-						  <th class="amt">Quantity</th>
+						  <th class="amt" style="width: 150px;">Quantity</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,13 +30,13 @@
 								  <td class="amt">{{ticket.price}} </td>
 								  <td class="amt">{{ticket.saleEnd}}</td>
 								  <td class="amt"> 
-								  	<select id="Category" ng-model="ticket.selectedQty" ng-click="calcTotalAmount()" ng-init="ticket.selectedQty='0'" 
+								  	<select style="width: 100px;" id="Category" ng-model="ticket.selectedQty" ng-click="calcTotalAmount()" ng-init="ticket.selectedQty='0'" 
 															ng-options="qty.value as qty.key for qty in ticket.qtyList" ng-change="atleastOneTktSelected()">
 												</select>
 								  </td>
 						</tr>
 					
-						<tr>
+						<tr class="dubbleLine">
 						  <td colspan="3" class="amt"> <b> Total </b> </td>
 						  <td class="amt" > {{totalAmount}} </td>
 						</tr>

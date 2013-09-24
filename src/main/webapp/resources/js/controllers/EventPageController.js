@@ -15,7 +15,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     });
     }
     };
-    $scope.eventpage();
+    
     
     $scope.calcTotalAmount = function(){
     	var tickets = $scope.event.tickets;
@@ -167,4 +167,5 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
      }
      
      $scope.getcurrentuser();
+     $scope.eventpage();
 }
