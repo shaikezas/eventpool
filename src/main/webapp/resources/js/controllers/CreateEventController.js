@@ -110,6 +110,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    }
 	    
 	    $scope.classificationTypes = classificationTypes1;
+	    $scope.isWebinar = $scope.event.isWebinar;
 		 
     }).error(function(data) {
     	

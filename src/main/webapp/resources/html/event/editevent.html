@@ -320,7 +320,7 @@
 								        <tr>
 								          <td> <input type="text" ng-model="ticket.name" required ></td>
 								          <td> <input class="quant" type="text" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
-								          <td><span ng-show="ticket.showFree">FREE</span><input type="text" ng-show="ticket.showPrice" ng-model="ticket.price" ></td>
+								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="text" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" ></td>
 								          <td>
 									          <select>
 												  <option>On Sale</option>

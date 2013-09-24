@@ -2,6 +2,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
+	$scope.selectedCat = "Categories";
 	$scope.signupuserform = {};
 	 $scope.shows = [
 	                  {id:10, value:10},
@@ -125,6 +126,18 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
           }
       	
       }
+     
+     
+     $scope.setCatValue = function(catId, catValue){
+      	 $scope.selectedCat = catValue;
+      	 $scope.catId = catId;
+     }
+     
+     $scope.fetchsearchresults = function(queryText){
+    	 $scope.queryText = queryText;
+    	 $location.url('findevent?q='+queryText+'&subCategoryId=' + $scope.catId);
+     }
+     
       
       $scope.getcurrentuser();
       $scope.fetchCategories();
