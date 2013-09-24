@@ -317,11 +317,13 @@ public class EventController {
     		
     	}
     	
+    	if(form.getCityId()!=null){
     	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
     	Region region = csc.get(form.getCityId());
     	form.setCityName(region.getCityName());
     	form.setStateName(region.getStateName());
     	form.setCountryName(region.getCountryName());
+    	}
     	return form;
     }
     
