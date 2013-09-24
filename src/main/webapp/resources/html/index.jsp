@@ -173,56 +173,7 @@
 
 
 
-    <!-- Footer
-    ================================================== -->
-    <footer class="footer">
-      <div class="container">
-      
-      	<div class="span1">
-      		<h3>Quick Link</h3>
-      		<ul>
-      			<li><a herf="#">Home</a></li>
-      			<li><a herf="#/findevent">Find Event</a></li>
-      			<li><a herf="#/createevent">Create Event</a></li>
-      			<li><a herf="#/myevents">My Events</a></li>
-      			<li><a herf="#/mytickets">My Tickets</a></li>
-      			<li><a herf="#">SignUp</a></li>
-      		</ul>
-		</div>
-      	<div class="span1">
-      		<h3>Categories</h3>
-      		<ul>
-      			<li><a herf="#">Professional</a></li>
-      			<li><a herf="#">Entertainment</a></li>
-      			<li><a herf="#">Campus</a></li>
-      			<li><a herf="#">Trade shows</a></li>
-      			<li><a herf="#">Training</a></li>
-      			<li><a herf="#">Spiritual</a></li>
-      			<li><a herf="#">Special Occasion</a></li>
-      		</ul>
-		</div>
-      	<div class="span1">
-      		<h3>Follow Us</h3>
-      		<div class="followUs">
-      		<a href="#"><i class="icon-facebook"></i></a> 
-			<a href="#"><i class="icon-twitter "></i></a> 
-			<a href="#"><i class="icon-youtube"></i></a> 
-			<a href="#"><i class="icon-googleplus"></i></a>
-			</div>
-		</div>
-      	<div class="span1">
-      		<h3>Subscribe and Get Updates</h3>
-      		Subscribe to email newsletter for latest 
-			events sent out everyday.
-			<input type="text" value="asd" >    
-			<button class="btn" style="float: right">Subscribe</button>  	
-      	</div>
-      	
-      	<div class="copyright">
-       			 &copy; 2013, Copyright @ Company Name. All Rights Reserved.
-         </div>
-      </div>
-    </footer>
+   
 
 	<script src="lib/jquery/jquery.js" type="text/javascript"></script>
 	<script src="lib/jquery/jquery-ui.min.js" type="text/javascript"></script>

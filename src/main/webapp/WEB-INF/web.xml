@@ -5,7 +5,9 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
-
+<display-name>Zeoevents</display-name>
+	
+	<description>Zeoevents</description>
 <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
