@@ -41,20 +41,11 @@ a{
 	border-radius: 0px !important;
 }
 /* Header Top Strip Start */
-.headerStrip{
-	background-color: #fff;
-	/*background-color: #373737;
-	background-image: -moz-linear-gradient(top, #373737, #151515);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#373737), to(#151515));
-	background-image: -webkit-linear-gradient(top, #373737, #151515);
-	background-image: -o-linear-gradient(top, #373737, #151515);
-	background-image: linear-gradient(to bottom, #373737, #151515);*/
-	border-bottom:1px solid #ccc;;
-	}
 
 .navCityLogin{
 	text-align: right;
-	padding:0px ;	
+	padding:0px ;
+	float: right
 	}
 .navCityLogin a{
 	color: #000;
@@ -207,19 +198,23 @@ h3 i{
 .nav-list{
 	background: #eeeeee;
 }
+
+
 .nav-list > li > a{
-	font-size: 12px ;
-	border-left:3px solid none;
+	font-size: 14px ;
+	border-left:3px solid #363636;
 	color:#333;
 }
 
 .nav-list > li > a:hover {
 	color:#ff6600;
+	border-left:3px solid #ff6600;
 }
-.nav-list .active a {
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus{
 	border-left:3px solid #ff6600;
 	color:#333;
 }
+
 
 
 .filterControl, .nav-list > li > a, .nav-list .nav-header {
@@ -234,6 +229,10 @@ h3 i{
 	margin: 1px 0px;
 	background: #fff;
 	color: #333 !important;
+}
+.filterControl .nav-list li a:hover {
+	
+	color: #ff6600 !important;
 }
 .filterControl .nav-list .active a {
 	border-left:2px solid #ff6600;
@@ -299,6 +298,74 @@ h3 i{
 .amt{
 	text-align: right !important;
 }
+
+
+
+
+
+table{
+	font-family: " Verdana, Geneva, Arial, Helvetica, sans-serif", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	background: #fff;
+	margin-bottom: 15px !important;
+	border-collapse: collapse;
+	text-align: left;
+	border-left:0px !important;
+	border-right:0px !important;
+}
+table th{
+	font-size: 14px;
+	font-weight: bold !important;
+	color: #262626 !important;
+	padding: 10px 8px;
+	background-image: -moz-linear-gradient(top, #ffffff, #ededed);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ededed));
+	background-image: -webkit-linear-gradient(top, #ffffff, #ededed);
+	background-image: -o-linear-gradient(top, #ffffff, #ededed);
+	background-image: linear-gradient(to bottom, #ffffff, #ededed);
+	background-repeat: repeat-x;
+}
+.dubbleLine{
+	border-top: double #262626 !important;
+	border-bottom:2px solid #262626 !important;
+}
+table th a{
+	color: #262626 !important;
+}
+
+table td a{
+	color: #004387 !important;
+}
+table th a:hover, table td a:hover{
+	color: #ff6600 !important;
+}
+table td
+{
+	border-left:0px !important;
+	border-right:0px !important;
+	color: #262626;
+	padding: 6px 8px;
+}
+table tr:hover td
+{
+	color: #262626;
+	background: #f6f4f4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Header Main Nav End */
 
 /* pageBanner  Start */
@@ -390,10 +457,10 @@ h3 i{
 
 @media (min-width: 1200px){
 .pageContainer{
-	margin-top: 130px;
+	margin-top: 95px;
 }
 .inPageContainer{
-	margin-top: 130px;
+	margin-top: 95px;
 	margin-bottom: 25px;
 }
 
@@ -480,7 +547,6 @@ width: 50px
 
 /* Header Top Strip Start */
 .navCityLogin{
-	width: 980px;
 	margin: auto;
 }
 .container{
