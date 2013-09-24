@@ -22,7 +22,7 @@
 	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
 	<link href="css/wysiwyg.css" rel="stylesheet" media="screen">
 	
-	<link rel="stylesheet" href="skins/moono/editor.css">	
+	<link rel="stylesheet" href="lib/ckeditor/skins/moono/editor.css">	
 	
 	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
