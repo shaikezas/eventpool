@@ -9,13 +9,13 @@
 					
 								<a href="#/userSettings" ng-show="user.userName"> Welcome {{user.userName}}</a></span>
 								<i class="splitter "></i> 
-								<a href="#"><i class="flag flag-IN"></i> India </a>   <span></a>
+								<a><i class="flag flag-IN"></i> India </a>   <span></a>
 								<i class="splitter "></i>     
 								<a href="#/home">Home</a>
 								<i class="splitter "></i>   
-								<a ng-click="loginuser()" ng-show="user.userName==null">Login</a>
+								<a href="" ng-click="loginuser()" ng-show="user.userName==null">Login</a>
 								
-								<a ng-click="logout()" ng-show="user.userName">Logout</a>
+								<a href="" ng-click="logout()" ng-show="user.userName">Logout</a>
 								<span ng-class="activeWhen(path()=='/userSettings')">
 								
 							</div>
