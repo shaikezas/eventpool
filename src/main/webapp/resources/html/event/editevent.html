@@ -311,7 +311,6 @@
 								          <th>TICKET NAME <span ng-style="{color:'red'}">*</span></th>
 								          <th>TICKET QUANTITY</th>
 								          <th>TICKET PRICE</th>
-								          <th>SALES STATUS   |   Fee    |   Buyer Total</th>
 								          <th>  </th>
 								          <th>  </th>
 								        </tr>
@@ -321,11 +320,6 @@
 								          <td> <input type="text" ng-model="ticket.name" required ></td>
 								          <td> <input class="quant" type="text" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
 								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="text" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" ></td>
-								          <td>
-									          <select>
-												  <option>On Sale</option>
-											  </select>
-										  </td>
 								          <td>
 								        	<button class="btn " ng-click="isCollapsed = !isCollapsed"><div tooltip="Sales Start : {{ticket.saleStart}} <br> Sales End : {{ticket.saleEnd}} Minimum Tickets : {{ticket.minQty}} Maximum Tickets : {{ticket.maxQty}}">Setting</div></button>
 								        	</td>
