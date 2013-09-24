@@ -22,6 +22,8 @@
 	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
 	<link href="css/wysiwyg.css" rel="stylesheet" media="screen">
 	
+	<link rel="stylesheet" href="skins/moono/editor.css">	
+	
 	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     
@@ -212,6 +214,12 @@
 	<script  src="resources/bootstrap/js/ui.multiselect.js"></script>
 	
 	<script type="text/javascript" src="js/jquery.ocupload-1.1.4.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/build-config.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/config.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/styles.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/lang/en.js"></script>
+
 
 	
   </body>

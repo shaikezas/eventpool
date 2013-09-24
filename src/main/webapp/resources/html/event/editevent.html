@@ -1,4 +1,4 @@
-		        <link rel="stylesheet" href="skins/moono/editor.css">	
+		        
 		        <div ng-controller="CreateEventController">
 		      
 		      
@@ -320,12 +320,7 @@
 								        <tr>
 								          <td> <input type="text" ng-model="ticket.name" required ></td>
 								          <td> <input class="quant" type="text" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
-								          <td><span ng-show="ticket.showFree">FREE</span><input type="text" ng-show="ticket.showPrice" ng-model="ticket.price" ></td>
-								          <td>
-									          <select>
-												  <option>On Sale</option>
-											  </select>
-										  </td>
+								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="text" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" ></td>
 								          <td>
 								        	<button class="btn " ng-click="isCollapsed = !isCollapsed"><div tooltip="Sales Start : {{ticket.saleStart}} <br> Sales End : {{ticket.saleEnd}} Minimum Tickets : {{ticket.minQty}} Maximum Tickets : {{ticket.maxQty}}">Setting</div></button>
 								        	</td>
@@ -420,11 +415,5 @@
 		
     
    
-
-<script type="text/javascript" src="lib/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="lib/ckeditor/build-config.js"></script>
-<script type="text/javascript" src="lib/ckeditor/config.js"></script>
-<script type="text/javascript" src="lib/ckeditor/styles.js"></script>
-<script type="text/javascript" src="lib/ckeditor/lang/en.js"></script>
 
 

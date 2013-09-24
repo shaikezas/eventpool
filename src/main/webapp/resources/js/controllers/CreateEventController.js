@@ -74,7 +74,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      });
    }
 
-   $scope.createevent();
    
    
     $scope.close = function(){
@@ -110,6 +109,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    }
 	    
 	    $scope.classificationTypes = classificationTypes1;
+	    $scope.isWebinar = $scope.event.isWebinar;
 		 
     }).error(function(data) {
     	
@@ -122,7 +122,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.showAttendeDetails = true;
     }
     };
-    $scope.myevent();
+    
     
     $scope.updateUrl = function() {
     	$scope.event.eventUrl = $scope.event.title;
@@ -463,6 +463,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      $scope.getcurrentuser();
      
     $scope.fetchCategories();
+    
+//    $scope.createevent();
+    
+    $scope.myevent();
     
     $scope.predicate = 'id'
 }

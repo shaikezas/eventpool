@@ -16,6 +16,10 @@ var MyTicketsController = function($scope, $http,$rootScope,currentuser) {
     		$scope.invoice = data;
         });
     }
+    $scope.sendTicket = function(suborderId){
+    	$http.get('event/myevent/send/'+suborderId).success(function(){
+        });
+    }
     $scope.closePrintTicket = function () {
         $scope.shouldBeOpen = false;
         $scope.invoice = {};
