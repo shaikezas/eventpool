@@ -101,6 +101,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
+	   
+	    if($scope.event.isWebinar){
+	    	$scope.setRequiredFields();
+	    }
 	    i = $scope.event.classificationType;
 	    upgrades = $scope.classificationTypes;
 	    while(i <= $scope.membership){
