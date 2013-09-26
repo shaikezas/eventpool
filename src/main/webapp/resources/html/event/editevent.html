@@ -69,9 +69,9 @@
 							 <div class="control-group">
 							    <label class="control-label" for="classificationType">Classification Type :</label>
 							    <div class="controls">
-									  <select id="classificationType" ng-model="event.classificationType"
+									  <select id="classificationType" ng-init="event.classificationType = classificationTypes[0].id" ng-model="event.classificationType"
 													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo: membership">
-												<option value="">--Select ClassificationType--</option> 
+												<!-- <option value="">--Select ClassificationType--</option>  -->
 										</select>
 							    </div>
 							  </div>
