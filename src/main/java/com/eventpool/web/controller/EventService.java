@@ -44,4 +44,6 @@ public interface EventService {
 	public List<SuborderDTO> getEventOrderedTickets(Long eventId) throws Exception;
 
 	public void updateEventClassification(Long eventId,Integer classificationType) throws Exception;
+	
+	public void pushToQueue(Long eventId);
 }

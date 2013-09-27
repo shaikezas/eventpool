@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.camel.Produce;
+import org.apache.camel.ProducerTemplate;
 import org.springframework.stereotype.Service;
 
 import com.eventpool.common.dto.EventDTO;
@@ -34,6 +36,8 @@ public class EventServiceImpl implements EventService {
 	@Resource
 	EventCommandService eventCommandService;
 	
+	@Produce(uri="jms:queue:event")
+	ProducerTemplate eventQueue;
     
     public List<EventDTO> getAllEvents(Long userId) throws Exception {
         return eventApi.getAllEvents(userId);
@@ -47,7 +51,8 @@ public class EventServiceImpl implements EventService {
     public boolean addEvent(EventDTO eventDTO) throws Exception {
     	SaveEventCommand saveEventCommand = new SaveEventCommand();
     	saveEventCommand.setEventDTO(eventDTO);
-    	return eventCommandService.executeCommand(saveEventCommand);
+    	boolean executeCommand = eventCommandService.executeCommand(saveEventCommand);
+    	return executeCommand;
     }
 
     public List<String> checkEventUrl(String eventUrl){
@@ -112,4 +117,10 @@ public class EventServiceImpl implements EventService {
 		eventApi.updateEventClassification(eventId, classificationType);
 		
 	}
+	
+	public void pushToQueue(Long eventId){
+		eventQueue.sendBody(eventId);
+	}
+	
+	
 }

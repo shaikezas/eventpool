@@ -53,6 +53,7 @@ import com.eventpool.event.service.impl.TicketAttendeeDTO;
 import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.controller.EventSearchRecord;
+import com.eventpool.web.controller.EventService;
 import com.eventpool.web.controller.SearchQueryResponse;
 import com.eventpool.web.controller.SearchService;
 import com.eventpool.web.forms.EventForm;
@@ -68,7 +69,10 @@ public class EventTest extends BaseTest{
 	
 	@Resource
 	EventApi eventApi;
-	
+
+	@Resource
+	EventService eventService;
+
 	@Resource
 	EventCommandService eventCommandService;
 	
@@ -556,6 +560,11 @@ public class EventTest extends BaseTest{
     public void testUser(){
     	User user = userRepository.findOne(1L);
     	log.info("user"+user.getMemberShip());
+    }
+    
+    @Test
+    public void push(){
+    	eventService.pushToQueue(1L);
     }
 
 }
