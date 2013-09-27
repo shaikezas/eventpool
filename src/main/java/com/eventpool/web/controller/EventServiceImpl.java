@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.eventpool.common.dto.EventDTO;
@@ -29,6 +31,8 @@ import com.eventpool.event.service.EventCommandService;
 public class EventServiceImpl implements EventService {
     private static List<EventDTO> eventList = new ArrayList<EventDTO>();
     private static Long id = 0L;
+    
+    static final Logger logger = LoggerFactory.getLogger(EventServiceImpl.class);
 
     @Resource
     private EventApi eventApi;
@@ -72,7 +76,15 @@ public class EventServiceImpl implements EventService {
 		PublishEventCommand publishEventCommand = new PublishEventCommand();
 		publishEventCommand.setEventId(eventId);
 		publishEventCommand.setPublish(isPublish);
-		return eventCommandService.executeCommand(publishEventCommand);
+		boolean executeCommand = eventCommandService.executeCommand(publishEventCommand);
+		try {
+			if(executeCommand){
+				pushToQueue(eventId);
+			}
+		} catch (Exception e) {
+			logger.info("not able to push to active mq "+eventId,e);
+		}
+		return executeCommand;
 	}
 
 	public boolean publishEvent(String eventUrl, boolean isPublish) throws Exception {
