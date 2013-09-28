@@ -66,6 +66,8 @@
 							    </div>
 							  </div>
 							  
+<<<<<<< HEAD
+=======
 							 <div class="control-group">
 							    <label class="control-label" for="classificationType">Classification Type :</label>
 							    <div class="controls">
@@ -77,6 +79,7 @@
 							  </div>
 							 
 							  
+>>>>>>> refs/remotes/origin/master
 							  <div class="control-group ">
 							    <div class="controls">
 							      <label class="checkbox">
@@ -85,36 +88,7 @@
 							      </label>
 							    </div>
 							  </div>
-							  <div class="control-group">
-							    <label class="control-label" for="facebookURL">Event Facebook URL :</label>
-							    <div class="controls">
-							      <input type="text" id="eventFacebookUrl" ng-model="event.faceBookUrl" >
-							    </div>
-							  </div>							  
-							  							  
-							  
-
-							  <div class="control-group">
-							    <label class="control-label" for="category">Category :<span ng-style="{color:'red'}">*</span></label>
-							    <div class="controls">
-									  <select name="category" id="Category" ng-model="event.subCategoryId" 
-													ng-options="cat.value as cat.key for cat in categories" required>
-													<option value="">-- Select Category --</option>
-										</select>
-										<span ng-show="catRequired" ng-style="{color:'red'}">Required.</span>
-							    </div>
-							  </div>
-							  
-						<!-- 	  <div class="control-group">
-							    <label class="control-label" for="subCategory">Sub Category :<span ng-style="{color:'red'}">*</span></label>
-							    <div class="controls">
-							      	<select name="subCategory" id="Subcategory" ng-model="event.subCategoryId"
-													ng-options="subcat.value as subcat.key for subcat in subcategories" required>
-													<option value="">-- Select SubCategory --</option>
-										</select>
-										<span ng-show="subCatRequired" ng-style="{color:'red'}">Required.</span>
-							    </div>
-							  </div> -->
+							 			  
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
@@ -127,23 +101,6 @@
 							  </div>
 							  
 							
-							  <div class="control-group">
-							    <label class="control-label" for="url">Event URL :</label>
-							    <div class="controls">
-							     www.eventpool.com\events\<input type="text" name="url" id="url" ng-model="event.eventUrl" 
-							     				ui-validate="{eventnameexists:'validateeventname($value)'}">
-							    </div>
-							    <span ng-show="eventForm.url.$error.eventnameexists" style="font-family: 'Lato', sans-serif; font-weight: 300;color:red;"
-                   					class="validation_msg"> Event name taken </span>
-                  				</span>
-							  </div>		
-							  
-							    <div class="control-group">
-							    <label class="control-label" for="eventSearch">Event search key words :</label>
-							    <div class="controls">
-							      <input type="text" id="eventSearch" ng-model="event.keyWords" placeholder="Event Search" >
-							    </div>
-							    </div>
 							  
 							  <div class="control-group">
 							    <div class="controls">
@@ -259,19 +216,7 @@
 							  
 							  
 							  
-							  <div class="control-group" ng-show="contactDetails">
-							    <label class="control-label" for="contactDetails">Event Contract Info :</label>
-							    <div class="controls">
-							      <textarea id="contactDetails" rows="3" ng-model="event.contactDetails" placeholder="Enter Name(s), Phone or Email:"></textarea>
-							    </div>
-							  </div>
-							  
-							  <div class="control-group" ng-show="showHostWebsite">
-							    <label class="control-label" for="website">Event Website URL :</label>
-							    <div class="controls">
-									  <input type="text" id="website" ng-model="event.eventWebSiteUrl" >
-							    </div>
-							  </div>
+							
 							  
 							  
 							  

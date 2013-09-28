@@ -222,7 +222,13 @@
 	<script type="text/javascript" src="lib/ckeditor/styles.js"></script>
 	<script type="text/javascript" src="lib/ckeditor/lang/en.js"></script>
 
-
+<script type="text/javascript" src="lib/ckeditor/plugins/image/images/noimage.png"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/image/dialogs/image.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/tabletools/dialogs/tableCell.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/table/dialogs/table.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/icons.png"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/icons_hidpi.png"></script>
+			
 	
   </body>
 </html>

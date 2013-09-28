@@ -18,6 +18,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.subject = "";
     $scope.toValue = "";
     $scope.message = "";
+    $scope.eventFormOptions = {};
     var map = [];
     var classificationTypes1 = [];
     var upgrades = [];
@@ -35,7 +36,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       
       $scope.updateQuestions = function(){
     	  $http.post('event/myevent/updatesettings', $scope.eventFormSettings).success(function(data) {
-//            $scope.fetchEventsList();
+        }).error(function() {
+            $scope.setError('Could not update settings.');
+        });
+      }
+      
+      $scope.updateEventOptions = function(){
+    	  $http.post('event/myevent/updateoptions', $scope.eventFormOptions).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
@@ -156,6 +163,15 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.fetchEventSettings = function() {
     	eventsettings.geteventsettings($scope.event.id).success(function(eventFormSettings) {
 			$scope.eventFormSettings = eventFormSettings;
+	    }).error(function(data) {
+	    	
+	    });
+    }
+    
+    $scope.fetchEventOptions = function() {
+    	$http.get('event/myevent/options/'+$scope.event.id).success(function(data) {
+			$scope.eventFormOptions = data;
+			alert($scope.eventFormOptions.faceBookUrl);
 	    }).error(function(data) {
 	    	
 	    });
