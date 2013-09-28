@@ -20,7 +20,7 @@
 							    <label class="control-label" for="file">Upload Promotion banner :</label>
 							    <div class="controls">
 							      
-							       <input type="file" class="fileupload" name="file" ng-model="eventFormOptions.organizerFile"
+							       <input type="file" class="fileupload" name="file" ng-model="event.promotionFile"
 											data-url="upload/file" fileupload-plugin/>
 											
 							    </div>
@@ -30,7 +30,7 @@
 							   <div class="control-group">
 							    <label class="control-label" for="classificationType">Classification Type :</label>
 							    <div class="controls">
-									  <select id="classificationType" ng-init="eventFormOptions.classificationType = classificationTypes[0].id" ng-model="eventFormOptions.classificationType"
+									  <select id="classificationType" ng-init="event.classificationType = classificationTypes[0].id" ng-model="event.classificationType"
 													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo: membership">
 										</select>
 							    </div>
@@ -40,14 +40,14 @@
 							  <div class="control-group">
 							    <label class="control-label" for="eventFacebookUrl">Event Facebook URL :</label>
 							    <div class="controls">
-							      <input type="text" id="eventFacebookUrl" ng-model="eventFormOptions.faceBookUrl" >
+							      <input type="text" id="eventFacebookUrl" ng-model="event.faceBookUrl" >
 							    </div>
 							  </div>							  
 							  							  
 							    <div class="control-group">
 							    <label class="control-label" for="eventSearch">Event search key words :</label>
 							    <div class="controls">
-							      <input type="text" id="eventSearch" ng-model="eventFormOptions.keyWords" placeholder="Event Search" >
+							      <input type="text" id="eventSearch" ng-model="event.keyWords" placeholder="Event Search" >
 							    </div>
 							    </div>
 							  
@@ -56,14 +56,14 @@
 							    <div class="control-group" >
 							    <label class="control-label" for="contactDetails">Event Contract Info :</label>
 							    <div class="controls">
-							      <textarea id="contactDetails" rows="3" ng-model="eventFormOptions.contactDetails" placeholder="Enter Name(s), Phone or Email:"></textarea>
+							      <textarea id="contactDetails" rows="3" ng-model="event.contactDetails" placeholder="Enter Name(s), Phone or Email:"></textarea>
 							    </div>
 							  </div>
 							  
 							  <div class="control-group" >
 							    <label class="control-label" for="website">Event Website URL :</label>
 							    <div class="controls">
-									  <input type="text" id="website" ng-model="eventFormOptions.eventWebSiteUrl" >
+									  <input type="text" id="website" ng-model="event.eventWebSiteUrl" >
 							    </div>
 							  </div>
 							  

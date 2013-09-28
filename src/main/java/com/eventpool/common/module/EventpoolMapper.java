@@ -263,6 +263,15 @@ public class EventpoolMapper {
 				String path = getEventImagePath(eventForm.getBanner());
 				media.setBannerUrl(path);
 			}
+			
+			if(eventForm.getPromotionFile()!=null){
+				String path = eventForm.getPromotionFile().getPath();
+				path = getEventImagePath(path);
+				media.setPromotionLogoUrl(path);
+			}else{
+				String path = getEventImagePath(eventForm.getPromotion());
+				media.setPromotionLogoUrl(path);
+			}
 		}
 		else{ 
 			eventDTO.setMedia(null);
@@ -363,6 +372,7 @@ public class EventpoolMapper {
 		if(eventDTO.getMedia()!=null){
 			mapper.map(eventDTO.getMedia(), eventForm);
 			eventForm.setBanner(eventDTO.getMedia().getBannerUrl());
+			eventForm.setPromotion(eventDTO.getMedia().getPromotionLogoUrl());
 		}
 		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
 		if(ticketDTOs!=null && ticketDTOs.size()>0){

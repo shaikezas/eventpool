@@ -23,6 +23,8 @@ public class EventForm  {
 	private File organizerLogo;
 	private String banner;
 	private File bannerFile;
+	private String promotion;
+	private File promotionFile;
 	private String videoUrl;
 	private String faceBookUrl;
 	private String otherUrl1;
@@ -379,6 +381,18 @@ public Long getEventId() {
 	}
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+	public String getPromotion() {
+		return promotion;
+	}
+	public void setPromotion(String promotion) {
+		this.promotion = promotion;
+	}
+	public File getPromotionFile() {
+		return promotionFile;
+	}
+	public void setPromotionFile(File promotionFile) {
+		this.promotionFile = promotionFile;
 	}
 	
 }

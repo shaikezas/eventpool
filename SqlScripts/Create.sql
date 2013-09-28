@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS `EVENT_MEDIA`;
 CREATE TABLE `EVENT_MEDIA` (
    EVENT_ID bigint(20) NOT NULL ,
    IMAGE_URL varchar(256) DEFAULT NULL,
-   company_logo_url varchar(256),
+   promotion_logo_url varchar(256),
    VIDEO_URL varchar(256) DEFAULT NULL,
    BANNER_URL varchar(256) NULL,
    FACEBOOK_URL varchar(256) NULL,

@@ -42,7 +42,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       }
       
       $scope.updateEventOptions = function(){
-    	  $http.post('event/myevent/updateoptions', $scope.eventFormOptions).success(function(data) {
+    	  $http.post('event/myevent/updateoptions', $scope.event).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
@@ -248,10 +248,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     }
     $scope.setRequiredFields = function() {
     	$scope.isWebinarChecked=!$scope.isWebinarChecked;
+    	if(angular.isDefined($scope.venueForm)){}
     	$scope.venueForm.venueName.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress1.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress2.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.$invalid = !$scope.isWebinarChecked;
+    }
     }
     $scope.validations = function() {
     	$scope.nameRequired = $scope.eventForm.eName.$error.required;

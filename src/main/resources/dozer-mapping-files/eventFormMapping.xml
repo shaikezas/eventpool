@@ -38,7 +38,7 @@
         <class-a>com.eventpool.web.forms.EventForm</class-a>
         <class-b>com.eventpool.common.dto.MediaDTO</class-b>
         	<field><a>eventId</a><b>eventId</b></field>
-			<field><a>organizerLogo </a><b>companyLogoUrl</b></field>
+			<!-- <field><a>organizerLogo </a><b>companyLogoUrl</b></field> -->
 			<!-- <field><a>banner      </a><b>bannerUrl     </b></field> -->
 			<field><a>videoUrl       </a><b>videoUrl      </b></field>
 			<field><a>faceBookUrl    </a><b>faceBookUrl   </b></field>
