@@ -143,6 +143,7 @@ public class SearchController {
     }
     
 	public static String getRemoteIp(HttpServletRequest request) {
+		if(request==null) return null;
 		String clientIp = request.getRemoteAddr();
 		String xForwardedFor = request.getHeader("X-FORWARDED-FOR");
 		if (StringUtils.isBlank(xForwardedFor))

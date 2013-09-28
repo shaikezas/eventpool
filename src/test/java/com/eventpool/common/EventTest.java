@@ -54,6 +54,7 @@ import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.controller.EventSearchRecord;
 import com.eventpool.web.controller.EventService;
+import com.eventpool.web.controller.SearchController;
 import com.eventpool.web.controller.SearchQueryResponse;
 import com.eventpool.web.controller.SearchService;
 import com.eventpool.web.forms.EventForm;
@@ -565,6 +566,15 @@ public class EventTest extends BaseTest{
     @Test
     public void push(){
     	eventService.pushToQueue(1L);
+    }
+
+    @Resource
+    SearchController searchController;
+    
+    @Test
+    public void homePageResults() throws Exception{
+    	SearchQueryResponse homepageResults = searchController.getHomepageResults(null);
+    	System.out.println(homepageResults.getEventSearchRecords().size());
     }
 
 }
