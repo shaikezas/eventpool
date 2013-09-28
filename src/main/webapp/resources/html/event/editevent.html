@@ -149,7 +149,7 @@
 							    <div class="controls">
 							    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
 							      <button type="submit" class="btn" ng-hide="editMode" ng-click="addNewEvent()" ng-disabled="disabled">Save & Exit</button>
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 							     <!--  <a href="#venueInformation" data-toggle="tab"><button type="button" class="btn " ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode">Next</button></a> -->
 							    </div>
 							  </div>
@@ -228,8 +228,9 @@
 							  </div>
 								  <div class="control-group">
 								    <div class="controls">
-								      <button type="submit" class="btn " ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
-								      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+								    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
+								      <button type="submit" class="btn "  ng-disabled="disabled" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+								      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 								     <!--  <a href="#organizerInformation" data-toggle="tab"><button type="button" class="btn ">Next</button></a> -->
 								    </div>
 								  </div>
@@ -276,8 +277,8 @@
 							  
 							  <div class="control-group">
 							    <div class="controls">
-							      <button type="submit" class="btn " ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+							      <button type="submit" class="btn " ng-disabled="disabled" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 							      <!-- <a href="#ticketInformation" data-toggle="tab"><button type="button" class="btn ">Next</button></a> -->
 							    </div>
 							  </div>
@@ -397,8 +398,8 @@
 	 <div class="control-group">
 							    <div class="controls">
 							    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEvent(event)" ng-disabled="disabled">Save & Exit</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 							     </div>
 							  </div>
 							</form >
