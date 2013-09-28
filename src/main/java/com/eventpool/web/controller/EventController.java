@@ -353,7 +353,7 @@ public class EventController {
     	MediaDTO media = event.getMedia();
     	if( media!=null){
     		form.setFaceBookUrl(media.getFaceBookUrl());
-    		form.setOrganizer(media.getCompanyLogoUrl());
+    		form.setOrganizer(media.getPromotionLogoUrl());
     		form.setEventWebSiteUrl(media.getEvenWebSiteUrl());
     	}
     	form.setKeyWords(event.getKeyWords());
@@ -363,7 +363,7 @@ public class EventController {
     }
     
     @RequestMapping(value = "/myevent/updateoptions", method = RequestMethod.POST)
-    public @ResponseBody ResponseMessage updateEventOptions(@RequestBody EventOptionsForm form) throws Exception {
+    public @ResponseBody ResponseMessage updateEventOptions(@RequestBody EventForm form) throws Exception {
     	System.out.println("Calling updateEventOptions ..."+form.getEventId());
     	EventDTO event = eventService.getEventById(form.getEventId());
     	event.setClassificationType(form.getClassificationType());
@@ -376,16 +376,14 @@ public class EventController {
     	}
     	
     	media.setFaceBookUrl(form.getFaceBookUrl());
-    	if(form.getOrganizerFile()!=null){
-    		media.setCompanyLogoUrl(form.getOrganizerFile().getPath());
+    	if(form.getPromotionFile()!=null){
+    		media.setPromotionLogoUrl(form.getPromotionFile().getPath());
     	}else{
-    		media.setCompanyLogoUrl(form.getOrganizer());
+    		media.setPromotionLogoUrl(form.getPromotion());
     	}
     	
     	media.setEvenWebSiteUrl(form.getEventWebSiteUrl());
-    	
-    	
-    	
+    	eventService.addEvent(event);
     	
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated event options");
     }

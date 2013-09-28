@@ -25,8 +25,8 @@ public class Media implements Serializable{
 	@Column(name = "EVENT_ID")
 	private Long eventId;
 
-	@Column(name = "COMPANY_LOGO_URL")
-	private String companyLogoUrl;
+	@Column(name = "PROMOTION_LOGO_URL")
+	private String promotionLogoUrl;
 
 	@Column(name = "BANNER_URL")
 	private String bannerUrl;
@@ -63,12 +63,13 @@ public class Media implements Serializable{
 	public void setEvent(Event event) {
 		this.event = event;
 	}
-	public String getCompanyLogoUrl() {
-		return companyLogoUrl;
+	
+	public String getPromotionLogoUrl() {
+		return promotionLogoUrl;
 	}
 
-	public void setCompanyLogoUrl(String companyLogoUrl) {
-		this.companyLogoUrl = companyLogoUrl;
+	public void setPromotionLogoUrl(String promotionLogoUrl) {
+		this.promotionLogoUrl = promotionLogoUrl;
 	}
 
 	public String getBannerUrl() {

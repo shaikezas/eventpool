@@ -38,7 +38,7 @@
         <class-a>com.eventpool.common.entities.Media</class-a>
         <class-b>com.eventpool.common.dto.MediaDTO</class-b>
   			<field><a>eventId        </a><b>eventId       </b></field>
-			<field><a>companyLogoUrl </a><b>companyLogoUrl</b></field>
+			<field><a>promotionLogoUrl </a><b>promotionLogoUrl</b></field>
 			<field><a>bannerUrl      </a><b>bannerUrl     </b></field>
 			<field><a>videoUrl       </a><b>videoUrl      </b></field>
 			<field><a>faceBookUrl    </a><b>faceBookUrl   </b></field>
