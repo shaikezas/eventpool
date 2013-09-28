@@ -24,9 +24,16 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      };
      
      $scope.login = function () {
-    		 $scope.signin();
+    	 $scope.usernameReq = $scope.userForm.username.$error.required;
+    	 $scope.passwordRequired = $scope.userForm.password.$error.required;
+    	 $scope.validEmail = $scope.userForm.username.$error.email; 
+    	 $scope.signin();
      };
      $scope.signup = function () {
+    	 $scope.newUserEmailReq = $scope.signupForm.newUserEmail.$error.required;    	 
+    	 $scope.newuserValidEmail = $scope.signupForm.newUserEmail.$error.email; 
+    	 $scope.newUserPasswordReq = $scope.signupForm.newUserPassword.$error.required;
+    	 $scope.newUserPasswordCFReq = $scope.signupForm.newUserPasswordCF.$error.required;
     	 $http.post('signupuser', $scope.signupuserform).success(function(data) {
         		 if(data.type=="success"){
         			 $scope.username = $scope.signupuserform.email;
@@ -53,6 +60,14 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
          $location.url('home');
      };
      $scope.cancel = function (){
+    	 $scope.usernameReq=false;
+    	 $scope.passwordRequired=false;
+    	 $scope.validEmail=false;
+    	 $scope.newUserEmailReq=false;
+    	 $scope.newuserValidEmail=false;
+    	 $scope.newUserPasswordReq=false;
+    	 $scope.newUserPasswordCFReq=false;
+    	 
     	 access = "";
     	 signupmessage = "";
          message = "";
@@ -138,7 +153,24 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $location.url('findevent?q='+queryText+'&subCategoryId=' + $scope.catId);
      }
      
+     $scope.fetchhomepagerecords = function(){
+    	 $http.get('search/getSearchResults').success(function(homePageSearchResults) {
+    		
+    			for (var i=0;i<homePageSearchResults.eventSearchRecords.length;i++)
+            	{ 
+    				homePageSearchResults.eventSearchRecords[i].startDate = moment(homePageSearchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
+    				homePageSearchResults.eventSearchRecords[i].endDate = moment(homePageSearchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+        			    			
+            	}
+            $scope.homePageResults = homePageSearchResults.eventSearchRecords;
+    		  
+        }).error(function() {
+//            $scope.setError('Home page results are not correct.');
+        });
+     }
+     
       
       $scope.getcurrentuser();
       $scope.fetchCategories();
+      $scope.fetchhomepagerecords();
 }

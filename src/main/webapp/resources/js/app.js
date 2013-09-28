@@ -37,6 +37,7 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $routeProvider.when('/findevent',           {        templateUrl: 'html/event/findevent.html',            controller: FindEventController    					    });
     $routeProvider.when('/mytickets',           {        templateUrl: 'html/ticket/mytickets.html',           controller: MyTicketsController    					    });
     $routeProvider.when('/home',                {        templateUrl: 'html/home.html',                       controller: MainController    					    });
+    $routeProvider.when('/',                {        templateUrl: 'html/home.html',                       controller: MainController    					    });    
     $routeProvider.when('/myevent/:eventid',	{        templateUrl: 'html/event/manageevent.html', 		  controller: CreateEventController                               });	
     $routeProvider.when('/event/:eventurl',	{        templateUrl: 'html/event/eventpage.html', 		  controller: EventPageController                               });
     $routeProvider.when('/order',	{        templateUrl: 'html/order/orderevent.html', 		  controller: EventPageController                               });
