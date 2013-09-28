@@ -18,11 +18,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.subject = "";
     $scope.toValue = "";
     $scope.message = "";
+    $scope.eventFormOptions = {};
     var map = [];
     var classificationTypes1 = [];
     var upgrades = [];
     var i;
     $scope.from="admin@eventhut.com";
+    $scope.disabled = false;
    
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
@@ -34,7 +36,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       
       $scope.updateQuestions = function(){
     	  $http.post('event/myevent/updatesettings', $scope.eventFormSettings).success(function(data) {
-//            $scope.fetchEventsList();
+        }).error(function() {
+            $scope.setError('Could not update settings.');
+        });
+      }
+      
+      $scope.updateEventOptions = function(){
+    	  $http.post('event/myevent/updateoptions', $scope.eventFormOptions).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
@@ -160,6 +168,15 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    });
     }
     
+    $scope.fetchEventOptions = function() {
+    	$http.get('event/myevent/options/'+$scope.event.id).success(function(data) {
+			$scope.eventFormOptions = data;
+			alert($scope.eventFormOptions.faceBookUrl);
+	    }).error(function(data) {
+	    	
+	    });
+    }
+    
     $scope.fetchTicketsHistory = function(eventid) {
         $http.get('event/myevent/getTicketHistory/'+eventid).success(function(subOrdersList){
         	$scope.subOrdersList = subOrdersList;
@@ -195,21 +212,26 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
 
     $scope.addNewEvent = function() {
+    	/*$('#loadingPopup').modal('toggle');*/
+    	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
         if($scope.stopSubmitAction === true){
-        	$scope.stopSubmitAction = false;
+        	$scope.stopSubmitAction = false;        	
          }
         else {        	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
+        	$scope.disabled = false;
+        	/*$('#loadingPopup').modal('toggle');*/
         });
         }
         
     }
     
     $scope.addNewEventAndPublish = function() {
+    	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
         if($scope.stopSubmitAction === true){
@@ -219,6 +241,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         $http.post('event/myevent/addEventAndPublish', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
+        	$scope.disabled = false;
         });
         }
         
@@ -258,7 +281,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     	}
       	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
-    		$scope.stopSubmitAction=true;
+    		$scope.stopSubmitAction=true;    		
+    		$scope.disabled = false;
+    		
     	}
     }
     
@@ -411,6 +436,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.resetError = function() {
         $scope.error = false;
         $scope.errorMessage = '';
+//        message().show = false;
     }
 
     $scope.setError = function(message) {

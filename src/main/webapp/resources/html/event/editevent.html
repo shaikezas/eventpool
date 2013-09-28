@@ -66,17 +66,6 @@
 							    </div>
 							  </div>
 							  
-							 <div class="control-group">
-							    <label class="control-label" for="classificationType">Classification Type :</label>
-							    <div class="controls">
-									  <select id="classificationType" ng-model="event.classificationType"
-													ng-options="type.id as type.classificationType for type in classificationTypes | limitTo: membership">
-												<option value="">--Select ClassificationType--</option> 
-										</select>
-							    </div>
-							  </div>
-							 
-							  
 							  <div class="control-group ">
 							    <div class="controls">
 							      <label class="checkbox">
@@ -85,36 +74,7 @@
 							      </label>
 							    </div>
 							  </div>
-							  <div class="control-group">
-							    <label class="control-label" for="facebookURL">Event Facebook URL :</label>
-							    <div class="controls">
-							      <input type="text" id="eventFacebookUrl" ng-model="event.faceBookUrl" >
-							    </div>
-							  </div>							  
-							  							  
-							  
-
-							  <div class="control-group">
-							    <label class="control-label" for="category">Category :<span ng-style="{color:'red'}">*</span></label>
-							    <div class="controls">
-									  <select name="category" id="Category" ng-model="event.subCategoryId" 
-													ng-options="cat.value as cat.key for cat in categories" required>
-													<option value="">-- Select Category --</option>
-										</select>
-										<span ng-show="catRequired" ng-style="{color:'red'}">Required.</span>
-							    </div>
-							  </div>
-							  
-						<!-- 	  <div class="control-group">
-							    <label class="control-label" for="subCategory">Sub Category :<span ng-style="{color:'red'}">*</span></label>
-							    <div class="controls">
-							      	<select name="subCategory" id="Subcategory" ng-model="event.subCategoryId"
-													ng-options="subcat.value as subcat.key for subcat in subcategories" required>
-													<option value="">-- Select SubCategory --</option>
-										</select>
-										<span ng-show="subCatRequired" ng-style="{color:'red'}">Required.</span>
-							    </div>
-							  </div> -->
+							 			  
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
@@ -127,29 +87,12 @@
 							  </div>
 							  
 							
-							  <div class="control-group">
-							    <label class="control-label" for="url">Event URL :</label>
-							    <div class="controls">
-							     www.eventpool.com\events\<input type="text" name="url" id="url" ng-model="event.eventUrl" 
-							     				ui-validate="{eventnameexists:'validateeventname($value)'}">
-							    </div>
-							    <span ng-show="eventForm.url.$error.eventnameexists" style="font-family: 'Lato', sans-serif; font-weight: 300;color:red;"
-                   					class="validation_msg"> Event name taken </span>
-                  				</span>
-							  </div>		
-							  
-							    <div class="control-group">
-							    <label class="control-label" for="eventSearch">Event search key words :</label>
-							    <div class="controls">
-							      <input type="text" id="eventSearch" ng-model="event.keyWords" placeholder="Event Search" >
-							    </div>
-							    </div>
 							  
 							  <div class="control-group">
 							    <div class="controls">
 							    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
-							      <button type="submit" class="btn" ng-hide="editMode" ng-click="addNewEvent()">Save & Exit</button>
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+							      <button type="submit" class="btn" ng-hide="editMode" ng-click="addNewEvent()" ng-disabled="disabled">Save & Exit</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 							     <!--  <a href="#venueInformation" data-toggle="tab"><button type="button" class="btn " ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode">Next</button></a> -->
 							    </div>
 							  </div>
@@ -228,8 +171,9 @@
 							  </div>
 								  <div class="control-group">
 								    <div class="controls">
-								      <button type="submit" class="btn " ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
-								      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+								    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
+								      <button type="submit" class="btn "  ng-disabled="disabled" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+								      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 								     <!--  <a href="#organizerInformation" data-toggle="tab"><button type="button" class="btn ">Next</button></a> -->
 								    </div>
 								  </div>
@@ -258,26 +202,14 @@
 							  
 							  
 							  
-							  <div class="control-group" ng-show="contactDetails">
-							    <label class="control-label" for="contactDetails">Event Contract Info :</label>
-							    <div class="controls">
-							      <textarea id="contactDetails" rows="3" ng-model="event.contactDetails" placeholder="Enter Name(s), Phone or Email:"></textarea>
-							    </div>
-							  </div>
-							  
-							  <div class="control-group" ng-show="showHostWebsite">
-							    <label class="control-label" for="website">Event Website URL :</label>
-							    <div class="controls">
-									  <input type="text" id="website" ng-model="event.eventWebSiteUrl" >
-							    </div>
-							  </div>
+							
 							  
 							  
 							  
 							  <div class="control-group">
 							    <div class="controls">
-							      <button type="submit" class="btn " ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+							      <button type="submit" class="btn " ng-disabled="disabled" ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 							      <!-- <a href="#ticketInformation" data-toggle="tab"><button type="button" class="btn ">Next</button></a> -->
 							    </div>
 							  </div>
@@ -397,8 +329,8 @@
 	 <div class="control-group">
 							    <div class="controls">
 							    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEvent(event)">Save & Exit</button>
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()">Save & Publish</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEvent(event)" ng-disabled="disabled">Save & Exit</button>
+							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
 							     </div>
 							  </div>
 							</form >
@@ -408,8 +340,12 @@
 			              
 			            </div>
 			          
-			 <!-- Create Event Tab Content End -->           
-		          
+			 <!-- Create Event Tab Content End -->   
+			 
+			 <!-- 	<div id="loadingPopup" class="modal hide" tabindex="-1">
+						Please wait...
+				</div>        
+		           -->
 		          </div>
 		
     
