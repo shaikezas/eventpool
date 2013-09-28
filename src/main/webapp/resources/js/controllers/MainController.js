@@ -155,6 +155,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      
      $scope.fetchhomepagerecords = function(){
     	 $http.get('search/getSearchResults').success(function(homePageSearchResults) {
+    		 
     		
     			for (var i=0;i<homePageSearchResults.eventSearchRecords.length;i++)
             	{ 
