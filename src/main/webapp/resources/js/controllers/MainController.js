@@ -24,9 +24,16 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      };
      
      $scope.login = function () {
-    		 $scope.signin();
+    	 $scope.usernameReq = $scope.userForm.username.$error.required;
+    	 $scope.passwordRequired = $scope.userForm.password.$error.required;
+    	 $scope.validEmail = $scope.userForm.username.$error.email; 
+    	 $scope.signin();
      };
      $scope.signup = function () {
+    	 $scope.newUserEmailReq = $scope.signupForm.newUserEmail.$error.required;    	 
+    	 $scope.newuserValidEmail = $scope.signupForm.newUserEmail.$error.email; 
+    	 $scope.newUserPasswordReq = $scope.signupForm.newUserPassword.$error.required;
+    	 $scope.newUserPasswordCFReq = $scope.signupForm.newUserPasswordCF.$error.required;
     	 $http.post('signupuser', $scope.signupuserform).success(function(data) {
         		 if(data.type=="success"){
         			 $scope.username = $scope.signupuserform.email;
@@ -53,6 +60,14 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
          $location.url('home');
      };
      $scope.cancel = function (){
+    	 $scope.usernameReq=false;
+    	 $scope.passwordRequired=false;
+    	 $scope.validEmail=false;
+    	 $scope.newUserEmailReq=false;
+    	 $scope.newuserValidEmail=false;
+    	 $scope.newUserPasswordReq=false;
+    	 $scope.newUserPasswordCFReq=false;
+    	 
     	 access = "";
     	 signupmessage = "";
          message = "";

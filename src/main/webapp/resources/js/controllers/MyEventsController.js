@@ -8,11 +8,13 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.fetchDraftEventsList = function() {
         $http.get('event/myevent/draftEventList').success(function(draftevents){
             $scope.draftEvents = draftevents;
+            
         });
     }
     $scope.fetchLiveEventsList = function() {
         $http.get('event/myevent/liveEventList').success(function(liveevents){
             $scope.liveEvents = liveevents;
+            $scope.message().show = false;
         });
     }
     
@@ -24,6 +26,7 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){
             $scope.pastEvents = pastevents;
+            $scope.message().show = false;
         });
     }
     
