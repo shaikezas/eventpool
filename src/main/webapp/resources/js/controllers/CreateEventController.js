@@ -23,6 +23,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     var upgrades = [];
     var i;
     $scope.from="admin@eventhut.com";
+    $scope.disabled = false;
    
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
@@ -195,15 +196,19 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
 
     $scope.addNewEvent = function() {
+    	/*$('#loadingPopup').modal('toggle');*/
+    	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
         if($scope.stopSubmitAction === true){
-        	$scope.stopSubmitAction = false;
+        	$scope.stopSubmitAction = false;        	
          }
         else {        	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
+        	$scope.disabled = false;
+        	$('#loadingPopup').modal('toggle');
         });
         }
         
@@ -258,7 +263,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     	}
       	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
-    		$scope.stopSubmitAction=true;
+    		$scope.stopSubmitAction=true;    		
+    		
     	}
     }
     
@@ -411,6 +417,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.resetError = function() {
         $scope.error = false;
         $scope.errorMessage = '';
+        message().show = false;
     }
 
     $scope.setError = function(message) {
