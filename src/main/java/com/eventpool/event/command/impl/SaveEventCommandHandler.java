@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.MediaDTO;
@@ -32,7 +33,10 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 	
 	@Resource 
 	SaveImage saveImage;
-	
+
+	@Value("$EVENT_POOL{image.location.prefix}")
+	private String imageBasePath ;//= "C://Event//image//";
+
 	@Resource
 	TicketInventoryService ticketInventoryService;
 
@@ -67,9 +71,11 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		MediaDTO media = eventDTO.getMedia();
 		if(media!=null){
 			String bannerUrl = media.getBannerUrl();
-			Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl);
-			if(imageMap!=null){
-				media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
+			if(!bannerUrl.contains(imageBasePath)){
+				Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl);
+				if(imageMap!=null){
+					media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
+				}
 			}
 		}
 	}
