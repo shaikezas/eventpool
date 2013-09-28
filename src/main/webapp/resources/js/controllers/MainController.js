@@ -153,7 +153,24 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $location.url('findevent?q='+queryText+'&subCategoryId=' + $scope.catId);
      }
      
+     $scope.fetchhomepagerecords = function(){
+    	 $http.get('search/getSearchResults').success(function(homePageSearchResults) {
+    		
+    			for (var i=0;i<homePageSearchResults.eventSearchRecords.length;i++)
+            	{ 
+    				homePageSearchResults.eventSearchRecords[i].startDate = moment(homePageSearchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
+    				homePageSearchResults.eventSearchRecords[i].endDate = moment(homePageSearchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+        			    			
+            	}
+            $scope.homePageResults = homePageSearchResults.eventSearchRecords;
+    		  
+        }).error(function() {
+//            $scope.setError('Home page results are not correct.');
+        });
+     }
+     
       
       $scope.getcurrentuser();
       $scope.fetchCategories();
+      $scope.fetchhomepagerecords();
 }
