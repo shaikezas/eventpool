@@ -8,6 +8,7 @@ import java.util.Set;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +41,18 @@ public class EventpoolMapper {
 	
 	DozerBeanMapper mapper;
 	
+	@Value("$EVENT_POOL{image.location.prefix}")
+	private String imageBasePath ;//= "C://Event//image//";
+	
+	@Value("$EVENT_POOL{image.location}")
+	private String imageBasePathForDb;// = "eventpool//images//";
+	
+	@Value("$EVENT_POOL{image.source.location}")
+	private String localImagePath ;//= "C://Event//source";
+
+	@Value("$EVENT_POOL{image.host}")
+	private String imageHostUrl ;//= "C://Event//source";
+
 	
 	@SuppressWarnings("unchecked")
 	public EventpoolMapper() {
@@ -243,9 +256,12 @@ public class EventpoolMapper {
 		if(!checkIfNull(eventForm)){
 			mapper.map(eventForm, media);
 			if(eventForm.getBannerFile()!=null){
-				media.setBannerUrl(eventForm.getBannerFile().getPath());
+				String path = eventForm.getBannerFile().getPath();
+				path = getEventImagePath(path);
+				media.setBannerUrl(path);
 			}else{
-				media.setBannerUrl(eventForm.getBanner());
+				String path = getEventImagePath(eventForm.getBanner());
+				media.setBannerUrl(path);
 			}
 		}
 		else{ 
@@ -303,6 +319,14 @@ public class EventpoolMapper {
 		}*/
 	}
 	
+	private String getEventImagePath(String path) {
+		if(path==null) return null;
+		if(path.startsWith(imageHostUrl)){
+			path = path.replace(imageHostUrl, "");
+		}
+		return path;
+	}
+
 	private boolean checkIfNull(EventForm eventForm) {
 		if(eventForm.getOrganizerLogo() != null){
 			return false;
@@ -351,6 +375,19 @@ public class EventpoolMapper {
 			eventForm.setTickets(ticketForms);
 		}
 		eventForm.setUserEventSettingDTO(eventDTO.getUserEventSettingDTO());
+		
+		//addig image host url prefix
+		if(eventDTO.getMedia()!=null){
+			String bannerUrl = eventDTO.getMedia().getBannerUrl();
+			if(bannerUrl!=null && !bannerUrl.isEmpty() ){
+				if(bannerUrl.startsWith(imageHostUrl)){
+					eventForm.setBanner(bannerUrl);
+				}else{
+					eventForm.setBanner(imageHostUrl+bannerUrl);
+				}
+			}
+		}
+		
 /*		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
 		if(eventSettingsDTO!=null){
 			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();

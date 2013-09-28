@@ -289,6 +289,7 @@ public class EventController {
     	EventForm form = new EventForm();
     	EventDTO eventDTO = eventService.getEventById(eventId);
     	mapper.mapEventForm(eventDTO, form);
+    	
     	return form;
     }
     
