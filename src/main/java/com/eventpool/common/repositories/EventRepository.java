@@ -30,7 +30,7 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	@Query(value="SELECT event FROM Event event WHERE event.status=?1")
 	public List<Event> getAllEvents(EventStatus status);
 	
-	@Query(value="SELECT event FROM Event event WHERE event.createdBy=?1 and event.status=?2")
+	@Query(value="SELECT event FROM Event event WHERE event.createdBy=?1 and event.status=?2 order by createdDate desc")
 	public List<Event> getAllEvents(Long userId,EventStatus status);
 
 	@Query(value="SELECT ticket FROM Ticket ticket WHERE ticket.eventId=?1")
