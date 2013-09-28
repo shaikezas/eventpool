@@ -71,12 +71,21 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		MediaDTO media = eventDTO.getMedia();
 		if(media!=null){
 			String bannerUrl = media.getBannerUrl();
-			if(!bannerUrl.contains(imageBasePathForDb)){
+			if(bannerUrl!=null && !bannerUrl.contains(imageBasePathForDb)){
 				Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl);
 				if(imageMap!=null){
 					media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
 				}
 			}
+
+			String promotionalUrl = media.getPromotionLogoUrl();
+			if(promotionalUrl!=null && !promotionalUrl.contains(imageBasePathForDb)){
+				Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(promotionalUrl);
+				if(imageMap!=null){
+					media.setPromotionLogoUrl(imageMap.get(ImageType.MEDIUM));
+				}
+			}
+
 		}
 	}
 }
