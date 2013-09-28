@@ -1,5 +1,7 @@
 package com.eventpool.event.command.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -29,10 +31,10 @@ public class PublishEventCommandHandler implements CommandHandler<PublishEventCo
 		boolean isPublish = command.isPublish();
 
 		if(eventId!=null){
-			eventRepository.publish(eventId, isPublish);
+			eventRepository.publish(eventId, isPublish,new Date());
 		}
 		else if(eventUrl!=null){
-			eventRepository.publish(eventUrl, isPublish);
+			eventRepository.publish(eventUrl, isPublish,new Date());
 		}
 		else{
 			logger.error("Invalid inputs");

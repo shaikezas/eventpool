@@ -1,5 +1,6 @@
 package com.eventpool.common.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,12 +18,12 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	public List<Event> getAllEvents(Long userId);
 	
 	@Modifying
-	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN' WHERE event.id = ?1")
-	public void publish(Long id,boolean publish);
+	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN',publishDate=?3 WHERE event.id = ?1")
+	public void publish(Long id,boolean publish,Date date);
 
 	@Modifying
-	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN' WHERE event.eventUrl = ?1")
-	public void publish(String eventUrl,boolean publish);
+	@Query(value="UPDATE Event event SET event.publish=?2,event.status='OPEN',publishDate=?3 WHERE event.eventUrl = ?1")
+	public void publish(String eventUrl,boolean publish,Date date);
 
 	@Query(value="SELECT event FROM Event event WHERE event.eventUrl =?1")
 	public Event getByEventUrl(String eventUrl);

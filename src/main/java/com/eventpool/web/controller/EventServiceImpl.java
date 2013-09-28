@@ -56,8 +56,8 @@ public class EventServiceImpl implements EventService {
     	SaveEventCommand saveEventCommand = new SaveEventCommand();
     	saveEventCommand.setEventDTO(eventDTO);
     	boolean executeCommand = eventCommandService.executeCommand(saveEventCommand);
-    	if(eventDTO.getPublishDate()!=null && eventDTO.getId()!=null){
-    		eventQueue.sendBody(eventDTO.getId());
+    	if(executeCommand && eventDTO.getPublishDate()!=null && eventDTO.getId()!=null && eventDTO.getIsActive()!=null && eventDTO.getIsActive()){
+    		pushToQueue(eventDTO.getId());
     	}
     	return executeCommand;
     }

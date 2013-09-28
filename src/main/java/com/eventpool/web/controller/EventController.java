@@ -385,7 +385,6 @@ public class EventController {
     	
     	media.setEvenWebSiteUrl(form.getEventWebSiteUrl());
     	eventService.addEvent(event);
-    	
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated event options");
     }
     
