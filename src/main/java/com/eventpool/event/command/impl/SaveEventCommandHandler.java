@@ -34,8 +34,8 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 	@Resource 
 	SaveImage saveImage;
 
-	@Value("$EVENT_POOL{image.location.prefix}")
-	private String imageBasePath ;//= "C://Event//image//";
+	@Value("$EVENT_POOL{image.location}")
+	private String imageBasePathForDb;// = "eventpool//images//";
 
 	@Resource
 	TicketInventoryService ticketInventoryService;
@@ -71,7 +71,7 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		MediaDTO media = eventDTO.getMedia();
 		if(media!=null){
 			String bannerUrl = media.getBannerUrl();
-			if(!bannerUrl.contains(imageBasePath)){
+			if(!bannerUrl.contains(imageBasePathForDb)){
 				Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl);
 				if(imageMap!=null){
 					media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
