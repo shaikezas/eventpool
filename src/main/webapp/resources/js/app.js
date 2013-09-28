@@ -31,7 +31,7 @@ App.factory('Data', function() {
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
-    $routeProvider.when('/createevent',         {        templateUrl: 'html/event/myevent/createevent.html',          controller: CreateEventController              			});
+    $routeProvider.when('/createevent',         {        templateUrl: 'html/event/myevent/createevent.html',  controller: CreateEventController              			});
     $routeProvider.when('/eventlist',           {        templateUrl: 'html/event/eventlist.html',            controller: CreateEventController              			});
     $routeProvider.when('/myevents',            {        templateUrl: 'html/event/myevents.html',             controller: MyEventsController   			          	});
     $routeProvider.when('/findevent',           {        templateUrl: 'html/event/findevent.html',            controller: FindEventController    					    });

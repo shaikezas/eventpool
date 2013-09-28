@@ -248,7 +248,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     }
     $scope.setRequiredFields = function() {
     	$scope.isWebinarChecked=!$scope.isWebinarChecked;
-    	if(angular.isDefined($scope.venueForm)){}
+    	if(angular.isDefined($scope.venueForm)){
     	$scope.venueForm.venueName.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress1.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress2.$error.required = !$scope.isWebinarChecked;
@@ -501,5 +501,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.myevent();
     
     $scope.predicate = 'id'
-}
+
+    }
 
