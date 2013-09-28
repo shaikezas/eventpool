@@ -1,11 +1,13 @@
 package com.eventpool.web.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +27,16 @@ public class FileUploadController {
 	
 	@Resource
 	SaveImage save;
+	
+	private final int BANNER_MIN_WIDTH = 1000;
+	private final int BANNER_MIN_HEIGHTH = 300;
+	
+	private final int PROMOTION_MIN_WIDTH = 228;
+	private final int PROMOTION_MIN_HEIGHTH = 275;
 
-	@RequestMapping(value = "/file", method = RequestMethod.POST)
+	@RequestMapping(value = "/banner", method = RequestMethod.POST)
     public @ResponseBody
-    UploadedFileResponse setProfilePic(@RequestParam("file") MultipartFile fileupload) {
+    UploadedFileResponse uploadBanner(@RequestParam("file") MultipartFile fileupload) {
     	UploadedFileResponse response = new UploadedFileResponse();
     	response.setStatus(true);
 //    	System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + 
@@ -36,6 +44,65 @@ public class FileUploadController {
     	String saveInSourceLocation = "";
     	try {
 			//fileupload.transferTo(file);
+    		String error = null;
+    		BufferedImage bannerImage = ImageIO.read(fileupload.getInputStream());
+    		int width = bannerImage.getWidth();
+    		int height = bannerImage.getHeight();
+    		
+    		if(BANNER_MIN_HEIGHTH > height){
+    			response.setStatus(false);
+    			error  = "minimum heightXwidth : "+BANNER_MIN_HEIGHTH+"X"+BANNER_MIN_WIDTH;
+    		}
+    		if(BANNER_MIN_WIDTH > width){
+    			response.setStatus(false);
+    			error  = "minimum heightXwidth : "+BANNER_MIN_HEIGHTH+"X"+BANNER_MIN_WIDTH;
+    		}
+    		response.setError(error);
+    		if(error==null)
+			saveInSourceLocation = save.saveInSourceLocation(fileupload.getInputStream());
+		} catch (IllegalStateException e) {
+			response.setStatus(false);
+			e.printStackTrace();
+		} catch (IOException e) {
+			response.setStatus(false);
+			e.printStackTrace();
+		}
+    	
+    	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
+    	PhotoWeb photo = new PhotoWeb();
+    	photo.setUniqueid(saveInSourceLocation);
+    	photosData.add(photo);
+    	
+    	response.setFilesuploaded(photosData);
+    	System.out.println("File uploaded :"+saveInSourceLocation);
+    	return response;
+    }
+	
+	@RequestMapping(value = "/promotion", method = RequestMethod.POST)
+    public @ResponseBody
+    UploadedFileResponse uploadPromotion(@RequestParam("file") MultipartFile fileupload) {
+    	UploadedFileResponse response = new UploadedFileResponse();
+    	response.setStatus(true);
+//    	System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + 
+    	File file = new File(fileupload.getOriginalFilename());
+    	String saveInSourceLocation = "";
+    	try {
+			//fileupload.transferTo(file);
+    		String error = null;
+    		BufferedImage bannerImage = ImageIO.read(fileupload.getInputStream());
+    		int width = bannerImage.getWidth();
+    		int height = bannerImage.getHeight();
+    		
+    		if(PROMOTION_MIN_HEIGHTH > height){
+    			response.setStatus(false);
+    			error  = "minimum heightXwidth : "+PROMOTION_MIN_HEIGHTH+"X"+PROMOTION_MIN_WIDTH;
+    		}
+    		if(PROMOTION_MIN_WIDTH > width){
+    			response.setStatus(false);
+    			error  = "minimum heightXwidth : "+PROMOTION_MIN_HEIGHTH+"X"+PROMOTION_MIN_WIDTH;
+    		}
+    		response.setError(error);
+    		if(error==null)
 			saveInSourceLocation = save.saveInSourceLocation(fileupload.getInputStream());
 		} catch (IllegalStateException e) {
 			response.setStatus(false);

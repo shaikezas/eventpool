@@ -149,7 +149,7 @@ AppDirectives.directive('fileuploadPlugin', function($timeout) {
 		        		if(data.result.status == true) {
 		        			scope.response = data.result.filesuploaded[0].uniqueid;
 		        		} else {
-		        			alert("Error in file upload");
+		        			alert("Error in file upload "+data.result.error);
 		        		}
 		        	});
 		        }
