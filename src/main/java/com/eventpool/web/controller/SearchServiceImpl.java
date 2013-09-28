@@ -109,22 +109,24 @@ public class SearchServiceImpl implements SearchService {
 	public SearchQueryResponse getSearchQueryResponse(String query,Map<String,String> listOfFilters, int rows,int start)
 			throws Exception {
 		String fq=""; 
-		for(String key:listOfFilters.keySet()){
-			String filterQuery = listOfFilters.get(key);
-	    	if(filterQuery!=null && key.equalsIgnoreCase("subCategoryId")){
-	    		fq=fq+" AND subCategoryId:"+filterQuery;
-	    	}
-	    	if(filterQuery!=null && key.equalsIgnoreCase("cityId")){
-	    		fq=fq+" AND cityId:"+filterQuery;
-	    	}
-
-	    	if(filterQuery!=null && key.equalsIgnoreCase("eventType")){
-	    		fq=fq+" AND eventType:"+filterQuery;
-	    	}
-
-	    	if(filterQuery!=null && key.equalsIgnoreCase("eventDate")){
-	    		fq=fq+" AND eventDate:"+filterQuery;
-	    	}
+		if(listOfFilters!=null){
+			for(String key:listOfFilters.keySet()){
+				String filterQuery = listOfFilters.get(key);
+		    	if(filterQuery!=null && key.equalsIgnoreCase("subCategoryId")){
+		    		fq=fq+" AND subCategoryId:"+filterQuery;
+		    	}
+		    	if(filterQuery!=null && key.equalsIgnoreCase("cityId")){
+		    		fq=fq+" AND cityId:"+filterQuery;
+		    	}
+	
+		    	if(filterQuery!=null && key.equalsIgnoreCase("eventType")){
+		    		fq=fq+" AND eventType:"+filterQuery;
+		    	}
+	
+		    	if(filterQuery!=null && key.equalsIgnoreCase("eventDate")){
+		    		fq=fq+" AND eventDate:"+filterQuery;
+		    	}
+			}
 		}
 		if(fq!=null && fq.length()>4){
 			fq = fq.substring(5);

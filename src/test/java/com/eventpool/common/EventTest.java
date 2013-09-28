@@ -577,4 +577,10 @@ public class EventTest extends BaseTest{
     	System.out.println(homepageResults.getEventSearchRecords().size());
     }
 
+    @Test
+    public void searchTest() throws Exception{
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("event", new HashMap<String, String>(), 0, 0);
+    	System.out.println("Search Results "+searchQueryResponse.getEventSearchRecords().size());
+    }
+
 }
