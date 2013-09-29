@@ -17,6 +17,7 @@ import org.apache.solr.client.solrj.response.FacetField.Count;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,10 @@ public class SearchServiceImpl implements SearchService {
 	
 	@Resource
 	EntityUtilities entityUtilities;
+	
+	@Value("$EVENT_POOL{image.host}")
+	private String imageHostUrl ;//= "C://Event//source";
+
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -142,6 +147,7 @@ public class SearchServiceImpl implements SearchService {
 
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
+		addImageHostUrl(searchQueryResponse.getEventSearchRecords());
 		searchQueryResponse.setQuery(query);
 		
 		List<FilterItem> subCategoryFilterItems = searchQueryResponse.getSubCategoryFilterItems();
@@ -253,6 +259,19 @@ public class SearchServiceImpl implements SearchService {
 			}
 		}
 		return searchQueryResponse;
+	}
+
+
+	private void addImageHostUrl(List<EventSearchRecord> eventSearchRecords) {
+		if(eventSearchRecords!=null && eventSearchRecords.size()>0){
+			for(EventSearchRecord eventSearchRecord:eventSearchRecords){
+				if(eventSearchRecord==null) continue;
+				if(eventSearchRecord.getPromotionLogoUrl()!=null && !eventSearchRecord.getPromotionLogoUrl().startsWith(imageHostUrl)){
+					eventSearchRecord.setPromotionLogoUrl(imageHostUrl+eventSearchRecord.getPromotionLogoUrl());
+				}
+			}
+		}
+		
 	}
 
 
