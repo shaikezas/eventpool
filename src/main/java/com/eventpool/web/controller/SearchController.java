@@ -152,7 +152,7 @@ public class SearchController {
     public @ResponseBody SearchQueryResponse getHomepageResults(HttpServletRequest httpServletRequest) throws Exception {
     	String ip=getRemoteIp(httpServletRequest);
 		Integer countryId = ipLocation.getCountryId(ip);
-    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords(20, 0, null, countryId);
+    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords(9, 0, null, countryId);
     	SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
     	searchQueryResponse.setEventSearchRecords(eventSearchRecords);
     	return searchQueryResponse;

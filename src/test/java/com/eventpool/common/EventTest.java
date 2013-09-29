@@ -568,7 +568,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void push(){
-    	for(long i=1;i<12;i++){
+    	for(long i=1;i<18;i++){
     		eventService.pushToQueue(i);
     	}
     }

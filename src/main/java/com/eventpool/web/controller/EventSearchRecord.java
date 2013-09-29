@@ -85,7 +85,10 @@ public class EventSearchRecord  implements Serializable{
 	
 	@Field
 	private Integer countryId;
-	
+
+	@Field
+	private String categoryName;
+
 	public String getTitle() {
 		return title;
 	}
@@ -317,6 +320,12 @@ public class EventSearchRecord  implements Serializable{
 	}
 	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
 }
