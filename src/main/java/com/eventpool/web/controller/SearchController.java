@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,7 @@ import sun.net.util.IPAddressUtil;
 import com.eventpool.common.dto.Region;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventPoolConstants;
+import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.web.forms.SearchResponse;
 
@@ -36,6 +39,8 @@ import com.eventpool.web.forms.SearchResponse;
 public class SearchController {
 	
 
+	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
+	
     @Resource
     private EntityUtilities utilities;
     
@@ -105,7 +110,16 @@ public class SearchController {
 
     	String q = request.getParameter("q");
     	q = checkIfUndefined(q);
-		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, 0);
+    	int start=0;
+    	String startParam = request.getParameter("start");
+    	if(startParam!=null){
+    		try {
+				start = Integer.parseInt(startParam.trim());
+			} catch (Exception e) {
+				logger.info("Parsing error for start parameter "+startParam);
+			}
+    	}
+		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, start);
     }
     
     
