@@ -133,7 +133,7 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		
-		QueryResponse response = getSolrResponse(query,fq, rows,start); 
+		QueryResponse response = getSolrResponse(query,fq, rows,start*rows+1); 
 		
 
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
