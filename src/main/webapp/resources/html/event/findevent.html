@@ -84,8 +84,8 @@
 							<a href="#event/{{event.eventUrl}}"><img ng-src='{{event.promotionLogoUrl}}' onerror="this.onerror=null;" data-src="holder.js/300x200" alt="" ></a>
 						</div>	
 						<div class="desc">{{event.title}}</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
+							<div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div>
+							<!-- <div class="price" >Price - 14.99 $</div> -->
 							<div class="date" >Start Date: {{event.startDate}}</div>
 							<div class="date" >End Date  : {{event.endDate}}</div>
 							<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
@@ -107,6 +107,7 @@
 					</a>
 						<div class="media-body">
 							<a href="#event/{{event.eventUrl}}" class="media-heading">{{event.title}}</a>
+							<div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div>
 							<div>Address   : {{event.venueName}}</div>
 							<div>{{event.address1}},{{event.address2}}</div>
 							<div>Start Date: {{event.startDate}}</div>

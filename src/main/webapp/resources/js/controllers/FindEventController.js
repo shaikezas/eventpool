@@ -1,4 +1,4 @@
-var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser) {
+var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser,categories) {
 	
 	$scope.searchResults = {};
 	$scope.searchRecords = {};
@@ -16,12 +16,15 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.filterText = "";
 	$scope.viewList=false;
 	$scope.viewThumbs=true;
-	$scope.message().show = false;
+	$scope.eventType = new Array();
 	
 	
     $scope.fetchSearchResults = function() {
-    	$scope.message().show = false;
-    	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
+    	
+    	if(angular.isDefined($scope.message()) && $scope.message() != null){
+    		$scope.message().show = false;
+    	}
+        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
     			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
@@ -110,6 +113,21 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
        $scope.country = region.text.countryName;
        $scope.loc = $scope.cityId+","+$scope.state+","+$scope.country;
     };
+    
+    
+    $scope.getcatvalue = function(id){   
+    	categories.getcategories($scope.category).success(function(categories) {
+      		$scope.categories = categories;
+      		for(var i=0;i<$scope.categories.length;i++) {
+      			  if(id===$scope.categories[i].value){         				  
+      				 $scope.eventType.push($scope.categories[i].key);
+      				break;
+      			  }
+      			}
+  	    }).error(function() {
+  	    	
+  	    });
+  }
     
     
     $scope.fetchSearchResults($rootScope.user);

@@ -14,7 +14,9 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.fetchLiveEventsList = function() {
         $http.get('event/myevent/liveEventList').success(function(liveevents){
             $scope.liveEvents = liveevents;
-            $scope.message().show = false;
+            if(angular.isDefined($scope.message()) && $scope.message() != null){
+        		$scope.message().show = false;
+        	}
         });
     }
     
@@ -26,7 +28,9 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){
             $scope.pastEvents = pastevents;
-            $scope.message().show = false;
+            if(angular.isDefined($scope.message()) && $scope.message() != null){
+        		$scope.message().show = false;
+        	}
         });
     }
     
