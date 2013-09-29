@@ -79,6 +79,7 @@ public class SearchServiceImpl implements SearchService {
     	}
     	QueryResponse response = getSolrResponse("",fq, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
+		addImageHostUrl(searchResults);
     	return searchResults;
 	}
 
