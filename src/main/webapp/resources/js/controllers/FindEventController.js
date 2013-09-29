@@ -15,10 +15,12 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.filterType['date']=null;
 	$scope.filterText = "";
 	$scope.viewList=false;
-	$scope.viewThumbs=true
+	$scope.viewThumbs=true;
+	$scope.message().show = false;
 	
 	
     $scope.fetchSearchResults = function() {
+    	$scope.message().show = false;
     	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 

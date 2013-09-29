@@ -14,11 +14,11 @@
 							<a href="#event/{{event.eventUrl}}"><img src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" ></a>
 						</div>	
 						<div class="desc">{{event.title}}</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Start Date: {{event.startDate}}</div>
-							<div class="date" >End Date  : {{event.endDate}}</div>
-							<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
+						<div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div>
+					<!-- 	<div class="price" >Price - 14.99 $</div> -->
+						<div class="date" >Start Date: {{event.startDate}}</div>
+						<div class="date" >End Date  : {{event.endDate}}</div>
+						<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
 					
 					</li>
 	</ul>			
