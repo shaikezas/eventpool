@@ -256,6 +256,9 @@ public class EventTest extends BaseTest{
     //	for(String str:citiesWithStateAndCountry.values()){
     //		log.info(str);
     //	}
+    	
+    	int size = entityUtilities.getActiveCountryMap().size();
+    	System.out.println(" Actvie Country Size "+size);
     }
     
     @Resource
