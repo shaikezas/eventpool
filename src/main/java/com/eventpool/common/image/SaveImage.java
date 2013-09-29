@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.zip.CRC32;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.validation.constraints.Size;
 
@@ -41,23 +42,39 @@ public class SaveImage {
 	@Value("$EVENT_POOL{image.source.location}")
 	private String localImagePath ;//= "C://Event//source";
 	
+	private final int BANNER_WIDTH = 1000;
+	private final int BANNER_HEIGHT = 300;
 
-	public Map<ImageType,String> saveImageOnDisk(String imageUrl) throws Exception{
+	private final int PROMO_WIDTH = 228;
+	private final int PROMO_HEIGHT = 275;
+
+	private Map<ImageType,Integer> widthMap = new HashMap<ImageType, Integer>();
+	private Map<ImageType,Integer> heightMap = new HashMap<ImageType, Integer>();
+	
+	@PostConstruct
+	public void init(){
+		
+		widthMap.put(ImageType.BANNER, BANNER_WIDTH);
+		widthMap.put(ImageType.PROMO, PROMO_WIDTH);
+
+		heightMap.put(ImageType.BANNER, BANNER_HEIGHT);
+		heightMap.put(ImageType.PROMO, PROMO_HEIGHT);
+
+	}
+	public Map<ImageType,String> saveImageOnDisk(String imageUrl,ImageType imageType) throws Exception{
 		if(imageUrl==null) return null;
 		if(!imageUrl.startsWith("http")){
 			imageUrl =FILE_PREFIX+localImagePath+"/"+imageUrl;
 		}
 		Map<ImageType,String> processedImageMap = new HashMap<ImageType, String>();
-		int width = 300;
-		int height = 300;
-		
 		BufferedImage sourceImage = imageProcessor.getSourceImage(imageUrl);
-		BufferedImage scaledImage = imageProcessor.scaleTo(sourceImage, width, height);
+		
+		BufferedImage scaledImage = imageProcessor.scaleTo(sourceImage, widthMap.get(imageType), heightMap.get(imageType));
 		String uuid = UUID.randomUUID().toString().replace("-", "");
-		String fileName = getFileName(width, height, uuid);
+		String fileName = getFileName(widthMap.get(imageType), heightMap.get(imageType), uuid);
 		String dbfileName = getDbfileName(imageUrl, fileName);
 		saveOnDisk(scaledImage, imageUrl, fileName, .9f);
-		processedImageMap.put(ImageType.MEDIUM, dbfileName);
+		processedImageMap.put(imageType, dbfileName);
 		
 		return processedImageMap;
 	}
