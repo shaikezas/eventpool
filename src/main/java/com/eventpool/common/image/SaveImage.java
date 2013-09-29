@@ -68,8 +68,12 @@ public class SaveImage {
 		}
 		Map<ImageType,String> processedImageMap = new HashMap<ImageType, String>();
 		BufferedImage sourceImage = imageProcessor.getSourceImage(imageUrl);
-		
-		BufferedImage scaledImage = imageProcessor.scaleTo(sourceImage, widthMap.get(imageType), heightMap.get(imageType));
+		BufferedImage scaledImage = null;
+		if(sourceImage.getWidth()==widthMap.get(imageType) && sourceImage.getHeight()==heightMap.get(imageType)){
+			scaledImage = sourceImage;
+		}else{
+			scaledImage = imageProcessor.scaleTo(sourceImage, widthMap.get(imageType), heightMap.get(imageType));
+		}
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		String fileName = getFileName(widthMap.get(imageType), heightMap.get(imageType), uuid);
 		String dbfileName = getDbfileName(imageUrl, fileName);
