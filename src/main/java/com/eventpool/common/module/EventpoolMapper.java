@@ -284,7 +284,7 @@ public class EventpoolMapper {
 			for(TicketForm ticketForm:ticketForms){
 				TicketDTO ticketDTO = new TicketDTO();
 				mapper.map(ticketForm, ticketDTO);
-				ticketTypes.add(TicketType.PAID);
+				ticketTypes.add(ticketForm.getTicketType());
 				ticketDTOs.add(ticketDTO);
 			}
 			eventDTO.setTickets(ticketDTOs);
