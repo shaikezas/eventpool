@@ -67,7 +67,9 @@ public class SearchServiceImpl implements SearchService {
     		if(fq!=null) fq = fq+" AND "; 
     		fq=fq+"countryId:"+countryId;
     	}
-    	
+    	if(fq==null){
+    		fq = "eventDate:("+sdf.format(new Date())+" TO * )";
+    	}
     	QueryResponse response = getSolrResponse("",fq, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
     	return searchResults;
