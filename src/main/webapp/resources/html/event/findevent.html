@@ -78,7 +78,7 @@
 					</div>
 					 
 				  <div ng-show="viewThumbs">
-				<div infinite-scroll="viewThumbsNextPage()" infinite-scroll-disabled='thumbscrollPage' infinite-scroll-distance='3' >
+				<div infinite-scroll="viewThumbsNextPage()" infinite-scroll-disabled='thumbscrollPage' infinite-scroll-distance='0' >
 				<ul class="thumbnails">
 					<li class="span1" ng-repeat="event in searchRecords">
 						<div class="thumbnail">
@@ -99,7 +99,7 @@
 
 				
 				<div ng-show="viewList">
-				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='3'>
+				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
 				<ul class="media-list">
 					<li class="media" ng-repeat="event in searchRecords">
 					<a class="pull-left" href="#"> <img
