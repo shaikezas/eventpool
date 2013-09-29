@@ -65,6 +65,17 @@ public class CategoryTree {
 							if(object[2]!=null) {
 								parentCategoryId = Long.parseLong(object[2].toString());
 							}
+							
+							String imageUrl = null;
+							if(object[4]!=null) {
+								imageUrl = object[4].toString();
+							}
+							
+							String promoLogo = null;
+							if(object[5]!=null) {
+								promoLogo = object[5].toString();
+							}
+							
 							if(categoryId != null) {
 								count++;
 								Long parentId = null;
@@ -74,7 +85,7 @@ public class CategoryTree {
 									parentId = 0L;
 									parentCategoryName = "Root";
 								}
-								addNode(categoryId, categoryName, parentId, parentCategoryName);
+								addNode(categoryId, categoryName, parentId, parentCategoryName,imageUrl,promoLogo);
 							}
 							
 					} catch (Exception e) {
@@ -106,7 +117,7 @@ public class CategoryTree {
 
 	}
 
-	private void addNode(Long categoryId, String categoryName, Long parentCategoryId, String parentCategoryName) {
+	private void addNode(Long categoryId, String categoryName, Long parentCategoryId, String parentCategoryName,String imageUrl,String promoLogo) {
 		CategoryNode parentNode = null;
 		CategoryNode currentNode = null;
 
@@ -124,7 +135,8 @@ public class CategoryTree {
 			parentNode = new CategoryNode(parentCategoryId, parentCategoryName);
 			index.put(parentCategoryId, parentNode);
 		}
-
+		currentNode.setImageUrl(imageUrl);
+		currentNode.setPromoLogo(promoLogo);
 		parentNode.addChild(currentNode);
 		currentNode.setParent(parentNode);
 	}

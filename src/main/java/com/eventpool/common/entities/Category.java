@@ -33,6 +33,8 @@ public class Category extends AuditableIdEntity {
 	@JoinColumn(name = "PARENT_CATEGORYID", insertable = false, updatable = false)
 	private Category parentCategory;
 	
+	@Column(name = "IMAGE_URL")
+	private String imageUrl;
 
 
 	public String getName() {
@@ -82,6 +84,16 @@ public class Category extends AuditableIdEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,7 @@ import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
 import com.eventpool.common.entities.Suborder;
@@ -53,6 +56,8 @@ public class EventpoolMapper {
 	@Value("$EVENT_POOL{image.host}")
 	private String imageHostUrl ;//= "C://Event//source";
 
+	@Resource
+	private CategoryTree categoryTree;
 	
 	@SuppressWarnings("unchecked")
 	public EventpoolMapper() {
@@ -222,6 +227,28 @@ public class EventpoolMapper {
 				event.setClassificationType(classificationType);
 			}
 		}
+		
+		//map image if url is null
+		Media media = event.getMedia();
+		
+		if(media==null){
+			media = new Media();
+			event.setMedia(media);
+		}
+		
+		if(media.getBannerUrl()==null){
+			if(event.getSubCategoryId()!=null){
+				media.setBannerUrl(categoryTree.getNode(event.getSubCategoryId().longValue()).getImageUrl());
+			}
+		}
+		
+		if(media.getPromotionLogoUrl()==null){
+			if(event.getSubCategoryId()!=null){
+				media.setPromotionLogoUrl(categoryTree.getNode(event.getSubCategoryId().longValue()).getPromoLogo());
+			}
+		}
+
+
 	}
 	
 	public void map(RegistrationDTO registrationDTO,Registration registration){
