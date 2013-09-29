@@ -10,6 +10,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "COUNTRY")
 public class Country extends AbstractEntity{
@@ -37,6 +39,10 @@ public class Country extends AbstractEntity{
 
 	@Column(name="CURRENCY_CODE")
 	private String currencyCode;
+
+	@Column(name="ACTIVE")
+	@Type(type = "yes_no")
+	private Boolean active;
 
 	public String getName() {
 		return name;
@@ -94,4 +100,11 @@ public class Country extends AbstractEntity{
 		this.id = id;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 }

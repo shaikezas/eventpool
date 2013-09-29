@@ -1,6 +1,7 @@
 package com.eventpool.web.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import sun.net.util.IPAddressUtil;
 
 import com.eventpool.common.dto.Region;
+import com.eventpool.common.entities.Country;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventPoolConstants;
 import com.eventpool.common.module.EventpoolMapper;
@@ -178,4 +180,13 @@ public class SearchController {
 		return (IPAddressUtil.isIPv4LiteralAddress(ip) || IPAddressUtil.isIPv6LiteralAddress(ip));
 	}
 
+	public List<String> getActiveCountries(){
+		Map<Integer, Country> activeCountryMap = utilities.getActiveCountryMap();
+		Collection<Country> values = activeCountryMap.values();
+		List<String> activeCountries = new ArrayList<String>();
+		for(Country country:values){
+			activeCountries.add(country.getName());
+		}
+		return activeCountries;
+	}
 }

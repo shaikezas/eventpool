@@ -27,6 +27,7 @@ public class EntityUtilities {
 	private Map<Integer,String> countryMap = new HashMap<Integer,String>();
 	private Map<String,Integer> countryNameMap = new HashMap<String,Integer>();
 	private Map<Integer,String> countryFlagMap = new HashMap<Integer,String>();
+	private Map<Integer,Country> activeCountryMap = new HashMap<Integer,Country>();
 
 	private boolean initAllMaps=true;
 	
@@ -59,6 +60,9 @@ public class EntityUtilities {
 					countryMap.put(country.getId(), country.getName());
 					countryNameMap.put(country.getName(), country.getId());
 					countryFlagMap.put(country.getId(), country.getCode());
+					if(country.getActive()!=null && country.getActive()){
+						activeCountryMap.put(country.getId(), country);
+					}
 				}
 			}else{
 				countryMap.clear();
@@ -166,6 +170,14 @@ public class EntityUtilities {
 
 	public void setCountryNameMap(Map<String, Integer> countryNameMap) {
 		this.countryNameMap = countryNameMap;
+	}
+
+	public Map<Integer, Country> getActiveCountryMap() {
+		return activeCountryMap;
+	}
+
+	public void setActiveCountryMap(Map<Integer, Country> activeCountryMap) {
+		this.activeCountryMap = activeCountryMap;
 	}
 	
 }
