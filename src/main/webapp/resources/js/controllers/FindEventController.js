@@ -1,7 +1,7 @@
 var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser,categories) {
 	
 	$scope.searchResults = {};
-	$scope.searchRecords = {};
+	$scope.searchRecords = new Array();
 	$scope.filters = '';
 	$scope.category = "category";
 	$scope.date = "date";
@@ -17,8 +17,61 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.viewList=false;
 	$scope.viewThumbs=true;
 	$scope.eventType = new Array();
+	$scope.thumbscrollPage = false;
+	$scope.thumbpage = 0;
+	$scope.listpage = 0;
+	$scope.page = 0;
+	$scope.listscrollPage = false;
 	
+	$scope.viewThumbsNextPage = function(){
+		if ($scope.thumbscrollPage) return;
+		if($scope.viewList) return ;
+		if($scope.thumbpage == 0){
+			$scope.thumbpage++;
+			$scope.page++;
+			return ;
+		}
+		$scope.thumbscrollPage = true;
+//		yield to.sleep(.500);
+		if(angular.isDefined($scope.message()) && $scope.message() != null){
+    		$scope.message().show = false;
+    	}
+        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q,'&start=',$scope.page)).success(function(searchResults){
+    		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
+        	{ 
+    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
+    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+    			$scope.searchRecords.push(searchResults.eventSearchRecords[i]);
+        	}
+    		$scope.thumbscrollPage = false;
+    		$scope.page++ ;
+        });
+	}
 	
+	$scope.viewListNextPage = function(){
+		if ($scope.listscrollPage) return;
+		if($scope.viewThumbs) return ;
+		if($scope.listpage == 0){
+			$scope.listpage++;
+			$scope.page++;
+			return ;
+		}
+		$scope.listscrollPage = true;
+//		yield to.sleep(.500);
+		if(angular.isDefined($scope.message()) && $scope.message() != null){
+    		$scope.message().show = false;
+    	}
+        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q,'&start=',$scope.page)).success(function(searchResults){
+    		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
+        	{ 
+    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
+    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+    			$scope.searchRecords.push(searchResults.eventSearchRecords[i]);
+        	}
+    		$scope.listscrollPage = false;
+    		$scope.page++ ;
+        });
+	}
     $scope.fetchSearchResults = function() {
     	
     	if(angular.isDefined($scope.message()) && $scope.message() != null){

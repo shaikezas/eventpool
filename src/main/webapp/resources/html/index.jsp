@@ -209,6 +209,7 @@
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>
 	<script src="resources/js/ui-bootstrap-tpls-0.2.0.js"></script>
+	<script src="resources/lib/ng-infinite-scroll.min.js"></script>
 	
 	<script src="lib/fileupload/jquery.iframe-transport.js"></script>
 	<script src="lib/fileupload/jquery.fileupload.js"></script>

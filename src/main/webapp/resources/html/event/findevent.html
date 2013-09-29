@@ -78,7 +78,7 @@
 					</div>
 					 
 				  <div ng-show="viewThumbs"><ul class="thumbnails">
-		
+				<div infinite-scroll="viewThumbsNextPage()" infinite-scroll-disabled='thumbscrollPage' infinite-scroll-distance='3' >
 					<li class="span1" ng-repeat="event in searchRecords">
 						<div class="thumbnail">
 							<a href="#event/{{event.eventUrl}}"><img ng-src='{{event.promotionLogoUrl}}' onerror="this.onerror=null;" data-src="holder.js/300x200" alt="" ></a>
@@ -90,7 +90,8 @@
 							<div class="date" >End Date  : {{event.endDate}}</div>
 							<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
 					</li>
-					
+					 <div ng-show='thumbscrollPage'>Loading data...</div>
+					</div>
 			    	</ul>
 			    	<span ng-show="searchRecords.length == 0">No record found.</span>
 			    	</div>
@@ -98,7 +99,7 @@
 				
 				<div ng-show="viewList">
 				<ul class="media-list">
-
+				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='3'>
 					<li class="media" ng-repeat="event in searchRecords">
 					<a class="pull-left" href="#"> <img
 							class="media-object" data-src="holder.js/64x64" alt="64x64"
@@ -113,6 +114,8 @@
 							<div>Start Date: {{event.startDate}}</div>
 							<div>End Date  : {{event.endDate}}</div>
 						</div></li>
+						 <div ng-show='listscrollPage'>Loading data...</div>
+						</div>
 				</ul>
 				</div>
 
