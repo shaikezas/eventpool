@@ -110,7 +110,8 @@
 					</a> -->
 						<div class="media-body">
 							<a href="#event/{{event.eventUrl}}" class="media-heading">{{event.title}}</a>
-							<div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div>
+							<!-- <div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div> -->
+							<div class="type">{{event.categoryName}}</div>
 							<div>Address   : {{event.venueName}}</div>
 							<div>{{event.address1}},{{event.address2}}</div>
 							<div>Start Date: {{event.startDate}}</div>
