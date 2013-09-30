@@ -14,7 +14,8 @@
 							<a href="#event/{{event.eventUrl}}"><img src="{{event.promotionLogoUrl}}" alt="" ></a>
 						</div>	
 						<div class="desc">{{event.title}}</div>
-						<div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div>
+						<!-- <div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div> -->
+						<div class="type">{{event.categoryName}}</div>
 					<!-- 	<div class="price" >Price - 14.99 $</div> -->
 						<div class="date" >Start Date: {{event.startDate}}</div>
 						<div class="date" >End Date  : {{event.endDate}}</div>

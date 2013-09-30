@@ -2,8 +2,8 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
-	$scope.selectedCat = "Categories";
-	$scope.eventType = new Array();
+	$scope.selectedCat = "All Categories";
+/*	$scope.eventType = new Array();*/
 	$scope.signupuserform = {};
 	 $scope.shows = [
 	                  {id:10, value:10},
@@ -133,7 +133,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
  	    });
      }
      
-     $scope.getcatvalue = function(id){    	
+/*     $scope.getcatvalue = function(id){    	
     	   categories.getcategories($scope.category).success(function(categories) {
          		$scope.categories = categories;
          		for(var i=0;i<$scope.categories.length;i++) {
@@ -145,7 +145,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      	    }).error(function() {
      	    	
      	    });
-     }
+     }*/
      
      $scope.getcurrentuser = function(){
       	

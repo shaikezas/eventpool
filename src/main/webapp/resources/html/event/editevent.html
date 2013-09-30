@@ -173,9 +173,9 @@
 							  
 							  
 								  <div class="control-group">
-								    <label class="control-label" for="inputEmail">Pincode  :<span ng-style="{color:'red'}">*</span></label>
+								    <label class="control-label" for="pincode">Pincode  :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="number" name="pincode" id="pincode" ng-model="event.zipCode" required>
+								      <input type="text" name="pincode" id="pincode" ng-model="event.zipCode" required>
 								      <span ng-show="pinReq" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
@@ -197,9 +197,9 @@
 			                
 								<form class="form-horizontal" name="orgForm">
 				           <div class="control-group" ng-show="showOrgName">
-							    <label class="control-label" for="organizerName">Organizer Name :<span ng-style="{color:'red'}">*</span></label>
+							    <label class="control-label" for="organizerName">Organizer Name :<!-- <span ng-style="{color:'red'}">*</span> --></label>
 							    <div class="controls">
-							      <input type="text" name="orgName" id="organizerName" ng-model="event.organizerName" required min="6" >
+							      <input type="text" name="orgName" id="organizerName" ng-model="event.organizerName">
 							      <span ng-show="orgNameReq" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>							  

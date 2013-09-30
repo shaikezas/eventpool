@@ -1,4 +1,4 @@
-var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser,categories) {
+var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser) {
 	
 	$scope.searchResults = {};
 	$scope.searchRecords = new Array();
@@ -16,7 +16,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.filterText = "";
 	$scope.viewList=false;
 	$scope.viewThumbs=true;
-	$scope.eventType = new Array();
+	/*$scope.eventType = new Array();*/
 	$scope.thumbscrollPage = false;
 	$scope.thumbpage = 0;
 	$scope.listpage = 0;
@@ -171,7 +171,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     };
     
     
-    $scope.getcatvalue = function(id){   
+/*    $scope.getcatvalue = function(id){   
     	categories.getcategories($scope.category).success(function(categories) {
       		$scope.categories = categories;
       		for(var i=0;i<$scope.categories.length;i++) {
@@ -183,7 +183,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
   	    }).error(function() {
   	    	
   	    });
-  }
+  }*/
     
     $scope.getActiveCountriesList = function(){   
     	 $http.get('search/getactivecountries').success(function(activeCountries) {     		 
