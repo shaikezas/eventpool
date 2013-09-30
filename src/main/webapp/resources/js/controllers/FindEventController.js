@@ -1,4 +1,4 @@
-var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser,categories) {
+var FindEventController = function($scope,$rootScope, $http,$routeParams, $location,currentuser) {
 	
 	$scope.searchResults = {};
 	$scope.searchRecords = new Array();
