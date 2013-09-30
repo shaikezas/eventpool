@@ -2,7 +2,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
-	$scope.selectedCat = "Categories";
+	$scope.selectedCat = "All Categories";
 	$scope.eventType = new Array();
 	$scope.signupuserform = {};
 	 $scope.shows = [

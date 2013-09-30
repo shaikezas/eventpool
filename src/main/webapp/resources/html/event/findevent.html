@@ -68,7 +68,7 @@
 				                </ul>				                
 				                
 				          </div><!-- /btn-group -->
-					
+					    
 						<div class="viewButton">
 						 View  <a title="Thumbnails View" ng-click="viewList=false;viewThumbs=true"><i class="icon-th-large"></i></a> 
 								<a ng-click="viewList=true;viewThumbs=false" title="List View"><i class="icon-th-list"></i></a>
@@ -90,6 +90,7 @@
 							<div class="date" >Start Date: {{event.startDate}}</div>
 							<div class="date" >End Date  : {{event.endDate}}</div>
 							<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
+							
 					</li>
 			    	</ul>
 			    	<div ng-show='thumbscrollPage'>Loading data...</div>
@@ -102,11 +103,11 @@
 				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
 				<ul class="media-list">
 					<li class="media" ng-repeat="event in searchRecords">
-					<a class="pull-left" href="#"> <img
+					<!-- <a class="pull-left" href="#"> <img
 							class="media-object" data-src="holder.js/64x64" alt="64x64"
 							style="width: 64px; height: 64px;"
 							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC">
-					</a>
+					</a> -->
 						<div class="media-body">
 							<a href="#event/{{event.eventUrl}}" class="media-heading">{{event.title}}</a>
 							<div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div>
@@ -114,7 +115,9 @@
 							<div>{{event.address1}},{{event.address2}}</div>
 							<div>Start Date: {{event.startDate}}</div>
 							<div>End Date  : {{event.endDate}}</div>
-						</div></li>
+						</div>
+						<div class="viewControl">
+					</li>
 						 
 				</ul>
 				<div ng-show='listscrollPage'>Loading data...</div>
