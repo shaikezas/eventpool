@@ -22,6 +22,9 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.listpage = 0;
 	$scope.page = 0;
 	$scope.listscrollPage = false;
+	$scope.activeCountries = new Array();
+	$scope.countryname = "Country";
+	
 	
 	$scope.viewThumbsNextPage = function(){
 		if ($scope.thumbscrollPage) return;
@@ -182,7 +185,20 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
   	    });
   }
     
+    $scope.getActiveCountriesList = function(){   
+    	 $http.get('search/getactivecountries').success(function(activeCountries) {     		 
+    		$scope.activeCountries = activeCountries;
+  	    }).error(function() {
+  	    	
+  	    });
+  }
+    
+    $scope.setcountryname = function(coun) {
+    	$scope.countryname = coun;
+    }
+    
     
     $scope.fetchSearchResults($rootScope.user);
     $scope.getcurrentuser();
+    $scope.getActiveCountriesList();
 }

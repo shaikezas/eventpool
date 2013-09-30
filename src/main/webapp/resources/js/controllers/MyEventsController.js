@@ -7,30 +7,25 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.header = "myevents";
     $scope.fetchDraftEventsList = function() {
         $http.get('event/myevent/draftEventList').success(function(draftevents){
-            $scope.draftEvents = draftevents;
-            
+            $scope.draftEvents = draftevents;            
         });
     }
     $scope.fetchLiveEventsList = function() {
         $http.get('event/myevent/liveEventList').success(function(liveevents){
             $scope.liveEvents = liveevents;
-            if(angular.isDefined($scope.message()) && $scope.message() != null){
-        		$scope.message().show = false;
-        	}
+            $scope.hideInfoMessage();
         });
     }
     
     $scope.publishEvent = function(eventid) {
         $http.get('event/myevent/publishevent/'+eventid).success(function(){
-        $scope.fetchDraftEventsList();
+        $scope.fetchDraftEventsList();        
         });
     }
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){
             $scope.pastEvents = pastevents;
-            if(angular.isDefined($scope.message()) && $scope.message() != null){
-        		$scope.message().show = false;
-        	}
+            $scope.hideInfoMessage();
         });
     }
     
@@ -43,6 +38,12 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
          }
      	
      }
+ 
+ $scope.hideInfoMessage = function() {
+ if(angular.isDefined($scope.message()) && $scope.message() != null){
+		$scope.message().show = false;
+	}
+ }
      
     $scope.getcurrentuser();
     $scope.fetchLiveEventsList();

@@ -2,6 +2,7 @@ package com.eventpool.web.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -179,14 +180,16 @@ public class SearchController {
 	public static boolean isValidIpAddress(String ip) {
 		return (IPAddressUtil.isIPv4LiteralAddress(ip) || IPAddressUtil.isIPv6LiteralAddress(ip));
 	}
-
-	public List<String> getActiveCountries(){
+	
+	@RequestMapping(value = "/getactivecountries", method = RequestMethod.GET)
+	public  @ResponseBody List<String> getActiveCountries(HttpServletRequest request)  throws Exception {
 		Map<Integer, Country> activeCountryMap = utilities.getActiveCountryMap();
 		Collection<Country> values = activeCountryMap.values();
 		List<String> activeCountries = new ArrayList<String>();
 		for(Country country:values){
 			activeCountries.add(country.getName());
 		}
+		Collections.sort(activeCountries);
 		return activeCountries;
 	}
 }

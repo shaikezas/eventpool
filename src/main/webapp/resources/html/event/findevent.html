@@ -60,15 +60,15 @@
 					<div class="viewControl">
 						
 						<div  class="btn-group countrySelect">
-				                <button class="btn dropdown-toggle noRadius headerCatBtn" data-toggle="dropdown">Country <span class="caret"></span></button>
+				                <button class="btn dropdown-toggle noRadius headerCatBtn" data-toggle="dropdown">{{countryname}}<span class="caret"></span></button>
 				                <ul class="dropdown-menu">
-				                  <li ng-repeat="cat in categories">
-									<a href="#"><i class="flag flag-IN"></i> India </a>   <span></a>
+				                  <li ng-repeat="country in activeCountries">
+									<a ng-click="setcountryname(country)"><!-- <i class="flag flag-IN"> --></i> {{country}} </a>   <span></a>
 									</li>
-				                </ul>
-				              </div><!-- /btn-group -->
-						
-						
+				                </ul>				                
+				                
+				          </div><!-- /btn-group -->
+					
 						<div class="viewButton">
 						 View  <a title="Thumbnails View" ng-click="viewList=false;viewThumbs=true"><i class="icon-th-large"></i></a> 
 								<a ng-click="viewList=true;viewThumbs=false" title="List View"><i class="icon-th-list"></i></a>
