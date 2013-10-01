@@ -1,4 +1,5 @@
 <script language="JavaScript" type="text/javascript">
+
 var sec = 00;   // set the seconds
 var min = 15;   // set the minutes
 
@@ -17,10 +18,14 @@ if (sec<=9) { sec = "0" + sec; }
 if (document.getElementById) { document.getElementById('theTime').innerHTML = time; }
 
 SD=window.setTimeout("countDown();", 1000);
-if (min == '00' && sec == '00') { alert("Time out ...."); }
+if (min == '00' && sec == '00') { 
+alert("Time out redirecting to home page. Book again.");
+window.location="http://localhost:8080/#/home";
+}
 }
 window.onload = countDown();
 // -->
+
 </script>
 
 <link href="resources/bootstrap/css/entertainment.css" rel="stylesheet">
@@ -71,7 +76,7 @@ window.onload = countDown();
 				
 				
 				<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
-							<h2>Time Left to Book: <span id="theTime"></span></h2> 
+							  <h2>Time Left to Book: <span id="theTime"></span></h2> 
 							<h4>Ticket Buyer</h4>
 					
 						<div class="control-group">
