@@ -162,6 +162,7 @@ public class SearchServiceImpl implements SearchService {
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
 		addImageHostUrl(searchQueryResponse.getEventSearchRecords());
 		searchQueryResponse.setQuery(query);
+		searchQueryResponse.setNoOfresults(response.getResults().getNumFound());
 		
 		List<FilterItem> subCategoryFilterItems = searchQueryResponse.getSubCategoryFilterItems();
 		if(subCategoryFilterItems==null) {

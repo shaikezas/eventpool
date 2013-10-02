@@ -13,7 +13,7 @@ public class SearchQueryResponse {
 	List<FilterItem> eventTypeFilterItems = new ArrayList<FilterItem>();
 	List<FilterItem> cityIdFilterItems = new ArrayList<FilterItem>();
 	List<FilterItem> otherCountries = new ArrayList<FilterItem>();
-	
+	long noOfresults=0;
 	String query;
 	
 	public List<EventSearchRecord> getEventSearchRecords() {
@@ -57,5 +57,11 @@ public class SearchQueryResponse {
 	}
 	public void setOtherCountries(List<FilterItem> otherCountries) {
 		this.otherCountries = otherCountries;
+	}
+	public long getNoOfresults() {
+		return noOfresults;
+	}
+	public void setNoOfresults(long noOfresults) {
+		this.noOfresults = noOfresults;
 	}
 }
