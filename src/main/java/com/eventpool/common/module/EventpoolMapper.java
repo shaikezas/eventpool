@@ -190,6 +190,8 @@ public class EventpoolMapper {
 		}else{
 			eventDTO.setClassificationType(1);
 		}
+		eventDTO.setCreatedDate(event.getCreatedDate());
+		eventDTO.setModifiedDate(event.getModifiedDate());
 	}
 	
 	public void mapEvent(EventDTO eventDTO,Event event){
