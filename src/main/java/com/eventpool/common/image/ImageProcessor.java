@@ -244,8 +244,8 @@ public class ImageProcessor {
 	
 	public BufferedImage scaleTo(BufferedImage srcImage, int width , int height){
 		BufferedImage resizedImage = Scalr.resize(srcImage, Scalr.Method.QUALITY, width, height);
-		return resizedImage;
-		//return getPaddedImage(resizedImage, width, height, Color.WHITE);
+		//return resizedImage;
+		return getPaddedImage(resizedImage, width, height, Color.WHITE);
 	}
 	
 }
