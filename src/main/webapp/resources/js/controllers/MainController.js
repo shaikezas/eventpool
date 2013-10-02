@@ -52,8 +52,20 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	
      };
      $scope.loginuser = function () {
+    	 $scope.resetsignform();
     	 $scope.$emit('event:loginRequired');
      };
+     
+     $scope.resetsignform = function(){
+    	 $scope.signupForm.fname="";    	 
+    	 $scope.signupForm.lname=""; 
+    	 $scope.signupForm.email="";
+    	 $scope.signupForm.password="";
+    	 $scope.confirmpassword="";
+    	 $scope.username="";
+    	 $scope.password="";
+     }
+     
      $scope.logout = function () {
          $rootScope.user = null;
          $scope.username = $scope.password = null;
@@ -61,6 +73,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
          $location.url('home');
      };
      $scope.cancel = function (){
+    	 $scope.resetsignform();
     	 $scope.usernameReq=false;
     	 $scope.passwordRequired=false;
     	 $scope.validEmail=false;

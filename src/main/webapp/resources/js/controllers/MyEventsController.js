@@ -13,7 +13,7 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.fetchLiveEventsList = function() {
         $http.get('event/myevent/liveEventList').success(function(liveevents){
             $scope.liveEvents = liveevents;
-            $scope.hideInfoMessage();
+            /*$scope.hideInfoMessage();*/
         });
     }
     
@@ -25,7 +25,7 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){
             $scope.pastEvents = pastevents;
-            $scope.hideInfoMessage();
+           /* $scope.hideInfoMessage();*/
         });
     }
     

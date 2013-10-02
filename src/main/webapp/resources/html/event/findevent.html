@@ -41,7 +41,11 @@
 					<li class="nav-header">Location</li>
 					<li ng-repeat="filterItem in searchResults.cityIdFilterItems">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
-					</li>					
+					</li>
+					<li class="nav-header">Other countries</li>
+					<li ng-repeat="filterItem in searchResults.otherCountries">
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+					</li>			
 				</ul>
 			</div>
 				
@@ -71,7 +75,7 @@
 				          </div><!-- /btn-group -->
 					    
 					    <div class="resultCont">
-					    	Showing Search Result
+					    		Showing {{searchResults.noOfresults}} events
 					    	
 					    </div>	
 						<div class="viewButton">
