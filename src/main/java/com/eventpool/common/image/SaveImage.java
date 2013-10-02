@@ -42,11 +42,11 @@ public class SaveImage {
 	@Value("$EVENT_POOL{image.source.location}")
 	private String localImagePath ;//= "C://Event//source";
 	
-	private final int BANNER_WIDTH = 1000;
-	private final int BANNER_HEIGHT = 300;
+	private final int BANNER_WIDTH = 735;
+	private final int BANNER_HEIGHT = 220;
 
-	private final int PROMO_WIDTH = 228;
-	private final int PROMO_HEIGHT = 275;
+	private final int PROMO_WIDTH = 182;
+	private final int PROMO_HEIGHT = 220;
 
 	private Map<ImageType,Integer> widthMap = new HashMap<ImageType, Integer>();
 	private Map<ImageType,Integer> heightMap = new HashMap<ImageType, Integer>();
