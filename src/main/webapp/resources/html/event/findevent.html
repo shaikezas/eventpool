@@ -71,7 +71,7 @@
 				          </div><!-- /btn-group -->
 					    
 					    <div class="resultCont">
-					    	Showing {{searchResults.noOfresults}} of events
+					    	Showing {{searchResults.noOfresults}} events
 					    	
 					    </div>	
 						<div class="viewButton">
@@ -88,7 +88,7 @@
 					<ul class="thumbnails">
 						<li class="span1a" ng-repeat="event in searchRecords">
 								<div class="thumbnail">
-									<a href="#event/{{event.eventUrl}}"><img ng-src="{{event.promotionLogoUrl}}" data-src="holder.js/300x200" alt="" ></a>
+									<a href="#event/{{event.eventUrl}}"><img ng-src="{{event.promotionLogoUrl}}" ></a>
 								</div>	
 								<div class="desc">{{event.title}}</div>
 								<div class="type">{{event.categoryName}}</div>
@@ -109,7 +109,7 @@
 				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
 				<ul class="media-list">
 					<li class="media thumbList" ng-repeat="event in searchRecords">
-					<a class="pull-left" href="#event/{{event.eventUrl}}"> <img width="85px" ng-src="{{event.promotionLogoUrl}}" data-src="holder.js/300x200" alt="" >
+					<a class="pull-left" href="#event/{{event.eventUrl}}"> <img width="85px" ng-src="{{event.promotionLogoUrl}}" >
 					</a> 
 						<div class="media-body ">
 							<a class="type" href="#event/{{event.eventUrl}}" class="media-heading">{{event.title}}</a>
