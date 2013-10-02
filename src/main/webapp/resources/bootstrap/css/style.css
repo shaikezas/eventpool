@@ -25,6 +25,7 @@ h3{
 a{
 	color: none;
 }
+
 .viewControl{
 	padding: 5px ; 
 	border-bottom:1px solid #000 ;
@@ -403,7 +404,11 @@ table tr:hover td
 }
 /* Login View End */
 
-
+.thumbList{
+	padding: 5px !important;
+	margin: 5px !important;
+	border-bottom: 1px solid #ccc
+}
 .copyright{
 	clear: both;
 	text-align: center;
@@ -508,6 +513,14 @@ width: 50px
 
 .thumbnails{
 	margin: 5px 0px;
+	}
+.thumbnails .span1{
+	width: 192px;
+	margin: 5px;
+	}
+.thumbnails .span1a{
+	width: 180px;
+	margin: 2px;
 	}
 .thumbnails > li {
 	margin:0px 6px 5px 6px;
