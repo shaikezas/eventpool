@@ -7,7 +7,7 @@ CREATE TABLE `EVENT` (
    START_DATE timestamp NOT NULL,
    END_DATE timestamp NOT NULL,
    SUBCATEGORY_ID bigint(20) NOT NULL,
-   ORGANIZER_NAME varchar(128) NOT NULL,
+   ORGANIZER_NAME varchar(128) NULL,
    ORGANIZER_DESC varchar(1000) NULL,
    contact_details varchar(1000) NULL,
    VENUE_NAME varchar(256)  NULL,

@@ -80,19 +80,16 @@
 				  <div ng-show="viewThumbs">
 				<div infinite-scroll="viewThumbsNextPage()" infinite-scroll-disabled='thumbscrollPage' infinite-scroll-distance='0' >
 				<ul class="thumbnails">
-<<<<<<< HEAD
 					<li class="span1a" ng-repeat="event in searchRecords">
 							<div class="thumbnail">
 								<a href="#event/{{event.eventUrl}}"><img src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" ></a>
 							</div>	
 							<div class="desc">{{event.title}}</div>
-=======
 					<li class="span1" ng-repeat="event in searchRecords">
 						<div class="thumbnail">
 							<a href="#event/{{event.eventUrl}}"><img ng-src="{{event.promotionLogoUrl}}" onerror="this.onerror=null;" alt="" ></a>
 						</div>	
 						<div class="desc">{{event.title}}</div>
->>>>>>> refs/remotes/origin/master
 							<div class="type">{{event.categoryName}}</div>
 							<!-- <div class="price" >Price - 14.99 $</div> -->
 							<div class="date" >Start Date: {{event.startDate}}</div>
@@ -110,7 +107,6 @@
 				<div ng-show="viewList">
 				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
 				<ul class="media-list">
-<<<<<<< HEAD
 					<li class="media thumbList" ng-repeat="event in searchRecords">
 					<a class="pull-left" href="#event/{{event.eventUrl}}"> <img width="85px" src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" >
 					</a> -->
@@ -120,7 +116,6 @@
 							<div class="desc">{{event.address1}},{{event.address2}}</div>
 							<div class="date">Start Date: {{event.startDate}}</div>
 							<div class="date">End Date  : {{event.endDate}}</div>
-=======
 					<li class="media" ng-repeat="event in searchRecords">
 					<!-- <a class="pull-left" href="#"> <img
 							class="media-object" data-src="holder.js/64x64" alt="64x64"
@@ -135,7 +130,6 @@
 							<div>{{event.address1}},{{event.address2}}</div>
 							<div>Start Date: {{event.startDate}}</div>
 							<div>End Date  : {{event.endDate}}</div>
->>>>>>> refs/remotes/origin/master
 						</div>
 					
 					</li>
