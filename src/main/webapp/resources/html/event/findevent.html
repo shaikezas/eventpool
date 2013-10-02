@@ -60,15 +60,15 @@
 					<div class="viewControl">
 						
 						<div  class="btn-group countrySelect">
-				                <button class="btn dropdown-toggle noRadius headerCatBtn" data-toggle="dropdown">Country <span class="caret"></span></button>
+				                <button class="btn dropdown-toggle noRadius headerCatBtn" data-toggle="dropdown">{{countryname}}<span class="caret"></span></button>
 				                <ul class="dropdown-menu">
-				                  <li ng-repeat="cat in categories">
-									<a href="#"><i class="flag flag-IN"></i> India </a>   <span></a>
+				                  <li ng-repeat="country in activeCountries">
+									<a ng-click="setcountryname(country)"><!-- <i class="flag flag-IN"> --></i> {{country}} </a>   <span></a>
 									</li>
-				                </ul>
-				              </div><!-- /btn-group -->
-						
-						
+				                </ul>				                
+				                
+				          </div><!-- /btn-group -->
+					    
 						<div class="viewButton">
 						 View  <a title="Thumbnails View" ng-click="viewList=false;viewThumbs=true"><i class="icon-th-large"></i></a> 
 								<a ng-click="viewList=true;viewThumbs=false" title="List View"><i class="icon-th-list"></i></a>
@@ -77,39 +77,47 @@
 						
 					</div>
 					 
-				  <div ng-show="viewThumbs"><ul class="thumbnails">
-		
+				  <div ng-show="viewThumbs">
+				<div infinite-scroll="viewThumbsNextPage()" infinite-scroll-disabled='thumbscrollPage' infinite-scroll-distance='0' >
+				<ul class="thumbnails">
 					<li class="span1a" ng-repeat="event in searchRecords">
 							<div class="thumbnail">
 								<a href="#event/{{event.eventUrl}}"><img src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" ></a>
 							</div>	
 							<div class="desc">{{event.title}}</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
+							<div class="type">{{event.categoryName}}</div>
+							<!-- <div class="price" >Price - 14.99 $</div> -->
 							<div class="date" >Start Date: {{event.startDate}}</div>
 							<div class="date" >End Date  : {{event.endDate}}</div>
 							<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
+							
 					</li>
-					
 			    	</ul>
+			    	<div ng-show='thumbscrollPage'>Loading data...</div>
+					</div>
 			    	<span ng-show="searchRecords.length == 0">No record found.</span>
 			    	</div>
 
 				
 				<div ng-show="viewList">
+				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
 				<ul class="media-list">
-
 					<li class="media thumbList" ng-repeat="event in searchRecords">
 					<a class="pull-left" href="#event/{{event.eventUrl}}"> <img width="85px" src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" >
-					</a>
+					</a> -->
 						<div class="media-body ">
 							<a class="type" href="#event/{{event.eventUrl}}" class="media-heading">{{event.title}}</a>
 							<div class="desc">Address   : {{event.venueName}}</div>
 							<div class="desc">{{event.address1}},{{event.address2}}</div>
 							<div class="date">Start Date: {{event.startDate}}</div>
 							<div class="date">End Date  : {{event.endDate}}</div>
-						</div></li>
+						</div>
+					
+					</li>
+						 
 				</ul>
+				<div ng-show='listscrollPage'>Loading data...</div>
+						</div>
 				</div>
 
 
