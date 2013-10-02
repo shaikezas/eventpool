@@ -24,11 +24,14 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
          $('#login').modal('hide');
      };
      
+  
+     
      $scope.login = function () {
     	 $scope.usernameReq = $scope.userForm.username.$error.required;
     	 $scope.passwordRequired = $scope.userForm.password.$error.required;
     	 $scope.validEmail = $scope.userForm.username.$error.email; 
     	 $scope.signin();
+    	 $scope.resetsignform();
      };
      $scope.signup = function () {
     	 $scope.newUserEmailReq = $scope.signupForm.newUserEmail.$error.required;    	 
@@ -47,6 +50,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
         		               show: true
         		           };
         		 }
+        		 $scope.resetsignform();
              }).error(function() {
              });
     	
@@ -57,10 +61,10 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      };
      
      $scope.resetsignform = function(){
-    	 $scope.signupForm.fname="";    	 
-    	 $scope.signupForm.lname=""; 
-    	 $scope.signupForm.email="";
-    	 $scope.signupForm.password="";
+    	 $scope.signupuserform.fname="";    	 
+    	 $scope.signupuserform.lname=""; 
+    	 $scope.signupuserform.email="";
+    	 $scope.signupuserform.password="";
     	 $scope.confirmpassword="";
     	 $scope.username="";
     	 $scope.password="";

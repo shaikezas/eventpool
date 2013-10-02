@@ -101,9 +101,9 @@
 							
 							<div class="modal-body">
 				        		 <div ng-class="'alert alert-'+signupmessage().type" ng-show="signupmessage().show">
-				        		 <button type="button" class="close" ng-click="signupmessage().show=false;newUserEmailReq=false;newuserValidEmail=false;newUserPasswordReq=false;newUserPasswordCFReq=false">x</button>
-				        		 <msg>{{signupmessage().text}}</msg>
-				    		</div>
+				        			 <button type="button" class="close" ng-click="signupmessage().show=false;newUserEmailReq=false;newuserValidEmail=false;newUserPasswordReq=false;newUserPasswordCFReq=false">x</button>
+				        		 	<msg>{{signupmessage().text}}</msg>
+				    			</div>
 							
 							<form name="signupForm">
 							  <fieldset>
@@ -138,47 +138,10 @@
 						</div>
 				     
 				        <!-- New User Login End -->
-				       
-				        
-				       
-				        
-			
-						
-			
-			
-		  
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			</div>
 		   
 	</div>
-
 	
- 
-      
-
-
-
-   
-
 	<script src="lib/jquery/jquery.js" type="text/javascript"></script>
 	<script src="lib/jquery/jquery-ui.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"> </script>
