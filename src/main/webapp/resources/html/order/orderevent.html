@@ -30,7 +30,7 @@ window.onload = countDown();
 
 <link href="resources/bootstrap/css/entertainment.css" rel="stylesheet">
 
-          <div class="tabBody">
+
           	
           	<div ng-include src="'html/eventpageheader.html'"></div>
 			   	
@@ -40,18 +40,35 @@ window.onload = countDown();
 			</div>
 			   	
 			   	
-          	 <div class="eventBanners">  	Banners    </div>
+          	 <div class="eventBanners">  	
+					<div class="image">
+							<img ng-src='http://zeoevent.com:8083/image/{{event.banner}}' onerror="this.onerror=null;this.src='bootstrap/img/entertainmentBannar.jpg'"/>     
+					</div>
+					
+					<div class="span1 rightPanel ">
+					<h3>Event Details</h3>
+											<div class="filterControl">
+												<ul class="eventDetails eventDetailsIcon">
+													<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
+													<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
+													<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
+													<li > <i class="iconAddress"></i>
+														{{ event.venueAddress}}
+													</li>
+													<li >Set Remainder</li>
+													<li class="">Add Calender</li>
+												</ul>
+											</div>
+					
+					</div>
+		    </div>
 			
-	<div class="container eventCont">	
-	
-	
-	
-		
+	<div class="container eventPage">	
 			<div ng-show="editMode==false" >
             	{{status.status}} - {{status.orderId}}. 
             	</div>
             	
-			<div class="span3 leftPanel">
+			<div class="span3 ">
 				<table class="table table-condensed" >
 				<thead>
 					<tr>
@@ -249,21 +266,7 @@ window.onload = countDown();
 										</div>
 									</div>
 			
-									<div class="span1">
-											<h3>Event Details</h3>
-											<div class="filterControl">
-												<ul class="eventDetails eventDetailsIcon">
-													<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
-													<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
-													<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
-													<li > <i class="iconAddress"></i>
-														{{ event.venueAddress}}
-													</li>
-													<li >Set Remainder</li>
-													<li class="">Add Calender</li>
-												</ul>
-											</div>
-									</div>
+									
 			
 								<div class="span1">
 										<h3>Contact Details</h3>

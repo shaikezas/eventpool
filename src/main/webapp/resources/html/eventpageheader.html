@@ -3,16 +3,15 @@
 
 			<div class="headerStrip">
 				<div class="navCityLogin">
-					
-						<span ng-class="activeWhen(path()=='/home')"><a href="#/home">Home</a>
+						
+						<span ng-class="activeWhen(path()=='/userSettings')">
+							<a href="#/userSettings" ng-show="user.userName"> Welcome {{user.userName}}</a>
 						</span>
-						<span><a ng-click="loginuser()" ng-show="user.userName==null">Login</a>
-						</span>
-						<span><a ng-click="logout()" ng-show="user.userName">Logout</a>
-						</span>
-						<span ng-class="activeWhen(path()=='/userSettings')"><a
-							href="#/userSettings" ng-show="user.userName"> Welcome
-								{{user.userName}}</a></span>
+						
+						<span ng-class="activeWhen(path()=='/home')"><a href="#/home">Home</a></span>
+						<span><a ng-click="loginuser()" ng-show="user.userName==null">Login</a></span>
+						<span><a ng-click="logout()" ng-show="user.userName">Logout</a></span>
+						
 					
 				</div>
 			</div>

@@ -2,8 +2,21 @@ body {
 	background:#fff;
 	zoom: 100%;
 	}
-	
+.navbar{
+	background: #fff !important;
+	color: #ff6600 !important;
+	box-shadow: 2px 2px 2px #000; 
+}	
+
+.span1{
+	width: 240px;
+	margin-left: 10px !important; ;
+}		
 .eventBanners{
+	width: 990px;
+	height: 200px;
+	/* background-image:url(../img/entertainmentBannar.jpg); */
+	margin: 40px auto; 
 	width: 1000px;
 	height: 300px;
 	/* background-image:url(../img/entertainmentBannar.jpg); */
@@ -12,6 +25,13 @@ body {
 	border: 1px solid #ccc;
 	}
 
+.eventBanners .image{
+	float: left;
+	width: 730px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	padding: 5px;
+}
 .eventCont{
 	width: 1000px; 
 	margin: 0 auto; 
@@ -20,7 +40,10 @@ body {
 	border: 1px solid #ccc;
 	background-image: url(../img/entContBg.png );
 	}
-
+.headerStrip{
+	width: 990px;
+	margin: auto;
+	}
 
 h4{
 	padding-left: 10px;
@@ -40,7 +63,7 @@ h3{
 	margin-right: 20px !important;
 }
 .rightPanel{
-	margin-left: 10px !important;
+	margin-left: 8px !important;
 }
 
 
