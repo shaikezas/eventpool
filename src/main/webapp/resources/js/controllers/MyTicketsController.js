@@ -11,10 +11,11 @@ var MyTicketsController = function($scope, $http,$rootScope,currentuser) {
       }
     
     $scope.openPrintTicket = function(suborderId){
-    	$scope.shouldBeOpen = true;
-    	$http.get('event/myevent/print/'+suborderId).success(function(data){
-    		$scope.invoice = data;
-        });
+//    	$scope.shouldBeOpen = true;
+//    	$http.get('event/myevent/print/'+suborderId).success(function(data){
+//    		$scope.invoice = data;
+//        });
+    	window.open("#/printticket/"+suborderId);
     }
     $scope.sendTicket = function(suborderId){
     	$http.get('event/myevent/send/'+suborderId).success(function(){
