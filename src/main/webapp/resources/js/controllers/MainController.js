@@ -30,29 +30,33 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $scope.usernameReq = $scope.userForm.username.$error.required;
     	 $scope.passwordRequired = $scope.userForm.password.$error.required;
     	 $scope.validEmail = $scope.userForm.username.$error.email; 
-    	 $scope.signin();
-    	 $scope.resetsignform();
+    	 $scope.signin();    	 
      };
      $scope.signup = function () {
     	 $scope.newUserEmailReq = $scope.signupForm.newUserEmail.$error.required;    	 
     	 $scope.newuserValidEmail = $scope.signupForm.newUserEmail.$error.email; 
     	 $scope.newUserPasswordReq = $scope.signupForm.newUserPassword.$error.required;
     	 $scope.newUserPasswordCFReq = $scope.signupForm.newUserPasswordCF.$error.required;
+    	 if($scope.signupuserform.password == $scope.confirmpassword){
     	 $http.post('signupuser', $scope.signupuserform).success(function(data) {
         		 if(data.type=="success"){
         			 $scope.username = $scope.signupuserform.email;
         			 $scope.password = $scope.signupuserform.password;
         			 $scope.signin();
+        			$scope.resetsignform();
         		 }else{
         			 signupmessage = {
         		               text: data.text,
         		               type: data.type,
         		               show: true
         		           };
-        		 }
-        		 $scope.resetsignform();
+        		 }        		 
              }).error(function() {
              });
+    	 }
+    	 else {
+    		 alert("Password and Confirm password are not matched.");
+    	 }
     	
      };
      $scope.loginuser = function () {
