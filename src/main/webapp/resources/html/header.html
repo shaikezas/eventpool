@@ -2,7 +2,6 @@
           
 
 			
-			
 				<div class="navbar-inner headerContainer">
 			        <div class="container" >
 											
@@ -10,13 +9,13 @@
 					
 								<a href="#/userSettings" ng-show="user.userName"> Welcome {{user.userName}}</a></span>
 								<i class="splitter "></i> 
-								<a href="#"><i class="flag flag-IN"></i> India </a>   <span></a>
+								<i class="flag flag-IN"></i>  India 
 								<i class="splitter "></i>     
-								<a href="#/home">Home</a>
+								<a href="#/home" ng-click="fetchhomepagerecords()">Home</a>
 								<i class="splitter "></i>   
-								<a ng-click="loginuser()" ng-show="user.userName==null">Login</a>
+								<a href="" ng-click="loginuser()" ng-show="user.userName==null">Login</a>
 								
-								<a ng-click="logout()" ng-show="user.userName">Logout</a>
+								<a href="" ng-click="logout()" ng-show="user.userName">Logout</a>
 								<span ng-class="activeWhen(path()=='/userSettings')">
 								
 							</div>
@@ -30,21 +29,21 @@
 							</button>
 			         
 							<div class="nav-collapse collapse mainNav">
-								
 								 <div class="input-prepend input-append headerSearch">
-					              <div class="btn-group">
-					                <button class="btn dropdown-toggle noRadius headerCatBtn " data-toggle="dropdown">Categories <span class="caret"></span></button>
-					                <ul class="dropdown-menu">
-					                  <li ng-repeat="cat in categories">
-										<a href="#">{{cat.key}}</a>
+				              <div class="btn-group">
+				                <button class="btn dropdown-toggle noRadius headerCatBtn " data-toggle="dropdown">{{selectedCat}} <span class="caret"></span></button>
+				                <ul class="dropdown-menu">
+				                  	<li ng-repeat="cat in categories"> 
+										<a ng-click="setCatValue(cat.value,cat.key)">{{cat.key}}</a>
 									</li>
-					                </ul>
-					              </div><!-- /btn-group -->
-					              <input class="span3 headerCatBtn" id="appendedPrependedDropdownButton" type="text">
-					              <div class="btn-group">
-					                <button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown"> <span class="icon-search "></span></button>
-					              </div>
-					            </div>
+				                </ul>
+				              </div><!-- /btn-group -->
+				              <input class="span3 headerCatBtn" ng-enter="fetchsearchresults(queryText)" id="appendedPrependedDropdownButton" type="text" ng-model="queryText">
+				              <div class="btn-group">
+				                <button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown" ng-click="fetchsearchresults(queryText)"> <span class="icon-search "></span></button>
+				              </div>
+				            </div>
+				            
 								<ul class="nav" >
 									<li ng-class="activeWhen(path()=='/findevent')" > 	<a href="#/findevent" > Find Event </a> </li>
 									<li ng-class="activeWhen(path()=='/createevent')"> 	<a href="#/createevent" >Create Event</a></li>
@@ -55,6 +54,7 @@
 								
 								<div style="clear: both"></div>
 							</div>
+							
 							
 							
 							

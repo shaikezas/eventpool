@@ -17,6 +17,7 @@ import org.apache.solr.client.solrj.response.FacetField.Count;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,16 @@ import com.eventpool.event.module.EventApiImpl;
 @Service("SearchService")
 public class SearchServiceImpl implements SearchService {
     
+	private static final String COUNTRYID = "countryId";
+
+	private static final String EVENTDATE = "eventDate";
+
+	private static final String EVENTTYPE = "eventType";
+
+	private static final String CITYID = "cityId";
+
+	private static final String SUBCATEGORYID = "subCategoryId";
+
 	private static final int REST = 6;
 
 	private static final int CURRENT_MONTH = 5;
@@ -54,6 +65,10 @@ public class SearchServiceImpl implements SearchService {
 	@Resource
 	EntityUtilities entityUtilities;
 	
+	@Value("$EVENT_POOL{image.host}")
+	private String imageHostUrl ;//= "C://Event//source";
+
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
     public List<EventSearchRecord> getSearchRecords(int rows,int start,Integer cityId,Integer countryId)
@@ -67,9 +82,14 @@ public class SearchServiceImpl implements SearchService {
     		if(fq!=null) fq = fq+" AND "; 
     		fq=fq+"countryId:"+countryId;
     	}
-    	
+    	if(fq==null){
+    		fq = "eventDate:("+sdf.format(new Date())+" TO * )";
+    	}else{
+    		fq = fq+"eventDate:("+sdf.format(new Date())+" TO * )";
+    	}
     	QueryResponse response = getSolrResponse("",fq, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
+		addImageHostUrl(searchResults);
     	return searchResults;
 	}
 
@@ -89,11 +109,11 @@ public class SearchServiceImpl implements SearchService {
 			rows = 10;
 		}
 		solrQuery.setRows(rows);
-		solrQuery.addFacetField("subCategoryId");
-		solrQuery.addFacetField("eventDate");
-		solrQuery.addFacetField("eventType");
-		solrQuery.addFacetField("cityId");
-		solrQuery.addFacetField("countryId");
+		solrQuery.addFacetField(SUBCATEGORYID);
+		solrQuery.addFacetField(EVENTDATE);
+		solrQuery.addFacetField(EVENTTYPE);
+		solrQuery.addFacetField(CITYID);
+		solrQuery.addFacetField(COUNTRYID);
 		
 		solrQuery.setIncludeScore(true);
 		//String fq="cityId:6453";
@@ -106,36 +126,41 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 
-	public SearchQueryResponse getSearchQueryResponse(String query,Map<String,String> listOfFilters, int rows,int start)
+	public SearchQueryResponse getSearchQueryResponse(String query,Map<String,String> listOfFilters, int rows,int start,Integer countryId)
 			throws Exception {
 		String fq=""; 
-		for(String key:listOfFilters.keySet()){
-			String filterQuery = listOfFilters.get(key);
-	    	if(filterQuery!=null && key.equalsIgnoreCase("subCategoryId")){
-	    		fq=fq+" AND subCategoryId:"+filterQuery;
-	    	}
-	    	if(filterQuery!=null && key.equalsIgnoreCase("cityId")){
-	    		fq=fq+" AND cityId:"+filterQuery;
-	    	}
-
-	    	if(filterQuery!=null && key.equalsIgnoreCase("eventType")){
-	    		fq=fq+" AND eventType:"+filterQuery;
-	    	}
-
-	    	if(filterQuery!=null && key.equalsIgnoreCase("eventDate")){
-	    		fq=fq+" AND eventDate:"+filterQuery;
-	    	}
+		if(listOfFilters!=null){
+			for(String key:listOfFilters.keySet()){
+				String filterQuery = listOfFilters.get(key);
+		    	if(filterQuery!=null && key.equalsIgnoreCase(SUBCATEGORYID)){
+		    		fq=fq+" AND "+SUBCATEGORYID+":"+filterQuery;
+		    	}
+		    	if(filterQuery!=null && key.equalsIgnoreCase(CITYID)){
+		    		fq=fq+" AND "+CITYID+":"+filterQuery;
+		    	}
+	
+		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTTYPE)){
+		    		fq=fq+" AND "+EVENTTYPE+":"+filterQuery;
+		    	}
+	
+		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTDATE)){
+		    		fq=fq+" AND "+EVENTDATE+":"+filterQuery;
+		    	}
+			}
 		}
 		if(fq!=null && fq.length()>4){
 			fq = fq.substring(5);
 		}
+		if(countryId!=null){
+			fq=COUNTRYID+":"+countryId+" AND "+fq;
+		}
 		
-		
-		QueryResponse response = getSolrResponse(query,fq, rows,start); 
+		QueryResponse response = getSolrResponse(query,fq, rows,start*rows); 
 		
 
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
+		addImageHostUrl(searchQueryResponse.getEventSearchRecords());
 		searchQueryResponse.setQuery(query);
 		
 		List<FilterItem> subCategoryFilterItems = searchQueryResponse.getSubCategoryFilterItems();
@@ -144,14 +169,14 @@ public class SearchServiceImpl implements SearchService {
 			searchQueryResponse.setSubCategoryFilterItems(subCategoryFilterItems);
 		}
 		
-		List<Count> facetValues = response.getFacetField("subCategoryId").getValues();
+		List<Count> facetValues = response.getFacetField(SUBCATEGORYID).getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				if(facet == null) continue;
 				if(facet.getName()!=null){
 					CategoryNode node = categoryTree.getNode(Long.parseLong(facet.getName()));
 					if(node!=null && facet.getCount()>0){
-						String subcategoryFilter = listOfFilters.get("subCategoryId");
+						String subcategoryFilter = listOfFilters.get(SUBCATEGORYID);
 						if(subcategoryFilter!=null){
 							if(!subcategoryFilter.contains(node.getId().toString())){
 								subcategoryFilter = subcategoryFilter.replace("(", "").replace(")", "");
@@ -163,8 +188,8 @@ public class SearchServiceImpl implements SearchService {
 							subcategoryFilter = node.getId().toString();
 						}
 						Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
-						String filterFacetQuery = "subCategoryId="+subcategoryFilter;
-						newFilterMap.put("subCategoryId", subcategoryFilter);
+						String filterFacetQuery = SUBCATEGORYID+"="+subcategoryFilter;
+						newFilterMap.put(SUBCATEGORYID, subcategoryFilter);
 						FilterItem filterItem = getFilterItem(facet.getCount(), node.getName(),filterFacetQuery,newFilterMap);
 						subCategoryFilterItems.add(filterItem);
 					}
@@ -181,12 +206,12 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		
-		facetValues = response.getFacetField("eventType").getValues();
+		facetValues = response.getFacetField(EVENTTYPE).getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				if(facet.getCount()>0){
 					
-					String eventTypeFilter = listOfFilters.get("eventType");
+					String eventTypeFilter = listOfFilters.get(EVENTTYPE);
 					if(eventTypeFilter!=null){
 						if(!eventTypeFilter.contains(facet.getName())){
 							eventTypeFilter = eventTypeFilter.replace("(", "").replace(")", "");
@@ -197,9 +222,9 @@ public class SearchServiceImpl implements SearchService {
 					}else{
 						eventTypeFilter = facet.getName();
 					}
-					String filterFacetQuery = "eventType="+eventTypeFilter;
+					String filterFacetQuery = EVENTTYPE+"="+eventTypeFilter;
 					Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
-					newFilterMap.put("eventType", eventTypeFilter);
+					newFilterMap.put(EVENTTYPE, eventTypeFilter);
 					FilterItem filterItem = getFilterItem(facet.getCount(), facet.getName(), filterFacetQuery,newFilterMap);
 					eventTypeFilterItems.add(filterItem);
 				}
@@ -213,7 +238,7 @@ public class SearchServiceImpl implements SearchService {
 			searchQueryResponse.setCityIdFilterItems(cityIdFilterItems);
 		}
 		
-		facetValues = response.getFacetField("cityId").getValues();
+		facetValues = response.getFacetField(CITYID).getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				String facetName = facet.getName();
@@ -223,7 +248,7 @@ public class SearchServiceImpl implements SearchService {
 						cityName = cityMap.get(Integer.parseInt(facetName));
 						if(cityName!=null && facet.getCount()>0){
 							
-							String cityIdFilter = listOfFilters.get("cityId");
+							String cityIdFilter = listOfFilters.get(CITYID);
 							if(cityIdFilter!=null){
 								if(!cityIdFilter.contains(facetName)){
 									cityIdFilter = cityIdFilter.replace("(", "").replace(")", "");
@@ -234,9 +259,9 @@ public class SearchServiceImpl implements SearchService {
 							}else{
 								cityIdFilter = facetName;
 							}
-							String filterFacetQuery = "cityId="+cityIdFilter;
+							String filterFacetQuery = CITYID+"="+cityIdFilter;
 							Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
-							newFilterMap.put("cityId", cityIdFilter);		
+							newFilterMap.put(CITYID, cityIdFilter);		
 							FilterItem filterItem = getFilterItem(facet.getCount(), cityName,filterFacetQuery,newFilterMap);
 							cityIdFilterItems.add(filterItem);
 						}
@@ -246,7 +271,43 @@ public class SearchServiceImpl implements SearchService {
 				}
 			}
 		}
+		
+		facetValues = response.getFacetField(COUNTRYID).getValues();
+		if(facetValues!=null && facetValues.size()>0){
+			Map<Integer, String> countryMap = entityUtilities.getCountryMap();
+			long otherCountriesCount = 0;
+			for(Count facet:facetValues){
+				String facetName = facet.getName();
+				try {
+					int country = Integer.parseInt(facetName);
+					if(countryId.compareTo(country)==0){
+						facet.getCount();
+					}else{
+						otherCountriesCount+=facet.getCount();
+					}
+				} catch (Exception e) {
+					logger.info("not able to parse country id from seach results "+facetName);
+				}
+			}
+			FilterItem filterItem = getFilterItem(otherCountriesCount, "Other Countries",COUNTRYID+"=-"+countryId,null);
+			List<FilterItem> otherCountryFilterList = new ArrayList<FilterItem>();
+			otherCountryFilterList.add(filterItem);
+			searchQueryResponse.setOtherCountries(otherCountryFilterList);
+		}
 		return searchQueryResponse;
+	}
+
+
+	private void addImageHostUrl(List<EventSearchRecord> eventSearchRecords) {
+		if(eventSearchRecords!=null && eventSearchRecords.size()>0){
+			for(EventSearchRecord eventSearchRecord:eventSearchRecords){
+				if(eventSearchRecord==null) continue;
+				if(eventSearchRecord.getPromotionLogoUrl()!=null && !eventSearchRecord.getPromotionLogoUrl().startsWith(imageHostUrl)){
+					eventSearchRecord.setPromotionLogoUrl(imageHostUrl+eventSearchRecord.getPromotionLogoUrl());
+				}
+			}
+		}
+		
 	}
 
 
@@ -277,7 +338,7 @@ public class SearchServiceImpl implements SearchService {
 			searchQueryResponse.setEventDateFilterItems(eventDateFilterItems);
 		}
 		
-		facetValues = response.getFacetField("eventDate").getValues();
+		facetValues = response.getFacetField(EVENTDATE).getValues();
 		long todayCount =0L;
 		long tomorrowCount=0L;
 		long currentWeekCount=0L;
@@ -323,7 +384,7 @@ public class SearchServiceImpl implements SearchService {
 		Date date = cal.getTime();
 		String dateFormat = sdf.format(date);
 		
-		String eventDateFilter = listOfFilters.get("eventDate");
+		String eventDateFilter = listOfFilters.get(EVENTDATE);
 		if(eventDateFilter!=null){
 			if(!eventDateFilter.contains(dateFormat)){
 				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
@@ -332,9 +393,9 @@ public class SearchServiceImpl implements SearchService {
 		}else{
 			eventDateFilter = dateFormat;
 		}
-		String filterFacetQuery = "eventDate="+eventDateFilter;
+		String filterFacetQuery = EVENTDATE+"="+eventDateFilter;
 		Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put("eventDate", eventDateFilter);		
+		newFilterMap.put(EVENTDATE, eventDateFilter);		
 		FilterItem filterItem = getFilterItem(todayCount,"Today", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 		
@@ -344,7 +405,7 @@ public class SearchServiceImpl implements SearchService {
 		date = cal.getTime();
 		dateFormat = sdf.format(date);
 		
-		eventDateFilter = listOfFilters.get("eventDate");
+		eventDateFilter = listOfFilters.get(EVENTDATE);
 		if(eventDateFilter!=null){
 			if(!eventDateFilter.contains(dateFormat)){
 				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
@@ -355,9 +416,9 @@ public class SearchServiceImpl implements SearchService {
 		}else{
 			eventDateFilter = dateFormat;
 		}
-		filterFacetQuery = "eventDate="+eventDateFilter;
+		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put("eventDate", eventDateFilter);		
+		newFilterMap.put(EVENTDATE, eventDateFilter);		
 		filterItem = getFilterItem(tomorrowCount,"Tommorrow", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
@@ -374,7 +435,7 @@ public class SearchServiceImpl implements SearchService {
 		date = cal.getTime();
 		String endDateFormat = sdf.format(date);
 		
-		eventDateFilter = listOfFilters.get("eventDate");
+		eventDateFilter = listOfFilters.get(EVENTDATE);
 		if(eventDateFilter!=null){
 			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
 				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
@@ -385,9 +446,9 @@ public class SearchServiceImpl implements SearchService {
 		}else{
 			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
 		}
-		filterFacetQuery = "eventDate="+eventDateFilter;
+		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put("eventDate", eventDateFilter);		
+		newFilterMap.put(EVENTDATE, eventDateFilter);		
 		filterItem = getFilterItem(currentWeekCount,"This Week", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
@@ -406,7 +467,7 @@ public class SearchServiceImpl implements SearchService {
 		date = cal.getTime();
 		endDateFormat = sdf.format(date);
 
-		eventDateFilter = listOfFilters.get("eventDate");
+		eventDateFilter = listOfFilters.get(EVENTDATE);
 		if(eventDateFilter!=null){
 			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
 				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
@@ -417,9 +478,9 @@ public class SearchServiceImpl implements SearchService {
 		}else{
 			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
 		}
-		filterFacetQuery = "eventDate="+eventDateFilter;
+		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put("eventDate", eventDateFilter);		
+		newFilterMap.put(EVENTDATE, eventDateFilter);		
 		filterItem = getFilterItem(nextWeekCount,"Next Week", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
@@ -430,7 +491,7 @@ public class SearchServiceImpl implements SearchService {
 		date = cal.getTime();
 		dateFormat = sdf.format(date);
 
-		eventDateFilter = listOfFilters.get("eventDate");
+		eventDateFilter = listOfFilters.get(EVENTDATE);
 		if(eventDateFilter!=null){
 			if(!eventDateFilter.contains(dateFormat+" TO *")){
 				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
@@ -441,10 +502,10 @@ public class SearchServiceImpl implements SearchService {
 		}else{
 			eventDateFilter = "("+dateFormat+" TO *)";
 		}
-		filterFacetQuery = "eventDate="+eventDateFilter;
+		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put("eventDate", eventDateFilter);		
-		filterItem = getFilterItem(otherDatesCount,"Other Dates", "eventDate=("+dateFormat+" TO *)",newFilterMap);
+		newFilterMap.put(EVENTDATE, eventDateFilter);		
+		filterItem = getFilterItem(otherDatesCount,"Other Dates", EVENTDATE+"=("+dateFormat+" TO *)",newFilterMap);
 		eventDateFilterItems.add(filterItem);
 	}
 
@@ -456,22 +517,24 @@ public class SearchServiceImpl implements SearchService {
 		filterItem.setName(name);
 		
 		filterQuery = "";
-		for(String key:filterMap.keySet()){
-			String fq = filterMap.get(key);
-	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("subCategoryId")){
-	    		filterQuery=filterQuery+"&subCategoryId="+fq;
-	    	}
-	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("cityId")){
-	    		filterQuery=filterQuery+"&cityId="+fq;
-	    	}
-
-	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("eventType")){
-	    		filterQuery=filterQuery+"&eventType="+fq;
-	    	}
-
-	    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase("eventDate")){
-	    		filterQuery=filterQuery+"&eventDate="+fq;
-	    	}
+		if(filterMap!=null){
+			for(String key:filterMap.keySet()){
+				String fq = filterMap.get(key);
+		    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase(SUBCATEGORYID)){
+		    		filterQuery=filterQuery+"&"+SUBCATEGORYID+"="+fq;
+		    	}
+		    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase(CITYID)){
+		    		filterQuery=filterQuery+"&"+CITYID+"="+fq;
+		    	}
+	
+		    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase(EVENTTYPE)){
+		    		filterQuery=filterQuery+"&"+EVENTTYPE+"="+fq;
+		    	}
+	
+		    	if(fq!=null && !fq.isEmpty() && key.equalsIgnoreCase(EVENTDATE)){
+		    		filterQuery=filterQuery+"&"+EVENTDATE+"="+fq;
+		    	}
+			}
 		}
 		if(filterQuery!=null && !filterQuery.isEmpty() && filterQuery.startsWith("&") && filterQuery.length()>1){
 			filterQuery = filterQuery.substring(1);

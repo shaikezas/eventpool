@@ -1,4 +1,5 @@
 <script language="JavaScript" type="text/javascript">
+
 var sec = 00;   // set the seconds
 var min = 15;   // set the minutes
 
@@ -17,10 +18,14 @@ if (sec<=9) { sec = "0" + sec; }
 if (document.getElementById) { document.getElementById('theTime').innerHTML = time; }
 
 SD=window.setTimeout("countDown();", 1000);
-if (min == '00' && sec == '00') { alert("Time out ...."); }
+if (min == '00' && sec == '00') { 
+alert("Time out redirecting to home page. Book again.");
+window.location="http://localhost:8080/#/home";
+}
 }
 window.onload = countDown();
 // -->
+
 </script>
 
 <link href="resources/bootstrap/css/entertainment.css" rel="stylesheet">
@@ -88,7 +93,7 @@ window.onload = countDown();
 				
 				
 				<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
-							<h2>Time Left to Book: <span id="theTime"></span></h2> 
+							  <h2>Time Left to Book: <span id="theTime"></span></h2> 
 							<h4>Ticket Buyer</h4>
 					
 						<div class="control-group">
@@ -161,7 +166,7 @@ window.onload = countDown();
 								  <div class="control-group">
 								    <label class="control-label" for="Pincode">Pincode  :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="number" name="pincode" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode" required ng-minlength="6" ng-maxlength="6">
+								      <input type="text" name="pincode" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode" required>
 								      <span ng-show="pincodeRequired" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
@@ -207,7 +212,7 @@ window.onload = countDown();
 							  
 							  <div class="control-group">
 							    <div class="controls">
-							      <button type="button" class="btn " ng-click="bookTicket()">Payment</button> 
+							      <button type="button" class="btn " ng-click="bookTicket()" ng-disabled="disablePayment">Payment</button> 
 							    </div>
 							  </div>	
 							
@@ -255,9 +260,9 @@ window.onload = countDown();
 												<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
 												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
 												<li > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
-												<li > <i class="iconTicket">	</i> 	PPayable Amount : {{orderRegister.netAmount}}		</li>
+												<li > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}}		</li>
 											</ul>
-											<button class="btn ">Edite Order</button>
+											<!-- <button class="btn ">Edit Order</button> -->
 										</div>
 									</div>
 			

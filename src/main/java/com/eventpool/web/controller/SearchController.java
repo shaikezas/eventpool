@@ -1,6 +1,8 @@
 package com.eventpool.web.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +29,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import sun.net.util.IPAddressUtil;
 
 import com.eventpool.common.dto.Region;
+import com.eventpool.common.entities.Country;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventPoolConstants;
+import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.web.forms.SearchResponse;
 
@@ -36,6 +42,8 @@ import com.eventpool.web.forms.SearchResponse;
 public class SearchController {
 	
 
+	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
+	
     @Resource
     private EntityUtilities utilities;
     
@@ -76,10 +84,25 @@ public class SearchController {
     public @ResponseBody SearchQueryResponse getDefaultResults(HttpServletRequest request
     		
     		) throws Exception {
+       	
+
     	String subCategoryId = request.getParameter("subCategoryId");
     	String cityId = request.getParameter("cityId");
     	String eventType = request.getParameter("eventType");
     	String eventDate = request.getParameter("eventDate");
+    	String countryParam = request.getParameter("countryId");
+    	
+    	Integer countryId = null;
+    	if(countryParam==null){
+        	String ip=getRemoteIp(request);
+        	 countryId=ipLocation.getCountryId(ip);
+    	}else{
+	    	try {
+				countryId = Integer.parseInt(countryParam);
+			} catch (Exception e1) {
+				logger.info("country is not parsable"+countryParam);
+			}
+    	}
     	String fq = null;
     	
     	Map<String,String> filterMap = new HashMap<String, String>();
@@ -105,7 +128,17 @@ public class SearchController {
 
     	String q = request.getParameter("q");
     	q = checkIfUndefined(q);
-		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, 0);
+    	int start=0;
+    	String startParam = request.getParameter("start");
+    	if(startParam!=null){
+    		try {
+				start = Integer.parseInt(startParam.trim());
+			} catch (Exception e) {
+				logger.info("Parsing error for start parameter "+startParam);
+			}
+    	}
+    	
+		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, start,countryId);
     }
     
     
@@ -116,14 +149,14 @@ public class SearchController {
     	return q;
 	}
 
-	@RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{loc}", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{loc}", method = RequestMethod.GET)
     public @ResponseBody SearchQueryResponse getSearchResultsByFilterType(@PathVariable("filterType") String filterType,@PathVariable("searchType") String searchType,@PathVariable("loc") String loc) throws Exception {
     	String query = filterType+","+searchType + "," + loc;
     	
     	System.out.println("User entered query from the ui...:::" + query);
     	return searchService.getSearchQueryResponse(searchType, null,10, 0);
       }
-    
+*/    
     
     public static String getNextKey(String key1){
         int len = key1.length();
@@ -136,13 +169,14 @@ public class SearchController {
     public @ResponseBody SearchQueryResponse getHomepageResults(HttpServletRequest httpServletRequest) throws Exception {
     	String ip=getRemoteIp(httpServletRequest);
 		Integer countryId = ipLocation.getCountryId(ip);
-    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords(20, 0, null, countryId);
+    	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords(12, 0, null, countryId);
     	SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
     	searchQueryResponse.setEventSearchRecords(eventSearchRecords);
     	return searchQueryResponse;
     }
     
 	public static String getRemoteIp(HttpServletRequest request) {
+		if(request==null) return null;
 		String clientIp = request.getRemoteAddr();
 		String xForwardedFor = request.getHeader("X-FORWARDED-FOR");
 		if (StringUtils.isBlank(xForwardedFor))
@@ -162,5 +196,17 @@ public class SearchController {
 	public static boolean isValidIpAddress(String ip) {
 		return (IPAddressUtil.isIPv4LiteralAddress(ip) || IPAddressUtil.isIPv6LiteralAddress(ip));
 	}
-
+	
+	@RequestMapping(value = "/getactivecountries", method = RequestMethod.GET)
+	public  @ResponseBody Map<Integer,String> getActiveCountries(HttpServletRequest request)  throws Exception {
+		Map<Integer, Country> activeCountryMap = utilities.getActiveCountryMap();
+		Collection<Country> values = activeCountryMap.values();
+		Map<Integer,String> activeCountries = new HashMap<Integer,String>();
+		for(Country country:values){
+			activeCountries.put(country.getId(), country.getName());
+			//activeCountries.add(country.getName());
+		}
+		//Collections.sort(activeCountries);
+		return activeCountries;
+	}
 }

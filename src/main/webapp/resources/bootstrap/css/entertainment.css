@@ -17,6 +17,12 @@ body {
 	height: 200px;
 	/* background-image:url(../img/entertainmentBannar.jpg); */
 	margin: 40px auto; 
+	width: 1000px;
+	height: 300px;
+	/* background-image:url(../img/entertainmentBannar.jpg); */
+	margin: 40px auto;
+	border-radius: 8px;
+	border: 1px solid #ccc;
 	}
 
 .eventBanners .image{

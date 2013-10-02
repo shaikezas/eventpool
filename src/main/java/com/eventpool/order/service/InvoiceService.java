@@ -20,12 +20,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eventpool.common.dto.InvoiceDTO;
+import com.eventpool.common.dto.Region;
+import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
 import com.eventpool.common.entities.Invoice;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EmailAttachment;
+import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.InvoiceRepository;
@@ -52,6 +55,9 @@ public class InvoiceService {
     
     @Resource
     HtmlEmailService htmlEmailService;
+    
+    @Resource
+    private EntityUtilities  entityUtilities;
     
     public Boolean sendInvoice(Invoice invoice) throws FileNotFoundException, IOException, DocumentException, Exception {
     	if(invoice==null){
@@ -142,8 +148,8 @@ public class InvoiceService {
     	sendInvoice(invoice);
     }
     
-    public InvoiceDTO viewInvoice(Long suborderId){
-    	Invoice invoice = invoiceRepository.findBySuborderId(suborderId);
+    public InvoiceDTO viewInvoice(Long suborderId,Long createdBy){
+    	Invoice invoice = invoiceRepository.findBySuborderIdAndCreatedBy(suborderId,createdBy);
     	InvoiceDTO dto = convertToDTO(invoice);
     	return dto;
     }
@@ -202,7 +208,20 @@ public class InvoiceService {
     	invoice.setQuantity(ticket.getQuantity());
     	invoice.setTotalAmount(suborder.getNetAmount());
     	invoice.setTotalPrice(suborder.getGrossAmount());
-    	invoice.setVenue(event.getVenueAddress().getAddress1());
+    	Address venueAddress = event.getVenueAddress();
+    	String address = "";
+    	if(venueAddress!=null){
+    		Integer cityId = venueAddress.getCityId();
+    		address = venueAddress.getAddress1() +","+ venueAddress.getAddress2();
+    		if(cityId!=null){
+    	    	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
+    	    	Region region = csc.get(cityId);
+    	    	address = address + "," +region.getCityName() + ","+region.getStateName()+","+region.getCountryName();
+    	    	}
+    		address = address + ","+venueAddress.getZipCode();
+    		
+    	}
+    	invoice.setVenue(address);
     	invoice.setSuborderId(suborder.getId());
     	invoice.setTicketName(suborder.getTicketName());
     	invoice.setTicketType(ticket.getTicketType());

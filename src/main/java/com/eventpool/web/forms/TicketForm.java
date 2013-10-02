@@ -34,7 +34,7 @@ public class TicketForm {
 	
 	private boolean showsettings = false;
 	
-	private boolean showPrice =false ;
+	private boolean showPrice = false ;
 	
 	private boolean showFree = false;
 	
@@ -143,7 +143,7 @@ public class TicketForm {
 		
 		if(this.showPrice)
 				return TicketType.PAID;
-		return TicketType.FREE;
+		return TicketType.PAID;
 	}
 	
 	public void setTicketType(TicketType ticketType) {

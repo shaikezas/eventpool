@@ -81,11 +81,14 @@ public class EventSearchRecord  implements Serializable{
 	private String infoType;
 	
 	@Field
-	private String companyLogoUrl;
+	private String promotionLogoUrl;
 	
 	@Field
 	private Integer countryId;
-	
+
+	@Field
+	private String categoryName;
+
 	public String getTitle() {
 		return title;
 	}
@@ -286,11 +289,13 @@ public class EventSearchRecord  implements Serializable{
 	public void setInfoType(String infoType) {
 		this.infoType = infoType;
 	}
-	public String getCompanyLogoUrl() {
-		return companyLogoUrl;
+	
+	
+	public String getPromotionLogoUrl() {
+		return promotionLogoUrl;
 	}
-	public void setCompanyLogoUrl(String companyLogoUrl) {
-		this.companyLogoUrl = companyLogoUrl;
+	public void setPromotionLogoUrl(String promotionLogoUrl) {
+		this.promotionLogoUrl = promotionLogoUrl;
 	}
 	public Date getStartDate() {
 		return startDate;
@@ -315,6 +320,12 @@ public class EventSearchRecord  implements Serializable{
 	}
 	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
 }

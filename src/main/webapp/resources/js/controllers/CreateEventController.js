@@ -18,11 +18,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.subject = "";
     $scope.toValue = "";
     $scope.message = "";
+    $scope.eventFormOptions = {};
     var map = [];
     var classificationTypes1 = [];
     var upgrades = [];
     var i;
     $scope.from="admin@eventhut.com";
+    $scope.disabled = false;
    
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
@@ -34,7 +36,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       
       $scope.updateQuestions = function(){
     	  $http.post('event/myevent/updatesettings', $scope.eventFormSettings).success(function(data) {
-//            $scope.fetchEventsList();
+        }).error(function() {
+            $scope.setError('Could not update settings.');
+        });
+      }
+      
+      $scope.updateEventOptions = function(){
+    	  $http.post('event/myevent/updateoptions', $scope.event).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
@@ -74,7 +82,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      });
    }
 
-   $scope.createevent();
    
    
     $scope.close = function(){
@@ -102,6 +109,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
+	   
+	    if($scope.event.isWebinar){
+	    	$scope.setRequiredFields();
+	    }
 	    i = $scope.event.classificationType;
 	    upgrades = $scope.classificationTypes;
 	    while(i <= $scope.membership){
@@ -110,6 +121,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    }
 	    
 	    $scope.classificationTypes = classificationTypes1;
+	    $scope.isWebinar = $scope.event.isWebinar;
 		 
     }).error(function(data) {
     	
@@ -122,7 +134,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.showAttendeDetails = true;
     }
     };
-    $scope.myevent();
+    
     
     $scope.updateUrl = function() {
     	$scope.event.eventUrl = $scope.event.title;
@@ -151,6 +163,15 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.fetchEventSettings = function() {
     	eventsettings.geteventsettings($scope.event.id).success(function(eventFormSettings) {
 			$scope.eventFormSettings = eventFormSettings;
+	    }).error(function(data) {
+	    	
+	    });
+    }
+    
+    $scope.fetchEventOptions = function() {
+    	$http.get('event/myevent/options/'+$scope.event.id).success(function(data) {
+			$scope.eventFormOptions = data;
+			alert($scope.eventFormOptions.faceBookUrl);
 	    }).error(function(data) {
 	    	
 	    });
@@ -191,21 +212,26 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
 
     $scope.addNewEvent = function() {
+    	/*$('#loadingPopup').modal('toggle');*/
+    	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
         if($scope.stopSubmitAction === true){
-        	$scope.stopSubmitAction = false;
+        	$scope.stopSubmitAction = false;        	
          }
         else {        	
         $http.post('event/myevent/addevent', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
+        	$scope.disabled = false;
+        	/*$('#loadingPopup').modal('toggle');*/
         });
         }
         
     }
     
     $scope.addNewEventAndPublish = function() {
+    	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
         if($scope.stopSubmitAction === true){
@@ -215,16 +241,19 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         $http.post('event/myevent/addEventAndPublish', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
+        	$scope.disabled = false;
         });
         }
         
     }
     $scope.setRequiredFields = function() {
     	$scope.isWebinarChecked=!$scope.isWebinarChecked;
+    	if(angular.isDefined($scope.venueForm)){
     	$scope.venueForm.venueName.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress1.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress2.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.$invalid = !$scope.isWebinarChecked;
+    }
     }
     $scope.validations = function() {
     	$scope.nameRequired = $scope.eventForm.eName.$error.required;
@@ -254,7 +283,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     	}
       	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
-    		$scope.stopSubmitAction=true;
+    		$scope.stopSubmitAction=true;    		
+    		$scope.disabled = false;
+    		
     	}
     }
     
@@ -407,6 +438,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.resetError = function() {
         $scope.error = false;
         $scope.errorMessage = '';
+//        message().show = false;
     }
 
     $scope.setError = function(message) {
@@ -464,6 +496,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      
     $scope.fetchCategories();
     
+//    $scope.createevent();
+    
+    $scope.myevent();
+    
     $scope.predicate = 'id'
-}
+
+    }
 

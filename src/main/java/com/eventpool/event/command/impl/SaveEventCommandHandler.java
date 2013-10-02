@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.MediaDTO;
@@ -32,7 +33,10 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 	
 	@Resource 
 	SaveImage saveImage;
-	
+
+	@Value("$EVENT_POOL{image.location}")
+	private String imageBasePathForDb;// = "eventpool//images//";
+
 	@Resource
 	TicketInventoryService ticketInventoryService;
 
@@ -67,10 +71,21 @@ public class SaveEventCommandHandler implements CommandHandler<SaveEventCommand,
 		MediaDTO media = eventDTO.getMedia();
 		if(media!=null){
 			String bannerUrl = media.getBannerUrl();
-			Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl);
-			if(imageMap!=null){
-				media.setBannerUrl(imageMap.get(ImageType.MEDIUM));
+			if(bannerUrl!=null && !bannerUrl.contains(imageBasePathForDb)){
+				Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(bannerUrl,ImageType.BANNER);
+				if(imageMap!=null){
+					media.setBannerUrl(imageMap.get(ImageType.BANNER));
+				}
 			}
+
+			String promotionalUrl = media.getPromotionLogoUrl();
+			if(promotionalUrl!=null && !promotionalUrl.contains(imageBasePathForDb)){
+				Map<ImageType, String> imageMap = saveImage.saveImageOnDisk(promotionalUrl,ImageType.PROMO);
+				if(imageMap!=null){
+					media.setPromotionLogoUrl(imageMap.get(ImageType.PROMO));
+				}
+			}
+
 		}
 	}
 }

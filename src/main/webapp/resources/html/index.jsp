@@ -22,6 +22,8 @@
 	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
 	<link href="css/wysiwyg.css" rel="stylesheet" media="screen">
 	
+	<link rel="stylesheet" href="lib/ckeditor/skins/moono/editor.css">	
+	
 	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     
@@ -60,24 +62,24 @@
 				  		<div class="userLogin"> 
 							<div class="modal-body">
 				        		 <div ng-class="'alert alert-'+access().type" ng-show="access().show">
-				        		 <button type="button" class="close" ng-click="access().show=false">x</button>
+				        		 <button type="button" class="close" ng-click="access().show=false;usernameReq=false;passwordRequired=false;validEmail=false">x</button>
 				        		 <msg>{{access().text}}</msg>
 				    			</div>
 							<form class="form-horizontal" name="userForm">
 				         
 								  <fieldset>
-								   		<legend>Login User</legend>
+								   		<legend ng-style="{color:'blue'}">Login User</legend>
 								    	<label for="username">Email</label>
-								    	<input id="username" ng-model="username" type="email" name="username"/>
-				                         <div  ng-show="userForm.username.$dirty && userForm.username.$invalid" ng-style="{color:'red'}">Invalid:
-											<span ng-show="userForm.username.$error.required" ng-style="{color:'red'}">Email is required.</span>
-											<span ng-show="userForm.username.$error.email" ng-style="{color:'red'}">Please, write a valid email address.</span>
+								    	<input id="username" ng-model="username" type="email" name="username" required/>
+				                         <div  ng-style="{color:'red'}">
+											<span ng-show="usernameReq" ng-style="{color:'red'}">Email is required.</span>
+											<span ng-show="validEmail" ng-style="{color:'red'}">Enter valid email address.</span>
 				                		</div>
 								   
 								   		<label for="password">Password</label>
 								 		<input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
-					                     <div  ng-show="userForm.password.$dirty && userForm.password.$invalid" ng-style="{color:'red'}">Invalid:
-											<span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span>
+					                     <div  ng-show="passwordRequired" ng-style="{color:'red'}">Password is Required.
+											<!-- <span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span> -->
 					               		 </div>
 								
 								  </fieldset>
@@ -99,13 +101,13 @@
 							
 							<div class="modal-body">
 				        		 <div ng-class="'alert alert-'+signupmessage().type" ng-show="signupmessage().show">
-				        		 <button type="button" class="close" ng-click="signupmessage().show=false">x</button>
+				        		 <button type="button" class="close" ng-click="signupmessage().show=false;newUserEmailReq=false;newuserValidEmail=false;newUserPasswordReq=false;newUserPasswordCFReq=false">x</button>
 				        		 <msg>{{signupmessage().text}}</msg>
 				    		</div>
 							
 							<form name="signupForm">
 							  <fieldset>
-							    <legend>New User Sign Up Here</legend>
+							    <legend ng-style="{color:'blue'}">New User Sign Up Here</legend>
 							    <label for="firstName">First Name</label>
 								<input id="firstName" type="text" ng-model="signupuserform.fname" name="firstName"/>
 								
@@ -113,17 +115,19 @@
 								<input id="lastName" type="text" ng-model="signupuserform.lname" name="lastName"/>
 								
 							    <label for="newUserEmail">Email</label>
-								<input id="newUserEmail" type="email" ng-model="signupuserform.email" name="newUserEmail"/>
-								<div  ng-show="signupForm.newUserEmail.$dirty && signupForm.newUserEmail.$invalid" ng-style="{color:'red'}">Invalid:
-											<span ng-show="signupForm.newUserEmail.$error.required" ng-style="{color:'red'}">Email is required.</span>
-											<span ng-show="signupForm.newUserEmail.$error.email" ng-style="{color:'red'}">Please, write a valid email address.</span>
-				                		</div>
+								<input id="newUserEmail" type="email" ng-model="signupuserform.email" name="newUserEmail" required/>
+								 <div  ng-style="{color:'red'}">
+									<span ng-show="newUserEmailReq" ng-style="{color:'red'}">Email is required.</span>
+									<span ng-show="newuserValidEmail" ng-style="{color:'red'}">Enter valid email address.</span>
+				                </div>
 								
 								<label for="newUserPassword">Password</label>
-								<input id="newUserPassword" type="password" ng-model="signupuserform.password" name="newUserPassword"/>
+								<input id="newUserPassword" type="password" ng-model="signupuserform.password" name="newUserPassword" required/>
+								<div  ng-show="newUserPasswordReq" ng-style="{color:'red'}">Password is Required.</div>
 								
 								<label for="newUserPasswordCF">Confirm Password</label>
-								<input id="newUserPasswordCF" type="password" name="newUserPasswordCF"/>
+								<input id="newUserPasswordCF" type="password" ng-model="confirmpassword" name="newUserPasswordCF" required/>
+								<div  ng-show="newUserPasswordCFReq" ng-style="{color:'red'}">Confirm Password is Required.</div>
 								
 								
 								<div class="modal-footer">
@@ -201,10 +205,12 @@
 	<script src="resources/js/controllers/MyEventsController.js"></script>
 	<script src="resources/js/controllers/FindEventController.js"></script>
 	<script src="resources/js/controllers/MyTicketsController.js"></script>
+	<script src="resources/js/controllers/PrintTicketController.js"></script>
 	<script src="resources/js/controllers/UserController.js"></script>
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>
 	<script src="resources/js/ui-bootstrap-tpls-0.2.0.js"></script>
+	<script src="resources/lib/ng-infinite-scroll.min.js"></script>
 	
 	<script src="lib/fileupload/jquery.iframe-transport.js"></script>
 	<script src="lib/fileupload/jquery.fileupload.js"></script>
@@ -212,7 +218,19 @@
 	<script  src="resources/bootstrap/js/ui.multiselect.js"></script>
 	
 	<script type="text/javascript" src="js/jquery.ocupload-1.1.4.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/build-config.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/config.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/styles.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/lang/en.js"></script>
 
+<script type="text/javascript" src="lib/ckeditor/plugins/image/images/noimage.png"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/image/dialogs/image.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/tabletools/dialogs/tableCell.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/table/dialogs/table.js"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/icons.png"></script>
+	<script type="text/javascript" src="lib/ckeditor/plugins/icons_hidpi.png"></script>
+			
 	
   </body>
 </html>

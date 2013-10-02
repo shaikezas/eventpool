@@ -52,9 +52,10 @@ public class HtmlEmailService
 			   props.setProperty("mail.smtp.host", host);
 			   
 			   props.put("mail.smtp.auth", "true");
-			   props.put("mail.smtp.starttls.enable", "true");
-			   props.put("mail.smtp.host", "smtp.gmail.com");
-			   props.put("mail.smtp.port", "587");
+		//	   props.put("mail.smtp.starttls.enable", "true");
+			   props.put("mail.smtp.host", host);
+			   //props.put("mail.smtp.port", "587");
+			   props.put("mail.smtp.port", "25");
 			
 			   final PasswordAuthentication passwordAuthentication = new PasswordAuthentication(this.username, this.password);
 			   Authenticator authenticator = new javax.mail.Authenticator() {

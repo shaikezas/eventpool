@@ -31,16 +31,18 @@ App.factory('Data', function() {
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
-    $routeProvider.when('/createevent',         {        templateUrl: 'html/event/myevent/createevent.html',          controller: CreateEventController              			});
+    $routeProvider.when('/createevent',         {        templateUrl: 'html/event/myevent/createevent.html',  controller: CreateEventController              			});
     $routeProvider.when('/eventlist',           {        templateUrl: 'html/event/eventlist.html',            controller: CreateEventController              			});
     $routeProvider.when('/myevents',            {        templateUrl: 'html/event/myevents.html',             controller: MyEventsController   			          	});
     $routeProvider.when('/findevent',           {        templateUrl: 'html/event/findevent.html',            controller: FindEventController    					    });
     $routeProvider.when('/mytickets',           {        templateUrl: 'html/ticket/mytickets.html',           controller: MyTicketsController    					    });
     $routeProvider.when('/home',                {        templateUrl: 'html/home.html',                       controller: MainController    					    });
+    $routeProvider.when('/',                {        templateUrl: 'html/home.html',                       controller: MainController    					    });    
     $routeProvider.when('/myevent/:eventid',	{        templateUrl: 'html/event/manageevent.html', 		  controller: CreateEventController                               });	
     $routeProvider.when('/event/:eventurl',	{        templateUrl: 'html/event/eventpage.html', 		  controller: EventPageController                               });
     $routeProvider.when('/order',	{        templateUrl: 'html/order/orderevent.html', 		  controller: EventPageController                               });
     $routeProvider.when('/userSettings',           {        templateUrl: 'html/user/MyAccount.html',           controller: UserController    					    });
+    $routeProvider.when('/printticket/:suborderid',           {        templateUrl: 'html/ticket/printticket.html',           controller: PrintTicketController    					    });
     $routeProvider.otherwise({redirectTo: '/home'});
   //configure $http to catch message responses and show them
     $httpProvider.responseInterceptors.push(function ($q) {

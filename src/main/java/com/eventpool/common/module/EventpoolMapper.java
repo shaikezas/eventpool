@@ -5,9 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +23,7 @@ import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Event;
+import com.eventpool.common.entities.Media;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Registration;
 import com.eventpool.common.entities.Suborder;
@@ -40,6 +44,20 @@ public class EventpoolMapper {
 	
 	DozerBeanMapper mapper;
 	
+	@Value("$EVENT_POOL{image.location.prefix}")
+	private String imageBasePath ;//= "C://Event//image//";
+	
+	@Value("$EVENT_POOL{image.location}")
+	private String imageBasePathForDb;// = "eventpool//images//";
+	
+	@Value("$EVENT_POOL{image.source.location}")
+	private String localImagePath ;//= "C://Event//source";
+
+	@Value("$EVENT_POOL{image.host}")
+	private String imageHostUrl ;//= "C://Event//source";
+
+	@Resource
+	private CategoryTree categoryTree;
 	
 	@SuppressWarnings("unchecked")
 	public EventpoolMapper() {
@@ -172,6 +190,8 @@ public class EventpoolMapper {
 		}else{
 			eventDTO.setClassificationType(1);
 		}
+		eventDTO.setCreatedDate(event.getCreatedDate());
+		eventDTO.setModifiedDate(event.getModifiedDate());
 	}
 	
 	public void mapEvent(EventDTO eventDTO,Event event){
@@ -209,6 +229,28 @@ public class EventpoolMapper {
 				event.setClassificationType(classificationType);
 			}
 		}
+		
+		//map image if url is null
+		Media media = event.getMedia();
+		
+		if(media==null){
+			media = new Media();
+			event.setMedia(media);
+		}
+		
+		if(media.getBannerUrl()==null){
+			if(event.getSubCategoryId()!=null){
+				media.setBannerUrl(categoryTree.getNode(event.getSubCategoryId().longValue()).getImageUrl());
+			}
+		}
+		
+		if(media.getPromotionLogoUrl()==null){
+			if(event.getSubCategoryId()!=null){
+				media.setPromotionLogoUrl(categoryTree.getNode(event.getSubCategoryId().longValue()).getPromoLogo());
+			}
+		}
+
+
 	}
 	
 	public void map(RegistrationDTO registrationDTO,Registration registration){
@@ -243,9 +285,21 @@ public class EventpoolMapper {
 		if(!checkIfNull(eventForm)){
 			mapper.map(eventForm, media);
 			if(eventForm.getBannerFile()!=null){
-				media.setBannerUrl(eventForm.getBannerFile().getPath());
+				String path = eventForm.getBannerFile().getPath();
+				path = getEventImagePath(path);
+				media.setBannerUrl(path);
 			}else{
-				media.setBannerUrl(eventForm.getBanner());
+				String path = getEventImagePath(eventForm.getBanner());
+				media.setBannerUrl(path);
+			}
+			
+			if(eventForm.getPromotionFile()!=null){
+				String path = eventForm.getPromotionFile().getPath();
+				path = getEventImagePath(path);
+				media.setPromotionLogoUrl(path);
+			}else{
+				String path = getEventImagePath(eventForm.getPromotion());
+				media.setPromotionLogoUrl(path);
 			}
 		}
 		else{ 
@@ -259,7 +313,7 @@ public class EventpoolMapper {
 			for(TicketForm ticketForm:ticketForms){
 				TicketDTO ticketDTO = new TicketDTO();
 				mapper.map(ticketForm, ticketDTO);
-				ticketTypes.add(TicketType.PAID);
+				ticketTypes.add(ticketForm.getTicketType());
 				ticketDTOs.add(ticketDTO);
 			}
 			eventDTO.setTickets(ticketDTOs);
@@ -303,6 +357,14 @@ public class EventpoolMapper {
 		}*/
 	}
 	
+	private String getEventImagePath(String path) {
+		if(path==null) return null;
+		if(path.startsWith(imageHostUrl)){
+			path = path.replace(imageHostUrl, "");
+		}
+		return path;
+	}
+
 	private boolean checkIfNull(EventForm eventForm) {
 		if(eventForm.getOrganizerLogo() != null){
 			return false;
@@ -339,6 +401,7 @@ public class EventpoolMapper {
 		if(eventDTO.getMedia()!=null){
 			mapper.map(eventDTO.getMedia(), eventForm);
 			eventForm.setBanner(eventDTO.getMedia().getBannerUrl());
+			eventForm.setPromotion(eventDTO.getMedia().getPromotionLogoUrl());
 		}
 		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
 		if(ticketDTOs!=null && ticketDTOs.size()>0){
@@ -351,6 +414,19 @@ public class EventpoolMapper {
 			eventForm.setTickets(ticketForms);
 		}
 		eventForm.setUserEventSettingDTO(eventDTO.getUserEventSettingDTO());
+		
+		//addig image host url prefix
+		if(eventDTO.getMedia()!=null){
+			String bannerUrl = eventDTO.getMedia().getBannerUrl();
+			if(bannerUrl!=null && !bannerUrl.isEmpty() ){
+				if(bannerUrl.startsWith(imageHostUrl)){
+					eventForm.setBanner(bannerUrl);
+				}else{
+					eventForm.setBanner(imageHostUrl+bannerUrl);
+				}
+			}
+		}
+		
 /*		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
 		if(eventSettingsDTO!=null){
 			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();

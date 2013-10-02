@@ -53,6 +53,8 @@ import com.eventpool.event.service.impl.TicketAttendeeDTO;
 import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.web.controller.EventSearchRecord;
+import com.eventpool.web.controller.EventService;
+import com.eventpool.web.controller.SearchController;
 import com.eventpool.web.controller.SearchQueryResponse;
 import com.eventpool.web.controller.SearchService;
 import com.eventpool.web.forms.EventForm;
@@ -68,7 +70,10 @@ public class EventTest extends BaseTest{
 	
 	@Resource
 	EventApi eventApi;
-	
+
+	@Resource
+	EventService eventService;
+
 	@Resource
 	EventCommandService eventCommandService;
 	
@@ -251,6 +256,9 @@ public class EventTest extends BaseTest{
     //	for(String str:citiesWithStateAndCountry.values()){
     //		log.info(str);
     //	}
+    	
+    	int size = entityUtilities.getActiveCountryMap().size();
+    	System.out.println(" Actvie Country Size "+size);
     }
     
     @Resource
@@ -520,7 +528,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testSearchService() throws Exception{
-    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("title", null,10, 0);
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("title", null,10, 0,null);
     	log.info(searchQueryResponse+" size");
     }
     
@@ -556,6 +564,28 @@ public class EventTest extends BaseTest{
     public void testUser(){
     	User user = userRepository.findOne(1L);
     	log.info("user"+user.getMemberShip());
+    }
+    
+    @Test
+    public void push(){
+    	for(long i=1;i<18;i++){
+    		eventService.pushToQueue(i);
+    	}
+    }
+
+    @Resource
+    SearchController searchController;
+    
+    @Test
+    public void homePageResults() throws Exception{
+    	SearchQueryResponse homepageResults = searchController.getHomepageResults(null);
+    	System.out.println(homepageResults.getEventSearchRecords().size());
+    }
+
+    @Test
+    public void searchTest() throws Exception{
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("event", new HashMap<String, String>(), 0, 0,null);
+    	System.out.println("Search Results "+searchQueryResponse.getEventSearchRecords().size());
     }
 
 }

@@ -5,6 +5,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
 	    $scope.status = {};
 	    $scope.enableBookTicket = true;
 	    $scope.totalAmount=0;
+	    $scope.disablePayment = false;
                     
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
@@ -15,7 +16,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     });
     }
     };
-    $scope.eventpage();
+    
     
     $scope.calcTotalAmount = function(){
     	var tickets = $scope.event.tickets;
@@ -113,6 +114,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     }
     
     $scope.bookTicket = function() {
+    	$scope.disablePayment = true;
     	$scope.validations();
         if($scope.stopSubmitAction === true){
         	$scope.stopSubmitAction = false;
@@ -123,6 +125,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
          	$scope.status = data;
          	$location.url('/mytickets');
          }).error(function(error) {
+        	 $scope.disablePayment = false;
              alert(error);
          });
         }
@@ -139,6 +142,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	$scope.pincodeMaxLength = $scope.ticketInfoForm.pincode.$error.maxlength;
     	if($scope.ticketInfoForm.$invalid){
     		$scope.stopSubmitAction=true;
+    		$scope.disablePayment = false;
     	}
     }
     
@@ -167,4 +171,5 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
      }
      
      $scope.getcurrentuser();
+     $scope.eventpage();
 }

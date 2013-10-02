@@ -10,6 +10,8 @@ public class CategoryNode {
 	private int level;
 	private CategoryNode parent;
 	private List<CategoryNode> childCategories;	
+	private String imageUrl;
+	private String promoLogo;
 	
 	public CategoryNode(Long id,String name){
 		this.id = id;
@@ -104,6 +106,22 @@ public class CategoryNode {
 			return ((CategoryNode) obj).id == this.id;
 		}
 		return false;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getPromoLogo() {
+		return promoLogo;
+	}
+
+	public void setPromoLogo(String promoLogo) {
+		this.promoLogo = promoLogo;
 	}
 }
 

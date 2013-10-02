@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import com.eventpool.common.entities.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long>{
-	@Query(nativeQuery=true,value="SELECT category.ID as categoryID, category.NAME as NAME, category.PARENT_CATEGORYID as parent_CategoryID, parent.NAME as parentCategoryName FROM CATEGORY AS category LEFT JOIN CATEGORY parent ON category.PARENT_CATEGORYID = parent.ID WHERE category.ACTIVE='Y'")
+	@Query(nativeQuery=true,value="SELECT category.ID as categoryID, category.NAME as NAME, category.PARENT_CATEGORYID as parent_CategoryID, parent.NAME as parentCategoryName," +
+			"		category.IMAGE_URL as imageUrl, category.PROMO_LOGO as promoLogo" +
+			" FROM CATEGORY AS category LEFT JOIN CATEGORY parent ON category.PARENT_CATEGORYID = parent.ID WHERE category.ACTIVE='Y'")
 	public List<Object[]> getCategories();
 
 }

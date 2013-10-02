@@ -3,12 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:camel="http://camel.apache.org/schema/spring"
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-
+			
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-			http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+			http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 	<bean id="commonDataPropertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="ignoreResourceNotFound" value="true" />
@@ -43,7 +45,7 @@
 
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" >
-			<property name="showSql" value="true" />
+			<property name="showSql" value="false" />
                 <!-- <property name="generateDdl" value="true" /> -->
                 </bean>
 		</property>
@@ -60,7 +62,6 @@
 				<prop key="hibernate.generate_statistics">$EVENT_POOL{hibernate.generate_statistics}</prop>
 				<prop key="hibernate.cache.use_structured_entries">$EVENT_POOL{hibernate.cache.use_structured_entries}</prop>
 				<prop key="hibernate.show_sql">$EVENT_POOL{hibernate.show_sql}</prop>
-				 <prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">$EVENT_POOL{hibernate.format_sql}</prop>
 				 <!-- <prop key="hibernate.hbm2ddl.auto">$EVENT_POOL{hibernate.hbm2ddl.auto}</prop> -->
 				<prop key="hibernate.cache.use_second_level_cache">$EVENT_POOL{hibernate.cache.use_second_level_cache}</prop>
@@ -112,4 +113,12 @@
 	</bean>
 
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	
+	<camel:camelContext id="camel-client" trace="false" xmlns="http://camel.apache.org/schema/spring"> 
+	</camel:camelContext>
+	<bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<!-- <property name="brokerURL" value="failover:(tcp://${primary.host}:${primary.port},tcp://${secondary.host}:${secondary.port})?randomize=false&amp;jms.useAsyncSend=true"/> -->
+	 	 <property name="brokerURL" value="tcp://$EVENT_POOL{activemq.host}:$EVENT_POOL{activemq.port}?jms.useAsyncSend=true"/> 
+	</bean>
+	
 </beans>

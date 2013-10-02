@@ -9,96 +9,20 @@
 				
 	<ul class="thumbnails">
 		
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" >
+					<li class="span1" ng-repeat="event in homePageResults">
+					    <div class="thumbnail">
+							<a href="#event/{{event.eventUrl}}"><img ng-src="{{event.promotionLogoUrl}}" alt="" ></a>
 						</div>	
-						<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
+						<div class="desc">{{event.title}}</div>
+						<!-- <div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div> -->
+						<div class="type">{{event.categoryName}}</div>
+					<!-- 	<div class="price" >Price - 14.99 $</div> -->
+						<div class="date" >Start Date: {{event.startDate}}</div>
+						<div class="date" >End Date  : {{event.endDate}}</div>
+						<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
+					
 					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img02.jpg" data-src="holder.js/300x200" alt="" >
-						</div>
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
-					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img03.jpg" data-src="holder.js/300x200" alt="" >
-						</div>	
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
-					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img04.jpg" data-src="holder.js/300x200" alt="" >
-						</div>	
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
-					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img01.jpg" data-src="holder.js/300x200" alt="" >
-						</div>	
-						<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
-					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img02.jpg" data-src="holder.js/300x200" alt="" >
-						</div>
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
-					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img03.jpg" data-src="holder.js/300x200" alt="" >
-						</div>	
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
-					</li>
-					
-					<li class="span1">
-						<div class="thumbnail">
-							<img src="resources/bootstrap/img/img04.jpg" data-src="holder.js/300x200" alt="" >
-						</div>	
-							<div class="desc">Problem Solving With Data  Structures And Algo..</div>
-							<div class="type" >Training</div>
-							<div class="price" >Price - 14.99 $</div>
-							<div class="date" >Date June-01-2013   09:00AM</div>
-							<button class="btn btnBookTicket " >Book Ticket</button>
-					</li>
-					
-					
-			</ul>			
+	</ul>			
 									
 	</div>
 <div ng-include src="'html/footer.html'"></div>

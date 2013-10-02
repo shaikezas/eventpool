@@ -1,0 +1,71 @@
+			<div class="modal-header">
+				<h3>TICKET INVOICE</h3>
+			</div>
+
+				<form class="form-horizontal">
+					<div class="inviceBlock">
+						<img src="resources/bootstrap/img/logo.png" style="float: left; margin-top: 10px" />
+						<p>{{invoice.eventName}}</p>
+					</div>
+					<div class="inviceBlock">
+						<dl class="dl-horizontal">
+							<dt> Registration No : 		</dt><dd> {{invoice.id}}</dd>
+							<dt> Registration Date :		</dt><dd>{{invoice.createdDate}}</dd>
+							<dt> Order No : 				</dt><dd> {{invoice.orderId}}</dd>
+							<dt> Event Date :				</dt><dd> {{invoice.eventDate}}</dd>
+							<dt> Event Id : 				</dt><dd> {{invoice.eventId}}</dd>
+						</dl>
+					</div>
+				
+					<div class="inviceBlock">
+						<h3>Venue:</h3>
+						<p>{{invoice.venue}}</p>
+					</div>
+					
+					<div class="inviceBlock">
+						<dl class="dl-horizontal">
+							<dt> Organizer Name :</dt><dd> {{invoice.organizerName}}</dd>
+							<dt> Organizer Contact :</dt><dd> {{invoice.organizerContact}}</dd>
+							<dt> Attendee Name :</dt><dd> {{invoice.buyer}}</dd>
+						</dl>
+					</div>
+  		<div>
+
+
+		<table class="table table-condensed">
+		  <thead>
+			<tr>
+			  <th>Ticket Type</th>
+			  <th>Quantity</th>
+			  <th>Price/unit</th>
+			  <th>Total Price</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td class="amt"> {{invoice.ticketType}}</td>
+			  <td class="amt">  {{invoice.quantity}}</td>
+			  <td class="amt">  {{invoice.price}}</td>
+			  <td class="amt">  {{invoice.totalPrice}}</td>
+			</tr>
+			<tr>
+			  <td class="amt">Total Amount </td>
+			  <td class="amt"> </td>
+			  <td class="amt">  </td>
+			  <td class="amt">  {{invoice.totalAmount}}</td>
+			</tr>
+		  </tbody>
+		</table>
+		
+</div>
+  
+		<div class="invoiceCont">
+			<h5>Terms and Conditions:</h5>
+			<p>Terms</p>
+	
+			<h5>Declaration:</h5>
+			<p>declations</p>
+		</div>  
+  
+</form>
+        

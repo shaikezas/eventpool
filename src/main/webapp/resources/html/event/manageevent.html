@@ -12,7 +12,10 @@
 					<h3 class="nav-header">Manage Event <i class="titleArow"></i></h3>
 					<ul class="nav nav-list" style="padding-top: 15px">
 						<li ng-class="{active: templateSelect=='edit'}">
-						<a  href ng-click="template = 'html/event/editevent.html';templateSelect= 'edit'">Event Details</a>
+						<a  href ng-click="template = 'html/event/editevent.html';templateSelect= 'edit'">Details</a>
+						</li>
+						<li ng-class="{active: templateSelect=='options'}">
+						<a  href ng-click="template = 'html/event/eventoptions.html';templateSelect= 'options'">Options</a>
 						</li>
 						<li ng-class="{active: templateSelect=='orderForm'}">
 						<a  href ng-click="template = 'html/event/eventsettings.html';templateSelect= 'orderForm';fetchEventSettings()">Order Form</a>

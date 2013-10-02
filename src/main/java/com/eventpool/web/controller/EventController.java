@@ -25,6 +25,7 @@ import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventOrderSettings;
 import com.eventpool.common.dto.EventSettingsDTO;
 import com.eventpool.common.dto.InvoiceDTO;
+import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.Region;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
@@ -56,6 +57,7 @@ import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.Dropdown;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.EventFormSettings;
+import com.eventpool.web.forms.EventOptionsForm;
 import com.eventpool.web.forms.EventQuestion;
 import com.eventpool.web.forms.MyEventForm;
 import com.eventpool.web.forms.SubOrderForm;
@@ -256,7 +258,7 @@ public class EventController {
     
     @RequestMapping(value = "/myevent/print/{suborderid}", method = RequestMethod.GET)
     public @ResponseBody InvoiceDTO printEvent(@PathVariable("suborderid") Long suborderId) throws Exception {
-    	return invoiceService.viewInvoice(suborderId);
+    	return invoiceService.viewInvoice(suborderId,userService.getCurrentUser().getId());
     }
 
     @RequestMapping(value = "/myevent/send/{suborderid}", method = RequestMethod.GET)
@@ -287,6 +289,7 @@ public class EventController {
     	EventForm form = new EventForm();
     	EventDTO eventDTO = eventService.getEventById(eventId);
     	mapper.mapEventForm(eventDTO, form);
+    	
     	return form;
     }
     
@@ -339,6 +342,52 @@ public class EventController {
     	
     	return form;
     }
+    
+    @RequestMapping(value="/myevent/options/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody EventOptionsForm getEventOptions(@PathVariable Long eventid) throws Exception {
+    	System.out.println("Calling getEventOptions ..."+eventid);
+    	EventDTO event = eventService.getEventById(eventid);
+    	EventOptionsForm form = new EventOptionsForm();
+    	form.setClassificationType(event.getClassificationType());
+    	form.setContactDetails(event.getContactDetails());
+    	form.setEventId(eventid);
+    	MediaDTO media = event.getMedia();
+    	if( media!=null){
+    		form.setFaceBookUrl(media.getFaceBookUrl());
+    		form.setOrganizer(media.getPromotionLogoUrl());
+    		form.setEventWebSiteUrl(media.getEvenWebSiteUrl());
+    	}
+    	form.setKeyWords(event.getKeyWords());
+    	
+    	
+    	return form;
+    }
+    
+    @RequestMapping(value = "/myevent/updateoptions", method = RequestMethod.POST)
+    public @ResponseBody ResponseMessage updateEventOptions(@RequestBody EventForm form) throws Exception {
+    	System.out.println("Calling updateEventOptions ..."+form.getEventId());
+    	EventDTO event = eventService.getEventById(form.getEventId());
+    	event.setClassificationType(form.getClassificationType());
+    	event.setContactDetails(form.getContactDetails());
+    	event.setKeyWords(form.getKeyWords());
+    	MediaDTO media = event.getMedia();
+    	
+    	if(media == null){
+    		media = new MediaDTO();
+    	}
+    	
+    	media.setFaceBookUrl(form.getFaceBookUrl());
+    	if(form.getPromotionFile()!=null){
+    		media.setPromotionLogoUrl(form.getPromotionFile().getPath());
+    	}else{
+    		media.setPromotionLogoUrl(form.getPromotion());
+    	}
+    	
+    	media.setEvenWebSiteUrl(form.getEventWebSiteUrl());
+    	eventService.addEvent(event);
+    	return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated event options");
+    }
+    
     
     
     @RequestMapping(value = "/myevent/updatesettings", method = RequestMethod.POST)

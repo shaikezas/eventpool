@@ -11,7 +11,7 @@ public class MediaDTO implements Serializable{
 
 	private Long eventId;
 
-	private String companyLogoUrl;
+	private String promotionLogoUrl;
 
 	private String bannerUrl;
 	
@@ -33,12 +33,14 @@ public class MediaDTO implements Serializable{
 		this.eventId = eventId;
 	}
 
-	public String getCompanyLogoUrl() {
-		return companyLogoUrl;
+	
+
+	public String getPromotionLogoUrl() {
+		return promotionLogoUrl;
 	}
 
-	public void setCompanyLogoUrl(String companyLogoUrl) {
-		this.companyLogoUrl = companyLogoUrl;
+	public void setPromotionLogoUrl(String promotionLogoUrl) {
+		this.promotionLogoUrl = promotionLogoUrl;
 	}
 
 	public String getBannerUrl() {
