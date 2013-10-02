@@ -84,10 +84,25 @@ public class SearchController {
     public @ResponseBody SearchQueryResponse getDefaultResults(HttpServletRequest request
     		
     		) throws Exception {
+       	
+
     	String subCategoryId = request.getParameter("subCategoryId");
     	String cityId = request.getParameter("cityId");
     	String eventType = request.getParameter("eventType");
     	String eventDate = request.getParameter("eventDate");
+    	String countryParam = request.getParameter("countryId");
+    	
+    	Integer countryId = null;
+    	if(countryParam==null){
+        	String ip=getRemoteIp(request);
+        	 countryId=ipLocation.getCountryId(ip);
+    	}else{
+	    	try {
+				countryId = Integer.parseInt(countryParam);
+			} catch (Exception e1) {
+				logger.info("country is not parsable"+countryParam);
+			}
+    	}
     	String fq = null;
     	
     	Map<String,String> filterMap = new HashMap<String, String>();
@@ -122,7 +137,8 @@ public class SearchController {
 				logger.info("Parsing error for start parameter "+startParam);
 			}
     	}
-		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, start);
+    	
+		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, start,countryId);
     }
     
     
@@ -133,14 +149,14 @@ public class SearchController {
     	return q;
 	}
 
-	@RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{loc}", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/fetchResultsByFilterType/{filterType}/{searchType}/{loc}", method = RequestMethod.GET)
     public @ResponseBody SearchQueryResponse getSearchResultsByFilterType(@PathVariable("filterType") String filterType,@PathVariable("searchType") String searchType,@PathVariable("loc") String loc) throws Exception {
     	String query = filterType+","+searchType + "," + loc;
     	
     	System.out.println("User entered query from the ui...:::" + query);
     	return searchService.getSearchQueryResponse(searchType, null,10, 0);
       }
-    
+*/    
     
     public static String getNextKey(String key1){
         int len = key1.length();

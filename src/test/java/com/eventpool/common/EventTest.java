@@ -528,7 +528,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testSearchService() throws Exception{
-    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("title", null,10, 0);
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("title", null,10, 0,null);
     	log.info(searchQueryResponse+" size");
     }
     
@@ -584,7 +584,7 @@ public class EventTest extends BaseTest{
 
     @Test
     public void searchTest() throws Exception{
-    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("event", new HashMap<String, String>(), 0, 0);
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("event", new HashMap<String, String>(), 0, 0,null);
     	System.out.println("Search Results "+searchQueryResponse.getEventSearchRecords().size());
     }
 
