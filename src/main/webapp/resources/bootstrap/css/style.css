@@ -497,7 +497,17 @@ width: 50px
 
 
 
+.orderFrom{
+	border-right: 1px solid #ddd;
+	width: 330px;
+}
+.orderFrom .control-group{
+	margin: 0px
+} 
 
+.orderFrom .control-label {
+	margin: 0px
+} 
 
 
 
@@ -574,7 +584,9 @@ width: 50px
 }
 }
 
-
+.resultCont{
+	padding:5px 10px ;font-size: 12px; float: left; 
+}
 
 
 .inviceBlock{
