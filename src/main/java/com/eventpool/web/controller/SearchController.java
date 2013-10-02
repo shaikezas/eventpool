@@ -182,14 +182,15 @@ public class SearchController {
 	}
 	
 	@RequestMapping(value = "/getactivecountries", method = RequestMethod.GET)
-	public  @ResponseBody List<String> getActiveCountries(HttpServletRequest request)  throws Exception {
+	public  @ResponseBody Map<Integer,String> getActiveCountries(HttpServletRequest request)  throws Exception {
 		Map<Integer, Country> activeCountryMap = utilities.getActiveCountryMap();
 		Collection<Country> values = activeCountryMap.values();
-		List<String> activeCountries = new ArrayList<String>();
+		Map<Integer,String> activeCountries = new HashMap<Integer,String>();
 		for(Country country:values){
-			activeCountries.add(country.getName());
+			activeCountries.put(country.getId(), country.getName());
+			//activeCountries.add(country.getName());
 		}
-		Collections.sort(activeCountries);
+		//Collections.sort(activeCountries);
 		return activeCountries;
 	}
 }
