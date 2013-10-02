@@ -258,7 +258,7 @@ public class EventController {
     
     @RequestMapping(value = "/myevent/print/{suborderid}", method = RequestMethod.GET)
     public @ResponseBody InvoiceDTO printEvent(@PathVariable("suborderid") Long suborderId) throws Exception {
-    	return invoiceService.viewInvoice(suborderId);
+    	return invoiceService.viewInvoice(suborderId,userService.getCurrentUser().getId());
     }
 
     @RequestMapping(value = "/myevent/send/{suborderid}", method = RequestMethod.GET)

@@ -148,8 +148,8 @@ public class InvoiceService {
     	sendInvoice(invoice);
     }
     
-    public InvoiceDTO viewInvoice(Long suborderId){
-    	Invoice invoice = invoiceRepository.findBySuborderId(suborderId);
+    public InvoiceDTO viewInvoice(Long suborderId,Long createdBy){
+    	Invoice invoice = invoiceRepository.findBySuborderIdAndCreatedBy(suborderId,createdBy);
     	InvoiceDTO dto = convertToDTO(invoice);
     	return dto;
     }

@@ -205,6 +205,7 @@
 	<script src="resources/js/controllers/MyEventsController.js"></script>
 	<script src="resources/js/controllers/FindEventController.js"></script>
 	<script src="resources/js/controllers/MyTicketsController.js"></script>
+	<script src="resources/js/controllers/PrintTicketController.js"></script>
 	<script src="resources/js/controllers/UserController.js"></script>
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>

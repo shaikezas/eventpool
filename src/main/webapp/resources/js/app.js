@@ -42,6 +42,7 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $routeProvider.when('/event/:eventurl',	{        templateUrl: 'html/event/eventpage.html', 		  controller: EventPageController                               });
     $routeProvider.when('/order',	{        templateUrl: 'html/order/orderevent.html', 		  controller: EventPageController                               });
     $routeProvider.when('/userSettings',           {        templateUrl: 'html/user/MyAccount.html',           controller: UserController    					    });
+    $routeProvider.when('/printticket/:suborderid',           {        templateUrl: 'html/ticket/printticket.html',           controller: PrintTicketController    					    });
     $routeProvider.otherwise({redirectTo: '/home'});
   //configure $http to catch message responses and show them
     $httpProvider.responseInterceptors.push(function ($q) {
