@@ -46,7 +46,8 @@ a{
 .navCityLogin{
 	text-align: right;
 	padding:0px ;
-	float: right
+	float: right;
+	font-size: 12px;
 	}
 .navCityLogin a{
 	color: #000;
