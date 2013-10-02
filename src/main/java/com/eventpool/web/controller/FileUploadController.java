@@ -28,11 +28,11 @@ public class FileUploadController {
 	@Resource
 	SaveImage save;
 	
-	private final int BANNER_MIN_WIDTH = 1000;
-	private final int BANNER_MIN_HEIGHTH = 300;
+	private final int BANNER_MIN_WIDTH = 735;
+	private final int BANNER_MIN_HEIGHTH = 220;
 	
-	private final int PROMOTION_MIN_WIDTH = 228;
-	private final int PROMOTION_MIN_HEIGHTH = 275;
+	private final int PROMOTION_MIN_WIDTH = 182;
+	private final int PROMOTION_MIN_HEIGHTH = 220;
 
 	@RequestMapping(value = "/banner", method = RequestMethod.POST)
     public @ResponseBody
