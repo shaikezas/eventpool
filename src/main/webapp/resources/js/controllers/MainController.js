@@ -37,8 +37,9 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $scope.newuserValidEmail = $scope.signupForm.newUserEmail.$error.email; 
     	 $scope.newUserPasswordReq = $scope.signupForm.newUserPassword.$error.required;
     	 $scope.newUserPasswordCFReq = $scope.signupForm.newUserPasswordCF.$error.required;
-    	 if($scope.signupuserform.password == $scope.confirmpassword){
-    	 $http.post('signupuser', $scope.signupuserform).success(function(data) {
+    	 if($scope.signupForm.$valid){
+    		 if($scope.signupuserform.password == $scope.confirmpassword){
+    			 $http.post('signupuser', $scope.signupuserform).success(function(data) {
         		 if(data.type=="success"){
         			 $scope.username = $scope.signupuserform.email;
         			 $scope.password = $scope.signupuserform.password;
@@ -57,7 +58,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 else {
     		 alert("Password and Confirm password are not matched.");
     	 }
-    	
+    	}
      };
      $scope.loginuser = function () {
     	 $scope.resetsignform();
