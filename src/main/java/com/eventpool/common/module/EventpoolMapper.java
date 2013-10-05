@@ -192,6 +192,7 @@ public class EventpoolMapper {
 		}
 		eventDTO.setCreatedDate(event.getCreatedDate());
 		eventDTO.setModifiedDate(event.getModifiedDate());
+		eventDTO.setPublish(event.isPublish());
 	}
 	
 	public void mapEvent(EventDTO eventDTO,Event event){
@@ -426,7 +427,7 @@ public class EventpoolMapper {
 				}
 			}
 		}
-		
+		eventForm.setIsPublish(eventDTO.getPublish());
 /*		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
 		if(eventSettingsDTO!=null){
 			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();

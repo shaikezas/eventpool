@@ -42,6 +42,7 @@ public class EventDTO extends AuditableIdDTO {
 	private Integer classificationType = 1;
 	private Integer memberShipType;
 	private UserEventSettingDTO userEventSettingDTO;
+	private Boolean publish;
 	
 	public String getTitle() {
 		return title;
@@ -274,6 +275,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setMemberShipType(Integer memberShipType) {
 		this.memberShipType = memberShipType;
+	}
+
+	public Boolean getPublish() {
+		return publish;
+	}
+
+	public void setPublish(Boolean publish) {
+		this.publish = publish;
 	}
 	
 	
