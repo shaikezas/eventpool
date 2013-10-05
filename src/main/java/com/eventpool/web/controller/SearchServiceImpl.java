@@ -466,8 +466,8 @@ public class SearchServiceImpl implements SearchService {
 						}
 					}else
 					if(dateFilter == TODAY ){
+						todayCount = todayCount +count;
 						if(endDateFilter==TODAY){
-							todayCount = todayCount +count;
 							currentWeekCount = currentWeekCount + count;
 						}else{
 							tomorrowCount = tomorrowCount + count;
