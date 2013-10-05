@@ -47,7 +47,7 @@
 							    <div class="controls">
 								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
 				      					<input type="text" name="startDate" datetime-picker  ng-model="event.startDate" 
-				      										placeholder="Start Date and Time" readonly required ></input>
+				      										placeholder="Start Date and Time" readonly required ng-change="setticketsaleenddte()"></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 				      				</div>
 				      				<span ng-show="startDateRequired" ng-style="{color:'red'}">Required.</span>
