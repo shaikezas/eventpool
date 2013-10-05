@@ -2,6 +2,7 @@ package com.eventpool.common;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -160,7 +161,15 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testIpLocation(){
-    	ipLocation.getLocation("14.99.13.184");
+    	//ipLocation.getLocation("14.99.13.184");
+    	
+    	Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.MONTH, 1);
+		cal.set(Calendar.DAY_OF_MONTH,1);
+		//cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+		Date date = cal.getTime();
+		System.out.println(date);
     }
 
     
