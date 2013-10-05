@@ -14,7 +14,9 @@ import javax.annotation.Resource;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.FacetField.Count;
+import org.apache.solr.client.solrj.response.PivotField;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,28 +35,22 @@ import com.eventpool.event.module.EventApiImpl;
 public class SearchServiceImpl implements SearchService {
     
 	private static final String COUNTRYID = "countryId";
-
 	private static final String EVENTDATE = "eventDate";
-
+	private static final String STARTDATE = "eventDate";
+	private static final String ENDDATE = "endDateString";
+	private static final String START_DATE = "startDate";
+	private static final String END_DATE="endDate";
 	private static final String EVENTTYPE = "eventType";
-
 	private static final String CITYID = "cityId";
-
 	private static final String SUBCATEGORYID = "subCategoryId";
-
 	private static final int REST = 6;
-
 	private static final int CURRENT_MONTH = 5;
-
 	private static final int NEXT_WEEK = 4;
-
 	private static final int TOMORROW = 2;
-
 	private static final int TODAY = 1;
-
+	private static final int PAST = 0;
 	private static final Logger logger = LoggerFactory.getLogger(EventApiImpl.class);
-
-	private static final int CURRENT_WEEK = 0;
+	private static final int CURRENT_WEEK = 3;
 	
 	@Resource
 	public SearchServer searchServer;
@@ -68,8 +64,9 @@ public class SearchServiceImpl implements SearchService {
 	@Value("$EVENT_POOL{image.host}")
 	private String imageHostUrl ;//= "C://Event//source";
 
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	//2013-07-17T00:00:00Z
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	SimpleDateFormat dateSdf = new SimpleDateFormat("yyyy-MM-dd");
 	
     public List<EventSearchRecord> getSearchRecords(int rows,int start,Integer cityId,Integer countryId)
 			throws Exception {
@@ -83,9 +80,9 @@ public class SearchServiceImpl implements SearchService {
     		fq=fq+"countryId:"+countryId;
     	}
     	if(fq==null){
-    		fq = "eventDate:("+sdf.format(new Date())+" TO * )";
+    	//	fq = START_DATE+":["+sdf.format(new Date())+" TO * ]";
     	}else{
-    		fq = fq+"eventDate:("+sdf.format(new Date())+" TO * )";
+    	//	fq = fq+START_DATE+":["+sdf.format(new Date())+" TO * ]";
     	}
     	QueryResponse response = getSolrResponse("",fq, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
@@ -110,17 +107,21 @@ public class SearchServiceImpl implements SearchService {
 		}
 		solrQuery.setRows(rows);
 		solrQuery.addFacetField(SUBCATEGORYID);
-		solrQuery.addFacetField(EVENTDATE);
+		//solrQuery.addFacetField(EVENTDATE);
 		solrQuery.addFacetField(EVENTTYPE);
 		solrQuery.addFacetField(CITYID);
 		solrQuery.addFacetField(COUNTRYID);
+		//solrQuery.addFacetField(STARTDATE);
+		solrQuery.addFacetPivotField(STARTDATE+","+ENDDATE);
+		//addDateRangeFacet(field, start, end, gap);
+		//addFacetField(ENDDATE);
 		
 		solrQuery.setIncludeScore(true);
 		//String fq="cityId:6453";
 		if(filterQuery!=null && filterQuery.contains(":")){
 			solrQuery.setFilterQueries(filterQuery);
 		}
-		logger.debug("RawQuery :" + query);
+		logger.info("RawQuery :" + solrQuery);
 		response = searchServer.solrServer.query(solrQuery);
 		return response;
 	}
@@ -142,10 +143,82 @@ public class SearchServiceImpl implements SearchService {
 		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTTYPE)){
 		    		fq=fq+" AND "+EVENTTYPE+":"+filterQuery;
 		    	}
-	
 		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTDATE)){
-		    		fq=fq+" AND "+EVENTDATE+":"+filterQuery;
-		    	}
+		    		
+		    		try {
+						int eventDate = Integer.parseInt(filterQuery);
+						Date date = new Date();
+						String dateFormat = sdf.format(date);
+
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(new Date());
+						cal.add(Calendar.DAY_OF_MONTH, 1);
+						date = cal.getTime();
+						String endDateFormat = sdf.format(date);
+						
+						if(eventDate==TOMORROW){
+							cal.setTime(new Date());
+							cal.add(Calendar.DAY_OF_MONTH, 2);
+							date = cal.getTime();
+							endDateFormat = sdf.format(date);
+						}
+						if(eventDate==TODAY || eventDate==TOMORROW){
+							fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
+						}else{
+							if(eventDate==CURRENT_WEEK){
+								//This week filter
+								cal = Calendar.getInstance();
+								cal.setTime(new Date());
+								cal.add(Calendar.DAY_OF_MONTH, 0);
+								date = cal.getTime();
+								dateFormat = sdf.format(date);
+								
+								int dayOftheWeek = cal.get(Calendar.DAY_OF_WEEK);
+								int i = Calendar.SATURDAY - dayOftheWeek;
+								
+								cal.add(Calendar.DAY_OF_MONTH, i+1);
+								date = cal.getTime();
+								endDateFormat = sdf.format(date);
+								fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
+							}
+							if(eventDate==NEXT_WEEK){
+								//Next week filter
+								cal = Calendar.getInstance();
+								cal.setTime(new Date());
+								cal.add(Calendar.WEEK_OF_MONTH, 1);
+								cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+								date = cal.getTime();
+								dateFormat = sdf.format(date);
+
+								cal.setTime(new Date());
+								cal.add(Calendar.WEEK_OF_MONTH, 2);
+								cal.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+
+								date = cal.getTime();
+								endDateFormat = sdf.format(date);
+								fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
+							}
+							if(eventDate==REST){
+								//Other dates filter
+								cal = Calendar.getInstance();
+								cal.setTime(new Date());
+								cal.add(Calendar.WEEK_OF_MONTH, 2);
+								cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+								date = cal.getTime();
+								dateFormat = sdf.format(date);
+								fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
+							}
+						}
+					} catch (Exception e) {
+						logger.info(" event date parsable error"+filterQuery);
+					}
+		    		
+/*		    		if(filterQuery.contains("TO")){
+		    			fq=fq+" AND ("+STARTDATE+":"+filterQuery+" OR "+ENDDATE+":"+filterQuery+")";
+		    		}else{
+		    			fq=fq+" AND ("+STARTDATE+":"+filterQuery+" OR "+ENDDATE+":("+filterQuery+" TO *))";
+		    		}
+*/		    	}
 			}
 		}
 		if(fq!=null && fq.length()>4){
@@ -332,181 +405,272 @@ public class SearchServiceImpl implements SearchService {
 
 	private void getDateFilters(QueryResponse response,
 			SearchQueryResponse searchQueryResponse,Map<String,String> listOfFilters) throws ParseException {
-		List<Count> facetValues;
 		List<FilterItem> eventDateFilterItems = searchQueryResponse.getEventDateFilterItems();
 		if(eventDateFilterItems==null){
 			eventDateFilterItems = new ArrayList<FilterItem>();
 			searchQueryResponse.setEventDateFilterItems(eventDateFilterItems);
 		}
-		
-		facetValues = response.getFacetField(EVENTDATE).getValues();
+
 		long todayCount =0L;
 		long tomorrowCount=0L;
 		long currentWeekCount=0L;
 		long nextWeekCount=0L;
 		long currentMonthCount=0L;
 		long otherDatesCount=0L;
-		if(facetValues!=null && facetValues.size()>0){
-			for(Count facet:facetValues){
-				Date eventDate = sdf.parse(facet.getName());
+		NamedList<List<PivotField>> facetPivot = response.getFacetPivot();
+		List<List<PivotField>> pivotList = facetPivot.getAll(STARTDATE+","+ENDDATE);
+		for(List<PivotField> pivotInnerList:pivotList){
+			for(PivotField pivotField:pivotInnerList){
+				String field = pivotField.getField();
+				int count = pivotField.getCount();
+				String pivotValue = (String)pivotField.getValue();
+				List<PivotField> subPivotList = pivotField.getPivot();
+				
+				Date eventDate = dateSdf.parse(pivotValue);
 				int dateFilter = getDayFilter(eventDate);
-				if(facet.getCount()>0){
-					if(dateFilter == TODAY){
-						long count = facet.getCount();
-						todayCount = count + todayCount;
+				for(PivotField innerPivotField:subPivotList){
+					System.out.println("field:"+field+" count:"+count+" pivotvalue:"+pivotValue+" innerPivotField:"+innerPivotField.getField()+" innerPivotCount:"+innerPivotField.getCount()+" innerPivot"+innerPivotField.getValue());
+					Date endDate = dateSdf.parse((String)innerPivotField.getValue());
+					int endDateFilter = getDayFilter(endDate);
+					count=innerPivotField.getCount();
+
+					if(dateFilter == PAST ){
+						if(endDateFilter!=PAST){
+							todayCount = count + todayCount;
+						}
+						if(endDateFilter==TODAY){
+							currentWeekCount = currentWeekCount + count;
+						}else
+						if(endDateFilter==TOMORROW){
+							tomorrowCount = tomorrowCount + count;
+							currentWeekCount = currentWeekCount + count;
+						}else
+						if(endDateFilter == CURRENT_WEEK){
+							tomorrowCount = tomorrowCount + count;
+							currentWeekCount = currentWeekCount + count;
+						}else if(endDateFilter == NEXT_WEEK){
+							tomorrowCount = tomorrowCount + count;
+							currentWeekCount = currentWeekCount + count;
+							nextWeekCount = nextWeekCount + count;	
+						}else if(endDateFilter == CURRENT_MONTH){
+							tomorrowCount = tomorrowCount + count;
+							currentWeekCount = currentWeekCount + count;
+							nextWeekCount = nextWeekCount + count;	
+							currentMonthCount = currentMonthCount +count;
+						}else{
+							tomorrowCount = tomorrowCount + count;
+							currentWeekCount = currentWeekCount + count;
+							nextWeekCount = nextWeekCount + count;	
+							currentMonthCount = currentMonthCount +count;
+							otherDatesCount = otherDatesCount +count;
+						}
+					}else
+					if(dateFilter == TODAY ){
+						if(endDateFilter==TODAY){
+							todayCount = todayCount +count;
+							currentWeekCount = currentWeekCount + count;
+						}else{
+							tomorrowCount = tomorrowCount + count;
+							currentWeekCount = currentWeekCount + count;
+						}
+						if(endDateFilter == CURRENT_WEEK){
+							currentWeekCount = currentWeekCount + count;
+						}else if(endDateFilter == NEXT_WEEK){
+							currentWeekCount = currentWeekCount + count;
+							nextWeekCount = nextWeekCount + count;	
+						}else if(endDateFilter == CURRENT_MONTH){
+							currentWeekCount = currentWeekCount + count;
+							nextWeekCount = nextWeekCount + count;	
+							currentMonthCount = currentMonthCount +count;
+						}else{
+							currentWeekCount = currentWeekCount + count;
+							nextWeekCount = nextWeekCount + count;	
+							currentMonthCount = currentMonthCount +count;
+							otherDatesCount = otherDatesCount +count;
+						}
 					}else
 					if(dateFilter == TOMORROW){
-						long count = facet.getCount();
-						tomorrowCount = count + tomorrowCount;
+						if(endDateFilter==TOMORROW){
+							tomorrowCount = tomorrowCount + count;
+							currentWeekCount = currentWeekCount + count;
+						}
+						else{
+							currentWeekCount = currentWeekCount + count;
+						}
+						if(endDateFilter == NEXT_WEEK){
+							nextWeekCount = nextWeekCount + count;	
+						}else if(endDateFilter == CURRENT_MONTH){
+							nextWeekCount = nextWeekCount + count;
+							currentMonthCount = currentMonthCount +count;
+						}else{
+							nextWeekCount = nextWeekCount + count;
+							currentMonthCount = currentMonthCount +count;
+							otherDatesCount = otherDatesCount +count;
+						}
 					}else
 					if(dateFilter == CURRENT_WEEK){
-						long count = facet.getCount();
-						currentWeekCount = currentWeekCount + count;
-					}else
-					if(dateFilter == NEXT_WEEK){
-						long count = facet.getCount();
-						nextWeekCount = nextWeekCount + count;
-					}else
-					if(dateFilter == CURRENT_MONTH){
-						long count = facet.getCount();
-						currentMonthCount = currentMonthCount +count;
-					}else{
-						long count = facet.getCount();
-						otherDatesCount = otherDatesCount +count;
-					}
+						if(endDateFilter==CURRENT_WEEK){
+							currentWeekCount =currentWeekCount +count;
+						}else{
+							nextWeekCount = nextWeekCount + count;
+						}
+						if(endDateFilter == CURRENT_MONTH){
+							currentWeekCount = currentWeekCount + count;
+						}else {
+							currentWeekCount = currentWeekCount + count;
+							otherDatesCount = otherDatesCount +count;
+						}
 
+					}else
+					if(dateFilter == NEXT_WEEK ){
+						if(endDateFilter==NEXT_WEEK){
+							nextWeekCount =nextWeekCount+count;
+						}else{
+							currentMonthCount = currentMonthCount +count;
+						}
+						if(endDateFilter!=CURRENT_MONTH){
+							otherDatesCount = otherDatesCount +count;
+						}
+					}else
+					if(dateFilter == CURRENT_MONTH ){
+						if(endDateFilter==CURRENT_MONTH){
+							currentMonthCount =currentMonthCount +count;
+						}else{
+							otherDatesCount = otherDatesCount +count;
+						}
+					}
+					System.out.println("today"+todayCount+"tomorrow"+tomorrowCount+"current week count "+currentWeekCount+" next week count "+nextWeekCount);
 				}
 			}
 		}
-
 		//Today filter
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		Date date = cal.getTime();
-		String dateFormat = sdf.format(date);
+//		Calendar cal = Calendar.getInstance();
+//		cal.setTime(new Date());
+//		Date date = cal.getTime();
+//		String dateFormat = sdf.format(date);
 		
-		String eventDateFilter = listOfFilters.get(EVENTDATE);
-		if(eventDateFilter!=null){
-			if(!eventDateFilter.contains(dateFormat)){
-				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+")";
-			}
-		}else{
-			eventDateFilter = dateFormat;
-		}
-		String filterFacetQuery = EVENTDATE+"="+eventDateFilter;
+//		String eventDateFilter = listOfFilters.get(EVENTDATE);
+//		if(eventDateFilter!=null){
+//			if(!eventDateFilter.contains(dateFormat)){
+//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
+//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+")";
+//			}
+//		}else{
+//			eventDateFilter = dateFormat;
+//		}
+		String filterFacetQuery = EVENTDATE+"="+TODAY;
 		Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, eventDateFilter);		
+		newFilterMap.put(EVENTDATE, String.valueOf(TODAY));		
 		FilterItem filterItem = getFilterItem(todayCount,"Today", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 		
 		//Tomorrrow filter
-		cal.setTime(new Date());
-		cal.add(Calendar.DAY_OF_MONTH, 1);
-		date = cal.getTime();
-		dateFormat = sdf.format(date);
-		
-		eventDateFilter = listOfFilters.get(EVENTDATE);
-		if(eventDateFilter!=null){
-			if(!eventDateFilter.contains(dateFormat)){
-				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+")";
-			}else{
-				eventDateFilter = removeOldFilter(dateFormat, eventDateFilter);
-			}
-		}else{
-			eventDateFilter = dateFormat;
-		}
-		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
+//		cal.setTime(new Date());
+//		cal.add(Calendar.DAY_OF_MONTH, 1);
+//		date = cal.getTime();
+//		dateFormat = sdf.format(date);
+//		
+//		eventDateFilter = listOfFilters.get(EVENTDATE);
+//		if(eventDateFilter!=null){
+//			if(!eventDateFilter.contains(dateFormat)){
+//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
+//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+")";
+//			}else{
+//				eventDateFilter = removeOldFilter(dateFormat, eventDateFilter);
+//			}
+//		}else{
+//			eventDateFilter = dateFormat;
+//		}
+		filterFacetQuery = EVENTDATE+"="+TOMORROW;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, eventDateFilter);		
+		newFilterMap.put(EVENTDATE, String.valueOf(TOMORROW));		
 		filterItem = getFilterItem(tomorrowCount,"Tommorrow", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
 		//This week filter
-		cal.setTime(new Date());
-		cal.add(Calendar.DAY_OF_MONTH, 0);
-		date = cal.getTime();
-		dateFormat = sdf.format(date);
-		
-		int dayOftheWeek = cal.get(Calendar.DAY_OF_WEEK);
-		int i = Calendar.SATURDAY - dayOftheWeek;
-		
-		cal.add(Calendar.DAY_OF_MONTH, i+1);
-		date = cal.getTime();
-		String endDateFormat = sdf.format(date);
-		
-		eventDateFilter = listOfFilters.get(EVENTDATE);
-		if(eventDateFilter!=null){
-			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
-				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO "+endDateFormat+")";
-			}else{
-				eventDateFilter = removeOldFilter(dateFormat+" TO "+endDateFormat, eventDateFilter);
-			}
-		}else{
-			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
-		}
-		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
+//		cal.setTime(new Date());
+//		cal.add(Calendar.DAY_OF_MONTH, 0);
+//		date = cal.getTime();
+//		dateFormat = sdf.format(date);
+//		
+//		int dayOftheWeek = cal.get(Calendar.DAY_OF_WEEK);
+//		int i = Calendar.SATURDAY - dayOftheWeek;
+//		
+//		cal.add(Calendar.DAY_OF_MONTH, i+1);
+//		date = cal.getTime();
+//		String endDateFormat = sdf.format(date);
+//		
+//		eventDateFilter = listOfFilters.get(EVENTDATE);
+//		if(eventDateFilter!=null){
+//			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
+//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
+//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO "+endDateFormat+")";
+//			}else{
+//				eventDateFilter = removeOldFilter(dateFormat+" TO "+endDateFormat, eventDateFilter);
+//			}
+//		}else{
+//			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
+//		}
+		filterFacetQuery = EVENTDATE+"="+CURRENT_WEEK;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, eventDateFilter);		
+		newFilterMap.put(EVENTDATE, String.valueOf(CURRENT_WEEK));		
 		filterItem = getFilterItem(currentWeekCount,"This Week", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
 	
 		//Next week filter
-		cal.setTime(new Date());
-		cal.add(Calendar.WEEK_OF_MONTH, 1);
-		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
-		date = cal.getTime();
-		dateFormat = sdf.format(date);
-
-		cal.setTime(new Date());
-		cal.add(Calendar.WEEK_OF_MONTH, 2);
-		cal.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
-
-		date = cal.getTime();
-		endDateFormat = sdf.format(date);
-
-		eventDateFilter = listOfFilters.get(EVENTDATE);
-		if(eventDateFilter!=null){
-			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
-				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO "+endDateFormat+")";
-			}else{
-				eventDateFilter = removeOldFilter(dateFormat+" TO "+endDateFormat, eventDateFilter);
-			}
-		}else{
-			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
-		}
-		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
+//		cal.setTime(new Date());
+//		cal.add(Calendar.WEEK_OF_MONTH, 1);
+//		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+//		date = cal.getTime();
+//		dateFormat = sdf.format(date);
+//
+//		cal.setTime(new Date());
+//		cal.add(Calendar.WEEK_OF_MONTH, 2);
+//		cal.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+//
+//		date = cal.getTime();
+//		endDateFormat = sdf.format(date);
+//
+//		eventDateFilter = listOfFilters.get(EVENTDATE);
+//		if(eventDateFilter!=null){
+//			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
+//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
+//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO "+endDateFormat+")";
+//			}else{
+//				eventDateFilter = removeOldFilter(dateFormat+" TO "+endDateFormat, eventDateFilter);
+//			}
+//		}else{
+//			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
+//		}
+		filterFacetQuery = EVENTDATE+"="+NEXT_WEEK;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, eventDateFilter);		
+		newFilterMap.put(EVENTDATE, String.valueOf(NEXT_WEEK));		
 		filterItem = getFilterItem(nextWeekCount,"Next Week", filterFacetQuery,newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
 		//Other dates filter
-		cal.setTime(new Date());
-		cal.add(Calendar.WEEK_OF_MONTH, 2);
-		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
-		date = cal.getTime();
-		dateFormat = sdf.format(date);
-
-		eventDateFilter = listOfFilters.get(EVENTDATE);
-		if(eventDateFilter!=null){
-			if(!eventDateFilter.contains(dateFormat+" TO *")){
-				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO *)";
-			}else{
-				eventDateFilter = removeOldFilter(dateFormat+" TO *", eventDateFilter);
-			}
-		}else{
-			eventDateFilter = "("+dateFormat+" TO *)";
-		}
-		filterFacetQuery = EVENTDATE+"="+eventDateFilter;
+//		cal.setTime(new Date());
+//		cal.add(Calendar.WEEK_OF_MONTH, 2);
+//		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+//		date = cal.getTime();
+//		dateFormat = sdf.format(date);
+//
+//		eventDateFilter = listOfFilters.get(EVENTDATE);
+//		if(eventDateFilter!=null){
+//			if(!eventDateFilter.contains(dateFormat+" TO *")){
+//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
+//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO *)";
+//			}else{
+//				eventDateFilter = removeOldFilter(dateFormat+" TO *", eventDateFilter);
+//			}
+//		}else{
+//			eventDateFilter = "("+dateFormat+" TO *)";
+//		}
+		filterFacetQuery = EVENTDATE+"="+REST;
 		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, eventDateFilter);		
-		filterItem = getFilterItem(otherDatesCount,"Other Dates", EVENTDATE+"=("+dateFormat+" TO *)",newFilterMap);
+		newFilterMap.put(EVENTDATE, String.valueOf(REST));		
+		filterItem = getFilterItem(otherDatesCount,"Other Dates", "",newFilterMap);
 		eventDateFilterItems.add(filterItem);
 	}
 
@@ -568,6 +732,9 @@ public class SearchServiceImpl implements SearchService {
 	    int currentDate = cal.get(Calendar.DATE);
 	    int currentWeek = cal.get(Calendar.WEEK_OF_MONTH);
 	    
+	    if(currentYear > year || ( currentYear == year && currentMonth > month) || (currentMonth == month &&  currentDate > date)  ){
+	    	return PAST; // today
+	    }
 	    if(currentDate == date && currentMonth == month && currentYear == year){
 	    	return TODAY; // today
 	    }

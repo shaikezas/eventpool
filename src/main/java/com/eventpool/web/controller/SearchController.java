@@ -138,7 +138,12 @@ public class SearchController {
 			}
     	}
     	
-		return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, start,countryId);
+		try {
+			return searchService.getSearchQueryResponse(q,filterMap, EventPoolConstants.MAX_SEARCH_RESULTS, start,countryId);
+		} catch (Exception e) {
+			logger.info("Exception whil getting results from solr",e);
+			throw e;
+		}
     }
     
     

@@ -568,7 +568,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void push(){
-    	for(long i=1;i<18;i++){
+    	for(long i=1;i<20;i++){
     		eventService.pushToQueue(i);
     	}
     }
@@ -584,7 +584,7 @@ public class EventTest extends BaseTest{
 
     @Test
     public void searchTest() throws Exception{
-    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse("event", new HashMap<String, String>(), 0, 0,null);
+    	SearchQueryResponse searchQueryResponse = searchService.getSearchQueryResponse(null, new HashMap<String, String>(), 0, 0,null);
     	System.out.println("Search Results "+searchQueryResponse.getEventSearchRecords().size());
     }
 
