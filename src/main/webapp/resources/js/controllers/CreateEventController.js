@@ -378,6 +378,20 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         $scope.resetError();
         $scope.event.tickets.splice(index, 1);
     }
+    
+    $scope.setticketsaleenddte = function(){
+    	if(angular.isDefined($scope.event.tickets)) {
+    	var tickets = $scope.event.tickets;
+    	var sEnd = $scope.event.startDate;
+        sEnd = new Date(sEnd);
+        var millSecs = sEnd.getTime();
+        millSecs = millSecs - 3600000;
+        sEnd = new Date(millSecs);
+    	for (var i=0;i<tickets.length;i++) 	{   
+	        tickets[i].saleEnd = moment(sEnd).format("DD-MMM-YYYY hh:mm A");
+    	}
+      }
+    }
 
     $scope.updateEvent = function(event) {
         $scope.resetError();
