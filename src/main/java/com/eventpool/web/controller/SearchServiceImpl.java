@@ -566,141 +566,68 @@ public class SearchServiceImpl implements SearchService {
 				}
 			}
 		}
-		//Today filter
-//		Calendar cal = Calendar.getInstance();
-//		cal.setTime(new Date());
-//		Date date = cal.getTime();
-//		String dateFormat = sdf.format(date);
 		
-//		String eventDateFilter = listOfFilters.get(EVENTDATE);
-//		if(eventDateFilter!=null){
-//			if(!eventDateFilter.contains(dateFormat)){
-//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+")";
-//			}
-//		}else{
-//			eventDateFilter = dateFormat;
-//		}
-		String filterFacetQuery = EVENTDATE+"="+TODAY;
-		Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, String.valueOf(TODAY));		
-		FilterItem filterItem = getFilterItem(todayCount,"Today", filterFacetQuery,newFilterMap);
-		eventDateFilterItems.add(filterItem);
-		
-		//Tomorrrow filter
-//		cal.setTime(new Date());
-//		cal.add(Calendar.DAY_OF_MONTH, 1);
-//		date = cal.getTime();
-//		dateFormat = sdf.format(date);
-//		
-//		eventDateFilter = listOfFilters.get(EVENTDATE);
-//		if(eventDateFilter!=null){
-//			if(!eventDateFilter.contains(dateFormat)){
-//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+")";
-//			}else{
-//				eventDateFilter = removeOldFilter(dateFormat, eventDateFilter);
-//			}
-//		}else{
-//			eventDateFilter = dateFormat;
-//		}
-		filterFacetQuery = EVENTDATE+"="+TOMORROW;
-		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, String.valueOf(TOMORROW));		
-		filterItem = getFilterItem(tomorrowCount,"Tommorrow", filterFacetQuery,newFilterMap);
+		String valueOf = String.valueOf(TODAY);
+		Map<String, String> newFilterMap = getFilterData(listOfFilters, valueOf);		
+		FilterItem filterItem = getFilterItem(todayCount,"Today", "",newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
-		//This week filter
-//		cal.setTime(new Date());
-//		cal.add(Calendar.DAY_OF_MONTH, 0);
-//		date = cal.getTime();
-//		dateFormat = sdf.format(date);
-//		
-//		int dayOftheWeek = cal.get(Calendar.DAY_OF_WEEK);
-//		int i = Calendar.SATURDAY - dayOftheWeek;
-//		
-//		cal.add(Calendar.DAY_OF_MONTH, i+1);
-//		date = cal.getTime();
-//		String endDateFormat = sdf.format(date);
-//		
-//		eventDateFilter = listOfFilters.get(EVENTDATE);
-//		if(eventDateFilter!=null){
-//			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
-//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO "+endDateFormat+")";
-//			}else{
-//				eventDateFilter = removeOldFilter(dateFormat+" TO "+endDateFormat, eventDateFilter);
-//			}
-//		}else{
-//			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
-//		}
-		filterFacetQuery = EVENTDATE+"="+CURRENT_WEEK;
-		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, String.valueOf(CURRENT_WEEK));		
-		filterItem = getFilterItem(currentWeekCount,"This Week", filterFacetQuery,newFilterMap);
+		valueOf = String.valueOf(TOMORROW);
+		newFilterMap = getFilterData(listOfFilters, valueOf);		
+		filterItem = getFilterItem(tomorrowCount,"Tommorrow", "",newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
-	
-		//Next week filter
-//		cal.setTime(new Date());
-//		cal.add(Calendar.WEEK_OF_MONTH, 1);
-//		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
-//		date = cal.getTime();
-//		dateFormat = sdf.format(date);
-//
-//		cal.setTime(new Date());
-//		cal.add(Calendar.WEEK_OF_MONTH, 2);
-//		cal.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
-//
-//		date = cal.getTime();
-//		endDateFormat = sdf.format(date);
-//
-//		eventDateFilter = listOfFilters.get(EVENTDATE);
-//		if(eventDateFilter!=null){
-//			if(!eventDateFilter.contains(dateFormat+" TO "+endDateFormat)){
-//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO "+endDateFormat+")";
-//			}else{
-//				eventDateFilter = removeOldFilter(dateFormat+" TO "+endDateFormat, eventDateFilter);
-//			}
-//		}else{
-//			eventDateFilter = "("+dateFormat+" TO "+endDateFormat+")";
-//		}
-		filterFacetQuery = EVENTDATE+"="+NEXT_WEEK;
-		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, String.valueOf(NEXT_WEEK));		
-		filterItem = getFilterItem(nextWeekCount,"Next Week", filterFacetQuery,newFilterMap);
+		valueOf = String.valueOf(CURRENT_WEEK);
+		newFilterMap = getFilterData(listOfFilters, valueOf);		
+		filterItem = getFilterItem(currentWeekCount,"This Week", "",newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
-		//Other dates filter
-//		cal.setTime(new Date());
-//		cal.add(Calendar.WEEK_OF_MONTH, 2);
-//		cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
-//		date = cal.getTime();
-//		dateFormat = sdf.format(date);
-//
-//		eventDateFilter = listOfFilters.get(EVENTDATE);
-//		if(eventDateFilter!=null){
-//			if(!eventDateFilter.contains(dateFormat+" TO *")){
-//				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-//				eventDateFilter = "("+eventDateFilter + " OR " + dateFormat+" TO *)";
-//			}else{
-//				eventDateFilter = removeOldFilter(dateFormat+" TO *", eventDateFilter);
-//			}
-//		}else{
-//			eventDateFilter = "("+dateFormat+" TO *)";
-//		}
-		filterFacetQuery = EVENTDATE+"="+CURRENT_MONTH;
-		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, String.valueOf(CURRENT_MONTH));		
-		filterItem = getFilterItem(currentMonthCount,"This month", filterFacetQuery,newFilterMap);
+		valueOf = String.valueOf(NEXT_WEEK);
+		newFilterMap = getFilterData(listOfFilters, valueOf);		
+		filterItem = getFilterItem(nextWeekCount,"Next Week", "",newFilterMap);
 		eventDateFilterItems.add(filterItem);
 
-		filterFacetQuery = EVENTDATE+"="+REST;
-		newFilterMap = new HashMap<String, String>(listOfFilters);
-		newFilterMap.put(EVENTDATE, String.valueOf(REST));		
+		valueOf = String.valueOf(CURRENT_MONTH);
+		newFilterMap = getFilterData(listOfFilters, valueOf);		
+		filterItem = getFilterItem(currentMonthCount,"This month", "",newFilterMap);
+		eventDateFilterItems.add(filterItem);
+
+		valueOf = String.valueOf(REST);
+		newFilterMap = getFilterData(listOfFilters, valueOf);		
 		filterItem = getFilterItem(otherDatesCount,"Other Dates", "",newFilterMap);
 		eventDateFilterItems.add(filterItem);
+	}
+
+
+	private Map<String, String> getFilterData(
+			Map<String, String> listOfFilters, String valueOf) {
+	//	String eventDateFilter = getEventDateFilter(listOfFilters, valueOf);
+	//	String filterFacetQuery = EVENTDATE+"="+valueOf;
+		Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
+		
+		//TODO: need to add later
+		if(!valueOf.equals(listOfFilters.get(EVENTDATE))){
+			newFilterMap.put(EVENTDATE, valueOf);	
+		}else{
+			newFilterMap.remove(EVENTDATE);
+		}
+		//newFilterMap.put(EVENTDATE, eventDateFilter);
+		return newFilterMap;
+	}
+
+
+	private String getEventDateFilter(Map<String, String> listOfFilters,
+			String valueOf) {
+		String eventDateFilter = listOfFilters.get(EVENTDATE);
+		if(eventDateFilter!=null){
+			if(!eventDateFilter.contains(valueOf)){
+				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
+				eventDateFilter = "("+eventDateFilter + " OR " + valueOf+")";
+			}
+		}else{
+			eventDateFilter = valueOf;
+		}
+		return eventDateFilter;
 	}
 
 
