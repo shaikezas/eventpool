@@ -467,23 +467,18 @@ public class SearchServiceImpl implements SearchService {
 					}else
 					if(dateFilter == TODAY ){
 						todayCount = todayCount +count;
+						currentWeekCount = currentWeekCount + count;
 						if(endDateFilter==TODAY){
-							currentWeekCount = currentWeekCount + count;
 						}else{
 							tomorrowCount = tomorrowCount + count;
-							currentWeekCount = currentWeekCount + count;
 						}
 						if(endDateFilter == CURRENT_WEEK){
-							currentWeekCount = currentWeekCount + count;
 						}else if(endDateFilter == NEXT_WEEK){
-							currentWeekCount = currentWeekCount + count;
 							nextWeekCount = nextWeekCount + count;	
 						}else if(endDateFilter == CURRENT_MONTH){
-							currentWeekCount = currentWeekCount + count;
 							nextWeekCount = nextWeekCount + count;	
 							currentMonthCount = currentMonthCount +count;
 						}else{
-							currentWeekCount = currentWeekCount + count;
 							nextWeekCount = nextWeekCount + count;	
 							currentMonthCount = currentMonthCount +count;
 							otherDatesCount = otherDatesCount +count;
