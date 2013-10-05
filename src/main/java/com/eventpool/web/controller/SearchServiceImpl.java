@@ -80,9 +80,9 @@ public class SearchServiceImpl implements SearchService {
     		fq=fq+"countryId:"+countryId;
     	}
     	if(fq==null){
-    	//	fq = START_DATE+":["+sdf.format(new Date())+" TO * ]";
+    		fq = START_DATE+":["+sdf.format(new Date())+" TO * ]";
     	}else{
-    	//	fq = fq+START_DATE+":["+sdf.format(new Date())+" TO * ]";
+    		fq = fq+START_DATE+":["+sdf.format(new Date())+" TO * ]";
     	}
     	QueryResponse response = getSolrResponse("",fq, rows,start); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
