@@ -113,7 +113,7 @@ public class EventTest extends BaseTest{
     	venueAddress.setMapUrl("mapUrl");
     	venueAddress.setMobileNumber("molenumbe");
     	venueAddress.setPhoneNumber("ph nber");
-    	venueAddress.setZipCode(12345L);
+    	venueAddress.setZipCode("12345");
     	event.setVenueAddress(venueAddress);
     	event.setVenueName("venue name");
     	

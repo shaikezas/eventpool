@@ -29,7 +29,7 @@ public class Address extends IdEntity{
 	
 	//@NotNull
 	@Column(name="ZIP")
-	private Long zipCode;
+	private String zipCode;
 
 	@Column(name="PHONENUMBER")
 	private String phoneNumber;
@@ -55,15 +55,6 @@ public class Address extends IdEntity{
 
 	public void setAddress2(String address2) {
 		this.address2 = address2;
-	}
-
-
-	public Long getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(Long zipCode) {
-		this.zipCode = zipCode;
 	}
 
 
@@ -105,6 +96,14 @@ public class Address extends IdEntity{
 
 	public void setCityId(Integer cityId) {
 		this.cityId = cityId;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 
