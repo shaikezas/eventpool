@@ -51,7 +51,8 @@ public class SearchServiceImpl implements SearchService {
 	private static final int PAST = 0;
 	private static final Logger logger = LoggerFactory.getLogger(EventApiImpl.class);
 	private static final int CURRENT_WEEK = 3;
-	
+	private static final String EXCLUDE ="{!ex=dt}";
+	private static final String TAG ="{!tag=dt}";
 	@Resource
 	public SearchServer searchServer;
 
@@ -72,26 +73,30 @@ public class SearchServiceImpl implements SearchService {
 			throws Exception {
     
     	String fq=null;
+    	Map<String,String> listOfFilters = new HashMap<String, String>();
     	if(cityId!=null){
-    		fq = fq+"cityId:"+cityId;
+    		listOfFilters.put(CITYID,String.valueOf(cityId));
     	}
     	if(countryId!=null){
-    		if(fq!=null) fq = fq+" AND "; 
-    		fq=fq+"countryId:"+countryId;
+    		listOfFilters.put("countryId",String.valueOf(countryId));
+    		/*if(fq!=null) fq = fq+" AND "; 
+    		fq=fq+"countryId:"+countryId;*/
     	}
-    	if(fq==null){
+/*    	if(fq==null){
     		fq = END_DATE+":["+sdf.format(new Date())+" TO * ]";
     	}else{
     		fq = fq+END_DATE+":["+sdf.format(new Date())+" TO * ]";
     	}
-    	QueryResponse response = getSolrResponse("",fq, rows,start); 
+*/    	
+    	
+    	QueryResponse response = getSolrResponse("",listOfFilters, rows,start,null); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
 		addImageHostUrl(searchResults);
     	return searchResults;
 	}
 
 
-	private QueryResponse getSolrResponse(String query, String filterQuery,int rows,int start)
+	private QueryResponse getSolrResponse(String query, Map<String,String> listOfFilters,int rows,int start,Integer countryId)
 			throws SolrServerException {
 		if(query==null || query.isEmpty()){
     		query = "*:*";
@@ -106,42 +111,46 @@ public class SearchServiceImpl implements SearchService {
 			rows = 10;
 		}
 		solrQuery.setRows(rows);
-		solrQuery.addFacetField(SUBCATEGORYID);
-		//solrQuery.addFacetField(EVENTDATE);
-		solrQuery.addFacetField(EVENTTYPE);
-		solrQuery.addFacetField(CITYID);
-		solrQuery.addFacetField(COUNTRYID);
-		//solrQuery.addFacetField(STARTDATE);
-		solrQuery.addFacetPivotField(STARTDATE+","+ENDDATE);
-		//addDateRangeFacet(field, start, end, gap);
-		//addFacetField(ENDDATE);
 		
-		solrQuery.setIncludeScore(true);
-		//String fq="cityId:6453";
-		if(filterQuery!=null && filterQuery.contains(":")){
-			solrQuery.setFilterQueries(filterQuery);
+		if(listOfFilters.get(SUBCATEGORYID)==null){
+			solrQuery.addFacetField(SUBCATEGORYID);
 		}
-		logger.info("RawQuery :" + solrQuery);
-		response = searchServer.solrServer.query(solrQuery);
-		return response;
-	}
-
-
-	public SearchQueryResponse getSearchQueryResponse(String query,Map<String,String> listOfFilters, int rows,int start,Integer countryId)
-			throws Exception {
-		String fq=""; 
+		if(listOfFilters.get(EVENTTYPE)==null){
+			solrQuery.addFacetField(EVENTTYPE);
+		}
+		if(listOfFilters.get(CITYID)==null){
+			solrQuery.addFacetField(CITYID);
+		}
+		
+		solrQuery.addFacetField(COUNTRYID);
+		solrQuery.addFacetPivotField(STARTDATE+","+ENDDATE);
+		solrQuery.setIncludeScore(true);
+		
+		if(listOfFilters==null || listOfFilters.size()==0){
+				solrQuery.addFilterQuery(END_DATE+":["+sdf.format(new Date())+" TO * ]");
+		}
+		
 		if(listOfFilters!=null){
 			for(String key:listOfFilters.keySet()){
 				String filterQuery = listOfFilters.get(key);
 		    	if(filterQuery!=null && key.equalsIgnoreCase(SUBCATEGORYID)){
-		    		fq=fq+" AND "+SUBCATEGORYID+":"+filterQuery;
+		    		solrQuery.addFilterQuery(TAG+SUBCATEGORYID+":"+filterQuery);
+		    		/*fq=fq+" AND "+TAG+SUBCATEGORYID+":"+filterQuery;
+		    		excludeList.add(SUBCATEGORYID);*/
+		    		solrQuery.addFacetField(EXCLUDE+SUBCATEGORYID);
 		    	}
 		    	if(filterQuery!=null && key.equalsIgnoreCase(CITYID)){
-		    		fq=fq+" AND "+CITYID+":"+filterQuery;
+		    		solrQuery.addFilterQuery(TAG+CITYID+":"+filterQuery);
+		    		solrQuery.addFacetField(EXCLUDE+CITYID);
+		    		/*fq=fq+" AND "+TAG+CITYID+":"+filterQuery;
+		    		excludeList.add(CITYID);*/
 		    	}
 	
 		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTTYPE)){
-		    		fq=fq+" AND "+EVENTTYPE+":"+filterQuery;
+		    		solrQuery.addFilterQuery(TAG+EVENTTYPE+":"+filterQuery);
+		    		solrQuery.addFacetField(EXCLUDE+EVENTTYPE);
+		    		/*fq=fq+" AND "+TAG+EVENTTYPE+":"+filterQuery;
+		    		excludeList.add(EVENTTYPE);*/
 		    	}
 		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTDATE)){
 		    		
@@ -168,7 +177,8 @@ public class SearchServiceImpl implements SearchService {
 							endDateFormat = sdf.format(date);
 						}
 						if(eventDate==TODAY || eventDate==TOMORROW){
-							fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
+							solrQuery.addFilterQuery(START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *]");
+							//fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
 						}else{
 							if(eventDate==CURRENT_WEEK){
 								//This week filter
@@ -184,7 +194,8 @@ public class SearchServiceImpl implements SearchService {
 								cal.add(Calendar.DAY_OF_MONTH, i+1);
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
+								solrQuery.addFilterQuery(START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==NEXT_WEEK){
 								//Next week filter
@@ -201,7 +212,8 @@ public class SearchServiceImpl implements SearchService {
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
+								solrQuery.addFilterQuery(START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==CURRENT_MONTH){
 								//Next week filter
@@ -214,7 +226,8 @@ public class SearchServiceImpl implements SearchService {
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
+								solrQuery.addFilterQuery(START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==REST){
 								//Other dates filter
@@ -224,7 +237,8 @@ public class SearchServiceImpl implements SearchService {
 								cal.set(Calendar.DAY_OF_MONTH,1);
 								date = cal.getTime();
 								dateFormat = sdf.format(date);
-								fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
+								solrQuery.addFilterQuery(START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 						}
 					} catch (Exception e) {
@@ -236,21 +250,26 @@ public class SearchServiceImpl implements SearchService {
 		    		}else{
 		    			fq=fq+" AND ("+STARTDATE+":"+filterQuery+" OR "+ENDDATE+":("+filterQuery+" TO *))";
 		    		}
-*/		    	}
+*/		    	}else{
+					solrQuery.addFilterQuery(END_DATE+":["+sdf.format(new Date())+" TO * ]");
+				}
 			}
 		}
-		if(fq!=null && fq.length()>4){
-			fq = fq.substring(5);
-		}
-    	if(fq==null || fq.isEmpty()){
-    		fq = END_DATE+":["+sdf.format(new Date())+" TO * ]";
-    	}
+		
 		if(countryId!=null){
-			fq=COUNTRYID+":"+countryId+" AND "+fq;
+			solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
+			//fq=COUNTRYID+":"+countryId+" AND "+fq;
 		}
+		logger.info("RawQuery :" + solrQuery);
+		response = searchServer.solrServer.query(solrQuery);
+		return response;
+	}
+
+
+	public SearchQueryResponse getSearchQueryResponse(String query,Map<String,String> listOfFilters, int rows,int start,Integer countryId)
+			throws Exception {
 		
-		QueryResponse response = getSolrResponse(query,fq, rows,start*rows); 
-		
+		QueryResponse response = getSolrResponse(query,listOfFilters, rows,start*rows,countryId); 
 
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
