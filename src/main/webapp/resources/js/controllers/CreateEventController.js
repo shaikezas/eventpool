@@ -212,7 +212,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
 
     $scope.addNewEvent = function() {
-    	/*$('#loadingPopup').modal('toggle');*/
+    	if(!$scope.event.isPublish){
     	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
@@ -227,7 +227,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	/*$('#loadingPopup').modal('toggle');*/
         });
         }
-        
+    	} else {
+    		alert("Published events cannot be modified.\n Review event details.");
+    	}
     }
     
     $scope.addNewEventAndPublish = function() {

@@ -79,6 +79,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     };
     $scope.registerTicket = function() {
 //        $scope.resetError();
+    	if($scope.event.isPublish){
     	$scope.editMode = false;
     	var tickets = $scope.event.tickets;
     	var eventRegister = new eventpool.eventRegister();
@@ -111,6 +112,10 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
         }).error(function(error) {
             alert(data);
         });
+     } else {
+    	 alert("This event is not yet published.\n Ticket booking will allow after published.\n Redirecting to myevents page.");
+    	 $location.url("/myevents");
+     }
     }
     
     $scope.bookTicket = function() {

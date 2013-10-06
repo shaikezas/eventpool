@@ -5,10 +5,63 @@
     
 
 	<div class="container pageContainer" >
-	<img src="bootstrap/img/pageBanner.jpg"  />
-				
+		
+		
+<!-- Slider Start-->
+  
+      <!-- Top part of the slider -->
+        <div class="slider" id="carousel-bounding-box">
+          <div id="myCarousel" class="carousel slide">
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              <div class="active item" data-slide-number="0"><img src="bootstrap/img/pageBanner.jpg"></div>
+              <div class="item" data-slide-number="1"><img src="bootstrap/img/pageBanner.jpg"></div>
+              <div class="item" data-slide-number="2"><img src="bootstrap/img/pageBanner.jpg"></div>
+              <div class="item" data-slide-number="3"><img src="bootstrap/img/pageBanner.jpg"></div>
+              <div class="item" data-slide-number="4"><img src="bootstrap/img/pageBanner.jpg"></div>
+            </div>
+            <!-- Carousel nav -->
+	          <!--  <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+	            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>  -->
+          </div>
+        </div>
+        <div class="row-fluid hidden-phone carouselThumb  " id="slider-thumbs"  >
+	      <ul>
+	        <li> <a id="carousel-selector-0"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
+	        <li> <a id="carousel-selector-1"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
+	        <li> <a id="carousel-selector-2"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
+	        <li> <a id="carousel-selector-3"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
+	        <li> <a id="carousel-selector-4"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
+	      </ul>
+	  </div>
+    	
+<!-- Slider End -->
+
+
 	<ul class="thumbnails">
 		
+		
+		<div class="span1 leftPanel ">
+
+			<h3>Categories<i class="titleArow"></i></h3>
+			<div class="filterControl"> 
+				<ul class="nav nav-list">
+					<a href="#" class="nav-header">Education</a>
+					<a href="#" class="nav-header">Entertainment</a>
+					<a href="#" class="nav-header">Fashion</a>
+					<a href="#" class="nav-header">Health</a>
+					<a href="#" class="nav-header">Industrial</a>
+					<a href="#" class="nav-header">RealEstate</a>
+					<a href="#" class="nav-header">Sports</a>
+					<a href="#" class="nav-header">Miscellaneous</a>						
+				</ul>
+			</div>
+				
+
+			</div>
+		
+  
+            
 					<li class="span1" ng-repeat="event in homePageResults">
 					    <div class="thumbnail">
 							<a href="#event/{{event.eventUrl}}"><img ng-src="{{event.promotionLogoUrl}}" alt="" ></a>
