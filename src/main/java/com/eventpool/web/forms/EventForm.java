@@ -63,6 +63,7 @@ public class EventForm  {
 	private UserEventSettingDTO userEventSettingDTO;
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	private String logo;
+	private Boolean showBookTicket=true ;
 	
 	public String getTitle() {
 		return title;
@@ -393,6 +394,12 @@ public Long getEventId() {
 	}
 	public void setPromotionFile(File promotionFile) {
 		this.promotionFile = promotionFile;
+	}
+	public Boolean getShowBookTicket() {
+		return showBookTicket;
+	}
+	public void setShowBookTicket(Boolean showBookTicket) {
+		this.showBookTicket = showBookTicket;
 	}
 	
 }
