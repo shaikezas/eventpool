@@ -78,9 +78,10 @@
 								  <td class="amt">{{ticket.price}} </td>
 								  <td class="amt">{{ticket.saleEnd}}</td>
 								  <td class="amt"> 
-								  	<select style="width: 100px;" id="Category" ng-model="ticket.selectedQty" ng-click="calcTotalAmount()" ng-init="ticket.selectedQty='0'" 
+								  	<select ng-show="!ticket.soldOut" style="width: 100px;" id="Category" ng-model="ticket.selectedQty" ng-click="calcTotalAmount()" ng-init="ticket.selectedQty='0'" 
 															ng-options="qty.value as qty.key for qty in ticket.qtyList" ng-change="atleastOneTktSelected()">
 												</select>
+								     <span ng-show="ticket.soldOut">SOLD OUT</span>
 								  </td>
 						</tr>
 					
@@ -93,7 +94,7 @@
 			
 			
 				<div style="text-align: right">
-					<button type="button" class="btn " ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.tickets.length > 0">Book Ticket</button>
+					<button type="button" class="btn " ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.showBookTicket">Book Ticket</button>
 				</div>	
 							
 		<div >
