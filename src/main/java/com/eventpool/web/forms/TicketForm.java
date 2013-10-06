@@ -18,6 +18,8 @@ public class TicketForm {
 	
 	String saleEnd;
 	
+	private Boolean soldOut = false;
+	
 	private Boolean isActive;
 	
 	private Integer quantity;
@@ -212,5 +214,15 @@ public class TicketForm {
 	public void setEventId(Long eventId) {
 		this.eventId = eventId;
 	}
+
+	public Boolean getSoldOut() {
+		return soldOut;
+	}
+
+	public void setSoldOut(Boolean soldOut) {
+		this.soldOut = soldOut;
+	}
+
+	
 	
 }

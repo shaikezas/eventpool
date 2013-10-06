@@ -289,7 +289,13 @@ public class EventController {
     	EventForm form = new EventForm();
     	EventDTO eventDTO = eventService.getEventById(eventId);
     	mapper.mapEventForm(eventDTO, form);
-    	
+    	if(form.getCityId()!=null){
+        	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
+        	Region region = csc.get(form.getCityId());
+        	form.setCityName(region.getCityName());
+        	form.setStateName(region.getStateName());
+        	form.setCountryName(region.getCountryName());
+        	}
     	return form;
     }
     
@@ -307,19 +313,54 @@ public class EventController {
     			form.setRegistrationLimit(infoService.getEventOrderSettings(eventDTO).getRegistrationLimit());
     		}
     	}
-    	for(TicketForm ticket : form.getTickets()){
+    	List<Integer> indexes = new ArrayList<Integer>();
+    	List<TicketForm> tickets = form.getTickets();
+    	List<Boolean> soldOut = new ArrayList<Boolean>();
+    	int index = 0;
+    	for(TicketForm ticket : tickets){
+    		if(ticket.getIsActive()!=null && !ticket.getIsActive()){
+    			indexes.add(index);
+    		}
+    		index++;
+    	}
+    	for(Integer ind : indexes){
+    		tickets.remove(ind.intValue());
+    	}
+    	
+    	
+    	for(TicketForm ticket : tickets){
     		dropdownList = new ArrayList<Dropdown>();
     		ticket.setQtyList(dropdownList);
     		dropdown = new Dropdown(qty,qty);
     		dropdownList.add(dropdown);
+    		int sellableTicketInventory = ticketInventoryService.getSellableTicketInventory(ticket.getId());
+    		if(sellableTicketInventory <= 0){
+    			ticket.setSoldOut(true);
+    		}
+    		if(sellableTicketInventory < ticket.getMaxQty()){
+    			ticket.setMaxQty(sellableTicketInventory);
+    		}
+    		if(sellableTicketInventory < ticket.getMinQty()){
+    			ticket.setMinQty(sellableTicketInventory);
+    			ticket.setSoldOut(true);
+    		}
     		for(int i=ticket.getMinQty();i<=ticket.getMaxQty();i++){
     			dropdown = new Dropdown(String.valueOf(i),String.valueOf(i));
         		dropdownList.add(dropdown);
     		}
     		
+    		soldOut.add(ticket.getSoldOut());
     		
     	}
-    	
+    	if(tickets.size()<=0){
+    		form.setShowBookTicket(false);
+    	}
+    	if(!soldOut.contains(Boolean.FALSE)){
+    		form.setShowBookTicket(false);
+    	}
+    	if(form.getIsActive()!=null && !form.getIsActive()){
+    		form.setShowBookTicket(false);
+    	}
     	if(form.getCityId()!=null){
     	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
     	Region region = csc.get(form.getCityId());
