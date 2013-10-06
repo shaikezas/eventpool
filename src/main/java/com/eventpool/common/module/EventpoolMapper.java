@@ -30,6 +30,7 @@ import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.Ticket;
 import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.entities.User;
+import com.eventpool.common.type.EventPrivacyType;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.web.forms.EventForm;
@@ -346,6 +347,11 @@ public class EventpoolMapper {
 			eventDTO.setEventType(EventType.NOREGISTRATION);
 		}
 		
+		if(eventForm.getIsPrivate()){
+			eventDTO.setPrivacyType(EventPrivacyType.PRIVATE.value());
+		}else{
+			eventDTO.setPrivacyType(EventPrivacyType.PUBLIC.value());
+		}
 		/*OrderFormSettings orderFormSettings = eventForm.getOrderFormSettings();
 		if(orderFormSettings!=null){
 			JSONObject json = new JSONObject(orderFormSettings);
@@ -428,6 +434,11 @@ public class EventpoolMapper {
 			}
 		}
 		eventForm.setIsPublish(eventDTO.getPublish());
+		if(eventDTO.getPrivacyType()!=null && eventDTO.getPrivacyType().equals(EventPrivacyType.PRIVATE.value())){
+			eventForm.setIsPrivate(true);
+		}else{
+			eventForm.setIsPrivate(false);
+		}
 /*		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
 		if(eventSettingsDTO!=null){
 			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();

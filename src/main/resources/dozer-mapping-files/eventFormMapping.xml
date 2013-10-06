@@ -21,8 +21,8 @@
 		<field><a>termsAndConditions</a><b>termsAndConditions</b></field>
 		<field><a>keyWords</a><b>keyWords</b></field>
 		<field><a>publishDate</a><b>publishDate</b></field>		
-		<field><a>showEvent</a><b>showEvent</b></field>		
-		<field><a>privacyType</a><b>privacyType</b></field>
+		<!-- <field><a>showEvent</a><b>showEvent</b></field>	 -->	
+		<field><a>isPrivate</a><b>privacyType</b></field>
 		<field><a>createdBy</a><b>createdBy</b></field>
 		<field><a>eventUrl      </a><b>eventUrl     </b></field>
 		<field><a>classificationType      </a><b>classificationType     </b></field>
