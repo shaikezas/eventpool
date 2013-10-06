@@ -8,6 +8,7 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
         });
         
       }
+ 
     
     $scope.updateUser = function() {        	
         $http.post('account/updateuser', $scope.userDetails).success(function() {

@@ -11,21 +11,9 @@
 
 	    <!-- Navbar
 	    ================================================== -->
-	  
-	  
-
-
-
-
-	
-		    	
 		          
-		           <div ng-include src="'html/header.html'"></div>  
-		      
-			       
-			         	  
-			       
-			            
+		           <div ng-include src="'html/header.html'"></div>
+		           			            
 <div class="container inPageContainer" >      
 
 <div ng-class="'alert alert-'+message().type" ng-show="message().show" >
@@ -39,7 +27,7 @@
 			              <li class="active">	<a href="#personalDetails" data-toggle="tab">	Personal Details	</a></li>
 			              <li>					<a href="#companyDetails" data-toggle="tab">	Company Details		</a></li>
 			              <li>					<a href="#changePassword" data-toggle="tab">	Change Password		</a></li>
-			              <li>					<a href="#socialPlugins" data-toggle="tab">		Social Plugins		</a></li>
+			             <!--  <li>					<a href="#socialPlugins" data-toggle="tab">		Social Plugins		</a></li> -->
 
 		            </ul>
 			 <!--  Create Event Nav Tab -->  
@@ -78,12 +66,12 @@
 							    </div>
 							  </div>
 							  
-							  <div class="control-group">
+						<!-- 	  <div class="control-group">
 							    <label class="control-label" for="salutation">Salutation :</label>
 							    <div class="controls">
 							      <input type="text" id="salutation" value="Mr" >
 							    </div>
-							  </div>
+							  </div> -->
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="fastName" >First Name </label>
@@ -92,12 +80,12 @@
 							    </div>
 							  </div>
 							  
-							  <div class="control-group">
+						<!-- 	  <div class="control-group">
 							    <label class="control-label" for="middleName" >Middle Name  </label>
 							    <div class="controls">
 							      <input type="text" id="middleName" ng-model="userDetails.lname">
 							    </div>
-							  </div>
+							  </div> -->
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="lastName" >Last Name</label>
@@ -105,6 +93,22 @@
 							      <input type="text" id="lastName" ng-model="userDetails.lname">
 							    </div>
 							  </div>
+							  
+												  
+							  
+							 <div class="control-group">
+							    <label class="control-label" for="gender">Gender</label>
+							    <div class="controls">
+									  <select id="gender" ng-model="userDetails.gender">
+									     <option value="">-- Select Gender --</option>
+										 <option value="MALE">Male</option>
+										 <option value="FEMALE">Female</option>
+										 <option value="OTHER">Other</option>
+										</select>
+							    </div>
+							  </div>
+							  
+							  
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="dateOfBirth">Date of Birth</label>
@@ -148,22 +152,27 @@
 								
 								<form class="form-horizontal">
 									
-									
+									<div class="control-group">
+									    <label class="control-label" for="jobtitle">Job Title</label>
+									    <div class="controls">
+									      <input type="text" id="jobtitle" ng-model="userDetails.jobtitle">
+									    </div>
+									 </div>
 									<div class="control-group">
 									    <label class="control-label" for="companyName">Company Name :</label>
 									    <div class="controls">
 									      <input type="text" id="companyName" ng-model="userDetails.company">
 									    </div>
 									 </div>
-									  	
-								 	<div class="control-group">
-									    <label class="control-label" for="companyDesc">Company Description :</label>
-									    <div class="controls">
-									      <input type="text" id="companyDesc" >
-									    </div>
-									 </div>
+										 
+								 <div class="control-group">
+								    <label class="control-label" for="workphone">Work Phone</label>
+								    <div class="controls">
+								      <input type="text" id="workphone" ng-model="userDetails.workphone">
+								    </div>
+								  </div>
 									 
-								 									  
+								 <!-- 									  
 									  <div class="control-group">
 									    <label class="control-label" for="phoneNo">Phone No  :</label>
 									    <div class="controls">
@@ -183,7 +192,7 @@
 									    <div class="controls">
 									      <input type="text" id="coymanyMail" >
 									    </div>
-									  </div>
+									  </div> -->
 										
 									 <div class="control-group">
 									    <label class="control-label" for="coymanyurl">Company URL  :</label>
@@ -243,7 +252,7 @@
 			
 			              </div>
 			              
-			              <div class="tab-pane fade" id="socialPlugins">				                
+			          <!-- <div class="tab-pane fade" id="socialPlugins">				                
 				                
 						        <form class="form-horizontal">
 								
@@ -283,23 +292,16 @@
 								      </tbody>
 								    </table>
 								</div>
-												
-								
-								
-								
-								
-								
-								
 								
 								</form>
 							
-			              </div>
+			              </div>--> 
 			              
 			              
-			            </div>
+			            </div>    	
 			          
-			 <!-- Create Event Tab Content End -->           
-</div>					          
+			 
+</div>				          
 	
 
 <div ng-include src="'html/footer.html'"></div>
