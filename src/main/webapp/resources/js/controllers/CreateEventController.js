@@ -268,7 +268,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.venueNameReq = $scope.venueForm.venueName.$error.required;
     	$scope.venueAdd1Req = $scope.venueForm.venueAddress1.$error.required;
     	$scope.citryReq = false;
-    	if(angular.isUndefined($scope.cityinput) || $scope.cityinput==null){
+    	if(angular.isUndefined($scope.event.cityName) || $scope.event.cityName==null){
     		$scope.citryReq = true;
     	}
     	$scope.pinReq= $scope.venueForm.pincode.$error.required;
@@ -471,8 +471,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	if(angular.isUndefined(region) || region == null){
     		return ;
     	}
-        $scope.state =  region.text.stateName;
-        $scope.country = region.text.countryName;
+    	$scope.event.cityName = region.text.cityName;
+    	$scope.event.stateName =  region.text.stateName;
+    	$scope.event.countryName = region.text.countryName;
         $scope.event.cityId = region.text.cityId;
         
     };

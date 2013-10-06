@@ -151,7 +151,7 @@
 							  	  <div class="control-group">
 								    <label class="control-label" for="state">City :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								    <input ui-select2="cityselect2options" ng-model="event.cityId" ng-change="selectCity(cityinput)" required />
+								    <input ui-select2="cityselect2options" ng-model="event.cityName" ng-change="selectCity(event.cityName)" required />
 								    <span ng-show="citryReq" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>	
@@ -159,14 +159,14 @@
 								  <div class="control-group">
 								    <label class="control-label" for="state">State :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
+								    <input type="text" id="eventStateName" ng-model="event.stateName" disabled="disabled" >
 								    </div>
 								  </div>
 								  
 								   <div class="control-group">
 								    <label class="control-label" for="state">Country :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
+										   <input type="text" id="eventCountryName" ng-model="event.countryName" disabled="disabled" >
 								    </div>
 								  </div>
 								  
