@@ -59,6 +59,28 @@ public class UserForm {
 	
 	private Integer totalPoints;
 	
+	private String workPhone;
+	
+	private String jobtitle;
+	
+	
+	
+	public String getJobtitle() {
+		return jobtitle;
+	}
+
+	public void setJobtitle(String jobtitle) {
+		this.jobtitle = jobtitle;
+	}
+
+	public String getWorkphone() {
+		return workPhone;
+	}
+
+	public void setWorkphone(String workPhone) {
+		this.workPhone = workPhone;
+	}
+	
 	public String getFname() {
 		return fname;
 	}
