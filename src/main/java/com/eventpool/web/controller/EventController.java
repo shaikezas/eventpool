@@ -449,7 +449,6 @@ public class EventController {
     	String subject=splits[1];
     	String toValue=splits[2];
     	String message=splits[3];
-    	System.out.println("QQWEQWEWEADFFASFDADFASFASFASFSDFSADFSDF");
     	List<String> toList = new ArrayList<String>();
     	List<String> ccList = new ArrayList<String>();
     	EmailAttachment attachment = new EmailAttachment();
@@ -465,7 +464,6 @@ public class EventController {
     			
     		}
     		}
-    	System.out.println("QQWEQWEWEADFFASFDADFASFASFASFSDFSADFSDF");
     	htmlEmailService.sendMail(toList, subject, message, ccList, attachment);
     	
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully sent the mail.");

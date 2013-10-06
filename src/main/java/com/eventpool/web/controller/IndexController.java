@@ -15,13 +15,11 @@ public class IndexController {
 
     @RequestMapping
     public String getIndexPage() {
-    	System.out.println("Index ...");
         return "index";
     }
     
     @RequestMapping("/home")
     public String getIndex() {
-    	System.out.println("home ...");
         return "home";
     }
 }
