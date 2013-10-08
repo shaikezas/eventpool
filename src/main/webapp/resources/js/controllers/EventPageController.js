@@ -17,7 +17,10 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     }
     };
     
-    
+	 $scope.$on('timer-stopped', function (event, data){
+		 alert("Registration time limit reached.");
+		 $location.url('/home');         
+     });
     $scope.calcTotalAmount = function(){
     	var tickets = $scope.event.tickets;
     	var amount = 0;
