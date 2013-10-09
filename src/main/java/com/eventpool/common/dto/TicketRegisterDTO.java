@@ -7,6 +7,7 @@ public class TicketRegisterDTO {
 	private Double price;
 	private Long id;
 	private String ticketName;
+	private int registrationLimit;
 	
 	public Long getTicketId() {
 		return ticketId;
@@ -38,7 +39,12 @@ public class TicketRegisterDTO {
 	public void setTicketName(String ticketName) {
 		this.ticketName = ticketName;
 	}
-	
+	public int getRegistrationLimit() {
+		return registrationLimit;
+	}
+	public void setRegistrationLimit(int registrationLimit) {
+		this.registrationLimit = registrationLimit;
+	}
 	
 	
 	

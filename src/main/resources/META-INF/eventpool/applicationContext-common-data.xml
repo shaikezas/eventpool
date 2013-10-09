@@ -30,7 +30,7 @@
 	<context:component-scan base-package="com.eventpool" >
 	<context:exclude-filter type="regex" expression="com.eventpool.web.controller.EventController"/>
 	</context:component-scan> 
-
+	<bean name="starter" init-method="start" class="com.eventpool.web.domain.ContextLoaderListener" lazy-init="false"/>
 	<jpa:repositories base-package="com.eventpool.common.repositories"
 		entity-manager-factory-ref="entityManagerFactory"
 		transaction-manager-ref="transactionManager" >
