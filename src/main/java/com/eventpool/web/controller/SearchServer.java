@@ -51,7 +51,7 @@ public class SearchServer {
             solrServer = new EmbeddedSolrServer(coreContainer, "collection1");
         }
 */        
-        String solrUrl = "http://"+server+":"+port+"/solr";
+        String solrUrl = "http://"+server+":"+port+"/solr/mainindex/";
         solrServer = new HttpSolrServer(solrUrl);
     }
 
