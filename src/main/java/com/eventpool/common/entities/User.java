@@ -143,6 +143,10 @@ public class User extends IdEntity{
 	@Column(name = "MODIFIED_DATE", nullable = false)
 	private Date modifiedDate = new Date();
 
+	@Column(name = "JOB_TITLE")
+	private String jobtitle;
+
+	
 	public String getFname() {
 		return fname;
 	}
@@ -365,6 +369,14 @@ public class User extends IdEntity{
 
 		public void setTotalPoints(Integer totalPoints) {
 			this.totalPoints = totalPoints;
+		}
+
+		public String getJobtitle() {
+			return jobtitle;
+		}
+
+		public void setJobtitle(String jobtitle) {
+			this.jobtitle = jobtitle;
 		}
 		  
 		  
