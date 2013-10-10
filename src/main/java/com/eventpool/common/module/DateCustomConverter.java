@@ -30,9 +30,13 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 	}
 
 	public Date convertTo(String source, Date destination) {
-		if (source != null) {
+		if (source != null && !source.isEmpty()) {
 			String pattern = "dd-MMM-yyyy HH:mm";
-			destination = getDate(source,pattern);
+			try {
+				destination = getDate(source,pattern);
+			} catch (Exception e) {
+				logger.error("date parse exception",e);
+			}
 		}
 		return destination;
 	}

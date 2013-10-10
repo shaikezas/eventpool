@@ -106,7 +106,6 @@
 			<field><a>companyUrl</a><b>companyUrl</b></field>
 			<field><a>workPhone</a><b>workPhone</b></field>
 			<field><a>jobtitle</a><b>jobtitle</b></field>
-			
 			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>dob</a><b>dob</b></field>
 			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>createdDate</a><b>createdDate</b></field>
 	</mapping>
