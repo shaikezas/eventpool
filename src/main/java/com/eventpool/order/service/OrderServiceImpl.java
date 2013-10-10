@@ -248,6 +248,7 @@ public class OrderServiceImpl implements OrderService {
 			}
 			if (ticketInventoryDetails.isInvBlocked()) {
 				ticketRegister.setQty(ticketInventoryDetails.getBlockingQty());
+				ticketRegister.setRegistrationLimit(registrationLimit);
 				ticketRegister = ticketRegisterRepository.save(ticketRegister);
 				unBlockedService.registerTask(ticketRegister,
 						registrationLimit * 60);
