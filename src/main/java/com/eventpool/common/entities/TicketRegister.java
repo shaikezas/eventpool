@@ -28,6 +28,10 @@ public class TicketRegister extends IdEntity{
 	@Column(name = "TICKET_PRICE")
 	private Double price;
 	
+	@NotNull
+	@Column(name ="REGISTRATION_LIMIT")
+	private int registrationLimit;
+	
 	@Column(name = "CREATED_DATE", nullable = false)
 	private Date createdDate = new Date();
 	
@@ -60,6 +64,12 @@ public class TicketRegister extends IdEntity{
 	}
 	public void setTicketName(String ticketName) {
 		this.ticketName = ticketName;
+	}
+	public int getRegistrationLimit() {
+		return registrationLimit;
+	}
+	public void setRegistrationLimit(int registrationLimit) {
+		this.registrationLimit = registrationLimit;
 	}
 	
 	

@@ -60,6 +60,8 @@
 			<field><a>price</a><b>price</b></field>
 			<field><a>id</a><b>id</b></field>
 			<field><a>ticketName</a><b>ticketName</b></field>
+			<field><a>registrationLimit</a><b>registrationLimit</b></field>
+			
 			
     </mapping>
     
