@@ -21,6 +21,11 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
     }
     
     $scope.resetPassword = function(newPassword, confirmPassword) {
+    	$scope.newpwReq = $scope.resetform.newpw.$error.required;
+    	$scope.confirmpwReq = $scope.resetform.confirmpw.$error.required;
+    	if($scope.resetform.$invalid){
+    		return;
+    	}
     	if(newPassword !== confirmPassword){
     		alert("password mismatch");
     		return;
