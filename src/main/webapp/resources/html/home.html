@@ -10,9 +10,30 @@
 <!-- Slider Start-->
   
       <!-- Top part of the slider -->
-        <div class="slider" id="carousel-bounding-box">
+      
+      
+      <div class="slider" id="carousel-bounding-box">      
+      		  <carousel interval="myInterval">
+    			<slide ng-repeat="event in homePageResults  | limitTo:5" active="event.active">
+      				<a href="#event/{{event.eventUrl}}">
+      					<div class="image">
+							<img ng-src="bootstrap/img/pageBanner.jpg"/> 
+						</div>  
+      					<div class="carousel-caption">
+      			    		<p>{{event.title}}</p>
+        					<p>Start Date: {{event.startDate}}</p>
+        					<p>End Date  : {{event.endDate}}</p>
+      					</div>
+      				</a>
+    			</slide>
+  			</carousel>     
+      </div>
+      
+      
+      
+   <!--      <div class="slider" id="carousel-bounding-box">
           <div id="myCarousel" class="carousel slide">
-            <!-- Carousel items -->
+            Carousel items
             <div class="carousel-inner">
               <div class="active item" data-slide-number="0"><img src="bootstrap/img/pageBanner.jpg"></div>
               <div class="item" data-slide-number="1"><img src="bootstrap/img/pageBanner.jpg"></div>
@@ -20,12 +41,13 @@
               <div class="item" data-slide-number="3"><img src="bootstrap/img/pageBanner.jpg"></div>
               <div class="item" data-slide-number="4"><img src="bootstrap/img/pageBanner.jpg"></div>
             </div>
-            <!-- Carousel nav -->
-	          <!--  <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
-	            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>  -->
+            Carousel nav
+	           <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+	            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a> 
           </div>
-        </div>
-        <div class="row-fluid hidden-phone carouselThumb  " id="slider-thumbs"  >
+        </div> -->
+        
+ <!--        <div class="row-fluid hidden-phone carouselThumb  " id="slider-thumbs"  >
 	      <ul>
 	        <li> <a id="carousel-selector-0"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
 	        <li> <a id="carousel-selector-1"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
@@ -33,7 +55,7 @@
 	        <li> <a id="carousel-selector-3"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
 	        <li> <a id="carousel-selector-4"> <img src="bootstrap/img/pageBanner.jpg"> </a></li>
 	      </ul>
-	  </div>
+	  </div> -->
     	
 <!-- Slider End -->
 
