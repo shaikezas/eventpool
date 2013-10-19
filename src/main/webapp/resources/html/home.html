@@ -17,7 +17,7 @@
     			<slide ng-repeat="event in homePageResults  | limitTo:5" active="event.active">
       				<a href="#event/{{event.eventUrl}}">
       					<div class="image">
-							<img ng-src="bootstrap/img/pageBanner.jpg"/> 
+							<img ng-src="{{event.banner}}"/> 
 						</div>  
       					<div class="carousel-caption">
       			    		<p>{{event.title}}</p>
