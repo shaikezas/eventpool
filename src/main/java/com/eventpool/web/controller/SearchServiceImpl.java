@@ -419,6 +419,9 @@ public class SearchServiceImpl implements SearchService {
 				if(eventSearchRecord.getPromotionLogoUrl()!=null && !eventSearchRecord.getPromotionLogoUrl().startsWith(imageHostUrl)){
 					eventSearchRecord.setPromotionLogoUrl(imageHostUrl+eventSearchRecord.getPromotionLogoUrl());
 				}
+				if(eventSearchRecord.getBanner()!=null && !eventSearchRecord.getBanner().startsWith(imageHostUrl)){
+					eventSearchRecord.setBanner(imageHostUrl+eventSearchRecord.getBanner());
+				}
 			}
 		}
 		
