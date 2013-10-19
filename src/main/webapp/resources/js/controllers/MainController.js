@@ -2,6 +2,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
+	$scope.myInterval = 4000;
 	$scope.selectedCat = "All Categories";
 /*	$scope.eventType = new Array();*/
 	$scope.signupuserform = {};

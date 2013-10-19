@@ -10,7 +10,11 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
       }
  
     
-    $scope.updateUser = function() {        	
+    $scope.updateUser = function() {
+    	if($scope.companyform.coymanyurl.$error.url){
+    		alert("Please enter valid url http://zeoevent.com");
+    		return;
+    	}
         $http.post('account/updateuser', $scope.userDetails).success(function() {
         	$scope.fetchUserDetails();
         }).error(function() {
@@ -21,6 +25,11 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
     }
     
     $scope.resetPassword = function(newPassword, confirmPassword) {
+    	$scope.newpwReq = $scope.resetform.newpw.$error.required;
+    	$scope.confirmpwReq = $scope.resetform.confirmpw.$error.required;
+    	if($scope.resetform.$invalid){
+    		return;
+    	}
     	if(newPassword !== confirmPassword){
     		alert("password mismatch");
     		return;

@@ -150,7 +150,7 @@
 			              <div class="tab-pane fade" id="companyDetails">
 			                
 								
-								<form class="form-horizontal">
+								<form class="form-horizontal" name="companyform">
 									
 									<div class="control-group">
 									    <label class="control-label" for="jobtitle">Job Title</label>
@@ -168,36 +168,14 @@
 								 <div class="control-group">
 								    <label class="control-label" for="workphone">Work Phone</label>
 								    <div class="controls">
-								      <input type="text" id="workphone" ng-model="userDetails.workphone">
+								      <input type="text" id="workphone" ng-model="userDetails.workPhone">
 								    </div>
 								  </div>
 									 
-								 <!-- 									  
-									  <div class="control-group">
-									    <label class="control-label" for="phoneNo">Phone No  :</label>
-									    <div class="controls">
-									      <input type="text" id="phoneNo" >
-									    </div>
-									  </div>
-								 
-									 <div class="control-group">
-									    <label class="control-label" for="faxNo">Fax No  :</label>
-									    <div class="controls">
-									      <input type="text" id="faxNo" >
-									    </div>
-									  </div>
-									  
-									  <div class="control-group">
-									    <label class="control-label" for="coymanyMail">Company Email  :</label>
-									    <div class="controls">
-									      <input type="text" id="coymanyMail" >
-									    </div>
-									  </div> -->
-										
 									 <div class="control-group">
 									    <label class="control-label" for="coymanyurl">Company URL  :</label>
 									    <div class="controls">
-									      <input type="email" id="coymanyurl" ng-model="userDetails.companyUrl">
+									     <input type="url" name="coymanyurl" id="coymanyurl" ng-model="userDetails.companyUrl" placeholder="http://zeoevent.com"> 
 									    </div>
 									  </div>
 									  
@@ -226,18 +204,20 @@
 			              
 			              <div class="tab-pane fade" id="changePassword">
 			                
-								<form class="form-horizontal">
+								<form class="form-horizontal" name="resetform">
 									<div class="control-group">
-									    <label class="control-label" for="newpw">New Password :</label>
+									    <label class="control-label" for="newpw">New Password :<span ng-style="{color:'red'}">*</span></label>
 									    <div class="controls">
-									      <input type="password" id="newpw" ng-model="newPassword">
+									      <input type="password" name="newpw" id="newpw" ng-model="newPassword" required>
+									      <span ng-show="newpwReq" ng-style="{color:'red'}">Required.</span>
 									    </div>
 									 </div>
 									 
 									 <div class="control-group">
-									    <label class="control-label" for="confirmpw">Confirm Password :</label>
+									    <label class="control-label" for="confirmpw">Confirm Password :<span ng-style="{color:'red'}">*</span></label>
 									    <div class="controls">
-									      <input type="password" id="confirmpw" ng-model="confirmPassword">
+									      <input type="password" name="confirmpw" id="confirmpw" ng-model="confirmPassword" required>
+									      <span ng-show="confirmpwReq" ng-style="{color:'red'}">Required.</span>
 									    </div>
 									 </div>
 										<div class="control-group">

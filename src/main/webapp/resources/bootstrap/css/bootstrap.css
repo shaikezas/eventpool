@@ -4244,6 +4244,12 @@ input[type="submit"].btn.btn-mini {
 
 .tab-content {
   overflow: auto;
+  border-style:solid;
+  border-color:#ff6600;
+  border-width:1.5px;
+  padding-top: 24px;
+  padding-left: 24px;
+  padding-right: 24px;  
 }
 
 .tabs-below > .nav-tabs,
@@ -5972,7 +5978,7 @@ a.badge:focus {
 .carousel {
   position: relative;
   margin-bottom: 20px;
-  line-height: 1;
+  line-height: 15;
 }
 
 .carousel-inner {
@@ -6043,7 +6049,7 @@ a.badge:focus {
   margin-top: -20px;
   font-size: 60px;
   font-weight: 100;
-  line-height: 30px;
+  line-height: 40px;
   color: #ffffff;
   text-align: center;
   background: #222222;
@@ -6098,7 +6104,7 @@ a.badge:focus {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 15px;
+  padding: 8px;
   background: #333333;
   background: rgba(0, 0, 0, 0.75);
 }

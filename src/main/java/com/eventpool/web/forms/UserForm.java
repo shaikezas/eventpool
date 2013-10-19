@@ -72,15 +72,15 @@ public class UserForm {
 	public void setJobtitle(String jobtitle) {
 		this.jobtitle = jobtitle;
 	}
-
-	public String getWorkphone() {
+	
+	public String getWorkPhone() {
 		return workPhone;
 	}
 
-	public void setWorkphone(String workPhone) {
+	public void setWorkPhone(String workPhone) {
 		this.workPhone = workPhone;
 	}
-	
+
 	public String getFname() {
 		return fname;
 	}
