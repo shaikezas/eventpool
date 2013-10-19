@@ -41,7 +41,7 @@
 			            	
 			              <div class="tab-pane fade in active" id="personalDetails">
 			                
-								<form class="form-horizontal">
+								<form class="form-horizontal" name="personaldetails">
 								
 						
 							
@@ -62,16 +62,12 @@
 							   <div class="control-group">
 							    <label class="control-label" for="altemailaddress">Alternate Email :</label>
 							    <div class="controls">
-							      <input type="text" id="altemailaddress" ng-model="userDetails.altEmail">
+							      <input type="email" id="altemailaddress" name="altemailaddress" ng-model="userDetails.altEmail">
+							      <span ng-show="validaltemail" ng-style="{color:'red'}">Enter valid email address.</span>
 							    </div>
 							  </div>
 							  
-						<!-- 	  <div class="control-group">
-							    <label class="control-label" for="salutation">Salutation :</label>
-							    <div class="controls">
-							      <input type="text" id="salutation" value="Mr" >
-							    </div>
-							  </div> -->
+					
 							  
 							  <div class="control-group">
 							    <label class="control-label" for="fastName" >First Name </label>
@@ -80,13 +76,7 @@
 							    </div>
 							  </div>
 							  
-						<!-- 	  <div class="control-group">
-							    <label class="control-label" for="middleName" >Middle Name  </label>
-							    <div class="controls">
-							      <input type="text" id="middleName" ng-model="userDetails.lname">
-							    </div>
-							  </div> -->
-							  
+				
 							  <div class="control-group">
 							    <label class="control-label" for="lastName" >Last Name</label>
 							    <div class="controls">
