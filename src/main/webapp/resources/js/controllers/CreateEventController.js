@@ -109,6 +109,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
+	    $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
+	    $scope.event.endDate = moment($scope.event.endDate).format("DD-MMM-YYYY hh:mm A");
+	    for (var i=0;i<$scope.event.tickets.length;i++)
+	 	{ 
+	    	$scope.event.tickets[i].saleStart = moment($scope.event.tickets[i].saleStart).format("DD-MMM-YYYY hh:mm A");
+	    	$scope.event.tickets[i].saleEnd = moment($scope.event.tickets[i].saleEnd).format("DD-MMM-YYYY hh:mm A");
+		    			
+	 	}
 	   
 	    if($scope.event.isWebinar){
 	    	$scope.setRequiredFields();
