@@ -48,7 +48,7 @@
 								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
 				      					<input type="text" name="startDate" datetime-picker  ng-model="event.startDate" 
 				      										placeholder="Start Date and Time" readonly required ng-change="setticketsaleenddte()"></input>
-				      										<span class="add-on"><i class="icon-th"></i></span>
+				      					<span class="add-on"><i class="icon-th"></i></span>
 				      				</div>
 				      				<span ng-show="startDateRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
@@ -151,8 +151,8 @@
 							  	  <div class="control-group">
 								    <label class="control-label" for="state">City :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								    <input ui-select2="cityselect2options" ng-model="event.cityName" ng-change="selectCity(event.cityName)" required />
-								    <span ng-show="citryReq" ng-style="{color:'red'}">Required.</span>
+									    <input ui-select2="cityselect2options" ng-model="event.cityName" ng-change="selectCity(event.cityName)" required/>
+									    <span ng-show="citryReq" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>	
 							  	
@@ -210,12 +210,6 @@
 								      <textarea id="organizerDescription" rows="3" ng-model="event.organizerDescription" ></textarea>
 								    </div>
 								  </div>
-							  
-							  
-							  
-							
-							  
-							  
 							  
 							  <div class="control-group">
 							    <div class="controls">
@@ -337,13 +331,13 @@
 							   </tr>
     </tbody>
 </table>
-	 <div class="control-group">
-							    <div class="controls">
-							    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEvent(event)" ng-disabled="disabled">Save & Exit</button>
-							      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
-							     </div>
-							  </div>
+	 			<div class="control-group">
+						    <div class="controls">
+						    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
+						      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEvent(event)" ng-disabled="disabled">Save & Exit</button>
+						      <button type="submit" class="btn " ng-hide="editMode" ng-click="addNewEventAndPublish()" ng-disabled="disabled">Save & Publish</button>
+						     </div>
+						  </div>
 							</form >
 							
 			              </div>
@@ -357,7 +351,7 @@
 						Please wait...
 				</div>        
 		           -->
-		          </div>
+		      </div>
 		
     
    

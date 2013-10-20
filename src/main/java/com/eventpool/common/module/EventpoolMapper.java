@@ -60,6 +60,9 @@ public class EventpoolMapper {
 	@Resource
 	private CategoryTree categoryTree;
 	
+	@Resource
+	EntityUtilities entityUtilities;
+	
 	@SuppressWarnings("unchecked")
 	public EventpoolMapper() {
 		mapper = new DozerBeanMapper();
@@ -404,6 +407,8 @@ public class EventpoolMapper {
 		mapper.map(eventDTO,eventForm);
 		if(eventDTO.getVenueAddress()!=null){
 			mapper.map(eventDTO.getVenueAddress(),eventForm);
+			String cityName = entityUtilities.getCityMap().get(eventDTO.getVenueAddress().getCityId());
+			eventForm.setCityName(cityName);
 		}
 		if(eventDTO.getMedia()!=null){
 			mapper.map(eventDTO.getMedia(), eventForm);
@@ -439,6 +444,7 @@ public class EventpoolMapper {
 		}else{
 			eventForm.setIsPrivate(false);
 		}
+		
 /*		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
 		if(eventSettingsDTO!=null){
 			String orderFromSettings = eventSettingsDTO.getOrderFromSettings();
