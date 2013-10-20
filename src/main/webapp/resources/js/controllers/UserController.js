@@ -1,6 +1,7 @@
 var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
 	
 	$scope.userDetails = {};
+	$scope.validaltemail=false;
 	
     $scope.fetchUserDetails = function() {
     	$http.get('account/getuser').success(function(userDetails){
@@ -15,6 +16,12 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
     		alert("Please enter valid url http://zeoevent.com");
     		return;
     	}
+    	$scope.validaltemail=false;
+    	if($scope.personaldetails.altemailaddress.$error.email){
+    		$scope.validaltemail=true;
+    		return;
+    	}
+    	
         $http.post('account/updateuser', $scope.userDetails).success(function() {
         	$scope.fetchUserDetails();
         }).error(function() {

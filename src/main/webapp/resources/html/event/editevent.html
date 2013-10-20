@@ -26,7 +26,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="eventTitle">Event Title :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" id="eventTitle" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required >
+							      <input class="span5" type="text" id="eventTitle" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required >
 							      <span ng-show="nameRequired" ng-style="{color:'red'}">Required.</span>
 						    </div>
 							  </div>
@@ -127,7 +127,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="venueTitle">Venue Title :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" name="venueName" id="eventVenueName" ng-model="event.venueName" required min="6" >
+							      <input class="span5" type="text" name="venueName" id="eventVenueName" ng-model="event.venueName" required min="6" >
 							      <span ng-show="venueNameReq" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>	
@@ -136,15 +136,15 @@
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress1">Venue Address1 :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <textarea id="venueAddress2" name="venueAddress1" rows="3" ng-model="event.address1" required ></textarea>
+								      <textarea class="span5" id="venueAddress1" name="venueAddress1" rows="3" ng-model="event.address1" required ></textarea>
 								      <span ng-show="venueAdd1Req" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
+								  
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress2">Venue Address2 :</label>
 								    <div class="controls">
-								      <textarea id="venueAddress2" name="venueAddress2" rows="3" ng-model="event.address2" ></textarea>
-								     
+								      <textarea class="span5" id="venueAddress2" name="venueAddress2" rows="3" ng-model="event.address2" ></textarea>
 								    </div>
 								  </div>								  
 							  
@@ -199,7 +199,7 @@
 				           <div class="control-group" ng-show="showOrgName">
 							    <label class="control-label" for="organizerName">Organizer Name :<!-- <span ng-style="{color:'red'}">*</span> --></label>
 							    <div class="controls">
-							      <input type="text" name="orgName" id="organizerName" ng-model="event.organizerName">
+							      <input class="span5" type="text" name="orgName" id="organizerName" ng-model="event.organizerName">
 							      <span ng-show="orgNameReq" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>							  
@@ -207,7 +207,7 @@
 								  <div class="control-group" ng-show="showOrgDesc">
 								    <label class="control-label" for="organizerDescription">Organizer Description :</label>
 								    <div class="controls">
-								      <textarea id="organizerDescription" rows="3" ng-model="event.organizerDescription" ></textarea>
+								      <textarea class="span5" id="organizerDescription" rows="3" ng-model="event.organizerDescription" ></textarea>
 								    </div>
 								  </div>
 							  
