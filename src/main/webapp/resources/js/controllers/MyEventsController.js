@@ -13,7 +13,6 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.fetchLiveEventsList = function() {
         $http.get('event/myevent/liveEventList').success(function(liveevents){
             $scope.liveEvents = $scope.changeDateFormat(liveevents);
-            /*$scope.hideInfoMessage();*/
         });
     }
     
@@ -24,8 +23,7 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     }
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){
-            $scope.pastEvents = $scope.changeDateFormat(pastevents);
-           /* $scope.hideInfoMessage();*/
+            $scope.pastEvents = $scope.changeDateFormat(pastevents);           
         });
     }
     
@@ -38,12 +36,6 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
          }
      	
      }
- 
- $scope.hideInfoMessage = function() {
- if(angular.isDefined($scope.message()) && $scope.message() != null){
-		$scope.message().show = false;
-	}
- }
  
  $scope.changeDateFormat = function(eventlists) {
 	 for (var i=0;i<eventlists.length;i++)

@@ -11,6 +11,14 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	if(angular.isDefined($routeParams.eventurl)){
     	srvevent.eventpage($routeParams).success(function(data) {
 		 $scope.event = data;
+		 $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
+		 $scope.event.endDate = moment($scope.event.endDate).format("DD-MMM-YYYY hh:mm A");
+		 for (var i=0;i<$scope.event.tickets.length;i++)
+		 	{ 
+		    	$scope.event.tickets[i].saleStart = moment($scope.event.tickets[i].saleStart).format("DD-MMM-YYYY hh:mm A");
+		    	$scope.event.tickets[i].saleEnd = moment($scope.event.tickets[i].saleEnd).format("DD-MMM-YYYY hh:mm A");
+			    			
+		 	}
     }).error(function(data) {
     	
     });
