@@ -394,7 +394,7 @@ public class SearchServiceImpl implements SearchService {
 				String facetName = facet.getName();
 				try {
 					int country = Integer.parseInt(facetName);
-					if(countryId.compareTo(country)==0){
+					if(countryId!=null && countryId.compareTo(country)==0){
 						facet.getCount();
 					}else{
 						otherCountriesCount+=facet.getCount();
