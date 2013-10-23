@@ -659,6 +659,10 @@ public class SearchServiceImpl implements SearchService {
 		filterItem.setCount(count);
 		filterItem.setName(name);
 		
+		if(filterMap==null){
+			filterItem.setQuery(filterQuery);
+			return filterItem;
+		}
 		filterQuery = "";
 		if(filterMap!=null){
 			for(String key:filterMap.keySet()){
@@ -679,6 +683,7 @@ public class SearchServiceImpl implements SearchService {
 		    	}
 			}
 		}
+		
 		if(filterQuery!=null && !filterQuery.isEmpty() && filterQuery.startsWith("&") && filterQuery.length()>1){
 			filterQuery = filterQuery.substring(1);
 		}
