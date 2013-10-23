@@ -403,10 +403,18 @@ public class SearchServiceImpl implements SearchService {
 					logger.info("not able to parse country id from seach results "+facetName,e);
 				}
 			}
-			FilterItem filterItem = getFilterItem(otherCountriesCount, "Other Countries",COUNTRYID+"=-"+countryId,null);
-			List<FilterItem> otherCountryFilterList = new ArrayList<FilterItem>();
-			otherCountryFilterList.add(filterItem);
-			searchQueryResponse.setOtherCountries(otherCountryFilterList);
+			if(countryId!=null){
+				FilterItem filterItem = getFilterItem(otherCountriesCount, "Other Countries",COUNTRYID+"=-"+countryId,null);
+				List<FilterItem> otherCountryFilterList = new ArrayList<FilterItem>();
+				otherCountryFilterList.add(filterItem);
+				searchQueryResponse.setOtherCountries(otherCountryFilterList);
+			}else{
+				FilterItem filterItem = getFilterItem(otherCountriesCount, "Other Countries","",null);
+				List<FilterItem> otherCountryFilterList = new ArrayList<FilterItem>();
+				otherCountryFilterList.add(filterItem);
+				searchQueryResponse.setOtherCountries(otherCountryFilterList);
+			}
+			
 		}
 		return searchQueryResponse;
 	}
