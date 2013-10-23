@@ -400,7 +400,7 @@ public class SearchServiceImpl implements SearchService {
 						otherCountriesCount+=facet.getCount();
 					}
 				} catch (Exception e) {
-					logger.info("not able to parse country id from seach results "+facetName);
+					logger.info("not able to parse country id from seach results "+facetName,e);
 				}
 			}
 			FilterItem filterItem = getFilterItem(otherCountriesCount, "Other Countries",COUNTRYID+"=-"+countryId,null);
