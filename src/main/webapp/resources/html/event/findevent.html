@@ -68,9 +68,12 @@
 				                <button class="btn dropdown-toggle noRadius headerCatBtn" data-toggle="dropdown">{{countryname}}<span class="caret"></span></button>
 				                
 				                <ul class="dropdown-menu" style="height: 250px; overflow-y: scroll;">
-				                  <li ng-repeat="country in activeCountries">
-									<a ng-click="setcountryname(country)"><!-- <i class="flag flag-IN"> --></i> {{country}} </a>   <span></a>
-									</li>
+				                 <!--  <li ng-repeat="country in activeCountries">
+									<a ng-click="setcountryname(country)"><i class="flag flag-IN"></i> {{country}} </a>   <span></a>
+									</li> -->
+									<li ng-repeat='(key, value) in activeCountries'>
+        								<a ng-click="setcountryname(key,value)">{{value}}</a>
+    								</li>
 				                </ul>				                
 				                
 				          </div><!-- /btn-group -->

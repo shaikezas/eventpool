@@ -24,6 +24,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.listscrollPage = false;
 	$scope.activeCountries = new Array();
 	$scope.countryname = "Country";
+	$scope.countryid = '';
 	
 	
 	$scope.viewThumbsNextPage = function(){
@@ -193,8 +194,9 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
   	    });
   }
     
-    $scope.setcountryname = function(coun) {
-    	$scope.countryname = coun;
+    $scope.setcountryname = function(id,name) {
+    	$scope.countryname = name;
+    	$scope.countryid = id;    	
     }
     
     
