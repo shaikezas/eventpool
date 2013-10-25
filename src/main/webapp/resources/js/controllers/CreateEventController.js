@@ -35,17 +35,27 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       }
       
       $scope.updateQuestions = function(){
+    	  if(!$scope.event.isPublish){
     	  $http.post('event/myevent/updatesettings', $scope.eventFormSettings).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
+    	  }
+    	  else {
+      		alert("Published events cannot be modified.\n Review event details.");
+      	}
       }
       
       $scope.updateEventOptions = function(){
+    	  if(!$scope.event.isPublish){
     	  $http.post('event/myevent/updateoptions', $scope.event).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
+    	  }
+    	  else {
+        		alert("Published events cannot be modified.\n Review event details.");
+        	}
       }
 
   $scope.validateeventname = function(eventname) {
@@ -102,6 +112,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.getMembershipId();
     $scope.myevent = function() {
     	if(angular.isDefined($routeParams.eventid)){
+    	$scope.createorupdate = false;
     	srvevent.myevent($routeParams).success(function(data) {
 		$scope.event = data;
 		$scope.showOrgName = $scope.event.userEventSettingDTO.showOrgName;
@@ -135,6 +146,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	
     });
     } else {
+    	$scope.createorupdate = true;
     	$scope.showOrgName = true;
     	$scope.showOrgDesc = true;
     	$scope.contactDetails = true;
