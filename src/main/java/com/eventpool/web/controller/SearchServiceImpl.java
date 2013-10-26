@@ -34,6 +34,8 @@ import com.eventpool.event.module.EventApiImpl;
 @Service("SearchService")
 public class SearchServiceImpl implements SearchService {
     
+	private static final String RIGHT_PARENTHESIS = ")";
+	private static final String LEFT_PARENTHESIS = "(";
 	private static final String COUNTRYID = "countryId";
 	private static final String EVENTDATE = "eventDate";
 	private static final String STARTDATE = "eventDate";
@@ -126,9 +128,9 @@ public class SearchServiceImpl implements SearchService {
 		solrQuery.addFacetPivotField(EXCLUDE+STARTDATE+","+ENDDATE);
 		solrQuery.setIncludeScore(true);
 		
-		if(listOfFilters==null || listOfFilters.size()==0){
+		//if(listOfFilters==null || listOfFilters.size()==0){
 				solrQuery.addFilterQuery(END_DATE+":["+sdf.format(new Date())+" TO * ]");
-		}
+		//}
 		
 		if(listOfFilters!=null){
 			for(String key:listOfFilters.keySet()){
@@ -177,7 +179,7 @@ public class SearchServiceImpl implements SearchService {
 							endDateFormat = sdf.format(date);
 						}
 						if(eventDate==TODAY || eventDate==TOMORROW){
-							solrQuery.addFilterQuery(TAG+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *]");
+							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 							//fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
 						}else{
 							if(eventDate==CURRENT_WEEK){
@@ -194,7 +196,7 @@ public class SearchServiceImpl implements SearchService {
 								cal.add(Calendar.DAY_OF_MONTH, i+1);
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==NEXT_WEEK){
@@ -212,7 +214,7 @@ public class SearchServiceImpl implements SearchService {
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==CURRENT_MONTH){
@@ -226,7 +228,7 @@ public class SearchServiceImpl implements SearchService {
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==REST){
@@ -237,7 +239,7 @@ public class SearchServiceImpl implements SearchService {
 								cal.set(Calendar.DAY_OF_MONTH,1);
 								date = cal.getTime();
 								dateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *]");
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 						}
@@ -293,8 +295,8 @@ public class SearchServiceImpl implements SearchService {
 						String subcategoryFilter = listOfFilters.get(SUBCATEGORYID);
 						if(subcategoryFilter!=null){
 							if(!subcategoryFilter.contains(node.getId().toString())){
-								subcategoryFilter = subcategoryFilter.replace("(", "").replace(")", "");
-								subcategoryFilter = "("+subcategoryFilter + " OR " + node.getId()+")";
+								subcategoryFilter = subcategoryFilter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
+								subcategoryFilter = LEFT_PARENTHESIS+subcategoryFilter + " OR " + node.getId()+RIGHT_PARENTHESIS;
 							}else{
 								subcategoryFilter = removeOldFilter(node.getId().toString(),subcategoryFilter);
 							}
@@ -328,8 +330,8 @@ public class SearchServiceImpl implements SearchService {
 					String eventTypeFilter = listOfFilters.get(EVENTTYPE);
 					if(eventTypeFilter!=null){
 						if(!eventTypeFilter.contains(facet.getName())){
-							eventTypeFilter = eventTypeFilter.replace("(", "").replace(")", "");
-							eventTypeFilter = "("+eventTypeFilter + " OR " + facet.getName()+")";
+							eventTypeFilter = eventTypeFilter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
+							eventTypeFilter = LEFT_PARENTHESIS+eventTypeFilter + " OR " + facet.getName()+RIGHT_PARENTHESIS;
 						}else{
 							eventTypeFilter = removeOldFilter(facet.getName(), eventTypeFilter);
 						}
@@ -365,8 +367,8 @@ public class SearchServiceImpl implements SearchService {
 							String cityIdFilter = listOfFilters.get(CITYID);
 							if(cityIdFilter!=null){
 								if(!cityIdFilter.contains(facetName)){
-									cityIdFilter = cityIdFilter.replace("(", "").replace(")", "");
-									cityIdFilter = "("+cityIdFilter + " OR " + facetName+")";
+									cityIdFilter = cityIdFilter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
+									cityIdFilter = LEFT_PARENTHESIS+cityIdFilter + " OR " + facetName+RIGHT_PARENTHESIS;
 								}else{
 									cityIdFilter = removeOldFilter(facetName, cityIdFilter);
 								}
@@ -437,7 +439,7 @@ public class SearchServiceImpl implements SearchService {
 
 
 	private String removeOldFilter(String oldFilter, String filter) {
-		filter = filter.replace("(", "").replace(")", "");
+		filter = filter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
 		filter = filter.replace(oldFilter, "");
 		if(filter.startsWith(" OR ")){
 			filter = filter.substring(4);
@@ -446,7 +448,7 @@ public class SearchServiceImpl implements SearchService {
 			filter = filter.substring(0,filter.length()-5);
 		}
 		if(filter!=null && !filter.isEmpty()){
-			filter = "("+filter + ")";
+			filter = LEFT_PARENTHESIS+filter + RIGHT_PARENTHESIS;
 		}else{
 			filter = null;
 		}
@@ -651,8 +653,8 @@ public class SearchServiceImpl implements SearchService {
 		String eventDateFilter = listOfFilters.get(EVENTDATE);
 		if(eventDateFilter!=null){
 			if(!eventDateFilter.contains(valueOf)){
-				eventDateFilter = eventDateFilter.replace("(", "").replace(")", "");
-				eventDateFilter = "("+eventDateFilter + " OR " + valueOf+")";
+				eventDateFilter = eventDateFilter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
+				eventDateFilter = LEFT_PARENTHESIS+eventDateFilter + " OR " + valueOf+RIGHT_PARENTHESIS;
 			}
 		}else{
 			eventDateFilter = valueOf;
