@@ -124,7 +124,7 @@ public class SearchServiceImpl implements SearchService {
 			solrQuery.addFacetField(EXCLUDE+CITYID);
 		}
 		
-		solrQuery.addFacetField(COUNTRYID);
+		solrQuery.addFacetField(EXCLUDE+COUNTRYID);
 		solrQuery.addFacetPivotField(EXCLUDE+STARTDATE+","+ENDDATE);
 		solrQuery.setIncludeScore(true);
 		
@@ -259,7 +259,7 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		if(countryId!=null){
-			solrQuery.addFilterQuery(TAG+COUNTRYID+":"+countryId);
+			solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
 			//fq=COUNTRYID+":"+countryId+" AND "+fq;
 		}
 		logger.info("RawQuery :" + solrQuery);
