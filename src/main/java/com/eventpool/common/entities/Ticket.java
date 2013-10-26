@@ -57,6 +57,10 @@ public class Ticket extends AuditableIdEntity{
 	@Column(name="TICKET_ORDER")
 	private Integer ticketOrder;
 
+	@Column(name="DELETED",nullable=false)
+	@Type(type = "yes_no")
+	private Boolean deleted = false;
+
 	
 	public String getName() {
 		return name;
@@ -155,6 +159,14 @@ public class Ticket extends AuditableIdEntity{
 
 	public void setEventId(Long eventId) {
 		this.eventId = eventId;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 	

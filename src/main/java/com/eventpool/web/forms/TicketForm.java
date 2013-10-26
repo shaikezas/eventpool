@@ -20,7 +20,7 @@ public class TicketForm {
 	
 	private Boolean soldOut = false;
 	
-	private Boolean isActive;
+	private Boolean isActive=true;
 	
 	private Integer quantity;
 	
@@ -47,6 +47,9 @@ public class TicketForm {
 	private Long selectedQty = 0L;
 	
 	private List<Dropdown> qtyList;
+	
+	private Boolean deleted=false;
+
 	
 	public String getName() {
 		return name;
@@ -221,6 +224,14 @@ public class TicketForm {
 
 	public void setSoldOut(Boolean soldOut) {
 		this.soldOut = soldOut;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	

@@ -36,6 +36,8 @@ public class TicketDTO extends AuditableIdDTO{
 	private Integer maxQty;
 	private Integer ticketOrder;
 	private TicketType ticketType;
+	private Boolean deleted;
+
 	
 	public String getName() {
 		return name;
@@ -133,6 +135,14 @@ public class TicketDTO extends AuditableIdDTO{
 
 	public void setTicketType(TicketType ticketType) {
 		this.ticketType = ticketType;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	

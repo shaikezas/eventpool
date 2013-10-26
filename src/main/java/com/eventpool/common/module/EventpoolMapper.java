@@ -182,6 +182,7 @@ public class EventpoolMapper {
 		if(tickets!=null && tickets.size()>0){
 			List<TicketDTO> ticketDTOs = new ArrayList<TicketDTO>();
 			for(Ticket ticket:tickets){
+				if(ticket.getDeleted()!=null && ticket.getDeleted()) continue;
 				TicketDTO ticketDTO = new TicketDTO();
 				mapper.map(ticket, ticketDTO);
 				ticketDTOs.add(ticketDTO);
