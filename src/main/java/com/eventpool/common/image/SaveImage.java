@@ -62,7 +62,7 @@ public class SaveImage {
 
 	}
 	public Map<ImageType,String> saveImageOnDisk(String imageUrl,ImageType imageType) throws Exception{
-		if(imageUrl==null) return null;
+		if(imageUrl==null || imageUrl.isEmpty()) return null;
 		if(!imageUrl.startsWith("http")){
 			imageUrl =FILE_PREFIX+localImagePath+"/"+imageUrl;
 		}
