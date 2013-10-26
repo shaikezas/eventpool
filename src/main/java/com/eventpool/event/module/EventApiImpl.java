@@ -115,6 +115,14 @@ public class EventApiImpl implements EventApi{
 		if(event.getStatus()==null){
 			event.setStatus(EventStatus.DRAFT);
 		}
+		List<Ticket> tickets = event.getTickets();
+		if(tickets!=null && tickets.size()>0){
+			for(Ticket ticket:tickets){
+				if(ticket.getDeleted()==null){
+					ticket.setDeleted(false);
+				}
+			}
+		}
 	}
 
 	@Transactional(readOnly = true)

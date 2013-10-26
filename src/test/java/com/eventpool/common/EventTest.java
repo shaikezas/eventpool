@@ -597,4 +597,10 @@ public class EventTest extends BaseTest{
     	System.out.println("Search Results "+searchQueryResponse.getEventSearchRecords().size());
     }
 
+    @Test
+    public void testDeleted() throws Exception{
+    	List<Ticket> eventTickets = eventRepository.getEventTickets(21L);
+    	System.out.println(eventTickets.size());
+    }
+
 }
