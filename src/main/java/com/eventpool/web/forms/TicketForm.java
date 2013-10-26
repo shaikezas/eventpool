@@ -143,12 +143,14 @@ public class TicketForm {
 	}
 	
 	public TicketType getTicketType() {
-		if(this.showFree)
+		/*if(this.showFree)
 			return TicketType.FREE;
 		
 		if(this.showPrice)
 				return TicketType.PAID;
-		return TicketType.PAID;
+		return TicketType.PAID;*/
+		
+		return ticketType;
 	}
 	
 	public void setTicketType(TicketType ticketType) {
