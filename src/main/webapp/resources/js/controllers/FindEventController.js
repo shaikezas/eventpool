@@ -43,8 +43,8 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q,'&start=',$scope.page)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
-    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
-    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm ");
+    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY HH:mm");
     			$scope.searchRecords.push(searchResults.eventSearchRecords[i]);
         	}
     		$scope.thumbscrollPage = false;
@@ -68,8 +68,8 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q,'&start=',$scope.page)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
-    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
-    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm");
+    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY HH:mm");
     			$scope.searchRecords.push(searchResults.eventSearchRecords[i]);
         	}
     		$scope.listscrollPage = false;
@@ -84,8 +84,8 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
-    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
-    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+    			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm");
+    			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY HH:mm");
     			    			
         	}
         	$scope.searchResults = searchResults;
@@ -147,8 +147,8 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 			$http.get('search/fetchResultsByFilterType/'+$scope.filterText+'/'+$scope.searchText+'/'+$scope.loc).success(function(searchResults){
         		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
             	{ 
-        			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
-        			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");        			
+        			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm");
+        			searchResults.eventSearchRecords[i].endDate = moment(searchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY HH:mm");        			
         			
             	}
         	if(filterText == 'null' && filterType == 'null'){

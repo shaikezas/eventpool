@@ -16,7 +16,8 @@ eventpool.ticket = function() {
 	this.ticketOrder =0;
 	this.minQty = 1;
     this.maxQty = 5;
-    this.saleStart = moment().format("DD-MMM-YYYY hh:mm A");
+    this.deleted = false;
+    this.saleStart = moment().format("DD-MMM-YYYY HH:mm");
 };
 
 eventpool.eventRegister = function() {

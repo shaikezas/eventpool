@@ -366,12 +366,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         ticket.showFree = true;
 
         if(angular.isDefined($scope.event.startDate)){
-        	var sEnd = $scope.event.startDate;
-        	sEnd = new Date(sEnd);
+        	ticket.saleEnd= $scope.event.startDate;
+        	/*sEnd = new Date(sEnd);
         	var millSecs = sEnd.getTime();
         	millSecs = millSecs - 3600000;
         	sEnd = new Date(millSecs);
-        	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
+        	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");*/
         }
         
         $scope.event.tickets.push(ticket);
@@ -386,12 +386,12 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         ticket.ticketType = "PAID";
         ticket.showPrice = true;
         if(angular.isDefined($scope.event.startDate)){
-	        var sEnd = $scope.event.startDate;
-	        sEnd = new Date(sEnd);
+        	ticket.saleEnd = $scope.event.startDate;
+	        /*sEnd = new Date(sEnd);
 	        var millSecs = sEnd.getTime();
 	        millSecs = millSecs - 3600000;
 	        sEnd = new Date(millSecs);
-	        ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
+	        ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");*/
         }
         $scope.event.tickets.push(ticket);
     }
@@ -408,14 +408,16 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.setticketsaleenddte = function(){
     	if(angular.isDefined($scope.event.tickets)) {
     	var tickets = $scope.event.tickets;
-    	var sEnd = $scope.event.startDate;
-        sEnd = new Date(sEnd);
+    	for (var i=0;i<tickets.length;i++) 	{  
+    	tickets[i].saleEnd= $scope.event.startDate;
+    	}
+        /*sEnd = new Date(sEnd);
         var millSecs = sEnd.getTime();
         millSecs = millSecs - 3600000;
         sEnd = new Date(millSecs);
     	for (var i=0;i<tickets.length;i++) 	{   
 	        tickets[i].saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
-    	}
+    	}*/
       }
     }
 

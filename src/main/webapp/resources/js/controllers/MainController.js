@@ -192,20 +192,21 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      }
      
      $scope.fetchhomepagerecords = function(){
-    	 $http.get('search/getSearchResults').success(function(homePageSearchResults) {
-    		 
+    	 if(angular.isUndefined($scope.homePageResults) && $scope.homePageResults == null){    		 
+    	 $http.get('search/getSearchResults').success(function(homePageSearchResults) {    		 
     		
     			for (var i=0;i<homePageSearchResults.eventSearchRecords.length;i++)
             	{ 
-    				homePageSearchResults.eventSearchRecords[i].startDate = moment(homePageSearchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY hh:mm A");
-    				homePageSearchResults.eventSearchRecords[i].endDate = moment(homePageSearchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY hh:mm A");
+    				homePageSearchResults.eventSearchRecords[i].startDate = moment(homePageSearchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm");
+    				homePageSearchResults.eventSearchRecords[i].endDate = moment(homePageSearchResults.eventSearchRecords[i].endDate).format("DD-MMM-YYYY HH:mm");
         			    			
             	}
             $scope.homePageResults = homePageSearchResults.eventSearchRecords;
-    		  
+    	 	  
         }).error(function() {
 //            $scope.setError('Home page results are not correct.');
         });
+      }
      }
      
       
