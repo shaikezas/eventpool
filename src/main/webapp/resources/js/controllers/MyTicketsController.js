@@ -5,7 +5,7 @@ var MyTicketsController = function($scope, $http,$rootScope,currentuser) {
 	
     $scope.fetchMyTicketsList = function() {
     	$http.get('event/myevent/myTickets').success(function(myTicketsList){
-        	$scope.myTicketsList = $scope.changeDateFormat(myTicketsList);
+        	$scope.myTicketsList = myTicketsList;
         });
         
       }

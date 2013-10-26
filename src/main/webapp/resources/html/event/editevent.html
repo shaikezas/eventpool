@@ -237,10 +237,10 @@
 									    </div>
 									</div>
 						
-							  <table>
+							  <table id="tktTable">
 							  <tbody>
 							   <tr ng-repeat="ticket in event.tickets" >
-							   <td>
+							   <td ng-show="ticket.deleted==false">
 									<table class="table table-condensed" >
 								      <thead>
 								        <tr>

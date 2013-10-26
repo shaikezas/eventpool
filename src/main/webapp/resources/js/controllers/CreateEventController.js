@@ -398,7 +398,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     
     $scope.removeTicket = function(index) {
         $scope.resetError();
-        $scope.event.tickets.splice(index, 1);
+        var   rmTicket =  $scope.event.tickets[index];
+        if(!angular.isUndefined(rmTicket.id)){
+        	rmTicket.deleted = true;
+        }
+//        $scope.event.tickets.splice(index, 1);
     }
     
     $scope.setticketsaleenddte = function(){
