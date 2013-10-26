@@ -121,6 +121,9 @@ public class EventApiImpl implements EventApi{
 				if(ticket.getDeleted()==null){
 					ticket.setDeleted(false);
 				}
+				if(ticket.getIsActive()==null){
+					ticket.setIsActive(true);
+				}
 			}
 		}
 	}
