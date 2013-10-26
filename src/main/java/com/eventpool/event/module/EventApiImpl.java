@@ -264,6 +264,7 @@ public class EventApiImpl implements EventApi{
 							TicketInventoryDTO ticketInventoryDTO = new TicketInventoryDTO();
 							eventpoolMapper.map(ticketInventory, ticketInventoryDTO);
 							ticketInventoryDTO.setPrice(price);
+							ticketInventoryDTO.setTicketName(ticket.getName());
 							tiketInventoryDTOS.add(ticketInventoryDTO);
 							
 
@@ -279,6 +280,7 @@ public class EventApiImpl implements EventApi{
 						ticketInventoryDTO.setBlockingQty(0);
 						ticketInventoryDTO.setMaxQty(ticket.getMaxQty());
 						ticketInventoryDTO.setSoldQty(0);
+						ticketInventoryDTO.setTicketName(ticket.getName());
 						tiketInventoryDTOS.add(ticketInventoryDTO);
 					}
 				}

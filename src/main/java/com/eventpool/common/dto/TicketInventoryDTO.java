@@ -11,6 +11,7 @@ public class TicketInventoryDTO {
 	private double price;
 	private double totalTicketSoldPrice;
 	private double totalTicketsPrice;
+	private String ticketName;
 	
 	public Long getTicketId() {
 		return ticketId;
@@ -59,6 +60,12 @@ public class TicketInventoryDTO {
 	}
 	public void setTotalTicketsPrice(double totalTicketsPrice) {
 		this.totalTicketsPrice = totalTicketsPrice;
+	}
+	public String getTicketName() {
+		return ticketName;
+	}
+	public void setTicketName(String ticketName) {
+		this.ticketName = ticketName;
 	}
 	
 }
