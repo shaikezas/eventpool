@@ -221,7 +221,7 @@ CREATE TABLE USER(
  OFFICE_ADDRESS bigint(20) NULL,
  
  -- Work
- JOBTITLE varchar(256) NULL,
+ JOB_TITLE varchar(128) NULL,
  COMPANY varchar(128) NULL,
  WORK_PHONE varchar(12) NULL,
  COMPANY_URL varchar(256) NULL,
