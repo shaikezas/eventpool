@@ -161,15 +161,16 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testIpLocation(){
-    	//ipLocation.getLocation("14.99.13.184");
-    	
+    	Map location = ipLocation.getLocation("123.201.134.203");
+    	System.out.println(location);
+    	/*
     	Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		cal.add(Calendar.MONTH, 1);
 		cal.set(Calendar.DAY_OF_MONTH,1);
 		//cal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
 		Date date = cal.getTime();
-		System.out.println(date);
+		System.out.println(date);*/
     }
 
     
