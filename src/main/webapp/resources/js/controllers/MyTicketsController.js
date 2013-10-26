@@ -5,7 +5,7 @@ var MyTicketsController = function($scope, $http,$rootScope,currentuser) {
 	
     $scope.fetchMyTicketsList = function() {
     	$http.get('event/myevent/myTickets').success(function(myTicketsList){
-        	$scope.myTicketsList = $scope.changeDateFormat(myTicketsList);
+        	$scope.myTicketsList = myTicketsList;
         });
         
       }
@@ -40,17 +40,7 @@ var MyTicketsController = function($scope, $http,$rootScope,currentuser) {
        	
        }
        
-      $scope.changeDateFormat = function(ticketslist) {
-    		 for (var i=0;i<ticketslist.length;i++)
-    		 	{ 
-    			 ticketslist[i].bookedOn = moment(ticketslist[i].bookedOn).format("DD-MMM-YYYY hh:mm A");
-    			 ticketslist[i].startDate = moment(ticketslist[i].startDate).format("DD-MMM-YYYY hh:mm A");
-    			 ticketslist[i].endDate = moment(ticketslist[i].endDate).format("DD-MMM-YYYY hh:mm A");
-    			    			
-    		 	}
-    		 	return ticketslist;
-    	 }
-      
+
     $scope.getcurrentuser();
     $scope.fetchMyTicketsList();
 	

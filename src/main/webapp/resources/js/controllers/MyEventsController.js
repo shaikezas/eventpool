@@ -37,15 +37,6 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
      	
      }
  
- $scope.changeDateFormat = function(eventlists) {
-	 for (var i=0;i<eventlists.length;i++)
-	 	{ 
-		 	eventlists[i].startDate = moment(eventlists[i].startDate).format("DD-MMM-YYYY HH:mm");
-		 	eventlists[i].endDate = moment(eventlists[i].endDate).format("DD-MMM-YYYY HH:MM");
-		    			
-	 	}
-	 	return eventlists;
- }
      
     $scope.getcurrentuser();
     $scope.fetchLiveEventsList();

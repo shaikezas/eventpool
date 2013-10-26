@@ -134,7 +134,7 @@ public class TicketInventory implements Serializable {
 
 	public TicketInventoryDetails updateTicketQuantity(Integer maxQty) {
 		TicketInventoryDetails inventoryDetails = new TicketInventoryDetails();
-		if(maxQty > (this.maxQty  - this.qty + this.blockingQty)){
+		if(maxQty >= (this.maxQty  - this.qty + this.blockingQty)){
 			this.qty = this.qty + (maxQty - this.maxQty);
 			this.maxQty = maxQty;
 			inventoryDetails.setMaxQtyUpdated(Boolean.TRUE);
