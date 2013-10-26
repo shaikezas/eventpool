@@ -174,6 +174,7 @@ public class SearchController {
     @RequestMapping(value = "/getSearchResults", method = RequestMethod.GET)
     public @ResponseBody SearchQueryResponse getHomepageResults(HttpServletRequest httpServletRequest) throws Exception {
     	String ip=getRemoteIp(httpServletRequest);
+    	logger.info("IP address is:"+ip);
 		Integer countryId = ipLocation.getCountryId(ip);
     	List<EventSearchRecord> eventSearchRecords = searchService.getSearchRecords(EventPoolConstants.HOMEPAGE_SEARCH_RESULTS, 0, null, countryId);
     	SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
@@ -192,7 +193,6 @@ public class SearchController {
 		for (String ip : ips) {
 			ip = ip.trim();
 			if (isValidIpAddress(ip)) {
-				logger.info("IP address is:"+ip);
 				return ip;
 			}
 		}
