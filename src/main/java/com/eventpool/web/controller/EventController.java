@@ -359,6 +359,10 @@ public class EventController {
     	if(form.getIsActive()!=null && !form.getIsActive()){
     		form.setShowBookTicket(false);
     	}
+    	
+    	if(form.getIsPublish()!=null && !form.getIsPublish()){
+    		form.setShowBookTicket(false);	
+    	}
     	if(form.getCityId()!=null){
     	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
     	Region region = csc.get(form.getCityId());
