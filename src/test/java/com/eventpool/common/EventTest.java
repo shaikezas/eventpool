@@ -161,8 +161,8 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testIpLocation(){
-    	Map location = ipLocation.getLocation("123.201.134.203");
-    	System.out.println(location);
+    	
+    	System.out.println(ipLocation.getCountryId("123.201.134.203"));
     	/*
     	Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());

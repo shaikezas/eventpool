@@ -59,7 +59,8 @@ public class IPLocation {
 		Map locationMap = getLocation(ip);
 		if(locationMap!=null){
 			String countryName = (String)locationMap.get("countryName");
-			Integer countryId = entityUtilities.getCountryNameMap().get(countryName);
+			if(countryName==null) return null;
+			Integer countryId = entityUtilities.getCountryNameMap().get(countryName.toLowerCase());
 			return countryId;
 		}
 		return null;

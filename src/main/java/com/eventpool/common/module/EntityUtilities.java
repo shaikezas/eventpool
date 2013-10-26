@@ -61,7 +61,7 @@ public class EntityUtilities {
 			if(allCountries!=null && allCountries.size()>0){
 				for(Country country:allCountries){
 					countryMap.put(country.getId(), country.getName());
-					countryNameMap.put(country.getName(), country.getId());
+					countryNameMap.put(country.getName().toLowerCase(), country.getId());
 					countryFlagMap.put(country.getId(), country.getCode());
 					if(country.getActive()!=null && country.getActive()){
 						activeCountryMap.put(country.getId(), country);
