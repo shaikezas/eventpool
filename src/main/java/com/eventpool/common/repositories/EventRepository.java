@@ -34,7 +34,7 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	@Query(value="SELECT event FROM Event event WHERE event.createdBy=?1 and event.status=?2 order by createdDate desc")
 	public List<Event> getAllEvents(Long userId,EventStatus status);
 
-	@Query(value="SELECT ticket FROM Ticket ticket WHERE ticket.eventId=?1")
+	@Query(value="SELECT ticket FROM Ticket ticket WHERE ticket.eventId=?1 AND ticket.deleted<>'Y'")
 	public List<Ticket> getEventTickets(Long eventId);
 	
 	@Query(value="SELECT event FROM Event event WHERE event.eventUrl=?1")
