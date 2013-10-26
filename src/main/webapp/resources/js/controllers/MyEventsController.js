@@ -7,23 +7,23 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     $scope.header = "myevents";
     $scope.fetchDraftEventsList = function() {
         $http.get('event/myevent/draftEventList').success(function(draftevents){
-            $scope.draftEvents = $scope.changeDateFormat(draftevents);            
+            $scope.draftEvents = draftevents;            
         });
     }
     $scope.fetchLiveEventsList = function() {
         $http.get('event/myevent/liveEventList').success(function(liveevents){
-            $scope.liveEvents = $scope.changeDateFormat(liveevents);
+            $scope.liveEvents = liveevents;
         });
     }
     
     $scope.publishEvent = function(eventid) {
         $http.get('event/myevent/publishevent/'+eventid).success(function(){
-        $scope.fetchDraftEventsList();        
+        $scope.fetchLiveEventsList();        
         });
     }
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){
-            $scope.pastEvents = $scope.changeDateFormat(pastevents);           
+            $scope.pastEvents = pastevents;           
         });
     }
     
@@ -40,8 +40,8 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
  $scope.changeDateFormat = function(eventlists) {
 	 for (var i=0;i<eventlists.length;i++)
 	 	{ 
-		 	eventlists[i].startDate = moment(eventlists[i].startDate).format("DD-MMM-YYYY hh:mm A");
-		 	eventlists[i].endDate = moment(eventlists[i].endDate).format("DD-MMM-YYYY hh:mm A");
+		 	eventlists[i].startDate = moment(eventlists[i].startDate).format("DD-MMM-YYYY HH:mm");
+		 	eventlists[i].endDate = moment(eventlists[i].endDate).format("DD-MMM-YYYY HH:MM");
 		    			
 	 	}
 	 	return eventlists;

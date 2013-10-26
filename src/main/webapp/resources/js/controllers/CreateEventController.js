@@ -120,14 +120,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
-	    $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
-	    $scope.event.endDate = moment($scope.event.endDate).format("DD-MMM-YYYY hh:mm A");
-	    for (var i=0;i<$scope.event.tickets.length;i++)
+//	    $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
+//	    $scope.event.endDate = moment($scope.event.endDate).format("DD-MMM-YYYY hh:mm A");
+	    /*for (var i=0;i<$scope.event.tickets.length;i++)
 	 	{ 
 	    	$scope.event.tickets[i].saleStart = moment($scope.event.tickets[i].saleStart).format("DD-MMM-YYYY hh:mm A");
 	    	$scope.event.tickets[i].saleEnd = moment($scope.event.tickets[i].saleEnd).format("DD-MMM-YYYY hh:mm A");
 		    			
-	 	}
+	 	}*/
 	   
 	    if($scope.event.isWebinar){
 	    	$scope.setRequiredFields();
@@ -371,7 +371,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	var millSecs = sEnd.getTime();
         	millSecs = millSecs - 3600000;
         	sEnd = new Date(millSecs);
-        	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY hh:mm A");
+        	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
         }
         
         $scope.event.tickets.push(ticket);
@@ -391,7 +391,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	        var millSecs = sEnd.getTime();
 	        millSecs = millSecs - 3600000;
 	        sEnd = new Date(millSecs);
-	        ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY hh:mm A");
+	        ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
         }
         $scope.event.tickets.push(ticket);
     }
@@ -410,7 +410,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         millSecs = millSecs - 3600000;
         sEnd = new Date(millSecs);
     	for (var i=0;i<tickets.length;i++) 	{   
-	        tickets[i].saleEnd = moment(sEnd).format("DD-MMM-YYYY hh:mm A");
+	        tickets[i].saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
     	}
       }
     }
