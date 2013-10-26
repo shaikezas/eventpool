@@ -209,7 +209,7 @@ public class EventpoolMapper {
 				boolean found = false;
 				if(tickets!=null && tickets.size()>0){
 					for(Ticket ticket:tickets){
-						if(ticket.getId()!=null && ticket.getId().compareTo(ticketDTO.getId())==0){
+						if(ticket.getId()!=null && ticketDTO.getId()!=null && ticket.getId().compareTo(ticketDTO.getId())==0){
 							mapper.map(ticketDTO, ticket);
 							found = true;
 						}
