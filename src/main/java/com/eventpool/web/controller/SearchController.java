@@ -192,6 +192,7 @@ public class SearchController {
 		for (String ip : ips) {
 			ip = ip.trim();
 			if (isValidIpAddress(ip)) {
+				logger.info("IP address is:"+ip);
 				return ip;
 			}
 		}
