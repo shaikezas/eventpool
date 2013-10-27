@@ -124,7 +124,7 @@ public class SearchServiceImpl implements SearchService {
 			solrQuery.addFacetField(EXCLUDE+CITYID);
 		}
 		
-		solrQuery.addFacetField(EXCLUDE+COUNTRYID);
+		solrQuery.addFacetField(COUNTRYID);
 		solrQuery.addFacetPivotField(EXCLUDE+STARTDATE+","+ENDDATE);
 		solrQuery.setIncludeScore(true);
 		
@@ -388,7 +388,7 @@ public class SearchServiceImpl implements SearchService {
 			}
 		}
 		
-		facetValues = response.getFacetField(COUNTRYID).getValues();
+		/*facetValues = response.getFacetField(COUNTRYID).getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			Map<Integer, String> countryMap = entityUtilities.getCountryMap();
 			long otherCountriesCount = 0;
@@ -417,7 +417,7 @@ public class SearchServiceImpl implements SearchService {
 				searchQueryResponse.setOtherCountries(otherCountryFilterList);
 			}
 			
-		}
+		}*/
 		return searchQueryResponse;
 	}
 
