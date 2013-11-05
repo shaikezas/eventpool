@@ -21,6 +21,7 @@
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
 	<link href="resources/bootstrap/css/ui.multiselect.css" rel="stylesheet" type="text/css"/>
 	<link href="css/wysiwyg.css" rel="stylesheet" media="screen">
+	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css">
 	
 	<link rel="stylesheet" href="lib/ckeditor/skins/moono/editor.css">	
 	
@@ -144,6 +145,7 @@
 	
 	<script src="lib/jquery/jquery.js" type="text/javascript"></script>
 	<script src="lib/jquery/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="lib/jquery/jquery.bootstrap-growl.min.js"></script>
     <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"> </script>
     <!-- check this for datetime picker documentation http://www.malot.fr/bootstrap-datetimepicker -->
     <script type="text/javascript" src="lib/bootstrap/bootstrap-datetimepicker.js"> </script>

@@ -49,6 +49,12 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
         var setMessage = function (response) {
             //if the response has a text and a type property, it is a message to be shown
             if (response.data.text && response.data.type) {
+                    $.bootstrapGrowl(response.data.text, {
+                        type: response.data.type,
+                        align: 'center',
+                        stackup_spacing: 30,
+                        allow_dismiss: true
+                    });
                 message = {
                     text: response.data.text,
                     type: response.data.type,

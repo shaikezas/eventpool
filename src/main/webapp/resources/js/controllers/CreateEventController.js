@@ -308,7 +308,17 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
     		$scope.stopSubmitAction=true;    		
     		$scope.disabled = false;
-    		alert("You missed required fields in one of the tabs. Please fill.\n 1. Event Information Tab.\n 2. Venue Information Tab.");    		
+//    		setTimeout(function() {
+                $.bootstrapGrowl("You missed required fields in one of the tabs. Please fill. Event/Venue Information Tab.", {
+                    type: 'error',
+                    align: 'center',
+                    width: 'auto',
+                    delay: 10000,
+//					 ele: 'body',
+                    allow_dismiss: true
+                });
+//            }, 10000);
+    		//alert("You missed required fields in one of the tabs. Please fill.\n 1. Event Information Tab.\n 2. Venue Information Tab.");    		
     	}
     }
     
