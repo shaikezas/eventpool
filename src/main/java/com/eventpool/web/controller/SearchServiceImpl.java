@@ -259,7 +259,10 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		if(countryId!=null){
-			solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
+			if(countryId<0)
+				solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId);
+			else
+				solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
 			//fq=COUNTRYID+":"+countryId+" AND "+fq;
 		}
 		logger.info("RawQuery :" + solrQuery);
