@@ -66,7 +66,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 		if(angular.isDefined($scope.message()) && $scope.message() != null){
     		$scope.message().show = false;
     	}
-        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q,'&start=',$scope.page)).success(function(searchResults){
+        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&countryId=',$routeParams.countryId,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q,'&start=',$scope.page)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
     			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm");
@@ -82,7 +82,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     	if(angular.isDefined($scope.message()) && $scope.message() != null){
     		$scope.message().show = false;
     	}
-        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
+        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&countryId=',$routeParams.countryId,'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
     			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm");
