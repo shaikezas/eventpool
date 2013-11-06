@@ -94,7 +94,7 @@ public class SearchController {
     	String countryParam = request.getParameter("countryId");
     	
     	Integer countryId = null;
-    	if(countryParam==null || countryParam.isEmpty()){
+    	if(countryParam==null || countryParam.isEmpty() || checkIfUndefined(countryParam)==null){
         	String ip=getRemoteIp(request);
         	 countryId=ipLocation.getCountryId(ip);
         	 logger.info("IP address is:"+ip+" country id:"+countryId);
