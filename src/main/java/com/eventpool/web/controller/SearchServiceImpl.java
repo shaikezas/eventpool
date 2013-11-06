@@ -260,7 +260,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		if(countryId!=null){
 			if(countryId<0)
-				solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId);
+				solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId*-1);
 			else
 				solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
 			//fq=COUNTRYID+":"+countryId+" AND "+fq;
