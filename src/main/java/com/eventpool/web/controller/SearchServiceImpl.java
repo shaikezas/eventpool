@@ -418,6 +418,12 @@ public class SearchServiceImpl implements SearchService {
 			}
 			
 		}*/
+		
+		FilterItem filterItem = new FilterItem();
+		if(countryId!=null){
+			filterItem = getFilterItem(0L, "Other Countries",COUNTRYID+"=-"+countryId,null);
+			searchQueryResponse.setOtherCountries(filterItem);
+		}
 		return searchQueryResponse;
 	}
 
