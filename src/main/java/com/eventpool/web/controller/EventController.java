@@ -2,12 +2,14 @@ package com.eventpool.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -124,12 +126,27 @@ public class EventController {
     	eventDTO.setCreatedBy(user.getId());
 //    	updateEventType(eventDTO);
     	 try {
+    		 if(eventDTO.getId()==null){
+    			 EventDTO eventByUrl = null;
+    			 String eventUrl = eventDTO.getEventUrl();
+    				Calendar cal = Calendar.getInstance();
+    				String month = new SimpleDateFormat("MMM").format(cal.getTime());
+    				int date = cal.getTime().getDate();
+    				Random random = new Random();
+    			 do{
+    				 eventByUrl = eventService.getEventByUrl(eventUrl);
+    				 if(eventByUrl!=null){
+    					 eventUrl = eventDTO.getEventUrl() +"_"+month+"_"+date+"_"+random.nextInt(100);
+    				 }
+    			 }while (eventByUrl==null);
+    			 eventDTO.setEventUrl(eventUrl);
+    		 }
  			eventService.addEvent(eventDTO);
  			String email = user.getEmail();
  			String subject = eventDTO.getEventUrl();
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
- 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created.", null,null);
+ 			htmlEmailService.sendMail(toList, subject, subject+" Successfully saved.", null,null);
  			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event");
  		} catch (Exception e) {
  			e.printStackTrace();
@@ -166,10 +183,10 @@ public class EventController {
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
 // 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created and published.", null,null);
- 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event and published.");
+ 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully saved event and published.");
  		} catch (Exception e) {
  			e.printStackTrace();
- 			return new ResponseMessage(ResponseMessage.Type.error, "Failed to create event : reason -"+e.getMessage());
+ 			return new ResponseMessage(ResponseMessage.Type.error, "Failed to save event : reason -"+e.getMessage());
  		}
     }
     
