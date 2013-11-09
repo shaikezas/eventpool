@@ -40,6 +40,8 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $scope.newUserPasswordCFReq = $scope.signupForm.newUserPasswordCF.$error.required;
     	 if($scope.signupForm.$valid){
     		 if($scope.signupuserform.password == $scope.confirmpassword){
+    			 $http.defaults.headers.post.Authorization='';
+    			 
     			 $http.post('signupuser', $scope.signupuserform).success(function(data) {
         		 if(data.type=="success"){
         			 $scope.username = $scope.signupuserform.email;
