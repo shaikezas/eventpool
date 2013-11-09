@@ -1,4 +1,4 @@
-function MainController($scope,$http, $route,$rootScope, $routeParams,$location,search,currentuser,categories) {
+function MainController($scope,$http, $route,$rootScope, $routeParams,$location,search,currentuser,categories,resetSrv) {
 	$scope.title = "Home";
 	$scope.header = "home";
 	$scope.newuser = "";
@@ -63,10 +63,20 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 }
     	}
      };
+     
+     $scope.forgotpwd = function () {
+    			 resetSrv.forgotPassword('shaikezas@gmail.com').success(function() {
+    		        }).error(function() {
+    		        	alert("Password not reset properly.");
+    		        });
+     };
+     
      $scope.loginuser = function () {
     	 $scope.resetsignform();
     	 $scope.$emit('event:loginRequired');
      };
+     
+     
      
      $scope.resetsignform = function(){
     	 $scope.signupuserform.fname="";    	 

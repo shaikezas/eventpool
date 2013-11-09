@@ -1,5 +1,8 @@
 package com.eventpool.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eventpool.common.entities.User;
 import com.eventpool.common.module.EventpoolMapper;
+import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.PasswordGenerator;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.ResultStatus;
@@ -27,6 +31,9 @@ public class UserController {
     
     @Autowired
     private EventpoolMapper  mapper;
+    
+    @Resource
+    private HtmlEmailService htmlEmailService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
@@ -73,6 +80,10 @@ public class UserController {
     	mapper.mapUserForm(userForm, user);
     	ResultStatus status = userService.updateUser(user);
     	if(status.equals(ResultStatus.SUCCESS)){
+    		List<String> toList = new ArrayList<String>();
+    		String subject = "Successfully updated user.";
+ 			toList.add(user.getEmail());
+    		htmlEmailService.sendMail(toList, subject, subject, null,null);
     		return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated user");
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to update user");
@@ -87,13 +98,17 @@ public class UserController {
     	user.updatePassword(password);
     	ResultStatus status = userService.resetPassword(user);
     	if(status.equals(ResultStatus.SUCCESS)){
-    		return new ResponseMessage(ResponseMessage.Type.success, "Password updated successfully.");
+    		List<String> toList = new ArrayList<String>();
+    		String subject = "Password updated successfully.";
+ 			toList.add(user.getEmail());
+    		htmlEmailService.sendMail(toList, subject, subject, null,null);
+    		return new ResponseMessage(ResponseMessage.Type.success, subject);
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
     }
     
     
-    @RequestMapping(value = "/account/forgotpassword", method = RequestMethod.POST)
+    @RequestMapping(value = "/forgotpassword", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage forgotPassword(@RequestParam("email")  String email){
     	System.out.println("Password forgot...");
@@ -106,7 +121,12 @@ public class UserController {
     	user.updatePassword(tmpPassword);
     	ResultStatus status = userService.resetPassword(user);
     	if(status.equals(ResultStatus.SUCCESS)){
-    		return new ResponseMessage(ResponseMessage.Type.success, "Password reset successfully.");
+    		String subject = "Password reset successfully.";
+    		String body = "New password : "+tmpPassword;
+    		List<String> toList = new ArrayList<String>();
+ 			toList.add(email);
+    		htmlEmailService.sendMail(toList, subject, body, null,null);
+    		return new ResponseMessage(ResponseMessage.Type.success, subject);
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
     }

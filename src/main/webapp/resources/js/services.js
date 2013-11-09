@@ -133,9 +133,22 @@ resetPassword: function(password) {
         url: "account/resetpassword"
     };
 	  return $http(config);
-}
     
-    }
+    },
+    
+    	forgotPassword: function(email) {
+    		  var datatosend = {
+    				  "email":email
+    		  };
+    		  var config = {
+    	        method: "POST",
+    	        params: datatosend,
+    	        url: "forgotpassword"
+    	    };
+    		  return $http(config);
+    	}
+    	    
+    	    };
 });
 
 

@@ -92,7 +92,8 @@
 			        			
 			    			</div>
 						 <br><br>
-						 <a herf="#">I cannot access my account. </a>
+						 <a href="" ng-click="forgotpwd()">I cannot access my account. </a>
+						
 						</div></div> 
 						<!-- Old User Login End -->
 					
