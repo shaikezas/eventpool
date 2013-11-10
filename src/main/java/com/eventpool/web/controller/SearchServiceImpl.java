@@ -259,12 +259,21 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		if(countryId!=null){
-			if(countryId<0)
+			if(countryId<0){
 				solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId*-1);
+				solrQuery = getOtherCountrySolrQuery(query, rows, start);
+			}
 			else
 				solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
 			//fq=COUNTRYID+":"+countryId+" AND "+fq;
 		}
+		return returnSolrResponse(solrQuery);
+	}
+
+
+	private QueryResponse returnSolrResponse(SolrQuery solrQuery)
+			throws SolrServerException {
+		QueryResponse response;
 		logger.info("RawQuery :" + solrQuery);
 		response = searchServer.solrServer.query(solrQuery);
 		return response;
@@ -276,6 +285,11 @@ public class SearchServiceImpl implements SearchService {
 		
 		QueryResponse response = getSolrResponse(query,listOfFilters, rows,start*rows,countryId); 
 
+		if(countryId!=null){
+			if(countryId<0){
+				return getOtherCountrySearchResponse(response, query);
+			}
+		}
 		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
 		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
 		addImageHostUrl(searchQueryResponse.getEventSearchRecords());
@@ -755,4 +769,64 @@ public class SearchServiceImpl implements SearchService {
 	    return REST;//Rest 
 	}
 
+	public SearchQueryResponse getOtherCountrySearchResponse(QueryResponse response,String query)
+			throws Exception {
+		
+		SearchQueryResponse searchQueryResponse = new SearchQueryResponse();
+		searchQueryResponse.setEventSearchRecords(response.getBeans(EventSearchRecord.class));
+		addImageHostUrl(searchQueryResponse.getEventSearchRecords());
+		searchQueryResponse.setQuery(query);
+		searchQueryResponse.setNoOfresults(response.getResults().getNumFound());
+		
+		
+		Map<Integer, String> countryMap = entityUtilities.getCountryMap();
+		List<FilterItem> countryFilterItems = searchQueryResponse.getCountryFilterItems();
+		if(countryFilterItems==null){
+			countryFilterItems = new ArrayList<FilterItem>();
+			searchQueryResponse.setCityIdFilterItems(countryFilterItems);
+		}
+		
+		List<Count> facetValues = response.getFacetField(COUNTRYID).getValues();
+		if(facetValues!=null && facetValues.size()>0){
+			for(Count facet:facetValues){
+				String facetName = facet.getName();
+				String countryName = null;
+				if(countryMap!=null){
+					try {
+						countryName = countryMap.get(Integer.parseInt(facetName));
+						if(countryName!=null && facet.getCount()>0){
+							
+							String filterFacetQuery = COUNTRYID+"="+facetName;
+							FilterItem filterItem = new FilterItem();
+							filterItem.setCount(facet.getCount());
+							filterItem.setName(countryName);
+							filterItem.setQuery(filterFacetQuery);
+							countryFilterItems.add(filterItem);
+						}
+					} catch (NumberFormatException e) {
+						logger.info("parsing error for city");
+					}
+				}
+			}
+		}
+		
+		return searchQueryResponse;
+	}
+
+
+	private SolrQuery getOtherCountrySolrQuery(String query, int rows,
+			int start) throws SolrServerException {
+		SolrQuery solrQuery = new SolrQuery();
+		solrQuery.setStart(start);
+		solrQuery.setQuery(query);
+		if(rows==0){
+			rows = 10;
+		}
+		solrQuery.setRows(rows);
+		
+		solrQuery.addFacetField(COUNTRYID);
+		solrQuery.setIncludeScore(true);
+		
+		return solrQuery;
+	}
 }
