@@ -53,6 +53,7 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
                         type: response.data.type,
                         align: 'center',
                         stackup_spacing: 30,
+                        delay: 10000,
                         allow_dismiss: true
                     });
                 message = {
