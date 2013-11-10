@@ -19,5 +19,6 @@ public interface UserService {
 	public ResultStatus updateUser(User user);
 	public ResultStatus resetPassword(User user);
 	public User getUserByEmail(String email);
+	public ResultStatus addPoints(Long userId,Integer points);
 	
 }

@@ -111,7 +111,6 @@ public class UserController {
     @RequestMapping(value = "/forgotpassword", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage forgotPassword(@RequestParam("email")  String email){
-    	System.out.println("Password forgot...");
     	User user =userService.getUserByEmail(email);
     	
     	if(user==null){
@@ -134,11 +133,10 @@ public class UserController {
     @RequestMapping(value = "/account/getuser", method = RequestMethod.GET)
     @ResponseBody
     public UserForm getUser(){
-    	System.out.println("get User");
     	User user = userService.getCurrentUser();
     	UserForm userForm = new UserForm();
     	mapper.mapUser(user, userForm);
         return userForm;
     }
-
+    
 }

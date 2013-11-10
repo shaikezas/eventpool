@@ -1,5 +1,8 @@
 package com.eventpool.web.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -76,4 +79,11 @@ public class UserServiceImpl implements UserService {
 		
 		return ResultStatus.SUCCESS;
 	}
+	
+	 public ResultStatus addPoints(Long userId,Integer points){
+		 	User user = userRepository.findOne(userId);
+	    	user.setTotalPoints(user.getTotalPoints()+points);
+	    	userRepository.save(user);
+	    	return ResultStatus.SUCCESS;
+	    }
 }
