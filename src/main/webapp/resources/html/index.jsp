@@ -92,7 +92,7 @@
 			        			
 			    			</div>
 						 <br><br>
-						 <a href="" ng-click="forgotpwd()">I cannot access my account. </a>
+						 <a href="" ng-click="openForgot()">I cannot access my account. </a>
 						
 						</div></div> 
 						<!-- Old User Login End -->
@@ -142,6 +142,38 @@
 				        <!-- New User Login End -->
 			</div>
 		   
+	</div>
+	
+	 <div class="modal newModel" style="display: none" id="forgot">
+				        
+				     	<div class="modal-header">
+				            <a class="close" data-dismiss="modal" ng-click="cancelForgot()">x</a>
+				            <h3>Forgot password</h3>
+				        </div>
+				     
+				     <!-- Old User Login Start -->
+				  		<div class="userLogin"> 
+							<div class="modal-body">
+							</div>
+						</div>
+						<form class="form-horizontal" name="fogotForm">
+				         
+								  <fieldset>
+								    	<label for="username">Email</label>
+								    	<input id="usermail" ng-model="usermail"  type="email" name="usermail" required/>
+				                         <div  ng-style="{color:'red'}">
+											<span ng-show="usermailReq" ng-style="{color:'red'}">Email is required.</span>
+											<span ng-show="validuserMail" ng-style="{color:'red'}">Enter valid email address.</span>
+				                		</div>
+								
+								  </fieldset>
+
+							</form>
+						
+							 <div class="modal-footer">
+			        			<button type="submit" ng-click="forgotpwd()" class="btn " >Reset</button>
+			        			
+			    			</div>
 	</div>
 	
 	<script src="lib/jquery/jquery.js" type="text/javascript"></script>
