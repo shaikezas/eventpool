@@ -320,6 +320,9 @@ public class EventpoolMapper {
 				TicketDTO ticketDTO = new TicketDTO();
 				mapper.map(ticketForm, ticketDTO);
 				ticketTypes.add(ticketForm.getTicketType());
+				if(ticketDTO.getEventId()==null){
+					ticketDTO.setEventId(eventDTO.getId());
+				}
 				ticketDTOs.add(ticketDTO);
 			}
 			eventDTO.setTickets(ticketDTOs);
