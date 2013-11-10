@@ -31,6 +31,9 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $scope.usernameReq = $scope.userForm.username.$error.required;
     	 $scope.passwordRequired = $scope.userForm.password.$error.required;
     	 $scope.validEmail = $scope.userForm.username.$error.email; 
+    	 if($scope.userForm.$invalid){
+    		 return ;
+    	 }
     	 $scope.signin();    	 
      };
      $scope.signup = function () {
@@ -65,7 +68,15 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      };
      
      $scope.forgotpwd = function () {
-    			 resetSrv.forgotPassword('shaikezas@gmail.com').success(function() {
+    	 $scope.usermailReq = $scope.fogotForm.usermail.$error.required;
+    	 $scope.validuserMail = $scope.fogotForm.usermail.$error.email; 
+    	 if($scope.fogotForm.$invalid){
+    		 return;
+    	 }
+    	 if($scope.usermailReq)
+    	 $('#forgot').modal('hide');
+    			 resetSrv.forgotPassword($scope.usermail).success(function() {
+    				 $('#login').modal('hide');
     		        }).error(function() {
     		        	alert("Password not reset properly.");
     		        });
@@ -109,6 +120,14 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
          message = "";
          $('#login').modal('hide');
     	 $location.url('home');
+     }
+     
+     $scope.cancelForgot = function (){
+         $('#forgot').modal('hide');
+     }
+     
+     $scope.openForgot = function (){
+         $('#forgot').modal('show');
      }
      
      $scope.cityFormatResult = function(cityinfo) {
