@@ -110,7 +110,7 @@
 								
 						</li>
 				    	</ul>
-				    	<div ng-show='thumbscrollPage'><img ng-src="images/loader.gif" ></div>
+				    	<div ng-show='thumbscrollPage && searchResults.noOfresults>0'><img ng-src="images/loader.gif" ></div>
 						</div>
 				    	<span ng-show="searchRecords.length == 0 && searchResults.noOfresults==0">No record found.</span>
 				    	<span ng-show="searchRecords.length == 0 && searchResults.noOfresults!=0"><img ng-src="images/loader.gif" ></span>
@@ -133,7 +133,7 @@
 					</li>
 						 
 				</ul>
-				<div ng-show='listscrollPage'><img ng-src="images/loader.gif" ></div>
+				<div ng-show='listscrollPage && searchResults.noOfresults>0' ><img ng-src="images/loader.gif" ></div>
 						</div>
 				</div>
 
