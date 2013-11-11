@@ -260,8 +260,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		if(countryId!=null){
 			if(countryId<0){
-				solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId*-1);
-				solrQuery = getOtherCountrySolrQuery(query, rows, start);
+				solrQuery = getOtherCountrySolrQuery(query, rows, start,countryId);
 			}
 			else
 				solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
@@ -815,7 +814,7 @@ public class SearchServiceImpl implements SearchService {
 
 
 	private SolrQuery getOtherCountrySolrQuery(String query, int rows,
-			int start) throws SolrServerException {
+			int start,Integer countryId) throws SolrServerException {
 		SolrQuery solrQuery = new SolrQuery();
 		solrQuery.setStart(start);
 		solrQuery.setQuery(query);
@@ -827,6 +826,7 @@ public class SearchServiceImpl implements SearchService {
 		solrQuery.addFacetField(COUNTRYID);
 		solrQuery.setIncludeScore(true);
 		solrQuery.addFilterQuery(END_DATE+":["+sdf.format(new Date())+" TO * ]");
+		solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId*-1);
 		return solrQuery;
 	}
 }
