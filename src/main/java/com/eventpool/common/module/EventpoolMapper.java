@@ -202,6 +202,7 @@ public class EventpoolMapper {
 	
 	public void mapEvent(EventDTO eventDTO,Event event){
 		mapper.map(eventDTO,event);
+		event.setPublish(eventDTO.getPublish());
 		List<TicketDTO> ticketDTOs = eventDTO.getTickets();
 		if(ticketDTOs!=null && ticketDTOs.size()>0){
 			List<Ticket> tickets = event.getTickets();
@@ -359,6 +360,7 @@ public class EventpoolMapper {
 		}else{
 			eventDTO.setPrivacyType(EventPrivacyType.PUBLIC.value());
 		}
+		eventDTO.setPublish(eventForm.getIsPublish());
 		/*OrderFormSettings orderFormSettings = eventForm.getOrderFormSettings();
 		if(orderFormSettings!=null){
 			JSONObject json = new JSONObject(orderFormSettings);
