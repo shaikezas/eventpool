@@ -826,7 +826,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		solrQuery.addFacetField(COUNTRYID);
 		solrQuery.setIncludeScore(true);
-		
+		solrQuery.addFilterQuery(END_DATE+":["+sdf.format(new Date())+" TO * ]");
 		return solrQuery;
 	}
 }
