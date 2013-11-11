@@ -27,7 +27,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="eventTitle">Event Title :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input class="span5" type="text" id="eventTitle" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required >
+							      <input class="span5" type="text" id="eventTitle" ng-disabled="event.isPublish" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required >
 							      <span ng-show="nameRequired" ng-style="{color:'red'}">Required.</span>
 						    </div>
 							  </div>
@@ -47,7 +47,7 @@
 							    <label class="control-label" for="startDate">Start Date & Time :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
-				      					<input type="text" name="startDate" datetime-picker  ng-model="event.startDate" 
+				      					<input type="text" name="startDate"  datetime-picker  ng-model="event.startDate" 
 				      										placeholder="Start Date and Time" readonly required ng-change="setticketsaleenddte()"></input>
 				      					<span class="add-on"><i class="icon-th"></i></span>
 				      				</div>
@@ -59,7 +59,7 @@
 							    <label class="control-label" for="endDate">End Date & Time :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 								 	<div id="datetimepickerEnd" class="input-append date datetimepicker">
-				      					<input type="text" name="endDate" datetime-picker ng-model="event.endDate" 
+				      					<input type="text" name="endDate"  datetime-picker ng-model="event.endDate" 
 				      										placeholder="End Date and Time" readonly required></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 				      				</div>
@@ -256,7 +256,7 @@
 								      <tbody>
 								        <tr>
 								          <td> <input type="text" ng-model="ticket.name" required ></td>
-								          <td> <input class="quant" type="text" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
+								          <td> <input class="quant" type="text"  ng-disabled="event.isPublish" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
 								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="text" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" ></td>
 								          <td>
 								        	<button class="btn " ng-click="isCollapsed = !isCollapsed"><div tooltip="Sales Start : {{ticket.saleStart}} <br> Sales End : {{ticket.saleEnd}} Minimum Tickets : {{ticket.minQty}} Maximum Tickets : {{ticket.maxQty}}">Setting</div></button>
