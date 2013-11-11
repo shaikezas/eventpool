@@ -112,7 +112,7 @@ public class EventApiImpl implements EventApi{
     }
     
 	private void setDefaultValues(Event event) {
-		if(event.getStatus()==null){
+		if(event.getStatus()==null && !event.isPublish()){
 			event.setStatus(EventStatus.DRAFT);
 		}
 		List<Ticket> tickets = event.getTickets();
