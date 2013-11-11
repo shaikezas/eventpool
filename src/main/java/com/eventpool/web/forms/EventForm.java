@@ -65,6 +65,8 @@ public class EventForm  {
 	private String logo;
 	private Boolean showBookTicket=true ;
 	
+	private String status;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -400,6 +402,12 @@ public Long getEventId() {
 	}
 	public void setShowBookTicket(Boolean showBookTicket) {
 		this.showBookTicket = showBookTicket;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
