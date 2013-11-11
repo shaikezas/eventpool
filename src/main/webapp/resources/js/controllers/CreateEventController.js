@@ -18,6 +18,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.subject = "";
     $scope.toValue = "";
     $scope.message = "";
+    $scope.citySelect = {};
     $scope.eventFormOptions = {};
     var map = [];
     var classificationTypes1 = [];
@@ -120,6 +121,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
+	    $scope.citySelect = {id:$scope.event.cityId,text:{'cityId':$scope.event.cityId,'cityName':$scope.event.cityName,'countryName':$scope.event.countryName,'stateName':$scope.event.stateName}};
 //	    $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
 //	    $scope.event.endDate = moment($scope.event.endDate).format("DD-MMM-YYYY hh:mm A");
 	    /*for (var i=0;i<$scope.event.tickets.length;i++)
@@ -339,6 +341,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     }
 
     $scope.cityFormatSelection = function(cityinfo) {
+    	if(angular.isUndefined(cityinfo.text)) {	
+    		return;
+    	}
         return cityinfo.text.cityName;
     }
     
