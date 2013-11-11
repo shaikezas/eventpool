@@ -300,6 +300,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	if(startDate.getTime()>endDate.getTime()){
     		$scope.stopSubmitAction=true;
     		$scope.startDateBeforeEndDate = true;
+    		$scope.disabled = false;
     	}
     	else {
     		$scope.startDateBeforeEndDate = false;

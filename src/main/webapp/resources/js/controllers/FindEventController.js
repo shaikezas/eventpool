@@ -25,6 +25,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.activeCountries = new Array();
 	$scope.countryname = "Country";
 	$scope.countryid = '';
+	$scope.othercountries=true;
 	
 	
 	$scope.viewThumbsNextPage = function(){
@@ -78,6 +79,13 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         });
 	}
     $scope.fetchSearchResults = function() {
+    	
+    	if(angular.isDefined($routeParams.other)){
+    		if($routeParams.other)
+    			$scope.othercountries=false;
+    		else
+    			$scope.othercountries=true;
+    	}
     	
     	if(angular.isDefined($scope.message()) && $scope.message() != null){
     		$scope.message().show = false;
