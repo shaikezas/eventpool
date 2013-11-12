@@ -2,6 +2,10 @@ body {
 	background:#fff;
 	zoom: 100%;
 	}
+	.navCityLogin a{
+	color: #4c87ff;}
+	.navCityLogin a:hover{
+	color: #053f88 !important;}
 .navbar{
 	background: #fff !important;
 	color: #ff6600 !important;
@@ -44,7 +48,7 @@ h4{
 	}
 h3{
 	font-size: 14px;
-	background: #494a4b;
+	background: #4c87ff;
 	padding: 10px;
 	margin: 0px;
 	line-height: normal;
