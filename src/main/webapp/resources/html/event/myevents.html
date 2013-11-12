@@ -33,7 +33,7 @@
 				        	
 	  	 		
 				          <th><a href="" ng-click="predicate = 'title'; reverse=!reverse">EVENTNAME</a></th>
-				          <th><a href="" ng-click="predicate = 'createdDate'; reverse=!reverse">DATE</a></th>
+				          <!-- <th><a href="" ng-click="predicate = 'createdDate'; reverse=!reverse">DATE</a></th> -->
 				          <th><a href="" ng-click="predicate = 'startDate'; reverse=!reverse">START DATE</a></th>
 				          <th><a href="" ng-click="predicate = 'endDate'; reverse=!reverse">END DATE</a></th>
 				          <th><a href="" ng-click="predicate = 'status'; reverse=!reverse">STATUS</a></th>
@@ -44,7 +44,7 @@
 				      <tbody>
 				        <tr ng-repeat="myevent in liveEvents| filter:searchTextLive | limitTo:showlive |orderBy:predicate:reverse  ">
 				          <td>{{myevent.title}}</td>
-				          <td>{{myevent.createdDate}}</td>
+				          <!-- <td>{{myevent.createdDate}}</td> -->
 				          <td>{{myevent.startDate}}</td>
 				           <td>{{myevent.endDate}}</td>
 				           <td>{{myevent.status}}</td>
@@ -69,7 +69,7 @@
 				        <tr>
 				        	
 	  	 		 		  <th><a href="" ng-click="predicate = 'title'; reverse=!reverse">EVENTNAME</a></th>
-				          <th><a href="" ng-click="predicate = 'createdDate'; reverse=!reverse">DATE</a></th>
+				          <!-- <th><a href="" ng-click="predicate = 'createdDate'; reverse=!reverse">DATE</a></th> -->
 				          <th><a href="" ng-click="predicate = 'startDate'; reverse=!reverse">START DATE</a></th>
 				          <th><a href="" ng-click="predicate = 'endDate'; reverse=!reverse">END DATE</a></th>
 				          <th><a href="" ng-click="predicate = 'status'; reverse=!reverse">STATUS</a></th>
@@ -80,7 +80,7 @@
 				      <tbody>
 				        <tr ng-repeat="myevent in draftEvents | filter:searchTextDraft | limitTo:showdraft |orderBy:predicate:reverse" >
 				          <td>{{myevent.title}}</td>
-				          <td>{{myevent.createdDate}}</td>
+				          <!-- <td>{{myevent.createdDate}}</td> -->
 				          <td>{{myevent.startDate}}</td>
 				           <td>{{myevent.endDate}}</td>
 				           <td>{{myevent.status}}</td>
@@ -104,7 +104,7 @@
 				        <tr>
 				        	
 	  	 		  		  <th><a href="" ng-click="predicate = 'title'; reverse=!reverse">EVENTNAME</a></th>
-				          <th><a href="" ng-click="predicate = 'createdDate'; reverse=!reverse">DATE</a></th>
+				          <!-- <th><a href="" ng-click="predicate = 'createdDate'; reverse=!reverse">DATE</a></th> -->
 				          <th><a href="" ng-click="predicate = 'startDate'; reverse=!reverse">START DATE</a></th>
 				          <th><a href="" ng-click="predicate = 'endDate'; reverse=!reverse">END DATE</a></th>
 				          <th><a href="" ng-click="predicate = 'status'; reverse=!reverse">STATUS</a></th>
@@ -115,7 +115,7 @@
 				      <tbody>
 				        <tr ng-repeat="myevent in pastEvents | filter:searchTextPast | limitTo:showpast |orderBy:predicate:reverse" >
 				          <td>{{myevent.title}}</td>
-				          <td>{{myevent.createdDate}}</td>
+				          <!-- <td>{{myevent.createdDate}}</td> -->
 				          <td>{{myevent.startDate}}</td>
 				           <td>{{myevent.endDate}}</td>
 				           <td>{{myevent.status}}</td>
