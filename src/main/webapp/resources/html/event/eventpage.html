@@ -59,7 +59,7 @@
 
 	
 <div class="container eventPage " >			
-		<div class="span3">
+		<div class="span3" ng-show="event.tickets.length>0">
 			
 			<h4 >Book the Ticket </h4>
 			<div >
@@ -130,12 +130,14 @@
 			
 			
 			<div class="span1 rightPanel ">
+				<div ng-show="event.eventSettingsDTO.showOrganizerName == 'true' || event.eventSettingsDTO.showContactDetails == 'true'">
 				<h3>Contact Details <i class="titleArow"></i></h3>
 				<div class="filterControl">
 					<ul class="eventDetails eventDetailsIcon">
 						<li ng-show="event.eventSettingsDTO.showOrganizerName == 'true'"> <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
 						<li ng-show="event.eventSettingsDTO.showContactDetails == 'true'"> <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
 					</ul>
+				</div>
 				</div>
 			</div>
 	</div>		
