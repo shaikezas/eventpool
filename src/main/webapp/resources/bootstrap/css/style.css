@@ -7,6 +7,7 @@ src: url('../font/Coda-Regular.ttf'),
 }
 body{
 	font-family: "Coda" !important;
+	background-image:url(../img/page_bg.jpg) !important;
 	}
 h1, h2, h3, h4, h5, h6, input, button, select{
 	font-family: "Coda" !important;
@@ -241,14 +242,57 @@ h3 i{
 	color: #053f88	  !important;
 }
 .filterControl .nav-list .active a {
-	border-left:2px solid #053f88;
-	color:#fff;
+	/* border-left:2px solid #053f88;
+	color:#fff !important;
+	background: #4d94c2
+	*/
 }
 .filterControl .nav-list a:hover {
 	border-left:2px solid #053f88;
 	color:#053f88;
 }
 /* Page LeftPanel End */
+
+
+.homeleftPanel h3{
+	font-size: 14px;
+	padding: 10px 0px;
+	margin: 0px;
+	line-height: normal;
+	color: #000;
+	text-transform: uppercase;
+	}
+
+
+
+.homeleftPanel .nav-list{
+	background: none;
+}
+
+
+.homeleftPanel .nav-list > li > a{
+	font-size: 12px ;
+	border-bottom:1px dotted #363636;
+	border-left:0px solid #ff6600;
+	color:#333;
+	background-image:url(../img/arrow.gif) !important;
+	background-repeat:no-repeat;
+	background-position:5px 8px;
+	text-transform: capitalize;
+}
+
+.homeleftPanel .nav-list > li > a:hover {
+	color:#ff6600;
+	border-left:0px solid #ff6600;
+}
+.homeleftPanel .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus{
+	border-left:0px solid #ff6600;
+	color:#333;
+}
+
+
+
+
 
 
 /* Header Main Nav Start */
@@ -273,6 +317,7 @@ h3 i{
 }
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+	background:none;
 	background-image:url(../img/activeTap.png);
 	background-repeat: no-repeat;
 	background-position: bottom;
@@ -281,7 +326,7 @@ h3 i{
 	border: 0px;
 	color: #ff6600;
 }
-
+	
 
 .floatLeft{float: left}
 .floatRight{float: right}
@@ -405,6 +450,9 @@ table tr:hover td
 	padding: 5px !important;
 	margin: 5px !important;
 	border-bottom: 1px solid #ccc
+}
+.clear{
+	clear: both;
 }
 .copyright{
 	clear: both;
@@ -880,6 +928,9 @@ width: 50px
   	.slider{
   		border: 3px solid #444444;
   		border-radius: 4px;
+  		float: right;
+  		width: 734px;
+  		height: 256px;
   	}
   	.carouselThumb {
   		position: absolute;

@@ -24,7 +24,7 @@
 				
 				<ul ng-show="othercountries" class="nav nav-list">
 					<li class="nav-header">Date</li>
-					<li ng-repeat="filterItem in searchResults.eventDateFilterItems">
+					<li ng-repeat="filterItem in searchResults.eventDateFilterItems" class="active">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
