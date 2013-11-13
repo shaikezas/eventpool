@@ -7,18 +7,17 @@
 											
 							<div class="navCityLogin">
 					
-								<a href="#/userSettings" ng-show="user.userName"> Welcome {{user.userName}}</a></span>
+								<a href="#/userSettings" ng-class="activeWhen(path()=='/userSettings')" ng-show="user.userName"> Welcome {{user.userName}}</a></span>
 								<i class="splitter" ng-show="user.userName"></i>
-								<a href="#/userSettings" ng-show="user.userName">My Account</a></span>
+								<a href="#/userSettings" ng-show="user.userName" ng-class="activeWhen(path()=='/userSettings')">My Account</a></span>
 								<i class="splitter " ng-show="user.userName"></i>
 								<!-- <i class="flag flag-IN"></i>  India 
 								<i class="splitter "></i>      -->
-								<a href="#/home" ng-click="fetchhomepagerecords()">Home</a>
+								<a href="#/home" ng-click="fetchhomepagerecords()" ng-class="activeWhen(path()=='/home' )">Home</a>
 								<i class="splitter "></i>   
 								<a href="" ng-click="loginuser()" ng-show="user.userName==null">Login</a>
 								
 								<a href="" ng-click="logout()" ng-show="user.userName">Logout</a>
-								<span ng-class="activeWhen(path()=='/userSettings')">
 								
 							</div>
 							
