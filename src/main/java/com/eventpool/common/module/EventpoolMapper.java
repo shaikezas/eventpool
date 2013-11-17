@@ -177,6 +177,7 @@ public class EventpoolMapper {
 	
 	@Transactional(readOnly=true)
 	public void mapEventDTO(Event event,EventDTO eventDTO){
+		if(event==null) return;
 		mapper.map(event, eventDTO);
 		List<Ticket> tickets = event.getTickets();
 		if(tickets!=null && tickets.size()>0){
