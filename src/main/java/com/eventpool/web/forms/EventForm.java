@@ -34,7 +34,7 @@ public class EventForm  {
 	private String address2;
 	private Integer cityId;
 	private String mapUrl;
-	private Long zipCode;
+	private String zipCode;
 	private String phoneNumber;
 	private String fax;
 	private String mobileNumber;
@@ -169,10 +169,10 @@ public class EventForm  {
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
 	}
-	public Long getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
-	public void setZipCode(Long zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 	public String getPhoneNumber() {

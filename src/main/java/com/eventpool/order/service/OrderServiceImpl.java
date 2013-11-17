@@ -4,6 +4,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -18,23 +19,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventRegisterDTO;
 import com.eventpool.common.dto.OrderDTO;
+import com.eventpool.common.dto.Region;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.dto.TicketRegisterDTO;
+import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketRegister;
-import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
 import com.eventpool.common.exceptions.TicketNotFoundException;
 import com.eventpool.common.module.DateCustomConverter;
+import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.OrderRepository;
 import com.eventpool.common.repositories.TicketRegisterRepository;
@@ -80,6 +84,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Resource
 	TicketInventoryService inventoryService;
+	
+	@Resource
+    private EntityUtilities  entityUtilities;
 	
 	 @Autowired
 	    private UserService userService;
@@ -173,6 +180,29 @@ public class OrderServiceImpl implements OrderService {
 		orderRegisterForm.setLastName(user.getLname());
 		orderRegisterForm.setEmail(user.getEmail());
 		EventDTO event = eventService.getEventById(eventRegister.getEventId());
+		List<Order> orders = orderRepository.getAllOrders(user.getId());
+		Order order = null;
+		if(orders!=null && orders.size()>0){
+			order = orders.get(0);
+		}
+		if(order!=null && order.getBillingAddress()!=null){
+			Address billingAddress = order.getBillingAddress();
+			AddressDTO addressDTO = new AddressDTO();
+			addressDTO.setAddress1(billingAddress.getAddress1());
+			addressDTO.setAddress2(billingAddress.getAddress2());
+			addressDTO.setCityId(billingAddress.getCityId());
+			addressDTO.setMobileNumber(billingAddress.getMobileNumber());
+			addressDTO.setPhoneNumber(billingAddress.getPhoneNumber());
+			addressDTO.setZipCode(billingAddress.getZipCode());
+			if(addressDTO.getCityId()!=null){
+		    	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
+		    	Region region = csc.get(addressDTO.getCityId());
+		    	addressDTO.setCityName(region.getCityName());
+		    	addressDTO.setStateName(region.getStateName());
+		    	addressDTO.setCountryName(region.getCountryName());
+		    	}
+			orderRegisterForm.setBillingAddress(addressDTO);
+		}
 		EventInfoType infoType = event.getInfoType();
 		boolean isAttendeeRequired = false;
 		Double grossAmount = 0.0D;
