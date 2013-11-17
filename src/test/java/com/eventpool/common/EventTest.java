@@ -208,7 +208,7 @@ public class EventTest extends BaseTest{
     	venueAddress.setMapUrl("mapUrl");
     	venueAddress.setMobileNumber("molenumbe");
     	venueAddress.setPhoneNumber("ph nber");
-    	venueAddress.setZipCode(12345L);
+    	venueAddress.setZipCode("12345");
     	event.setVenueAddress(venueAddress);
     	event.setVenueName("venue name");
     	
@@ -331,7 +331,7 @@ public class EventTest extends BaseTest{
     	eventForm.setVenueName("venue name");
     	eventForm.setVideoUrl("video url");
     	eventForm.setIsWebinar(false);
-    	eventForm.setZipCode(304567L);
+    	eventForm.setZipCode("304567");
     	eventForm.setEventWebSiteUrl("eventwebsiteurl");
     	
     	TicketForm ticketForm = new TicketForm();
@@ -525,7 +525,7 @@ public class EventTest extends BaseTest{
 		billingAddress.setMapUrl("mapurl");
 		billingAddress.setMobileNumber("123455678");
 		billingAddress.setPhoneNumber("98765432");
-		billingAddress.setZipCode(12345L);
+		billingAddress.setZipCode("12345");
 		orderService.createOrder(orderDTO);
     }  
     
