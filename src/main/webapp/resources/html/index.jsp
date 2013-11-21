@@ -13,7 +13,7 @@
 	
 	
 	
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Coda">
+	
     
     
     <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
@@ -43,6 +43,9 @@
         .bigdrop.select2-container .select2-results {max-height: 100px;}
         .bigdrop .select2-results {max-height: 300px;}
       </style>
+
+	<link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
+	
   </head>
 
   <body >
