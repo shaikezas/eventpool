@@ -18,6 +18,7 @@
 		<field><a>organizerDescription</a><b>organizerDescription</b></field>
 		<field><a>contactDetails</a><b>contactDetails</b></field>
 	    <field><a>isWebinar</a><b>isWebinar</b></field>
+	    <field><a>timeZone</a><b>timeZone</b></field>
 		<field><a>termsAndConditions</a><b>termsAndConditions</b></field>
 		<field><a>keyWords</a><b>keyWords</b></field>
 		<field><a>publishDate</a><b>publishDate</b></field>		

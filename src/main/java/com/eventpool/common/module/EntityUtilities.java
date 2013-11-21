@@ -25,6 +25,7 @@ public class EntityUtilities {
 	
 	private Map<Integer,String> cityMap = new HashMap<Integer,String>(39000);
 	private Map<Integer,Integer> cityStateMap = new HashMap<Integer,Integer>(39000);
+	private Map<Integer,String> cityTimeZoneMap = new HashMap<Integer,String>(39000);
 	private Map<Integer,String> stateMap =new HashMap<Integer,String>();
 	private Map<Integer,Integer> stateCountryMap =new HashMap<Integer,Integer>();
 	private Map<Integer,String> countryMap = new HashMap<Integer,String>();
@@ -44,9 +45,12 @@ public class EntityUtilities {
 				for(City city:allCities){
 					cityMap.put(city.getId(), city.getName());
 					cityStateMap.put(city.getId(), city.getStateId());
+					cityTimeZoneMap.put(city.getId(), city.getTimeZone());
 				}
 			}else{
 				cityMap.clear();
+				cityStateMap.clear();
+				cityTimeZoneMap.clear();
 			}
 			List<State> allStates = repositoryPool.getStateRepository().findAll();
 			if(allStates!=null && allStates.size()>0){
@@ -56,6 +60,7 @@ public class EntityUtilities {
 				}
 			}else{
 				stateMap.clear();
+				stateCountryMap.clear();
 			}
 			List<Country> allCountries = repositoryPool.getCountryRepository().findAll();
 			if(allCountries!=null && allCountries.size()>0){
@@ -118,7 +123,7 @@ public class EntityUtilities {
 			String stateName  = this.stateMap.get(stateId);
 			String countryName  = this.countryMap.get(countryId);
 			String countryFlag = this.countryFlagMap.get(countryId);
-					
+			String timeZone = this.cityTimeZoneMap.get(cityId);		
 			
 			Region region = new Region();
 				region.setCityId(cityId);
@@ -128,8 +133,8 @@ public class EntityUtilities {
 				region.setCountryId(countryId);
 				region.setCountryName(countryName);
 				region.setFlag(countryFlag);
+				region.setTimeZone(timeZone);
 			
-			String cityWithStateAndCountry = cityName + SEPARATOR +stateName+SEPARATOR+countryName;
 			cityMap.put(cityId, region);
 		}
 		return cityMap;

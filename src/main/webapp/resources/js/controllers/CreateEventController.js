@@ -121,7 +121,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.contactDetails = $scope.event.userEventSettingDTO.contactDetails;
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
-	    $scope.citySelect = {id:$scope.event.cityId,text:{'cityId':$scope.event.cityId,'cityName':$scope.event.cityName,'countryName':$scope.event.countryName,'stateName':$scope.event.stateName}};
+	    $scope.citySelect = {id:$scope.event.cityId,text:{'cityId':$scope.event.cityId,'cityName':$scope.event.cityName,'countryName':$scope.event.countryName,'stateName':$scope.event.stateName,'timeZone':$scope.event.timeZone}};
 //	    $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
 //	    $scope.event.endDate = moment($scope.event.endDate).format("DD-MMM-YYYY hh:mm A");
 	    /*for (var i=0;i<$scope.event.tickets.length;i++)
@@ -517,6 +517,17 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.event.stateName =  region.text.stateName;
     	$scope.event.countryName = region.text.countryName;
         $scope.event.cityId = region.text.cityId;
+        $scope.event.timeZone = 'GMT'+region.text.timeZone;
+        
+    };
+    
+    $scope.selectTimeZone = function(region) {
+    	if(angular.isUndefined(region) || region == null){
+    		return ;
+    	}
+    	$scope.event.cityName = region.text.cityName;
+        $scope.event.cityId = region.text.cityId;
+        $scope.event.timeZone = 'GMT'+region.text.timeZone;
         
     };
    /* $scope.profilepic;
