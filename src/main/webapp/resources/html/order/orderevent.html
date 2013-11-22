@@ -6,11 +6,7 @@
           	
           	<div ng-include src="'html/eventpageheader.html'"></div>
 			   	
-			<!-- <div ng-class="'alert alert-'+message().type" ng-show="message().show" >
-			    <button type="button" class="close" ng-click="message().show=false">x</button>
-			    <msg>{{message().text}}</msg>
-			</div>
-			   	 -->
+<div class="eventCont">
 			   	
           	 <div class="eventBanners">  	
 					<div class="image">
@@ -21,14 +17,15 @@
 					<h3>Event Details</h3>
 											<div class="filterControl">
 												<ul class="eventDetails eventDetailsIcon">
-													<li > <i class="iconCalander"></i>	<span>Start Date:</span> {{event.startDate}}</li>
-													<li > <i class="iconCalander"></i>	<span>End Date:</span> {{event.endDate}}</li>
+													<li > <i class="iconCalanderStart"></i>	<span>Start Date:</span> {{event.startDate}}</li>
+													<li > <i class="iconCalanderEnd"></i>	<span>End Date:</span> {{event.endDate}}</li>
 													<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
-													<li > <i class="iconAddress"></i>
+													<li  class="addressCont"> <i class="iconAddress"></i>
 														{{ event.venueAddress}}
 													</li>
-													<li >Set Remainder</li>
-													<li class="">Add Calender</li>
+													<li > <i class="iconTime"></i>
+														<span>Time Zone:</span> {{event.timeZone}}
+													</li>
 												</ul>
 											</div>
 					
@@ -227,12 +224,12 @@
 										<div class="filterControl">
 											
 											<ul class="eventDetails eventDetailsIcon">
-												<li > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
+												<li class="newAddress" > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
 												<!-- <li > <i class="iconCalander">	</i>	July 20, 2013				</li>
 												<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
 												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
-												<li > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
-												<li > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}}		</li>
+												<li class="newAddress" > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
+												<li class="newAddress" > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}}		</li>
 											</ul>
 											<!-- <button class="btn ">Edit Order</button> -->
 										</div>
@@ -244,8 +241,8 @@
 										<h3>Contact Details</h3>
 										<div class="filterControl">
 											<ul class="eventDetails eventDetailsIcon">
-												<li > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
-												<li > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
+												<li class="newAddress" > <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
+												<li class="newAddress" > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
 											</ul>
 										</div>
 								
@@ -261,7 +258,7 @@
         
           </div>
 
-
+ </div>
 <div ng-include src="'html/footer.html'"></div>
 
        

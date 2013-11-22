@@ -50,9 +50,13 @@
 				            
 								<ul class="nav" >
 									<li ng-class="activeWhen(path()=='/findevent')" > 	<a href="#/findevent" > Find Event </a> </li>
+									<i class="navDevider"></i>
 									<li ng-class="activeWhen(path()=='/createevent')"> 	<a href="#/createevent" >Create Event</a></li>
+									<i class="navDevider"></i>
 									<li ng-class="activeWhen(path()=='/myevents')">		<a href="#/myevents" ng-show="user.userName" >My Events</a></li>
+									<i class="navDevider" ng-show="user.userName" ></i>
 									<li ng-class="activeWhen(path()=='/mytickets')">	<a href="#/mytickets" ng-show="user.userName">My Tickets</a></li>
+									<i class="navDevider" ng-show="user.userName"></i>
 									<li>	<a href="" class="lastNav" >Packages</a></li>
 								</ul>
 								

@@ -6,6 +6,12 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
 	$scope.selectedCat = "All Categories";
 /*	$scope.eventType = new Array();*/
 	$scope.signupuserform = {};
+	$scope.slides = [{img:'resources/bootstrap/img/banner_1.jpg'},
+	                 {img:'resources/bootstrap/img/banner_2.jpg'},
+	                 {img:'resources/bootstrap/img/banner_3.jpg'},
+	                 {img:'resources/bootstrap/img/banner_4.jpg'},
+	                 {img:'resources/bootstrap/img/banner_5.jpg'},
+	                 {img:'resources/bootstrap/img/banner_6.jpg'}];
 	 $scope.shows = [
 	                  {id:10, value:10},
 	                  {id:20, value:20},

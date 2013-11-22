@@ -14,15 +14,16 @@
       <div class="slider" id="carousel-bounding-box">     
       
        <carousel interval="myInterval">
-    			<slide active="event.active">
+    			<slide ng-repeat="slide in slides  | limitTo:5" active="event.active">
       				<a href="#">
       					<div class="image">
-							<img  src="resources/bootstrap/img/banner_3.jpg"  /> 
+							<img  src="{{slide.img}}"  /> 
 						</div>  
       					
       				</a>
       				
     			</slide>
+    			
   			</carousel> 
       
       
@@ -47,7 +48,6 @@
 	<div class="clear"></div>
 	
 <div class="span1 homeleftPanel ">
-		<h3>Catogories List</h3>
 		<ul class="nav nav-list">
 			<li class="nav-header">
 				<a href="#/findevent?q=subCategoryId:1" >Education</a>
@@ -61,9 +61,9 @@
 			</li>
 		</ul>
 		
-		<br />
 		
-		<img class="header-logo" src="resources/bootstrap/img/payment.gif"  /> 
+		
+		<img  src="resources/bootstrap/img/payment.gif"  /> 
 		
 		
 	</div>

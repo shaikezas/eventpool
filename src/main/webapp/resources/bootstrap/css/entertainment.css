@@ -3,9 +3,9 @@ body {
 	zoom: 100%;
 	}
 	.navCityLogin a{
-	color: #4c87ff;}
+	color: #fff;}
 	.navCityLogin a:hover{
-	color: #053f88 !important;}
+	color: #ccc !important;}
 .navbar{
 	background: #fff !important;
 	color: #ff6600 !important;
@@ -15,7 +15,11 @@ body {
 .span1{
 	width: 240px;
 	margin-left: 10px !important; ;
-}		
+}
+.eventCont{
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+	padding: 0px 10px !important;
+}
 .eventBanners{
 	width: 990px;
 	height: 200px;
@@ -36,7 +40,7 @@ body {
 	padding: 10px;
 	border-radius: 8px;
 	border: 1px solid #ccc;
-	background-image: url(../img/entContBg.png );
+	
 	}
 .headerStrip{
 	width: 990px;
@@ -54,6 +58,7 @@ h3{
 	line-height: normal;
 	color: #fff;
 	border-radius: 5px 5px 0px 0px;
+	font-weight: bold;
 
 }	
 
@@ -64,6 +69,9 @@ h3{
 	margin-left: 8px !important;
 }
 
+.rightPanelright{
+	float: right;
+}
 
 .table 
 {
@@ -103,7 +111,17 @@ h3{
 	list-style: none;
 	margin:0px 0px 5px ;
 }
-
+.eventDetails .newAddress{
+	padding-bottom: 10px;
+}
+.eventDetails li {
+	border-bottom: 1px dotted #ccc;
+	padding:5px 0px ;
+	height: 20px;
+}
+.addressCont{
+	height: 50px !important;
+}
 .eventDetailsIcon i{
  width: 24px;
  height: 24px;
@@ -114,8 +132,17 @@ h3{
 
 .eventDetailsIcon .iconTicket{background-position: -74px 0px; }
 
-.eventDetailsIcon .iconCalander{background-position: -50px 0px}
+.eventDetailsIcon .iconCalanderStart{
+	height: 19px;
+	background-image:url(../img/iconCalanderStart.png);}
 
-.eventDetailsIcon .iconTime{background-position: -0px 0px}
+.eventDetailsIcon .iconCalanderEnd{
+	height: 19px;
+	background-image:url(../img/iconCalanderEnd.png);}
+
+.eventDetailsIcon .iconTime{
+	height: 19px;
+	background-image:url(../img/icon_time.png);}
  
-.eventDetailsIcon .iconAddress{background-position: -24px 0px}
+.eventDetailsIcon .iconAddress{
+	background-position: -24px 0px}
