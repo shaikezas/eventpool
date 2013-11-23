@@ -11,6 +11,7 @@ public class Region {
 	private String countryName;
 	
 	private String flag;
+	private String timeZone;
 	
 	public static final String SEPARATOR = "|";
 
@@ -73,6 +74,14 @@ public class Region {
 	
 	
 	
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
+	}
+
 	@Override
 	public String toString() {
 		return cityName + SEPARATOR +stateName+SEPARATOR+countryName;

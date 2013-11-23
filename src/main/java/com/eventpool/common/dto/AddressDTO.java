@@ -16,9 +16,15 @@ public class AddressDTO extends IdDTO{
 	
 	private Integer cityId;
 	
+	private String cityName;
+	
+	private String stateName;
+	
+	private String countryName;
+	
 	private String mapUrl;
 	
-	private Long zipCode;
+	private String zipCode;
 
 	private String phoneNumber;
 	
@@ -43,11 +49,11 @@ public class AddressDTO extends IdDTO{
 	}
 
 
-	public Long getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(Long zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 
@@ -90,6 +96,30 @@ public class AddressDTO extends IdDTO{
 
 	public void setCityId(Integer cityId) {
 		this.cityId = cityId;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getStateName() {
+		return stateName;
+	}
+
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 	
 

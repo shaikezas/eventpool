@@ -97,7 +97,7 @@ public class InvoiceService {
             stamper.close();
             pdfTemplate.close();
         } catch (Exception e) {
-
+        	e.printStackTrace();
         }finally{
             if(is!=null) is.close();
         }

@@ -32,6 +32,7 @@
 			<field><a>privacyType</a><b>privacyType</b></field>
 			<field><a>eventSettings</a><b>eventSettingsDTO</b></field>
 			<field><a>eventUrl      </a><b>eventUrl     </b></field>
+			<field><a>timeZone</a><b>timeZone</b></field>
     </mapping>
 
    <mapping stop-on-errors="false" wildcard="false">

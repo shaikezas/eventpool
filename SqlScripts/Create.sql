@@ -12,6 +12,7 @@ CREATE TABLE `EVENT` (
    contact_details varchar(1000) NULL,
    VENUE_NAME varchar(256)  NULL,
    VENUE_ADDRESS_ID bigint(20)   NULL,
+   TIME_ZONE varchar(10) NOT NULL,
    ATTEND_TYPE char(10) NULL,
    OCCURING_TYPE char(10) NULL,
    TERMS_CONDITIONS text,

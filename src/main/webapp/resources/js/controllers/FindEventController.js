@@ -86,6 +86,9 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     		else
     			$scope.othercountries=true;
     	}
+    	if(angular.isDefined($routeParams.cname)){
+    		$scope.countryname=$routeParams.cname;
+    	}
     	
     	if(angular.isDefined($scope.message()) && $scope.message() != null){
     		$scope.message().show = false;
@@ -205,7 +208,8 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     
     $scope.setcountryname = function(id,name) {
     	$scope.countryname = name;
-    	$scope.countryid = id;    	
+    	$scope.countryid = id;   
+    	$location.url('findevent?q='+'&countryId=' + id + '&cname=' +name);
     }
     
     

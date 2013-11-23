@@ -32,6 +32,9 @@ public class City extends AbstractEntity{
 	
 	@Column(name="CODE")
 	private String code;
+	
+	@Column(name="TIME_ZONE")
+	private String timeZone;
 
 	public Integer getCountryId() {
 		return countryId;
@@ -71,6 +74,14 @@ public class City extends AbstractEntity{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 	
 		

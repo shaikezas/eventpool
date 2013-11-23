@@ -34,7 +34,7 @@ public class EventForm  {
 	private String address2;
 	private Integer cityId;
 	private String mapUrl;
-	private Long zipCode;
+	private String zipCode;
 	private String phoneNumber;
 	private String fax;
 	private String mobileNumber;
@@ -59,6 +59,7 @@ public class EventForm  {
 	private String cityName;
 	private String stateName;
 	private String countryName;
+	private String timeZone;
 	private Integer classificationType = 1;
 	private UserEventSettingDTO userEventSettingDTO;
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
@@ -169,10 +170,10 @@ public class EventForm  {
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
 	}
-	public Long getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
-	public void setZipCode(Long zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 	public String getPhoneNumber() {
@@ -408,6 +409,12 @@ public Long getEventId() {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getTimeZone() {
+		return timeZone;
+	}
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 	
 }

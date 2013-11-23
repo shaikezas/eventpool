@@ -5,32 +5,30 @@
     
 
 	<div class="container pageContainer" >
-		
-	
-	
-	<div class="span1 homeleftPanel ">
-		<h3>Catogories List</h3>
-		<ul class="nav nav-list">
-			<li class="nav-header">
-				<a href="#/findevent?q=subCategoryId:1" >Education</a>
-				<a href="#/findevent?q=subCategoryId:2" >Entertainment</a>
-				<a href="#/findevent?q=subCategoryId:3" >Fashion</a>
-				<a href="#/findevent?q=subCategoryId:4" >Health</a>
-				<a href="#/findevent?q=subCategoryId:5" >Industrial</a>
-				<a href="#/findevent?q=subCategoryId:6" >RealEstate</a>
-				<a href="#/findevent?q=subCategoryId:7" >Sports</a>
-				<a href="#/findevent?q=subCategoryId:1000" >Miscellaneous</a>
-			</li>
-		</ul>
-	</div>
 	
 		<!-- Slider Start-->
   
       <!-- Top part of the slider -->
       
       
-      <div class="slider" id="carousel-bounding-box">      
-      		  <carousel interval="myInterval">
+      <div class="slider" id="carousel-bounding-box">     
+      
+       <carousel interval="myInterval">
+    			<slide ng-repeat="slide in slides  | limitTo:5" active="event.active">
+      				<a href="#">
+      					<div class="image">
+							<img  src="{{slide.img}}"  /> 
+						</div>  
+      					
+      				</a>
+      				
+    			</slide>
+    			
+  			</carousel> 
+      
+      
+       
+      		 <!--  <carousel interval="myInterval">
     			<slide ng-repeat="event in homePageResults  | limitTo:5" active="event.active">
       				<a href="#event/{{event.eventUrl}}">
       					<div class="image">
@@ -43,16 +41,48 @@
       					</div>
       				</a>
     			</slide>
-  			</carousel>     
+  			</carousel>  -->    
       </div>
       
 	<!-- Slider End -->
 	<div class="clear"></div>
-
+	
+<div class="span1 homeleftPanel ">
+		<ul class="nav nav-list">
+			<li class="nav-header">
+				<a href="#/findevent?q=subCategoryId:1" >Education</a>
+				<a href="#/findevent?q=subCategoryId:2" >Entertainment</a>
+				<a href="#/findevent?q=subCategoryId:3" >Fashion</a>
+				<a href="#/findevent?q=subCategoryId:4" >Health</a>
+				<a href="#/findevent?q=subCategoryId:5" >Industrial</a>
+				<a href="#/findevent?q=subCategoryId:6" >RealEstate</a>
+				<a href="#/findevent?q=subCategoryId:7" >Sports</a>
+				<a href="#/findevent?q=subCategoryId:1000" >Miscellaneous</a>
+			</li>
+		</ul>
+		
+		
+		
+		<img  src="resources/bootstrap/img/payment.gif"  /> 
+		
+		
+	</div>
 	<ul class="thumbnails">
 		
 		
-<!-- 		<div class="span1 leftPanel ">
+	
+
+
+
+
+
+
+
+
+
+<!-- 
+
+	<div class="span1 leftPanel ">
 
 			<h3>Categories<i class="titleArow"></i></h3>
 			<div class="filterControl"> 

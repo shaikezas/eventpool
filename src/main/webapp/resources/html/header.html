@@ -1,12 +1,10 @@
-<div class="navbar navbar-fixed-top ">
-          
 
-			
-				<div class="navbar-inner headerContainer">
-			        <div class="container" >
-											
-							<div class="navCityLogin">
-					
+
+
+
+<div class="navbar navbar-fixed-top ">
+        	<div class="navCityLogin" >
+					 <div style="width: 1000px; margin: auto">
 								<a href="#/userSettings" ng-class="activeWhen(path()=='/userSettings')" ng-show="user.userName"> Welcome {{user.userName}}</a></span>
 								<i class="splitter" ng-show="user.userName"></i>
 								<a href="#/userSettings" ng-show="user.userName" ng-class="activeWhen(path()=='/userSettings')">My Account</a></span>
@@ -18,10 +16,15 @@
 								<a href="" ng-click="loginuser()" ng-show="user.userName==null">Login</a>
 								
 								<a href="" ng-click="logout()" ng-show="user.userName">Logout</a>
-								
-							</div>
+						</div> 		
+				</div>  
+			
+			
+				<div class="navbar-inner headerContainer">
+			        <div class="container" >
 							
 							<img class="header-logo" src="resources/bootstrap/img/logo.png"  />
+							
 							<br/>	
 							<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 								<span class="icon-bar"></span>
@@ -47,9 +50,13 @@
 				            
 								<ul class="nav" >
 									<li ng-class="activeWhen(path()=='/findevent')" > 	<a href="#/findevent" > Find Event </a> </li>
+									<i class="navDevider"></i>
 									<li ng-class="activeWhen(path()=='/createevent')"> 	<a href="#/createevent" >Create Event</a></li>
+									<i class="navDevider"></i>
 									<li ng-class="activeWhen(path()=='/myevents')">		<a href="#/myevents" ng-show="user.userName" >My Events</a></li>
+									<i class="navDevider" ng-show="user.userName" ></i>
 									<li ng-class="activeWhen(path()=='/mytickets')">	<a href="#/mytickets" ng-show="user.userName">My Tickets</a></li>
+									<i class="navDevider" ng-show="user.userName"></i>
 									<li>	<a href="" class="lastNav" >Packages</a></li>
 								</ul>
 								

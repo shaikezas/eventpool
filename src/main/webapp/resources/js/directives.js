@@ -63,7 +63,7 @@ AppDirectives.directive('datetimePicker', function($timeout) {
                 forceParse: false,
                 todayBtn: true,
                 todayHighlight : true,
-                pickerPosition: "bottom-left",
+                pickerPosition: "bottom-center",
                 startDate : new Date(),
                 weekStart : 1
             }).on('changeDate', function(ev){

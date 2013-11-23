@@ -115,6 +115,10 @@ public class Event extends AuditableIdEntity {
 	@NotNull
 	@Column(name = "EVENT_URL")
 	private String eventUrl;
+	
+	@NotNull
+	@Column(name = "TIME_ZONE")
+	private String timeZone;
 
 	@Column(name="CLASSIFICAION_TYPE")
 	private Integer classificationType;
@@ -357,6 +361,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setClassificationType(Integer classificationType) {
 		this.classificationType = classificationType;
+	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
 }

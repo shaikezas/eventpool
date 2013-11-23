@@ -56,7 +56,7 @@ public class OrderServiceTest extends BaseTest{
 		AddressDTO address = new AddressDTO();
 		address.setAddress1("BTM");
 		address.setCityId(42498);
-		address.setZipCode(560036L);
+		address.setZipCode("560036");
 		address.setAddress2("Thaverekere");
 		
 		form.setBillingAddress(address);
@@ -106,7 +106,7 @@ public class OrderServiceTest extends BaseTest{
 		AddressDTO address = new AddressDTO();
 		address.setAddress1("BTM");
 		address.setCityId(42498);
-		address.setZipCode(560036L);
+		address.setZipCode("560036");
 		address.setAddress2("Thaverekere");
 		
 		form.setBillingAddress(address);

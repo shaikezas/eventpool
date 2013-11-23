@@ -43,6 +43,7 @@ public class EventDTO extends AuditableIdDTO {
 	private Integer memberShipType;
 	private UserEventSettingDTO userEventSettingDTO;
 	private Boolean publish;
+	private String timeZone;
 	
 	public String getTitle() {
 		return title;
@@ -283,6 +284,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setPublish(Boolean publish) {
 		this.publish = publish;
+	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 	
 	

@@ -1,17 +1,12 @@
 @font-face
 {
-font-family: myFirstFont;
-src: url('../font/Coda-Regular.ttf'),
-	 url('../font/Coda-Heavy.ttf'),
-     url('../font/Coda-Regular.eot'); /* IE9 */
+font-family: font-family: Francois One !important;
 }
 body{
-	font-family: "Coda" !important;
+	font-family:sans-serif  !important;
 	background-image:url(../img/page_bg.jpg) !important;
 	}
 h1, h2, h3, h4, h5, h6, input, button, select{
-	font-family: "Coda" !important;
-	
 	font-weight: normal;
 	}
 h1{
@@ -47,8 +42,10 @@ a{
 .navCityLogin{
 	text-align: right;
 	padding:0px ;
-	float: right;
+	width: 100%;
 	font-size: 12px;
+	background: #046cab;
+	font-family: Francois One !important;
 	}
 .navCityLogin a{
 	color: #fff;
@@ -78,39 +75,58 @@ a{
 	}
 .headerSearch{
 	margin: 2px 0 0 2px;
+	
 }
 .headerCatBtn{
 	padding: 2px 10px !important;
+	font-family: Francois One !important;
+	text-transform: uppercase;
+	font-size: 12px !important;
 }
 
+
+
+.headerSearch .dropdown-menu > li > a{
+	font-family: Francois One !important;
+	text-transform: uppercase;
+	font-size: 10px !important;
+}
 .navbar .nav{
-	color: #fff;
+	color: #046cab;
 	float:right;
 	position: none;
 	margin-bottom: 10px;
+	font-size: 12px;
+	font-family: Francois One !important;
+	text-transform: uppercase;
 	}
 .navbar .nav li{
 	line-height: 12px;
-	border-right: 1px solid #fff;
-	border-left: 0px solid #fff;
+	}
+.navbar .nav .navDevider {
+	height: 15px;
+	width: 1px ; 
+	background: #046CAB; 
+	float: left;
+	margin-top: 5px;
 	}
 .navbar .nav > li > a{
 	text-shadow: 0 0 0;
-	color: #fff;
+	color: #046cab;
 	border-bottom: 0px solid #333333;
-	padding: 8px 10px 7px;
+	padding: 5px;
 	margin: 0px 5px;
 	}
 .navbar .nav > li > a:hover{
 	text-shadow: 0 0 0;
 	color: #fff;
-	border-bottom: 0px solid #ff6600;
-	background: #4d94c2;
+	border-bottom: 0px solid #046CAB;
+	background: #046cab;
 	}
 .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus{
 	border-bottom: 0px solid #ff6600;
 	background-color: none;
-	background: #4d94c2;
+	background: #046cab;
 	color: #fff;
 	}
 
@@ -127,23 +143,29 @@ a{
 
 /* Header Start */
 .headerContainer {
-	background-image: -moz-linear-gradient(top, #4c87ff, #053f88);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4c87ff), to(#053f88));
-	background-image: -webkit-linear-gradient(top, #4c87ff, #053f88);
-	background-image: -o-linear-gradient(top, #4c87ff, #053f88);
-	background-image: linear-gradient(to bottom, #4c87ff, #053f88		);
+	background-image: -moz-linear-gradient(top, #fff, #ededed);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#ededed));
+	background-image: -webkit-linear-gradient(top, #fff, #ededed);
+	background-image: -o-linear-gradient(top, #fff, #ededed);
+	background-image: linear-gradient(to bottom, #fff, #ededed		);
 	background-repeat: repeat-x;
-	border-bottom: 1px solid #ffffff;	
+	border-bottom: 1px solid #ffffff;
+	font-family: Francois One !important;	
 	}
 .headerContainer .container{
 	margin: auto;
 	}
 
 .header-logo{
-	margin: 5px 0px;
+	margin: 10px 0px;
 	}
 /* Header End */
 /* find Event Start */
+
+.datetimepicker-inline{
+	display: none !important; 
+}
+
 
 .searchFilter{
 	border: 1px solid #cccccc;
@@ -155,10 +177,10 @@ a{
 
 /* Page LeftPanel  Start */
 .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
-color: #ff6600;
+color: #046CAB;
 text-shadow:0 0 0;
 background-color: #fff;
-border-left: 5px solid #ff6600;
+border-left: 5px solid #046CAB;
 	}
 	
 .leftPanel{
@@ -196,7 +218,7 @@ h3 i{
 		width: 17px;
 		height: 12px;
 		float: left;
-		margin-top: 27px;
+		margin-top: 25px;
 }
 
 .searchWhiteIcon{
@@ -214,12 +236,13 @@ h3 i{
 }
 
 .nav-list > li > a:hover {
-	color:#ff6600;
-	border-left:3px solid #ff6600;
+	color:#046CAB;
+	border-left:3px solid #046CAB;
+	background: #ccc;
 }
 .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus{
-	border-left:3px solid #ff6600;
-	color:#333;
+	border-left:3px solid #046CAB;
+	color:#046CAB;
 }
 
 
@@ -229,6 +252,7 @@ h3 i{
 	color: #000;
 	font-size: 11px;
 	}
+	
 .filterControl .nav-list li a {
 	border-left:2px solid #363636;
 	font-size: 10px ;
@@ -238,21 +262,24 @@ h3 i{
 	color: #333 !important;
 }
 .filterControl .nav-list li a:hover {
-	
 	color: #053f88	  !important;
+	background: #E6E6FA;
 }
-.filterControl .nav-list .active a {
-	/* border-left:2px solid #053f88;
-	color:#fff !important;
-	background: #4d94c2
-	*/
+.filterControl .nav-list .active {
+	border-left:2px solid #000;
+	color:#000 !important;
+	background: #B0C4DE
+	
 }
 .filterControl .nav-list a:hover {
 	border-left:2px solid #053f88;
 	color:#053f88;
 }
 /* Page LeftPanel End */
-
+.homeleftPanel {
+	width: 190px !important;
+	margin-right: 10px;
+}
 
 .homeleftPanel h3{
 	font-size: 14px;
@@ -269,7 +296,10 @@ h3 i{
 	background: none;
 }
 
-
+.homeleftPanel .nav-list {
+	margin: 0px !important;
+	padding: 0px  !important;
+}
 .homeleftPanel .nav-list > li > a{
 	font-size: 12px ;
 	border-bottom:1px dotted #363636;
@@ -279,18 +309,21 @@ h3 i{
 	background-repeat:no-repeat;
 	background-position:5px 8px;
 	text-transform: capitalize;
+	margin: 17px 0px;
 }
 
 .homeleftPanel .nav-list > li > a:hover {
-	color:#ff6600;
-	border-left:0px solid #ff6600;
+	color:#046CAB;
+	border-left:3px solid #046CAB;
 }
 .homeleftPanel .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus{
-	border-left:0px solid #ff6600;
-	color:#333;
+	border-left:3px solid #046CAB;
+	color:#046CAB;
 }
 
-
+.carousel-control.right, .carousel-control.left{
+	display : none !important;
+}
 
 
 
@@ -342,25 +375,25 @@ h3 i{
 
 
 
-
+/* Tabale Start */
 
 table{
 	font-family: " Verdana, Geneva, Arial, Helvetica, sans-serif", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
-	background: #fff;
 	margin-bottom: 15px !important;
 	border-collapse: collapse;
 	text-align: left;
-	border: 3px solid #2287ea;
-	
+	border: 0px solid #2287ea;
+	border-bottom: 1px  solid #ccc;
 }
+
+
 
 .dubbleLine{
 	border-top: double #262626 !important;
-	border-bottom:2px solid #262626 !important;
+	border-bottom:0px solid #262626 !important;
 }
 .table td, th{
-	
 	padding: 10px;
 	font-weight: normal !important;
 	font-size: 12px;
@@ -369,11 +402,21 @@ table{
 .table th{
 	font-size: 13px;
 	color: #fff !important;
-	background:#4c87ff; 
+	background:#22558f; 
 }
 table th a{
 	color: #fff !important;
 }
+
+
+table th{
+  	font-size: 13px;
+	font-weight: normal	!important;
+	color: #000 !important;
+	padding:10px !important;
+	font-weight: bold !important;
+	border-bottom: 1px solid #ccc;
+	}
 
 table td a{
 	color: #004387 !important;
@@ -381,38 +424,26 @@ table td a{
 table th a:hover, table td a:hover{
 	color: #ff6600 !important;
 }
-table td
-{
+table td{
 	border-left:0px !important;
 	border-right:0px !important;
 	color: #262626;
 	padding: 10px;
+	
 }
 
-table tr:hover td
-{
+table tr:hover td{
 	color: #262626;
-	background: #bcdbf9;
+	background: #ededed;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+tr:nth-child(even) {background:transparent;}
+tr:nth-child(odd) {background:#fff}
+/* Tabale End */
 
 /* Header Main Nav End */
 
-/* pageBanner  Start */
-/* pageBanner  End */
+
 
 
 
@@ -507,11 +538,14 @@ table tr:hover td
 
 @media (min-width: 1200px){
 .pageContainer{
-	margin-top: 95px;
+	margin-top: 110px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+	padding: 10px 10px !important;
 }
 .inPageContainer{
-	margin-top: 95px;
-	margin-bottom: 25px;
+	margin-top: 110px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+	padding: 10px 10px !important;
 }
 
 
@@ -624,6 +658,7 @@ width: 50px
 /* Header Top Strip Start */
 .navCityLogin{
 	margin: auto;
+	width: 100% !important;
 }
 .container{
 	width: 990px;
@@ -929,8 +964,8 @@ width: 50px
   		border: 3px solid #444444;
   		border-radius: 4px;
   		float: right;
-  		width: 734px;
-  		height: 256px;
+  		width: 100%;
+  		height: 285px;
   	}
   	.carouselThumb {
   		position: absolute;
@@ -948,7 +983,7 @@ width: 50px
   		display: block;
   		width: 100px;
   		cursor: pointer;
-  		margin: 3px;
+  		margin: 0px;
   		border: 2px solid #fff;
   		box-shadow: 0px 0px 10px #000
   	}
