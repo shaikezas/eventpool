@@ -27,6 +27,38 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.countryid = '';
 	$scope.othercountries=true;
 	
+	$scope.isDateActive = function(filterItem){
+		var query = filterItem.query;
+		var index=query.indexOf("eventDate");
+		if(index==-1){
+			return "active";
+		}
+	}
+	
+	$scope.isPriceActive = function(filterItem){
+		var query = filterItem.query;
+		var index=query.indexOf("eventType");
+		if(index==-1){
+			return "active";
+		}
+	}
+	
+
+	$scope.isCategoryActive = function(filterItem){
+		var query = filterItem.query;
+		var index=query.indexOf("subCategoryId");
+		if(index==-1){
+			return "active";
+		}
+	}
+	
+	$scope.isCityActive = function(filterItem){
+		var query = filterItem.query;
+		var index=query.indexOf("cityId");
+		if(index==-1){
+			return "active";
+		}
+	}
 	
 	$scope.viewThumbsNextPage = function(){
 		if ($scope.thumbscrollPage) return;
