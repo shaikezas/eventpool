@@ -13,18 +13,13 @@
       
       <div class="slider" id="carousel-bounding-box">     
       
-       <carousel interval="myInterval">
-    			<slide ng-repeat="slide in slides  | limitTo:5" active="event.active">
-      				<a href="#">
-      					<div class="image">
-							<img  src="{{slide.img}}"  /> 
-						</div>  
-      					
-      				</a>
-      				
-    			</slide>
-    			
-  			</carousel> 
+		<carousel interval="myInterval">
+			<slide ng-repeat="slide in slides  | limitTo:5" active="event.active">
+				<a href="#">
+					<div class="image"> <img  src="{{slide.img}}"  /> </div>  
+	      		</a>
+	      	</slide>
+	    </carousel> 
       
       
        
@@ -67,6 +62,27 @@
 		
 		
 	</div>
+	
+	
+
+<div class="searchCont">
+		 <div class="input-prepend input-append headerSearch">
+            <div class="btn-group">
+              <button class="btn dropdown-toggle noRadius headerCatBtn " data-toggle="dropdown">{{selectedCat}} <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                	<li ng-repeat="cat in categories"> 
+						<a ng-click="setCatValue(cat.value,cat.key)">{{cat.key}}</a>
+					</li>
+              </ul>
+            </div><!-- /btn-group -->
+           <input class="span6 headerSearchInput" ng-enter="fetchsearchresults(queryText)" id="appendedPrependedDropdownButton" type="text" placeholder="Search for Events" ng-model="queryText">
+           <div class="btn-group">
+             <button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown" ng-click="fetchsearchresults(queryText)"> <span class="icon-search "></span></button>
+           </div>
+         </div>
+</div>
+
+	
 	<ul class="thumbnails">
 		
 		
