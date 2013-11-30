@@ -5,27 +5,7 @@
 <div class="eventCont">
 	<div class="eventBanners">
 		
-		<div class="image">
-		
-			 <img ng-src="{{event.banner}}"/>   	 
-		</div>
-		
-		<div class="span1 rightPanel ">
-			<h3>Event Details <i class="titleArow"></i></h3>
-			<div class="filterControl">
-				
-				<ul class="eventDetails eventDetailsIcon">
-					<li > <i class="iconCalanderStart"></i>	<span>Start Date:</span> {{event.startDate}}</li>
-					<li > <i class="iconCalanderEnd"></i>	<span>End Date:</span> {{event.endDate}}</li>
-					<li  class="addressCont"> <i class="iconAddress"></i>
-						{{ event.venueAddress}}
-					</li>
-					<li > <i class="iconTime"></i>
-						<span>Time Zone:</span> {{event.timeZone}}
-					</li>
-				</ul>
-			</div>
-		</div>
+			 <img ng-src="{{event.banner}}"/>  
 			
 	</div>
 	
@@ -101,8 +81,27 @@
 		</div>	
 			
 			
+			<div class="span1 rightPanel rightPanelright">
 			
-			<div class="span1 rightPanel rightPanelright ">
+			
+			<h3>Event Details <i class="titleArow"></i></h3>
+			<div class="filterControl">
+				
+				<ul class="eventDetails eventDetailsIcon">
+					<li > <i class="iconCalanderStart"></i>	<span>Start Date:</span> {{event.startDate}}</li>
+					<li > <i class="iconCalanderEnd"></i>	<span>End Date:</span> {{event.endDate}}</li>
+					<li  class="addressCont"> <i class="iconAddress"></i>
+						{{ event.venueAddress}}
+					</li>
+					<li > <i class="iconTime"></i>
+						<span>Time Zone:</span> {{event.timeZone}}
+					</li>
+				</ul>
+			</div>
+		
+			
+			
+			
 				<!-- <div ng-show="event.eventSettingsDTO.showOrganizerName == 'true' || event.eventSettingsDTO.showContactDetails == 'true'"> -->
 				
 				<h3>Contact Details <i class="titleArow"></i></h3>
@@ -120,6 +119,8 @@
 					</ul>
 				
 				</div>
+			
+	
 			</div>
 	</div>		
 	

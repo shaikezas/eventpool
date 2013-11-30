@@ -87,13 +87,17 @@
 					               		 </div>
 								
 								  </fieldset>
-
-							</form>
-						
-							 <div class="modal-footer">
+								
+									<div class="modal-footer">
 			        			<button type="submit" ng-click="login()" class="btn " >Sign In</button>
 			        			
 			    			</div>
+								
+								
+								
+							</form>
+						
+							 
 						 <br><br>
 						 <a href="" ng-click="openForgot()">I cannot access my account. </a>
 						

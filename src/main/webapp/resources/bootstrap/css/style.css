@@ -44,7 +44,7 @@ a{
 	padding:0px ;
 	width: 100%;
 	font-size: 12px;
-	background: #046cab;
+	background: #22558f;
 	font-family: Francois One !important;
 	}
 .navCityLogin a{
@@ -206,7 +206,7 @@ border-left: 5px solid #046CAB;
 	}
 .leftPanel h3{
 	font-size: 14px;
-	background: #4c87ff;
+	background: #22558f;
 	padding: 10px;
 	margin: 0px;
 	line-height: normal;
@@ -449,7 +449,7 @@ tr:nth-child(odd) {background:#fff}
 
 /* Login View Start */
 .newModel{
-	width: 650px;
+	width: 550px;
 }
 .userLogin{
 	width: 45%;
@@ -494,10 +494,11 @@ tr:nth-child(odd) {background:#fff}
 	background: #fff;
 	padding: 0px;
 	border: 0px;
+	margin-top: 10px;
 }
 .footer{
 	font-size: 10px;
-	background: #007CC2;
+	background: #22558f;
 	padding-bottom:10px;
 	color: #fff;
 }

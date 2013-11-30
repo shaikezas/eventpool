@@ -1,71 +1,122 @@
-			<div class="modal-header">
-				<h3>TICKET INVOICE</h3>
-			</div>
+	<style>
+body,p { margin:0; padding:0;}
+h1,h2,h3,h4,h5,h6 { margin:0; border-bottom: 1px solid #000; }
+h1 span {border-top: 2px solid #FF6600;
+float: right;
+width: 80%;
+color: #046ca9;
+text-align: right;
+font-size: 37px;
+padding-top: 8px;}
+.invoice { width:980px; margin: 2px auto 0;}
+.zeoevents { border-top: 2px solid #a4a2a3;   padding: 5px;width: 18.5%;}
+.venu_det { float:left; border:1px solid #000; margin-top: 25px; width:100%;}
+.venu {float:left; width:60%;border-bottom:1px solid #000;}
+.regstration { float:right; width:40%;}
+.regno { float:left; width: 50%;  }
+.reg {  padding: 3px 0 3px 5px;border-bottom:1px solid #000; border-left:1px solid #000;;min-height:40px; }
+.venu_details { min-height:67px; padding: 5px}
+.org_name {  border-top: 1px solid;padding-left: 5px}
+.orgname { width:25%; float:left;}
+.org_names { padding-left:10px;}
+.reg3 { padding-bottom: 1px;padding-top: 0;}
+.tickets { border-top: 1px solid; float: left; margin-top: 25px; border-bottom: 1px solid;}
+.tickets th {border-right: 1px solid;padding: 10px 0;}
+.tickets td { border-right: 1px solid;}
+.tickets tr.quanty td {border-bottom: 1px solid; height: 100px;}
+.total { padding:10px 0;}
+.terms { height:100px; float:left;width: 100%;padding-left: 5px;}
+.clear { clear:both;}
+.table{
+border: 1px solid #000 !important}
+.table th, .table td{
+border-left: 1px solid #ccc !important; padding: 3px !important; background: transparent;color: #000 !important  }
 
-				<form class="form-horizontal">
-					<div class="inviceBlock">
-						<img src="resources/bootstrap/img/logo.png" style="float: left; margin-top: 10px" />
-						<p>{{invoice.eventName}}</p>
-					</div>
-					<div class="inviceBlock">
-						<dl class="dl-horizontal">
-							<dt> Registration No : 		</dt><dd> {{invoice.id}}</dd>
-							<dt> Registration Date :		</dt><dd>{{invoice.createdDate}}</dd>
-							<dt> Order No : 				</dt><dd> {{invoice.orderId}}</dd>
-							<dt> Event Date :				</dt><dd> {{invoice.eventDate}}</dd>
-							<dt> Event Id : 				</dt><dd> {{invoice.eventId}}</dd>
-						</dl>
-					</div>
-				
-					<div class="inviceBlock">
-						<h3>Venue:</h3>
-						<p>{{invoice.venue}}</p>
-					</div>
-					
-					<div class="inviceBlock">
-						<dl class="dl-horizontal">
-							<dt> Organizer Name :</dt><dd> {{invoice.organizerName}}</dd>
-							<dt> Organizer Contact :</dt><dd> {{invoice.organizerContact}}</dd>
-							<dt> Attendee Name :</dt><dd> {{invoice.buyer}}</dd>
-						</dl>
-					</div>
-  		<div>
-
-
-		<table class="table table-condensed">
+</style>		
+			
+			<div class="invoice">
+         		 <h1><img src="resources/bootstrap/img/logo.png" alt="zeoeventslogo" class="zeoevents" /><span>INVOICE</span></h1>
+          <div class="venu_det">
+               <div class="venu">
+                  <div class="venu_details"><b>Venue</b> <br>{{invoice.venue}}</div>
+                  
+                  
+                  <div class="org_name">
+                       <span class="orgname ">Organizer Name</span><span class="org_names">: {{invoice.organizerName}}</span>
+                  </div>
+                  <div class="org_name">
+                       <span class="orgname ">Organizer Contact</span><span class="org_names">: {{invoice.organizerContact}}</span>
+                  </div>
+                  <div class="org_name">
+                       <span class="orgname ">Buyer Name</span><span class="org_names">: {{invoice.buyer}}	</span>
+                  </div>
+               </div>
+               <div class="regstration">
+                    <div class="regno">
+                        <div class="reg">Registration No <br> {{invoice.id}}</div>
+                        <div class="reg">Order No  <br> {{invoice.orderId}}</div>
+                        <div class="reg">Event ID  <br> {{invoice.eventId}}</div>
+                    </div>
+                    <div class="regno">
+                         <div class="reg">Registration Date  <br> {{invoice.createdDate}}</div>
+                         <div class="reg">Suborder No  <br> -</div>
+                         <div class="reg">Event Date  <br> {{invoice.eventDate}}</div>
+                    </div>
+               </div>
+             &nbsp;
+              <table class="table table-condensed">
 		  <thead>
 			<tr>
-			  <th>Ticket Type</th>
-			  <th>Quantity</th>
-			  <th>Price/unit</th>
-			  <th>Total Price</th>
+			  <th style="border-left: 0px">Ticket Type</th>
+			  <th class="amt">Quantity</th>
+			  <th class="amt">Price/unit</th>
+			  <th class="amt">Total Price</th>
 			</tr>
 		  </thead>
 		  <tbody>
 			<tr>
-			  <td class="amt"> {{invoice.ticketType}}</td>
+			  <td > {{invoice.ticketType}}</td>
 			  <td class="amt">  {{invoice.quantity}}</td>
 			  <td class="amt">  {{invoice.price}}</td>
 			  <td class="amt">  {{invoice.totalPrice}}</td>
 			</tr>
 			<tr>
-			  <td class="amt">Total Amount </td>
-			  <td class="amt"> </td>
-			  <td class="amt">  </td>
+			  <td colspan="3" class="amt"> Total Amount  </td>
 			  <td class="amt">  {{invoice.totalAmount}}</td>
 			</tr>
 		  </tbody>
 		</table>
 		
-</div>
-  
-		<div class="invoiceCont">
-			<h5>Terms and Conditions:</h5>
-			<p>Terms</p>
-	
-			<h5>Declaration:</h5>
-			<p>declations</p>
-		</div>  
-  
-</form>
+              
+              <p class="terms clear">Terms and Conditions</p>
+              <p class="terms clear">Declaration</p>
+              <p align="center" class="clear">This is Computer Generated voice</p>
+          </div>
+     </div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+
+
+		
+		
+
         
