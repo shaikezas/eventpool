@@ -322,14 +322,14 @@ public class SearchServiceImpl implements SearchService {
 						Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
 						String filterFacetQuery = SUBCATEGORYID+"="+subcategoryFilter;
 						newFilterMap.put(SUBCATEGORYID, subcategoryFilter);
-						FilterItem filterItem = getFilterItem(facet.getCount(), node.getName(),filterFacetQuery,newFilterMap);
+						FilterItem filterItem = getFilterItem(facet.getCount(), node.getName(),filterFacetQuery,newFilterMap,countryId);
 						subCategoryFilterItems.add(filterItem);
 					}
 				}
 			}
 		}
 		
-		getDateFilters(response, searchQueryResponse,listOfFilters);
+		getDateFilters(response, searchQueryResponse,listOfFilters,countryId);
 
 		List<FilterItem> eventTypeFilterItems = searchQueryResponse.getEventTypeFilterItems();
 		if(eventTypeFilterItems==null){
@@ -357,7 +357,7 @@ public class SearchServiceImpl implements SearchService {
 					String filterFacetQuery = EVENTTYPE+"="+eventTypeFilter;
 					Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
 					newFilterMap.put(EVENTTYPE, eventTypeFilter);
-					FilterItem filterItem = getFilterItem(facet.getCount(), facet.getName(), filterFacetQuery,newFilterMap);
+					FilterItem filterItem = getFilterItem(facet.getCount(), facet.getName(), filterFacetQuery,newFilterMap,countryId);
 					eventTypeFilterItems.add(filterItem);
 				}
 			}
@@ -394,7 +394,7 @@ public class SearchServiceImpl implements SearchService {
 							String filterFacetQuery = CITYID+"="+cityIdFilter;
 							Map<String,String> newFilterMap = new HashMap<String, String>(listOfFilters);
 							newFilterMap.put(CITYID, cityIdFilter);		
-							FilterItem filterItem = getFilterItem(facet.getCount(), cityName,filterFacetQuery,newFilterMap);
+							FilterItem filterItem = getFilterItem(facet.getCount(), cityName,filterFacetQuery,newFilterMap,countryId);
 							cityIdFilterItems.add(filterItem);
 						}
 					} catch (NumberFormatException e) {
@@ -437,7 +437,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		FilterItem filterItem = new FilterItem();
 		if(countryId!=null){
-			filterItem = getFilterItem(0L, "Other Countries",COUNTRYID+"=-"+countryId,null);
+			filterItem = getFilterItem(0L, "Other Countries",COUNTRYID+"=-"+countryId,null,null);
 			searchQueryResponse.setOtherCountries(filterItem);
 		}
 		return searchQueryResponse;
@@ -479,7 +479,7 @@ public class SearchServiceImpl implements SearchService {
 
 
 	private void getDateFilters(QueryResponse response,
-			SearchQueryResponse searchQueryResponse,Map<String,String> listOfFilters) throws ParseException {
+			SearchQueryResponse searchQueryResponse,Map<String,String> listOfFilters,Integer countryId) throws ParseException {
 		List<FilterItem> eventDateFilterItems = searchQueryResponse.getEventDateFilterItems();
 		if(eventDateFilterItems==null){
 			eventDateFilterItems = new ArrayList<FilterItem>();
@@ -623,32 +623,32 @@ public class SearchServiceImpl implements SearchService {
 		
 		String valueOf = String.valueOf(TODAY);
 		Map<String, String> newFilterMap = getFilterData(listOfFilters, valueOf);		
-		FilterItem filterItem = getFilterItem(todayCount,"Today", "",newFilterMap);
+		FilterItem filterItem = getFilterItem(todayCount,"Today", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(TOMORROW);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(tomorrowCount,"Tommorrow", "",newFilterMap);
+		filterItem = getFilterItem(tomorrowCount,"Tommorrow", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(CURRENT_WEEK);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(currentWeekCount,"This Week", "",newFilterMap);
+		filterItem = getFilterItem(currentWeekCount,"This Week", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(NEXT_WEEK);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(nextWeekCount,"Next Week", "",newFilterMap);
+		filterItem = getFilterItem(nextWeekCount,"Next Week", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(CURRENT_MONTH);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(currentMonthCount,"This month", "",newFilterMap);
+		filterItem = getFilterItem(currentMonthCount,"This month", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(REST);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(otherDatesCount,"Other Dates", "",newFilterMap);
+		filterItem = getFilterItem(otherDatesCount,"Other Dates", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 	}
 
@@ -686,7 +686,7 @@ public class SearchServiceImpl implements SearchService {
 
 
 	private FilterItem getFilterItem(Long count, String  name,
-			String filterQuery,Map<String,String> filterMap) {
+			String filterQuery,Map<String,String> filterMap,Integer countryId) {
 		FilterItem filterItem = new FilterItem();
 		filterItem.setCount(count);
 		filterItem.setName(name);
@@ -725,6 +725,10 @@ public class SearchServiceImpl implements SearchService {
 		if(filterQuery!=null && !filterQuery.isEmpty() && filterQuery.equals("&")){
 			filterQuery = "";
 		}
+		if(countryId!=null && countryId>0){
+			filterQuery = filterQuery+"&countryId="+countryId;
+		}
+		
 		filterItem.setQuery(filterQuery);
 		return filterItem;
 	}
