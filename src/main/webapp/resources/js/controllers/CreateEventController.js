@@ -11,7 +11,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.isCollapsed = true;
     $scope.isWebinarChecked = false;
     $scope.isWebinar = false;
-    $scope.startDateBeforeEndDate = false;
+//    $scope.startDateBeforeEndDate = false;
     $scope.questionForm = {};
     $scope.eventFormSettings = {};
     $scope.tktId = "";
@@ -301,11 +301,18 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	var endDate = new Date($scope.event.endDate);
     	if(startDate.getTime()>endDate.getTime()){
     		$scope.stopSubmitAction=true;
-    		$scope.startDateBeforeEndDate = true;
+//    		$scope.startDateBeforeEndDate = true;
+    	      $.bootstrapGrowl("Start date & time should not be after End date & time.", {
+                  type: 'error',
+                  align: 'center',
+                  width: 'auto',
+                  delay: 10000,
+                  allow_dismiss: true
+              });
     		$scope.disabled = false;
     	}
     	else {
-    		$scope.startDateBeforeEndDate = false;
+//    		$scope.startDateBeforeEndDate = false;
     	}
     	}
       	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
@@ -317,7 +324,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
                     align: 'center',
                     width: 'auto',
                     delay: 10000,
-//					 ele: 'body',
                     allow_dismiss: true
                 });
 //            }, 10000);
