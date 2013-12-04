@@ -312,7 +312,13 @@ public class SearchServiceImpl implements SearchService {
 						if(subcategoryFilter!=null){
 							if(!subcategoryFilter.contains(node.getId().toString())){
 								subcategoryFilter = subcategoryFilter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
-								subcategoryFilter = LEFT_PARENTHESIS+subcategoryFilter + " OR " + node.getId()+RIGHT_PARENTHESIS;
+								
+								//this is for OR condtion
+								//subcategoryFilter = LEFT_PARENTHESIS+subcategoryFilter + " OR " + node.getId()+RIGHT_PARENTHESIS;
+								
+								//this is for AND condtion
+								subcategoryFilter = LEFT_PARENTHESIS+node.getId()+RIGHT_PARENTHESIS;
+								
 							}else{
 								subcategoryFilter = removeOldFilter(node.getId().toString(),subcategoryFilter);
 							}
@@ -347,7 +353,12 @@ public class SearchServiceImpl implements SearchService {
 					if(eventTypeFilter!=null){
 						if(!eventTypeFilter.contains(facet.getName())){
 							eventTypeFilter = eventTypeFilter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
-							eventTypeFilter = LEFT_PARENTHESIS+eventTypeFilter + " OR " + facet.getName()+RIGHT_PARENTHESIS;
+							
+							//this is for OR condition
+							//eventTypeFilter = LEFT_PARENTHESIS+eventTypeFilter + " OR " + facet.getName()+RIGHT_PARENTHESIS;
+							
+							//this is for AND condtion
+							eventTypeFilter = LEFT_PARENTHESIS+facet.getName()+RIGHT_PARENTHESIS;
 						}else{
 							eventTypeFilter = removeOldFilter(facet.getName(), eventTypeFilter);
 						}
@@ -383,8 +394,15 @@ public class SearchServiceImpl implements SearchService {
 							String cityIdFilter = listOfFilters.get(CITYID);
 							if(cityIdFilter!=null){
 								if(!cityIdFilter.contains(facetName)){
+									
 									cityIdFilter = cityIdFilter.replace(LEFT_PARENTHESIS, "").replace(RIGHT_PARENTHESIS, "");
-									cityIdFilter = LEFT_PARENTHESIS+cityIdFilter + " OR " + facetName+RIGHT_PARENTHESIS;
+									
+									//this is for OR condition
+									//cityIdFilter = LEFT_PARENTHESIS+cityIdFilter + " OR " + facetName+RIGHT_PARENTHESIS;
+									
+									//this is for AND condition
+									cityIdFilter = LEFT_PARENTHESIS+facetName+RIGHT_PARENTHESIS;
+									
 								}else{
 									cityIdFilter = removeOldFilter(facetName, cityIdFilter);
 								}

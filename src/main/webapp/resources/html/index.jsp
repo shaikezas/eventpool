@@ -59,7 +59,7 @@
 				        
 				     	<div class="modal-header">
 				            <a class="close" data-dismiss="modal" ng-click="cancel()">close</a>
-				            <h3>Sign In Or Create A New Account</h3>
+				            <h3 class="panel-title">Sign In Or Create A New Account</h3>
 				        </div>
 				     
 				     <!-- Old User Login Start -->
