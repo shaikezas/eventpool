@@ -36,15 +36,15 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       }
       
       $scope.updateQuestions = function(){
-    	  if(!$scope.event.isPublish){
+//    	  if(!$scope.event.isPublish){
     	  $http.post('event/myevent/updatesettings', $scope.eventFormSettings).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
-    	  }
+    	/*  }
     	  else {
       		alert("Published events cannot be modified.\n Review event details.");
-      	}
+      	}*/
       }
       
       $scope.updateEventOptions = function(){
