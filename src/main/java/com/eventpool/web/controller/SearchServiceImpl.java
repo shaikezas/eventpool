@@ -317,7 +317,7 @@ public class SearchServiceImpl implements SearchService {
 								//subcategoryFilter = LEFT_PARENTHESIS+subcategoryFilter + " OR " + node.getId()+RIGHT_PARENTHESIS;
 								
 								//this is for AND condtion
-								subcategoryFilter = LEFT_PARENTHESIS+node.getId()+RIGHT_PARENTHESIS;
+								subcategoryFilter = node.getId().toString();
 								
 							}else{
 								subcategoryFilter = removeOldFilter(node.getId().toString(),subcategoryFilter);
@@ -358,7 +358,7 @@ public class SearchServiceImpl implements SearchService {
 							//eventTypeFilter = LEFT_PARENTHESIS+eventTypeFilter + " OR " + facet.getName()+RIGHT_PARENTHESIS;
 							
 							//this is for AND condtion
-							eventTypeFilter = LEFT_PARENTHESIS+facet.getName()+RIGHT_PARENTHESIS;
+							eventTypeFilter = facet.getName();
 						}else{
 							eventTypeFilter = removeOldFilter(facet.getName(), eventTypeFilter);
 						}
@@ -401,7 +401,7 @@ public class SearchServiceImpl implements SearchService {
 									//cityIdFilter = LEFT_PARENTHESIS+cityIdFilter + " OR " + facetName+RIGHT_PARENTHESIS;
 									
 									//this is for AND condition
-									cityIdFilter = LEFT_PARENTHESIS+facetName+RIGHT_PARENTHESIS;
+									cityIdFilter = facetName;
 									
 								}else{
 									cityIdFilter = removeOldFilter(facetName, cityIdFilter);
