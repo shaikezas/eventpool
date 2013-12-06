@@ -262,8 +262,10 @@ public class SearchServiceImpl implements SearchService {
 			if(countryId<0){
 				solrQuery = getOtherCountrySolrQuery(query, rows, start,countryId);
 			}
-			else
-				solrQuery.addFilterQuery(COUNTRYID+":"+countryId);
+			else{
+			
+				solrQuery.addFilterQuery(COUNTRYID+":"+countryId+" OR isWebinar:true");
+			}
 			//fq=COUNTRYID+":"+countryId+" AND "+fq;
 		}
 		return returnSolrResponse(solrQuery);
