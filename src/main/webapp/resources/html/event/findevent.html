@@ -18,24 +18,16 @@
 
 <div class="searchCont">
 		 <div class="input-prepend input-append headerSearch">
-            <div class="btn-group">
-              <button class="btn dropdown-toggle noRadius headerCatBtn " data-toggle="dropdown">{{selectedCat}} <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                	<li ng-repeat="cat in categories"> 
-						<a ng-click="setCatValue(cat.value,cat.key)">{{cat.key}}</a>
-					</li>
-              </ul>
-            </div><!-- /btn-group -->
            <input class="span6 headerSearchInput" ng-enter="fetchsearchresults(queryText)" id="appendedPrependedDropdownButton" type="text" placeholder="Search for Events" ng-model="queryText">
            <div class="btn-group">
-             <button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown" ng-click="fetchsearchresults(queryText)"> <span class="icon-search "></span></button>
+           		<button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown" ng-click="fetchsearchresults(queryText)"> <span class="icon-search "></span></button>
            </div>
          </div>
 </div>
 
-			<div class="span1 leftPanel ">
+			<div class="span1 leftPanel   ">
 
-			<h3>Filter Your Search <i class="titleArow"></i></h3>
+			<h3>Filter Your Search</h3>
 			<div class="filterControl"> 
 				
 				<ul ng-show="othercountries" class="nav nav-list">
@@ -80,17 +72,9 @@
 			
 			
 			<div class="span3 ">
-
-				
-
-
-					
-				
 					<div class="viewControl">
-						
 						<div  class="btn-group countrySelect">
-				                <button class="btn dropdown-toggle noRadius headerCatBtn" data-toggle="dropdown">{{countryname}}<span class="caret"></span></button>
-				                
+				                <button class="btn dropdown-toggle noRadius" data-toggle="dropdown">{{countryname}}<span class="caret"></span></button>
 				                <ul class="dropdown-menu" style="height: 250px; overflow-y: scroll;">
 				                 <!--  <li ng-repeat="country in activeCountries">
 									<a ng-click="setcountryname(country)"><i class="flag flag-IN"></i> {{country}} </a>   <span></a>
@@ -98,10 +82,8 @@
 									<li ng-repeat='(key, value) in activeCountries'>
         								<a ng-click="setcountryname(key,value)">{{value}}</a>
     								</li>
-				                </ul>				                
-				                
+				                </ul>				   
 				          </div><!-- /btn-group -->
-					    
 					    <div class="resultCont">
 
 					    		Showing {{searchResults.noOfresults}} events
