@@ -2,6 +2,7 @@ package com.eventpool.common.module;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +41,20 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 		}
 		return destination;
 	}
+	
+	public Date convertTo(String source) {
+		Date destination = null;
+		if (source != null && !source.isEmpty()) {
+			String pattern = "dd-MMM-yyyy HH:mm";
+			try {
+				destination = getDate(source,pattern);
+			} catch (Exception e) {
+				logger.error("date parse exception",e);
+			}
+		}
+		return destination;
+	}
+
 
 	private Date getDate(String source,  String pattern) {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -70,6 +85,14 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 		return destination;
 	}
 	
-
+	public  Date getTimeZoneDate(String timeZone) throws ParseException{
+		Calendar calendar = Calendar.getInstance();
+		String pattern = "dd-MMM-yyyy HH:mm";
+		SimpleDateFormat df = new SimpleDateFormat(pattern);
+		df.setTimeZone(TimeZone.getTimeZone(timeZone));
+		String format = df.format(calendar.getTime());
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		return sdf.parse(format);
+	}
 
 }

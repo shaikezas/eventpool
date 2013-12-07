@@ -18,11 +18,15 @@ public class TicketForm {
 	
 	String saleEnd;
 	
+	String dateDesc;
+	
 	private Boolean soldOut = false;
 	
 	private Boolean isActive=true;
 	
 	private Integer quantity;
+	
+	private boolean disableTicket = false;
 	
 	private Long eventId;
 	
@@ -234,6 +238,22 @@ public class TicketForm {
 
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public boolean getDisableTicket() {
+		return disableTicket;
+	}
+
+	public void setDisableTicket(boolean disableTicket) {
+		this.disableTicket = disableTicket;
+	}
+
+	public String getDateDesc() {
+		return dateDesc;
+	}
+
+	public void setDateDesc(String dateDesc) {
+		this.dateDesc = dateDesc;
 	}
 
 	

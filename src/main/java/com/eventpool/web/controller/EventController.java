@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 
@@ -100,6 +101,9 @@ public class EventController {
     
     @Resource
     private EntityUtilities  entityUtilities;
+    
+    @Resource
+    private DateCustomConverter dateCustomConverter;
     
     @Resource
     private CacheUtils cacheUtils;
@@ -342,15 +346,25 @@ public class EventController {
     		tickets.remove(ind.intValue());
     	}
     	
-    	
+    	Date timeZoneDate = dateCustomConverter.getTimeZoneDate(form.getTimeZone());
     	for(TicketForm ticket : tickets){
     		dropdownList = new ArrayList<Dropdown>();
     		ticket.setQtyList(dropdownList);
     		dropdown = new Dropdown(qty,qty);
     		dropdownList.add(dropdown);
+    		ticket.setDateDesc("End Date: "+ticket.getSaleEnd());
     		int sellableTicketInventory = ticketInventoryService.getSellableTicketInventory(ticket.getId());
     		if(sellableTicketInventory <= 0){
     			ticket.setSoldOut(true);
+    		}
+    		Date saleStartDate = dateCustomConverter.convertTo(ticket.getSaleStart());
+    		if(timeZoneDate.before(saleStartDate)){
+    			ticket.setDisableTicket(Boolean.TRUE);
+    			ticket.setDateDesc("Start Date: "+ticket.getSaleStart());
+    		}
+    		Date saleEndDate = dateCustomConverter.convertTo(ticket.getSaleEnd());
+    		if(timeZoneDate.after(saleEndDate)){
+    			ticket.setDisableTicket(Boolean.TRUE);
     		}
     		if(sellableTicketInventory < ticket.getMaxQty()){
     			ticket.setMaxQty(sellableTicketInventory);
