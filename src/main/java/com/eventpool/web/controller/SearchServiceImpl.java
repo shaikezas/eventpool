@@ -179,7 +179,7 @@ public class SearchServiceImpl implements SearchService {
 							endDateFormat = sdf.format(date);
 						}
 						if(eventDate==TODAY || eventDate==TOMORROW){
-							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+": * TO "+endDateFormat+"] AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":[ * TO "+endDateFormat+"] AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 							//fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
 						}else{
 							if(eventDate==CURRENT_WEEK){
