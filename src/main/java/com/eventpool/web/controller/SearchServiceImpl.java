@@ -179,7 +179,7 @@ public class SearchServiceImpl implements SearchService {
 							endDateFormat = sdf.format(date);
 						}
 						if(eventDate==TODAY || eventDate==TOMORROW){
-							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+": * TO "+endDateFormat+"] AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 							//fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
 						}else{
 							if(eventDate==CURRENT_WEEK){
@@ -196,7 +196,7 @@ public class SearchServiceImpl implements SearchService {
 								cal.add(Calendar.DAY_OF_MONTH, i+1);
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"[ * TO "+endDateFormat+"]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==NEXT_WEEK){
@@ -214,7 +214,7 @@ public class SearchServiceImpl implements SearchService {
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"[ * TO "+endDateFormat+"]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==CURRENT_MONTH){
@@ -228,7 +228,7 @@ public class SearchServiceImpl implements SearchService {
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"[ * TO "+endDateFormat+"]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO "+endDateFormat+"]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 							if(eventDate==REST){
@@ -239,7 +239,7 @@ public class SearchServiceImpl implements SearchService {
 								cal.set(Calendar.DAY_OF_MONTH,1);
 								date = cal.getTime();
 								dateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"["+dateFormat+" TO *]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"[ "+dateFormat+" TO *]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 						}
