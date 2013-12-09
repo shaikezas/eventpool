@@ -38,14 +38,9 @@
         <level value="INFO"/>
     </logger>
    
-    <logger name="com.hs18">
+    <logger name="com.eventpool">
         <level value="INFO"/>
     </logger>
-
-    <logger name="com.hs18.tool">
-        <level value="INFO"/>
-    </logger>
-
 
     <root>
         <level value="INFO"/>

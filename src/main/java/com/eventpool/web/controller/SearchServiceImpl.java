@@ -179,7 +179,7 @@ public class SearchServiceImpl implements SearchService {
 							endDateFormat = sdf.format(date);
 						}
 						if(eventDate==TODAY || eventDate==TOMORROW){
-							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":[ * TO "+dateFormat+"] AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":[ * TO "+endDateFormat+"] AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 							//fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
 						}else{
 							if(eventDate==CURRENT_WEEK){
@@ -224,7 +224,7 @@ public class SearchServiceImpl implements SearchService {
 
 								cal.setTime(new Date());
 								cal.add(Calendar.MONTH, 1);
-								cal.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+								cal.set(Calendar.DAY_OF_MONTH,0);
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
@@ -612,8 +612,10 @@ public class SearchServiceImpl implements SearchService {
 						}
 						if(endDateFilter == CURRENT_MONTH){
 							currentWeekCount = currentWeekCount + count;
+							currentMonthCount = currentMonthCount +count;
 						}else {
 							currentWeekCount = currentWeekCount + count;
+							currentMonthCount = currentMonthCount +count;
 							otherDatesCount = otherDatesCount +count;
 						}
 
@@ -633,6 +635,7 @@ public class SearchServiceImpl implements SearchService {
 						if(endDateFilter==CURRENT_MONTH){
 							currentMonthCount =currentMonthCount +count;
 						}else{
+							currentMonthCount =currentMonthCount +count;
 							otherDatesCount = otherDatesCount +count;
 						}
 					}
@@ -764,9 +767,9 @@ public class SearchServiceImpl implements SearchService {
 	    int day = cal.get(Calendar.DAY_OF_MONTH);
 	    int week = cal.get(Calendar.WEEK_OF_MONTH);
 	    
-	    String format = sdf.format(new Date());
+	    String format = dateSdf.format(new Date());
 	    try {
-			cal.setTime(sdf.parse(format));
+			cal.setTime(dateSdf.parse(format));
 		} catch (ParseException e) {
 			logger.info("parse error",e);
 		}
@@ -777,22 +780,30 @@ public class SearchServiceImpl implements SearchService {
 	    int currentWeek = cal.get(Calendar.WEEK_OF_MONTH);
 	    
 	    long eventMilli = eventDate.getTime();
-	    long currentTimeMilli = (new Date()).getTime();
+	    long currentTimeMilli = cal.getTime().getTime();
 	    
 	    if(currentTimeMilli>eventMilli) return PAST;
 	    long delayMilli = eventMilli-currentTimeMilli;
-	    long hrs = delayMilli/1000*60*60;
-	    
-	    if(hrs<24) return TODAY;
-	    if(hrs<48) return TOMORROW;
+	    long hrs = delayMilli/(1000*60*60);
+	    System.out.println("event date:"+eventDate);
+	    if(hrs<24) {
+	    	return TODAY;
+	    }
+	    if(hrs<48){
+	    	return TOMORROW;
+	    }
 	    
 	    cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 	    currentTimeMilli = cal.getTime().getTime();
-	    if(currentTimeMilli<eventMilli){
+	    if(currentTimeMilli<=eventMilli){
 	    	delayMilli = eventMilli-currentTimeMilli;
-	    	hrs = delayMilli/1000*60*60;
-	    	if(hrs<7*24) return CURRENT_WEEK;
-	    	if(hrs<14*24) return NEXT_WEEK;
+	    	hrs = delayMilli/(1000*60*60);
+	    	if(hrs<7*24) {
+	    		return CURRENT_WEEK;
+	    	}
+	    	if(hrs<14*24){ 
+	    		return NEXT_WEEK;
+	    	}
 	    }
 	    
 /*	    if(week == currentWeek) return CURRENT_WEEK;
