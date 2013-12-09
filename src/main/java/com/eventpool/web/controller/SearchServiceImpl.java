@@ -785,7 +785,6 @@ public class SearchServiceImpl implements SearchService {
 	    if(currentTimeMilli>eventMilli) return PAST;
 	    long delayMilli = eventMilli-currentTimeMilli;
 	    long hrs = delayMilli/(1000*60*60);
-	    System.out.println("event date:"+eventDate);
 	    if(hrs<24) {
 	    	return TODAY;
 	    }
