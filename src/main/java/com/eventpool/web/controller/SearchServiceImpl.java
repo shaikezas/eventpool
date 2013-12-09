@@ -764,29 +764,76 @@ public class SearchServiceImpl implements SearchService {
 	    int day = cal.get(Calendar.DAY_OF_MONTH);
 	    int week = cal.get(Calendar.WEEK_OF_MONTH);
 	    
-	    cal.setTime(new Date());
+	    String format = sdf.format(new Date());
+	    try {
+			cal.setTime(sdf.parse(format));
+		} catch (ParseException e) {
+			logger.info("parse error",e);
+		}
 	    int currentYear = cal.get(Calendar.YEAR);
 	    int currentMonth = cal.get(Calendar.MONTH);
 	    int currentDay = cal.get(Calendar.DAY_OF_MONTH);
 	    int currentDate = cal.get(Calendar.DATE);
 	    int currentWeek = cal.get(Calendar.WEEK_OF_MONTH);
 	    
-	    if(currentYear > year || ( currentYear == year && currentMonth > month) || (currentMonth == month &&  currentDate > date)  ){
+	    long eventMilli = eventDate.getTime();
+	    long currentTimeMilli = (new Date()).getTime();
+	    
+	    if(currentTimeMilli>eventMilli) return PAST;
+	    long delayMilli = eventMilli-currentTimeMilli;
+	    long hrs = delayMilli/1000*60*60;
+	    
+	    if(hrs<24) return TODAY;
+	    if(hrs<48) return TOMORROW;
+	    
+	    cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+	    currentTimeMilli = cal.getTime().getTime();
+	    if(currentTimeMilli<eventMilli){
+	    	delayMilli = eventMilli-currentTimeMilli;
+	    	hrs = delayMilli/1000*60*60;
+	    	if(hrs<7*24) return CURRENT_WEEK;
+	    	if(hrs<14*24) return NEXT_WEEK;
+	    }
+	    
+/*	    if(week == currentWeek) return CURRENT_WEEK;
+	    if(week-1 == currentWeek) return NEXT_WEEK;
+	    if(currentMonth == month) return CURRENT_MONTH;
+*/	    
+/*	    if(currentYear > year || ( currentYear == year && currentMonth > month) || (currentMonth == month &&  currentDate > date)  ){
 	    	return PAST; // today
 	    }
 	    if(currentDate == date && currentMonth == month && currentYear == year){
 	    	return TODAY; // today
 	    }
-	    if(currentDate == date-1 && currentMonth == month && currentYear == year ){
+	    if(currentDate<date && currentDate == date-1 && currentMonth == month ){
 	    	return TOMORROW;//tomorrow
 	    }
-	    if(week == currentWeek && currentMonth == month && currentYear == year){
+*/	    
+	    
+/*	    if(week == currentWeek && currentMonth == month && currentYear == year) {
 			return CURRENT_WEEK;//this week
 	    }
+	    if(week==4 && currentWeek == 0 && currentMonth==month+1 && currentYear == year){
+	    	return CURRENT_WEEK;
+	    }
+	    if(week==0 && currentWeek == 4 && currentMonth+1==month && currentYear == year){
+	    	return CURRENT_WEEK;
+	    }
+	    if(week==0 && currentWeek == 4 && currentMonth==Calendar.DECEMBER && month==Calendar.JANUARY && currentYear+1 == year){
+	    	return CURRENT_WEEK;
+	    }
+	    if(week==4 && currentWeek == 0 && currentMonth==Calendar.JANUARY && month==Calendar.DECEMBER && currentYear+1 == year){
+	    	return CURRENT_WEEK;
+	    }
+	    
 	    if(week-1 == currentWeek && currentMonth == month && currentYear == year){
 	    	return NEXT_WEEK;//next week
 	    }
-	    if(currentMonth == month && currentYear == year){
+	    if(week==3 && currentWeek==0 && currentMonth==month+1 && currentYear == year){
+	    	return NEXT_WEEK;
+	    }
+*/	    
+	    if(currentMonth == month /*&& currentYear == year*/){
 	    	return CURRENT_MONTH;//this month
 	    }
 	    return REST;//Rest 
