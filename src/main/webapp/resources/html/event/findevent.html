@@ -107,7 +107,7 @@
 									<a href="#event/{{event.eventUrl}}"><!-- <img ng-src="{{event.promotionLogoUrl}}" > --><img ng-src="resources/bootstrap/img/test.jpg" alt="" ></a>
 								</div>	
 								<div class="desc">{{event.title}}</div>
-								<div class="date" >Start Date: {{event.startDate}} - End Date  : {{event.endDate}}</div>
+								<div class="date" >Start Date: {{event.startDate}} </br> End Date  : {{event.endDate}}</div>
 								<div class="date" >
 								<a href="#event/{{event.eventUrl}}"><button class="btn btnBookTicket " >Book Ticket</button></a>
 								</div>
@@ -124,8 +124,8 @@
 				<div ng-show="viewList">
 				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
 				<ul class="media-list">
-					<li class="media thumbList" ng-repeat="event in searchRecords">
-					<a class="pull-left" href="#event/{{event.eventUrl}}"> <!-- <img width="85px" ng-src="{{event.promotionLogoUrl}}" > --><img ng-src="resources/bootstrap/img/test.jpg" alt="" >
+					<li class="media thumbList smallThumb" ng-repeat="event in searchRecords">
+					<a class="pull-left" href="#event/{{event.eventUrl}}"> <!-- <img width="85px" ng-src="{{event.promotionLogoUrl}}" > --><img width="175px" ng-src="resources/bootstrap/img/test.jpg" alt="" >
 					</a> 
 						<div class="media-body ">
 							<a class="type" href="#event/{{event.eventUrl}}" class="media-heading">{{event.title}}</a>
