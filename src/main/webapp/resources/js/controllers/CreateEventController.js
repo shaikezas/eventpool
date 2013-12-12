@@ -133,6 +133,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	   
 	    if($scope.event.isWebinar){
 	    	$scope.setRequiredFields();
+	    	$scope.venueForm.$invalid = true;
+	    } else {
+	    	$scope.venueForm.selectTimeZone.$error.required = false;
+	    	$scope.venueForm.$invalid = true;
 	    }
 	    i = $scope.event.classificationType;
 	    upgrades = $scope.classificationTypes;
@@ -276,7 +280,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.venueForm.venueName.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress1.$error.required = !$scope.isWebinarChecked;
     	$scope.venueForm.venueAddress2.$error.required = !$scope.isWebinarChecked;
-    	$scope.venueForm.$invalid = !$scope.isWebinarChecked;
+    	$scope.venueForm.cityRequired.$error.required = !$scope.isWebinarChecked;
+//    	$scope.venueForm.$invalid = !$scope.isWebinarChecked;
+    	$scope.venueForm.selectTimeZone.$error.required = $scope.isWebinarChecked;
+    	
     }
     }
     $scope.validations = function() {
@@ -294,8 +301,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     		$scope.citryReq = true;
     	}
     	$scope.pinReq= $scope.venueForm.pincode.$error.required;
-//    	$scope.citryReq = $scope.cityinput.$error.required;
-//    	$scope.orgNameReq = $scope.orgForm.orgName.$error.required;
     	if(angular.isDefined($scope.event.startDate)&&angular.isDefined($scope.event.endDate)){
       	var startDate = new Date($scope.event.startDate);
     	var endDate = new Date($scope.event.endDate);
@@ -319,7 +324,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     		$scope.stopSubmitAction=true;    		
     		$scope.disabled = false;
 //    		setTimeout(function() {
-                $.bootstrapGrowl("You missed required fields in one of the tabs. Please fill. Event/Venue Information Tab.", {
+                $.bootstrapGrowl("Please fill required fields in one of the tabs. Please fill. Event Venue Information Tab.", {
                     type: 'error',
                     align: 'center',
                     width: 'auto',
@@ -517,6 +522,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     
     $scope.selectCity = function(region) {
     	if(angular.isUndefined(region) || region == null){
+    		
     		return ;
     	}
     	$scope.event.cityName = region.text.cityName;
@@ -529,11 +535,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     
     $scope.selectTimeZone = function(region) {
     	if(angular.isUndefined(region) || region == null){
+    		$scope.venueForm.$invalid = true;
     		return ;
     	}
     	$scope.event.cityName = region.text.cityName;
         $scope.event.cityId = region.text.cityId;
         $scope.event.timeZone = 'GMT'+region.text.timeZone;
+        $scope.venueForm.$invalid = false;
+        
         
     };
    /* $scope.profilepic;

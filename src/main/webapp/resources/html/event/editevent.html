@@ -9,8 +9,8 @@
 			 <!--  Create Event Nav Tab  
 			 ================================================== -->           
 			            <ul id="myTab" class="nav nav-tabs">
-				              <li class="active">	<a href="#eventInformation" data-toggle="tab">	Event Information	</a></li>
-				              <li>					<a href="#venueInformation" data-toggle="tab">	Venue Information	</a></li>
+				              <li class="active">	<a href="#eventInformation" data-toggle="tab">	Event Information <span ng-show="eventForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
+				              <li>					<a href="#venueInformation" data-toggle="tab">	Venue Information <span ng-show="venueForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
 				              <li>					<a href="#organizerInformation" data-toggle="tab">Organizer Information	</a></li>
 				              <li>					<a href="#ticketInformation" data-toggle="tab">	Ticket Information	</a></li>
 			            </ul>
@@ -124,9 +124,9 @@
 								    </div>
 								  </div>
 								  <div class="control-group" ng-show="event.isWebinar">
-								    <label class="control-label" for="state">Slect Timezone city :<span ng-style="{color:'red'}">*</span></label>
+								    <label class="control-label" for="state">Select Timezone city :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-									    <input ui-select2="cityselect2options" ng-model="citySelect" ng-change="selectTimeZone(citySelect)" required/>
+									    <input id="selectTimeZone" ui-select2="cityselect2options" ng-model="citySelect" ng-change="selectTimeZone(citySelect)" required/>
 									    <span ng-show="citryReq" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
@@ -159,7 +159,7 @@
 							  	  <div class="control-group">
 								    <label class="control-label" for="state">City :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-									    <input ui-select2="cityselect2options" ng-model="citySelect"  ng-change="selectCity(citySelect)" required/>
+									    <input id="cityRequired" ui-select2="cityselect2options" ng-model="citySelect"  ng-change="selectCity(citySelect)" required/>
 									    <span ng-show="citryReq" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>	
