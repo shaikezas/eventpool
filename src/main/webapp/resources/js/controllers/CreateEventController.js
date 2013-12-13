@@ -19,6 +19,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.toValue = "";
     $scope.message = "";
     $scope.citySelect = {};
+    $scope.timezoneSelect = {};
     $scope.eventFormOptions = {};
     var map = [];
     var classificationTypes1 = [];
@@ -122,6 +123,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    $scope.showHostWebsite = $scope.event.userEventSettingDTO.showHostWebsite;
 	    $scope.showAttendeDetails = $scope.event.userEventSettingDTO.showAttendeDetails;
 	    $scope.citySelect = {id:$scope.event.cityId,text:{'cityId':$scope.event.cityId,'cityName':$scope.event.cityName,'countryName':$scope.event.countryName,'stateName':$scope.event.stateName,'timeZone':$scope.event.timeZone}};
+	    $scope.timezoneSelect = {id:$scope.event.cityId,text:{'cityId':$scope.event.cityId,'cityName':$scope.event.cityName,'countryName':$scope.event.countryName,'stateName':$scope.event.stateName,'timeZone':$scope.event.timeZone}};
 //	    $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
 //	    $scope.event.endDate = moment($scope.event.endDate).format("DD-MMM-YYYY hh:mm A");
 	    /*for (var i=0;i<$scope.event.tickets.length;i++)
@@ -234,7 +236,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 
 
     $scope.addNewEvent = function() {
-//    	if(!$scope.event.isPublish){
     	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
@@ -246,12 +247,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	$location.url('myevents');
         }).error(function() {
         	$scope.disabled = false;
-        	/*$('#loadingPopup').modal('toggle');*/
         });
         }
-//    	} else {
-//    		alert("Published events cannot be modified.\n Review event details.");
-//    	}
     }
     
     $scope.addNewEventAndPublish = function() {
@@ -271,25 +268,18 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         
     }
     $scope.setRequiredFields = function() {
-//    	$scope.isWebinarChecked=!$scope.isWebinarChecked;
-    	if(angular.isDefined($scope.venueForm)){
-    	$scope.venueForm.venueName.$error.required = !$scope.event.isWebinar;
-    	$scope.venueForm.venueAddress1.$error.required = !$scope.event.isWebinar;
-    	$scope.venueForm.venueAddress2.$error.required = !$scope.event.isWebinar;
     	$scope.timezoneReq = false;
     	$scope.venueForm.$invalid=false;
-    	if(angular.isUndefined($scope.event.timeZone) || $scope.event.timeZone==null){
-    		$scope.timezoneReq = true;
-    		$scope.venueForm.$invalid=true;
-    	}
-    	
+        	if($scope.event.isWebinar && (angular.isUndefined($scope.event.timeZone) || $scope.event.timeZone==null)){
+        		$scope.timezoneReq = true;
+        		$scope.venueForm.$invalid=true;
+        	}
+    	$scope.venueForm.venueName.$error.required = !$scope.event.isWebinar;
+    	$scope.venueForm.venueAddress1.$error.required = !$scope.event.isWebinar;
     	$scope.venueForm.pincode.$error.required = !$scope.event.isWebinar;
-//    	$scope.venueForm.$invalid = $scope.event.isWebinar;
-//    	$scope.venueForm.selectTimeZone.$error.required = $scope.event.isWebinar;   	
-    }
     }
     $scope.validations = function() {
- 	   if($scope.event.isWebinar){
+ 	   if($scope.event.isWebinar){ 		   
   	    	$scope.setRequiredFields();
   	    }
     	$scope.nameRequired = $scope.eventForm.eName.$error.required;
@@ -302,10 +292,15 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.venueNameReq = $scope.venueForm.venueName.$error.required;
     	$scope.venueAdd1Req = $scope.venueForm.venueAddress1.$error.required;
     	$scope.pinReq= $scope.venueForm.pincode.$error.required;
+
     	$scope.citryReq = false;
     	if(angular.isUndefined($scope.event.cityName) || $scope.event.cityName==null){
     		$scope.citryReq = true;
     	}
+    	if($scope.venueNameReq || $scope.venueAdd1Req || $scope.pinReq || $scope.citryReq){
+    		$scope.venueForm.$invalid = true;
+    	}
+    	
     	if(angular.isDefined($scope.event.startDate)&&angular.isDefined($scope.event.endDate)){
       	var startDate = new Date($scope.event.startDate);
     	var endDate = new Date($scope.event.endDate);
