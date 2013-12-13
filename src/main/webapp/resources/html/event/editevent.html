@@ -130,7 +130,7 @@
 									    <span ng-show="timezoneReq" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
-							  <div collapse="event.isWebinar">
+							  <div ng-show="!event.isWebinar">
 								
 							  <div class="control-group">
 							    <label class="control-label" for="venueTitle">Venue Title :<span ng-style="{color:'red'}">*</span></label>
