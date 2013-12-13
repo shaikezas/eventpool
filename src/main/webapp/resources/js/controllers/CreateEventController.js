@@ -276,10 +276,16 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.venueForm.venueName.$error.required = !$scope.event.isWebinar;
     	$scope.venueForm.venueAddress1.$error.required = !$scope.event.isWebinar;
     	$scope.venueForm.venueAddress2.$error.required = !$scope.event.isWebinar;
-    	$scope.venueForm.cityRequired.$error.required = !$scope.event.isWebinar;
+    	$scope.timezoneReq = false;
+    	$scope.venueForm.$invalid=false;
+    	if(angular.isUndefined($scope.event.timeZone) || $scope.event.timeZone==null){
+    		$scope.timezoneReq = true;
+    		$scope.venueForm.$invalid=true;
+    	}
+    	
     	$scope.venueForm.pincode.$error.required = !$scope.event.isWebinar;
-    	$scope.venueForm.$invalid = $scope.event.isWebinar;
-    	$scope.venueForm.selectTimeZone.$error.required = $scope.event.isWebinar;   	
+//    	$scope.venueForm.$invalid = $scope.event.isWebinar;
+//    	$scope.venueForm.selectTimeZone.$error.required = $scope.event.isWebinar;   	
     }
     }
     $scope.validations = function() {
@@ -537,6 +543,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     		return ;
     	}
     	$scope.event.cityName = region.text.cityName;
+    	$scope.event.stateName =  region.text.stateName;
+    	$scope.event.countryName = region.text.countryName;
         $scope.event.cityId = region.text.cityId;
         $scope.event.timeZone = 'GMT'+region.text.timeZone;
         
