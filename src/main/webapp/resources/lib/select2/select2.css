@@ -364,10 +364,13 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
 }
 
 .select2-results .select2-highlighted {
-    color: #fff;
+    color: #000;
     background: #fff
 }
-
+.select2-result-label table{
+	margin-bottom: 0px !important;
+	width: 100%;
+}
 .select2-results li em {
     background: #feffde;
     font-style: normal;
@@ -386,7 +389,7 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
 .select2-results .select2-no-results,
 .select2-results .select2-searching,
 .select2-results .select2-selection-limit {
-    background: #f4f4f4;
+    background: #ccc;
     display: list-item;
 }
 
@@ -394,7 +397,7 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
 disabled look for disabled choices in the results dropdown
 */
 .select2-results .select2-disabled.select2-highlighted {
-    color: #666;
+    color: #000;
     background: #f4f4f4;
     display: list-item;
     cursor: default;
