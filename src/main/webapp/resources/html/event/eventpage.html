@@ -4,125 +4,143 @@
 
 <div class="eventCont">
 	<div class="eventBanners">
-		
-			 <img ng-src="{{event.banner}}"/>  
-			
+
+		<!-- <img ng-src="{{event.banner}}"/>   -->
+		<img class="header-logo" src="resources/bootstrap/img/banner_1.jpg"/>
 	</div>
-	
 
 
 
-	
-<div class="container eventPage" >			
+
+
+	<div class="container eventPage">
 		<div class="span3 eventPagespan3" ng-show="event.tickets.length>0">
-			<div >
-				<table class="table table-condensed" >
+			<div>
+				<table class="table table-condensed">
 					<thead>
 						<tr>
-						  <th>Ticket Type</th>
-						  <th class="amt">Price</th>
-						  <th class="amt" style="width: 150px;">Quantity</th>
-						  <th class="amt" style="width: 150px;">Total</th>
+							<th>Ticket Type</th>
+							<th class="amt">Price</th>
+							<th class="amt" style="width: 150px;">Quantity</th>
+							<th class="amt" style="width: 150px;">Total</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="ticket in event.tickets" >
-								  <td><b>{{ticket.name}} </b><br/><span >{{ticket.dateDesc}}</span><br/><span style="color:#0000FF;" ng-show="{{ticket.description!=null}}">*{{ticket.description}}</span></td>
-								  <td class="amt">{{ticket.price}} </td>
-								  <td class="amt"> 
-								  	<select ng-show="!ticket.soldOut" ng-disabled="ticket.disableTicket" style="width: 100px;" id="Category" ng-model="ticket.selectedQty" ng-click="calcTotalAmount()" ng-init="ticket.selectedQty='0'" 
-															ng-options="qty.value as qty.key for qty in ticket.qtyList" ng-change="atleastOneTktSelected()">
-												</select>
-								     <span ng-show="ticket.soldOut">SOLD OUT</span>
-								  </td>
-								  <td class="amt">{{ticket.selectedQty * ticket.price}} </td>
+						<tr ng-repeat="ticket in event.tickets">
+							<td><b>{{ticket.name}} </b><br />
+							<span>{{ticket.dateDesc}}</span><br />
+							<span style="color: #0000FF;"
+								ng-show="{{ticket.description!=null}}">*{{ticket.description}}</span></td>
+							<td class="amt">{{ticket.price}}</td>
+							<td class="amt"><select ng-show="!ticket.soldOut"
+								ng-disabled="ticket.disableTicket" style="width: 100px;"
+								id="Category" ng-model="ticket.selectedQty"
+								ng-click="calcTotalAmount()" ng-init="ticket.selectedQty='0'"
+								ng-options="qty.value as qty.key for qty in ticket.qtyList"
+								ng-change="atleastOneTktSelected()">
+							</select> <span ng-show="ticket.soldOut">SOLD OUT</span></td>
+							<td class="amt">{{ticket.selectedQty * ticket.price}}</td>
 						</tr>
-					
+
 						<tr class="dubbleLine">
-						  <td colspan="3" class="amt"> <b> Total Purchase</b> </td>
-						  <td class="amt" > {{totalAmount}} </td>
+							<td colspan="3" class="amt"><b> Total Purchase</b></td>
+							<td class="amt">{{totalAmount}}</td>
 						</tr>
 					</tbody>
 				</table>
-			
-			
+
+
 				<div style="text-align: right">
-					<button type="button" class="btn " ng-click="registerTicket()" ng-disabled="enableBookTicket" ng-show="event.showBookTicket">Book Ticket</button>
-				</div>	
-							
-		<div >
-		<div style="height: 25px"></div>
-		<ul id="myTab" class="nav nav-tabs">
-			<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">About Event</a></li>     
-			<li ng-show="event.eventSettingsDTO.showTermsAndConditions == 'true'"><a href="#termCondition" 	data-toggle="tab" >Term & Condition</a></li>  
-		</ul>
-	
-	
-		<div id="myTabContent" class="tab-content">
-			
-			<div class="tab-pane fade in active" id="aboutEvent">
-				<form class="form-horizontal"> <div ng-bind-html-unsafe="event.description" ></div></form>
+					<button type="button" class="btn " ng-click="registerTicket()"
+						ng-disabled="enableBookTicket" ng-show="event.showBookTicket">Book
+						Ticket</button>
+				</div>
+
+				<div>
+					<div style="height: 25px"></div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a href="#aboutEvent" data-toggle="tab">About
+								Event</a></li>
+						<li
+							ng-show="event.eventSettingsDTO.showTermsAndConditions == 'true'"><a
+							href="#termCondition" data-toggle="tab">Term & Condition</a></li>
+					</ul>
+
+
+					<div id="myTabContent" class="tab-content">
+
+						<div class="tab-pane fade in active" id="aboutEvent">
+							<form class="form-horizontal">
+								<div ng-bind-html-unsafe="event.description"></div>
+							</form>
+						</div>
+
+
+						<div class="tab-pane fade in " id="termCondition">
+							<form class="form-horizontal">Term & Condition</form>
+						</div>
+
+					</div>
+
+
+
+				</div>
+
+
 			</div>
-			
-			
-			<div class="tab-pane fade in " id="termCondition">
-				<form class="form-horizontal">Term & Condition  </form>
-			</div>
-				
-		</div>				
-									
-	
-		
-	</div>
-				
-				
-			</div>
-		</div>	
-			
-			
-			<div class="span1 rightPanel rightPanelright">
-			
-			
-			<h3>Event Details <i class="titleArow"></i></h3>
+		</div>
+
+
+		<div class="span1 rightPanel rightPanelright">
+
+
+			<h3>
+				Event Details <i class="titleArow"></i>
+			</h3>
 			<div class="filterControlRight">
-				
+
 				<ul class="eventDetails eventDetailsIcon">
-					<li > <i class="iconCalanderStart"></i>	<span>Start Date:</span> {{event.startDate}}</li>
-					<li > <i class="iconCalanderEnd"></i>	<span>End Date:</span> {{event.endDate}}</li>
-					<li  class="addressCont"> <i class="iconAddress"></i>
-						{{ event.venueAddress}}
-					</li>
-					<li > <i class="iconTime"></i>
-						<span>Time Zone:</span> {{event.timeZone}}
-					</li>
+					<li><i class="iconCalanderStart"></i> <span>Start
+							Date:</span> {{event.startDate}}</li>
+					<li><i class="iconCalanderEnd"></i> <span>End Date:</span>
+						{{event.endDate}}</li>
+					<li class="addressCont"><i class="iconAddress"></i> {{
+						event.venueAddress}}</li>
+					<li><i class="iconTime"></i> <span>Time Zone:</span>
+						{{event.timeZone}}</li>
 				</ul>
 			</div>
-		
-			
-			
-			
-				<!-- <div ng-show="event.eventSettingsDTO.showOrganizerName == 'true' || event.eventSettingsDTO.showContactDetails == 'true'"> -->
-				
-				<h3>Contact Details <i class="titleArow"></i></h3>
-				<div class="filterControlRight">
-					<ul class="eventDetails eventDetailsIcon">
-						<!-- <li ng-show="event.eventSettingsDTO.showOrganizerName == 'true'"> <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
+
+
+
+
+			<!-- <div ng-show="event.eventSettingsDTO.showOrganizerName == 'true' || event.eventSettingsDTO.showContactDetails == 'true'"> -->
+
+			<h3>
+				Contact Details <i class="titleArow"></i>
+			</h3>
+			<div class="filterControlRight">
+				<ul class="eventDetails eventDetailsIcon">
+					<!-- <li ng-show="event.eventSettingsDTO.showOrganizerName == 'true'"> <i class="iconAddress"></i><span>Organizer Name:</span>	{{event.organizerName}}</li>
 						<li ng-show="event.eventSettingsDTO.showContactDetails == 'true'"> <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li> -->
-					
-						
-						
-						
-						<li class="newAddress" > <i class="iconAddress"></i>	<span>Organizer Name:</span>	{{event.organizerName}} <div></div></li>
-						<li  class="newAddress"  > <i class="iconAddress"></i>	<span>Contact:</span>	{{event.contactDetails}}  </li>
-						
-					</ul>
-				
-				</div>
-			
-	
+
+
+
+
+					<li class="newAddress"><i class="iconAddress"></i> <span>Organizer
+							Name:</span> {{event.organizerName}}
+						<div></div></li>
+					<li class="newAddress"><i class="iconAddress"></i> <span>Contact:</span>
+						{{event.contactDetails}}</li>
+
+				</ul>
+
 			</div>
-	</div>		
-	
-</div>	
-	
+
+
+		</div>
+	</div>
+
+</div>
+
 <div ng-include src="'html/footer.html'"></div>

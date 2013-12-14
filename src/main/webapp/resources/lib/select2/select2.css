@@ -192,14 +192,8 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
        -moz-background-clip: padding;
             background-clip: padding-box;
 
-    background: #ccc;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ccc), color-stop(0.6, #eee));
-    background-image: -webkit-linear-gradient(center bottom, #ccc 0%, #eee 60%);
-    background-image: -moz-linear-gradient(center bottom, #ccc 0%, #eee 60%);
-    background-image: -o-linear-gradient(bottom, #ccc 0%, #eee 60%);
-    background-image: -ms-linear-gradient(top, #cccccc 0%, #eeeeee 60%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#cccccc', GradientType = 0);
-    background-image: linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+   
+  
 }
 
 .select2-container .select2-choice div b {
@@ -358,12 +352,9 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
 }
 
 .select2-results .select2-result-label {
-    padding: 3px 7px 4px;
+    padding: 1px;
     margin: 0;
     cursor: pointer;
-
-    min-height: 1em;
-
     -webkit-touch-callout: none;
       -webkit-user-select: none;
        -khtml-user-select: none;
@@ -373,8 +364,8 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
 }
 
 .select2-results .select2-highlighted {
-    background: #3875d7;
     color: #fff;
+    background: #fff
 }
 
 .select2-results li em {
