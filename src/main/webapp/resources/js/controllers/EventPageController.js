@@ -144,7 +144,8 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	 $http.post('order/create',$scope.orderRegister).success(function(data) {
          	$scope.editMode = false;
          	$scope.status = data;
-         	$location.url('/mytickets');
+         	//$location.url('/mytickets');
+         	$location.url('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=ramuenugurthi@gmail.com&item_name="itemname"&item_number=12345&amount=5%2e95&currency_code=USD');
          }).error(function(error) {
         	 $scope.disablePayment = false;
              alert(error);
