@@ -59,8 +59,8 @@ public class OrderController {
 		  return orderRegisterForm;
 	    }
 	  
-	  @RequestMapping(value = "/create", method = RequestMethod.POST)
-	    public @ResponseBody ResponseMessage createOrder(@RequestBody OrderRegisterForm orderRegisterForm)  {
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public @ResponseBody ResponseMessage createOrder(@RequestBody OrderRegisterForm orderRegisterForm)  {
 			  OrderStatusDTO status = new OrderStatusDTO();
 			  User user = userService.getCurrentUser();
 			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());

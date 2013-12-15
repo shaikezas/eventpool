@@ -245,7 +245,7 @@ public class EventpoolMapper {
 			media = new Media();
 			event.setMedia(media);
 		}
-		
+		/*
 		if(media.getBannerUrl()==null){
 			if(event.getSubCategoryId()!=null){
 				media.setBannerUrl(categoryTree.getNode(event.getSubCategoryId().longValue()).getImageUrl());
@@ -256,7 +256,7 @@ public class EventpoolMapper {
 			if(event.getSubCategoryId()!=null){
 				media.setPromotionLogoUrl(categoryTree.getNode(event.getSubCategoryId().longValue()).getPromoLogo());
 			}
-		}
+		}*/
 
 
 	}
