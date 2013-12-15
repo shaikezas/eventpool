@@ -145,7 +145,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
          	$scope.editMode = false;
          	$scope.status = data;
          	//$location.url('/mytickets');
-         	$location.url('https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=ramuenugurthi@gmail.com&item_name="itemname"&item_number=12345&amount=5%2e95&currency_code=USD');
+        	$location.href('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1DC284005R366174D');
          }).error(function(error) {
         	 $scope.disablePayment = false;
              alert(error);

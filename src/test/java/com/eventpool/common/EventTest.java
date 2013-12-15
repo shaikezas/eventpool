@@ -53,6 +53,7 @@ import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.event.service.impl.TicketAttendeeDTO;
 import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.order.service.OrderService;
+import com.eventpool.order.service.PaymentService;
 import com.eventpool.web.controller.EventSearchRecord;
 import com.eventpool.web.controller.EventService;
 import com.eventpool.web.controller.SearchController;
@@ -604,4 +605,12 @@ public class EventTest extends BaseTest{
     	System.out.println(eventTickets.size());
     }
 
+    @Resource
+    PaymentService paymentService;
+    
+    @Test
+    public void testPaymentService(){
+    	String initPayment = paymentService.initPayment(null);
+    	System.out.println(initPayment);
+    }
 }
