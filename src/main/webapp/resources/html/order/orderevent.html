@@ -9,9 +9,9 @@
 <div class="eventCont">
 			   	
           	<h1 class="headerContainerEvent">{{event.title}}</h1>
-	<div class="eventBanners" style="display: none;">
-		<!-- <img ng-src="{{event.banner}}"/>   -->
-		<img  src="resources/bootstrap/img/banner_1.jpg"/>
+	<div class="eventBanners"  ng-show="event.banner!=null">
+		<img ng-src="{{event.banner}}"/>  
+		<!-- <img  src="resources/bootstrap/img/banner_1.jpg"/> -->
 	</div>
 			
 	<div class="container eventPage">	
