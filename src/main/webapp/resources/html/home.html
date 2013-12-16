@@ -110,12 +110,15 @@
             
 					<li class="span1" ng-repeat="event in homePageResults">
 					<!-- <img ng-src="{{event.promotionLogoUrl}}" alt="" > -->
-					   <!--  <div class="thumbnail">
-							<a href="#event/{{event.eventUrl}}"><img ng-src="resources/bootstrap/img/test.jpg" alt="" ></a>
+					  <!--   <div class="thumbnail">
+							<a href="#event/{{event.eventUrl}}"><img ng-src="resources/bootstrap/img/pmi.jpg" alt="" ></a>
 						</div>	 -->
-						<div class="thumbnailNoImg">
+						<div class="thumbnail" ng-show="event.promotionLogoUrl!=null">
+							<a href="#event/{{event.eventUrl}}"><img ng-src="{{event.promotionLogoUrl}}" alt="" ></a>
+						</div>	
+						<div class="thumbnailNoImg" ng-show="event.promotionLogoUrl==null">
 									<a href="#event/{{event.eventUrl}}"> {{event.title}}   </a>
-								</div>
+						</div>
 						<div class="desc">{{event.title}}</div>
 						<!-- <div class="type" ng-init="getcatvalue(event.subCategoryId)">{{eventType[$index]}}</div> -->
 					<!-- 	<div class="price" >Price - 14.99 $</div> -->

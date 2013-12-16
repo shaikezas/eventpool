@@ -103,11 +103,12 @@
 					<div infinite-scroll="viewThumbsNextPage()" infinite-scroll-disabled='thumbscrollPage' infinite-scroll-distance='0' >
 					<ul class="thumbnails">
 						<li class="span1" ng-repeat="event in searchRecords">
-							<!--  	<div class="thumbnail">
-									<a href="#event/{{event.eventUrl}}"><img ng-src="resources/bootstrap/img/test.jpg" alt="" ></a>
-								</div>	 -->
+							 	<div class="thumbnail" ng-show="event.promotionLogoUrl!=null">
+									<a href="#event/{{event.eventUrl}}"><!-- <img ng-src="resources/bootstrap/img/shop.jpg" alt="" > -->
+									<img ng-src="{{event.promotionLogoUrl}}" alt="" ></a>
+								</div>	
 								
-								<div class="thumbnailNoImg">
+								<div class="thumbnailNoImg" ng-show="event.promotionLogoUrl==null">
 									<a href="#event/{{event.eventUrl}}"> {{event.title}}   </a>
 								</div>
 								
@@ -130,7 +131,7 @@
 				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
 				<ul class="media-list">
 					<li class="media thumbList smallThumb" ng-repeat="event in searchRecords">
-					<a class="pull-left" href="#event/{{event.eventUrl}}"> <!-- <img width="85px" ng-src="{{event.promotionLogoUrl}}" > --><img width="175px" ng-src="resources/bootstrap/img/test.jpg" alt="" >
+					<a class="pull-left" href="#event/{{event.eventUrl}}">  <img width="85px" ng-src="{{event.promotionLogoUrl}}" > <!-- <img width="175px" ng-src="resources/bootstrap/img/test.jpg" alt="" > -->
 					</a> 
 						<div class="media-body ">
 							<a class="type" href="#event/{{event.eventUrl}}" class="media-heading">{{event.title}}</a>
