@@ -239,7 +239,7 @@ public class SearchServiceImpl implements SearchService {
 								cal.set(Calendar.DAY_OF_MONTH,1);
 								date = cal.getTime();
 								dateFormat = sdf.format(date);
-								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"[ * TO "+dateFormat+" ]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
+								solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":"+"[ * TO * ]"+" AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
 								//fq=fq+" AND ("+START_DATE+":"+"["+dateFormat+" TO *]"+" OR "+END_DATE+":["+dateFormat+" TO *])";
 							}
 						}
