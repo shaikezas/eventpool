@@ -58,7 +58,7 @@
 		    <div class="modal newModel" style="display: none" id="login">
 				        
 				     	<div class="modal-header">
-				            <a class="close" data-dismiss="modal" ng-click="cancel()">close</a>
+				            <a class="close" data-dismiss="modal" ng-click="cancel()"></a>
 				            <h3 class="panel-title">Sign In Or Create A New Account</h3>
 				        </div>
 				     
