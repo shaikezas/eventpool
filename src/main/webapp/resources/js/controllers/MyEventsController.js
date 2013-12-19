@@ -16,11 +16,23 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
         });
     }
     
-    $scope.publishEvent = function(eventid) {
+    $scope.publishEvent = function(eventid,sold) {
+        if(sold!="0/0"){
         $http.get('event/myevent/publishevent/'+eventid).success(function(){
         	$scope.fetchDraftEventsList();        
         });
+        } else {
+            $.bootstrapGrowl("You cannot publish without tickets.", {
+                type: 'error',
+                align: 'center',
+                width: 'auto',
+                delay: 10000,
+                allow_dismiss: true
+            });
+        }
     }
+    
+
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){
             $scope.pastEvents = pastevents;           

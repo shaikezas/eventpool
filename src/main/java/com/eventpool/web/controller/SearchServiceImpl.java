@@ -506,12 +506,15 @@ public class SearchServiceImpl implements SearchService {
 			searchQueryResponse.setEventDateFilterItems(eventDateFilterItems);
 		}
 
-		long todayCount =0L;
-		long tomorrowCount=0L;
-		long currentWeekCount=0L;
-		long nextWeekCount=0L;
-		long currentMonthCount=0L;
-		long otherDatesCount=0L;
+/*		Long todayCount =0L;
+		Long tomorrowCount=0L;
+		Long currentWeekCount=0L;
+		Long nextWeekCount=0L;
+		Long currentMonthCount=0L;
+		Long otherDatesCount=0L;
+*/		
+		DateCount dateCount = new DateCount();
+		
 		NamedList<List<PivotField>> facetPivot = response.getFacetPivot();
 		List<List<PivotField>> pivotList = facetPivot.getAll(STARTDATE+","+ENDDATE);
 		for(List<PivotField> pivotInnerList:pivotList){
@@ -528,8 +531,30 @@ public class SearchServiceImpl implements SearchService {
 					Date endDate = dateSdf.parse((String)innerPivotField.getValue());
 					int endDateFilter = getDayFilter(endDate);
 					count=innerPivotField.getCount();
-
-					if(dateFilter == PAST ){
+					calculateCount(dateCount, count, endDateFilter);
+					switch(dateFilter){
+							case PAST:
+							case TODAY:
+								if(endDateFilter>TODAY){
+									dateCount.todayCount+=count;
+								}
+							case TOMORROW:
+							case CURRENT_WEEK:
+								if(endDateFilter>CURRENT_WEEK){
+									dateCount.currentWeekCount+=count;
+								}
+							case NEXT_WEEK:
+								if(endDateFilter>NEXT_WEEK){
+									dateCount.nextWeekCount+=count;
+								}
+							case CURRENT_MONTH:
+								//if(endDateFilter>CURRENT_MONTH){
+									dateCount.currentMonthCount+=count;
+								//}
+								
+					}
+					
+/*					if(dateFilter == PAST ){
 						if(endDateFilter!=PAST){
 							todayCount = count + todayCount;
 						}
@@ -568,10 +593,12 @@ public class SearchServiceImpl implements SearchService {
 						todayCount = todayCount +count;
 						currentWeekCount = currentWeekCount + count;
 						currentMonthCount = currentMonthCount + count;
+						
 						if(endDateFilter==TODAY){
 						}else{
 							tomorrowCount = tomorrowCount + count;
 						}
+						
 						if(endDateFilter == CURRENT_WEEK){
 						}else if(endDateFilter == NEXT_WEEK){
 							nextWeekCount = nextWeekCount + count;	
@@ -639,40 +666,67 @@ public class SearchServiceImpl implements SearchService {
 							otherDatesCount = otherDatesCount +count;
 						}
 					}
-					//System.out.println("today"+todayCount+"tomorrow"+tomorrowCount+"current week count "+currentWeekCount+" next week count "+nextWeekCount+" current month "+currentMonthCount+" other dates "+otherDatesCount);
+*/					//System.out.println("today"+todayCount+"tomorrow"+tomorrowCount+"current week count "+currentWeekCount+" next week count "+nextWeekCount+" current month "+currentMonthCount+" other dates "+otherDatesCount);
 				}
 			}
 		}
 		
 		String valueOf = String.valueOf(TODAY);
 		Map<String, String> newFilterMap = getFilterData(listOfFilters, valueOf);		
-		FilterItem filterItem = getFilterItem(todayCount,"Today", "",newFilterMap,countryId);
+		FilterItem filterItem = getFilterItem(dateCount.todayCount,"Today", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(TOMORROW);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(tomorrowCount,"Tommorrow", "",newFilterMap,countryId);
+		filterItem = getFilterItem(dateCount.tomorrowCount+dateCount.todayCount,"Tommorrow", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(CURRENT_WEEK);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(currentWeekCount,"This Week", "",newFilterMap,countryId);
+		filterItem = getFilterItem(dateCount.currentWeekCount,"This Week", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(NEXT_WEEK);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(nextWeekCount,"Next Week", "",newFilterMap,countryId);
+		filterItem = getFilterItem(dateCount.nextWeekCount,"Next Week", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(CURRENT_MONTH);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(currentMonthCount,"This month", "",newFilterMap,countryId);
+		filterItem = getFilterItem(dateCount.currentMonthCount,"This month", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(REST);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(otherDatesCount,"Other Dates", "",newFilterMap,countryId);
+		filterItem = getFilterItem(dateCount.otherDatesCount,"Other Dates", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
+	}
+
+
+	private void calculateCount(DateCount dateCount, int count,
+			int endDateFilter) {
+		switch(endDateFilter){
+			case PAST:
+				break;
+			case TODAY:
+				dateCount.todayCount+=count;
+				break;
+			case TOMORROW:
+				dateCount.tomorrowCount+=count;
+				break;
+			case CURRENT_WEEK:
+				dateCount.currentWeekCount+=count;
+				break;
+			case NEXT_WEEK:
+				dateCount.nextWeekCount+=count;
+				break;
+			case CURRENT_MONTH:
+				dateCount.currentMonthCount+=count;
+				break;
+			case REST:
+				dateCount.otherDatesCount+=count;
+				break;
+		}
 	}
 
 
