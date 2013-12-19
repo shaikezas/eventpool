@@ -17,6 +17,7 @@ h3{
 	}
 a{
 	color: none;
+	outline: none;
 }
 
 .viewControl{
@@ -116,7 +117,7 @@ a{
 	width: 1px ; 
 	background: #046CAB; 
 	float: left;
-	margin-top: 5px;
+	margin-top: 9px;
 	}
 .navbar .nav > li > a{
 	text-shadow: 0 0 0;
@@ -125,6 +126,8 @@ a{
 	padding: 10px;
 	margin: 0px 5px;
 	font-weight: bold;
+	font-size: 14px;
+	outline: none;
 	}
 .navbar .nav > li > a:hover{
 	text-shadow: 0 0 0;
@@ -137,6 +140,7 @@ a{
 	background-color: none;
 	background: #046cab;
 	color: #fff;
+	outline: none;
 	}
 
 .firstNav{
@@ -364,35 +368,33 @@ h3 i{
 
 /* Header Main Nav Start */
 .nav-tabs{
-	border: 0px;
+	
 }
 
 .nav-tabs > li > a{
-	background:none;
-	line-height: normal;
-	padding-bottom: 15px;
-	border: 0px;
-	color: #555;
+	
 }
 
 .nav-tabs > li > a:hover{
-	background:none;
-	line-height: normal;
-	padding-bottom: 15px;
-	border: 0px;
-	color: #ff6600;
+	
 }
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-	background:none;
-	background-image:url(../img/activeTap.png);
-	background-repeat: no-repeat;
-	background-position: bottom;
-	line-height: normal;
-	padding-bottom: 15px;
-	border: 0px;
-	color: #ff6600;
+
+
+
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background-color: #fff;
+background-image: -moz-linear-gradient(top,#e6e6e6,#fff);
+background-image: -webkit-gradient(linear,0 0,0 100%,from(#e6e6e6),to(#fff));
+background-image: -webkit-linear-gradient(top,#e6e6e6,#fff);
+background-image: -o-linear-gradient(top,#e6e6e6,#fff);
+background-image: linear-gradient(to bottom,#e6e6e6,#fff);
+background-repeat: repeat-x;
 }
+
 	
 
 .floatLeft{float: left}
@@ -535,7 +537,7 @@ tr:nth-child(odd) {background:#fff}
 	margin-top: 10px;
 }
 .footer{
-	font-size: 10px;
+	font-size: 12px;
 	background: #22558f;
 	padding-bottom:10px;
 	color: #fff;
@@ -650,7 +652,13 @@ width: 50px
 	margin: 0px
 } 
 
-
+.close{
+	width: 24px !important;
+	height: 24px !important;
+	line-height: 14px !important;
+	background-image: url("../img/icon_close.png");
+	background-repeat: no-repeat !important;
+	}
 
 
 .thumbnail{
@@ -661,6 +669,7 @@ width: 50px
 	background: #f3f3f3;
 	padding: 0px !important;
 	margin-bottom: 20px;
+	border: 0px;
 	}
 .thumbnailNoImg{
 	background: #ccc;
@@ -715,7 +724,7 @@ width: 50px
    transition: box-shadow 0.2s;
 	}
 .thumbnails li a{
-	margin: -1px;
+	margin:0px;
 	background: #ff6600;
 	border-radius:5px 5px 0px 0px !important;
 }
