@@ -4,6 +4,7 @@
 		      
 		      
 			            <h1 ng-show="createorupdate">Create Event</h1>
+			            <!-- <span ng-style="{color:'red'}">* Required Values.</span> -->
 			            <h1 ng-show="!createorupdate">Update Event</h1>
 			            
 			 <!--  Create Event Nav Tab  
@@ -12,7 +13,7 @@
 				              <li class="active">	<a href="#eventInformation" data-toggle="tab">	Event Information <span ng-show="eventForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
 				              <li>					<a href="#venueInformation" data-toggle="tab">	Venue Information <span ng-show="venueForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
 				              <li>					<a href="#organizerInformation" data-toggle="tab">Organizer Information	</a></li>
-				              <li>					<a href="#ticketInformation" data-toggle="tab">	Ticket Information	</a></li>
+				              <li>					<a href="#ticketInformation" data-toggle="tab">	Ticket Information	<span ng-show="tktForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
 			            </ul>
 			 <!--  Create Event Nav Tab -->  
 			 
@@ -263,17 +264,17 @@
 								        	
 					  	 		
 								          <th style="width: 245px">TICKET NAME <span ng-style="{color:'red'}">*</span></th>
-								          <th style="width: 125px">TICKET QUANTITY</th>
-								          <th style="width: 245px">TICKET PRICE</th>
+								          <th style="width: 125px">TICKET QUANTITY<span ng-style="{color:'red'}">*</span></th>
+								          <th style="width: 245px">TICKET PRICE<span ng-style="{color:'red'}">*</span></th>
 								          <th style="width: 55px"> Actions </th>
 								          
 								        </tr>
 								      </thead>
 								      <tbody>
 								        <tr>
-								          <td> <input type="text" ng-model="ticket.name" required ></td>
-								          <td> <input class="quant" type="text"  ng-disabled="event.isPublish" ng-model="ticket.quantity"> {{tktName[$index]}}</td>
-								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="text" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" ></td>
+								          <td> <input type="text" ng-model="ticket.name" required></td><!--  {{tktName[$index]}} -->
+								          <td> <input class="quant" type="number" min="1" ng-disabled="event.isPublish" ng-model="ticket.quantity" required ></td>
+								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="number" min="0.001" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" required></td>
 								          <td>
 								        	<button class="icon-cog" 	ng-click="isCollapsed = !isCollapsed">	<div tooltip="Ticket Settings">&nbsp;	</div>		</button>
 								        	<button class="icon-trash " ng-click="removeTicket($index)" > 		<div tooltip="Remove Ticket">&nbsp;		</div>  &nbsp;</button> 
