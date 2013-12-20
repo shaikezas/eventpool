@@ -73,14 +73,14 @@
 				         
 								  <fieldset>
 								   		<legend ng-style="{color:'blue'}">Sign in</legend>
-								    	<label for="username">Email</label>
+								    	<label for="username">Email <span ng-style="{color:'red'}">*</span></label>
 								    	<input id="username" ng-model="username" type="email" name="username" required/>
 				                         <div  ng-style="{color:'red'}">
 											<span ng-show="usernameReq" ng-style="{color:'red'}">Email is required.</span>
 											<span ng-show="validEmail" ng-style="{color:'red'}">Enter valid email address.</span>
 				                		</div>
 								   
-								   		<label for="password">Password</label>
+								   		<label for="password">Password <span ng-style="{color:'red'}">*</span></label>
 								 		<input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
 					                     <div  ng-show="passwordRequired" ng-style="{color:'red'}">Password is Required.
 											<!-- <span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span> -->
@@ -123,18 +123,18 @@
 								<label for="lastName">Last Name</label>
 								<input id="lastName" type="text" ng-model="signupuserform.lname" name="lastName"/>
 								
-							    <label for="newUserEmail">Email</label>
+							    <label for="newUserEmail">Email <span ng-style="{color:'red'}">*</span></label>
 								<input id="newUserEmail" type="email" ng-model="signupuserform.email" name="newUserEmail" required/>
 								 <div  ng-style="{color:'red'}">
 									<span ng-show="newUserEmailReq" ng-style="{color:'red'}">Email is required.</span>
 									<span ng-show="newuserValidEmail" ng-style="{color:'red'}">Enter valid email address.</span>
 				                </div>
 								
-								<label for="newUserPassword">Password</label>
+								<label for="newUserPassword">Password <span ng-style="{color:'red'}">*</span></label>
 								<input id="newUserPassword" type="password" ng-model="signupuserform.password" name="newUserPassword" required/>
 								<div  ng-show="newUserPasswordReq" ng-style="{color:'red'}">Password is Required.</div>
 								
-								<label for="newUserPasswordCF">Confirm Password</label>
+								<label for="newUserPasswordCF">Confirm Password <span ng-style="{color:'red'}">*</span></label>
 								<input id="newUserPasswordCF" type="password" ng-model="confirmpassword" name="newUserPasswordCF" required/>
 								<div  ng-show="newUserPasswordCFReq" ng-style="{color:'red'}">Confirm Password is Required.</div>
 								

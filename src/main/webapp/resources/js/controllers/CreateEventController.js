@@ -255,10 +255,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.resetError();
         $scope.validations();
         var tktqty = $scope.atleastoneticketrequired();
-        if(tktqty==0){        	
+        if(tktqty==0 && $scope.stopSubmitAction === false){        	
     		$scope.stopSubmitAction=true;    		
     		$scope.disabled = false;
-                $.bootstrapGrowl("You cannot publish without tickets quanity equals zero.", {
+                $.bootstrapGrowl("You cannot save and publish without tickets. You can do save & Exit.", {
                     type: 'error',
                     align: 'center',
                     width: 'auto',
