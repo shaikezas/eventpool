@@ -644,6 +644,7 @@ public class EventController {
     	form.setId(dto.getId());
     	form.setEventUrl(dto.getEventUrl());
     	form.setStatus(dto.getStatus().getDescription());
+    	form.setDescription(dto.getDescription());
     	
     	return form;
     }

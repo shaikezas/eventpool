@@ -27,6 +27,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     var i;
     $scope.from="admin@eventhut.com";
     $scope.disabled = false;
+    $scope.stopSubmitAction = false;
    
       $scope.template = "html/event/editevent.html";
       $scope.templateSelect = "edit";
@@ -253,12 +254,23 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.addNewEventAndPublish = function() {
     	$scope.disabled = true;
     	$scope.resetError();
-        $scope.validations();
+    	$scope.validations();
         var tktqty = $scope.atleastoneticketrequired();
-        if(tktqty==0 && $scope.stopSubmitAction === false){        	
+    	if($scope.event.description==""){
     		$scope.stopSubmitAction=true;    		
     		$scope.disabled = false;
-                $.bootstrapGrowl("You cannot save and publish without tickets. You can do save & Exit.", {
+                $.bootstrapGrowl("You cannot save and publish without Description.", {
+                    type: 'error',
+                    align: 'center',
+                    width: 'auto',
+                    delay: 10000,
+                    allow_dismiss: true
+                });
+    	}        
+    	else if(tktqty==0){        	
+    		$scope.stopSubmitAction=true;    		
+    		$scope.disabled = false;
+                $.bootstrapGrowl("You cannot save and publish without tickets. You can do Save & Exit.", {
                     type: 'error',
                     align: 'center',
                     width: 'auto',

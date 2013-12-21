@@ -16,18 +16,27 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
         });
     }
     
-    $scope.publishEvent = function(eventid,sold) {
-        if(sold!="0/0"){
-        $http.get('event/myevent/publishevent/'+eventid).success(function(){
-        	$scope.fetchDraftEventsList();        
-        });
-        } else {
+    $scope.publishEvent = function(eventid,sold,description) {
+        if(description==""){
+            $.bootstrapGrowl("You cannot publish without event description.", {
+                type: 'error',
+                align: 'center',
+                width: 'auto',
+                delay: 10000,
+                allow_dismiss: true
+            });
+        }
+    	else if(sold=="0/0"){
             $.bootstrapGrowl("You cannot publish without tickets.", {
                 type: 'error',
                 align: 'center',
                 width: 'auto',
                 delay: 10000,
                 allow_dismiss: true
+            });
+        } else {        
+            $http.get('event/myevent/publishevent/'+eventid).success(function(){
+            	$scope.fetchDraftEventsList();        
             });
         }
     }

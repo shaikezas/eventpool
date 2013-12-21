@@ -12,6 +12,14 @@ public class MyEventForm {
 	private String status;
 	private String eventUrl;
 	private String sold;
+	private String description;
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getTitle() {
 		return title;
 	}
