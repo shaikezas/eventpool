@@ -9,4 +9,8 @@ public class DateCount {
 	public Long currentMonthCount=0L;
 	public Long otherDatesCount=0L;
 
+	@Override
+	public String toString() {
+		return todayCount+" "+tomorrowCount+" "+currentWeekCount+" "+nextWeekCount+" "+currentMonthCount+" "+otherDatesCount;
+	}
 }

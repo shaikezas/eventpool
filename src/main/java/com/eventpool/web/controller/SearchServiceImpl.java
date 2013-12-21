@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.apache.solr.client.solrj.SolrQuery;
@@ -50,11 +51,12 @@ public class SearchServiceImpl implements SearchService {
 	private static final int REST = 6;
 	private static final int CURRENT_MONTH = 5;
 	private static final int NEXT_WEEK = 4;
+	private static final int CURRENT_WEEK = 3;
 	private static final int TOMORROW = 2;
 	private static final int TODAY = 1;
 	private static final int PAST = 0;
 	private static final Logger logger = LoggerFactory.getLogger(EventApiImpl.class);
-	private static final int CURRENT_WEEK = 3;
+	
 	private static final String EXCLUDE ="{!ex=dt}";
 	private static final String TAG ="{!tag=dt}";
 	@Resource
@@ -73,6 +75,10 @@ public class SearchServiceImpl implements SearchService {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T00:00:00Z'");
 	SimpleDateFormat dateSdf = new SimpleDateFormat("yyyy-MM-dd");
 	
+	@PostConstruct
+	public void init(){
+		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+	}
     public List<EventSearchRecord> getSearchRecords(int rows,int start,Integer cityId,Integer countryId)
 			throws Exception {
     
@@ -142,7 +148,7 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		solrQuery.addFacetField(COUNTRYID);
-		solrQuery.addFacetPivotField(EXCLUDE+STARTDATE+","+ENDDATE);
+		solrQuery.addFacetPivotField(EXCLUDE+START_DATE+","+END_DATE);
 		solrQuery.setIncludeScore(true);
 		
 		//if(listOfFilters==null || listOfFilters.size()==0){
@@ -191,7 +197,7 @@ public class SearchServiceImpl implements SearchService {
 							dateFormat = sdf.format(date);
 
 							cal.setTime(new Date());
-							cal.add(Calendar.DAY_OF_MONTH, 2);
+							cal.add(Calendar.DAY_OF_MONTH, 3);
 							date = cal.getTime();
 							endDateFormat = sdf.format(date);
 						}
@@ -203,11 +209,13 @@ public class SearchServiceImpl implements SearchService {
 								//This week filter
 								cal = Calendar.getInstance();
 								cal.setTime(new Date());
-								cal.add(Calendar.DAY_OF_MONTH, 0);
+
+								int dayOftheWeek = cal.get(Calendar.DAY_OF_WEEK);
+								
+								cal.add(Calendar.DAY_OF_MONTH, 1);
 								date = cal.getTime();
 								dateFormat = sdf.format(date);
 								
-								int dayOftheWeek = cal.get(Calendar.DAY_OF_WEEK);
 								int i = Calendar.SATURDAY - dayOftheWeek;
 								
 								cal.add(Calendar.DAY_OF_MONTH, i+1);
@@ -241,7 +249,7 @@ public class SearchServiceImpl implements SearchService {
 
 								cal.setTime(new Date());
 								cal.add(Calendar.MONTH, 1);
-								cal.set(Calendar.DAY_OF_MONTH,0);
+								cal.set(Calendar.DAY_OF_MONTH,1);
 
 								date = cal.getTime();
 								endDateFormat = sdf.format(date);
@@ -533,20 +541,21 @@ public class SearchServiceImpl implements SearchService {
 		DateCount dateCount = new DateCount();
 		
 		NamedList<List<PivotField>> facetPivot = response.getFacetPivot();
-		List<List<PivotField>> pivotList = facetPivot.getAll(STARTDATE+","+ENDDATE);
+		List<List<PivotField>> pivotList = facetPivot.getAll(START_DATE+","+END_DATE);
 		for(List<PivotField> pivotInnerList:pivotList){
 			for(PivotField pivotField:pivotInnerList){
 				String field = pivotField.getField();
 				int count = pivotField.getCount();
-				String pivotValue = (String)pivotField.getValue();
+				Date pivotValue = (Date)pivotField.getValue();
 				List<PivotField> subPivotList = pivotField.getPivot();
 				
-				Date eventDate = dateSdf.parse(pivotValue);
-				int dateFilter = getDayFilter(eventDate);
+				//Date eventDate = dateSdf.parse(pivotValue);
+				int dateFilter = getDayFilter(pivotValue);
 				for(PivotField innerPivotField:subPivotList){
 					//System.out.println("field:"+field+" count:"+count+" pivotvalue:"+pivotValue+" innerPivotField:"+innerPivotField.getField()+" innerPivotCount:"+innerPivotField.getCount()+" innerPivot"+innerPivotField.getValue());
-					Date endDate = dateSdf.parse((String)innerPivotField.getValue());
-					int endDateFilter = getDayFilter(endDate);
+					//Date endDate = dateSdf.parse((Date)innerPivotField.getValue());
+					Date endDatePivot = (Date)innerPivotField.getValue();
+					int endDateFilter = getDayFilter(endDatePivot);
 					count=innerPivotField.getCount();
 					calculateCount(dateCount, count, endDateFilter);
 					switch(dateFilter){
@@ -554,8 +563,12 @@ public class SearchServiceImpl implements SearchService {
 							case TODAY:
 								if(endDateFilter>TODAY){
 									dateCount.todayCount+=count;
+									//dateCount.tomorrowCount+=count;		
 								}
 							case TOMORROW:
+								if(endDateFilter>TOMORROW){
+									dateCount.tomorrowCount+=count;
+								}
 							case CURRENT_WEEK:
 								if(endDateFilter>CURRENT_WEEK){
 									dateCount.currentWeekCount+=count;
@@ -565,12 +578,13 @@ public class SearchServiceImpl implements SearchService {
 									dateCount.nextWeekCount+=count;
 								}
 							case CURRENT_MONTH:
-								if(endDateFilter>TODAY && endDateFilter!=CURRENT_MONTH){
+								if(endDateFilter>=TODAY && endDateFilter!=CURRENT_MONTH){
 									dateCount.currentMonthCount+=count;
 								}
 								
 					}
-					
+					/*System.out.println("start date"+pivotValue+" end date"+endDatePivot+"date filter"+dateFilter+"end filter "+
+							endDateFilter+" datecount:"+dateCount.toString()+"   count:"+count);*/					
 /*					if(dateFilter == PAST ){
 						if(endDateFilter!=PAST){
 							todayCount = count + todayCount;
@@ -695,7 +709,7 @@ public class SearchServiceImpl implements SearchService {
 
 		valueOf = String.valueOf(TOMORROW);
 		newFilterMap = getFilterData(listOfFilters, valueOf);		
-		filterItem = getFilterItem(dateCount.tomorrowCount+dateCount.todayCount,"Tommorrow", "",newFilterMap,countryId);
+		filterItem = getFilterItem(dateCount.tomorrowCount,"Tommorrow", "",newFilterMap,countryId);
 		eventDateFilterItems.add(filterItem);
 
 		valueOf = String.valueOf(CURRENT_WEEK);
@@ -838,13 +852,16 @@ public class SearchServiceImpl implements SearchService {
 	    int day = cal.get(Calendar.DAY_OF_MONTH);
 	    int week = cal.get(Calendar.WEEK_OF_MONTH);
 	    
-	    String format = dateSdf.format(new Date());
+/*	    String format = dateSdf.format(new Date());
 	    try {
 			cal.setTime(dateSdf.parse(format));
 		} catch (ParseException e) {
 			logger.info("parse error",e);
 		}
-	    int currentYear = cal.get(Calendar.YEAR);
+		
+*/	    cal.setTime(new Date());
+	    cal.set(Calendar.HOUR_OF_DAY, 0);
+		int currentYear = cal.get(Calendar.YEAR);
 	    int currentMonth = cal.get(Calendar.MONTH);
 	    int currentDay = cal.get(Calendar.DAY_OF_MONTH);
 	    int currentDate = cal.get(Calendar.DATE);
