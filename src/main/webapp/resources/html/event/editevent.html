@@ -332,14 +332,14 @@
 							  
 							  
 							      <div class="control-group">
-							    <label class="control-label" for="minQty">Min Qty For Order :</label>
+							    <label class="control-label" for="minQty">Min Qty For Order :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 							      <input name="minqty" type="number" min="1" id="ticketMinQty" ng-model="ticket.minQty" required><br/>
 							      <span ng-show="tktrowform.minqty.$dirty && tktrowform.minqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 							    </div>
 							  </div>							  
 							      <div class="control-group">
-							    <label class="control-label" for="tcktMaxQty">Max Qty For Order :</label>
+							    <label class="control-label" for="tcktMaxQty">Max Qty For Order :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 							      <input name="maxqty" type="number" min="1" id="tcktMaxQty" ng-model="ticket.maxQty" required><br/>
 							      <span ng-show="tktrowform.maxqty.$dirty && tktrowform.maxqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
