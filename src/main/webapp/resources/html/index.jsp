@@ -74,7 +74,7 @@
 								  <fieldset>
 								   		<legend ng-style="{color:'blue'}">Sign in</legend>
 								    	<label for="username">Email <span ng-style="{color:'red'}">*</span></label>
-								    	<input id="username" ng-model="username" type="email" name="username" required/>
+								    	<input id="username" ng-model="username" type="email" name="username" required />
 				                         <div  ng-style="{color:'red'}">
 											<span ng-show="usernameReq" ng-style="{color:'red'}">Email is required.</span>
 											<span ng-show="validEmail" ng-style="{color:'red'}">Enter valid email address.</span>
@@ -84,7 +84,7 @@
 								 		<input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
 					                     <div  ng-show="passwordRequired" ng-style="{color:'red'}">Password is Required.
 											<!-- <span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span> -->
-					               		 </div>
+					               		 </div>					               		 
 								
 								  </fieldset>
 								
@@ -131,8 +131,9 @@
 				                </div>
 								
 								<label for="newUserPassword">Password <span ng-style="{color:'red'}">*</span></label>
-								<input id="newUserPassword" type="password" ng-model="signupuserform.password" name="newUserPassword" required/>
-								<div  ng-show="newUserPasswordReq" ng-style="{color:'red'}">Password is Required.</div>
+								<input id="newUserPassword" type="password" ng-model="signupuserform.password" ng-minlength="4" name="newUserPassword" required/>
+								<div ng-show="newUserPasswordReq" ng-style="{color:'red'}">Password is Required.</div>
+								<div ng-show="passlength" ng-style="{color:'red'}">Password should be atleast 4 chars.</div>
 								
 								<label for="newUserPasswordCF">Confirm Password <span ng-style="{color:'red'}">*</span></label>
 								<input id="newUserPasswordCF" type="password" ng-model="confirmpassword" name="newUserPasswordCF" required/>

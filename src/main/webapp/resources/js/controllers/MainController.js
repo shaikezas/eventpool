@@ -46,6 +46,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $scope.newUserEmailReq = $scope.signupForm.newUserEmail.$error.required;    	 
     	 $scope.newuserValidEmail = $scope.signupForm.newUserEmail.$error.email; 
     	 $scope.newUserPasswordReq = $scope.signupForm.newUserPassword.$error.required;
+    	 $scope.passlength = $scope.signupForm.newUserPassword.$error.minlength;
     	 $scope.newUserPasswordCFReq = $scope.signupForm.newUserPasswordCF.$error.required;
     	 if($scope.signupForm.$valid){
     		 if($scope.signupuserform.password == $scope.confirmpassword){
@@ -115,6 +116,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $scope.resetsignform();
     	 $scope.usernameReq=false;
     	 $scope.passwordRequired=false;
+    	 $scope.passlength=false;
     	 $scope.validEmail=false;
     	 $scope.newUserEmailReq=false;
     	 $scope.newuserValidEmail=false;
