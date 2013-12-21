@@ -357,6 +357,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
              }
     }
     
+
     $scope.cityFormatResult = function(cityinfo) {
     	cityinfo = cityinfo.text;
         var markup = "<table class='movie-result'><tr>";
@@ -420,8 +421,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	millSecs = millSecs - 3600000;
         	sEnd = new Date(millSecs);
         	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");*/
-        }
-        
+        }        
         $scope.event.tickets.push(ticket);
     }
     

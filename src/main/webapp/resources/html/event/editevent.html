@@ -256,7 +256,7 @@
 						
 							  <table id="tktTable" style="border:0px;" >
 							  <tbody>
-							   <tr ng-repeat="ticket in event.tickets" >
+							   <tr ng-repeat="ticket in event.tickets" ng-form="tktrowform">
 							   <td ng-show="ticket.deleted==false">
 									<table class="table table-condensed" >
 								      <thead>
@@ -272,16 +272,25 @@
 								      </thead>
 								      <tbody>
 								        <tr>
-								          <td> <input type="text" ng-model="ticket.name" required></td><!--  {{tktName[$index]}} -->
-								          <td> <input class="quant" type="number" min="1" ng-disabled="event.isPublish" ng-model="ticket.quantity" required ></td>
-								          <td><span ng-show="ticket.ticketType=='FREE'">FREE</span><input type="number" min="0.001" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" required></td>
+								          <td> 
+								          	<input name="name" type="text" ng-model="ticket.name" required> 
+								            <span ng-show="tktrowform.name.$dirty && tktrowform.name.$invalid" ng-style="{color:'red'}">Required.</span>
+								          </td><!--  {{tktName[$index]}} -->
+								          <td> 
+								            <input name="quantity" class="quant" type="number" min="1" ng-disabled="event.isPublish" ng-model="ticket.quantity" required ><br/>
+								            <span ng-show="tktrowform.quantity.$dirty && tktrowform.quantity.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
+								          </td>
+								          <td>
+								          	<span ng-show="ticket.ticketType=='FREE'">FREE</span>
+								          	<input type="number" name="price" min="0" ng-show="ticket.ticketType=='PAID'" ng-model="ticket.price" required><br/>
+								            <span ng-show="tktrowform.price.$dirty && tktrowform.price.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
+								          </td>
 								          <td>
 								        	<button class="icon-cog" 	ng-click="isCollapsed = !isCollapsed">	<div tooltip="Ticket Settings">&nbsp;	</div>		</button>
 								        	<button class="icon-trash " ng-click="removeTicket($index)" > 		<div tooltip="Remove Ticket">&nbsp;		</div>  &nbsp;</button> 
 								        	</td>
 								         
 								        </tr>
-								      
 								        
 								      </tbody>
 								    </table>
@@ -294,7 +303,7 @@
 							      <!-- <button id="hide" type="button" class="close" ng-click="showticketsettings(ticket, false)">X</button> -->
 							      
 							    </div>
-								    <label class="control-label" for="ticketDescription">Ticket Description :*</label>
+								    <label class="control-label" for="ticketDescription">Ticket Description :</label>
 								    <div class="controls">
 								      <textarea id="ticketDescription" rows="3" ng-model="ticket.description" ></textarea>
 								    </div>
@@ -325,13 +334,15 @@
 							      <div class="control-group">
 							    <label class="control-label" for="minQty">Min Qty For Order :</label>
 							    <div class="controls">
-							      <input type="text" id="ticketMinQty" ng-model="ticket.minQty" >
+							      <input name="minqty" type="number" min="1" id="ticketMinQty" ng-model="ticket.minQty" required><br/>
+							      <span ng-show="tktrowform.minqty.$dirty && tktrowform.minqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 							    </div>
 							  </div>							  
 							      <div class="control-group">
 							    <label class="control-label" for="tcktMaxQty">Max Qty For Order :</label>
 							    <div class="controls">
-							      <input type="text" id="tcktMaxQty" ng-model="ticket.maxQty" >
+							      <input name="maxqty" type="number" min="1" id="tcktMaxQty" ng-model="ticket.maxQty" required><br/>
+							      <span ng-show="tktrowform.maxqty.$dirty && tktrowform.maxqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 							    </div>
 							  </div>
 							 
