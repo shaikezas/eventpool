@@ -95,4 +95,12 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 		return sdf.parse(format);
 	}
 
+	public  Date getTimeZoneDate(String timeZone,Date date) throws ParseException{
+		String pattern = "dd-MMM-yyyy HH:mm";
+		SimpleDateFormat df = new SimpleDateFormat(pattern);
+		df.setTimeZone(TimeZone.getTimeZone(timeZone));
+		String format = df.format(date.getTime());
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		return sdf.parse(format);
+	}
 }

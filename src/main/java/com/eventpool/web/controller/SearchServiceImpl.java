@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import com.eventpool.common.module.CategoryNode;
 import com.eventpool.common.module.CategoryTree;
+import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.event.module.EventApiImpl;
 
@@ -96,6 +98,21 @@ public class SearchServiceImpl implements SearchService {
 		addImageHostUrl(searchResults);
     	return searchResults;
 	}
+
+    @Resource
+    private DateCustomConverter dateCustomConverter;
+
+	/*private void convertTimeZone(List<EventSearchRecord> searchResults) throws ParseException {
+		if(searchResults!=null && searchResults.size()>0){
+			for(EventSearchRecord eventSearchRecord:searchResults){
+				
+				Date timeZoneDate = dateCustomConverter.getTimeZoneDate(TimeZone.getDefault().getID(),eventSearchRecord.getStartDate());
+				eventSearchRecord.setStartDate(timeZoneDate);
+				timeZoneDate = dateCustomConverter.getTimeZoneDate(TimeZone.getDefault().getID(),eventSearchRecord.getEndDate());
+				eventSearchRecord.setEndDate(timeZoneDate);
+			}
+		}
+	}*/
 
 
 	private QueryResponse getSolrResponse(String query, Map<String,String> listOfFilters,int rows,int start,Integer countryId)
@@ -548,9 +565,9 @@ public class SearchServiceImpl implements SearchService {
 									dateCount.nextWeekCount+=count;
 								}
 							case CURRENT_MONTH:
-								//if(endDateFilter>CURRENT_MONTH){
+								if(endDateFilter>TODAY && endDateFilter!=CURRENT_MONTH){
 									dateCount.currentMonthCount+=count;
-								//}
+								}
 								
 					}
 					

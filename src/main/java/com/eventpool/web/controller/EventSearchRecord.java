@@ -44,7 +44,7 @@ public class EventSearchRecord  implements Serializable{
 	@Field
 	private String mapUrl;
 	@Field
-	private Long zipCode;
+	private String zipCode;
 	@Field
 	private String phoneNumber;
 	@Field
@@ -166,12 +166,6 @@ public class EventSearchRecord  implements Serializable{
 	}
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
-	}
-	public Long getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(Long zipCode) {
-		this.zipCode = zipCode;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -326,6 +320,12 @@ public class EventSearchRecord  implements Serializable{
 	}
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 	
 }
