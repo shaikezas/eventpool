@@ -40,9 +40,8 @@ public class SearchServiceImpl implements SearchService {
 	private static final String RIGHT_PARENTHESIS = ")";
 	private static final String LEFT_PARENTHESIS = "(";
 	private static final String COUNTRYID = "countryId";
+	private static final String WEBINAR = "isWebinar";
 	private static final String EVENTDATE = "eventDate";
-	private static final String STARTDATE = "eventDate";
-	private static final String ENDDATE = "endDateString";
 	private static final String START_DATE = "startDate";
 	private static final String END_DATE="endDate";
 	private static final String EVENTTYPE = "eventType";
@@ -89,8 +88,6 @@ public class SearchServiceImpl implements SearchService {
     	}
     	if(countryId!=null){
     		listOfFilters.put("countryId",String.valueOf(countryId));
-    		/*if(fq!=null) fq = fq+" AND "; 
-    		fq=fq+"countryId:"+countryId;*/
     	}
     	QueryResponse response = getSolrResponse("",listOfFilters, rows,start,null); 
 		List<EventSearchRecord> searchResults = response.getBeans(EventSearchRecord.class);
@@ -100,18 +97,6 @@ public class SearchServiceImpl implements SearchService {
 
     @Resource
     private DateCustomConverter dateCustomConverter;
-
-	/*private void convertTimeZone(List<EventSearchRecord> searchResults) throws ParseException {
-		if(searchResults!=null && searchResults.size()>0){
-			for(EventSearchRecord eventSearchRecord:searchResults){
-				
-				Date timeZoneDate = dateCustomConverter.getTimeZoneDate(TimeZone.getDefault().getID(),eventSearchRecord.getStartDate());
-				eventSearchRecord.setStartDate(timeZoneDate);
-				timeZoneDate = dateCustomConverter.getTimeZoneDate(TimeZone.getDefault().getID(),eventSearchRecord.getEndDate());
-				eventSearchRecord.setEndDate(timeZoneDate);
-			}
-		}
-	}*/
 
 
 	private QueryResponse getSolrResponse(String query, Map<String,String> listOfFilters,int rows,int start,Integer countryId)
@@ -141,34 +126,28 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		solrQuery.addFacetField(COUNTRYID);
+		solrQuery.addFacetField(WEBINAR);
+		
 		solrQuery.addFacetPivotField(EXCLUDE+START_DATE+","+END_DATE);
 		solrQuery.setIncludeScore(true);
 		
-		//if(listOfFilters==null || listOfFilters.size()==0){
-				solrQuery.addFilterQuery(END_DATE+":["+sdf.format(getCurrentZeroHourDate().getTime())+" TO * ]");
-		//}
+		solrQuery.addFilterQuery(END_DATE+":["+sdf.format(getCurrentZeroHourDate().getTime())+" TO * ]");
 		
 		if(listOfFilters!=null){
 			for(String key:listOfFilters.keySet()){
 				String filterQuery = listOfFilters.get(key);
 		    	if(filterQuery!=null && key.equalsIgnoreCase(SUBCATEGORYID)){
 		    		solrQuery.addFilterQuery(TAG+SUBCATEGORYID+":"+filterQuery);
-		    		/*fq=fq+" AND "+TAG+SUBCATEGORYID+":"+filterQuery;
-		    		excludeList.add(SUBCATEGORYID);*/
 		    		solrQuery.addFacetField(EXCLUDE+SUBCATEGORYID);
 		    	}
 		    	if(filterQuery!=null && key.equalsIgnoreCase(CITYID)){
 		    		solrQuery.addFilterQuery(TAG+CITYID+":"+filterQuery);
 		    		solrQuery.addFacetField(EXCLUDE+CITYID);
-		    		/*fq=fq+" AND "+TAG+CITYID+":"+filterQuery;
-		    		excludeList.add(CITYID);*/
 		    	}
 	
 		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTTYPE)){
 		    		solrQuery.addFilterQuery(TAG+EVENTTYPE+":"+filterQuery);
 		    		solrQuery.addFacetField(EXCLUDE+EVENTTYPE);
-		    		/*fq=fq+" AND "+TAG+EVENTTYPE+":"+filterQuery;
-		    		excludeList.add(EVENTTYPE);*/
 		    	}
 		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTDATE)){
 		    		
@@ -196,7 +175,6 @@ public class SearchServiceImpl implements SearchService {
 						}
 						if(eventDate==TODAY || eventDate==TOMORROW){
 							solrQuery.addFilterQuery(TAG+LEFT_PARENTHESIS+START_DATE+":[ * TO "+endDateFormat+"] AND "+END_DATE+":["+dateFormat+" TO *]"+RIGHT_PARENTHESIS);
-							//fq=fq+" AND ("+START_DATE+":["+dateFormat+" TO "+endDateFormat+"] OR "+END_DATE+":["+dateFormat+" TO *])";
 						}else{
 							if(eventDate==CURRENT_WEEK){
 								//This week filter
@@ -258,12 +236,7 @@ public class SearchServiceImpl implements SearchService {
 						logger.info(" event date parsable error"+filterQuery);
 					}
 		    		
-/*		    		if(filterQuery.contains("TO")){
-		    			fq=fq+" AND ("+STARTDATE+":"+filterQuery+" OR "+ENDDATE+":"+filterQuery+")";
-		    		}else{
-		    			fq=fq+" AND ("+STARTDATE+":"+filterQuery+" OR "+ENDDATE+":("+filterQuery+" TO *))";
-		    		}
-*/		    	}else{
+		    	}else{
 					solrQuery.addFilterQuery(END_DATE+":["+sdf.format(getCurrentZeroHourDate().getTime())+" TO * ]");
 				}
 			}
@@ -274,10 +247,8 @@ public class SearchServiceImpl implements SearchService {
 				solrQuery = getOtherCountrySolrQuery(query, rows, start,countryId);
 			}
 			else{
-			
 				solrQuery.addFilterQuery(COUNTRYID+":"+countryId+" OR isWebinar:true");
 			}
-			//fq=COUNTRYID+":"+countryId+" AND "+fq;
 		}
 		return returnSolrResponse(solrQuery);
 	}
@@ -321,8 +292,32 @@ public class SearchServiceImpl implements SearchService {
 			subCategoryFilterItems = new ArrayList<FilterItem>();
 			searchQueryResponse.setSubCategoryFilterItems(subCategoryFilterItems);
 		}
+
+		long webinarCount = 0;
+		List<Count> facetValues = response.getFacetField(WEBINAR).getValues();
+		if(facetValues!=null && facetValues.size()>0){
+			for(Count facet:facetValues){
+				if(facet == null) continue;
+				if(facet.getName()!=null && facet.getName().equals("true")){
+					webinarCount+=facet.getCount();
+				}
+			}
+		}
 		
-		List<Count> facetValues = response.getFacetField(SUBCATEGORYID).getValues();
+		List<FilterItem> webinarFilterItems = searchQueryResponse.getWebinarFilterItems();
+		if(webinarFilterItems==null) {
+			webinarFilterItems = new ArrayList<FilterItem>();
+			searchQueryResponse.setWebinarFilterItems(webinarFilterItems);
+		}
+		
+		if(webinarCount>0){
+			FilterItem filterItem = new FilterItem();
+			filterItem.setName("Webinar");
+			filterItem.setCount(webinarCount);
+			webinarFilterItems.add(filterItem);
+		}
+		
+		facetValues = response.getFacetField(SUBCATEGORYID).getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				if(facet == null) continue;
@@ -442,37 +437,6 @@ public class SearchServiceImpl implements SearchService {
 				}
 			}
 		}
-		
-		/*facetValues = response.getFacetField(COUNTRYID).getValues();
-		if(facetValues!=null && facetValues.size()>0){
-			Map<Integer, String> countryMap = entityUtilities.getCountryMap();
-			long otherCountriesCount = 0;
-			for(Count facet:facetValues){
-				String facetName = facet.getName();
-				try {
-					int country = Integer.parseInt(facetName);
-					if(countryId!=null && countryId.compareTo(country)==0){
-						facet.getCount();
-					}else{
-						otherCountriesCount+=facet.getCount();
-					}
-				} catch (Exception e) {
-					logger.info("not able to parse country id from seach results "+facetName,e);
-				}
-			}
-			if(countryId!=null){
-				FilterItem filterItem = getFilterItem(otherCountriesCount, "Other Countries",COUNTRYID+"=-"+countryId,null);
-				List<FilterItem> otherCountryFilterList = new ArrayList<FilterItem>();
-				otherCountryFilterList.add(filterItem);
-				searchQueryResponse.setOtherCountries(otherCountryFilterList);
-			}else{
-				FilterItem filterItem = getFilterItem(otherCountriesCount, "Other Countries","",null);
-				List<FilterItem> otherCountryFilterList = new ArrayList<FilterItem>();
-				otherCountryFilterList.add(filterItem);
-				searchQueryResponse.setOtherCountries(otherCountryFilterList);
-			}
-			
-		}*/
 		
 		FilterItem filterItem = new FilterItem();
 		if(countryId!=null){

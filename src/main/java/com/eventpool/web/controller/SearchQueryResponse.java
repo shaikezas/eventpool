@@ -13,6 +13,8 @@ public class SearchQueryResponse {
 	List<FilterItem> eventTypeFilterItems = new ArrayList<FilterItem>();
 	List<FilterItem> cityIdFilterItems = new ArrayList<FilterItem>();
 	List<FilterItem> countryFilterItems = new ArrayList<FilterItem>();
+	List<FilterItem> webinarFilterItems = new ArrayList<FilterItem>();
+	
 	FilterItem otherCountries = new FilterItem();
 	long noOfresults=0;
 	String query;
@@ -70,5 +72,11 @@ public class SearchQueryResponse {
 	}
 	public void setCountryFilterItems(List<FilterItem> countryFilterItems) {
 		this.countryFilterItems = countryFilterItems;
+	}
+	public List<FilterItem> getWebinarFilterItems() {
+		return webinarFilterItems;
+	}
+	public void setWebinarFilterItems(List<FilterItem> webinarFilterItems) {
+		this.webinarFilterItems = webinarFilterItems;
 	}
 }
