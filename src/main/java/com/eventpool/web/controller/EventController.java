@@ -131,18 +131,11 @@ public class EventController {
 //    	updateEventType(eventDTO);
     	 try {
     		 if(eventDTO.getId()==null){
-    			 EventDTO eventByUrl = null;
     			 String eventUrl = eventDTO.getEventUrl();
-    				Calendar cal = Calendar.getInstance();
-    				String month = new SimpleDateFormat("MMM").format(cal.getTime());
-    				int date = cal.getTime().getDate();
-    				Random random = new Random();
-    			 do{
-    				 eventByUrl = eventService.getEventByUrl(eventUrl);
-    				 if(eventByUrl!=null){
-    					 eventUrl = eventDTO.getEventUrl() +"_"+month+"_"+date+"_"+random.nextInt(100);
-    				 }
-    			 }while (eventByUrl==null);
+    			 eventUrl = eventDTO.getEventUrl().toLowerCase().replaceAll("\\s+", " ").replace(" ", "-").concat("-"+new Date().getTime());
+    			 if(eventUrl.length()>256){
+    				 eventUrl = eventUrl.substring(eventUrl.length()-256);
+    			 }
     			 eventDTO.setEventUrl(eventUrl);
     		 }
  			eventService.addEvent(eventDTO);
@@ -151,7 +144,7 @@ public class EventController {
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
  			htmlEmailService.sendMail(toList, subject, subject+" Successfully saved.", null,null);
- 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created event");
+ 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully saved.");
  		} catch (Exception e) {
  			e.printStackTrace();
  			return new ResponseMessage(ResponseMessage.Type.error, "Failed to create event : reason -"+e.getMessage());
