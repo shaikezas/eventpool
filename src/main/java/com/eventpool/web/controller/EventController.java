@@ -184,6 +184,8 @@ public class EventController {
  			
 */ 			event.setIsPublish(true);
 			event.setPublishDate(new Date());
+			event.setIsActive(true);
+			event.setStatus("OPEN");
 			addEvent(event);
  			List<String> toList = new ArrayList<String>();
  			toList.add(user.getEmail());
