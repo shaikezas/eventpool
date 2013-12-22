@@ -58,6 +58,7 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 
 	private Date getDate(String source,  String pattern) {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		sdf.setTimeZone(TimeZone.getDefault());
 		try {
 			return sdf.parse(source);
 		} catch (ParseException e) {
