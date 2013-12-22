@@ -362,16 +362,6 @@ public class EventpoolMapper {
 			eventDTO.setPrivacyType(EventPrivacyType.PUBLIC.value());
 		}
 		eventDTO.setPublish(eventForm.getIsPublish());
-		/*OrderFormSettings orderFormSettings = eventForm.getOrderFormSettings();
-		if(orderFormSettings!=null){
-			JSONObject json = new JSONObject(orderFormSettings);
-			EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
-			if(eventSettingsDTO==null){
-				eventSettingsDTO = new EventSettingsDTO();
-				eventDTO.setEventSettingsDTO(eventSettingsDTO);
-			}
-			eventSettingsDTO.setOrderFromSettings(json.toString());
-		}*/
 	}
 	
 	private String getEventImagePath(String path) {

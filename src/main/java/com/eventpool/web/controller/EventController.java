@@ -119,16 +119,11 @@ public class EventController {
     			ticket.setTicketOrder(i);
     			i++;
     		}
+    	}
     	
-    	
-    	}else
-    		System.out.println("tickets are null");
-    	
-    	System.out.println("user Id "+user.getId());
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
     	eventDTO.setCreatedBy(user.getId());
-//    	updateEventType(eventDTO);
     	 try {
     		 if(eventDTO.getId()==null){
     			 String eventUrl = eventDTO.getEventUrl();
@@ -153,9 +148,9 @@ public class EventController {
     
     @RequestMapping(value = "/myevent/addEventAndPublish", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEventAndPublish(@RequestBody EventForm event) throws Exception {
-    	User user = userService.getCurrentUser();
+   	User user = userService.getCurrentUser();
     	
-    	if(event.getTickets()!=null){
+ /*   	if(event.getTickets()!=null){
     		int i=1;
     		for(TicketForm ticket :event.getTickets()){
     			ticket.setCreatedBy(user.getId());
@@ -171,14 +166,25 @@ public class EventController {
     	EventDTO eventDTO = new EventDTO();
     	mapper.mapEventDTO(event, eventDTO);
     	eventDTO.setCreatedBy(user.getId());
-//    	updateEventType(eventDTO);
-    	 try {
+*/    	 try {
+/*       		 if(eventDTO.getId()==null){
+    			 String eventUrl = eventDTO.getEventUrl();
+    			 eventUrl = eventDTO.getEventUrl().toLowerCase().replaceAll("\\s+", " ").replace(" ", "-").concat("-"+new Date().getTime());
+    			 if(eventUrl.length()>256){
+    				 eventUrl = eventUrl.substring(eventUrl.length()-256);
+    			 }
+    			 eventDTO.setEventUrl(eventUrl);
+    		 }
+
  			eventService.addEvent(eventDTO);
- 			String email = user.getEmail();
+*/
+/*			String email = user.getEmail();
  			String subject = eventDTO.getEventUrl();
- 			eventService.publishEvent(subject, true);
+ 			
+*/ 			event.setIsPublish(true);
+			addEvent(event);
  			List<String> toList = new ArrayList<String>();
- 			toList.add(email);
+ 			toList.add(user.getEmail());
 // 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created and published.", null,null);
  			return new ResponseMessage(ResponseMessage.Type.success, "Successfully saved event and published.");
  		} catch (Exception e) {
