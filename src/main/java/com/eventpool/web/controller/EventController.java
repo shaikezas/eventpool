@@ -134,6 +134,7 @@ public class EventController {
     			 eventDTO.setEventUrl(eventUrl);
     		 }
  			eventService.addEvent(eventDTO);
+ 			mapper.mapEventForm(eventDTO, event);
  			String email = user.getEmail();
  			String subject = eventDTO.getEventUrl();
  			List<String> toList = new ArrayList<String>();
@@ -182,6 +183,7 @@ public class EventController {
  			String subject = eventDTO.getEventUrl();
  			
 */ 			event.setIsPublish(true);
+			event.setPublishDate(new Date());
 			addEvent(event);
  			List<String> toList = new ArrayList<String>();
  			toList.add(user.getEmail());
