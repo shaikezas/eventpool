@@ -60,7 +60,11 @@ public class DateCustomConverter extends DozerConverter<String, Date> implements
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		sdf.setTimeZone(TimeZone.getDefault());
 		try {
-			return sdf.parse(source);
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeZone(TimeZone.getDefault());
+			cal.setTime(sdf.parse(source));
+			System.out.println("date:"+cal.getTime());
+			return cal.getTime();
 		} catch (ParseException e) {
 			logger.error("date parse exception",e);
 		}
