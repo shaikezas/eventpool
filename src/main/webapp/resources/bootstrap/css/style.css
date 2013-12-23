@@ -391,11 +391,9 @@ background-image: -moz-linear-gradient(top,#e6e6e6,#fff);
 background-image: -webkit-gradient(linear,0 0,0 100%,from(#e6e6e6),to(#fff));
 background-image: -webkit-linear-gradient(top,#e6e6e6,#fff);
 background-image: -o-linear-gradient(top,#e6e6e6,#fff);
-background-image: linear-gradient(to bottom,#e6e6e6,#fff);
+background-image: linear-gradient(to bottom,#046CAB,#fff);
 background-repeat: repeat-x;
 }
-
-	
 
 .floatLeft{float: left}
 .floatRight{float: right}
