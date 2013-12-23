@@ -54,10 +54,11 @@
 					<li class="nav-header">
 						<a href="#/findevent?q={{searchResults.query}}&{{searchResults.otherCountries.query}}&other=true">other countries</a>
 					</li>
-					
+					<li class="nav-header">Webinars</li>
 					<li ng-repeat="filterItem in searchResults.webinarFilterItems">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&other=true">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
+					
 					
 			</ul>
 
