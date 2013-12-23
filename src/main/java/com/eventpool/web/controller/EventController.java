@@ -151,38 +151,8 @@ public class EventController {
     public @ResponseBody ResponseMessage  addEventAndPublish(@RequestBody EventForm event) throws Exception {
    	User user = userService.getCurrentUser();
     	
- /*   	if(event.getTickets()!=null){
-    		int i=1;
-    		for(TicketForm ticket :event.getTickets()){
-    			ticket.setCreatedBy(user.getId());
-    			ticket.setTicketOrder(i);
-    			i++;
-    		}
-    	
-    	
-    	}else
-    		System.out.println("tickets are null");
-    	
-    	System.out.println("user Id "+user.getId());
-    	EventDTO eventDTO = new EventDTO();
-    	mapper.mapEventDTO(event, eventDTO);
-    	eventDTO.setCreatedBy(user.getId());
-*/    	 try {
-/*       		 if(eventDTO.getId()==null){
-    			 String eventUrl = eventDTO.getEventUrl();
-    			 eventUrl = eventDTO.getEventUrl().toLowerCase().replaceAll("\\s+", " ").replace(" ", "-").concat("-"+new Date().getTime());
-    			 if(eventUrl.length()>256){
-    				 eventUrl = eventUrl.substring(eventUrl.length()-256);
-    			 }
-    			 eventDTO.setEventUrl(eventUrl);
-    		 }
-
- 			eventService.addEvent(eventDTO);
-*/
-/*			String email = user.getEmail();
- 			String subject = eventDTO.getEventUrl();
- 			
-*/ 			event.setIsPublish(true);
+    	 try {
+ 			event.setIsPublish(true);
 			event.setPublishDate(new Date());
 			event.setIsActive(true);
 			event.setStatus("OPEN");
