@@ -583,7 +583,7 @@ public class EventTest extends BaseTest{
     	for(Event event:findAll){
     		eventService.pushToQueue(event.getId());
     	}*/
-    	for(long i=1;i<82;i++){
+    	for(long i=1;i<91;i++){
     		eventService.pushToQueue(i);
     	}
     }

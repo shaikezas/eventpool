@@ -92,6 +92,8 @@ public class SearchController {
     	String eventType = request.getParameter("eventType");
     	String eventDate = request.getParameter("eventDate");
     	String countryParam = request.getParameter("countryId");
+    	String webinar = request.getParameter("webinar");
+    	
     	
     	Integer countryId = null;
     	if(countryParam==null || countryParam.isEmpty() || checkIfUndefined(countryParam)==null){
@@ -126,6 +128,11 @@ public class SearchController {
     	eventDate = checkIfUndefined(eventDate);
     	if(eventDate!=null && !eventDate.isEmpty()){
     		filterMap.put("eventDate", eventDate);
+    	}
+
+    	webinar = checkIfUndefined(webinar);
+    	if(webinar!=null && !webinar.isEmpty()){
+    		filterMap.put("webinar", webinar);
     	}
 
     	String q = request.getParameter("q");

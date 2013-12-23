@@ -56,7 +56,7 @@
 					</li>
 					<li class="nav-header">Webinars</li>
 					<li ng-repeat="filterItem in searchResults.webinarFilterItems">
-						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&other=true">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 					
 					
@@ -67,6 +67,11 @@
 					<li ng-repeat="filterItem in searchResults.countryFilterItems">
 						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
+					<li class="nav-header">Webinars</li>
+					<li ng-repeat="filterItem in searchResults.webinarFilterItems">
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+					</li>
+					
  				</ul>
 			</div>
 				

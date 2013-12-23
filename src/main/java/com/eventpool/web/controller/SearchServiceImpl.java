@@ -125,6 +125,10 @@ public class SearchServiceImpl implements SearchService {
 			solrQuery.addFacetField(EXCLUDE+CITYID);
 		}
 		
+		if(listOfFilters.get("webinar")==null){
+			solrQuery.addFacetField(EXCLUDE+WEBINAR);
+		}
+		
 		solrQuery.addFacetField(COUNTRYID);
 		solrQuery.addFacetField(WEBINAR);
 		
@@ -149,6 +153,12 @@ public class SearchServiceImpl implements SearchService {
 		    		solrQuery.addFilterQuery(TAG+EVENTTYPE+":"+filterQuery);
 		    		solrQuery.addFacetField(EXCLUDE+EVENTTYPE);
 		    	}
+		    	
+		    	if(filterQuery!=null && key.equalsIgnoreCase("webinar")){
+		    		solrQuery.addFilterQuery(TAG+WEBINAR+":"+filterQuery);
+		    		solrQuery.addFacetField(EXCLUDE+WEBINAR);
+		    	}
+
 		    	if(filterQuery!=null && key.equalsIgnoreCase(EVENTDATE)){
 		    		
 		    		try {
@@ -293,7 +303,9 @@ public class SearchServiceImpl implements SearchService {
 			searchQueryResponse.setSubCategoryFilterItems(subCategoryFilterItems);
 		}
 
-		long webinarCount = 0;
+		addWebinarCount(response, searchQueryResponse);
+		
+		/*long webinarCount = 0;
 		List<Count> facetValues = response.getFacetField(WEBINAR).getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
@@ -315,9 +327,9 @@ public class SearchServiceImpl implements SearchService {
 			filterItem.setName("Webinar");
 			filterItem.setCount(webinarCount);
 			webinarFilterItems.add(filterItem);
-		}
+		}*/
 		
-		facetValues = response.getFacetField(SUBCATEGORYID).getValues();
+		List<Count> facetValues = response.getFacetField(SUBCATEGORYID).getValues();
 		if(facetValues!=null && facetValues.size()>0){
 			for(Count facet:facetValues){
 				if(facet == null) continue;
@@ -798,7 +810,37 @@ public class SearchServiceImpl implements SearchService {
 			}
 		}
 		
+		addWebinarCount(response, searchQueryResponse);
+
 		return searchQueryResponse;
+	}
+	private void addWebinarCount(QueryResponse response,
+			SearchQueryResponse searchQueryResponse) {
+		List<Count> facetValues;
+		long webinarCount = 0;
+		facetValues = response.getFacetField(WEBINAR).getValues();
+		if(facetValues!=null && facetValues.size()>0){
+			for(Count facet:facetValues){
+				if(facet == null) continue;
+				if(facet.getName()!=null && facet.getName().equals("true")){
+					webinarCount+=facet.getCount();
+				}
+			}
+		}
+
+		List<FilterItem> webinarFilterItems = searchQueryResponse.getWebinarFilterItems();
+		if(webinarFilterItems==null) {
+			webinarFilterItems = new ArrayList<FilterItem>();
+			searchQueryResponse.setWebinarFilterItems(webinarFilterItems);
+		}
+
+		if(webinarCount>0){
+			FilterItem filterItem = new FilterItem();
+			filterItem.setName("Webinar");
+			filterItem.setCount(webinarCount);
+			filterItem.setQuery("webinar=true");
+			webinarFilterItems.add(filterItem);
+		}
 	}
 
 
@@ -813,6 +855,7 @@ public class SearchServiceImpl implements SearchService {
 		solrQuery.setRows(rows);
 		
 		solrQuery.addFacetField(COUNTRYID);
+		solrQuery.addFacetField(WEBINAR);
 		solrQuery.setIncludeScore(true);
 		solrQuery.addFilterQuery(END_DATE+":["+sdf.format(getCurrentZeroHourDate().getTime())+" TO * ]");
 		solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId*-1+" OR isWebinar:true");
