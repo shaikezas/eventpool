@@ -58,6 +58,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 		}
 		$scope.thumbscrollPage = true;
 //		yield to.sleep(.500);
+		$('#loadingWidget').show();
 		if(angular.isDefined($scope.message()) && $scope.message() != null){
     		$scope.message().show = false;
     	}
@@ -72,6 +73,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         	}
     		$scope.thumbscrollPage = false;
     		$scope.page++ ;
+    		$('#loadingWidget').hide();
         });
 	}
 	
@@ -85,9 +87,11 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 		}
 		$scope.listscrollPage = true;
 //		yield to.sleep(.500);
+		$('#loadingWidget').show();
 		if(angular.isDefined($scope.message()) && $scope.message() != null){
     		$scope.message().show = false;
     	}
+		
         	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,'&countryId=',$routeParams.countryId,
         			'&eventDate=',$routeParams.eventDate,'&q=',$routeParams.q,'&webinar=',$routeParams.webinar,'&start=',$scope.page)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
@@ -98,9 +102,11 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         	}
     		$scope.listscrollPage = false;
     		$scope.page++ ;
+    		$('#loadingWidget').hide();
         });
 	}
     $scope.fetchSearchResults = function() {
+    	$('#loadingWidget').show();
     	if(angular.isDefined($routeParams.other)){
     		if($routeParams.other)
     			$scope.othercountries=false;
@@ -128,6 +134,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         	}
         	$scope.searchResults = searchResults;
         	$scope.searchRecords = searchResults.eventSearchRecords;
+        	$('#loadingWidget').hide();
         });
     	
         	

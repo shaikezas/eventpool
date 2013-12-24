@@ -29,6 +29,7 @@
 	<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     
     <link href="resources/bootstrap/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="resources/images/loader.gif"></script>
     
     
 	<!-- This styles are being added for city search dropdown. remove it when proper css are written -->

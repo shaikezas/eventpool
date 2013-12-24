@@ -4,8 +4,10 @@ var MyTicketsController = function($scope, $http,$rootScope,currentuser) {
 	$scope.myTicketsList = {};
 	
     $scope.fetchMyTicketsList = function() {
+    	$('#loadingWidget').show();
     	$http.get('event/myevent/myTickets').success(function(myTicketsList){
         	$scope.myTicketsList = myTicketsList;
+        	$('#loadingWidget').hide();
         });
         
       }

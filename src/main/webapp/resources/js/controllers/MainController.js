@@ -230,7 +230,8 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      }
      
      $scope.fetchhomepagerecords = function(){
-    	 if(angular.isUndefined($scope.homePageResults) && $scope.homePageResults == null){    		 
+    	 if(angular.isUndefined($scope.homePageResults) && $scope.homePageResults == null){
+    		 $('#loadingWidget').show();
     	 $http.get('search/getSearchResults').success(function(homePageSearchResults) {    		 
     		
     			for (var i=0;i<homePageSearchResults.eventSearchRecords.length;i++)
@@ -240,9 +241,10 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
         			    			
             	}
             $scope.homePageResults = homePageSearchResults.eventSearchRecords;
-    	 	  
+            $('#loadingWidget').hide();
         }).error(function() {
 //            $scope.setError('Home page results are not correct.');
+        	$('#loadingWidget').hide();
         });
       }
      }

@@ -14,6 +14,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
 	    }
     $scope.eventpage = function() {
     	if(angular.isDefined($routeParams.eventurl)){
+    		$('#loadingWidget').show();
     	srvevent.eventpage($routeParams).success(function(data) {
 		 $scope.event = data;
 	/*	 $scope.event.startDate = moment($scope.event.startDate).format("DD-MMM-YYYY hh:mm A");
@@ -24,8 +25,9 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
 		    	$scope.event.tickets[i].saleEnd = moment($scope.event.tickets[i].saleEnd).format("DD-MMM-YYYY hh:mm A");
 			    			
 		 	}*/
+		 $('#loadingWidget').hide();
     }).error(function(data) {
-    	
+    	$('#loadingWidget').hide();
     });
     }
     };

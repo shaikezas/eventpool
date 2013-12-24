@@ -11,8 +11,10 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
         });
     }
     $scope.fetchLiveEventsList = function() {
+    	$('#loadingWidget').show();
         $http.get('event/myevent/liveEventList').success(function(liveevents){
             $scope.liveEvents = liveevents;
+            $('#loadingWidget').hide();
         });
     }
     

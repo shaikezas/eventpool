@@ -48,6 +48,7 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
   //configure $http to catch message responses and show them
     $httpProvider.responseInterceptors.push(function ($q) {
         var setMessage = function (response) {
+//        	$('#loadingWidget').hide();
             //if the response has a text and a type property, it is a message to be shown
             if (response.data.text && response.data.type) {
                     $.bootstrapGrowl(response.data.text, {
@@ -65,6 +66,7 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
             }
         };
         return function (promise) {
+//        	$('#loadingWidget').show();
             return promise.then(
                 //this is called after each successful server request
                 function (response) {

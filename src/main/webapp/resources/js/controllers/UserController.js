@@ -4,8 +4,10 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
 	$scope.validaltemail=false;
 	
     $scope.fetchUserDetails = function() {
+    	$('#loadingWidget').show();
     	$http.get('account/getuser').success(function(userDetails){
         	$scope.userDetails = userDetails;
+        	$('#loadingWidget').hide();
         });
         
       }

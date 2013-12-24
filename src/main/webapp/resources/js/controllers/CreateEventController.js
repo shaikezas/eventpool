@@ -115,6 +115,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
    
     $scope.getMembershipId();
     $scope.myevent = function() {
+    	$('#loadingWidget').show();
     	if(angular.isDefined($routeParams.eventid)){
     	$scope.createorupdate = false;
     	srvevent.myevent($routeParams).success(function(data) {
@@ -148,9 +149,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    
 	    $scope.classificationTypes = classificationTypes1;
 	    $scope.isWebinar = $scope.event.isWebinar;
-		 
+	    $('#loadingWidget').hide();
     }).error(function(data) {
-    	
+    	$('#loadingWidget').hide();
     });
     } else {
     	$scope.createorupdate = true;
@@ -159,6 +160,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.contactDetails = true;
     	$scope.showHostWebsite = true;
     	$scope.showAttendeDetails = true;
+    	$('#loadingWidget').hide();
     }
     };
     
