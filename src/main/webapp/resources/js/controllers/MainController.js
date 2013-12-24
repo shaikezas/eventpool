@@ -225,9 +225,8 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
       	 $scope.catId = catId;
      }
      
-     $scope.fetchsearchresults = function(queryText){
-    	 $scope.queryText = queryText;
-    	 $location.url('findevent?q='+queryText+'&subCategoryId=' + $scope.catId);
+     $scope.findevents = function(){
+     	$location.url('findevent?q='+$scope.q);
      }
      
      $scope.fetchhomepagerecords = function(){
