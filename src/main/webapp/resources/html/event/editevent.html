@@ -28,7 +28,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="eventTitle">Event Title :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input class="span5" type="text" id="eventTitle" ng-disabled="event.isPublish" name="eName" ng-model="event.title" ng-change="updateUrl()" placeholder="Title" required >
+							      <input class="span5" type="text" id="eventTitle" ng-disabled="event.isPublish" name="eName" ng-model="event.title" placeholder="Title" required >
 							      <span ng-show="nameRequired" ng-style="{color:'red'}">Required.</span>
 						    </div>
 							  </div>
@@ -90,13 +90,19 @@
 							 			  
 							  
 							  <div class="control-group">
+							    <span ng-show="!event.bannerFile" >
 							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
-							    <div class="controls">
-							      
-	 							<input type="file" name="file" class="fileupload" ng-model="event.bannerFile" 
-											 data-url="upload/banner" fileupload-plugin />
- 								<span ng-show="event.bannerFile">Uploaded banner:{{event.bannerFile}}</span>
-							    </div>
+								    <div class="controls">
+		 								<input type="file" name="file" class="fileupload" ng-model="event.bannerFile" 
+												 data-url="upload/banner" fileupload-plugin />
+									</div>
+								</span>
+ 								<span ng-show="event.bannerFile">
+							    <label class="control-label" for="uploadBanner">Uploaded Banner:</label>
+								    <div class="controls">
+		 								<a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" > view </a> <a href="#venueInformation"> remove </a> 
+									</div>
+								</span>
 							  </div>
 							  
 							

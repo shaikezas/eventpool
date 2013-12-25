@@ -66,6 +66,7 @@ public class EventForm  {
 	private String logo;
 	private Boolean showBookTicket=true ;
 	
+	
 	private String status;
 	
 	public String getTitle() {
