@@ -241,14 +241,12 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
         			    			
             	}
             $scope.homePageResults = homePageSearchResults.eventSearchRecords;
-    	 	  
         }).error(function() {
 //            $scope.setError('Home page results are not correct.');
         });
       }
      }
      
-      
       $scope.getcurrentuser();
       $scope.fetchCategories();
       $scope.fetchhomepagerecords();

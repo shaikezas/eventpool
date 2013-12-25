@@ -100,7 +100,8 @@
  								<span ng-show="event.bannerFile">
 							    <label class="control-label" for="uploadBanner">Uploaded Banner:</label>
 								    <div class="controls">
-		 								<a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" target="_tab"> view </a> <button type="button" ng-click="removeBanner()"> remove </button> 
+		 								<!-- <a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" target="_tab"> view </a> --> 
+		 								<button type="button" ng-click="removeBanner()"> remove </button> <img width="60px" ng-src="http://zeoevent.com:8083/source/{{event.bannerFile}}" >
 									</div>
 								</span>
 							  </div>
