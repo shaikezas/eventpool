@@ -27,7 +27,7 @@
 	
 	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    
+     <script type="text/javascript" src="resources/images/loader.gif"></script>
     <link href="resources/bootstrap/css/style.css" rel="stylesheet">
     
     
