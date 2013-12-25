@@ -60,6 +60,7 @@ public class FileUploadController {
     		response.setError(error);
     		if(error==null)
 			saveInSourceLocation = save.saveInSourceLocation(fileupload.getInputStream());
+    		response.setName(fileupload.getOriginalFilename());
 		} catch (IllegalStateException e) {
 			response.setStatus(false);
 			e.printStackTrace();

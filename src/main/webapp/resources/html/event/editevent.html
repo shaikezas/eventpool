@@ -93,9 +93,9 @@
 							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
 							    <div class="controls">
 							      
-							       <input type="file" class="fileupload" name="file" ng-model="event.bannerFile"
-											data-url="upload/banner" fileupload-plugin/>
-											
+	 							<input type="file" name="file" ng-model="event.bannerFile" 
+											 data-url="upload/banner" fileupload-plugin />
+ 								<span ng-show="event.bannerFile">Uploaded banner:{{event.bannerFile}}</span>
 							    </div>
 							  </div>
 							  

@@ -6,6 +6,7 @@ public class UploadedFileResponse {
 	private boolean status = false;
     private String  error = null;
     private List<PhotoWeb>  filesuploaded;
+    private String name;
 	
     public boolean isStatus() {
 		return status;
@@ -24,6 +25,12 @@ public class UploadedFileResponse {
 	}
 	public void setFilesuploaded(List<PhotoWeb> filesuploaded) {
 		this.filesuploaded = filesuploaded;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
     
 }
