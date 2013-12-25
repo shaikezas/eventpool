@@ -234,7 +234,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         });
     }
 
-
+    $scope.removeBanner = function() {
+    	$scope.event.bannerFile="";
+    	$scope.apply();
+    }
+    
     $scope.addNewEvent = function() {
     	$scope.disabled = true;
     	$scope.resetError();
