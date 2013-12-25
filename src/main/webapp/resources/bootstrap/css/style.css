@@ -380,22 +380,29 @@ h3 i{
 }
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-
-
-
 text-align: center;
 vertical-align: middle;
 cursor: pointer;
 background-color: #fff;
-background-image: -moz-linear-gradient(top,#e6e6e6,#fff);
-background-image: -webkit-gradient(linear,0 0,0 100%,from(#e6e6e6),to(#fff));
-background-image: -webkit-linear-gradient(top,#e6e6e6,#fff);
-background-image: -o-linear-gradient(top,#e6e6e6,#fff);
-background-image: linear-gradient(to bottom,#e6e6e6,#fff);
+background-image: -moz-linear-gradient(top,#046cab,#fff);
+background-image: -webkit-gradient(linear,0 0,0 100%,from(#046cab),to(#fff));
+background-image: -webkit-linear-gradient(top,#046cab,#fff);
+background-image: -o-linear-gradient(top,#046cab,#fff);
+background-image: linear-gradient(to bottom,#046cab,#fff);
 background-repeat: repeat-x;
 }
 
+.nav-tabs .activeAlert a	{
 	
+	color: #fff;
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top,#ff0000,#fff);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#ff0000),to(#fff));
+	background-image: -webkit-linear-gradient(top,#ff0000,#fff);
+	background-image: -o-linear-gradient(top,#ff0000,#fff);
+	background-image: linear-gradient(to bottom,#ff0000,#fff);
+	background-repeat: repeat-x;
+}
 
 .floatLeft{float: left}
 .floatRight{float: right}
