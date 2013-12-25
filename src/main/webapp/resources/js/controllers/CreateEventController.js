@@ -256,19 +256,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.resetError();
     	$scope.validations();
         var tktqty = $scope.atleastoneticketrequired();
-    	if($scope.event.description==""){
-    		$scope.stopSubmitAction=true;    		
-    		$scope.disabled = false;
-                $.bootstrapGrowl("You cannot save and publish without Description.", {
-                    type: 'error',
-                    align: 'center',
-                    width: 'auto',
-                    delay: 10000,
-                    allow_dismiss: true
-                });
-    	}        
-    	else if(tktqty==0){        	
-    		$scope.stopSubmitAction=true;    		
+    	       
+    	if(tktqty==0){        	
+    		$scope.stopSubmitAction=true;    
+    		$("#ticketId").addClass("activeAlert");
     		$scope.disabled = false;
                 $.bootstrapGrowl("You cannot save and publish without tickets. You can do Save & Exit.", {
                     type: 'error',
@@ -324,6 +315,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     }
     $scope.validations = function() {	   
+    	$("#eventId").removeClass("activeAlert");
+    	$("#venueId").removeClass("activeAlert");
+    	$("#ticketId").removeClass("activeAlert");
   	    $scope.setRequiredFields();
     	$scope.nameRequired = $scope.eventForm.eName.$error.required;
 /*    	alert('xyz'+JSON.stringify($scope.eventForm.description));
@@ -336,7 +330,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	if(angular.isUndefined($scope.event.cityName) || $scope.event.cityName==null){
     		$scope.citryReq = true;
     	}
-    	
     	if(angular.isDefined($scope.event.startDate)&&angular.isDefined($scope.event.endDate)){
       	var startDate = new Date($scope.event.startDate);
     	var endDate = new Date($scope.event.endDate);
@@ -357,7 +350,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     	}
       	if($scope.eventForm.$invalid || $scope.venueForm.$invalid || $scope.orgForm.$invalid || $scope.tktForm.$invalid){
-    		$scope.stopSubmitAction=true;    		
+    		$scope.stopSubmitAction=true;   
+    		if($scope.eventForm.$invalid){
+    			$("#eventId").addClass("activeAlert");
+    		}
+    		
+    		if( $scope.venueForm.$invalid){
+    			$("#venueId").addClass("activeAlert");
+    		}
     		$scope.disabled = false;
                 $.bootstrapGrowl("Please fill required fields in one of the tabs. Please fill. Event Venue Information Tab.", {
                     type: 'error',
@@ -461,8 +461,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var   rmTicket =  $scope.event.tickets[index];
         if(!angular.isUndefined(rmTicket.id)){
         	rmTicket.deleted = true;
-        }
+        }else{
         $scope.event.tickets.splice(index, 1);
+        }
     }
     
     $scope.setticketsaleenddte = function(){

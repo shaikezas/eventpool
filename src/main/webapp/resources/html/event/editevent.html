@@ -10,10 +10,10 @@
 			 <!--  Create Event Nav Tab  
 			 ================================================== -->           
 			            <ul id="myTab" class="nav nav-tabs">
-				              <li class="active ">	<a href="#eventInformation" data-toggle="tab">	Event Information <span ng-show="eventForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
-				              <li class="activeAlert">					<a href="#venueInformation" data-toggle="tab">	Venue Information <span ng-show="venueForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
+				              <li id="eventId" class="active ">	<a href="#eventInformation" data-toggle="tab">	Event Information <span ng-show="eventForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
+				              <li id="venueId">					<a href="#venueInformation" data-toggle="tab">	Venue Information <span ng-show="venueForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
 				              <li>					<a href="#organizerInformation" data-toggle="tab">Organizer Information	</a></li>
-				              <li>					<a href="#ticketInformation" data-toggle="tab">	Ticket Information	<span ng-show="tktForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
+				              <li id="ticketId">					<a href="#ticketInformation" data-toggle="tab">	Ticket Information	<span ng-show="tktForm.$invalid" ng-style="{color:'red'}">*</span></a></li>
 			            </ul>
 			 <!--  Create Event Nav Tab -->  
 			 
@@ -34,10 +34,10 @@
 							  </div>
 							  
 							    <div class="control-group">
-							    <label class="control-label" for="description">Description :</label>
+							    <label class="control-label" for="description">Description :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 							      <!-- <textarea id="description" name="description" required ng-model="event.description" placeholder="Description" required></textarea> -->
-							      <textarea id="rteDesc" ck-editor name="description" placeholder="RTE" ng-model="event.description"></textarea>
+							      <textarea id="rteDesc" ck-editor name="description" placeholder="RTE" ng-model="event.description" required></textarea>
 							      <span ng-show="descRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
