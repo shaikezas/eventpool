@@ -239,6 +239,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.apply();
     }
     
+    $scope.removePromotion= function() {
+    	$scope.event.promotionFile="";
+    	$scope.apply();
+    }
+    
     $scope.uploadFile = function() {
     	$scope.event.bannerFile= "name";
     	$scope.apply();
