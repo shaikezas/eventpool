@@ -293,7 +293,7 @@ public class EventpoolMapper {
 		if(!checkIfNull(eventForm)){
 			mapper.map(eventForm, media);
 			if(eventForm.getBannerFile()!=null){
-				String path = eventForm.getBannerFile().getPath();
+				String path = eventForm.getBannerFile().getName();
 				path = getEventImagePath(path);
 				media.setBannerUrl(path);
 			}else{
@@ -302,7 +302,7 @@ public class EventpoolMapper {
 			}
 			
 			if(eventForm.getPromotionFile()!=null){
-				String path = eventForm.getPromotionFile().getPath();
+				String path = eventForm.getPromotionFile().getName();
 				path = getEventImagePath(path);
 				media.setPromotionLogoUrl(path);
 			}else{
