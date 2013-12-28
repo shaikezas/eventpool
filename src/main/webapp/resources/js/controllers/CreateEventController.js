@@ -396,6 +396,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
                 $.bootstrapGrowl("Please fill required fields in one of the tabs. Please fill. Event Venue Information Tab.", {
                     type: 'error',
                     align: 'center',
+                    offset: {from: 'top', amount: 200}, // 'top', or 'bottom'
                     width: 'auto',
                     delay: 10000,
                     allow_dismiss: true
