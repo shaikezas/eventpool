@@ -15,8 +15,44 @@
 			            	
 			              <div class="tab-pane fade in active" id="eventOptionsTab">
 			         		<form class="form-horizontal" name="eventOptionsForm">
+			         		
+			         		<div class="control-group" >
+							 	<span ng-show="!event.promotionFile">
+								 	<label class="control-label" for="uploadBanner">Upload Promotion Logo :</label>
+								 	<span ng-show="!files[1]" >	
+								 		<div id="uploadBannervDiv"	>
+								 			<input type="file" id="fileToUpload" ng-model-instant onchange="angular.element(this).scope().choosePromotion(this)" />
+								 		</div>
+								 	</span>
+									<span ng-show="files[1]">
+										<input type="button" ng-click="uploadPromotion()" value="Upload" />{{files[1].name}}
+										<button type="button" ng-click="cancelPromotion()"> cancel </button>
+									</span>
+								</span>
+<!--  							<span ng-show="event.upload">
+ 								<img width="60px" ng-src="images/loader.gif">
+							</span>
+ -->							 			  
 							  
-							    <div class="control-group">
+<!-- 							  <div class="control-group">
+							    <span ng-show="!event.bannerFile" >
+							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
+								    <div class="controls">
+		 								<input type="file" name="file" class="fileupload" ng-model="event.bannerFile" 
+												 data-url="upload/banner" fileupload-plugin />
+									</div>
+								</span>
+ --> 							<span ng-show="event.promotionFile">
+							    <label class="control-label" for="uploadBanner">Uploaded Promotion:</label>
+								    <div class="controls">
+		 								<!-- <a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" target="_tab"> view </a> --> 
+		 								<button type="button" ng-click="removePromotion()"> remove </button> <img width="60px" ng-src="http://zeoevent.com:8083/source/{{event.promotionFile}}" >
+									</div>
+								</span>
+							  </div>
+			         		
+							  
+<!-- 							    <div class="control-group">
 							    
 								<span ng-show="!event.promotionFile" >
 								    <label class="control-label" for="uploadPromotion">Upload Promotion banner :</label>
@@ -28,20 +64,20 @@
  								<span ng-show="event.promotionFile">
 								    <label class="control-label" for="uploadPromotion">Uploaded Promotion banner :</label>
 									    <div class="controls">
-			 								<!-- <a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" target="_tab"> view </a> --> 
+			 								<a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" target="_tab"> view </a> 
 			 								<button type="button" ng-click="removePromotion()"> remove </button> <img width="60px" ng-src="http://zeoevent.com:8083/source/{{event.promotionFile}}" >
 										</div>
 								</span>
 							    
-								    <!-- <label class="control-label" for="file">Upload Promotion banner :</label>
+								    <label class="control-label" for="file">Upload Promotion banner :</label>
 							    <div class="controls">
 							      
 							       <input type="file" class="fileupload" name="file" ng-model="event.promotionFile"
 											data-url="upload/promotion" fileupload-plugin/>
 											
-							    </div> -->
+							    </div>
 							  </div>
-							  
+ -->							  
 							  
 							   <div class="control-group">
 							    <label class="control-label" for="classificationType">Classification Type :</label>

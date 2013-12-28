@@ -400,6 +400,13 @@ public class EventpoolMapper {
 		if(eventForm.getEventWebSiteUrl()!=null){
 			return false;
 		}
+		if(eventForm.getPromotion()!=null){
+			return false;
+		}
+		if(eventForm.getPromotionFile()!=null){
+			return false;
+		}
+
 		return true;
 	}
 

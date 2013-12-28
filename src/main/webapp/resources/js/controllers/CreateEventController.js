@@ -290,6 +290,56 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.apply();
     }
 
+    
+    $scope.choosePromotion = function(element) {
+        $scope.$apply(function(scope) {
+          console.log('files:', element.files);
+          // Turn the FileList object into an Array
+            $scope.files = []
+            for (var i = 0; i < element.files.length; i++) {
+              $scope.files[1]=element.files[i];
+              $element.files[i].val(null);
+            }
+          });
+        };
+        
+    $scope.cancelPromotion = function() {
+    	$scope.files[1]=null;
+    //	angular.element('fileToUpload').value(null);
+ /*   	var fu = document.getElementById('uploadBannervDiv');
+    	if (fu != null) {
+    	document.getElementById('uploadBannervDiv').innerHTML = fu.innerHTML;
+*/    	$scope.apply();
+    };
+
+    $scope.uploadPromotion = function() {
+        	
+     	   var formData = new FormData();
+     	   for (var i in $scope.files) {
+     		   formData.append("promotion", $scope.files[1])
+            }
+     	   $scope.event.upload=true;
+     	   //$scope.apply();
+ 		   $http.post('upload/promo', formData,{headers: {'Content-Type': undefined },data: formData,
+ 		        transformRequest: angular.identity}).success(function(data){
+ 		        	if(data.status == true) {
+ 		        		$scope.event.promotionFile= data.filesuploaded[0].uniqueid;
+ 	        		} else {
+ 	        			alert("Error in file upload "+data.result.error);
+ 	        		}
+ 		        	
+ 		        }
+ 		        
+ 		        ).error();
+ 		   $scope.apply();
+ 	}
+
+    $scope.removePromotion = function() {
+    	$scope.event.promotionFile="";
+    	$scope.files[1]=null;
+    	$scope.apply();
+    }
+
 /*    $scope.setFiles = function(element) {
     	$scope.event.bannerFile= "setfiles";
     		//element.files[0].name;
