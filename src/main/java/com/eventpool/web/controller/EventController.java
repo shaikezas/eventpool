@@ -136,14 +136,18 @@ public class EventController {
 	    			 eventDTO.setEventUrl(eventUrl);
     			 }
     		 }
+    		 String eventMsg = "Successfully created the event.";
+    		 if(eventDTO.getId()!=null){
+    			 eventMsg = "Successfully updated the event";
+    		 }
  			eventService.addEvent(eventDTO);
  			mapper.mapEventForm(eventDTO, event);
  			String email = user.getEmail();
  			String subject = eventDTO.getEventUrl();
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
- 			htmlEmailService.sendMail(toList, subject, subject+" Successfully saved.", null,null);
- 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully saved.");
+ 			htmlEmailService.sendMail(toList, subject, subject+eventMsg, null,null);
+ 			return new ResponseMessage(ResponseMessage.Type.success, eventMsg);
  		} catch (Exception e) {
  			e.printStackTrace();
  			return new ResponseMessage(ResponseMessage.Type.error, "Failed to create event : reason -"+e.getMessage());
@@ -155,6 +159,10 @@ public class EventController {
    	User user = userService.getCurrentUser();
     	
     	 try {
+    		 String eventMsg = "Successfully created the event and published.";
+    		 if(event.getId()!=null){
+    			 eventMsg = "Successfully updated the event.";
+    		 }
  			event.setIsPublish(true);
 			event.setPublishDate(new Date());
 			event.setIsActive(true);
@@ -162,8 +170,9 @@ public class EventController {
 			addEvent(event);
  			List<String> toList = new ArrayList<String>();
  			toList.add(user.getEmail());
+ 			
 // 			htmlEmailService.sendMail(toList, subject, subject+" Successfully created and published.", null,null);
- 			return new ResponseMessage(ResponseMessage.Type.success, "Successfully saved event and published.");
+ 			return new ResponseMessage(ResponseMessage.Type.success, eventMsg);
  		} catch (Exception e) {
  			e.printStackTrace();
  			return new ResponseMessage(ResponseMessage.Type.error, "Failed to save event : reason -"+e.getMessage());
