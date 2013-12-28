@@ -293,7 +293,7 @@ public class EventpoolMapper {
 		if(!checkIfNull(eventForm)){
 			mapper.map(eventForm, media);
 			if(eventForm.getBannerFile()!=null){
-				String path = eventForm.getBannerFile().getName();
+				String path = eventForm.getBannerFile().getPath();
 				path = getEventImagePath(path);
 				media.setBannerUrl(path);
 			}else{
@@ -302,7 +302,7 @@ public class EventpoolMapper {
 			}
 			
 			if(eventForm.getPromotionFile()!=null){
-				String path = eventForm.getPromotionFile().getName();
+				String path = eventForm.getPromotionFile().getPath();
 				path = getEventImagePath(path);
 				media.setPromotionLogoUrl(path);
 			}else{
@@ -377,6 +377,9 @@ public class EventpoolMapper {
 			return false;
 		}
 		if(eventForm.getBanner()!=null){
+			return false;
+		}
+		if(eventForm.getBannerFile()!=null){
 			return false;
 		}
 		if(eventForm.getVideoUrl()!=null){
