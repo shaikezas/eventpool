@@ -2,6 +2,7 @@ package com.eventpool.common.image;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
@@ -153,6 +154,10 @@ public class SaveImage {
 
 	public String saveInSourceLocation(File file) throws IOException{
 		BufferedImage sourceImage = imageProcessor.getSourceImage(file);
+		return saveInSourceLocation(sourceImage);
+	}
+	public String saveInSourceLocation(BufferedImage sourceImage)
+			throws FileNotFoundException, IOException {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		String destFile = uuid+".jpg";
 		ImageProcessor.writeImageToDisk(sourceImage,localImagePath+"/"+destFile, 0.9f);
@@ -161,9 +166,6 @@ public class SaveImage {
 	
 	public String saveInSourceLocation(InputStream is) throws IOException{
 		BufferedImage sourceImage = imageProcessor.getSourceImage(is);
-		String uuid = UUID.randomUUID().toString().replace("-", "");
-		String destFile = uuid+".jpg";
-		ImageProcessor.writeImageToDisk(sourceImage,localImagePath+"/"+destFile, 0.9f);
-		return destFile;
+		return saveInSourceLocation(sourceImage);
 	}
 }

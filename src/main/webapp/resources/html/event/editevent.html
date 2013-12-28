@@ -87,9 +87,26 @@
 							      </label>
 							    </div>
 							  </div>
-							 			  
+							 	
+							 	<div class="control-group" >
+							 	<span ng-show="!event.bannerFile">
+								 	<label class="control-label" for="uploadBanner">Upload Banner :</label>
+								 	<span ng-show="!files[0]" >	
+								 		<div id="uploadBannervDiv"	>
+								 			<input type="file" id="fileToUpload" ng-model-instant onchange="angular.element(this).scope().chooseBanner(this)" />
+								 		</div>
+								 	</span>
+									<span ng-show="files[0]">
+										<input type="button" ng-click="uploadBanner()" value="Upload" />{{files[0].name}}
+										<button type="button" ng-click="cancelBanner()"> cancel </button>
+									</span>
+								</span>
+<!--  							<span ng-show="event.upload">
+ 								<img width="60px" ng-src="images/loader.gif">
+							</span>
+ -->							 			  
 							  
-							  <div class="control-group">
+<!-- 							  <div class="control-group">
 							    <span ng-show="!event.bannerFile" >
 							    <label class="control-label" for="uploadBanner">Upload Banner :</label>
 								    <div class="controls">
@@ -97,7 +114,7 @@
 												 data-url="upload/banner" fileupload-plugin />
 									</div>
 								</span>
- 								<span ng-show="event.bannerFile">
+ --> 							<span ng-show="event.bannerFile">
 							    <label class="control-label" for="uploadBanner">Uploaded Banner:</label>
 								    <div class="controls">
 		 								<!-- <a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" target="_tab"> view </a> --> 

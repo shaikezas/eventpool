@@ -80,6 +80,7 @@ public class EventForm  {
 	private int registrationLimit= EventPoolConstants.REGISTRATION_TIME_LIMIT;
 	private String logo;
 	private Boolean showBookTicket=true ;
+	private boolean upload = false;
 	
 	
 	private String status;
@@ -431,6 +432,12 @@ public Long getEventId() {
 	}
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
+	}
+	public boolean isUpload() {
+		return upload;
+	}
+	public void setUpload(boolean upload) {
+		this.upload = upload;
 	}
 	
 }
