@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 import com.eventpool.common.dto.OrderFormSettings;
@@ -13,12 +16,16 @@ import com.eventpool.common.module.EventPoolConstants;
 
 public class EventForm  {
 
+	@Size(max=256,message="please enter title less than 256 characters.")
 	private String title;
 	private Long id;
+	@NotNull(message="Please enter start date.")
 	private String startDate;
+	@NotNull(message="Please enter end date.")
 	private String endDate;
 	private Boolean isActive;
 	private String description;
+	@NotNull(message="please enter category id.")
 	private Long subCategoryId;
 	private File organizerLogo;
 	private String banner;
@@ -29,21 +36,29 @@ public class EventForm  {
 	private String faceBookUrl;
 	private String otherUrl1;
 	private String otherUrl2;
+	@Size(max=256,message="please enter venue name less than 256 characters.")
 	private String venueName;
 	private String address1;
 	private String address2;
+	@NotNull(message="please enter city id.")
 	private Integer cityId;
 	private String mapUrl;
+	@Size(max=6,message="please enter zipcode less than 6 characters.")
+	@NotNull(message="please enter zip code.")
 	private String zipCode;
 	private String phoneNumber;
 	private String fax;
 	private String mobileNumber;
+	@Size(max=128,message="please enter organizer name less than 128 characters.")
 	private String organizerName;
+	@Size(max=1000,message="please enter organizer Description less than 1000 characters.")
 	private String organizerDescription;
+	@Size(max=1000,message="please enter contact details less than 1000 characters.")
 	private String contactDetails;
 	private List<TicketForm> tickets = new ArrayList<TicketForm>();
 	private Boolean isWebinar = false;
 	private String termsAndConditions;
+	@Size(max=256,message="please enter keywords less than 256 characters.")
 	private String keyWords;
 	private Date publishDate;
 	private boolean showEvent;

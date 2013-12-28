@@ -2,18 +2,18 @@ package com.eventpool.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.TimeZone;
 
 import javax.annotation.Resource;
+import javax.validation.ConstraintViolationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eventpool.common.dto.DTOValidator;
 import com.eventpool.common.dto.EventDTO;
 import com.eventpool.common.dto.EventInfoSettings;
 import com.eventpool.common.dto.EventOrderSettings;
@@ -75,6 +76,8 @@ import com.google.gson.Gson;
 @RequestMapping("/event")
 public class EventController {
 
+	static final Logger logger = LoggerFactory.getLogger(EventController.class);
+	
 	@Autowired
     private EventService eventService;
     
@@ -108,8 +111,17 @@ public class EventController {
     @Resource
     private CacheUtils cacheUtils;
     
+    @Resource
+    private DTOValidator dtoValidator;
+    
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
+    	try {
+			dtoValidator.validate(event);
+		} catch (ConstraintViolationException cve) {
+			logger.info("constraint vailotaon exception",cve);
+			return new ResponseMessage(ResponseMessage.Type.error, "Unable to save event for the follwoing reason:"+cve.getMessage());
+		}
     	User user = userService.getCurrentUser();
     	
     	if(event.getTickets()!=null){
@@ -145,7 +157,7 @@ public class EventController {
  			htmlEmailService.sendMail(toList, subject, subject+" Successfully saved.", null,null);
  			return new ResponseMessage(ResponseMessage.Type.success, "Successfully saved.");
  		} catch (Exception e) {
- 			e.printStackTrace();
+ 			logger.error("exception while saving event",e);
  			return new ResponseMessage(ResponseMessage.Type.error, "Failed to create event : reason -"+e.getMessage());
  		}
     }
