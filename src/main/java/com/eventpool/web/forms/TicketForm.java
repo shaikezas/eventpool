@@ -2,6 +2,8 @@ package com.eventpool.web.forms;
 
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 import com.eventpool.common.type.TicketType;
@@ -10,10 +12,10 @@ import com.eventpool.common.type.TicketType;
 public class TicketForm {
 	
 	private Long id;
+	@Size(max=128,message="please enter ticket name less than 128 characters.")
 	private String name;
 	
 	private String description;
-	
 	String saleStart;
 	
 	String saleEnd;
