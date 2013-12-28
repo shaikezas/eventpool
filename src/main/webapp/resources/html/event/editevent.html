@@ -247,7 +247,7 @@
 			
 			              </div>
 			              
-			              <div class="tab-pane fade" id="ticketInformation">				                
+			              <div class="tab-pane fade" id="ticketInformation" >				                
 				                
 						        <!-- <form class="form-horizontal"> -->
 							  <form class="form-horizontal" name="tktForm">
@@ -262,9 +262,9 @@
 						
 							  <table id="tktTable" style="border:0px;" >
 							  <tbody>
-							   <tr ng-repeat="ticket in event.tickets" ng-form="tktrowform">
-							   <td ng-show="ticket.deleted==false">
-									<table class="table table-condensed" >
+ 							   <tr ng-repeat="ticket in event.tickets" ng-form="tktrowform">
+ 							   <td ng-show="ticket.deleted==false">
+ 									<table class="table table-condensed" >
 								      <thead>
 								        <tr>
 								        	
@@ -281,7 +281,7 @@
 								          <td> 
 								          	<input name="name" type="text" ng-model="ticket.name" required> 
 								            <span ng-show="tktrowform.name.$dirty && tktrowform.name.$invalid" ng-style="{color:'red'}">Required.</span>
-								          </td><!--  {{tktName[$index]}} -->
+								          </td> 
 								          <td> 
 								            <input name="quantity" class="quant" type="number" min="1" ng-model="ticket.quantity" required ><br/>
 								            <span ng-show="tktrowform.quantity.$dirty && tktrowform.quantity.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
@@ -300,69 +300,55 @@
 								        
 								      </tbody>
 								    </table>
-								    
-								    		 <!-- <div ng-show="ticket.showsettings == true"> -->
-								    		 <div collapse="isCollapsed">
-				           <div class="control-group">
-						<div class="controls" style="text-align: right">
-							    	
-							      <!-- <button id="hide" type="button" class="close" ng-click="showticketsettings(ticket, false)">X</button> -->
-							      
-							    </div>
-								    <label class="control-label" for="ticketDescription">Ticket Description :</label>
+ 								    
+							<div collapse="isCollapsed">
+ 				          		 <div class="control-group">
+ 								    <label class="control-label" for="ticketDescription">Ticket Description :</label>
 								    <div class="controls">
 								      <textarea id="ticketDescription" rows="3" ng-model="ticket.description" ></textarea>
 								    </div>
-								  </div>
-							   <div class="control-group">
-							    <label class="control-label" for="ticketSaleStart">Ticket Sale Start On :</label>
-							    <div class="controls">
-								 	<div id="datetimepickerStart1" class="input-append date datetimepicker">
-				      					<input type="text" datetime-picker ng-model="ticket.saleStart" 
+								 </div>
+ 							   	 <div class="control-group">
+							    	<label class="control-label" for="ticketSaleStart">Ticket Sale Start On :</label>
+							    	<div class="controls">
+ 								 	<div id="datetimepickerStart1" class="input-append date datetimepicker">
+ 								 	<!-- datetime-picker -->
+				      					<input type="text"  ng-model="ticket.saleStart" datetime-picker
 				      										placeholder="Sale Start On" readonly></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
-							    </div>
-							  </div>
-							  
-							   <div class="control-group">
-							    <label class="control-label" for="ticketSaleEnd">Ticket Sale End On :</label>
-							    <div class="controls">
-								 	<div id="datetimepickerEnd1" class="input-append date datetimepicker">
-				      					<input type="text" datetime-picker  ng-model="ticket.saleEnd" 
+							    	</div>
+							  	</div>
+ 							    <div class="control-group">
+							    	<label class="control-label" for="ticketSaleEnd">Ticket Sale End On :</label>
+							    	<div class="controls">
+ 								 	<div id="datetimepickerEnd1" class="input-append date datetimepicker">
+				      					<input type="text" ng-model="ticket.saleEnd"datetime-picker
 				      										placeholder="Sale Ends On" readonly></input>
 				      										<span class="add-on"><i class="icon-th"></i></span>
 									</div>
-							    </div>
-							  </div>
-							  
-							  
-							      <div class="control-group">
-							    <label class="control-label" for="minQty">Min Qty For Order :<span ng-style="{color:'red'}">*</span></label>
-							    <div class="controls">
-							      <input name="minqty" type="number" min="1" id="ticketMinQty" ng-model="ticket.minQty" required><br/>
-							      <span ng-show="tktrowform.minqty.$dirty && tktrowform.minqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
+ 							    	</div>
+							    </div> 
+							    <div class="control-group">
+							    	<label class="control-label" for="minQty">Min Qty For Order :<span ng-style="{color:'red'}">*</span></label>
+							    	<div class="controls">
+							      	<input name="minqty" type="number" min="1" id="ticketMinQty" ng-model="ticket.minQty" required><br/>
+							      	<span ng-show="tktrowform.minqty.$dirty && tktrowform.minqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 							    </div>
 							  </div>							  
-							      <div class="control-group">
+							  <div class="control-group">
 							    <label class="control-label" for="tcktMaxQty">Max Qty For Order :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 							      <input name="maxqty" type="number" min="1" id="tcktMaxQty" ng-model="ticket.maxQty" required><br/>
 							      <span ng-show="tktrowform.maxqty.$dirty && tktrowform.maxqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 							    </div>
 							  </div>
-							 
-							  
-							 
-							  
+ 							  
 							</div>
-							
-							
-
-							  </td>
-							   </tr>
-    </tbody>
-</table>
+					</td>
+ 				</tr> 
+    	</tbody>
+	</table>
 	 			<div class="control-group">
 						    <div class="controls">
 						    <!-- ng-disabled="!event.title || !event.description || !event.startDate || !event.endDate" -->
