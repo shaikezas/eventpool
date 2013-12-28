@@ -127,11 +127,14 @@ public class EventController {
     	 try {
     		 if(eventDTO.getId()==null){
     			 String eventUrl = eventDTO.getEventUrl();
-    			 eventUrl = eventDTO.getEventUrl().toLowerCase().replaceAll("\\s+", " ").replace(" ", "-").concat("-"+new Date().getTime());
-    			 if(eventUrl.length()>256){
-    				 eventUrl = eventUrl.substring(eventUrl.length()-256);
+    			 if(eventUrl ==null) eventUrl = eventDTO.getTitle();
+    			 if(eventUrl!=null){
+	    			 eventUrl = eventUrl.toLowerCase().replaceAll("\\s+", " ").replace(" ", "-").concat("-"+new Date().getTime());
+	    			 if(eventUrl.length()>256){
+	    				 eventUrl = eventUrl.substring(eventUrl.length()-256);
+	    			 }
+	    			 eventDTO.setEventUrl(eventUrl);
     			 }
-    			 eventDTO.setEventUrl(eventUrl);
     		 }
  			eventService.addEvent(eventDTO);
  			mapper.mapEventForm(eventDTO, event);
