@@ -81,15 +81,14 @@ import com.paypal.sdk.exceptions.OAuthException;
 public class PaymentServiceImpl implements PaymentService {
 
 	@Override
-	public String initPayment(OrderDTO orderDTO) {
+	public String initPayment(String amount,int itemQuantity,String successUrl,String cancelUrl) {
 		PaymentDetailsType paymentDetails = new PaymentDetailsType();
 		paymentDetails.setPaymentAction(PaymentActionCodeType.fromValue("Sale"));
 		PaymentDetailsItemType item = new PaymentDetailsItemType();
 		BasicAmountType amt = new BasicAmountType();
 		amt.setCurrencyID(CurrencyCodeType.fromValue("USD"));
 		double itemAmount = 1.00;
-		amt.setValue(String.valueOf(itemAmount));
-		int itemQuantity = 1;
+		amt.setValue(amount);
 		item.setQuantity(itemQuantity);
 		item.setName("item");
 		item.setAmount(amt);
@@ -106,8 +105,8 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentDetailsList.add(paymentDetails);
 
 		SetExpressCheckoutRequestDetailsType setExpressCheckoutRequestDetails = new SetExpressCheckoutRequestDetailsType();
-		setExpressCheckoutRequestDetails.setReturnURL("https://devtools-paypal.com/guide/expresscheckout?success=true");
-		setExpressCheckoutRequestDetails.setCancelURL("https://devtools-paypal.com/guide/expresscheckout?cancel=true");
+		setExpressCheckoutRequestDetails.setReturnURL(successUrl);
+		setExpressCheckoutRequestDetails.setCancelURL(cancelUrl);
 
 		setExpressCheckoutRequestDetails.setPaymentDetails(paymentDetailsList);
 

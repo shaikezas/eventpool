@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +31,7 @@ import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.order.service.OrderService;
+import com.eventpool.order.service.PaymentService;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.OrderRegisterForm;
@@ -39,17 +43,25 @@ import com.google.gson.Gson;
 @RequestMapping("/order")
 public class OrderController {
 
+	static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+	
 	@Resource
 	OrderService orderService;
 	
 	@Resource
 	UserService  userService;
 	
+	@Resource
+	PaymentService paymentService;
+	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
 	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
 		  OrderRegisterForm orderRegisterForm = null;  
 		  try {
 			  orderRegisterForm = orderService.registerOrder(eventRegister);
+			  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),"http://localhost:8083/eventpool/#/findevent","http://localhost:8083/eventpool/#/findevent");
+			  orderRegisterForm.setToken(token);
+			  logger.info("Tocken:"+token);
 			} catch(NoTicketInventoryBlockedException e){
 				throw e;
 			}
@@ -60,7 +72,8 @@ public class OrderController {
 	    }
 	  
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public @ResponseBody ResponseMessage createOrder(@RequestBody OrderRegisterForm orderRegisterForm)  {
+	public @ResponseBody ResponseMessage createOrder(@RequestBody 
+			OrderRegisterForm orderRegisterForm)  {
 			  OrderStatusDTO status = new OrderStatusDTO();
 			  User user = userService.getCurrentUser();
 			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
@@ -68,6 +81,7 @@ public class OrderController {
 			  Order order = null;
 			  try {
 				order = orderService.createOrder(orderDTO);
+				
 				
 			} catch (Exception e) {
 				 return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
@@ -143,6 +157,5 @@ public class OrderController {
 		  
 		  return orderDTO;
 	  }
-	  
 	  
 }

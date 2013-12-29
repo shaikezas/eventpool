@@ -144,8 +144,10 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	 $http.post('order/create',$scope.orderRegister).success(function(data) {
          	$scope.editMode = false;
          	$scope.status = data;
-         	//$location.url('/mytickets');
-        	$location.absUrl("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1DC284005R366174D");
+         	//$location.url('order/success');
+         	
+        	//$location.absUrl("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1DC284005R366174D");
+         	//$http.redirect('www.google.com').success().error();
          }).error(function(error) {
         	 $scope.disablePayment = false;
              alert(error);

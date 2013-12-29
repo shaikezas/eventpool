@@ -614,7 +614,7 @@ public class EventTest extends BaseTest{
     
     @Test
     public void testPaymentService(){
-    	String initPayment = paymentService.initPayment(null);
-    	System.out.println(initPayment);
+    	//String initPayment = paymentService.initPayment(null);
+    	//System.out.println(initPayment);
     }
 }

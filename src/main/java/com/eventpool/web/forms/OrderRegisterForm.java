@@ -46,7 +46,8 @@ public class OrderRegisterForm {
 	private String venueAddress;
 	private String startDate;
 	private String endDate;
-
+	private String token;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -200,6 +201,14 @@ public class OrderRegisterForm {
 	
 	public void setRegistrationLimit(int registrationLimit) {
 		this.registrationLimit = registrationLimit;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

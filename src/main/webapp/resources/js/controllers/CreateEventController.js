@@ -234,12 +234,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         });
     }
 
-    
-    $scope.removePromotion= function() {
-    	$scope.event.promotionFile="";
-    	$scope.apply();
-    }
-    
+/////// start of file uploads
     
     $scope.chooseBanner = function(element) {
         $scope.$apply(function(scope) {
@@ -255,11 +250,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         
     $scope.cancelBanner = function() {
     	$scope.files[0]=null;
-    //	angular.element('fileToUpload').value(null);
- /*   	var fu = document.getElementById('uploadBannervDiv');
-    	if (fu != null) {
-    	document.getElementById('uploadBannervDiv').innerHTML = fu.innerHTML;
-*/    	$scope.apply();
+    	$scope.apply();
     };
 
     $scope.uploadBanner = function() {
@@ -268,8 +259,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      	   for (var i in $scope.files) {
      		   formData.append("banner", $scope.files[0])
             }
-     	   $scope.event.upload=true;
-     	   //$scope.apply();
+//     	   $scope.event.upload=true;
  		   $http.post('upload/image', formData,{headers: {'Content-Type': undefined },data: formData,
  		        transformRequest: angular.identity}).success(function(data){
  		        	if(data.status == true) {
@@ -281,7 +271,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
  		        }
  		        
  		        ).error();
- 		   $scope.apply();
+ //		  $scope.event.upload=false;
+ 		  $scope.apply();
  	}
 
     $scope.removeBanner = function() {
@@ -305,11 +296,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         
     $scope.cancelPromotion = function() {
     	$scope.files[1]=null;
-    //	angular.element('fileToUpload').value(null);
- /*   	var fu = document.getElementById('uploadBannervDiv');
-    	if (fu != null) {
-    	document.getElementById('uploadBannervDiv').innerHTML = fu.innerHTML;
-*/    	$scope.apply();
+    	$scope.apply();
     };
 
     $scope.uploadPromotion = function() {
@@ -318,8 +305,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      	   for (var i in $scope.files) {
      		   formData.append("promotion", $scope.files[1])
             }
-     	   $scope.event.upload=true;
-     	   //$scope.apply();
  		   $http.post('upload/promo', formData,{headers: {'Content-Type': undefined },data: formData,
  		        transformRequest: angular.identity}).success(function(data){
  		        	if(data.status == true) {
@@ -340,12 +325,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.apply();
     }
 
-/*    $scope.setFiles = function(element) {
-    	$scope.event.bannerFile= "setfiles";
-    		//element.files[0].name;
-    	$scope.apply();
-        }
-*/
+/////// end of file uploads
+    
     $scope.addNewEvent = function() {
     	$scope.disabled = true;
     	$scope.resetError();

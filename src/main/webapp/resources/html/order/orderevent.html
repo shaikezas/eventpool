@@ -163,6 +163,9 @@
 							  
 							  <div class="control-group">
 							    <div class="controls">
+							    <span ng-show="orderRegister.token">
+							      <a href="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token={{orderRegister.token}}"> paypal</a>
+							      </span>
 							      <button type="button" class="btn " ng-click="bookTicket()" ng-disabled="disablePayment">Payment</button> 
 							    </div>
 							  </div>	
