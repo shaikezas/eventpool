@@ -108,19 +108,25 @@ public class OrderServiceImpl implements OrderService {
 			updateTicketDTO(suborderDTO);
 		}
 		eventpoolMapper.mapOrder(orderDTO, order);
-		
 		order = orderRepository.save(order);
-		for (SuborderDTO suborderDTO : orderDTO.getSuborders()) {
+		return order;
+
+	}
+
+	public void postOrder(Long orderId) throws Exception{
+		Order order = orderRepository.findOne(orderId);
+		for (Suborder suborder : order.getSuborders()) {
+			SuborderDTO suborderDTO = new SuborderDTO();
+			eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
 			deleteTicketRegister(suborderDTO);
 		}
 
 		for(Suborder suborder :  order.getSuborders()){
 			invoiceService.generateInvoice(suborder);
 		}
-		return order;
 
 	}
-
+	
 	private void updateTicketDTO(SuborderDTO suborderDTO) throws TicketNotFoundException{
 		 Long ticketId = suborderDTO.getTicket().getId();
 		 TicketDTO ticketDTO = eventService.getTicketById(ticketId);

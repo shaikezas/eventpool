@@ -1,26 +1,14 @@
 package com.eventpool.event.service.impl;
 
-import static org.springframework.transaction.annotation.Propagation.REQUIRED;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import javax.annotation.Resource;
-import javax.validation.ConstraintViolation;
-import javax.validation.ValidationException;
-import javax.validation.Validator;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import org.xml.sax.SAXException;
 
 import urn.ebay.api.PayPalAPI.PayPalAPIInterfaceServiceService;
@@ -34,40 +22,7 @@ import urn.ebay.apis.eBLBaseComponents.PaymentDetailsItemType;
 import urn.ebay.apis.eBLBaseComponents.PaymentDetailsType;
 import urn.ebay.apis.eBLBaseComponents.SetExpressCheckoutRequestDetailsType;
 
-import com.eventpool.common.dto.AddressDTO;
-import com.eventpool.common.dto.EventDTO;
-import com.eventpool.common.dto.EventRegisterDTO;
-import com.eventpool.common.dto.OrderDTO;
-import com.eventpool.common.dto.Region;
-import com.eventpool.common.dto.SuborderDTO;
-import com.eventpool.common.dto.TicketDTO;
-import com.eventpool.common.dto.TicketInventoryDetails;
-import com.eventpool.common.dto.TicketRegisterDTO;
-import com.eventpool.common.entities.Address;
-import com.eventpool.common.entities.Order;
-import com.eventpool.common.entities.Suborder;
-import com.eventpool.common.entities.TicketRegister;
-import com.eventpool.common.entities.User;
-import com.eventpool.common.exceptions.EventNotFoundException;
-import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
-import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
-import com.eventpool.common.exceptions.TicketNotFoundException;
-import com.eventpool.common.module.DateCustomConverter;
-import com.eventpool.common.module.EntityUtilities;
-import com.eventpool.common.module.EventpoolMapper;
-import com.eventpool.common.repositories.OrderRepository;
-import com.eventpool.common.repositories.TicketRegisterRepository;
-import com.eventpool.common.type.EventInfoType;
-import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.order.service.PaymentService;
-import com.eventpool.ticket.commands.TicketBlockedCommand;
-import com.eventpool.ticket.commands.TicketOrderedCommand;
-import com.eventpool.ticket.service.TicketInventoryService;
-import com.eventpool.ticket.service.TicketInventoryUnblockedService;
-import com.eventpool.web.controller.EventService;
-import com.eventpool.web.domain.UserService;
-import com.eventpool.web.forms.OrderRegisterForm;
-import com.eventpool.web.forms.TicketRegisterForm;
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
 import com.paypal.exception.InvalidCredentialException;
@@ -87,7 +42,6 @@ public class PaymentServiceImpl implements PaymentService {
 		PaymentDetailsItemType item = new PaymentDetailsItemType();
 		BasicAmountType amt = new BasicAmountType();
 		amt.setCurrencyID(CurrencyCodeType.fromValue("USD"));
-		double itemAmount = 1.00;
 		amt.setValue(amount);
 		item.setQuantity(itemQuantity);
 		item.setName("item");
@@ -99,7 +53,7 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentDetails.setPaymentDetailsItem(lineItems);
 		BasicAmountType orderTotal = new BasicAmountType();
 		orderTotal.setCurrencyID(CurrencyCodeType.fromValue("USD"));
-		orderTotal.setValue(String.valueOf(itemAmount * itemQuantity)); 
+		orderTotal.setValue(String.valueOf(Double.parseDouble(amount) * itemQuantity)); 
 		paymentDetails.setOrderTotal(orderTotal);
 		List<PaymentDetailsType> paymentDetailsList = new ArrayList<PaymentDetailsType>();
 		paymentDetailsList.add(paymentDetails);

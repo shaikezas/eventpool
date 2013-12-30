@@ -141,7 +141,9 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
         	$scope.stopSubmitAction = false;
          }
         else {
+        //	https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=$scope.orderRegister.token
     	 $http.post('order/create',$scope.orderRegister).success(function(data) {
+        //	$http.get('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token='+$scope.orderRegister.token).success(function(data) {
          	$scope.editMode = false;
          	$scope.status = data;
          	//$location.url('order/success');

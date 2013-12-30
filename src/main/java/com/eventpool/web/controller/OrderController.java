@@ -56,10 +56,14 @@ public class OrderController {
 	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
 	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
-		  OrderRegisterForm orderRegisterForm = null;  
+		  OrderRegisterForm orderRegisterForm = null;
+		  User user = userService.getCurrentUser();
 		  try {
 			  orderRegisterForm = orderService.registerOrder(eventRegister);
-			  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),"http://localhost:8083/eventpool/#/findevent","http://localhost:8083/eventpool/#/findevent");
+			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
+			  Order Order = orderService.createOrder(orderDTO);
+			  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),
+					  "http://localhost:8083/eventpool/#/order/success?oid="+Order.getId(),"http://localhost:8083/eventpool/#/order/");
 			  orderRegisterForm.setToken(token);
 			  logger.info("Tocken:"+token);
 			} catch(NoTicketInventoryBlockedException e){
