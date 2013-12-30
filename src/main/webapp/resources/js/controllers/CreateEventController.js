@@ -133,7 +133,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
 	    	$scope.event.tickets[i].saleEnd = moment($scope.event.tickets[i].saleEnd).format("DD-MMM-YYYY hh:mm A");
 		    			
 	 	}*/
-	   
+	    $scope.eventpageurl = $location.absUrl();
+	    var array = $scope.eventpageurl.split("#");
+	    $scope.eventpageurl = array[0].concat("#/event/",$scope.event.eventUrl);
 
 	    $scope.setRequiredFields();
 	    i = $scope.event.classificationType;

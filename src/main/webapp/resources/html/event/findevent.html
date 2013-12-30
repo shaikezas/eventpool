@@ -18,9 +18,9 @@
 
 <div class="searchCont">
 		 <div class="input-prepend input-append headerSearch">
-           <input class="span6 headerSearchInput" ng-enter="fetchsearchresults(queryText)" id="appendedPrependedDropdownButton" type="text" placeholder="Search for Events" ng-model="queryText">
+           <input class="span6 headerSearchInput" ng-enter="findevents()" id="appendedPrependedDropdownButton" type="text" placeholder="Search for Events" ng-model="q">
            <div class="btn-group">
-           		<button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown" ng-click="fetchsearchresults(queryText)"> <span class="icon-search "></span></button>
+           		<button class="btn btn-warning noRadius headerCatBtn" data-toggle="dropdown" ng-click="findevents()"> <span class="icon-search "></span></button>
            </div>
          </div>
 </div>
@@ -95,7 +95,7 @@
 				          </div><!-- /btn-group -->
 					    <div class="resultCont">
 
-					    		Showing {{searchResults.noOfresults}} events
+					    		Showing {{searchResults.noOfresults}} events for "{{q}}"
 
 					    	
 					    </div>	
