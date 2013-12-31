@@ -388,6 +388,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     $scope.setRequiredFields = function() {
     	$scope.timezoneReq = false;
     	$scope.pinReq = false;
+    	$scope.pinReqmin = false;
     	$scope.venueNameReq=false;
     	$scope.venueAdd1Req=false;
     	$scope.venueForm.$invalid=false;
@@ -396,15 +397,17 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         		$scope.timezoneReq = true;
         		$scope.venueForm.$invalid=true;
         	}
-        } else {        	        	
+        } else {  
         	if(angular.isUndefined($scope.event.venueName) || $scope.event.venueName==null)
         		$scope.venueNameReq=true;
         	if(angular.isUndefined($scope.event.address1) || $scope.event.address1==null)
         		$scope.venueAdd1Req=true;
         	if(angular.isUndefined($scope.event.zipCode) || $scope.event.zipCode==null)
         		$scope.pinReq=true;
+        	
+        	$scope.pinReqmin = $scope.venueForm.pincode.$error.minlength;
         }
-     	if($scope.timezoneReq || $scope.venueNameReq || $scope.venueAdd1Req || $scope.pinReq){
+     	if($scope.timezoneReq || $scope.venueNameReq || $scope.venueAdd1Req || $scope.pinReq || $scope.pinReqmin){
     		$scope.venueForm.$invalid = true;
     	}
     }
