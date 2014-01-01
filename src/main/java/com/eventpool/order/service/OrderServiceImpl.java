@@ -193,14 +193,16 @@ public class OrderServiceImpl implements OrderService {
 		orderRegisterForm.setEmail(user.getEmail());
 		EventDTO event = eventService.getEventById(eventRegister.getEventId());
 
-		//TODO: this code need to be improved by using User address.
+/*		//TODO: this code need to be improved by using User address.
 		List<Order> orders = orderRepository.getAllOrders(user.getId());
 		Order order = null;
 		if(orders!=null && orders.size()>0){
 			order = orders.get(0);
 		}
-		if(order!=null && order.getBillingAddress()!=null){
-			Address billingAddress = order.getBillingAddress();
+*/		Address billingAddress = user.getOfficeAddress();
+		
+		if(billingAddress!=null){
+			//Address billingAddress = order.getBillingAddress();
 			AddressDTO addressDTO = new AddressDTO();
 			addressDTO.setAddress1(billingAddress.getAddress1());
 			addressDTO.setAddress2(billingAddress.getAddress2());
