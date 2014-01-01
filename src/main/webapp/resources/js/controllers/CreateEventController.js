@@ -405,7 +405,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	if(angular.isUndefined($scope.event.zipCode) || $scope.event.zipCode==null)
         		$scope.pinReq=true;
         	
-        	if(angular.isDefined($scope.event.zipCode) && $scope.event.zipCode.length <= 4){
+        	if(angular.isDefined($scope.event.zipCode) && $scope.event.zipCode.length < 4){
         		$scope.pinReqmin = true;
         	}
         }
