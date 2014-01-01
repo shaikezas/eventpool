@@ -405,7 +405,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	if(angular.isUndefined($scope.event.zipCode) || $scope.event.zipCode==null)
         		$scope.pinReq=true;
         	
-        	$scope.pinReqmin = $scope.venueForm.pincode.$error.minlength;
+        	if(angular.isDefined($scope.event.zipCode) && $scope.event.zipCode.length <= 4){
+        		$scope.pinReqmin = true;
+        	}
         }
      	if($scope.timezoneReq || $scope.venueNameReq || $scope.venueAdd1Req || $scope.pinReq || $scope.pinReqmin){
     		$scope.venueForm.$invalid = true;
