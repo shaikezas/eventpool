@@ -59,6 +59,15 @@ public class Order extends AuditableIdEntity {
 	@Column(name="PAYMENT_CURRENCY")
 	private CurrencyType paymentCurrency;
 	
+	@Column(name="TOKEN")
+	private String token;
+
+	@Column(name="PAYERID")
+	private String payerId;
+
+	@Column(name="PAYMENT_STATUS")
+	private String paymentStatus;
+
 	@OneToMany(fetch = FetchType.EAGER,cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="ORDER_ID",referencedColumnName="ID")
 	private List<Suborder> suborders;
@@ -153,6 +162,30 @@ public class Order extends AuditableIdEntity {
 				suborder.setOrder(this);
 			}
 		}
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getPayerId() {
+		return payerId;
+	}
+
+	public void setPayerId(String payerId) {
+		this.payerId = payerId;
+	}
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
 
 

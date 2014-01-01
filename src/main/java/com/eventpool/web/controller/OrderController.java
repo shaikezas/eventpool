@@ -54,26 +54,29 @@ public class OrderController {
 	@Resource
 	PaymentService paymentService;
 	
-	  @RequestMapping(value = "/register", method = RequestMethod.POST)
-	    public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+	public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
 		  OrderRegisterForm orderRegisterForm = null;
 		  User user = userService.getCurrentUser();
 		  try {
 			  orderRegisterForm = orderService.registerOrder(eventRegister);
 			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
 			  Order Order = orderService.createOrder(orderDTO);
-			  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),
-					  "http://localhost:8083/eventpool/#/order/success?oid="+Order.getId(),"http://localhost:8083/eventpool/#/order/");
-			  orderRegisterForm.setToken(token);
-			  logger.info("Tocken:"+token);
+			  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
+				  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),
+						  "http://localhost:8083/eventpool/#/order/success?oid="+Order.getId(),"http://localhost:8083/eventpool/#/order/");
+				  orderRegisterForm.setToken(token);
+				  orderService.updateToken(Order.getId(), token);
+				  logger.info("Tocken:"+token);
+			  }
 			} catch(NoTicketInventoryBlockedException e){
 				throw e;
 			}
 			catch (Exception e) {
-				e.printStackTrace();
+				logger.info("not able to create order",e);
 			}
 		  return orderRegisterForm;
-	    }
+	 }
 	  
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public @ResponseBody ResponseMessage createOrder(@RequestBody 

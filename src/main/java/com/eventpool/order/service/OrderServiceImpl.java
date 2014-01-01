@@ -112,6 +112,12 @@ public class OrderServiceImpl implements OrderService {
 		return order;
 
 	}
+	
+	public void updateToken(Long orderId,String token) {
+		Order order = orderRepository.findOne(orderId);
+		order.setToken(token);
+		orderRepository.save(order);
+	}
 
 	public void postOrder(Long orderId) throws Exception{
 		Order order = orderRepository.findOne(orderId);
@@ -186,6 +192,8 @@ public class OrderServiceImpl implements OrderService {
 		orderRegisterForm.setLastName(user.getLname());
 		orderRegisterForm.setEmail(user.getEmail());
 		EventDTO event = eventService.getEventById(eventRegister.getEventId());
+
+		//TODO: this code need to be improved by using User address.
 		List<Order> orders = orderRepository.getAllOrders(user.getId());
 		Order order = null;
 		if(orders!=null && orders.size()>0){
@@ -209,6 +217,7 @@ public class OrderServiceImpl implements OrderService {
 		    	}
 			orderRegisterForm.setBillingAddress(addressDTO);
 		}
+		
 		EventInfoType infoType = event.getInfoType();
 		boolean isAttendeeRequired = false;
 		Double grossAmount = 0.0D;
