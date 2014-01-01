@@ -101,9 +101,9 @@
 			<field><a>phone</a><b>phone</b></field>
 			<field><a>mobile</a><b>mobile</b></field>
 			<field><a>altEmail</a><b>altEmail</b></field>
-			<field><a>homeAddress</a><b>homeAddress</b></field>
+<!-- 			<field><a>homeAddress</a><b>homeAddress</b></field>
 			<field><a>officeAddress</a><b>officeAddress</b></field>
-			<field><a>gender</a><b>gender</b></field>
+ -->			<field><a>gender</a><b>gender</b></field>
 			<field><a>memberShipType</a><b>memberShipType</b></field>
 			<field><a>totalPoints</a><b>totalPoints</b></field>
 			<field><a>companyUrl</a><b>companyUrl</b></field>
@@ -111,6 +111,20 @@
 			<field><a>jobtitle</a><b>jobtitle</b></field>
 			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>dob</a><b>dob</b></field>
 			<field custom-converter="com.eventpool.common.module.DateCustomConverter"><a>createdDate</a><b>createdDate</b></field>
+	</mapping>
+
+   <mapping stop-on-errors="false" wildcard="false">
+        <class-a>com.eventpool.web.forms.AddressForm</class-a>
+        <class-b>com.eventpool.common.entities.Address</class-b>
+        	<field><a>id    </a><b>id    </b></field>
+			<field><a>address1    </a><b>address1    </b></field>
+			<field><a>address2    </a><b>address2    </b></field>
+			<field><a>cityId      </a><b>cityId      </b></field>
+			<field><a>mapUrl      </a><b>mapUrl      </b></field>
+			<field><a>zipCode     </a><b>zipCode     </b></field>
+			<field><a>phoneNumber </a><b>phoneNumber </b></field>
+			<field><a>fax         </a><b>fax         </b></field>
+			<field><a>mobileNumber</a><b>mobileNumber</b></field>
 	</mapping>
 	
 </mappings>

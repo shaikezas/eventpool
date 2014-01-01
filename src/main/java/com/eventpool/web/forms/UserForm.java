@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 
+import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.type.Gender;
 
 public class UserForm {
@@ -43,10 +44,6 @@ public class UserForm {
 
 	private String altEmail;
 
-	private String homeAddress;
-
-	private String officeAddress;
-
 	private Gender gender;
 
 	private String dob;
@@ -63,7 +60,9 @@ public class UserForm {
 	
 	private String jobtitle;
 	
+	private AddressForm homeAddress;
 	
+	private AddressForm officeAddress;
 	
 	public String getJobtitle() {
 		return jobtitle;
@@ -144,23 +143,6 @@ public class UserForm {
 	public void setAltEmail(String altEmail) {
 		this.altEmail = altEmail;
 	}
-
-	public String getHomeAddress() {
-		return homeAddress;
-	}
-
-	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-
-	public String getOfficeAddress() {
-		return officeAddress;
-	}
-
-	public void setOfficeAddress(String officeAddress) {
-		this.officeAddress = officeAddress;
-	}
-
 
 	public String getDob() {
 		return dob;
@@ -246,5 +228,21 @@ public class UserForm {
 
 		public void setTotalPoints(Integer totalPoints) {
 			this.totalPoints = totalPoints;
+		}
+
+		public AddressForm getHomeAddress() {
+			return homeAddress;
+		}
+
+		public void setHomeAddress(AddressForm homeAddress) {
+			this.homeAddress = homeAddress;
+		}
+
+		public AddressForm getOfficeAddress() {
+			return officeAddress;
+		}
+
+		public void setOfficeAddress(AddressForm officeAddress) {
+			this.officeAddress = officeAddress;
 		}
 }

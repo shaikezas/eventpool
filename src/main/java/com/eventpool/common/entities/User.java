@@ -2,12 +2,15 @@ package com.eventpool.common.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -106,12 +109,14 @@ public class User extends IdEntity{
 
 	@Column(name = "ALT_EMAIL")
 	private String altEmail;
+	
+	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(referencedColumnName="ID",name= "HOME_ADDRESS")
+	private Address homeAddress;
 
-	@Column(name = "HOME_ADDRESS")
-	private String homeAddress;
-
-	@Column(name = "OFFICE_ADDRESS")
-	private String officeAddress;
+	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(referencedColumnName= "ID",name="OFFICE_ADDRESS")
+	private Address officeAddress;
 
 	@Column(name = "GENDER")
 	@Enumerated(EnumType.STRING)
@@ -209,22 +214,6 @@ public class User extends IdEntity{
 
 	public void setAltEmail(String altEmail) {
 		this.altEmail = altEmail;
-	}
-
-	public String getHomeAddress() {
-		return homeAddress;
-	}
-
-	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-
-	public String getOfficeAddress() {
-		return officeAddress;
-	}
-
-	public void setOfficeAddress(String officeAddress) {
-		this.officeAddress = officeAddress;
 	}
 
 	public Date getDob() {
@@ -377,6 +366,22 @@ public class User extends IdEntity{
 
 		public void setJobtitle(String jobtitle) {
 			this.jobtitle = jobtitle;
+		}
+
+		public Address getHomeAddress() {
+			return homeAddress;
+		}
+
+		public void setHomeAddress(Address homeAddress) {
+			this.homeAddress = homeAddress;
+		}
+
+		public Address getOfficeAddress() {
+			return officeAddress;
+		}
+
+		public void setOfficeAddress(Address officeAddress) {
+			this.officeAddress = officeAddress;
 		}
 		  
 		  

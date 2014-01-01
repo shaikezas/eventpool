@@ -33,6 +33,7 @@ import com.eventpool.common.entities.User;
 import com.eventpool.common.type.EventPrivacyType;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.TicketType;
+import com.eventpool.web.forms.AddressForm;
 import com.eventpool.web.forms.EventForm;
 import com.eventpool.web.forms.TicketForm;
 import com.eventpool.web.forms.UserForm;
@@ -462,10 +463,53 @@ public class EventpoolMapper {
 	
 	public void mapUserForm(UserForm userForm,User user){
 		mapper.map(userForm,user);
+
+		// mapping home address
+		AddressForm homeAddress = userForm.getHomeAddress();
+		if(homeAddress!=null){
+			if(user.getHomeAddress()==null){
+				user.setHomeAddress(new Address());
+			}
+			mapper.map(homeAddress, user.getHomeAddress());
+		}
+
+		// mapping office address
+		AddressForm officeAddressForm = userForm.getOfficeAddress();
+		if(officeAddressForm!=null){
+			if(user.getOfficeAddress()==null){
+				user.setOfficeAddress(new Address());
+			}
+			mapper.map(officeAddressForm, user.getOfficeAddress());
+		}
+
+		
 	}
 	
 	public void mapUser(User user,UserForm userForm){
 		mapper.map(user,userForm);
+
+		AddressForm officeAddress = userForm.getOfficeAddress();
+		if(officeAddress==null){
+			officeAddress = new AddressForm();
+			userForm.setOfficeAddress(officeAddress);
+		}
+		
+		// mapping address form
+		if(user.getOfficeAddress()!=null){
+			mapper.map(user.getOfficeAddress(), officeAddress);
+		}
+
+		AddressForm homeAddressForm = userForm.getHomeAddress();
+		if(homeAddressForm==null){
+			homeAddressForm = new AddressForm();
+			userForm.setHomeAddress(homeAddressForm);
+		}
+		
+		//mapping home address
+		if(user.getHomeAddress()!=null){
+			mapper.map(user.getHomeAddress(), homeAddressForm);
+		}
+		
 	}
 
 }
