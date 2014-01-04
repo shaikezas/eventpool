@@ -464,7 +464,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
                     align: 'center',
                     offset: {from: 'top', amount: 200}, // 'top', or 'bottom'
                     width: 'auto',
-                    delay: 10000,
+                    delay: 100000,
                     allow_dismiss: true
                 });
              }

@@ -80,34 +80,50 @@
 			
 			
 			
-			<div class="span3 ">
+			<div class="span3 " style="margin-left: 5px !important">
 					<div class="viewControl">
-						<div  class="btn-group countrySelect">
-				                <button class="btn dropdown-toggle noRadius" data-toggle="dropdown">{{countryname}}<span class="caret"></span></button>
-				                <ul class="dropdown-menu" style="height: 250px; overflow-y: scroll;">
-				                 <!--  <li ng-repeat="country in activeCountries">
-									<a ng-click="setcountryname(country)"><i class="flag flag-IN"></i> {{country}} </a>   <span></a>
-									</li> -->
-									<li ng-repeat='(key, value) in activeCountries'>
-        								<a ng-click="setcountryname(key,value)">{{value}}</a>
-    								</li>
-				                </ul>				   
-				          </div><!-- /btn-group -->
+			
+			<!-- /btn-group -->
 					    <div class="resultCont">
 
 					    		Showing {{searchResults.noOfresults}} events<span ng-show="q"> for "{{q}}"</span> 
 
 					    	
 					    </div>	
+						
+						
 						<div class="viewButton">
 						 View  <a title="Thumbnails View" ng-click="viewList=false;viewThumbs=true"><i class="icon-th-large"></i></a> 
 								<a ng-click="viewList=true;viewThumbs=false" title="List View"><i class="icon-th-list"></i></a>
 						
 						</div>
 						
+						<div class="btn-group countrySelect">
+				<button class="btn dropdown-toggle noRadius" data-toggle="dropdown">
+					{{countryname}}<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" style="height: 250px; overflow-y: scroll;">
+					<!--  <li ng-repeat="country in activeCountries">
+									<a ng-click="setcountryname(country)"><i class="flag flag-IN"></i> {{country}} </a>   <span></a>
+									</li> -->
+					<li ng-repeat='(key, value) in activeCountries'><a
+						ng-click="setcountryname(key,value)">{{value}}</a></li>
+				</ul>
+			</div>
+			
+						
+						
 					</div>
 					 
+				  
+				  
+				  
+				  
+				  
 				  <div ng-show="viewThumbs">
+				  	
+				  	
+				  	
 				  	
 					<div infinite-scroll="viewThumbsNextPage()" infinite-scroll-disabled='thumbscrollPage' infinite-scroll-distance='0' >
 					<ul class="thumbnails">
