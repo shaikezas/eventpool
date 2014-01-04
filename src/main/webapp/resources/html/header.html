@@ -1,7 +1,5 @@
 
 
-
-
 <div class="navbar navbar-fixed-top ">
         	<div class="navCityLogin" >
 					 <div style="width: 970px; margin: auto">
@@ -14,6 +12,8 @@
 								<a href="#/home" ng-click="fetchhomepagerecords()" ng-class="activeWhen(path()=='/home' )">Home</a>
 								<i class="splitter "></i>   
 								<a href="" ng-click="loginuser()" ng-show="user.userName==null">Login</a>
+								<i class="splitter "></i> 
+								<a href="" ng-click="loginuser()" ng-show="user.userName==null">Sign up</a>
 								
 								<a href="" ng-click="logout()" ng-show="user.userName">Logout</a>
 						</div> 		
@@ -56,11 +56,8 @@
 							
 			       </div>
 		    </div>
-
-
-
 </div>
       
 
     
-      
+   
