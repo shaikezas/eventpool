@@ -10,12 +10,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	
-	
-	
-	
-    
-    
+
+
     <link href="resources/bootstrap/css/feature-carousel.css" rel="stylesheet">
 	<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
 	<link href="lib/select2/select2.css" rel="stylesheet" media="screen">
@@ -206,6 +202,13 @@
 	<script  src="lib/wysiwyg-settings.js"></script> -->
 	
 	<!-- Javascript files related to project -->
+	
+	
+	
+	<script src="resources/bootstrap/js/scrolltopcontrol.js"></script>
+	
+	
+	
 	<script src="resources/js/app.js"></script>
 	<script  src="js/base64.js"></script>
 	<script src="resources/js/services.js"></script>
@@ -219,6 +222,7 @@
 	<script src="resources/js/controllers/PrintTicketController.js"></script>
 	<script src="resources/js/controllers/PricingController.js"></script>
 	<script src="resources/js/controllers/UserController.js"></script>
+	<script src="resources/js/controllers/OrderController.js"></script>
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>
 	<script src="resources/js/ui-bootstrap-tpls-0.2.0.js"></script>
@@ -242,6 +246,7 @@
 	<script type="text/javascript" src="lib/ckeditor/plugins/table/dialogs/table.js"></script>
 	<script type="text/javascript" src="lib/ckeditor/plugins/icons.png"></script>
 	<script type="text/javascript" src="lib/ckeditor/plugins/icons_hidpi.png"></script>
+	
 			
 	
   </body>
