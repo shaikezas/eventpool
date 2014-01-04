@@ -70,7 +70,8 @@ public class OrderController {
 				  payPalDTO.setItemQuantity(orderRegisterForm.getTotalTickets());
 				  payPalDTO.setSuccessUrl("http://localhost:8083/eventpool/#/order/success?oid="+Order.getId());
 				  payPalDTO.setCancelUrl("http://localhost:8083/eventpool/#/order/");
-				 
+				  payPalDTO.setCurrency(eventRegister.getPaymentCurrency().name());
+				  
 				  String token = paymentService.initPayment(payPalDTO);
 				  orderRegisterForm.setToken(token);
 				  orderService.updateToken(Order.getId(), token);

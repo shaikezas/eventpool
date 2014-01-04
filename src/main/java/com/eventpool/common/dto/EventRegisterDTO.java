@@ -1,11 +1,12 @@
 package com.eventpool.common.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.eventpool.common.module.EventPoolConstants;
 import com.eventpool.common.type.CurrencyType;
 
-public class EventRegisterDTO {
+public class EventRegisterDTO implements Serializable{
 	
 	private Long eventId;
 	private List<TicketRegisterDTO> ticketRegisterDTOs;
@@ -66,7 +67,5 @@ public class EventRegisterDTO {
 	public void setRegistrationLimit(int registrationLimit) {
 		this.registrationLimit = registrationLimit;
 	}
-	
-	
 
 }
