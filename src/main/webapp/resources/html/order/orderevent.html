@@ -8,7 +8,7 @@
 			   	
 <div class="eventCont">
 			   	
-          	<h1 class="headerContainerEvent">{{event.title}}</h1>
+          	<h1 class="headerContainerEvent">{{event.title}} </h1>
 	<div class="eventBanners"  ng-show="event.banner!=null">
 		<img ng-src="{{event.banner}}"/>  
 		<!-- <img  src="resources/bootstrap/img/banner_1.jpg"/> -->
@@ -26,13 +26,12 @@
 						<th>Ticket Type</th>
 						<th class="amt">Price</th>
 						<th class="amt">Quantity</th>
-
 					</tr>
 				</thead>
 				<tbody>
 				<tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
 						  <td class="amt">{{ticketRegister.ticketName}} </td>
-						  <td class="amt">{{ticketRegister.price}} </td>
+						  <td class="amt">{{event.currency}} {{ticketRegister.price}} </td>
 						  <td class="amt"> {{ticketRegister.qty}}</td>
 						</tr>
 								
@@ -45,8 +44,8 @@
 				
 				<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
 							  <h2 ng-show="orderRegister.registrationLimit!=null">
-							  <timer interval="1000" countdown="orderRegister.registrationLimit*60">{{minutes}} :{{seconds}}
-							  </timer></h2> 
+							  Time Remaining to Fill Details <timer interval="1000" countdown="orderRegister.registrationLimit*60">{{minutes}}:{{seconds}}
+							  </timer> Minutes.</h2> 
 							<h4>Ticket Buyer</h4>
 					
 						<div class="control-group">
@@ -171,30 +170,9 @@
 							</form>
 							
 							
-<!-- 							<div class="span" >
-								<ul id="myTab" class="nav nav-tabs">
-									<li class="active">		<a href="#aboutEvent" 	data-toggle="tab">  About Event          		</a></li>     
-									<li>					<a href="#termCondition" 	data-toggle="tab"> Term & Condition    		</a></li>  
-								</ul>
-								<div id="myTabContent" class="tab-content">
-									<div class="tab-pane fade in active" id="aboutEvent">
-										<form class="form-horizontal">
-											<div ng-bind-html-unsafe="event.description" ></div>
-										</form>
-									</div>
-									<div class="tab-pane fade in " id="termCondition">
-										<form class="form-horizontal">Term & Condition  </form>
-									</div>
-								</div>		
-							</div>
- -->			</div>
-									<div class="span1 ">
-									
-									
-									
-									
-									
-					<h3>Event Details</h3>
+			</div>
+									<div class="span1 rightPanel rightPanelright">				
+										<h3>Event Details</h3>
 											<div class="filterControlRight">
 												<ul class="eventDetails eventDetailsIcon">
 													<li > <i class="iconCalanderStart"></i>	<span>Start Date:</span> {{event.startDate}}</li>
@@ -208,30 +186,21 @@
 													</li>
 												</ul>
 											</div>
-					
-					
-									
-									
-									
-									
-									<h3>Order Summary</h3>
-										<div class="filterControlRight">
-											
+										<h3>Order Summary</h3>
+										<div class="filterControlRight">											
 											<ul class="eventDetails eventDetailsIcon">
 												<li class="newAddress" > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
 												<!-- <li > <i class="iconCalander">	</i>	July 20, 2013				</li>
 												<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
 												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
-												<li class="newAddress" > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
-												<li class="newAddress" > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}}		</li>
+												<li class="newAddress" > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}	{{event.currency}}	</li>
+												<li class="newAddress" > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}} {{event.currency}}		</li>
 											</ul>
 											<!-- <button class="btn ">Edit Order</button> -->
 										</div>
 									</div>
 			
-									
-			
-								<div class="span1">
+								<div class="span1 rightPanel rightPanelright">
 										<h3>Contact Details</h3>
 										<div class="filterControlRight">
 											<ul class="eventDetails eventDetailsIcon">
@@ -239,10 +208,8 @@
 												<li class="newAddress" > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
 											</ul>
 										</div>
-								
-									
-			<div style="clear: both"> </div>	
-			</div>
+									<div style="clear: both"> </div>	
+								</div>
 			
 			
 	<div style="clear: both"> </div>			
