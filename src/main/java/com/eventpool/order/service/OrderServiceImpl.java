@@ -309,4 +309,12 @@ public class OrderServiceImpl implements OrderService {
 		return ticketRegisters;
 	}
 
+	@Override
+	public OrderDTO getOrderDTO(Long orderId) {
+		Order order = orderRepository.findOne(orderId);
+		OrderDTO orderDTO = new OrderDTO();
+		eventpoolMapper.mapOrderDTO(order, orderDTO );
+		return orderDTO;
+	}
+
 }

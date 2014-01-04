@@ -87,7 +87,7 @@ public class OrderController {
 	 }
 	  
     @RequestMapping(value = "/success", method = RequestMethod.GET)
-  	public @ResponseBody ResponseMessage successOrder(HttpServletRequest request)
+  	public @ResponseBody OrderDTO successOrder(HttpServletRequest request)
     {
     	String oid = request.getParameter("oid");
     	String token = request.getParameter("token");
@@ -96,7 +96,7 @@ public class OrderController {
     	System.out.println("Oid - "+oid);
     	System.out.println("Token - "+token);
     	System.out.println("PayerId - "+payerId);
-    	return new ResponseMessage(ResponseMessage.Type.success, "Successfully created order");
+    	return orderService.getOrderDTO(Long.parseLong(oid));
     }
     @RequestMapping(value = "/failed", method = RequestMethod.GET)
   	public @ResponseBody ResponseMessage failedOrder(HttpServletRequest request)

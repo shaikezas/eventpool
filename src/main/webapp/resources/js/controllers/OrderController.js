@@ -8,7 +8,8 @@ function OrderSuccessController($scope, $http,$rootScope,$routeParams,currentuse
 	           }
 		 }
        	$scope.ordersuccess = function(){
-       	$http.get('order/success?oid='.concat($routeParams.oid,'&token=',$routeParams.token,'&PayerID=',$routeParams.PlayerID)).success(function(){
+       	$http.get('order/success?oid='.concat($routeParams.oid,'&token=',$routeParams.token,'&PayerID=',$routeParams.PlayerID)).success(function(orderDTO){
+       		
     			});
        	}
        $scope.getcurrentuser();
