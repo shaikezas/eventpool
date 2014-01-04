@@ -45,5 +45,11 @@ public interface EventService {
 
 	public void updateEventClassification(Long eventId,Integer classificationType) throws Exception;
 	
-	public void pushToQueue(Long eventId);
+	public void pushToQueue(Long eventId) throws Exception;
+
+	public void closeEvent(Long eventId) throws Exception;
+
+	public void copyEvent(Long eventId) throws Exception;
+
+	public void cancelEvent(Long eventId) throws Exception;
 }

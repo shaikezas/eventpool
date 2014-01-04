@@ -41,6 +41,24 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
         }
     }
     
+    $scope.closeEvent = function(eventid) {           
+            $http.get('event/myevent/closeevent/'+eventid).success(function(){
+            	alert("Event successfully closed.");
+            });      
+    }
+    
+    $scope.copyEvent = function(eventid) {           
+        $http.get('event/myevent/copyevent/'+eventid).success(function(){
+        	alert("Event successfully copied.");
+        });      
+    }
+    
+    $scope.cancelEvent = function(eventid) {           
+        $http.get('event/myevent/cancelevent/'+eventid).success(function(){
+        	alert("Event successfully cancelled.");   
+        });      
+    }
+    
 
     $scope.fetchPastEventsList = function() {
         $http.get('event/myevent/pastEventList').success(function(pastevents){

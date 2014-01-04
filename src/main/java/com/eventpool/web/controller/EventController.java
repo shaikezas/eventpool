@@ -272,6 +272,24 @@ public class EventController {
         return new ResponseMessage(ResponseMessage.Type.success, "Successfully published event");
     }
     
+    @RequestMapping(value = "/myevent/closeevent/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody ResponseMessage closeEvent(@PathVariable("eventid") Long eventId) throws Exception {
+        eventService.closeEvent(eventId);
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully cancelled event");
+    }
+    
+    @RequestMapping(value = "/myevent/copyevent/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody ResponseMessage copyEvent(@PathVariable("eventid") Long eventId) throws Exception {
+        eventService.copyEvent(eventId);
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully copied event");
+    }
+    
+    @RequestMapping(value = "/myevent/cancelevent/{eventid}", method = RequestMethod.GET)
+    public @ResponseBody ResponseMessage cancelEvent(@PathVariable("eventid") Long eventId) throws Exception {
+        eventService.cancelEvent(eventId);
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully published event");
+    }
+    
     @RequestMapping(value = "/myevent/print/{suborderid}", method = RequestMethod.GET)
     public @ResponseBody InvoiceDTO printEvent(@PathVariable("suborderid") Long suborderId) throws Exception {
     	return invoiceService.viewInvoice(suborderId,userService.getCurrentUser().getId());

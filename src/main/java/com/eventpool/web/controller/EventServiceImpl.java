@@ -136,6 +136,24 @@ public class EventServiceImpl implements EventService {
 	public void pushToQueue(Long eventId){
 		eventQueue.sendBody(eventId);
 	}
+
+	
+	public void closeEvent(Long eventId) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	public void copyEvent(Long eventId) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	public void cancelEvent(Long eventId) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
