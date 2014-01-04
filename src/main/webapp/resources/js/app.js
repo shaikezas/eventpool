@@ -68,17 +68,14 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
         };
         return function (promise) {
         	
-        	$('#loadingWidget').show();
             return promise.then(
                 //this is called after each successful server request
                 function (response) {
-                	$('#loadingWidget').hide();
                     setMessage(response);
                     return response;
                 },
                 //this is called after each unsuccessful server request
                 function (response) {
-                	$('#loadingWidget').hide();
                     setMessage(response);
                     return $q.reject(response);
                 }
