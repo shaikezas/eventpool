@@ -222,6 +222,7 @@
 	<script src="resources/js/controllers/PrintTicketController.js"></script>
 	<script src="resources/js/controllers/PricingController.js"></script>
 	<script src="resources/js/controllers/UserController.js"></script>
+	<script src="resources/js/controllers/OrderController.js"></script>
 	<script src="resources/js/filters.js"></script>
 	<script src="resources/js/directives.js"></script>
 	<script src="resources/js/ui-bootstrap-tpls-0.2.0.js"></script>
@@ -245,6 +246,7 @@
 	<script type="text/javascript" src="lib/ckeditor/plugins/table/dialogs/table.js"></script>
 	<script type="text/javascript" src="lib/ckeditor/plugins/icons.png"></script>
 	<script type="text/javascript" src="lib/ckeditor/plugins/icons_hidpi.png"></script>
+	
 			
 	
   </body>
