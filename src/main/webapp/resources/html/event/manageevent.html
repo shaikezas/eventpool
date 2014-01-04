@@ -1,5 +1,9 @@
 
+<<style>
 
+
+
+</style>
 
 	<div ng-include src="'html/header.html'"></div>
 	<div class="container inPageContainer" > 
@@ -8,9 +12,11 @@
 	    <msg>{{message().text}}</msg>
 	</div> -->
 	<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
-			<div class="span1 leftPanel ">
-					<h3 class="nav-header">Manage Event </h3>
-					<ul class="nav nav-list" style="padding-top: 15px">
+			
+			<h1 style="margin: 0px">Manage Event </h1>
+			
+			<div class="span1 filterControl leftPanel " style="padding-top: 0px; margin-top: 0px">
+					<ul class="nav nav-list" >
 						<li ng-class="{active: templateSelect=='edit'}">
 						<a  href ng-click="template = 'html/event/editevent.html';templateSelect= 'edit'">Details</a>
 						</li>

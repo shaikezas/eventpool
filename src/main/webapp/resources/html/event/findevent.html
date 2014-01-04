@@ -138,6 +138,7 @@
 				
 				<div ng-show="viewList">
 				<div infinite-scroll="viewListNextPage()" infinite-scroll-disabled='listscrollPage' infinite-scroll-distance='0'>
+				
 				<ul class="media-list">
 					<li class="media thumbList smallThumb" ng-repeat="event in searchRecords">
 					<a class="pull-left" href="#event/{{event.eventUrl}}">  <img width="85px" ng-src="{{event.promotionLogoUrl}}" > <!-- <img width="175px" ng-src="resources/bootstrap/img/test.jpg" alt="" > -->
@@ -151,6 +152,7 @@
 					</li>
 						 
 				</ul>
+				
 				<div ng-show='listscrollPage && searchResults.noOfresults>0' ><img ng-src="images/loader.gif" ></div>
 						</div>
 				</div>
