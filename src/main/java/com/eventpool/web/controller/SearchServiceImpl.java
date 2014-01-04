@@ -858,7 +858,7 @@ public class SearchServiceImpl implements SearchService {
 		solrQuery.addFacetField(WEBINAR);
 		solrQuery.setIncludeScore(true);
 		solrQuery.addFilterQuery(END_DATE+":["+sdf.format(getCurrentZeroHourDate().getTime())+" TO * ]");
-		solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId*-1+" OR isWebinar:true");
+		solrQuery.addFilterQuery("-"+COUNTRYID+":"+countryId*-1/*+" OR isWebinar:true"*/);
 		return solrQuery;
 	}
 }
