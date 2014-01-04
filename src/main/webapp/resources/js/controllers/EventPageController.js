@@ -141,15 +141,10 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
         	$scope.stopSubmitAction = false;
          }
         else {
-        //	https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=$scope.orderRegister.token
     	 $http.post('order/create',$scope.orderRegister).success(function(data) {
-        //	$http.get('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token='+$scope.orderRegister.token).success(function(data) {
          	$scope.editMode = false;
          	$scope.status = data;
          	//$location.url('order/success');
-         	
-        	//$location.absUrl("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1DC284005R366174D");
-         	//$http.redirect('www.google.com').success().error();
          }).error(function(error) {
         	 $scope.disablePayment = false;
              alert(error);

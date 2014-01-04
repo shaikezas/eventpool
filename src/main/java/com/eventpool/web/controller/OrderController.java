@@ -87,8 +87,14 @@ public class OrderController {
 			  
 			  Order order = null;
 			  try {
-				order = orderService.createOrder(orderDTO);
-				
+				  order = orderService.createOrder(orderDTO);
+				  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
+					  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),
+							  "http://localhost:8083/eventpool/#/order/success?oid="+order.getId(),"http://localhost:8083/eventpool/#/order/");
+					  orderRegisterForm.setToken(token);
+					  orderService.updateToken(order.getId(), token);
+					  logger.info("Tocken:"+token);
+				  }				
 				
 			} catch (Exception e) {
 				 return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
