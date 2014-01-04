@@ -20,23 +20,7 @@
 	      		</a>
 	      	</slide>
 	    </carousel> 
-      
-      
-       
-      		 <!--  <carousel interval="myInterval">
-    			<slide ng-repeat="event in homePageResults  | limitTo:5" active="event.active">
-      				<a href="#event/{{event.eventUrl}}">
-      					<div class="image">
-							<img ng-src="{{event.banner}}"/> 
-						</div>  
-      					<div class="carousel-caption">
-      			    		<p>{{event.title}}</p>
-        					<p>Start Date: {{event.startDate}}</p>
-        					<p>End Date  : {{event.endDate}}</p>
-      					</div>
-      				</a>
-    			</slide>
-  			</carousel>  -->    
+   
       </div>
       
 	<!-- Slider End -->
@@ -46,14 +30,14 @@
 		<h4>Category</h4>
 		<ul class="nav nav-list">
 			<li class="nav-header">
-				<a href="#/findevent?q=subCategoryId:1" >Education</a>
-				<a href="#/findevent?q=subCategoryId:2" >Entertainment</a>
-				<a href="#/findevent?q=subCategoryId:3" >Fashion</a>
-				<a href="#/findevent?q=subCategoryId:4" >Health</a>
-				<a href="#/findevent?q=subCategoryId:5" >Industrial</a>
-				<a href="#/findevent?q=subCategoryId:6" >RealEstate</a>
-				<a href="#/findevent?q=subCategoryId:7" >Sports</a>
-				<a href="#/findevent?q=subCategoryId:1000" >Miscellaneous</a>
+				<a href="#/findevent?q=&subCategoryId=1" >Education</a>
+				<a href="#/findevent?q=&subCategoryId=2" >Entertainment</a>
+				<a href="#/findevent?q=&subCategoryId=3" >Fashion</a>
+				<a href="#/findevent?q=&subCategoryId=4" >Health</a>
+				<a href="#/findevent?q=&subCategoryId=5" >Industrial</a>
+				<a href="#/findevent?q=&subCategoryId=6" >RealEstate</a>
+				<a href="#/findevent?q=&subCategoryId=7" >Sports</a>
+				<a href="#/findevent?q=&subCategoryId=1000" >Miscellaneous</a>
 			</li>
 		</ul>
 		
@@ -75,38 +59,6 @@
 
 	
 	<ul class="thumbnails">
-		
-		
-	
-
-
-
-
-
-
-
-
-
-<!-- 
-
-	<div class="span1 leftPanel ">
-
-			<h3>Categories<i class="titleArow"></i></h3>
-			<div class="filterControl"> 
-				<ul class="nav nav-list">
-					<a href="#" class="nav-header">Education</a>
-					<a href="#" class="nav-header">Entertainment</a>
-					<a href="#" class="nav-header">Fashion</a>
-					<a href="#" class="nav-header">Health</a>
-					<a href="#" class="nav-header">Industrial</a>
-					<a href="#" class="nav-header">RealEstate</a>
-					<a href="#" class="nav-header">Sports</a>
-					<a href="#" class="nav-header">Miscellaneous</a>						
-				</ul>
-			</div>
-		</div> -->
-		
-  					
             
 					<li class="span1" ng-repeat="event in homePageResults">
 					<!-- <img ng-src="{{event.promotionLogoUrl}}" alt="" > -->

@@ -30,6 +30,7 @@ import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.TicketType;
+import com.eventpool.event.service.impl.PayPalDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.order.service.PaymentService;
 import com.eventpool.web.domain.ResponseMessage;
@@ -63,8 +64,15 @@ public class OrderController {
 			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
 			  Order Order = orderService.createOrder(orderDTO);
 			  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
-				  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),
-						  "http://localhost:8083/eventpool/#/order/success?oid="+Order.getId(),"http://localhost:8083/eventpool/#/order/");
+				  
+				  PayPalDTO payPalDTO = new PayPalDTO();
+				  payPalDTO.setAmount(orderRegisterForm.getGrossAmount().toString());
+				  payPalDTO.setItemQuantity(orderRegisterForm.getTotalTickets());
+				  payPalDTO.setSuccessUrl("http://localhost:8083/eventpool/#/order/success?oid="+Order.getId());
+				  payPalDTO.setCancelUrl("http://localhost:8083/eventpool/#/order/");
+				  payPalDTO.setCurrency(eventRegister.getPaymentCurrency().name());
+				  
+				  String token = paymentService.initPayment(payPalDTO);
 				  orderRegisterForm.setToken(token);
 				  orderService.updateToken(Order.getId(), token);
 				  logger.info("Tocken:"+token);
@@ -88,14 +96,6 @@ public class OrderController {
 			  Order order = null;
 			  try {
 				  order = orderService.createOrder(orderDTO);
-				  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
-					  String token = paymentService.initPayment(orderRegisterForm.getGrossAmount().toString(),orderRegisterForm.getTotalTickets(),
-							  "http://localhost:8083/eventpool/#/order/success?oid="+order.getId(),"http://localhost:8083/eventpool/#/order/");
-					  orderRegisterForm.setToken(token);
-					  orderService.updateToken(order.getId(), token);
-					  logger.info("Tocken:"+token);
-				  }				
-				
 			} catch (Exception e) {
 				 return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
 			}

@@ -317,7 +317,7 @@
 								          </td>
 								          <td>
 								          	<span ng-show="ticket.ticketType=='FREE'">FREE</span>
-								          	<span ng-show="ticket.ticketType=='PAID'">{{event.currency}} <input type="number" name="price" min="0" ng-model="ticket.price" required></span><br/>
+								          	<span ng-show="ticket.ticketType=='PAID'">{{event.currency}} <input type="number" name="price" min="0" ng-model="ticket.price" required  style="width:100px"></span><br/>
 								            <span ng-show="tktrowform.price.$dirty && tktrowform.price.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 								          </td>
 								          <td>
