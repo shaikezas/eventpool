@@ -20,6 +20,7 @@ import urn.ebay.api.PayPalAPI.SetExpressCheckoutRequestType;
 import urn.ebay.api.PayPalAPI.SetExpressCheckoutResponseType;
 import urn.ebay.apis.CoreComponentTypes.BasicAmountType;
 import urn.ebay.apis.eBLBaseComponents.CurrencyCodeType;
+import urn.ebay.apis.eBLBaseComponents.DetailLevelCodeType;
 import urn.ebay.apis.eBLBaseComponents.PaymentActionCodeType;
 import urn.ebay.apis.eBLBaseComponents.PaymentDetailsItemType;
 import urn.ebay.apis.eBLBaseComponents.PaymentDetailsType;
@@ -59,14 +60,15 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public String initPayment(PayPalDTO payPalDTO) {
 		PaymentDetailsType paymentDetails = new PaymentDetailsType();
-		paymentDetails.setPaymentAction(PaymentActionCodeType.fromValue("Sale"));
+		paymentDetails.setPaymentAction(PaymentActionCodeType.AUTHORIZATION);
+		//fromValue("Sale"));
 		PaymentDetailsItemType item = new PaymentDetailsItemType();
 		BasicAmountType amt = new BasicAmountType();
 		amt.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
 		String amount = payPalDTO.getAmount();
 		amt.setValue(amount);
 		int itemQuantity = payPalDTO.getItemQuantity();
-		item.setQuantity(itemQuantity);
+		item.setQuantity(1);//itemQuantity
 		item.setName(payPalDTO.getItemName());
 		item.setAmount(amt);
 			
@@ -76,7 +78,7 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentDetails.setPaymentDetailsItem(lineItems);
 		BasicAmountType orderTotal = new BasicAmountType();
 		orderTotal.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
-		orderTotal.setValue(String.valueOf(Double.parseDouble(amount) * itemQuantity)); 
+		orderTotal.setValue(String.valueOf(Double.parseDouble(amount) * 1/*itemQuantity*/)); 
 		paymentDetails.setOrderTotal(orderTotal);
 		List<PaymentDetailsType> paymentDetailsList = new ArrayList<PaymentDetailsType>();
 		paymentDetailsList.add(paymentDetails);
@@ -84,7 +86,10 @@ public class PaymentServiceImpl implements PaymentService {
 		SetExpressCheckoutRequestDetailsType setExpressCheckoutRequestDetails = new SetExpressCheckoutRequestDetailsType();
 		setExpressCheckoutRequestDetails.setReturnURL(urlPrefix+"success?oid="+payPalDTO.getOrderId());
 		setExpressCheckoutRequestDetails.setCancelURL(urlPrefix+"failed?oid="+payPalDTO.getOrderId());
-
+/*		setExpressCheckoutRequestDetails.setCallbackTimeout("10");
+		setExpressCheckoutRequestDetails.setCallbackURL(urlPrefix+"failed?oid="+payPalDTO.getOrderId());
+		setExpressCheckoutRequestDetails.setCallbackVersion("61.0");
+*/
 		setExpressCheckoutRequestDetails.setPaymentDetails(paymentDetailsList);
 
 		SetExpressCheckoutRequestType setExpressCheckoutRequest = new SetExpressCheckoutRequestType(setExpressCheckoutRequestDetails);
