@@ -275,7 +275,7 @@ public class EventController {
     @RequestMapping(value = "/myevent/closeevent/{eventid}", method = RequestMethod.GET)
     public @ResponseBody ResponseMessage closeEvent(@PathVariable("eventid") Long eventId) throws Exception {
         eventService.closeEvent(eventId);
-        return new ResponseMessage(ResponseMessage.Type.success, "Successfully cancelled event");
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully closed event");
     }
     
     @RequestMapping(value = "/myevent/copyevent/{eventid}", method = RequestMethod.GET)
@@ -287,7 +287,7 @@ public class EventController {
     @RequestMapping(value = "/myevent/cancelevent/{eventid}", method = RequestMethod.GET)
     public @ResponseBody ResponseMessage cancelEvent(@PathVariable("eventid") Long eventId) throws Exception {
         eventService.cancelEvent(eventId);
-        return new ResponseMessage(ResponseMessage.Type.success, "Successfully published event");
+        return new ResponseMessage(ResponseMessage.Type.success, "Successfully cancelled event");
     }
     
     @RequestMapping(value = "/myevent/print/{suborderid}", method = RequestMethod.GET)
