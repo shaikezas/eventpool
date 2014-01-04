@@ -86,6 +86,18 @@ public class OrderController {
 		  return orderRegisterForm;
 	 }
 	  
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
+  	public @ResponseBody ResponseMessage successOrder(HttpServletRequest request)
+    {
+    	String oid = request.getParameter("oid");
+    	String token = request.getParameter("token");
+    	String payerId = request.getParameter("PayerID");
+    	
+    	System.out.println("Oid - "+oid);
+    	System.out.println("Token - "+token);
+    	System.out.println("PayerId - "+payerId);
+    	return new ResponseMessage(ResponseMessage.Type.success, "Successfully created order");
+    }
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public @ResponseBody ResponseMessage createOrder(@RequestBody 
 			OrderRegisterForm orderRegisterForm)  {
