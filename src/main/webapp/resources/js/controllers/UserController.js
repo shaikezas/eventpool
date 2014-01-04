@@ -49,6 +49,22 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
         
     }
     
+    $scope.selectCity = function(region) {
+    	if(angular.isUndefined(region) || region == null){
+    		
+    		return ;
+    	}    	
+        $scope.userDetails.homeAddress.cityId = region.text.cityId;
+    }
+    
+    $scope.selectOfficeCity = function(region) {
+    	if(angular.isUndefined(region) || region == null){
+    		
+    		return ;
+    	}    	
+        $scope.userDetails.officeAddress.cityId = region.text.cityId;
+    }
+    
     $scope.getcurrentuser = function(){
        	
        	if ($rootScope.user == undefined) {
