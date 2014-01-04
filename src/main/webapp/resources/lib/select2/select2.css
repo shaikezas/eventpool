@@ -355,6 +355,7 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
     padding: 1px;
     margin: 0;
     cursor: pointer;
+     color: #000 !important;
     -webkit-touch-callout: none;
       -webkit-user-select: none;
        -khtml-user-select: none;
@@ -419,6 +420,14 @@ disabled look for disabled choices in the results dropdown
 .select2-more-results {
     background: #f4f4f4;
     display: list-item;
+}
+
+.select2-results .movie-synopsis{
+ color: #000 !important; 
+}
+
+.select2-results table td{
+ padding:0px  !important; 
 }
 
 /* disabled styles */

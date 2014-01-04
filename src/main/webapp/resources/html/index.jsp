@@ -113,7 +113,11 @@
 				        			 <button type="button" class="close" ng-click="signupmessage().show=false;newUserEmailReq=false;newuserValidEmail=false;newUserPasswordReq=false;newUserPasswordCFReq=false">x</button>
 				        		 	<msg>{{signupmessage().text}}</msg>
 				    			</div>
-							
+							<style>
+								.error{
+								padding: 0px;
+								font-size: 10px;}
+							</style>
 							<form name="signupForm">
 							  <fieldset>
 							    <legend ng-style="{color:'blue'}">Sign up</legend>
@@ -125,19 +129,19 @@
 								
 							    <label for="newUserEmail">Email <span ng-style="{color:'red'}">*</span></label>
 								<input id="newUserEmail" type="email" ng-model="signupuserform.email" name="newUserEmail" required/>
-								 <div  ng-style="{color:'red'}">
+								 <div class="error"  ng-style="{color:'red'}">
 									<span ng-show="newUserEmailReq" ng-style="{color:'red'}">Email is required.</span>
 									<span ng-show="newuserValidEmail" ng-style="{color:'red'}">Enter valid email address.</span>
 				                </div>
 								
 								<label for="newUserPassword">Password <span ng-style="{color:'red'}">*</span></label>
 								<input id="newUserPassword" type="password" ng-model="signupuserform.password" ng-minlength="4" name="newUserPassword" required/>
-								<div ng-show="newUserPasswordReq" ng-style="{color:'red'}">Password is Required.</div>
-								<div ng-show="passlength" ng-style="{color:'red'}">Password should be atleast 4 chars.</div>
+								<div class="error" ng-show="newUserPasswordReq" ng-style="{color:'red'}">Password is Required.</div>
+								<div class="error" ng-show="passlength" ng-style="{color:'red'}">Password should be atleast 4 chars.</div>
 								
 								<label for="newUserPasswordCF">Confirm Password <span ng-style="{color:'red'}">*</span></label>
 								<input id="newUserPasswordCF" type="password" ng-model="confirmpassword" name="newUserPasswordCF" required/>
-								<div  ng-show="newUserPasswordCFReq" ng-style="{color:'red'}">Confirm Password is Required.</div>
+								<div class="error"  ng-show="newUserPasswordCFReq" ng-style="{color:'red'}">Confirm Password is Required.</div>
 								
 								
 								<div class="modal-footer">

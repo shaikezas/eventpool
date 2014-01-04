@@ -19,7 +19,9 @@ a{
 	color: none;
 	outline: none;
 }
-
+.modal-body{
+	max-height: 575px;
+}
 .viewControl{
 	padding: 5px ; 
 	border-bottom:1px solid #000 ;
