@@ -77,16 +77,16 @@ a{
 .searchCont{
 	border: 0px solid #000;
 	padding:5px 0px;
-	width: 780px;
+	width: 800px;
 	float: right;
 	margin:7px 7px 5px 0px;
 	}
 .headerSearch{
-	margin: 2px 0 0 8px;
-	width: 780px;
+	margin: 2px 0 0 0;
+	width: 790px;
 	}
 .headerSearchInput{
-	width: 710px !important;
+	width: 740px !important;
 	height: 30px !important;
 	font-style: italic;
 	}
@@ -208,7 +208,8 @@ a{
 }
 
 .countrySelect	{
-	float: left;
+	float:right; 
+	margin-right: 5PX
 }
 .filterControl{
 	padding:15px 5px;
@@ -670,6 +671,7 @@ width: 50px
 	line-height: 14px !important;
 	background-image: url("../img/icon_close.png");
 	background-repeat: no-repeat !important;
+	opacity:0.7  ;
 	}
 
 
@@ -677,21 +679,30 @@ width: 50px
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	height: 125px;
 	background: #f3f3f3;
 	padding: 0px !important;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	border: 0px;
+	height: 120px;
 	}
 .thumbnailNoImg{
 	background: #ccc;
 	text-align: justify ;
-	padding: 5px;
 	height: 125px;
 	border-radius : 4px 4px 0px 0px;
 }
 
-
+.modal-header{
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top,#ffffff,#e6e6e6);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#ffffff),to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top,#ffffff,#e6e6e6);
+	background-image: -o-linear-gradient(top,#ffffff,#e6e6e6);
+	background-image: linear-gradient(to bottom,#ffffff,#e6e6e6);
+	background-repeat: repeat-x;
+	border-radius:4px 4px 0px 0px;
+	border-bottom: 1px #ccc;
+}
 
 
 
@@ -801,7 +812,9 @@ width: 50px
 }
 
 .resultCont{
-	padding:5px 10px ;font-size: 12px; float: left; 
+	padding:5px 5px 5px 0px;
+	font-size: 16px; 
+	float: left; 
 }
 
 

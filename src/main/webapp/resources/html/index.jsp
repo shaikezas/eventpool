@@ -158,8 +158,9 @@
 	
 	 <div class="modal newModel" style="display: none" id="forgot">
 				        
-				     	<div class="modal-header">
-				            <a class="close" data-dismiss="modal" ng-click="cancelForgot()">x</a>
+				     	<div class="modal-header" style="">
+				     	 
+				            <a class="close" data-dismiss="modal" ng-click="cancelForgot()"> </a>
 				            <h3>Forgot password</h3>
 				        </div>
 				     
