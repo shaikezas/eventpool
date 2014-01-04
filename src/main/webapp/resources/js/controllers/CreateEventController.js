@@ -337,8 +337,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	$scope.stopSubmitAction = false;        	
          }
         else {        	
-        $http.post('event/myevent/addevent', $scope.event).success(function() {
-        	$location.url('myevents');
+        $http.post('event/myevent/addevent', $scope.event).success(function(response) {
+        	if(response.type=='success')
+        		{
+        			$location.url('myevents');
+        		}
         }).error(function() {
         	$scope.disabled = false;
         });
