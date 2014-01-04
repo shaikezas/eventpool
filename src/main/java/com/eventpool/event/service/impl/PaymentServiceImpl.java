@@ -36,13 +36,15 @@ import com.paypal.sdk.exceptions.OAuthException;
 public class PaymentServiceImpl implements PaymentService {
 
 	@Override
-	public String initPayment(String amount,int itemQuantity,String successUrl,String cancelUrl) {
+	public String initPayment(PayPalDTO payPalDTO) {
 		PaymentDetailsType paymentDetails = new PaymentDetailsType();
 		paymentDetails.setPaymentAction(PaymentActionCodeType.fromValue("Sale"));
 		PaymentDetailsItemType item = new PaymentDetailsItemType();
 		BasicAmountType amt = new BasicAmountType();
 		amt.setCurrencyID(CurrencyCodeType.fromValue("USD"));
+		String amount = payPalDTO.getAmount();
 		amt.setValue(amount);
+		int itemQuantity = payPalDTO.getItemQuantity();
 		item.setQuantity(itemQuantity);
 		item.setName("item");
 		item.setAmount(amt);
@@ -52,15 +54,15 @@ public class PaymentServiceImpl implements PaymentService {
 		lineItems.add(item);
 		paymentDetails.setPaymentDetailsItem(lineItems);
 		BasicAmountType orderTotal = new BasicAmountType();
-		orderTotal.setCurrencyID(CurrencyCodeType.fromValue("USD"));
+		orderTotal.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
 		orderTotal.setValue(String.valueOf(Double.parseDouble(amount) * itemQuantity)); 
 		paymentDetails.setOrderTotal(orderTotal);
 		List<PaymentDetailsType> paymentDetailsList = new ArrayList<PaymentDetailsType>();
 		paymentDetailsList.add(paymentDetails);
 
 		SetExpressCheckoutRequestDetailsType setExpressCheckoutRequestDetails = new SetExpressCheckoutRequestDetailsType();
-		setExpressCheckoutRequestDetails.setReturnURL(successUrl);
-		setExpressCheckoutRequestDetails.setCancelURL(cancelUrl);
+		setExpressCheckoutRequestDetails.setReturnURL(payPalDTO.getSuccessUrl());
+		setExpressCheckoutRequestDetails.setCancelURL(payPalDTO.getCancelUrl());
 
 		setExpressCheckoutRequestDetails.setPaymentDetails(paymentDetailsList);
 
