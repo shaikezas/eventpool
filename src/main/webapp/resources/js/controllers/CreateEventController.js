@@ -424,6 +424,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.startDateRequired = $scope.eventForm.startDate.$error.required;
     	$scope.endDateRequired = $scope.eventForm.endDate.$error.required;
     	$scope.catRequired = $scope.eventForm.category.$error.required;
+    	$scope.curRequired = $scope.eventForm.currency.$error.required;
 
     	$scope.citryReq = false;
     	if(angular.isUndefined($scope.event.cityName) || $scope.event.cityName==null){
