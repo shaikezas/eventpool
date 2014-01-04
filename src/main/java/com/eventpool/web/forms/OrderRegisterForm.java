@@ -47,6 +47,7 @@ public class OrderRegisterForm {
 	private String startDate;
 	private String endDate;
 	private String token;
+	private String eventName;
 	
 	public String getFirstName() {
 		return firstName;
@@ -209,6 +210,14 @@ public class OrderRegisterForm {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
 	}
 
 }

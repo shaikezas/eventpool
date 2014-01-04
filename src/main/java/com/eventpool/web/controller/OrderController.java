@@ -62,19 +62,20 @@ public class OrderController {
 		  try {
 			  orderRegisterForm = orderService.registerOrder(eventRegister);
 			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
-			  Order Order = orderService.createOrder(orderDTO);
+			  Order order = orderService.createOrder(orderDTO);
 			  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
 				  
 				  PayPalDTO payPalDTO = new PayPalDTO();
 				  payPalDTO.setAmount(orderRegisterForm.getGrossAmount().toString());
 				  payPalDTO.setItemQuantity(orderRegisterForm.getTotalTickets());
-				  payPalDTO.setSuccessUrl("http://localhost:8083/eventpool/#/order/success?oid="+Order.getId());
-				  payPalDTO.setCancelUrl("http://localhost:8083/eventpool/#/order/");
+				  payPalDTO.setOrderId(order.getId());
+				  payPalDTO.setItemName(orderRegisterForm.getEventName());
+				  //payPalDTO.setSuccessUrl("http://localhost:8083/eventpool/#/order/success?oid="+order.getId());
+				  //payPalDTO.setCancelUrl("http://localhost:8083/eventpool/#/order/");
 				  payPalDTO.setCurrency(eventRegister.getPaymentCurrency().name());
-				  
 				  String token = paymentService.initPayment(payPalDTO);
 				  orderRegisterForm.setToken(token);
-				  orderService.updateToken(Order.getId(), token);
+				  orderService.updateToken(order.getId(), token);
 				  logger.info("Tocken:"+token);
 			  }
 			} catch(NoTicketInventoryBlockedException e){

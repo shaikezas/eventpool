@@ -271,6 +271,7 @@ public class OrderServiceImpl implements OrderService {
 		orderRegisterForm.setNetAmount(grossAmount
 				- orderRegisterForm.getDiscountAmount());
 		orderRegisterForm.setGrossAmount(grossAmount);
+		orderRegisterForm.setEventName(event.getTitle());
 		return orderRegisterForm;
 	}
 

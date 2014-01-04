@@ -8,6 +8,9 @@ import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -23,6 +26,7 @@ import urn.ebay.apis.eBLBaseComponents.PaymentDetailsType;
 import urn.ebay.apis.eBLBaseComponents.SetExpressCheckoutRequestDetailsType;
 
 import com.eventpool.order.service.PaymentService;
+import com.eventpool.web.controller.OrderController;
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
 import com.paypal.exception.InvalidCredentialException;
@@ -34,6 +38,23 @@ import com.paypal.sdk.exceptions.OAuthException;
 @SuppressWarnings("rawtypes")
 @Service
 public class PaymentServiceImpl implements PaymentService {
+	
+	static final Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
+	
+	@Value("$EVENT_POOL{url.prefix}")
+	private String urlPrefix;
+
+	@Value("$EVENT_POOL{pay.mode}")
+	private String payMode;
+
+	@Value("$EVENT_POOL{acct1.UserName}")
+	private String payUserName;
+
+	@Value("$EVENT_POOL{acct1.Password}")
+	private String password;
+
+	@Value("$EVENT_POOL{acct1.Signature}")
+	private String signature;
 
 	@Override
 	public String initPayment(PayPalDTO payPalDTO) {
@@ -41,12 +62,12 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentDetails.setPaymentAction(PaymentActionCodeType.fromValue("Sale"));
 		PaymentDetailsItemType item = new PaymentDetailsItemType();
 		BasicAmountType amt = new BasicAmountType();
-		amt.setCurrencyID(CurrencyCodeType.fromValue("USD"));
+		amt.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
 		String amount = payPalDTO.getAmount();
 		amt.setValue(amount);
 		int itemQuantity = payPalDTO.getItemQuantity();
 		item.setQuantity(itemQuantity);
-		item.setName("item");
+		item.setName(payPalDTO.getItemName());
 		item.setAmount(amt);
 			
 
@@ -61,8 +82,8 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentDetailsList.add(paymentDetails);
 
 		SetExpressCheckoutRequestDetailsType setExpressCheckoutRequestDetails = new SetExpressCheckoutRequestDetailsType();
-		setExpressCheckoutRequestDetails.setReturnURL(payPalDTO.getSuccessUrl());
-		setExpressCheckoutRequestDetails.setCancelURL(payPalDTO.getCancelUrl());
+		setExpressCheckoutRequestDetails.setReturnURL(urlPrefix+"success?oid="+payPalDTO.getOrderId());
+		setExpressCheckoutRequestDetails.setCancelURL(urlPrefix+"failed?oid="+payPalDTO.getOrderId());
 
 		setExpressCheckoutRequestDetails.setPaymentDetails(paymentDetailsList);
 
@@ -73,47 +94,42 @@ public class PaymentServiceImpl implements PaymentService {
 		setExpressCheckoutReq.setSetExpressCheckoutRequest(setExpressCheckoutRequest);
 
 		Map<String, String> sdkConfig = new HashMap<String, String>();
-		sdkConfig.put("mode", "sandbox");
+/*		sdkConfig.put("mode", "sandbox");
 		sdkConfig.put("acct1.UserName", "jb-us-seller_api1.paypal.com");
 		sdkConfig.put("acct1.Password", "WX4WTU3S8MY44S7F");
 		sdkConfig.put("acct1.Signature","AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+*/		
+		sdkConfig.put("mode", payMode);
+		sdkConfig.put("acct1.UserName", payUserName);
+		sdkConfig.put("acct1.Password",password);
+		sdkConfig.put("acct1.Signature",signature);
+		
 		PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(sdkConfig);
 		try {
 			SetExpressCheckoutResponseType setExpressCheckoutResponse = service.setExpressCheckout(setExpressCheckoutReq);
 			return 	setExpressCheckoutResponse.getToken();
 		} catch (SSLConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (InvalidCredentialException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (HttpErrorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (InvalidResponseDataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (ClientActionRequiredException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (MissingCredentialException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (OAuthException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("token generaton error:",e);
 		}
 		return null;
 	}

@@ -12,6 +12,8 @@ public class PayPalDTO implements Serializable{
 	String successUrl;
 	String cancelUrl;
 	String currency="USD";
+	Long orderId;
+	String itemName;
 	
 	public String getAmount() {
 		return amount;
@@ -42,6 +44,18 @@ public class PayPalDTO implements Serializable{
 	}
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+	public Long getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 	
 }
