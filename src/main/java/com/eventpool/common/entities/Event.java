@@ -126,6 +126,10 @@ public class Event extends AuditableIdEntity {
 	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="event")
 	private EventSettings eventSettings; 
 
+	@Column(name = "CURRENCY")
+	private String currency="USD";
+
+	
 	public String getTitle() {
 		return title;
 	}
@@ -369,6 +373,14 @@ public class Event extends AuditableIdEntity {
 
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 
 }

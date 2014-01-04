@@ -44,6 +44,7 @@ public class EventDTO extends AuditableIdDTO {
 	private UserEventSettingDTO userEventSettingDTO;
 	private Boolean publish;
 	private String timeZone;
+	private String currency;
 	
 	public String getTitle() {
 		return title;
@@ -292,6 +293,14 @@ public class EventDTO extends AuditableIdDTO {
 
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 	
 	

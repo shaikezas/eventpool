@@ -80,7 +80,7 @@ public class EventForm  {
 	private String logo;
 	private Boolean showBookTicket=true ;
 	private boolean upload = false;
-	
+	private String currency;
 	
 	private String status;
 	
@@ -437,6 +437,12 @@ public Long getEventId() {
 	}
 	public void setUpload(boolean upload) {
 		this.upload = upload;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 	
 }

@@ -28,6 +28,7 @@
 		<field><a>eventUrl      </a><b>eventUrl     </b></field>
 		<field><a>classificationType      </a><b>classificationType     </b></field>
 		<field><a>status</a><b>status</b></field>
+		<field><a>currency</a><b>currency</b></field>
 <!-- 		<field><a>isPublish            	  </a></field>
 		<field><a>selectedformid       	  </a></field>
  -->
