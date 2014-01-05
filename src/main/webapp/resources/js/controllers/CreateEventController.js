@@ -267,7 +267,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
  		        	if(data.status == true) {
  		        		$scope.event.bannerFile= data.filesuploaded[0].uniqueid;
  	        		} else {
- 	        			alert("Error in file upload "+data.result.error);
+ 	        			alert(data.error);
  	        		}
  		        	
  		        }
