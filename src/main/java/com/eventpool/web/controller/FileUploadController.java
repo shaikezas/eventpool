@@ -70,12 +70,12 @@ public class FileUploadController {
     		if(error==null)
 			saveInSourceLocation = save.saveInSourceLocation(fileupload.getInputStream());
     		response.setName(fileupload.getOriginalFilename());
-		} catch (IllegalStateException e) {
+		}catch (IllegalStateException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			logger.info("File uploaded error:",e);
 		} catch (IOException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			logger.info("File uploaded error:",e);
 		}
     	
     	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
@@ -116,10 +116,10 @@ public class FileUploadController {
 			saveInSourceLocation = save.saveInSourceLocation(fileupload.getInputStream());
 		} catch (IllegalStateException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			logger.info("File uploaded error:",e);
 		} catch (IOException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			logger.info("File uploaded error:",e);
 		}
     	
     	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
@@ -128,7 +128,7 @@ public class FileUploadController {
     	photosData.add(photo);
     	
     	response.setFilesuploaded(photosData);
-    	System.out.println("File uploaded :"+saveInSourceLocation);
+    	logger.info("File uploaded :"+saveInSourceLocation);
     	return response;
     }
 	
@@ -157,16 +157,18 @@ public class FileUploadController {
     			response.setStatus(false);
     			error  = "minimum heightXwidth : "+BANNER_MIN_HEIGHTH+"X"+BANNER_MIN_WIDTH;
     		}
-    		response.setError(error);
+    		response.setError(error+" for uploading banner image");
     		if(error==null){
     			saveInSourceLocation = save.saveInSourceLocation(bannerImage);
     		}
-		} catch (IllegalStateException e) {
+		}catch (IllegalStateException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			response.setError("unable to upload. Please try new image.");
+			logger.info("File uploaded error:",e);
 		} catch (IOException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			response.setError("unable to upload. Please try new image.");
+			logger.info("File uploaded error:",e);
 		}
     	
     	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
@@ -203,17 +205,18 @@ public class FileUploadController {
     			response.setStatus(false);
     			error  = "minimum heightXwidth : "+PROMOTION_MIN_HEIGHTH+"X"+PROMOTION_MIN_WIDTH;
     		}
-    		response.setError(error);
+    		response.setError(error+" for uploading promo image");
     		if(error==null)
 			saveInSourceLocation = save.saveInSourceLocation(bannerImage);
 		} catch (IllegalStateException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			response.setError("unable to upload. Please try new image.");
+			logger.info("File uploaded error:",e);
 		} catch (IOException e) {
 			response.setStatus(false);
-			e.printStackTrace();
+			response.setError("unable to upload. Please try new image.");
+			logger.info("File uploaded error:",e);
 		}
-    	
     	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
     	PhotoWeb photo = new PhotoWeb();
     	photo.setUniqueid(saveInSourceLocation);
