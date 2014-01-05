@@ -87,8 +87,8 @@ public class EventApiImpl implements EventApi{
     	User user = userRepository.findOne(eventDTO.getCreatedBy());
     	
     	String eventUrl = eventDTO.getEventUrl();
-        if(eventUrl ==null) eventUrl = eventDTO.getTitle();
-        if(eventUrl!=null){
+        if(eventUrl==null){
+         eventUrl = eventDTO.getTitle();
          eventUrl = eventUrl.toLowerCase().replaceAll("\\s+", " ").replace(" ", "-").concat("-"+new Date().getTime());
          if(eventUrl.length()>256){
           eventUrl = eventUrl.substring(eventUrl.length()-256);
