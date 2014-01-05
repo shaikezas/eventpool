@@ -261,7 +261,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
      	   for (var i in $scope.files) {
      		   formData.append("banner", $scope.files[0])
             }
-//     	   $scope.event.upload=true;
+//    	   $scope.event.upload=true;
  		   $http.post('upload/image', formData,{headers: {'Content-Type': undefined },data: formData,
  		        transformRequest: angular.identity}).success(function(data){
  		        	if(data.status == true) {
@@ -273,7 +273,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
  		        }
  		        
  		        ).error();
- //		  $scope.event.upload=false;
+// 		  $scope.event.upload=false;
  		  $scope.apply();
  	}
 
