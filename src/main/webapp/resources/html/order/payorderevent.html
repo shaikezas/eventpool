@@ -92,7 +92,7 @@
 							    <div class="control-group">
 								    <label class="control-label" for="state">City :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								    <input ui-select2="cityselect2options" name="city" ng-model="cityinput" ng-change="selectCity(cityinput)" disabled="true" required />
+								    <input ui-select2="cityselect2options" name="city" ng-model="cityinput" ng-change="selectCity(cityinput)" disabled="true" required  disabled="true"/>
 								    <span ng-show="cityRequired" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>	
@@ -100,14 +100,14 @@
 								  <div class="control-group">
 								    <label class="control-label" for="state">State :</label>
 								    <div class="controls">
-								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
+								    <input type="text" id="eventStateName" ng-model="state" disabled="true" >
 								    </div>
 								  </div>
 								  
 								   <div class="control-group">
 								    <label class="control-label" for="state">Country :</label>
 								    <div class="controls">
-										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
+										   <input type="text" id="eventCountryName" ng-model="country" disabled="true" >
 								    </div>
 								  </div>
 							  
@@ -115,7 +115,7 @@
 								  <div class="control-group">
 								    <label class="control-label" for="Pincode">Pincode  :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="text" name="pincode" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode" required>
+								      <input type="text" name="pincode" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode" disabled="true" required>
 								      <span ng-show="pincodeRequired" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
