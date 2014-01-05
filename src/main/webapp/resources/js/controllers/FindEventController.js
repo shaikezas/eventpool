@@ -169,6 +169,16 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
   	    });
   }
     
+    $scope.getdefaultcountryname = function(){
+    	if($scope.countryname=='Country' && angular.isUndefined($routeParams.countryId)){
+   	 		$http.get('search/getdefaultcountryname').success(function(countryname) {     		 
+   	 			$scope.countryname = countryname;
+   	 		}).error(function() {
+ 	    	
+   	 		});
+    	}
+ }
+    
     $scope.setcountryname = function(id,name) {
     	$scope.countryname = name;
     	$scope.countryid = id;   
@@ -179,4 +189,5 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     $scope.fetchSearchResults($rootScope.user);
     $scope.getcurrentuser();
     $scope.getActiveCountriesList();
+    $scope.getdefaultcountryname();
 }
