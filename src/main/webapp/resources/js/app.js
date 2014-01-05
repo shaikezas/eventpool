@@ -41,7 +41,8 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $routeProvider.when('/myevent/:eventid',	{        templateUrl: 'html/event/manageevent.html', 		  controller: CreateEventController                               });	
     $routeProvider.when('/event/:eventurl',	{        templateUrl: 'html/event/eventpage.html', 		  controller: EventPageController                               });
     $routeProvider.when('/order',	{        templateUrl: 'html/order/orderevent.html', 		  controller: EventPageController                               });
-    $routeProvider.when('/pricing',	{        templateUrl: 'html/ticket/pricing.html', 		  controller: PricingController                               });
+    $routeProvider.when('/package',	{        templateUrl: 'html/ticket/package.html', 		  controller: PackageController                               });
+    $routeProvider.when('/pricing/:eventurl',	{        templateUrl: 'html/ticket/pricing.html', 		  controller: PricingController                               });
     $routeProvider.when('/userSettings',           {        templateUrl: 'html/user/MyAccount.html',           controller: UserController    					    });
     $routeProvider.when('/printticket/:suborderid',           {        templateUrl: 'html/ticket/printticket.html',           controller: PrintTicketController    					    });
     $routeProvider.when('/order/success',           {        templateUrl: 'html/order/ordersuccess.html',           controller: OrderSuccessController    					    });

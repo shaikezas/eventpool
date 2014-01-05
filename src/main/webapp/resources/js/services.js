@@ -91,6 +91,7 @@ AppServices.service('srvevent', function ($http) {
       
 });
 
+
 AppServices.service('eventsettings', function ($http) {
 
     return {
