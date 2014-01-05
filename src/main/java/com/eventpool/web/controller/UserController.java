@@ -2,6 +2,7 @@ package com.eventpool.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.eventpool.common.dto.Region;
 import com.eventpool.common.entities.User;
+import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.PasswordGenerator;
@@ -34,6 +37,9 @@ public class UserController {
     
     @Resource
     private HtmlEmailService htmlEmailService;
+    
+    @Resource
+    private EntityUtilities  entityUtilities;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
@@ -136,6 +142,20 @@ public class UserController {
     	User user = userService.getCurrentUser();
     	UserForm userForm = new UserForm();
     	mapper.mapUser(user, userForm);
+       	if(userForm.getHomeAddress().getCityId()!=null){
+        	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
+        	Region region = csc.get(userForm.getHomeAddress().getCityId());
+        	userForm.getHomeAddress().setCityName(region.getCityName());
+        	userForm.getHomeAddress().setStateName(region.getStateName());
+        	userForm.getHomeAddress().setCountryName(region.getCountryName());
+        	}
+      	if(userForm.getOfficeAddress().getCityId()!=null){
+        	Map<Integer, Region> csc = entityUtilities.getCitiesWithStateAndCountry();
+        	Region region = csc.get(userForm.getOfficeAddress().getCityId());
+        	userForm.getOfficeAddress().setCityName(region.getCityName());
+        	userForm.getOfficeAddress().setStateName(region.getStateName());
+        	userForm.getOfficeAddress().setCountryName(region.getCountryName());
+        	}
         return userForm;
     }
     

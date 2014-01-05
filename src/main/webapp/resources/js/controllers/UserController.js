@@ -4,8 +4,10 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
 	$scope.validaltemail=false;
 	
     $scope.fetchUserDetails = function() {
-    	$http.get('account/getuser').success(function(userDetails){
+    	$http.get('account/getuser').success(function(userDetails){    		
         	$scope.userDetails = userDetails;
+        	$scope.citySelect = {id:$scope.userDetails.homeAddress.cityId,text:{'cityId':$scope.userDetails.homeAddress.cityId,'cityName':$scope.userDetails.homeAddress.cityName}};
+        	$scope.offcitySelect = {id:$scope.userDetails.officeAddress.cityId,text:{'cityId':$scope.userDetails.officeAddress.cityId,'cityName':$scope.userDetails.officeAddress.cityName}};
         });
         
       }
@@ -75,7 +77,7 @@ var UserController = function($scope, $http,$rootScope,currentuser,resetSrv) {
        	
        }
        
-       $scope.getcurrentuser();
+    $scope.getcurrentuser();
     
     $scope.fetchUserDetails();
 }
