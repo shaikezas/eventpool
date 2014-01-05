@@ -578,7 +578,7 @@ public class EventTest extends BaseTest{
     }
     
     @Test
-    public void push(){
+    public void push() throws Exception{
     	/*List<Event> findAll = eventRepository.findAll();
     	for(Event event:findAll){
     		eventService.pushToQueue(event.getId());
