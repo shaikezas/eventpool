@@ -11,6 +11,7 @@
 		
 		
             <h1>My Tickets</h1>
+            <div ng-show="myTicketsList.length!=0">
           		<form class="form-horizontal" class="row-fluid">
          		 	 <div class="floatLeft" > Show: <select ng-model="showtickets" ng-init="showtickets=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
          		 	 <div class="floatRight" >Search Text: <input type="text" id="searchTextTickets" ng-model="searchTextTickets"></div>
@@ -48,7 +49,10 @@
 				        
 				      </tbody>
 				    </table>
-		
+				</div>
+				<div ng-show="myTicketsList.length==0">
+					No tickets found.
+				</div>
 		</div>
 		
 			
