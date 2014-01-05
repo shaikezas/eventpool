@@ -296,9 +296,10 @@ public class EventController {
     }
     
     @RequestMapping(value = "/myevent/copyevent/{eventid}", method = RequestMethod.GET)
-    public @ResponseBody ResponseMessage copyEvent(@PathVariable("eventid") Long eventId) throws Exception {
-        eventService.copyEvent(eventId);
-        return new ResponseMessage(ResponseMessage.Type.success, "Successfully copied event");
+    public @ResponseBody Long copyEvent(@PathVariable("eventid") Long eventId) throws Exception {
+        Long newEventId = eventService.copyEvent(eventId);
+        System.out.println("Newly copied event id:"+newEventId);
+        return newEventId;
     }
     
     @RequestMapping(value = "/myevent/cancelevent/{eventid}", method = RequestMethod.GET)
