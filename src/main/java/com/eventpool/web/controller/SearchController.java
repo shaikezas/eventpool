@@ -224,4 +224,11 @@ public class SearchController {
 		//Collections.sort(activeCountries);
 		return activeCountries;
 	}
+	
+	@RequestMapping(value = "/getdefaultcountryname", method = RequestMethod.GET)
+	public  @ResponseBody String getDefaultCountryName(HttpServletRequest request)  throws Exception {
+		String ip=getRemoteIp(request);
+    	logger.info("IP address is:"+ip);
+		return ipLocation.getCountryName(ip);
+	}
 }

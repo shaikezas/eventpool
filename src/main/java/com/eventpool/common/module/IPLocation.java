@@ -65,6 +65,15 @@ public class IPLocation {
 		}
 		return null;
 	}
+	
+	public String getCountryName(String ip){
+		Map locationMap = getLocation(ip);
+		if(locationMap!=null){
+			String countryName = (String)locationMap.get("countryName");			
+			return countryName;
+		}
+		return null;
+	}
 	private static String getStringFromInputStream(InputStream is) {
 		 
 		BufferedReader br = null;
