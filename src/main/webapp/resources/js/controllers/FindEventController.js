@@ -170,7 +170,6 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
   }
     
     $scope.getdefaultcountryname = function(){
-    	alert("country");
     	if($scope.countryname=='Country' && angular.isUndefined($routeParams.countryId)){
    	 		$http.get('search/getdefaultcountryname').success(function(countryname) {     		 
    	 			$scope.countryname = countryname;
