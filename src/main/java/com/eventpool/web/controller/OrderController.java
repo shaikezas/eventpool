@@ -31,6 +31,7 @@ import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.PayPalDTO;
+import com.eventpool.event.service.impl.PayPalItemDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.order.service.PaymentService;
 import com.eventpool.web.domain.ResponseMessage;
@@ -75,11 +76,15 @@ public class OrderController {
 		  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
 			  
 			  PayPalDTO payPalDTO = new PayPalDTO();
-			  payPalDTO.setAmount(orderRegisterForm.getGrossAmount().toString());
-			  payPalDTO.setItemQuantity(orderRegisterForm.getTotalTickets());
 			  payPalDTO.setOrderId(order.getId());
-			  payPalDTO.setItemName(orderRegisterForm.getEventName());
 			  payPalDTO.setCurrency(orderRegisterForm.getPaymentCurrency().name());
+			  for(TicketRegisterDTO ticketRegisterDTO:orderRegisterForm.getTicketRegisters()){
+				  PayPalItemDTO payPalItemDTO = new PayPalItemDTO();
+				  payPalItemDTO.setAmount(ticketRegisterDTO.getPrice().toString());
+				  payPalItemDTO.setItemQuantity(ticketRegisterDTO.getQty());
+				  payPalItemDTO.setItemName(ticketRegisterDTO.getTicketName());
+				  payPalDTO.getPayPalItemDTOs().add(payPalItemDTO);
+			  }
 			  String token = paymentService.initPayment(payPalDTO);
 			  orderRegisterForm.setToken(token);
 			  orderService.updateToken(order.getId(), token);
