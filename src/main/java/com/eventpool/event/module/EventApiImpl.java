@@ -86,6 +86,16 @@ public class EventApiImpl implements EventApi{
     	Integer pointsPerEvent = cacheUtils.getMemberShipPointsMap().get(classificationType);
     	User user = userRepository.findOne(eventDTO.getCreatedBy());
     	
+    	String eventUrl = eventDTO.getEventUrl();
+        if(eventUrl ==null) eventUrl = eventDTO.getTitle();
+        if(eventUrl!=null){
+         eventUrl = eventUrl.toLowerCase().replaceAll("\\s+", " ").replace(" ", "-").concat("-"+new Date().getTime());
+         if(eventUrl.length()>256){
+          eventUrl = eventUrl.substring(eventUrl.length()-256);
+         }
+         eventDTO.setEventUrl(eventUrl);
+        }
+        
     	if(id == null){
     		event = new Event();
 			if(classificationType!=null && classificationType>1){

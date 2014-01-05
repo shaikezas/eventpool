@@ -156,6 +156,7 @@ public class EventServiceImpl implements EventService {
 		eventDTO.setTitle("Copy of "+ eventDTO.getTitle());
 		eventDTO.setClassificationType(1);
 		eventDTO.setPublishDate(null);
+		eventDTO.setEventUrl(null);
 		List<TicketDTO> tickets = eventDTO.getTickets();
 		for(TicketDTO ticketDTO:tickets){
 			ticketDTO.setId(null);

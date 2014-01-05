@@ -137,7 +137,7 @@ public class EventController {
     	mapper.mapEventDTO(event, eventDTO);
     	eventDTO.setCreatedBy(user.getId());
     	 try {
-    		 if(eventDTO.getId()==null){
+ /*   		 if(eventDTO.getId()==null){
     			 String eventUrl = eventDTO.getEventUrl();
     			 if(eventUrl ==null) eventUrl = eventDTO.getTitle();
     			 if(eventUrl!=null){
@@ -147,7 +147,7 @@ public class EventController {
 	    			 }
 	    			 eventDTO.setEventUrl(eventUrl);
     			 }
-    		 }
+    		 }*/
     		 String eventMsg = "Successfully created the event.";
     		 if(eventDTO.getId()!=null){
     			 eventMsg = "Successfully updated the event";
