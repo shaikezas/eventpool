@@ -11,7 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.eventpool.common.dto.AddressDTO;
 import com.eventpool.common.dto.EventDTO;
+import com.eventpool.common.dto.EventSettingsDTO;
+import com.eventpool.common.dto.MediaDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
 import com.eventpool.common.dto.TicketInventoryDTO;
@@ -139,20 +142,46 @@ public class EventServiceImpl implements EventService {
 
 	
 	public void closeEvent(Long eventId) throws Exception {
-		// TODO Auto-generated method stub
-		
+		EventDTO eventDTO = eventApi.getEvenDTO(eventId);
+		eventDTO.setStatus(EventStatus.CLOSED);
+		addEvent(eventDTO);
 	}
 
 	
-	public void copyEvent(Long eventId) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public Long copyEvent(Long eventId) throws Exception {
+		EventDTO eventDTO = eventApi.getEvenDTO(eventId);
+		eventDTO.setId(null);
+		eventDTO.setStatus(EventStatus.DRAFT);
+		eventDTO.setPublish(Boolean.FALSE);
+		eventDTO.setTitle("Copy of "+ eventDTO.getTitle());
+		eventDTO.setClassificationType(1);
+		eventDTO.setPublishDate(null);
+		eventDTO.setEventUrl(null);
+		List<TicketDTO> tickets = eventDTO.getTickets();
+		for(TicketDTO ticketDTO:tickets){
+			ticketDTO.setId(null);
+			ticketDTO.setEventId(null);
+		}
+		MediaDTO media = eventDTO.getMedia();
+		media.setEventId(null);
+		AddressDTO venueAddress = eventDTO.getVenueAddress();
+		if(venueAddress!=null){
+			venueAddress.setId(null);
+		}
+		EventSettingsDTO eventSettingsDTO = eventDTO.getEventSettingsDTO();
+		if(eventSettingsDTO!=null){
+			eventSettingsDTO.setId(null);
+			eventSettingsDTO.setEventId(null);
+		}
+		addEvent(eventDTO);	
+		return eventDTO.getId();
 	}
 
 	
 	public void cancelEvent(Long eventId) throws Exception {
-		// TODO Auto-generated method stub
-		
+		EventDTO eventDTO = eventApi.getEvenDTO(eventId);
+		eventDTO.setStatus(EventStatus.CANCELLED);
+		addEvent(eventDTO);
 	}
 	
 	

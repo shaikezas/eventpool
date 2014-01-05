@@ -142,9 +142,11 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
          }
         else {
     	 $http.post('order/create',$scope.orderRegister).success(function(data) {
-         	$scope.editMode = false;
-         	$scope.status = data;
-         	//$location.url('order/success');
+    		 $scope.orderRegister = data;
+    		 Data.setOrderRegisterData(data);
+    		 Data.setEventData($scope.event);
+    		 $scope.editMode = false;
+    		 $location.url('order/pay');
          }).error(function(error) {
         	 $scope.disablePayment = false;
              alert(error);

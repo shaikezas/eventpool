@@ -50,15 +50,15 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
       }
       
       $scope.updateEventOptions = function(){
-    	  if(!$scope.event.isPublish){
+//    	  if(!$scope.event.isPublish){
     	  $http.post('event/myevent/updateoptions', $scope.event).success(function(data) {
         }).error(function() {
             $scope.setError('Could not update settings.');
         });
-    	  }
-    	  else {
-        		alert("Published events cannot be modified.\n Review event details.");
-        	}
+//    	  }
+//    	  else {
+//        		alert("Published events cannot be modified.\n Review event details.");
+//        	}
       }
 
   $scope.validateeventname = function(eventname) {
@@ -256,27 +256,30 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     };
 
     $scope.uploadBanner = function() {
-        	
      	   var formData = new FormData();
      	   for (var i in $scope.files) {
      		   formData.append("banner", $scope.files[0])
             }
-//     	   $scope.event.upload=true;
+     	  $scope.event.upload=true;
  		   $http.post('upload/image', formData,{headers: {'Content-Type': undefined },data: formData,
  		        transformRequest: angular.identity}).success(function(data){
- 		        	if(data.status == true) {
+ 		        	if(data.status == true ) {
  		        		$scope.event.bannerFile= data.filesuploaded[0].uniqueid;
  	        		} else {
- 	        			alert("Error in file upload "+data.result.error);
+ 	        			alert(data.error);
  	        		}
  		        	
  		        }
  		        
  		        ).error();
- //		  $scope.event.upload=false;
+ 		  $scope.event.upload=false;
  		  $scope.apply();
  	}
 
+    $scope.uploadWaitBanner = function(){
+    	$scope.event.upload=true;
+ 	   $scope.apply();
+    }
     $scope.removeBanner = function() {
     	$scope.event.bannerFile="";
     	$scope.files[0]=null;
@@ -336,7 +339,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         if($scope.stopSubmitAction === true){
         	$scope.stopSubmitAction = false;        	
          }
-        else {        	
+        else {
+        $scope.setticketsaleenddate();
         $http.post('event/myevent/addevent', $scope.event).success(function(response) {
         	if(response.type=='success')
         		{
@@ -369,7 +373,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         if($scope.stopSubmitAction === true){
         	$scope.stopSubmitAction = false;
          }
-        else {        	
+        else {
+        $scope.setticketsaleenddate();
         $http.post('event/myevent/addEventAndPublish', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
@@ -570,11 +575,16 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         }
     }
     
-    $scope.setticketsaleenddte = function(){
+    $scope.setticketsaleenddate = function(){
     	if(angular.isDefined($scope.event.tickets)) {
     	var tickets = $scope.event.tickets;
-    	for (var i=0;i<tickets.length;i++) 	{  
-    	tickets[i].saleEnd= $scope.event.startDate;
+    	if(angular.isDefined($scope.event.startDate)){
+    		var millSecs = (new Date($scope.event.startDate)).getTime();
+			millSecs = millSecs - 3600000;
+			var sEnd = new Date(millSecs);
+    		for (var i=0;i<tickets.length;i++) 	{      			
+            	tickets[i].saleEnd= moment(sEnd).format("DD-MMM-YYYY HH:mm");   	
+    		}
     	}
         /*sEnd = new Date(sEnd);
         var millSecs = sEnd.getTime();

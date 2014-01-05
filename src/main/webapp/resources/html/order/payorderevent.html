@@ -8,7 +8,7 @@
 			   	
 <div class="eventCont">
 			   	
-          	<h1 class="headerContainerEvent">{{event.title}} </h1>
+          	<h1 class="headerContainerEvent">{{event.title}}</h1>
 	<div class="eventBanners"  ng-show="event.banner!=null">
 		<img ng-src="{{event.banner}}"/>  
 		<!-- <img  src="resources/bootstrap/img/banner_1.jpg"/> -->
@@ -26,12 +26,13 @@
 						<th>Ticket Type</th>
 						<th class="amt">Price</th>
 						<th class="amt">Quantity</th>
+
 					</tr>
 				</thead>
 				<tbody>
 				<tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
 						  <td class="amt">{{ticketRegister.ticketName}} </td>
-						  <td class="amt">{{event.currency}} {{ticketRegister.price}} </td>
+						  <td class="amt">{{ticketRegister.price}} </td>
 						  <td class="amt"> {{ticketRegister.qty}}</td>
 						</tr>
 								
@@ -44,14 +45,14 @@
 				
 				<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
 							  <h2 ng-show="orderRegister.registrationLimit!=null">
-							  Time Remaining to Fill Details <timer interval="1000" countdown="orderRegister.registrationLimit*60" >{{minutes}}:{{seconds}}
-							  </timer> Minutes.</h2> 
+							  <timer interval="1000" countdown="orderRegister.registrationLimit*60">{{minutes}} :{{seconds}}
+							  </timer></h2> 
 							<h4>Ticket Buyer</h4>
 					
 						<div class="control-group">
 							    <label class="control-label" for="firstName">First Name :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" name="firstName" id="firstName" ng-model="orderRegister.firstName" required >
+							      <input type="text" name="firstName" id="firstName" ng-model="orderRegister.firstName" disabled="true" required >
 							       <span ng-show="firstNameRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
@@ -59,7 +60,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="lastName">Last Name :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" name="lastName" id="lastName" ng-model="orderRegister.lastName" required >
+							      <input type="text" name="lastName" id="lastName" ng-model="orderRegister.lastName" disabled="true" required >
 							      <span ng-show="lastNameRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
@@ -67,7 +68,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="emailaddress">Email Address :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input type="text" name="emailAddress" id="emailaddress" ng-model="orderRegister.email" required >
+							      <input type="text" name="emailAddress" id="emailaddress" ng-model="orderRegister.email" disabled="true" required >
 							       <span ng-show="emailAddressRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
@@ -76,7 +77,7 @@
 							  	<div class="control-group">
 								    <label class="control-label" for="Address">Address1 :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="text" name="address1" id="Address" ng-model="orderRegister.billingAddress.address1" required >
+								      <input type="text" name="address1" id="Address" ng-model="orderRegister.billingAddress.address1" disabled="true" required >
 								      <span ng-show="address1Required" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
@@ -84,14 +85,14 @@
 								  <div class="control-group">
 								    <label class="control-label" for="Address1">Address2  :</label>
 								    <div class="controls">
-								      <input type="text" id="Address1" ng-model="orderRegister.billingAddress.address2">
+								      <input type="text" id="Address1" ng-model="orderRegister.billingAddress.address2" disabled="true">
 								    </div>
 								  </div>
 							  
 							    <div class="control-group">
 								    <label class="control-label" for="state">City :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								    <input ui-select2="cityselect2options" name="city" ng-model="cityinput" ng-change="selectCity(cityinput)" required />
+								    <input ui-select2="cityselect2options" name="city" ng-model="cityinput" ng-change="selectCity(cityinput)" disabled="true" required  disabled="true"/>
 								    <span ng-show="cityRequired" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>	
@@ -99,14 +100,14 @@
 								  <div class="control-group">
 								    <label class="control-label" for="state">State :</label>
 								    <div class="controls">
-								    <input type="text" id="eventStateName" ng-model="state" disabled="disabled" >
+								    <input type="text" id="eventStateName" ng-model="state" disabled="true" >
 								    </div>
 								  </div>
 								  
 								   <div class="control-group">
 								    <label class="control-label" for="state">Country :</label>
 								    <div class="controls">
-										   <input type="text" id="eventCountryName" ng-model="country" disabled="disabled" >
+										   <input type="text" id="eventCountryName" ng-model="country" disabled="true" >
 								    </div>
 								  </div>
 							  
@@ -114,7 +115,7 @@
 								  <div class="control-group">
 								    <label class="control-label" for="Pincode">Pincode  :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <input type="text" name="pincode" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode" required>
+								      <input type="text" name="pincode" id="Pincode"  ng-model="orderRegister.billingAddress.zipCode" disabled="true" required>
 								      <span ng-show="pincodeRequired" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
@@ -161,10 +162,8 @@
 							  <div class="control-group">
 							    <div class="controls">
 								      <!--  ng-click="bookTicket()"  -->
-								      <!-- onClick="location.href='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token={{orderRegister.token}}'" -->
-								      <!-- onClick="location.href='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token={{orderRegister.token}}'" -->
-							      <button type="button" class="btn "  ng-click="bookTicket()" ng-disabled="disablePayment">
-							      Confirm Order</button> 
+							      <button type="button" class="btn " onClick="location.href='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token={{orderRegister.token}}'"
+							    		  ng-disabled="disablePayment">Pay Now</button> 
 							    </div>
 							  </div>	
 							
@@ -213,13 +212,6 @@
 									<div style="clear: both"> </div>	
 								</div>
 			
-			
-	<div style="clear: both"> </div>			
-				
-
-        	
-        
-          </div>
 
  </div>
 <div ng-include src="'html/footer.html'"></div>

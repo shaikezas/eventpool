@@ -137,7 +137,7 @@ public class EventController {
     	mapper.mapEventDTO(event, eventDTO);
     	eventDTO.setCreatedBy(user.getId());
     	 try {
-    		 if(eventDTO.getId()==null){
+ /*   		 if(eventDTO.getId()==null){
     			 String eventUrl = eventDTO.getEventUrl();
     			 if(eventUrl ==null) eventUrl = eventDTO.getTitle();
     			 if(eventUrl!=null){
@@ -147,7 +147,7 @@ public class EventController {
 	    			 }
 	    			 eventDTO.setEventUrl(eventUrl);
     			 }
-    		 }
+    		 }*/
     		 String eventMsg = "Successfully created the event.";
     		 if(eventDTO.getId()!=null){
     			 eventMsg = "Successfully updated the event";
@@ -261,6 +261,23 @@ public class EventController {
          
          return forms;
     }
+    
+    @RequestMapping("/myevent/cancelledEventList")
+    public @ResponseBody List<MyEventForm> getCancelledEventList() throws Exception {
+    	User user = userService.getCurrentUser();
+    	  List<EventDTO> eventDTOs = eventService.getAllEvents(user.getId(),EventStatus.CANCELLED);
+          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
+          MyEventForm form  = null;
+          String sold = "";
+          for(EventDTO dto : eventDTOs){
+         	 form =  convertToMyEventForm(dto);
+         	 sold = ticketInventoryService.getAggregateTicketInventoryByEvent(dto.getId());
+         	 form.setSold(sold);
+         	 forms.add(form);
+          }
+         return forms;
+    }
+    
 /*    @RequestMapping(value = "/myevent/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
     	return;
@@ -279,9 +296,10 @@ public class EventController {
     }
     
     @RequestMapping(value = "/myevent/copyevent/{eventid}", method = RequestMethod.GET)
-    public @ResponseBody ResponseMessage copyEvent(@PathVariable("eventid") Long eventId) throws Exception {
-        eventService.copyEvent(eventId);
-        return new ResponseMessage(ResponseMessage.Type.success, "Successfully copied event");
+    public @ResponseBody Long copyEvent(@PathVariable("eventid") Long eventId) throws Exception {
+        Long newEventId = eventService.copyEvent(eventId);
+        System.out.println("Newly copied event id:"+newEventId);
+        return newEventId;
     }
     
     @RequestMapping(value = "/myevent/cancelevent/{eventid}", method = RequestMethod.GET)

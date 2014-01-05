@@ -88,6 +88,10 @@ public class EventSearchRecord  implements Serializable{
 
 	@Field
 	private String categoryName;
+	
+	@Field
+	private String timeZone;
+
 
 	public String getTitle() {
 		return title;
@@ -326,6 +330,12 @@ public class EventSearchRecord  implements Serializable{
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getTimeZone() {
+		return timeZone;
+	}
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 	
 }

@@ -62,23 +62,28 @@ public class PaymentServiceImpl implements PaymentService {
 		PaymentDetailsType paymentDetails = new PaymentDetailsType();
 		paymentDetails.setPaymentAction(PaymentActionCodeType.AUTHORIZATION);
 		//fromValue("Sale"));
-		PaymentDetailsItemType item = new PaymentDetailsItemType();
-		BasicAmountType amt = new BasicAmountType();
-		amt.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
-		String amount = payPalDTO.getAmount();
-		amt.setValue(amount);
-		int itemQuantity = payPalDTO.getItemQuantity();
-		item.setQuantity(1);//itemQuantity
-		item.setName(payPalDTO.getItemName());
-		item.setAmount(amt);
-			
-
-		List<PaymentDetailsItemType> lineItems = new ArrayList<PaymentDetailsItemType>();
-		lineItems.add(item);
-		paymentDetails.setPaymentDetailsItem(lineItems);
+		double totalamount=0;
+		List<PayPalItemDTO> payPalItemDTOs = payPalDTO.getPayPalItemDTOs();
+		if(payPalItemDTOs!=null && payPalItemDTOs.size()>0){
+			for(PayPalItemDTO palItemDTO:payPalItemDTOs){
+				PaymentDetailsItemType item = new PaymentDetailsItemType();
+				BasicAmountType amt = new BasicAmountType();
+				amt.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
+				String amount = palItemDTO.getAmount();
+				amt.setValue(amount);
+				int itemQuantity = palItemDTO.getItemQuantity();
+				item.setQuantity(itemQuantity);//itemQuantity
+				item.setName(palItemDTO.getItemName());
+				item.setAmount(amt);
+				List<PaymentDetailsItemType> lineItems = new ArrayList<PaymentDetailsItemType>();
+				lineItems.add(item);
+				paymentDetails.setPaymentDetailsItem(lineItems);
+				totalamount+=Double.parseDouble(amount)*itemQuantity;
+			}
+		}
 		BasicAmountType orderTotal = new BasicAmountType();
 		orderTotal.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
-		orderTotal.setValue(String.valueOf(Double.parseDouble(amount) * 1/*itemQuantity*/)); 
+		orderTotal.setValue(String.valueOf(totalamount * 1)); 
 		paymentDetails.setOrderTotal(orderTotal);
 		List<PaymentDetailsType> paymentDetailsList = new ArrayList<PaymentDetailsType>();
 		paymentDetailsList.add(paymentDetails);

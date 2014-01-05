@@ -31,6 +31,7 @@ import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.PayPalDTO;
+import com.eventpool.event.service.impl.PayPalItemDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.order.service.PaymentService;
 import com.eventpool.web.domain.ResponseMessage;
@@ -58,26 +59,8 @@ public class OrderController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
 	public @ResponseBody OrderRegisterForm registerOrder(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
 		  OrderRegisterForm orderRegisterForm = null;
-		  User user = userService.getCurrentUser();
 		  try {
 			  orderRegisterForm = orderService.registerOrder(eventRegister);
-			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
-			  Order order = orderService.createOrder(orderDTO);
-			  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
-				  
-				  PayPalDTO payPalDTO = new PayPalDTO();
-				  payPalDTO.setAmount(orderRegisterForm.getGrossAmount().toString());
-				  payPalDTO.setItemQuantity(orderRegisterForm.getTotalTickets());
-				  payPalDTO.setOrderId(order.getId());
-				  payPalDTO.setItemName(orderRegisterForm.getEventName());
-				  //payPalDTO.setSuccessUrl("http://localhost:8083/eventpool/#/order/success?oid="+order.getId());
-				  //payPalDTO.setCancelUrl("http://localhost:8083/eventpool/#/order/");
-				  payPalDTO.setCurrency(eventRegister.getPaymentCurrency().name());
-				  String token = paymentService.initPayment(payPalDTO);
-				  orderRegisterForm.setToken(token);
-				  orderService.updateToken(order.getId(), token);
-				  logger.info("Tocken:"+token);
-			  }
 			} catch(NoTicketInventoryBlockedException e){
 				throw e;
 			}
@@ -86,6 +69,29 @@ public class OrderController {
 			}
 		  return orderRegisterForm;
 	 }
+
+	private Order createOrder(OrderRegisterForm orderRegisterForm, User user) throws Exception {
+		  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
+		  Order order = orderService.createOrder(orderDTO);
+		  if(orderRegisterForm.getGrossAmount().compareTo(0.0)>0){
+			  
+			  PayPalDTO payPalDTO = new PayPalDTO();
+			  payPalDTO.setOrderId(order.getId());
+			  payPalDTO.setCurrency(orderRegisterForm.getPaymentCurrency().name());
+			  for(TicketRegisterDTO ticketRegisterDTO:orderRegisterForm.getTicketRegisters()){
+				  PayPalItemDTO payPalItemDTO = new PayPalItemDTO();
+				  payPalItemDTO.setAmount(ticketRegisterDTO.getPrice().toString());
+				  payPalItemDTO.setItemQuantity(ticketRegisterDTO.getQty());
+				  payPalItemDTO.setItemName(ticketRegisterDTO.getTicketName());
+				  payPalDTO.getPayPalItemDTOs().add(payPalItemDTO);
+			  }
+			  String token = paymentService.initPayment(payPalDTO);
+			  orderRegisterForm.setToken(token);
+			  orderService.updateToken(order.getId(), token);
+			  logger.info("Tocken:"+token);
+		  }
+		  return order;
+	}
 	  
     @RequestMapping(value = "/success", method = RequestMethod.GET)
   	public @ResponseBody OrderDTO successOrder(HttpServletRequest request)
@@ -112,22 +118,25 @@ public class OrderController {
     	return new ResponseMessage(ResponseMessage.Type.error, "Order creation failed.");
     }
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public @ResponseBody ResponseMessage createOrder(@RequestBody 
-			OrderRegisterForm orderRegisterForm)  {
+	public @ResponseBody OrderRegisterForm createOrder(@RequestBody 
+				OrderRegisterForm orderRegisterForm)  {
+		
 			  OrderStatusDTO status = new OrderStatusDTO();
 			  User user = userService.getCurrentUser();
 			  OrderDTO orderDTO = convertToOrderDTO(orderRegisterForm,user.getId());
-			  
 			  Order order = null;
 			  try {
-				  order = orderService.createOrder(orderDTO);
+				  order = createOrder(orderRegisterForm, user);
 			} catch (Exception e) {
-				 return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
+				 logger.info("order creation failed",e);
+				 //return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order : reason - "+e.getMessage());
 			}
 		    if(order==null){
-			  return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order");
+		    	logger.info("could not created order");
+			  //return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order");
 			}
-			return new ResponseMessage(ResponseMessage.Type.success, "Successfully created the order, your orderId is :"+order.getId());
+			return orderRegisterForm;
+			//new ResponseMessage(ResponseMessage.Type.success, "Successfully created the order, your orderId is :"+order.getId());
 	    }
 	  
 	  private OrderDTO convertToOrderDTO(OrderRegisterForm orderRegisterForm,Long userId){

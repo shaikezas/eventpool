@@ -192,7 +192,7 @@ public class OrderServiceImpl implements OrderService {
 		orderRegisterForm.setLastName(user.getLname());
 		orderRegisterForm.setEmail(user.getEmail());
 		EventDTO event = eventService.getEventById(eventRegister.getEventId());
-
+		
 /*		//TODO: this code need to be improved by using User address.
 		List<Order> orders = orderRepository.getAllOrders(user.getId());
 		Order order = null;
@@ -272,6 +272,7 @@ public class OrderServiceImpl implements OrderService {
 				- orderRegisterForm.getDiscountAmount());
 		orderRegisterForm.setGrossAmount(grossAmount);
 		orderRegisterForm.setEventName(event.getTitle());
+		orderRegisterForm.setPaymentCurrency(eventRegister.getPaymentCurrency());
 		return orderRegisterForm;
 	}
 

@@ -52,32 +52,7 @@
 							  </div>
 			         		
 							  
-<!-- 							    <div class="control-group">
-							    
-								<span ng-show="!event.promotionFile" >
-								    <label class="control-label" for="uploadPromotion">Upload Promotion banner :</label>
-									    <div class="controls">
-			 								<input type="file" name="file" class="fileupload" ng-model="event.promotionFile" 
-													 data-url="upload/promotion" fileupload-plugin />
-										</div>
-								</span>
- 								<span ng-show="event.promotionFile">
-								    <label class="control-label" for="uploadPromotion">Uploaded Promotion banner :</label>
-									    <div class="controls">
-			 								<a href="http://zeoevent.com:8083/source/{{event.bannerFile}}" target="_tab"> view </a> 
-			 								<button type="button" ng-click="removePromotion()"> remove </button> <img width="60px" ng-src="http://zeoevent.com:8083/source/{{event.promotionFile}}" >
-										</div>
-								</span>
-							    
-								    <label class="control-label" for="file">Upload Promotion banner :</label>
-							    <div class="controls">
-							      
-							       <input type="file" class="fileupload" name="file" ng-model="event.promotionFile"
-											data-url="upload/promotion" fileupload-plugin/>
-											
-							    </div>
-							  </div>
- -->							  
+							  
 							  
 							   <div class="control-group">
 							    <label class="control-label" for="classificationType">Classification Type :</label>
@@ -115,7 +90,7 @@
 							  <div class="control-group" >
 							    <label class="control-label" for="website">Event Website URL :</label>
 							    <div class="controls">
-									  <input type="text" id="website" ng-model="event.eventWebSiteUrl" >
+									  <input type="text" id="website" ng-model="event.eventUrl" disabled="true">
 							    </div>
 							  </div>
 							  

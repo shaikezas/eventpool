@@ -45,6 +45,7 @@ App.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $routeProvider.when('/pricing/:eventurl',	{        templateUrl: 'html/ticket/pricing.html', 		  controller: PricingController                               });
     $routeProvider.when('/userSettings',           {        templateUrl: 'html/user/MyAccount.html',           controller: UserController    					    });
     $routeProvider.when('/printticket/:suborderid',           {        templateUrl: 'html/ticket/printticket.html',           controller: PrintTicketController    					    });
+    $routeProvider.when('/order/pay',           {        templateUrl: 'html/order/payorderevent.html',           controller: EventPageController    					    });
     $routeProvider.when('/order/success',           {        templateUrl: 'html/order/ordersuccess.html',           controller: OrderSuccessController    					    });
     $routeProvider.when('/order/failed',           {        templateUrl: 'html/order/orderfailed.html',           controller: OrderFailedController    					    });
     $routeProvider.otherwise({redirectTo: '/home'});

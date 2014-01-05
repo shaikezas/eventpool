@@ -116,15 +116,17 @@ public class SearchServiceImpl implements SearchService {
 		solrQuery.setRows(rows);
 		
 		if(listOfFilters.get(SUBCATEGORYID)==null){
-			solrQuery.addFacetField(EXCLUDE+SUBCATEGORYID);
+			solrQuery.addFacetField(SUBCATEGORYID);
+			//solrQuery.addFacetField(EXCLUDE+SUBCATEGORYID);
 		}
 		if(listOfFilters.get(EVENTTYPE)==null){
-			solrQuery.addFacetField(EXCLUDE+EVENTTYPE);
+			//solrQuery.addFacetField(EXCLUDE+EVENTTYPE);
+			solrQuery.addFacetField(EVENTTYPE);
 		}
 		if(listOfFilters.get(CITYID)==null){
-			solrQuery.addFacetField(EXCLUDE+CITYID);
+			//solrQuery.addFacetField(EXCLUDE+CITYID);
+			solrQuery.addFacetField(CITYID);
 		}
-		
 		if(listOfFilters.get("webinar")==null){
 			solrQuery.addFacetField(EXCLUDE+WEBINAR);
 		}
@@ -463,6 +465,23 @@ public class SearchServiceImpl implements SearchService {
 		if(eventSearchRecords!=null && eventSearchRecords.size()>0){
 			for(EventSearchRecord eventSearchRecord:eventSearchRecords){
 				if(eventSearchRecord==null) continue;
+				String timeZone = eventSearchRecord.getTimeZone();
+				if(eventSearchRecord.getStartDate()!=null){
+					try {
+						eventSearchRecord.setStartDate(dateCustomConverter.getTimeZoneDate(timeZone, eventSearchRecord.getStartDate()));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if(eventSearchRecord.getStartDate()!=null){
+					try {
+						eventSearchRecord.setEndDate(dateCustomConverter.getTimeZoneDate(timeZone, eventSearchRecord.getEndDate()));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				if(eventSearchRecord.getPromotionLogoUrl()!=null && !eventSearchRecord.getPromotionLogoUrl().startsWith(imageHostUrl)){
 					eventSearchRecord.setPromotionLogoUrl(imageHostUrl+eventSearchRecord.getPromotionLogoUrl());
 				}

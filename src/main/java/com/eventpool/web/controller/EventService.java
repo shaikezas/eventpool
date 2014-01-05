@@ -49,7 +49,7 @@ public interface EventService {
 
 	public void closeEvent(Long eventId) throws Exception;
 
-	public void copyEvent(Long eventId) throws Exception;
+	public Long copyEvent(Long eventId) throws Exception;
 
 	public void cancelEvent(Long eventId) throws Exception;
 }

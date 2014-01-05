@@ -122,7 +122,7 @@ public class OrderServiceTest extends BaseTest{
 		/*OrderStatusDTO order = controller.createOrder(form);
 		System.out.println("Status "+order.getStatus());
 		System.out.println("OrderId "+order.getOrderId());*/
-		ResponseMessage order = controller.createOrder(form);
+	//	ResponseMessage order = controller.createOrder(form);
 		//System.out.println("Status "+order.getStatus());
 		//System.out.println("OrderId "+order.getOrderId());
 		
