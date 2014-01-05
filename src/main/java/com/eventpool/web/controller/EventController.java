@@ -261,6 +261,23 @@ public class EventController {
          
          return forms;
     }
+    
+    @RequestMapping("/myevent/cancelledEventList")
+    public @ResponseBody List<MyEventForm> getCancelledEventList() throws Exception {
+    	User user = userService.getCurrentUser();
+    	  List<EventDTO> eventDTOs = eventService.getAllEvents(user.getId(),EventStatus.CANCELLED);
+          List<MyEventForm>  forms = new ArrayList<MyEventForm>();
+          MyEventForm form  = null;
+          String sold = "";
+          for(EventDTO dto : eventDTOs){
+         	 form =  convertToMyEventForm(dto);
+         	 sold = ticketInventoryService.getAggregateTicketInventoryByEvent(dto.getId());
+         	 form.setSold(sold);
+         	 forms.add(form);
+          }
+         return forms;
+    }
+    
 /*    @RequestMapping(value = "/myevent/removeEvent/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void removeEvent(@PathVariable("id") Long id) {
     	return;

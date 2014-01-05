@@ -15,12 +15,14 @@
             			<ul id="myTab" class="nav nav-tabs">
 				              <li class="active">	<a href="#liveEvents" data-toggle="tab" ng-click="fetchLiveEventsList()">Live Events	</a></li>
 				              <li>					<a href="#draftEvents" data-toggle="tab" ng-click="fetchDraftEventsList()">Draft Events	</a></li>
-				              <li>					<a href="#pastEvents" data-toggle="tab" ng-click="fetchPastEventsList()">Past Events	</a></li>
+				              <li>					<a href="#pastEvents" data-toggle="tab" ng-click="fetchPastEventsList()">Closed Events	</a></li>
+				              <li>					<a href="#cancelledEvents" data-toggle="tab" ng-click="fetchCancelledEventsList()">Cancelled Events	</a></li>
 				        </ul>
           
          <div id="myTabContent" class="tab-content">
          
          <div class="tab-pane fade in active" id="liveEvents">
+         	<div ng-show="liveEvents.length!=0">
          		 	<form class="form-horizontal" class="row-fluid">
          		 	 <div class="floatLeft" >  Show: <select ng-model="showlive" ng-init="showlive=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
          		 	 <div class="floatRight" >Search Text: <input type="text" id="searchTextLive" ng-model="searchTextLive"></div>
@@ -56,9 +58,14 @@
 				      </tbody>
 				    </table>
 				</div>
+				</div>
+				<div ng-show="liveEvents.length==0">
+					No Live events found.
+				</div>
 			</div>
               
 			<div class="tab-pane fade " id="draftEvents">
+			<div ng-show="draftEvents.length!=0">
 				<form class="form-horizontal" class="row-fluid">
          		 	 <div class="floatLeft" align="left"> Show: <select ng-model="showdraft" ng-init="showdraft=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
          		 	 <div class="floatRight" align="right">Search Text: <input type="text" id="searchTextDraft" ng-model="searchTextDraft"></div>
@@ -94,8 +101,13 @@
 				      </tbody>
 				    </table>
 				</div>
+				</div>
+				<div ng-show="draftEvents.length==0">
+					No Draft events found.
+				</div>
 			</div>
 			<div class="tab-pane fade" id="pastEvents">
+			<div ng-show="pastEvents.length!=0">
 				<form class="form-horizontal" class="row-fluid">
          		 	 <div class="floatLeft" align="left"> Show: <select ng-model="showpast" ng-init="showpast=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
          		 	 <div class="floatRight" align="right">Search Text: <input type="text" id="searchTextPast" ng-model="searchTextPast"></div>
@@ -130,7 +142,51 @@
 				      </tbody>
 				    </table>
 				</div>
+				</div>
+				<div ng-show="pastEvents.length==0">
+					No Closed events found.
+				</div>
 			</div>
+			    <div class="tab-pane fade" id="cancelledEvents">
+         		 	<div ng-show="cancelledevents.length!=0">
+         		 	<form class="form-horizontal" class="row-fluid">
+         		 	 <div class="floatLeft" >  Show: <select ng-model="showcancelled" ng-init="showcancelled=10" ng-options="limit.id as limit.value for limit in shows"> </select></div>
+         		 	 <div class="floatRight" >Search Text: <input type="text" id="searchTextCancelled" ng-model="searchTextCancelled"></div>
+         		 	 <br>
+         		    </form>  
+         		 	<div> 		 
+				    	<table class="table table-condensed alternate_color" id="mycancelledevents">
+				     	 <thead>
+				        	<tr>
+				          <th style="max-width: 200px !important"><a href="" ng-click="predicate = 'title'; reverse=!reverse">EVENTNAME</a></th>
+				          <!-- <th><a href="" ng-click="predicate = 'createdDate'; reverse=!reverse">DATE</a></th> -->
+				          <th><a href="" ng-click="predicate = 'startDate'; reverse=!reverse">START DATE</a></th>
+				          <th><a href="" ng-click="predicate = 'endDate'; reverse=!reverse">END DATE</a></th>
+				          <th><a href="" ng-click="predicate = 'status'; reverse=!reverse">STATUS</a></th>
+				          <th><a href="" ng-click="predicate = 'sold'; reverse=!reverse">SOLD</a></th>
+				          <th>QUICK LINKS</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <tr ng-repeat="myevent in cancelledevents | filter:searchTextCancelled | limitTo:showcancelled |orderBy:predicate:reverse  ">
+				          <td>{{myevent.title}}</td>
+				          <!-- <td>{{myevent.createdDate}}</td> -->
+				          <td>{{myevent.startDate}}</td>
+				           <td>{{myevent.endDate}}</td>
+				           <td>{{myevent.status}}</td>
+				          <td>{{myevent.sold}}</td>
+				          <td><a href="#/myevent/{{myevent.id}}">Manage</a> | <a href="" ng-click="copyEvent(myevent.id)"> Copy </a>| <a href="" ng-click="closeEvent(myevent.id)"> Close </a></td>
+				        </tr>
+				        
+				      </tbody>
+				    </table>
+				</div>	
+				</div>
+				<div ng-show="cancelledevents.length==0">
+					No cancelled events found.
+				</div>			
+			</div>
+			
 			
 	</div>		
           </div>
