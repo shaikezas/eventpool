@@ -1,4 +1,4 @@
-var MyEventsController = function($scope, $http,search,subcategories,categories,$rootScope,currentuser) {
+var MyEventsController = function($scope, $http,search,subcategories,categories,$rootScope,$location,currentuser) {
     $scope.draftEvents = {};
     $scope.liveEvents = {};
     $scope.pastEvents = {};
@@ -58,23 +58,31 @@ var MyEventsController = function($scope, $http,search,subcategories,categories,
     
     $scope.closeEvent = function(eventid) {           
             $http.get('event/myevent/closeevent/'+eventid).success(function(){
-            	alert("Event successfully closed.");
+            	$scope.loadEventsLists();
             });      
     }
     
     $scope.copyEvent = function(eventid) {           
-        $http.get('event/myevent/copyevent/'+eventid).success(function(){
-        	alert("Event successfully copied.");
+        $http.get('event/myevent/copyevent/'+eventid).success(function(newId){
+        	if(newId!=null)
+        		$location.url('myevent/'+newId);
+        	else
+        		alert("Event not copied.");
         });      
     }
     
     $scope.cancelEvent = function(eventid) {           
         $http.get('event/myevent/cancelevent/'+eventid).success(function(){
-        	alert("Event successfully cancelled.");   
+        	$scope.loadEventsLists();
         });      
     }
     
-    
+   $scope.loadEventsLists = function(){
+	   $scope.fetchLiveEventsList();
+	   $scope.fetchDraftEventsList();
+	   $scope.fetchCancelledEventsList();
+	   $scope.fetchPastEventsList();
+    }
  $scope.getcurrentuser = function(){
      	
      	if ($rootScope.user == undefined) {
