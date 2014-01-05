@@ -44,7 +44,7 @@
 				
 				<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
 							  <h2 ng-show="orderRegister.registrationLimit!=null">
-							  Time Remaining to Fill Details <timer interval="1000" countdown="orderRegister.registrationLimit*60">{{minutes}}:{{seconds}}
+							  Time Remaining to Fill Details <timer interval="1000" countdown="orderRegister.registrationLimit*60" >{{minutes}}:{{seconds}}
 							  </timer> Minutes.</h2> 
 							<h4>Ticket Buyer</h4>
 					
@@ -188,19 +188,19 @@
 													</li>
 												</ul>
 											</div>
-										<h3>Order Summary</h3>
+<!-- 										<h3>Order Summary</h3>
 										<div class="filterControlRight">											
 											<ul class="eventDetails eventDetailsIcon">
 												<li class="newAddress" > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
-												<!-- <li > <i class="iconCalander">	</i>	July 20, 2013				</li>
+												<li > <i class="iconCalander">	</i>	July 20, 2013				</li>
 												<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
-												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
+												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li>
 												<li class="newAddress" > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}	{{event.currency}}	</li>
 												<li class="newAddress" > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}} {{event.currency}}		</li>
 											</ul>
-											<!-- <button class="btn ">Edit Order</button> -->
+											<button class="btn ">Edit Order</button>
 										</div>
-									</div>
+ -->									</div>
 			
 								<div class="span1 rightPanel rightPanelright">
 										<h3>Contact Details</h3>

@@ -172,17 +172,13 @@
 							
 							
 			</div>
-									<div class="span1 ">
-									
-									
-									
-									
-									
-					<h3>Event Details</h3>
+									<div class="span1 rightPanel rightPanelright">				
+										<h3>Event Details</h3>
 											<div class="filterControlRight">
 												<ul class="eventDetails eventDetailsIcon">
 													<li > <i class="iconCalanderStart"></i>	<span>Start Date:</span> {{event.startDate}}</li>
 													<li > <i class="iconCalanderEnd"></i>	<span>End Date:</span> {{event.endDate}}</li>
+													<!-- <li > <i class="iconTime"></i>		10:00 am - 9:00 pm</li> -->
 													<li  class="addressCont"> <i class="iconAddress"></i>
 														{{ event.venueAddress}}
 													</li>
@@ -191,23 +187,21 @@
 													</li>
 												</ul>
 											</div>
-									
-									<h3>Order Summary</h3>
-										<div class="filterControlRight">
-											
+<!-- 										<h3>Order Summary</h3>
+										<div class="filterControlRight">											
 											<ul class="eventDetails eventDetailsIcon">
 												<li class="newAddress" > <i class="iconTicket">	</i> 	Not of Tickets : {{ orderRegister.totalTickets}}	</li>
-												<!-- <li > <i class="iconCalander">	</i>	July 20, 2013				</li>
+												<li > <i class="iconCalander">	</i>	July 20, 2013				</li>
 												<li > <i class="iconTime">		</i>	7:00am to 11:00am			</li> 
-												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li> -->
-												<li class="newAddress" > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}		</li>
-												<li class="newAddress" > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}}		</li>
+												<li > <i class="iconAddress">	</i>	Decathalon, Sarjapur,		</li>
+												<li class="newAddress" > <i class="iconTicket">	</i>	Gross Amount: {{orderRegister.grossAmount}}	{{event.currency}}	</li>
+												<li class="newAddress" > <i class="iconTicket">	</i> 	Payable Amount : {{orderRegister.netAmount}} {{event.currency}}		</li>
 											</ul>
-											<!-- <button class="btn ">Edit Order</button> -->
+											<button class="btn ">Edit Order</button>
 										</div>
-									</div>
+ -->									</div>
 			
-								<div class="span1">
+								<div class="span1 rightPanel rightPanelright">
 										<h3>Contact Details</h3>
 										<div class="filterControlRight">
 											<ul class="eventDetails eventDetailsIcon">
@@ -215,15 +209,9 @@
 												<li class="newAddress" > <i class="iconAddress"></i><span>Contact:</span>	{{event.contactDetails}} </li>
 											</ul>
 										</div>
-								
-									
-			<div style="clear: both"> </div>	
-			</div>
+									<div style="clear: both"> </div>	
+								</div>
 			
-			
-	<div style="clear: both"> </div>			
-				
-          </div>
 
  </div>
 <div ng-include src="'html/footer.html'"></div>
