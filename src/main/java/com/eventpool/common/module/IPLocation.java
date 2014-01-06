@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -66,11 +67,15 @@ public class IPLocation {
 		return null;
 	}
 	
-	public String getCountryName(String ip){
+	public Map getCountryNameIdMap(String ip){
 		Map locationMap = getLocation(ip);
+		Map countryNameIdMap = new HashMap();
 		if(locationMap!=null){
-			String countryName = (String)locationMap.get("countryName");			
-			return countryName;
+			String countryName = (String)locationMap.get("countryName");
+			countryNameIdMap.put("countryName", countryName);
+			if(countryName==null) return null;
+			countryNameIdMap.put("countryId",entityUtilities.getCountryNameMap().get(countryName.toLowerCase()));
+			return countryNameIdMap;
 		}
 		return null;
 	}

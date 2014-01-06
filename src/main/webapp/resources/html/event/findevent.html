@@ -65,7 +65,7 @@
  				<ul ng-show="!othercountries" class="nav nav-list">
  					<li class="nav-header">Other countries</li>
 					<li ng-repeat="filterItem in searchResults.countryFilterItems">
-						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{filterItem.name}}">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 					<li class="nav-header">Webinars</li>
 					<li ng-repeat="filterItem in searchResults.webinarFilterItems">

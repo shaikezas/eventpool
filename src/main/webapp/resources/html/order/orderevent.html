@@ -24,14 +24,14 @@
 				<thead>
 					<tr>
 						<th>Ticket Type</th>
-						<th class="amt">Price</th>
+						<th class="amt">Price (<b>{{event.currency}}</b>)</th>
 						<th class="amt">Quantity</th>
 					</tr>
 				</thead>
 				<tbody>
 				<tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
 						  <td class="amt">{{ticketRegister.ticketName}} </td>
-						  <td class="amt">{{event.currency}} {{ticketRegister.price}} </td>
+						  <td class="amt">{{ticketRegister.price}} </td>
 						  <td class="amt"> {{ticketRegister.qty}}</td>
 						</tr>
 								

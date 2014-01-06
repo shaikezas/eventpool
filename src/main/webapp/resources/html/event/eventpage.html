@@ -26,9 +26,9 @@
 					<thead>
 						<tr>
 							<th>Ticket Type</th>
-							<th class="amt">Price</th>
+							<th class="amt">Price (<b>{{event.currency}}<b>)</th>
 							<th class="amt" style="width: 150px;">Quantity</th>
-							<th class="amt" style="width: 150px;">Total</th>
+							<th class="amt" style="width: 150px;">Total (<b>{{event.currency}}</b>)</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,7 +37,7 @@
 							<span>{{ticket.dateDesc}}</span><br />
 							<span style="color: #0000FF;"
 								ng-show="{{ticket.description!=null}}">*{{ticket.description}}</span></td>
-							<td class="amt">{{event.currency}} {{ticket.price}}</td>
+							<td class="amt">{{ticket.price}}</td>
 							<td class="amt"><select ng-show="!ticket.soldOut"
 								ng-disabled="ticket.disableTicket" style="width: 100px;"
 								id="Category" ng-model="ticket.selectedQty"
@@ -45,12 +45,12 @@
 								ng-options="qty.value as qty.key for qty in ticket.qtyList"
 								ng-change="atleastOneTktSelected()">
 							</select> <span ng-show="ticket.soldOut">SOLD OUT</span></td>
-							<td class="amt">{{event.currency}} {{ticket.selectedQty * ticket.price}}</td>
+							<td class="amt">{{ticket.selectedQty * ticket.price}}</td>
 						</tr>
 
 						<tr class="dubbleLine">
-							<td colspan="3" class="amt"><b> Total Purchase</b></td>
-							<td class="amt">{{event.currency}} {{totalAmount}}</td>
+							<td colspan="3" class="amt"><b> Total Purchase ({{event.currency}})</b></td>
+							<td class="amt">{{totalAmount}}</td>
 						</tr>
 					</tbody>
 				</table>

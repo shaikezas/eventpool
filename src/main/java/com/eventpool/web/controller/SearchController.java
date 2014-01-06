@@ -82,10 +82,7 @@ public class SearchController {
     }
     
     @RequestMapping(value = "/getDefaultResults", method = RequestMethod.GET)
-    public @ResponseBody SearchQueryResponse getDefaultResults(HttpServletRequest request
-    		
-    		) throws Exception {
-       	
+    public @ResponseBody SearchQueryResponse getDefaultResults(HttpServletRequest request) throws Exception {
 
     	String subCategoryId = request.getParameter("subCategoryId");
     	String cityId = request.getParameter("cityId");
@@ -225,10 +222,10 @@ public class SearchController {
 		return activeCountries;
 	}
 	
-	@RequestMapping(value = "/getdefaultcountryname", method = RequestMethod.GET)
-	public  @ResponseBody String getDefaultCountryName(HttpServletRequest request)  throws Exception {
+	@RequestMapping(value = "/getdefaultcountrynameid", method = RequestMethod.GET)
+	public  @ResponseBody Map getDefaultCountryNameId(HttpServletRequest request)  throws Exception {
 		String ip=getRemoteIp(request);
     	logger.info("IP address is:"+ip);
-		return ipLocation.getCountryName(ip);
+		return ipLocation.getCountryNameIdMap(ip);
 	}
 }

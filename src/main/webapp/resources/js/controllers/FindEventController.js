@@ -103,13 +103,16 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     $scope.fetchSearchResults = function() {
     	
     	if(angular.isDefined($routeParams.other)){
-    		if($routeParams.other)
+    		if($routeParams.other){
     			$scope.othercountries=false;
+    			$scope.countryname="Other Countries";
+    		}
     		else
     			$scope.othercountries=true;
     	}
     	if(angular.isDefined($routeParams.cname)){
     		$scope.countryname=$routeParams.cname;
+    		$scope.countryid=$routeParams.countryId;
     	}
     	
 
@@ -135,13 +138,6 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         
       }
 
-     $scope.findevents = function(){
-    	 if(angular.isDefined($scope.q) && $scope.q!="" && $scope.q!=null){
-    		 $location.url('findevent?q='+$scope.q);
-    	 } else {
-    		 $location.url('findevent');
-    	 }
-     }
     $scope.getcurrentuser = function(){
     	
     	if ($rootScope.user == undefined) {
@@ -174,19 +170,32 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
   }
     
     $scope.getdefaultcountryname = function(){
-    	if($scope.countryname=='Country' && angular.isUndefined($routeParams.countryId)){
-   	 		$http.get('search/getdefaultcountryname').success(function(countryname) {     		 
-   	 			$scope.countryname = countryname;
+    	if(angular.isUndefined($routeParams.countryId)){
+   	 		$http.get('search/getdefaultcountrynameid').success(function(countrynameid) {
+   	 			if(countrynameid!=null){
+   	 				$scope.countryname = countrynameid['countryName'];
+   	 				$scope.countryid = countrynameid['countryId'];
+   	 			}
    	 		}).error(function() {
  	    	
    	 		});
     	}
  }
     
+    $scope.findevents = function(){
+   	 if(angular.isDefined($scope.q) && $scope.q!="" && $scope.q!=null && $scope.q!='undefined'){
+   		 $location.url('findevent?q='+$scope.q + '&countryId=' + $routeParams.countryId + '&cname=' + $routeParams.cname);
+   	 } else {
+   		 $location.url('findevent?countryId=' + $routeParams.countryId+ '&cname=' + $routeParams.cname);
+   	 }
+    }
+    
     $scope.setcountryname = function(id,name) {
-    	$scope.countryname = name;
-    	$scope.countryid = id;   
-    	$location.url('findevent?countryId=' + id + '&cname=' +name);
+    	if(angular.isDefined($scope.q) && $scope.q!="" && $scope.q!=null && $scope.q!='undefined'){
+      		 $location.url('findevent?q='+$scope.q + '&countryId=' + id + '&cname=' + name);
+      	 } else {
+      		 $location.url('findevent?countryId=' + id + '&cname=' + name);
+       	 }
     }
     
     
