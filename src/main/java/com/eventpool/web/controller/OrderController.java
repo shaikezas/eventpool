@@ -103,7 +103,15 @@ public class OrderController {
     	System.out.println("Oid - "+oid);
     	System.out.println("Token - "+token);
     	System.out.println("PayerId - "+payerId);
-    	return orderService.getOrderDTO(Long.parseLong(oid));
+    	try {
+			return orderService.postOrder(Long.parseLong(oid), token, payerId);
+		} catch (NumberFormatException e) {
+			logger.error(" unable to complete the order process",e);
+			return null;
+		} catch (Exception e) {
+			logger.error(" unable to complete the order process",e);
+			return null;
+		}
     }
     @RequestMapping(value = "/failed", method = RequestMethod.GET)
   	public @ResponseBody ResponseMessage failedOrder(HttpServletRequest request)
@@ -115,6 +123,8 @@ public class OrderController {
     	System.out.println("Oid - "+oid);
     	System.out.println("Token - "+token);
     	System.out.println("PayerId - "+payerId);
+    	
+    	
     	return new ResponseMessage(ResponseMessage.Type.error, "Order creation failed.");
     }
 	@RequestMapping(value = "/create", method = RequestMethod.POST)

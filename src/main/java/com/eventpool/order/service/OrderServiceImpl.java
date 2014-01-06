@@ -119,7 +119,7 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.save(order);
 	}
 
-	public void postOrder(Long orderId) throws Exception{
+	public OrderDTO postOrder(Long orderId,String token,String payerId) throws Exception{
 		Order order = orderRepository.findOne(orderId);
 		for (Suborder suborder : order.getSuborders()) {
 			SuborderDTO suborderDTO = new SuborderDTO();
@@ -130,7 +130,7 @@ public class OrderServiceImpl implements OrderService {
 		for(Suborder suborder :  order.getSuborders()){
 			invoiceService.generateInvoice(suborder);
 		}
-
+		return getOrderDTO(order);
 	}
 	
 	private void updateTicketDTO(SuborderDTO suborderDTO) throws TicketNotFoundException{
@@ -314,6 +314,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderDTO getOrderDTO(Long orderId) {
 		Order order = orderRepository.findOne(orderId);
+		return getOrderDTO(order);
+	}
+
+	private OrderDTO getOrderDTO(Order order) {
 		OrderDTO orderDTO = new OrderDTO();
 		eventpoolMapper.mapOrderDTO(order, orderDTO );
 		return orderDTO;

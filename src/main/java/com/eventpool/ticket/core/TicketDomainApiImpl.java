@@ -44,7 +44,7 @@ public class TicketDomainApiImpl implements TicketDomainApi{
 		TicketInventoryDetails ticketInventoryDetails =  null;
 		if(ticketInventory!=null){
 			ticketInventoryDetails = ticketInventory.blockingTicketQuantity(blockingQty);
-		ticketInventoryRepository.save(ticketInventory);
+			ticketInventoryRepository.save(ticketInventory);
 		}
 		logger.info("Blocked Ticket Inventory..."+ReflectionToStringBuilder.toString(ticketInventoryDetails));
 		return ticketInventoryDetails;

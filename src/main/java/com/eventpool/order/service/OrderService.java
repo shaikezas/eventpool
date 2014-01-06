@@ -11,4 +11,5 @@ public interface OrderService {
 	OrderRegisterForm registerOrder(EventRegisterDTO eventRegister) throws Exception;
 	public void updateToken(Long orderId,String token);
 	public OrderDTO getOrderDTO(Long orderId);
+	public OrderDTO postOrder(Long orderId,String token,String payerId) throws Exception;
 }
