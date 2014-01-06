@@ -4,7 +4,9 @@ package com.eventpool.common.type;
 public enum CurrencyType {
   
 
-  USD("US Dollar");
+  USD("US Dollar"),
+  EURO("Euro"),
+  INR("INR");
   
 
   private String description;
