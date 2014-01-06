@@ -136,7 +136,11 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
       }
 
      $scope.findevents = function(){
-        $location.url('findevent?q='+$scope.q);
+    	 if(angular.isDefined($scope.q) && $scope.q!="" && $scope.q!=null){
+    		 $location.url('findevent?q='+$scope.q);
+    	 } else {
+    		 $location.url('findevent');
+    	 }
      }
     $scope.getcurrentuser = function(){
     	
