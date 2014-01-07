@@ -5,7 +5,7 @@ public enum CurrencyType {
   
 
   USD("US Dollar"),
-  EURO("Euro"),
+  EUR("Euro"),
   INR("INR");
   
 

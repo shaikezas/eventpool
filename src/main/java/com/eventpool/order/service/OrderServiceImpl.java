@@ -42,6 +42,7 @@ import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.OrderRepository;
 import com.eventpool.common.repositories.TicketRegisterRepository;
+import com.eventpool.common.type.CurrencyType;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
@@ -226,7 +227,7 @@ public class OrderServiceImpl implements OrderService {
 		orderRegisterForm.setDiscountAmount(eventRegister.getDiscountAmount());
 		orderRegisterForm.setDicountCoupon(eventRegister.getDicountCoupon());
 		orderRegisterForm
-				.setPaymentCurrency(eventRegister.getPaymentCurrency());
+				.setPaymentCurrency(CurrencyType.fromValue(event.getCurrency()));
 		orderRegisterForm.setSubCategoryId(eventRegister.getSubCategoryId());
 		if(!event.getIsWebinar()){
 		orderRegisterForm.setVenueName(event.getVenueName());
@@ -272,7 +273,6 @@ public class OrderServiceImpl implements OrderService {
 				- orderRegisterForm.getDiscountAmount());
 		orderRegisterForm.setGrossAmount(grossAmount);
 		orderRegisterForm.setEventName(event.getTitle());
-		orderRegisterForm.setPaymentCurrency(eventRegister.getPaymentCurrency());
 		return orderRegisterForm;
 	}
 
