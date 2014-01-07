@@ -6,7 +6,7 @@ public enum CurrencyType {
 
   USD("US Dollar"),
   EURO("Euro"),
-  INR("INR");
+  INR("Indian Rupee");
   
 
   private String description;
