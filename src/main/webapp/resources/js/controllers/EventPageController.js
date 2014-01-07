@@ -7,7 +7,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
 	    $scope.totalAmount=0;
 	    $scope.disablePayment = false;
                     
-	    if(angular.isDefined($scope.orderRegister) && angular.isDefined($scope.orderRegister.billingAddress)){
+	    if(angular.isDefined($scope.orderRegister) && angular.isDefined($scope.orderRegister.billingAddress) && angular.isObject($scope.orderRegister.billingAddress) && angular.isObject($scope.orderRegister.billingAddress.cityId)){
 	    $scope.cityinput = {id:$scope.orderRegister.billingAddress.cityId,text:{'cityId':$scope.orderRegister.billingAddress.cityId,'cityName':$scope.orderRegister.billingAddress.cityName,'countryName':$scope.orderRegister.billingAddress.countryName,'stateName':$scope.orderRegister.billingAddress.stateName}};
 	    $scope.state = $scope.orderRegister.billingAddress.stateName;
 	    $scope.country = $scope.orderRegister.billingAddress.countryName;
