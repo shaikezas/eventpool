@@ -68,7 +68,7 @@ public class PaymentServiceImpl implements PaymentService {
 			for(PayPalItemDTO palItemDTO:payPalItemDTOs){
 				PaymentDetailsItemType item = new PaymentDetailsItemType();
 				BasicAmountType amt = new BasicAmountType();
-				amt.setCurrencyID(CurrencyCodeType.fromValue(payPalDTO.getCurrency()));
+				amt.setCurrencyID(CurrencyCodeType.valueOf(payPalDTO.getCurrency()));
 				String amount = palItemDTO.getAmount();
 				amt.setValue(amount);
 				int itemQuantity = palItemDTO.getItemQuantity();
