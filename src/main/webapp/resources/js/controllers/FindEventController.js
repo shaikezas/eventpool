@@ -110,10 +110,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     		else
     			$scope.othercountries=true;
     	}
-    	if(angular.isDefined($routeParams.cname)){
-    		$scope.countryname=$routeParams.cname;
-    		$scope.countryid=$routeParams.countryId;
-    	}
+    
     	
 
          if(angular.isDefined($routeParams.q)){
@@ -135,7 +132,10 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         	$scope.searchRecords = searchResults.eventSearchRecords;
         });
     	
-        
+        	if(angular.isDefined($routeParams.cname)){
+        		$scope.countryname=$routeParams.cname;
+        		$scope.countryid=$routeParams.countryId;
+        	}
       }
 
     $scope.getcurrentuser = function(){
