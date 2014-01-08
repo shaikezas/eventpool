@@ -24,7 +24,7 @@ public interface SuborderRepository extends JpaRepository<Suborder, Long>{
 	@Query(value="SELECT suborder FROM Suborder suborder WHERE suborder.ticketId=?1")
 	public List<Suborder> getAttendes(Long ticketId);
 
-	@Query(value="SELECT suborder.order FROM Suborder suborder WHERE suborder.ticketId=?1")
+	@Query(value="SELECT suborder.order FROM Suborder suborder WHERE suborder.ticketId=?1 and suborder.order.status='PAID'")
 	public List<Order> getBuyers(Long ticketId);
 
 }
