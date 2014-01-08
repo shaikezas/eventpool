@@ -33,22 +33,22 @@
 				<ul ng-show="othercountries" class="nav nav-list">
 					<li class="nav-header">Date</li>
 					<li ng-repeat="filterItem in searchResults.eventDateFilterItems" >
-						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}" ng-class="isDateActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}&datetype={{filterItem.name}}&catname={{catname}}&locname={{locname}}&type={{type}}" ng-class="isDateActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li class="nav-header">Price</li>
 					<li ng-repeat="filterItem in searchResults.eventTypeFilterItems" >
-						<a  href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}" ng-class="isPriceActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a  href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}&type={{filterItem.name}}&datetype={{datetype}}&catname={{catname}}&locname={{locname}}" ng-class="isPriceActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li class="nav-header">Category</li>
 					<li ng-repeat="filterItem in searchResults.subCategoryFilterItems">
-						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}" ng-class="isCategoryActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}&catname={{filterItem.name}}&locname={{locname}}&type={{type}}&datetype={{datetype}}" ng-class="isCategoryActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>
 
 					<li class="nav-header">Location</li>
 					<li ng-repeat="filterItem in searchResults.cityIdFilterItems">
-						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}" ng-class="isCityActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
+						<a href="#/findevent?q={{searchResults.query}}&{{filterItem.query}}&cname={{countryname}}&locname={{filterItem.name}}&catname={{catname}}&type={{type}}&datetype={{datetype}}" ng-class="isCityActive({{filterItem}})">{{filterItem.name}}<span>({{filterItem.count}})</span></a>
 					</li>	
 					
 					<li class="nav-header">
@@ -86,7 +86,7 @@
 			<!-- /btn-group -->
 					    <div class="resultCont">
 
-					    		Showing {{searchResults.noOfresults}} events<span ng-show="q"> for "{{q}}"</span> 
+					    		Showing {{searchResults.noOfresults}} events <span ng-show="q"> for "{{q}}"</span>  <span ng-show="locname">"{{locname}}"</span> <span ng-show="catname">"{{catname}}"</span> <span ng-show="datetype">"{{datetype}}"</span><span ng-show="type">"{{type}}"</span>
 
 					    	
 					    </div>	

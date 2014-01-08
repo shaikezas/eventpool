@@ -31,6 +31,10 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 		}
 	}
 	
+	$scope.byCategory = function(catId, catName){
+		$location.url('findevent?subCategoryId='+catId  + '&catname=' + catName);
+	}
+	
 
 	$scope.isCategoryActive = function(filterItem){
 		var query = filterItem.query;
@@ -110,18 +114,11 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     		else
     			$scope.othercountries=true;
     	}
-    
-    	
-
-         if(angular.isDefined($routeParams.q)){
-    	     $scope.q=$routeParams.q;
-    	  }
-    	
     	if(angular.isDefined($scope.message()) && $scope.message() != null){
     		$scope.message().show = false;
     	}
-        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&cityId=',$routeParams.cityId,'&eventType=',$routeParams.eventType,
-        			'&countryId=',$routeParams.countryId,'&eventDate=',$routeParams.eventDate,'&webinar=',$routeParams.webinar,'&q=',$routeParams.q)).success(function(searchResults){
+        	$http.get('search/getDefaultResults?subCategoryId='.concat($routeParams.subCategoryId,'&catname=',$routeParams.catname,'&cityId=',$routeParams.cityId,'&locname=',$routeParams.locname,'&eventType=',$routeParams.eventType,'&type=',$routeParams.type,
+        			'&countryId=',$routeParams.countryId,'&eventDate=',$routeParams.eventDate,'&datetype=',$routeParams.datetype,'&webinar=',$routeParams.webinar,'&q=',$routeParams.q)).success(function(searchResults){
     		for (var i=0;i<searchResults.eventSearchRecords.length;i++)
         	{ 
     			searchResults.eventSearchRecords[i].startDate = moment(searchResults.eventSearchRecords[i].startDate).format("DD-MMM-YYYY HH:mm");
@@ -136,6 +133,21 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
         		$scope.countryname=$routeParams.cname;
         		$scope.countryid=$routeParams.countryId;
         	}
+            if(angular.isDefined($routeParams.q)){
+            	$scope.q=$routeParams.q;
+       	  	}
+            if($routeParams.locname!=null){
+            	$scope.locname=$routeParams.locname;
+            }
+            if($routeParams.catname!=null){
+            	$scope.catname=$routeParams.catname;
+            }
+            if(angular.isDefined($routeParams.datetype)){
+            	$scope.datetype=$routeParams.datetype;
+       	 	 }
+            if(angular.isDefined($routeParams.type)){
+        	     $scope.type=$routeParams.type;
+        	 }
       }
 
     $scope.getcurrentuser = function(){
@@ -192,9 +204,9 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
     
     $scope.setcountryname = function(id,name) {
     	if(angular.isDefined($scope.q) && $scope.q!="" && $scope.q!=null && $scope.q!='undefined'){
-      		 $location.url('findevent?q='+$scope.q + '&countryId=' + id + '&cname=' + name);
+      		 $location.url('findevent?q='+$scope.q + '&countryId=' + id + '&cname=' + name + '&subCategoryId='+ $routeParams.subCategoryId);
       	 } else {
-      		 $location.url('findevent?countryId=' + id + '&cname=' + name);
+      		 $location.url('findevent?countryId=' + id + '&cname=' + name + '&subCategoryId='+ $routeParams.subCategoryId);
        	 }
     }
     

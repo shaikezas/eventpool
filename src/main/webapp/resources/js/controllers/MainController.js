@@ -232,6 +232,10 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     		 $location.url('findevent');
     	 }
       }
+      
+  	$scope.byCategory = function(catId, catName){
+  		$location.url('findevent?subCategoryId='+catId + '&catname=' + catName);
+	}
      
      $scope.fetchhomepagerecords = function(){
     	 if(angular.isUndefined($scope.homePageResults) && $scope.homePageResults == null){    		 
