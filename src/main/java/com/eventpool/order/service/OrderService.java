@@ -12,4 +12,5 @@ public interface OrderService {
 	public void updateToken(Long orderId,String token);
 	public OrderDTO getOrderDTO(Long orderId);
 	public OrderDTO postOrder(Long orderId,String token,String payerId) throws Exception;
+	public void releaseInventory(Long orderId);
 }

@@ -48,6 +48,7 @@ import com.eventpool.common.type.OrderStatus;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
+import com.eventpool.ticket.commands.TicketUnBlockedCommand;
 import com.eventpool.ticket.service.TicketInventoryService;
 import com.eventpool.ticket.service.TicketInventoryUnblockedService;
 import com.eventpool.web.controller.EventService;
@@ -325,6 +326,40 @@ public class OrderServiceImpl implements OrderService {
 		OrderDTO orderDTO = new OrderDTO();
 		eventpoolMapper.mapOrderDTO(order, orderDTO );
 		return orderDTO;
+	}
+
+	@Override
+	public void releaseInventory(Long orderId) {
+		Order order = orderRepository.findOne(orderId);
+		
+		for(Suborder suborder:order.getSuborders()){
+			TicketRegister ticketRegister = null;
+			if(suborder.getTicketRegisterId()!=null) {
+				ticketRegister = ticketRegisterRepository.findOne(suborder.getTicketRegisterId());
+			}
+			if(ticketRegister==null){
+				continue;
+			}
+		TicketUnBlockedCommand unblockcmd  = new TicketUnBlockedCommand();
+	      unblockcmd.setUnBlockingQty(ticketRegister.getQty());
+	      unblockcmd.setTicketId(ticketRegister.getTicketId());
+	      try {
+	    	  TicketRegister register = ticketRegisterRepository.findOne(ticketRegister.getId());
+	    	  if(register!=null){
+	    		  TicketInventoryDetails ticketInventoryDetails = (TicketInventoryDetails) inventoryService.executeCommand(unblockcmd);
+	    		  if(ticketInventoryDetails.isInvUnBlocked()){
+	    			  ticketRegisterRepository.delete(ticketRegister.getId());
+	    		  }else{
+	    			  log.error("Unable to unblock the ticket inventory for ticket register id "+ticketRegister.getId());
+	    		  }
+			}else{
+				log.error("Order placed for the ticket register id "+ticketRegister.getId());
+			}
+			
+		} catch (Exception e) {
+			log.error("Exception in UnblockTask run method",e);		
+		}
+		}
 	}
 
 }

@@ -23,8 +23,10 @@ import com.eventpool.common.dto.OrderStatusDTO;
 import com.eventpool.common.dto.RegistrationDTO;
 import com.eventpool.common.dto.SuborderDTO;
 import com.eventpool.common.dto.TicketDTO;
+import com.eventpool.common.dto.TicketInventoryDetails;
 import com.eventpool.common.dto.TicketRegisterDTO;
 import com.eventpool.common.entities.Order;
+import com.eventpool.common.entities.TicketRegister;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
 import com.eventpool.common.type.OrderStatus;
@@ -32,6 +34,7 @@ import com.eventpool.event.service.impl.PayPalDTO;
 import com.eventpool.event.service.impl.PayPalItemDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.order.service.PaymentService;
+import com.eventpool.ticket.commands.TicketUnBlockedCommand;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.OrderRegisterForm;
@@ -121,6 +124,8 @@ public class OrderController {
     	System.out.println("Oid - "+oid);
     	System.out.println("Token - "+token);
     	System.out.println("PayerId - "+payerId);
+    	orderService.releaseInventory(Long.parseLong(oid));
+    	 
     	
     	
     	return new ResponseMessage(ResponseMessage.Type.error, "Order creation failed.");
