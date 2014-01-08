@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import com.eventpool.common.annotation.EmailAddressValidation;
 import com.eventpool.common.type.CurrencyType;
+import com.eventpool.common.type.OrderStatus;
 
 
 @Entity
@@ -67,6 +68,10 @@ public class Order extends AuditableIdEntity {
 
 	@Column(name="PAYMENT_STATUS")
 	private String paymentStatus;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="STATUS")
+	private OrderStatus status; 
 
 	@OneToMany(fetch = FetchType.EAGER,cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="ORDER_ID",referencedColumnName="ID")
@@ -186,6 +191,14 @@ public class Order extends AuditableIdEntity {
 
 	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus = paymentStatus;
+	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
 	}
 
 

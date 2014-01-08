@@ -3,10 +3,10 @@ package com.eventpool.common.type;
 
 public enum OrderStatus {
   
-
-  PAID("Payment Done"),
-  CANCELLED("Cancelled"),
-  CLOSED("Closed"),
+  UNPAID("UNPAID"),
+  PAID("PAID"),
+  CANCELLED("CANCELLED"),
+  CLOSED("CLOSED"),
   NEW("NEW");
   
 

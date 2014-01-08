@@ -44,6 +44,7 @@ import com.eventpool.common.repositories.OrderRepository;
 import com.eventpool.common.repositories.TicketRegisterRepository;
 import com.eventpool.common.type.CurrencyType;
 import com.eventpool.common.type.EventInfoType;
+import com.eventpool.common.type.OrderStatus;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
@@ -109,6 +110,7 @@ public class OrderServiceImpl implements OrderService {
 			updateTicketDTO(suborderDTO);
 		}
 		eventpoolMapper.mapOrder(orderDTO, order);
+		order.setStatus(OrderStatus.UNPAID);
 		order = orderRepository.save(order);
 		return order;
 
@@ -131,6 +133,8 @@ public class OrderServiceImpl implements OrderService {
 		for(Suborder suborder :  order.getSuborders()){
 			invoiceService.generateInvoice(suborder);
 		}
+		order.setStatus(OrderStatus.PAID);
+		orderRepository.save(order);
 		return getOrderDTO(order);
 	}
 	

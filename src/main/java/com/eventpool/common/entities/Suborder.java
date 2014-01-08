@@ -69,6 +69,9 @@ public class Suborder extends AuditableIdEntity {
 	@Column(name = "ORGANIZER_NAME")
 	private String organizerName;
 	
+	@Column(name = "TICKET_REGISTER_ID")
+	private Long ticketRegisterId;
+	
 	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="SUBORDER_ID",referencedColumnName="ID")
 	private List<Registration> registrations;
@@ -198,6 +201,14 @@ public class Suborder extends AuditableIdEntity {
 
 	public void setTicketPrice(Double ticketPrice) {
 		this.ticketPrice = ticketPrice;
+	}
+
+	public Long getTicketRegisterId() {
+		return ticketRegisterId;
+	}
+
+	public void setTicketRegisterId(Long ticketRegisterId) {
+		this.ticketRegisterId = ticketRegisterId;
 	}
 
 }

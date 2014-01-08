@@ -59,12 +59,23 @@ public class InvoiceService {
     @Resource
     private EntityUtilities  entityUtilities;
     
-    public Boolean sendInvoice(Invoice invoice) throws FileNotFoundException, IOException, DocumentException, Exception {
+    public Boolean sendInvoice(Invoice invoice)  {
     	if(invoice==null){
     		return false;
     	}
     	logger.info("Sending mail to :"+invoice.getBuyerMail());
-    	ByteArrayOutputStream invoiceAttachemnt = generateInvoice(invoice);
+    	ByteArrayOutputStream invoiceAttachemnt = null;
+		try {
+			invoiceAttachemnt = generateInvoice(invoice);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     	String buyerMail = invoice.getBuyerMail();
     	List<String> toList = new ArrayList<String>();
     	toList.add(buyerMail);
