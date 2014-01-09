@@ -1,6 +1,37 @@
 
 <div ng-include src="'html/eventpageheader.html'"></div>
 
-<div class="eventCont">
-	<H1> Order Successfully created</H1>
+<div class="container inPageContainer">
+	<H1> Dear {{order.firstName}} {{order.lastName}}	</H1>
+	Thank you for buying ticket with Zeoevents.
+	<br/>
+	Payment status : success
+	<br/>
+	Order Number : {{order.id}}
+	
+	<h1>Order Summary</h1>
+	<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Ticket Name</th>
+							<th class="amt">Price (<b>{{order.paymentCurrency}}<b>)</th>
+							<th class="amt" style="width: 150px;">Quantity</th>
+							<th class="amt" style="width: 150px;">Total (<b>{{order.paymentCurrency}}</b>)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="suborder in order.suborders">
+							<td><b>{{suborder.ticketName}} </b><br />
+							<td class="amt">{{suborder.ticketPrice}}</td>
+							<td class="amt">{{suborder.ticket.quantity}}</td>
+							<td class="amt">{{suborder.grossAmount}}</td>
+						</tr>
+
+						<tr class="dubbleLine">
+							<td colspan="4" class="amt"><b> Total Purchase ({{order.grossAmount}})</b></td>
+						</tr>
+					</tbody>
+				</table>
+	
 </div>
+<div ng-include src="'html/footer.html'"></div>

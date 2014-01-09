@@ -160,6 +160,7 @@ public class OrderServiceImpl implements OrderService {
 		TicketInventoryDetails updateTicketInventory = updateTicketInventory(suborderDTO);
 
 		if (updateTicketInventory.isInvUpdated()) {
+			if(suborderDTO.getTicketRegisterId()!=null)
 			ticketRegisterRepository.delete(suborderDTO.getTicketRegisterId());
 		}
 
