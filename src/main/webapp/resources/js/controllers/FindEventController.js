@@ -14,6 +14,7 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
 	$scope.countryname = "Country";
 	$scope.countryid = '';
 	$scope.othercountries=true;
+	$scope.webinar=false;
 	
 	$scope.isDateActive = function(filterItem){
 		var query = filterItem.query;
@@ -136,10 +137,10 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
             if(angular.isDefined($routeParams.q)){
             	$scope.q=$routeParams.q;
        	  	}
-            if($routeParams.locname!=null){
+            if(angular.isDefined($routeParams.locname)){
             	$scope.locname=$routeParams.locname;
             }
-            if($routeParams.catname!=null){
+            if(angular.isDefined($routeParams.catname)){
             	$scope.catname=$routeParams.catname;
             }
             if(angular.isDefined($routeParams.datetype)){
@@ -148,6 +149,9 @@ var FindEventController = function($scope,$rootScope, $http,$routeParams, $locat
             if(angular.isDefined($routeParams.type)){
         	     $scope.type=$routeParams.type;
         	 }
+            if($routeParams.webinar){
+       	     $scope.webinar=$routeParams.webinar;
+       	 }
       }
 
     $scope.getcurrentuser = function(){
