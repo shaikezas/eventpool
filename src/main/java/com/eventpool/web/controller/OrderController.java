@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import urn.ebay.apis.eBLBaseComponents.AckCodeType;
+
 import com.eventpool.common.dto.EventRegisterDTO;
 import com.eventpool.common.dto.OrderDTO;
 import com.eventpool.common.dto.OrderStatusDTO;
@@ -105,7 +107,21 @@ public class OrderController {
     	System.out.println("Token - "+token);
     	System.out.println("PayerId - "+payerId);
     	try {
-			return orderService.postOrder(Long.parseLong(oid), token, payerId);
+    		
+    		AckCodeType ack = paymentService.getPaymentDetails(token);
+    		if(ack == null ){
+    			//retry
+    		}
+    		if(ack==AckCodeType.SUCCESS){
+    			return orderService.postOrder(Long.parseLong(oid), token, payerId);
+    		}else if(ack==AckCodeType.FAILURE){
+    			//
+    		}else if(ack==AckCodeType.SUCCESSWITHWARNING){
+    			//
+    		}else{
+    			
+    		}
+    		
 		} catch (NumberFormatException e) {
 			logger.error(" unable to complete the order process",e);
 			return null;
@@ -113,6 +129,7 @@ public class OrderController {
 			logger.error(" unable to complete the order process",e);
 			return null;
 		}
+    	return null;
     }
     @RequestMapping(value = "/failed", method = RequestMethod.GET)
   	public @ResponseBody ResponseMessage failedOrder(HttpServletRequest request)

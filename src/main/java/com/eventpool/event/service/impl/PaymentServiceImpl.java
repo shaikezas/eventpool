@@ -14,11 +14,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
+import urn.ebay.api.PayPalAPI.GetExpressCheckoutDetailsReq;
+import urn.ebay.api.PayPalAPI.GetExpressCheckoutDetailsRequestType;
+import urn.ebay.api.PayPalAPI.GetExpressCheckoutDetailsResponseType;
+import urn.ebay.api.PayPalAPI.GetTransactionDetailsReq;
+import urn.ebay.api.PayPalAPI.GetTransactionDetailsRequestType;
 import urn.ebay.api.PayPalAPI.PayPalAPIInterfaceServiceService;
 import urn.ebay.api.PayPalAPI.SetExpressCheckoutReq;
 import urn.ebay.api.PayPalAPI.SetExpressCheckoutRequestType;
 import urn.ebay.api.PayPalAPI.SetExpressCheckoutResponseType;
 import urn.ebay.apis.CoreComponentTypes.BasicAmountType;
+import urn.ebay.apis.eBLBaseComponents.AckCodeType;
 import urn.ebay.apis.eBLBaseComponents.CurrencyCodeType;
 import urn.ebay.apis.eBLBaseComponents.DetailLevelCodeType;
 import urn.ebay.apis.eBLBaseComponents.PaymentActionCodeType;
@@ -144,4 +150,46 @@ public class PaymentServiceImpl implements PaymentService {
 		return null;
 	}
 
+	@Override
+	public AckCodeType getPaymentDetails(String token){
+		Map<String, String> sdkConfig = new HashMap<String, String>();
+		sdkConfig.put("mode", payMode);
+		sdkConfig.put("acct1.UserName", payUserName);
+		sdkConfig.put("acct1.Password",password);
+		sdkConfig.put("acct1.Signature",signature);
+		
+		PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(sdkConfig);
+		GetExpressCheckoutDetailsReq getExpressCheckoutDetailsReq = new GetExpressCheckoutDetailsReq();
+		GetExpressCheckoutDetailsRequestType getExpressCheckoutDetailsRequest = new GetExpressCheckoutDetailsRequestType();
+		getExpressCheckoutDetailsRequest.setToken(token);
+		getExpressCheckoutDetailsReq.setGetExpressCheckoutDetailsRequest(getExpressCheckoutDetailsRequest );
+		try {
+				GetExpressCheckoutDetailsResponseType expressCheckoutDetails = service.getExpressCheckoutDetails(getExpressCheckoutDetailsReq);
+				AckCodeType ack = expressCheckoutDetails.getAck();
+				return ack;
+		} catch (SSLConfigurationException e) {
+			logger.error("token generaton error:",e);
+		} catch (InvalidCredentialException e) {
+			logger.error("token generaton error:",e);
+		} catch (HttpErrorException e) {
+			logger.error("token generaton error:",e);
+		} catch (InvalidResponseDataException e) {
+			logger.error("token generaton error:",e);
+		} catch (ClientActionRequiredException e) {
+			logger.error("token generaton error:",e);
+		} catch (MissingCredentialException e) {
+			logger.error("token generaton error:",e);
+		} catch (OAuthException e) {
+			logger.error("token generaton error:",e);
+		} catch (IOException e) {
+			logger.error("token generaton error:",e);
+		} catch (InterruptedException e) {
+			logger.error("token generaton error:",e);
+		} catch (ParserConfigurationException e) {
+			logger.error("token generaton error:",e);
+		} catch (SAXException e) {
+			logger.error("token generaton error:",e);
+		}
+		return null;
+	}
 }

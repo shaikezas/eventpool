@@ -616,5 +616,7 @@ public class EventTest extends BaseTest{
     public void testPaymentService(){
     	//String initPayment = paymentService.initPayment(null);
     	//System.out.println(initPayment);
+    	String token = "EC-2NF050416U464012Y";
+    	paymentService.getPaymentDetails(token);
     }
 }
