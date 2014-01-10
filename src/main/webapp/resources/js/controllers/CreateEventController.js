@@ -336,11 +336,11 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.disabled = true;
     	$scope.resetError();
         $scope.validations();
+        $scope.setticketsaleendandsalestartdates();
         if($scope.stopSubmitAction === true){
         	$scope.stopSubmitAction = false;        	
          }
-        else {
-        $scope.setticketsaleenddate();
+        else {        
         $http.post('event/myevent/addevent', $scope.event).success(function(response) {
         	if(response.type=='success')
         		{
@@ -357,6 +357,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.resetError();
     	$scope.validations();
         var tktqty = $scope.atleastoneticketrequired();
+        $scope.setticketsaleendandsalestartdates();
     	       
     	if(tktqty==0){        	
     		$scope.stopSubmitAction=true;    
@@ -374,7 +375,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         	$scope.stopSubmitAction = false;
          }
         else {
-        $scope.setticketsaleenddate();
         $http.post('event/myevent/addEventAndPublish', $scope.event).success(function() {
         	$location.url('myevents');
         }).error(function() {
@@ -535,14 +535,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         ticket.ticketType = "FREE";
         ticket.showFree = true;
 
-        if(angular.isDefined($scope.event.startDate)){
+  /*      if(angular.isDefined($scope.event.startDate)){
         	ticket.saleEnd= $scope.event.startDate;
-        	/*sEnd = new Date(sEnd);
+        	sEnd = new Date(sEnd);
         	var millSecs = sEnd.getTime();
         	millSecs = millSecs - 3600000;
         	sEnd = new Date(millSecs);
-        	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");*/
-        }        
+        	ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
+        } */       
         $scope.event.tickets.push(ticket);
     }
     
@@ -554,14 +554,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         var ticket = new eventpool.ticket();
         ticket.ticketType = "PAID";
         ticket.showPrice = true;
-        if(angular.isDefined($scope.event.startDate)){
+/*        if(angular.isDefined($scope.event.startDate)){
         	ticket.saleEnd = $scope.event.startDate;
-	        /*sEnd = new Date(sEnd);
+	        sEnd = new Date(sEnd);
 	        var millSecs = sEnd.getTime();
 	        millSecs = millSecs - 3600000;
 	        sEnd = new Date(millSecs);
-	        ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");*/
-        }
+	        ticket.saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
+        }*/
         $scope.event.tickets.push(ticket);
     }
     
@@ -575,25 +575,77 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         }
     }
     
-    $scope.setticketsaleenddate = function(){
+    $scope.setticketsaleendandsalestartdates = function(){
+    	$scope.saleendaftereventstartdate=false;
+    	$scope.saleendafterstartdate=false;
     	if(angular.isDefined($scope.event.tickets)) {
     	var tickets = $scope.event.tickets;
     	if(angular.isDefined($scope.event.startDate)){
     		var millSecs = (new Date($scope.event.startDate)).getTime();
 			millSecs = millSecs - 3600000;
 			var sEnd = new Date(millSecs);
-    		for (var i=0;i<tickets.length;i++) 	{      			
-            	tickets[i].saleEnd= moment(sEnd).format("DD-MMM-YYYY HH:mm");   	
+    		for (var i=0;i<tickets.length;i++) 	{
+    			if(angular.isUndefined(tickets[i].saleStart)){
+                  	 tickets[i].saleStart= moment().format("DD-MMM-YYYY HH:mm");
+          			}
+    			if(angular.isUndefined(tickets[i].saleEnd)){
+            	 tickets[i].saleEnd= moment(sEnd).format("DD-MMM-YYYY HH:mm"); 
+    			}
     		}
     	}
-        /*sEnd = new Date(sEnd);
-        var millSecs = sEnd.getTime();
-        millSecs = millSecs - 3600000;
-        sEnd = new Date(millSecs);
-    	for (var i=0;i<tickets.length;i++) 	{   
-	        tickets[i].saleEnd = moment(sEnd).format("DD-MMM-YYYY HH:mm");
-    	}*/
-      }
+    }
+        if(angular.isDefined($scope.event.tickets)){
+        	var tickets = $scope.event.tickets;
+        	var eventStartDate = new Date($scope.event.startDate);
+        	for (var i=0;i<tickets.length;i++) 	{
+        	if(angular.isDefined(tickets[i].saleEnd)){              	
+            	var saleEnd = new Date(tickets[i].saleEnd);
+            	if(eventStartDate.getTime()<saleEnd.getTime()){
+            		$scope.saleendaftereventstartdate=true;
+            	}
+            }
+        }
+        	if($scope.saleendaftereventstartdate){
+      	      $.bootstrapGrowl("Ticket Sale End On should not be after Event Start date & time.", {
+                    type: 'error',
+                    align: 'center',
+                    width: 'auto',
+                    delay: 10000,
+                    allow_dismiss: true
+                });
+      	    $("#ticketId").addClass("activeAlert");
+      		$scope.disabled = false;
+      		$scope.stopSubmitAction=true;
+        	}
+        }
+      if($scope.saleendaftereventstartdate===false){  
+    if(angular.isDefined($scope.event.tickets)){
+    	var tickets = $scope.event.tickets;
+    	for (var i=0;i<tickets.length;i++) 	{
+    	if(angular.isDefined(tickets[i].saleEnd)&&angular.isDefined(tickets[i].saleStart)){
+          	var saleStart = new Date(tickets[i].saleStart);
+        	var saleEnd = new Date(tickets[i].saleEnd);
+        	if(saleStart.getTime()>saleEnd.getTime()){
+        		$scope.saleendafterstartdate=true;
+        	}
+        }
+    }
+    	if($scope.saleendafterstartdate){
+  	      $.bootstrapGrowl("Ticket Sale Start On should not be after Ticket Sale End On.", {
+                type: 'error',
+                align: 'center',
+                width: 'auto',
+                delay: 10000,
+                allow_dismiss: true
+            });
+  	    $("#ticketId").addClass("activeAlert");
+  		$scope.disabled = false;
+  		$scope.stopSubmitAction=true;
+    	}
+    }
+    }
+
+      
     }
 
     $scope.updateEvent = function(event) {
