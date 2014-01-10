@@ -38,7 +38,7 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     	var tickets = $scope.event.tickets;
     	var amount = 0;
     	for (var i=0;i<tickets.length;i++) 	{    		
-    		amount = amount + parseInt(tickets[i].price) * parseInt(tickets[i].selectedQty);
+    		amount = amount + parseFloat(tickets[i].price) * parseInt(tickets[i].selectedQty);
     	}
     	$scope.totalAmount = amount;
     }
