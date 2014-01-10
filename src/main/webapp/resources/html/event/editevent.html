@@ -47,7 +47,7 @@
 					    <div class="controls">
 							  <select name="currency" id="currency" ng-model="event.currency" required >
 							     <option value="">-- Select Currency --</option>
-								 <option value="EURO">Euro</option>
+								 <option value="EUR">Euro</option>
 								 <option value="INR">Indian Rupee</option>
 								 <option value="USD">US Dollar</option>
 								</select>
@@ -60,7 +60,7 @@
 							    <div class="controls" >
 								 	<div id="datetimepickerStart" class="input-append date datetimepicker">
 				      					<input type="text" name="startDate"  datetime-picker   ng-model="event.startDate" 
-				      										placeholder="Start Date and Time" readonly required ng-change="setticketsaleenddte()"></input>
+				      										placeholder="Start Date and Time" readonly required ></input>
 				      					<span class="add-on" ng-show="!event.isPublish"><i class="icon-th"></i></span>
 				      				</div>
 				      				<span ng-show="startDateRequired" ng-style="{color:'red'}">Required.</span>
