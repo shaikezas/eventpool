@@ -39,7 +39,7 @@
 	     	<field><a>id</a><b>id</b></field>
 	     	<field><a>ticketPrice</a><b>ticketPrice</b></field>
 	     	<field><a>ticketRegisterId</a><b>ticketRegisterId</b></field>
-	     	<field><a>ticket</a><b>ticketSnapShot</b></field>
+	     	<field><a>ticketSnapShot</a><b>ticket</b></field>
 	     	
     </mapping>
     
