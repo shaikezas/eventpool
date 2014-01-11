@@ -190,9 +190,9 @@
 			     
                  
 <div id="pricing-table" class="clear">
-    <div class="plan">
-        <h3>Premium Plan<span>$59</span></h3>
-        <a class="signup" href="#pricing/pricingevent-1388940760060">Book Now</a>         
+ <div class="plan">
+        <h3>Features<span></span></h3>
+        <a class="signup" href="#">Features</a> 
         <ul>
              <li >Create Event					</li>
             <li >Dedicated Event Page &amp; Url	</li>
@@ -207,11 +207,26 @@
         </ul> 
     </div>
     
+<div ng-repeat="package in packages">
+    <div class="plan">
+        <h3>{{package.planName}}<span>{{package.currency}} {{package.price}}</span></h3>
+        <a class="signup" href="#pricing/{{package.eventUrl}}">Book Now</a>         
+        <ul>
+             <li >{{package.featureMap['1']}}</li>
+            <li >{{package.featureMap['2'] }}	</li>
+            <li >{{package.featureMap['3'] }}	</li>
+            <li >{{package.featureMap['4'] }}	</li>
+            <li >{{package.featureMap['5'] }}	</li>
+            <li >{{package.featureMap['6'] }}	</li>
+            <li >{{package.featureMap['7'] }}	</li>
+            <li >{{package.featureMap['8'] }}	</li>
+            <li >{{package.featureMap['9'] }}	</li>
+            <li >{{package.featureMap['10'] }}	</li>
+        </ul> 
+    </div>
+    </div>
 </div>
 
-
-                
-			 
 		          </div>
 
     

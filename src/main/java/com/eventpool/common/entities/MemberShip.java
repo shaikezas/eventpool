@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "MEMBERSHIP")
@@ -42,8 +43,9 @@ public class MemberShip extends AbstractEntity{
 	@Column(name = "FEATURES")
 	private String features;
 	
-	@OneToMany
-	@JoinColumn(name = "ID",referencedColumnName="MEMBERSHIP_ID")
+//	@OneToMany
+//	@JoinColumn(name = "ID",referencedColumnName="MEMBERSHIP_ID")
+	@Transient
 	private List<MemberShipPlan> membershipPlans;
 	
 	public Integer getId() {

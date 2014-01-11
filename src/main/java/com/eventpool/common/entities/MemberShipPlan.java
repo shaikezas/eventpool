@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "MEMBERSHIP")
+@Table(name = "MEMBERSHIP_PLAN")
 public class MemberShipPlan extends AbstractEntity{
 
 
