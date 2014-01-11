@@ -1,5 +1,5 @@
 function PackageController ($scope, $http,$rootScope,currentuser,resetSrv) {
-	
+	$scope.packages = {};
     
     $scope.getcurrentuser = function(){
        	
@@ -11,14 +11,14 @@ function PackageController ($scope, $http,$rootScope,currentuser,resetSrv) {
        	
        }
     
-    $http.post('pricing/package',eventRegister).success(function(data) {
-      	$scope.orderRegister = data;
+    $http.get('pricing/package').success(function(data) {
+      	$scope.packages = data;
       }).error(function(error) {
-          alert(data);
       });
        
        $scope.getcurrentuser();
     
+       
 }
 
 function PricingController ($scope, $http,$rootScope,currentuser,resetSrv,$routeParams, srvevent) {
