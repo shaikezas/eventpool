@@ -13,7 +13,7 @@ public class SubOrderForm {
 	private Long orderId;
 	private Long suborderId;
 	private String status;
-	
+	private Boolean enableInvoice=Boolean.FALSE;
 	
 	
 	public String getStatus() {
@@ -81,6 +81,12 @@ public class SubOrderForm {
 	}
 	public void setSuborderId(Long suborderId) {
 		this.suborderId = suborderId;
+	}
+	public Boolean getEnableInvoice() {
+		return enableInvoice;
+	}
+	public void setEnableInvoice(Boolean enableInvoice) {
+		this.enableInvoice = enableInvoice;
 	}
 	
 	

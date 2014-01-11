@@ -28,8 +28,8 @@
 				          <th><a href="" ng-click="predicate = 'bookedOn'; reverse=!reverse">BOOKED ON</a></th>
 				          <th><a href="" ng-click="predicate = 'startDate'; reverse=!reverse">EVENT STARTS ON</a></th>
 				          <th><a href="" ng-click="predicate = 'endDate'; reverse=!reverse">EVENT ENDS ON</a></th>
+				          <th><a href="" ng-click="predicate = 'status'; reverse=!reverse">Status</a></th>
 				          <th class="amt"><a href="" ng-click="predicate = 'quantity'; reverse=!reverse">QTY</a></th>
-				          <th class="amt"><a href="" ng-click="predicate = 'status'; reverse=!reverse">Status</a></th>
 				          <th class="amt"><a href="" ng-click="predicate = 'ticketPrice'; reverse=!reverse">AMOUNT</a></th>
 				          <th>QUICK LINKS</th>
 				        </tr>
@@ -43,9 +43,10 @@
 				          <td>{{myTicket.bookedOn}}</td>
 				          <td>{{myTicket.startDate}}</td>
 				          <td>{{myTicket.endDate}}</td>
+				          <td>{{myTicket.status}}</td>
 				          <td class="amt">{{myTicket.quantity}}</td>
 				          <td class="amt">{{myTicket.ticketPrice}}</td>
-				          <td><a href="" ng-click="openPrintTicket(myTicket.suborderId)" >Print Ticket</a> | <a href=""  ng-click="sendTicket(myTicket.suborderId)">send mail</a></td>
+				          <td><div ng-show="myTicket.enableInvoice" ><a href="" ng-click="openPrintTicket(myTicket.suborderId)" >Print Ticket</a> | <a href=""  ng-click="sendTicket(myTicket.suborderId)">send mail</a></div></td>
 				        </tr>
 				        
 				      </tbody>

@@ -46,6 +46,7 @@ import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
+import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.QuestionType;
 import com.eventpool.common.type.TicketType;
 import com.eventpool.event.service.impl.EventSettingsService;
@@ -621,6 +622,9 @@ public class EventController {
 			subForm.setSuborderId(subOrder.getId());
 			subForm.setStatus(subOrder.getStatus().getDescription());
 			subForm.setOrderId(subOrder.getOrder().getId());
+			if(subForm.getStatus().equals(OrderStatus.SUCCESS.getDescription())){
+				subForm.setEnableInvoice(Boolean.TRUE);
+			}
 			subFormList.add(subForm);
 			
 		}
