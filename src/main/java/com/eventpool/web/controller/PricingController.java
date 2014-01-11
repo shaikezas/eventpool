@@ -1,6 +1,9 @@
 package com.eventpool.web.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -39,8 +42,21 @@ public class PricingController extends BaseController{
 	
 	@RequestMapping(value = "/package", method = RequestMethod.GET)
 	public @ResponseBody List<PackageDTO> getPackages(HttpServletRequest httpRequest) throws NoTicketInventoryBlockedException {
-		List<PackageDTO> packageDTO = null;
-		
+		List<PackageDTO> packageDTO = new ArrayList<PackageDTO>();
+		PackageDTO dto = new PackageDTO();
+		dto.setCurreny("USD");
+		dto.setEventUrl("pricingevent-1388940760060");
+		dto.setPlanName("Basic Plan");
+		dto.setPrice(10D);
+		Map<Integer,Boolean> map = new HashMap<Integer,Boolean>();
+		dto.setFeatureMap(map);
+		map.put(1,Boolean.TRUE);
+		map.put(2,Boolean.TRUE);
+		map.put(3,Boolean.TRUE);
+		map.put(4,Boolean.TRUE);
+		map.put(5,Boolean.TRUE);
+		packageDTO.add(dto);
+		logger.info("Package...");
 		return packageDTO;
 	 }
 }

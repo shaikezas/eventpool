@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MEMBERSHIP")
+@Table(name = "MEMBERSHIP_PLAN")
 public class MemberShipPlan extends AbstractEntity{
 
 
