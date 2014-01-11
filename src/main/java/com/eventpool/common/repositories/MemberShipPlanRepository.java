@@ -12,7 +12,7 @@ import com.eventpool.common.entities.MemberShipPlan;
 public interface MemberShipPlanRepository extends JpaRepository<MemberShipPlan, Integer>{
 	
 	@Query(value="SELECT mem FROM MemberShipPlan mem WHERE mem.currency=?1")
-	public MemberShipPlan getMembershipPlan(String currency);
+	public List<MemberShipPlan> getMembershipPlan(String currency);
 
 
 }

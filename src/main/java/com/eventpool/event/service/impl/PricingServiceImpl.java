@@ -73,33 +73,37 @@ public class PricingServiceImpl implements PricingService {
 	private MemberShipPlanRepository memberShipPlanRepository;
 
 	@Override
-	public PackageDTO getMembershipPlan(String currency) {
-		MemberShipPlan memberShipPlan = memberShipPlanRepository.getMembershipPlan(currency);
-		if(memberShipPlan==null){
-			memberShipPlan = memberShipPlanRepository.getMembershipPlan("USD");
+	public List<PackageDTO> getMembershipPlan(String currency) {
+		List<MemberShipPlan> memberShipPlanList = memberShipPlanRepository.getMembershipPlan(currency);
+		if(memberShipPlanList==null || memberShipPlanList.size()==0){
+			memberShipPlanList = memberShipPlanRepository.getMembershipPlan("USD");
 		}
-		PackageDTO packageDTO = new PackageDTO();
-		if(memberShipPlan!=null){
-			packageDTO.setCurrency(memberShipPlan.getCurrency());
-			packageDTO.setEventUrl(memberShipPlan.getEventUrl());
-			packageDTO.setPlanName(memberShipPlan.getMemberShip().getName());
-			packageDTO.setPrice(memberShipPlan.getFee());
-			String features = memberShipPlan.getFeatures();
-			Map<Integer, Boolean> featureMap = new HashMap<Integer, Boolean>();
-			packageDTO.setFeatureMap(featureMap );
-			if(features==null){
-				features = memberShipPlan.getMemberShip().getFeatures();
-			}
-			if(features!=null){
-				String[] split = features.split(",");
-				if(split!=null && split.length>0){
-					for(String splitItem:split){
-						featureMap.put(Integer.parseInt(splitItem), true);
+		List<PackageDTO> packageDTOs = new ArrayList<PackageDTO>();
+		for(MemberShipPlan memberShipPlan:memberShipPlanList){
+			PackageDTO packageDTO = new PackageDTO();
+			if(memberShipPlan!=null){
+				packageDTO.setCurrency(memberShipPlan.getCurrency());
+				packageDTO.setEventUrl(memberShipPlan.getEventUrl());
+				packageDTO.setPlanName(memberShipPlan.getMemberShip().getName());
+				packageDTO.setPrice(memberShipPlan.getFee());
+				String features = memberShipPlan.getFeatures();
+				Map<Integer, Boolean> featureMap = new HashMap<Integer, Boolean>();
+				packageDTO.setFeatureMap(featureMap );
+				if(features==null){
+					features = memberShipPlan.getMemberShip().getFeatures();
+				}
+				if(features!=null){
+					String[] split = features.split(",");
+					if(split!=null && split.length>0){
+						for(String splitItem:split){
+							featureMap.put(Integer.parseInt(splitItem), true);
+						}
 					}
 				}
 			}
+			packageDTOs.add(packageDTO);
 		}
-		return packageDTO;
+		return packageDTOs;
 	}
 
 }
