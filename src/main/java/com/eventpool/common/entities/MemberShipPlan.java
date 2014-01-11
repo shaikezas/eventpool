@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "MEMBERSHIP")
@@ -20,11 +21,11 @@ public class MemberShipPlan extends AbstractEntity{
 	@Column(name="MEMBERSHIP_ID")
 	private Integer membershipId;
 
-	@Column(name="EVENT_ID")
-	private Long eventId;
+	@Column(name="EVENT_URL")
+	private String eventUrl;
 
 	@Column(name = "CURRENCY")
-	private String name;
+	private String currency;
 	
 	@Column(name = "SETTINGS")
 	private String settings;
@@ -34,7 +35,11 @@ public class MemberShipPlan extends AbstractEntity{
 
 	@Column(name="FEE")
 	private Double fee;
-	
+
+	@Transient
+//	@Column(name="MEMBERSHIP_ID")
+	private MemberShip memberShip;
+
 	public Integer getId() {
 		return id;
 	}
@@ -43,28 +48,12 @@ public class MemberShipPlan extends AbstractEntity{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Integer getMembershipId() {
 		return membershipId;
 	}
 
 	public void setMembershipId(Integer membershipId) {
 		this.membershipId = membershipId;
-	}
-
-	public Long getEventId() {
-		return eventId;
-	}
-
-	public void setEventId(Long eventId) {
-		this.eventId = eventId;
 	}
 
 	public String getSettings() {
@@ -89,6 +78,30 @@ public class MemberShipPlan extends AbstractEntity{
 
 	public void setFee(Double fee) {
 		this.fee = fee;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public String getEventUrl() {
+		return eventUrl;
+	}
+
+	public void setEventUrl(String eventUrl) {
+		this.eventUrl = eventUrl;
+	}
+
+	public MemberShip getMemberShip() {
+		return memberShip;
+	}
+
+	public void setMemberShip(MemberShip memberShip) {
+		this.memberShip = memberShip;
 	}
 
 }

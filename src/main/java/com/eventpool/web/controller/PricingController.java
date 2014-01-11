@@ -38,9 +38,12 @@ public class PricingController extends BaseController{
 	 }
 	
 	@RequestMapping(value = "/package", method = RequestMethod.GET)
-	public @ResponseBody List<PackageDTO> getPackages(HttpServletRequest httpRequest) throws NoTicketInventoryBlockedException {
+	public @ResponseBody List<PackageDTO> getPackages(HttpServletRequest request) throws NoTicketInventoryBlockedException {
 		List<PackageDTO> packageDTO = null;
-		
+    	String currency = request.getParameter("currency");
+    	if(currency!=null && !currency.equals("undefined")){
+    		
+    	}
 		return packageDTO;
 	 }
 }
