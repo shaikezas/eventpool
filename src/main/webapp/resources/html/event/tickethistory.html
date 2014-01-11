@@ -20,7 +20,7 @@
 			<table class="table table-condensed" id="tickethistory">
 				      <thead>
 				        <tr>
-						  <th>TICKET ID</th>
+						  <th>TICKET NAME</th>
 				          <th>TOTAL QUANTITY</th>
 				          <th>TICKET PRICE</th>
 				          <th>TOTAL TICKET PRICE</th>
@@ -31,7 +31,7 @@
 				      </thead>
 				      <tbody>
 				        <tr ng-repeat="order in subOrdersList" >
-				          <td>{{order.ticketId}}</td>
+				          <td>{{order.ticketName}}</td>
 				          <td>{{order.maxQty}}</td>
 				          <td>{{order.price}}</td>
 				          <td>{{order.totalTicketsPrice}}</td>

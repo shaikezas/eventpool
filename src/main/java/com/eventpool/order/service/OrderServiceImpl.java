@@ -129,7 +129,8 @@ public class OrderServiceImpl implements OrderService {
 	public OrderDTO postOrder(Long orderId,String token,String payerId) throws Exception{
 		Order order = orderRepository.findOne(orderId);
 		Boolean validTicketRegister = Boolean.TRUE;
-		if(order.getToken()!=null && order.getToken().equals(token)){
+		Double grossAmount = order.getGrossAmount();
+		if((order.getToken()!=null && order.getToken().equals(token)) || (grossAmount!=null && grossAmount.compareTo(0.0)==0)){
 			for (Suborder suborder : order.getSuborders()) {
 				SuborderDTO suborderDTO = new SuborderDTO();
 				eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
@@ -138,28 +139,27 @@ public class OrderServiceImpl implements OrderService {
 					break;
 				}
 			}
-			
+				
 			if(validTicketRegister){
-			for (Suborder suborder : order.getSuborders()) {
-				SuborderDTO suborderDTO = new SuborderDTO();
-				eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
-				deleteTicketRegister(suborderDTO);
-			}
-	
-			for(Suborder suborder :  order.getSuborders()){
-				suborder.setStatus(OrderStatus.SUCCESS);
-				invoiceService.generateInvoice(suborder);
-			}
-			order.setStatus(OrderStatus.SUCCESS);
-			order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
-			orderRepository.save(order);
-			return getOrderDTO(order);
-			}else{
-				releaseInventory(orderId);
+				for (Suborder suborder : order.getSuborders()) {
+					SuborderDTO suborderDTO = new SuborderDTO();
+					eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
+					deleteTicketRegister(suborderDTO);
+				}
+			
+				for(Suborder suborder :  order.getSuborders()){
+					suborder.setStatus(OrderStatus.SUCCESS);
+					invoiceService.generateInvoice(suborder);
+				}
+				order.setStatus(OrderStatus.SUCCESS);
 				order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
 				orderRepository.save(order);
+				return getOrderDTO(order);
 			}
-			
+		}else{
+			releaseInventory(orderId);
+			order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
+			orderRepository.save(order);
 		}
 		return null;
 	}
