@@ -27,8 +27,8 @@ public class PricingController {
 		  return orderRegisterForm;
 	 }
 	
-	@RequestMapping(value = "/package", method = RequestMethod.POST)
-	public @ResponseBody List<PackageDTO> getPackages(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
+	@RequestMapping(value = "/package", method = RequestMethod.GET)
+	public @ResponseBody List<PackageDTO> getPackages() throws NoTicketInventoryBlockedException {
 		List<PackageDTO> packageDTO = null;
 		  return packageDTO;
 	 }
