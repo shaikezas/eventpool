@@ -10,6 +10,12 @@ function PackageController ($scope, $http,$rootScope,currentuser,resetSrv) {
            }
        	
        }
+    
+    $http.post('pricing/package',eventRegister).success(function(data) {
+      	$scope.orderRegister = data;
+      }).error(function(error) {
+          alert(data);
+      });
        
        $scope.getcurrentuser();
     

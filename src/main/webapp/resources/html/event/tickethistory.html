@@ -33,7 +33,7 @@
 				        <tr ng-repeat="order in subOrdersList" >
 				          <td>{{order.ticketName}}</td>
 				          <td>{{order.maxQty}}</td>
-				          <td>{{order.price}}</td>
+				          <td><span ng-show="order.price > 0">{{order.price}}</span> <span ng-show="order.price==0">FREE</span></td>
 				          <td>{{order.totalTicketsPrice}}</td>
 				          <td>{{order.soldQty}}</td>
 				          <td>{{order.totalTicketSoldPrice}}</td> <!-- ng-show="showAttendeDetails" -->
