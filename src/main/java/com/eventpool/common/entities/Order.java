@@ -20,6 +20,7 @@ import javax.validation.constraints.Size;
 import com.eventpool.common.annotation.EmailAddressValidation;
 import com.eventpool.common.type.CurrencyType;
 import com.eventpool.common.type.OrderStatus;
+import com.eventpool.common.type.PaymentStatus;
 
 
 @Entity
@@ -66,8 +67,9 @@ public class Order extends AuditableIdEntity {
 	@Column(name="PAYERID")
 	private String payerId;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name="PAYMENT_STATUS")
-	private String paymentStatus;
+	private PaymentStatus paymentStatus;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="STATUS")
@@ -185,11 +187,11 @@ public class Order extends AuditableIdEntity {
 		this.payerId = payerId;
 	}
 
-	public String getPaymentStatus() {
+	public PaymentStatus getPaymentStatus() {
 		return paymentStatus;
 	}
 
-	public void setPaymentStatus(String paymentStatus) {
+	public void setPaymentStatus(PaymentStatus paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
 
