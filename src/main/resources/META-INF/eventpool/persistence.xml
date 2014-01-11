@@ -28,6 +28,7 @@
 		<class>com.eventpool.common.entities.MemberShip</class>
 		<class>com.eventpool.common.entities.MemberShipPlan</class>
 		<class>com.eventpool.common.entities.Invoice</class>
+		<class>com.eventpool.common.entities.Features</class>
 		<!-- Jboss recognizes only the entities listed here -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
