@@ -31,7 +31,9 @@ import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.TicketRegister;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
+import com.eventpool.common.repositories.OrderRepository;
 import com.eventpool.common.type.OrderStatus;
+import com.eventpool.common.type.PaymentStatus;
 import com.eventpool.event.service.impl.PayPalDTO;
 import com.eventpool.event.service.impl.PayPalItemDTO;
 import com.eventpool.order.service.OrderService;
@@ -202,7 +204,7 @@ public class OrderController {
 			  suborderDTO.setOrder(orderDTO);
 			  suborderDTO.setTicket(new TicketDTO());
 			  suborderDTO.getTicket().setQuantity(ticketRegisterDTO.getQty());
-			  suborderDTO.setStatus(OrderStatus.NEW);
+			  suborderDTO.setStatus(OrderStatus.INITIATED);
 			  suborderDTO.setSubCategoryId(orderRegisterForm.getSubCategoryId());
 			  suborderDTO.setOrganizerName(orderRegisterForm.getOrganizerName());
 			  suborderDTO.getTicket().setId(ticketRegisterDTO.getTicketId());

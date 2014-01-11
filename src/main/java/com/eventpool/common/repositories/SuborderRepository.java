@@ -12,7 +12,7 @@ import com.eventpool.common.entities.TicketSnapShot;
 
 public interface SuborderRepository extends JpaRepository<Suborder, Long>{
 
-	@Query(value="SELECT suborder FROM Suborder suborder WHERE suborder.createdBy=?1  and suborder.order.status='PAID' order by createdDate desc")
+	@Query(value="SELECT suborder FROM Suborder suborder WHERE suborder.createdBy=?1  order by createdDate desc")
 	public List<Suborder> getSuborders(Long userId);
 
 	@Query(value="SELECT ticketSnapShot FROM TicketSnapShot ticketSnapShot WHERE ticketSnapShot.createdBy=?1")

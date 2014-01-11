@@ -2,23 +2,12 @@ package com.eventpool.common.dto;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PostPersist;
-import javax.persistence.PostUpdate;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.eventpool.common.annotation.EmailAddressValidation;
 import com.eventpool.common.type.CurrencyType;
+import com.eventpool.common.type.OrderStatus;
+import com.eventpool.common.type.PaymentStatus;
 
 
 public class OrderDTO extends AuditableIdDTO {
@@ -45,6 +34,10 @@ public class OrderDTO extends AuditableIdDTO {
 	private CurrencyType paymentCurrency;
 	
 	private List<SuborderDTO> suborders;
+	
+	private OrderStatus status;
+	
+	private PaymentStatus paymentStatus;
 
 	public String getFirstName() {
 		return firstName;
@@ -125,6 +118,22 @@ public class OrderDTO extends AuditableIdDTO {
 
 	public void setDicountCoupon(String dicountCoupon) {
 		this.dicountCoupon = dicountCoupon;
+	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
+
+	public PaymentStatus getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(PaymentStatus paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
 	
 

@@ -12,6 +12,16 @@ public class SubOrderForm {
 	private String bookedOn;
 	private Long orderId;
 	private Long suborderId;
+	private String status;
+	
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getBookedOn() {
 		return bookedOn;
 	}
