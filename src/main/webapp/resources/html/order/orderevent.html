@@ -26,15 +26,20 @@
 						<th>Ticket Name</th>
 						<th class="amt">Price (<b>{{event.currency}}</b>)</th>
 						<th class="amt">Quantity</th>
+						<th class="amt">Total Price (<b>{{event.currency}}</b>)</th>
 					</tr>
 				</thead>
 				<tbody>
 				<tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
-						  <td class="amt">{{ticketRegister.ticketName}} </td>
-						  <td class="amt">{{ticketRegister.price}} </td>
-						  <td class="amt"> {{ticketRegister.qty}}</td>
+						  <td >{{ticketRegister.ticketName}} </td>
+						  <td class="amt"><span ng-show="ticketRegister.price > 0">{{ticketRegister.price}}</span> <span ng-show="ticketRegister.price==0">FREE</span> </td>
+						  <td class="amt">{{ticketRegister.qty}}</td>
+						  <td class="amt">{{ticketRegister.price * ticketRegister.qty}}</td>
 						</tr>
-								
+						<tr class="dubbleLine">
+							<td colspan="3" class="amt"><b> Total Purchase ({{event.currency}})</b></td>
+							<td class="amt">{{orderRegister.netAmount}}</td>
+						</tr>		
 				
 				</tbody>
 				</table>

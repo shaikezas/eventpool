@@ -18,6 +18,7 @@ function PackageController ($scope, $http,$rootScope,currentuser,resetSrv) {
 function PricingController ($scope, $http,$rootScope,currentuser,resetSrv,$routeParams, srvevent) {
 	
 	 $scope.event = {};
+	 $scope.totalAmount  = 0;
     $scope.getcurrentuser = function(){
        	
        	if ($rootScope.user == undefined) {
@@ -36,7 +37,14 @@ function PricingController ($scope, $http,$rootScope,currentuser,resetSrv,$route
     });
     }
     };
-    
+    $scope.calcTotalAmount = function(){
+    	var tickets = $scope.event.tickets;
+    	var amount = 0;
+    	for (var i=0;i<tickets.length;i++) 	{    		
+    		amount = amount + parseFloat(tickets[i].price) * parseInt(tickets[i].selectedQty);
+    	}
+    	$scope.totalAmount = amount;
+    }
     $scope.buyPoints = function() {
 //      $scope.resetError();
   	if($scope.event.isPublish){

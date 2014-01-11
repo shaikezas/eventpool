@@ -37,7 +37,7 @@
 							<span>{{ticket.dateDesc}}</span><br />
 							<span style="color: #0000FF;"
 								ng-show="{{ticket.description!=null}}">*{{ticket.description}}</span></td>
-							<td class="amt">{{ticket.price}}</td>
+							<td class="amt"><span ng-show="ticket.price > 0">{{ticket.price}}</span> <span ng-show="ticket.price==0">FREE</span></td>
 							<td class="amt"><select ng-show="!ticket.soldOut"
 								ng-disabled="ticket.disableTicket" style="width: 100px;"
 								id="Category" ng-model="ticket.selectedQty"
