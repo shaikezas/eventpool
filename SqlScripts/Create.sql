@@ -382,7 +382,7 @@ DROP TABLE MEMBERSHIP_PLAN;
 CREATE TABLE MEMBERSHIP_PLAN (
   `ID` int(5) NOT NULL auto_increment,
   `MEMBERSHIP_ID` int(5) NOT NULL,
-  `EVENT_ID` bigint(10) default NULL,
+  `EVENT_URL` varchar(256) default NULL,
   `CURRENCY` char(5) default NULL,
   `SETTINGS` varchar(1000) default NULL,
   `FEATURES` varchar(100) default NULL,
