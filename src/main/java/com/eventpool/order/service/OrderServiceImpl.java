@@ -45,6 +45,7 @@ import com.eventpool.common.repositories.TicketRegisterRepository;
 import com.eventpool.common.type.CurrencyType;
 import com.eventpool.common.type.EventInfoType;
 import com.eventpool.common.type.OrderStatus;
+import com.eventpool.common.type.PaymentStatus;
 import com.eventpool.event.service.impl.EventSettingsService;
 import com.eventpool.ticket.commands.TicketBlockedCommand;
 import com.eventpool.ticket.commands.TicketOrderedCommand;
@@ -108,10 +109,12 @@ public class OrderServiceImpl implements OrderService {
 		}
 		Order order = new Order();
 		for (SuborderDTO suborderDTO : orderDTO.getSuborders()) {
+			suborderDTO.setStatus(OrderStatus.INITIATED);
 			updateTicketDTO(suborderDTO);
 		}
 		eventpoolMapper.mapOrder(orderDTO, order);
-		order.setStatus(OrderStatus.UNPAID);
+		order.setStatus(OrderStatus.INITIATED);
+		order.setPaymentStatus(PaymentStatus.WAITING_FOR_GATEWAYRESPONSE);
 		order = orderRepository.save(order);
 		return order;
 
@@ -125,20 +128,38 @@ public class OrderServiceImpl implements OrderService {
 
 	public OrderDTO postOrder(Long orderId,String token,String payerId) throws Exception{
 		Order order = orderRepository.findOne(orderId);
-		if(order.getToken()!=null && order.getToken().equals(token)){
+		Boolean validTicketRegister = Boolean.TRUE;
+		Double grossAmount = order.getGrossAmount();
+		if((order.getToken()!=null && order.getToken().equals(token)) || (grossAmount!=null && grossAmount.compareTo(0.0)==0)){
 			for (Suborder suborder : order.getSuborders()) {
 				SuborderDTO suborderDTO = new SuborderDTO();
 				eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
-				deleteTicketRegister(suborderDTO);
+				validTicketRegister = validateTicketRegister(suborderDTO);
+				if(!validTicketRegister){
+					break;
+				}
 			}
-	
-			for(Suborder suborder :  order.getSuborders()){
-				invoiceService.generateInvoice(suborder);
-			}
-			order.setStatus(OrderStatus.PAID);
-			orderRepository.save(order);
+				
+			if(validTicketRegister){
+				for (Suborder suborder : order.getSuborders()) {
+					SuborderDTO suborderDTO = new SuborderDTO();
+					eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
+					deleteTicketRegister(suborderDTO);
+				}
 			
-			return getOrderDTO(order);
+				for(Suborder suborder :  order.getSuborders()){
+					suborder.setStatus(OrderStatus.SUCCESS);
+					invoiceService.generateInvoice(suborder);
+				}
+				order.setStatus(OrderStatus.SUCCESS);
+				order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
+				orderRepository.save(order);
+				return getOrderDTO(order);
+			}
+		}else{
+			releaseInventory(orderId);
+			order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
+			orderRepository.save(order);
 		}
 		return null;
 	}
@@ -169,6 +190,18 @@ public class OrderServiceImpl implements OrderService {
 		}
 
 	}
+	
+	private Boolean validateTicketRegister(SuborderDTO suborderDTO) throws Exception {
+
+		TicketRegister tr = ticketRegisterRepository.findOne(suborderDTO.getTicketRegisterId());
+
+		if(tr!=null){
+			return Boolean.TRUE;
+		}else{
+			return Boolean.FALSE;
+		}
+	}
+
 
 	private TicketInventoryDetails updateTicketInventory(SuborderDTO suborder)
 			throws Exception {
@@ -336,8 +369,9 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void releaseInventory(Long orderId) {
 		Order order = orderRepository.findOne(orderId);
-		
+		order.setStatus(OrderStatus.FAILED);
 		for(Suborder suborder:order.getSuborders()){
+			suborder.setStatus(OrderStatus.FAILED);
 			TicketRegister ticketRegister = null;
 			if(suborder.getTicketRegisterId()!=null) {
 				ticketRegister = ticketRegisterRepository.findOne(suborder.getTicketRegisterId());
@@ -365,6 +399,7 @@ public class OrderServiceImpl implements OrderService {
 			log.error("Exception in UnblockTask run method",e);		
 		}
 		}
+		orderRepository.save(order);
 	}
 
 }

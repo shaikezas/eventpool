@@ -15,6 +15,8 @@
 			<field><a>discountAmount</a><b>discountAmount</b></field>
 			<field><a>dicountCoupon</a><b>dicountCoupon</b></field>
 			<field><a>paymentCurrency</a><b>paymentCurrency</b></field>
+			<field><a>status</a><b>status</b></field>
+			<field><a>paymentStatus</a><b>paymentStatus</b></field>
 			<field><a>createdBy</a><b>createdBy</b></field>
 			<field><a>createdDate</a><b>createdDate</b></field>
 			<field><a>modifiedDate</a><b>modifiedDate</b></field>
@@ -37,6 +39,7 @@
 			<field><a>modifiedDate</a><b>modifiedDate</b></field>
 			<field><a>ticketName</a><b>ticketName</b></field>
 	     	<field><a>id</a><b>id</b></field>
+	     	<field><a>status</a><b>status</b></field>
 	     	<field><a>ticketPrice</a><b>ticketPrice</b></field>
 	     	<field><a>ticketRegisterId</a><b>ticketRegisterId</b></field>
 	     	<field><a>ticketSnapShot</a><b>ticket</b></field>

@@ -146,7 +146,11 @@ var EventPageController = function($scope, $http,$routeParams, srvevent,$locatio
     		 Data.setOrderRegisterData(data);
     		 Data.setEventData($scope.event);
     		 $scope.editMode = false;
-    		 $location.url('order/pay');
+    		 if(data.grossAmount==0){
+    			 $location.url('order/success/?oid='+data.oid);
+    		 }else{
+    			 $location.url('order/pay');
+    		 }
          }).error(function(error) {
         	 $scope.disablePayment = false;
              alert(error);

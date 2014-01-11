@@ -619,6 +619,7 @@ public class EventController {
 			subForm.setEndDate(dateConverter.convertFrom(event.getEndDate()));
 			subForm.setBookedOn(dateConverter.convertFrom(subOrder.getCreatedDate()));
 			subForm.setSuborderId(subOrder.getId());
+			subForm.setStatus(subOrder.getStatus().getDescription());
 			subForm.setOrderId(subOrder.getOrder().getId());
 			subFormList.add(subForm);
 			
