@@ -6,7 +6,7 @@ import java.util.Map;
 public class PackageDTO extends AuditableIdDTO{
 
 	private String planName;
-	private String curreny;
+	private String currency;
 	private Double price;
 	private String eventUrl;
 	private Map<Integer,Boolean> featureMap;
@@ -16,11 +16,12 @@ public class PackageDTO extends AuditableIdDTO{
 	public void setPlanName(String planName) {
 		this.planName = planName;
 	}
-	public String getCurreny() {
-		return curreny;
+
+	public String getCurrency() {
+		return currency;
 	}
-	public void setCurreny(String curreny) {
-		this.curreny = curreny;
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 	public Double getPrice() {
 		return price;

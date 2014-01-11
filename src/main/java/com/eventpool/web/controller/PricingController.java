@@ -44,7 +44,7 @@ public class PricingController extends BaseController{
 	public @ResponseBody List<PackageDTO> getPackages(HttpServletRequest httpRequest) throws NoTicketInventoryBlockedException {
 		List<PackageDTO> packageDTO = new ArrayList<PackageDTO>();
 		PackageDTO dto = new PackageDTO();
-		dto.setCurreny("USD");
+		dto.setCurrency("USD");
 		dto.setEventUrl("pricingevent-1388940760060");
 		dto.setPlanName("Basic Plan");
 		dto.setPrice(10D);
