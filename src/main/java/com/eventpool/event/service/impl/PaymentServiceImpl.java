@@ -76,6 +76,8 @@ public class PaymentServiceImpl implements PaymentService {
 				BasicAmountType amt = new BasicAmountType();
 				amt.setCurrencyID(CurrencyCodeType.valueOf(payPalDTO.getCurrency()));
 				String amount = palItemDTO.getAmount();
+				double doubleAmount = Double.parseDouble(amount);
+				if(doubleAmount==0) continue;
 				amt.setValue(amount);
 				int itemQuantity = palItemDTO.getItemQuantity();
 				item.setQuantity(itemQuantity);//itemQuantity
@@ -84,7 +86,7 @@ public class PaymentServiceImpl implements PaymentService {
 				List<PaymentDetailsItemType> lineItems = new ArrayList<PaymentDetailsItemType>();
 				lineItems.add(item);
 				paymentDetails.setPaymentDetailsItem(lineItems);
-				totalamount+=Double.parseDouble(amount)*itemQuantity;
+				totalamount+=doubleAmount*itemQuantity;
 			}
 		}
 		BasicAmountType orderTotal = new BasicAmountType();
