@@ -91,8 +91,9 @@ public class OrderController {
 			  String token = paymentService.initPayment(payPalDTO);
 			  orderRegisterForm.setToken(token);
 			  orderService.updateToken(order.getId(), token);
-			  logger.info("Tocken:"+token);
+			  logger.info("Token:"+token);
 		  }
+		  orderRegisterForm.setOid(order.getId());
 		  return order;
 	}
 	  
@@ -107,19 +108,22 @@ public class OrderController {
     	System.out.println("Token - "+token);
     	System.out.println("PayerId - "+payerId);
     	try {
-    		
-    		AckCodeType ack = paymentService.getPaymentDetails(token);
-    		if(ack == null ){
-    			//retry
-    		}
-    		if(ack==AckCodeType.SUCCESS){
-    			return orderService.postOrder(Long.parseLong(oid), token, payerId);
-    		}else if(ack==AckCodeType.FAILURE){
-    			//
-    		}else if(ack==AckCodeType.SUCCESSWITHWARNING){
-    			//
+    		if(token!=null && !token.equalsIgnoreCase("undefined")){
+	    		AckCodeType ack = paymentService.getPaymentDetails(token);
+	    		if(ack == null ){
+	    			//retry
+	    		}
+	    		if(ack==AckCodeType.SUCCESS){
+	    			return orderService.postOrder(Long.parseLong(oid), token, payerId);
+	    		}else if(ack==AckCodeType.FAILURE){
+	    			//
+	    		}else if(ack==AckCodeType.SUCCESSWITHWARNING){
+	    			//
+	    		}else{
+	    			
+	    		}
     		}else{
-    			
+    			return orderService.postOrder(Long.parseLong(oid), token, payerId);
     		}
     		
 		} catch (NumberFormatException e) {
@@ -142,9 +146,6 @@ public class OrderController {
     	System.out.println("Token - "+token);
     	System.out.println("PayerId - "+payerId);
     	orderService.releaseInventory(Long.parseLong(oid));
-    	 
-    	
-    	
     	return new ResponseMessage(ResponseMessage.Type.error, "Order creation failed.");
     }
 	@RequestMapping(value = "/create", method = RequestMethod.POST)

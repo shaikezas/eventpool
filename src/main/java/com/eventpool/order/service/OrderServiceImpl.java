@@ -139,6 +139,11 @@ public class OrderServiceImpl implements OrderService {
 			orderRepository.save(order);
 			
 			return getOrderDTO(order);
+		}else{
+			Double grossAmount = order.getGrossAmount();
+			if(grossAmount!=null && grossAmount.compareTo(0.0)==0){
+				return getOrderDTO(order);
+			}
 		}
 		return null;
 	}

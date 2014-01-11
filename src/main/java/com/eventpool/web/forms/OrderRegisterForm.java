@@ -48,6 +48,7 @@ public class OrderRegisterForm {
 	private String endDate;
 	private String token;
 	private String eventName;
+	private Long oid;
 	
 	public String getFirstName() {
 		return firstName;
@@ -218,6 +219,14 @@ public class OrderRegisterForm {
 
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
+	}
+
+	public Long getOid() {
+		return oid;
+	}
+
+	public void setOid(Long oid) {
+		this.oid = oid;
 	}
 
 }
