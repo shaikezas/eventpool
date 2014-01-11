@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,9 +44,8 @@ public class MemberShip extends AbstractEntity{
 	@Column(name = "FEATURES")
 	private String features;
 	
-//	@OneToMany
-//	@JoinColumn(name = "ID",referencedColumnName="MEMBERSHIP_ID")
-	@Transient
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name = "MEMBERSHIP_ID",referencedColumnName="ID")
 	private List<MemberShipPlan> membershipPlans;
 	
 	public Integer getId() {
