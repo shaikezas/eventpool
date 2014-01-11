@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.activemq.kaha.impl.container.BaseContainerImpl;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,7 @@ import com.eventpool.web.forms.SearchResponse;
 
 @Controller
 @RequestMapping("/search")
-public class SearchController {
+public class SearchController extends BaseController{
 	
 
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
@@ -187,27 +188,7 @@ public class SearchController {
     	return searchQueryResponse;
     }
     
-	public static String getRemoteIp(HttpServletRequest request) {
-		if(request==null) return null;
-		String clientIp = request.getRemoteAddr();
-		String xForwardedFor = request.getHeader("X-FORWARDED-FOR");
-		if (StringUtils.isBlank(xForwardedFor))
-			return clientIp;
 
-		String[] ips = xForwardedFor.split(",");
-		for (String ip : ips) {
-			ip = ip.trim();
-			if (isValidIpAddress(ip)) {
-				return ip;
-			}
-		}
-
-		return clientIp;
-	}
-
-	public static boolean isValidIpAddress(String ip) {
-		return (IPAddressUtil.isIPv4LiteralAddress(ip) || IPAddressUtil.isIPv6LiteralAddress(ip));
-	}
 	
 	@RequestMapping(value = "/getactivecountries", method = RequestMethod.GET)
 	public  @ResponseBody LinkedHashMap<Integer,String> getActiveCountries(HttpServletRequest request)  throws Exception {

@@ -1,6 +1,7 @@
 package com.eventpool.common.dto;
 
 import java.util.List;
+import java.util.Map;
 
 public class PackageDTO extends AuditableIdDTO{
 
@@ -8,8 +9,7 @@ public class PackageDTO extends AuditableIdDTO{
 	private String curreny;
 	private Double price;
 	private String eventUrl;
-	private String features;
-	private List<String> featuresList;
+	private Map<Integer,String> featureMap;
 	public String getPlanName() {
 		return planName;
 	}
@@ -34,17 +34,11 @@ public class PackageDTO extends AuditableIdDTO{
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
 	}
-	public String getFeatures() {
-		return features;
+	public Map<Integer, String> getFeatureMap() {
+		return featureMap;
 	}
-	public void setFeatures(String features) {
-		this.features = features;
-	}
-	public List<String> getFeaturesList() {
-		return featuresList;
-	}
-	public void setFeaturesList(List<String> featuresList) {
-		this.featuresList = featuresList;
+	public void setFeatureMap(Map<Integer, String> featureMap) {
+		this.featureMap = featureMap;
 	}
 	
 	

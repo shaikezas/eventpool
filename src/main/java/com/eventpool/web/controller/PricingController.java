@@ -2,6 +2,9 @@ package com.eventpool.web.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,13 +16,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.eventpool.common.dto.EventRegisterDTO;
 import com.eventpool.common.dto.PackageDTO;
 import com.eventpool.common.exceptions.NoTicketInventoryBlockedException;
+import com.eventpool.common.module.IPLocation;
 import com.eventpool.web.forms.OrderRegisterForm;
 
 @Controller
 @RequestMapping("/pricing")
-public class PricingController {
+public class PricingController extends BaseController{
+	
+	
 	static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
+    @Resource
+    IPLocation ipLocation;
+
+    
 	@RequestMapping(value = "/buy", method = RequestMethod.POST)
 	public @ResponseBody OrderRegisterForm buyPoints(@RequestBody EventRegisterDTO eventRegister) throws NoTicketInventoryBlockedException {
 		  OrderRegisterForm orderRegisterForm = null;
@@ -28,8 +38,9 @@ public class PricingController {
 	 }
 	
 	@RequestMapping(value = "/package", method = RequestMethod.GET)
-	public @ResponseBody List<PackageDTO> getPackages() throws NoTicketInventoryBlockedException {
+	public @ResponseBody List<PackageDTO> getPackages(HttpServletRequest httpRequest) throws NoTicketInventoryBlockedException {
 		List<PackageDTO> packageDTO = null;
-		  return packageDTO;
+		
+		return packageDTO;
 	 }
 }
