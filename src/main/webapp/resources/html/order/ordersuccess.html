@@ -22,7 +22,7 @@
 					<tbody>
 						<tr ng-repeat="suborder in order.suborders">
 							<td><b>{{suborder.ticketName}} </b><br />
-							<td class="amt">{{suborder.ticketPrice}}</td>
+							<td class="amt"><span ng-show="suborder.ticketPrice > 0">{{suborder.ticketPrice}}</span> <span ng-show="suborder.ticketPrice==0">FREE</span></td>
 							<td class="amt">{{suborder.ticket.quantity}}</td>
 							<td class="amt">{{suborder.grossAmount}}</td>
 						</tr>

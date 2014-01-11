@@ -32,7 +32,7 @@
 				<tbody>
 				<tr ng-repeat="ticketRegister in orderRegister.ticketRegisters" >
 						  <td >{{ticketRegister.ticketName}} </td>
-						  <td class="amt">{{ticketRegister.price}} </td>
+						  <td class="amt"><span ng-show="ticketRegister.price > 0">{{ticketRegister.price}}</span> <span ng-show="ticketRegister.price==0">FREE</span> </td>
 						  <td class="amt">{{ticketRegister.qty}}</td>
 						  <td class="amt">{{ticketRegister.price * ticketRegister.qty}}</td>
 						</tr>

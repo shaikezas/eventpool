@@ -18,6 +18,7 @@ function PackageController ($scope, $http,$rootScope,currentuser,resetSrv) {
 function PricingController ($scope, $http,$rootScope,currentuser,resetSrv,$routeParams, srvevent) {
 	
 	 $scope.event = {};
+	 $scope.totalAmount  = 0;
     $scope.getcurrentuser = function(){
        	
        	if ($rootScope.user == undefined) {

@@ -11,7 +11,6 @@
 	<h1 class="headerContainerEvent">{{event.title}}</h1>
 	<div class="eventBanners" ng-show="event.banner!=null">
 		<img ng-src="{{event.banner}}"/>  
-		<!-- <img  src="resources/bootstrap/img/banner_1.jpg"/> -->
 	</div>
 
 	
@@ -37,7 +36,7 @@
 							<span>{{ticket.dateDesc}}</span><br />
 							<span style="color: #0000FF;"
 								ng-show="{{ticket.description!=null}}">*{{ticket.description}}</span></td>
-							<td class="amt">{{event.currency}} {{ticket.price}}</td>
+							<td class="amt"> {{ticket.price}}</td>
 							<td class="amt"><select ng-show="!ticket.soldOut"
 								ng-disabled="ticket.disableTicket" style="width: 100px;"
 								id="Category" ng-model="ticket.selectedQty"
@@ -45,7 +44,7 @@
 								ng-options="qty.value as qty.key for qty in ticket.qtyList"
 								ng-change="atleastOneTktSelected()">
 							</select> <span ng-show="ticket.soldOut">SOLD OUT</span></td>
-							<td class="amt">{{event.currency}} {{ticket.selectedQty * ticket.price}}</td>
+							<td class="amt"> {{ticket.selectedQty * ticket.price}}</td>
 						</tr>
 
 						<tr class="dubbleLine">
