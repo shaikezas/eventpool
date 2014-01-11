@@ -385,7 +385,7 @@ public class EventController {
     		ticket.setQtyList(dropdownList);
     		dropdown = new Dropdown(qty,qty);
     		dropdownList.add(dropdown);
-    		ticket.setDateDesc("End Date: "+ticket.getSaleEnd());
+    		ticket.setDateDesc("Sale End On: "+ticket.getSaleEnd());
     		int sellableTicketInventory = ticketInventoryService.getSellableTicketInventory(ticket.getId());
     		if(sellableTicketInventory <= 0){
     			ticket.setSoldOut(true);
@@ -393,7 +393,7 @@ public class EventController {
     		Date saleStartDate = dateCustomConverter.convertTo(ticket.getSaleStart());
     		if(timeZoneDate.before(saleStartDate)){
     			ticket.setDisableTicket(Boolean.TRUE);
-    			ticket.setDateDesc("Start Date: "+ticket.getSaleStart());
+    			ticket.setDateDesc("Sale Start On: "+ticket.getSaleStart());
     		}
     		Date saleEndDate = dateCustomConverter.convertTo(ticket.getSaleEnd());
     		if(timeZoneDate.after(saleEndDate)){
