@@ -378,4 +378,16 @@ CREATE TABLE INVOICE(
   PRIMARY KEY(ID)
 );
 
-
+DROP TABLE MEMBERSHIP_PLAN;
+CREATE TABLE MEMBERSHIP_PLAN (
+  `ID` int(5) NOT NULL auto_increment,
+  `MEMBERSHIP_ID` int(5) NOT NULL,
+  `EVENT_ID` bigint(10) default NULL,
+  `CURRENCY` char(5) default NULL,
+  `SETTINGS` varchar(1000) default NULL,
+  `FEATURES` varchar(3000) default NULL,
+  `COUNTRY_ID` smallint(6) default NULL,
+  `CREATED_DATE` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `MODIFIED_DATE` timestamp NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1

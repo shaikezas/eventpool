@@ -1,10 +1,14 @@
 package com.eventpool.common.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +39,12 @@ public class MemberShip extends AbstractEntity{
 	@Column(name="POINTS_PER_EVENT")
 	private Integer pointsPerEvent;
 
+	@Column(name = "FEATURES")
+	private String features;
+	
+	@OneToMany
+	@JoinColumn(name = "ID",referencedColumnName="MEMBERSHIP_ID")
+	private List<MemberShipPlan> membershipPlans;
 	
 	public Integer getId() {
 		return id;
@@ -90,6 +100,22 @@ public class MemberShip extends AbstractEntity{
 
 	public void setPointsPerEvent(Integer pointsPerEvent) {
 		this.pointsPerEvent = pointsPerEvent;
+	}
+
+	public String getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(String features) {
+		this.features = features;
+	}
+
+	public List<MemberShipPlan> getMembershipPlans() {
+		return membershipPlans;
+	}
+
+	public void setMembershipPlans(List<MemberShipPlan> membershipPlans) {
+		this.membershipPlans = membershipPlans;
 	}
 
 	
