@@ -80,12 +80,12 @@ public class PricingServiceImpl implements PricingService {
 		}
 		PackageDTO packageDTO = new PackageDTO();
 		if(memberShipPlan!=null){
-			packageDTO.setCurreny(memberShipPlan.getCurrency());
+			packageDTO.setCurrency(memberShipPlan.getCurrency());
 			packageDTO.setEventUrl(memberShipPlan.getEventUrl());
 			packageDTO.setPlanName(memberShipPlan.getMemberShip().getName());
 			packageDTO.setPrice(memberShipPlan.getFee());
 			String features = memberShipPlan.getFeatures();
-			Map<Integer, String> featureMap = new HashMap<Integer, String>();
+			Map<Integer, Boolean> featureMap = new HashMap<Integer, Boolean>();
 			packageDTO.setFeatureMap(featureMap );
 			if(features==null){
 				features = memberShipPlan.getMemberShip().getFeatures();
@@ -94,7 +94,7 @@ public class PricingServiceImpl implements PricingService {
 				String[] split = features.split(",");
 				if(split!=null && split.length>0){
 					for(String splitItem:split){
-						featureMap.put(Integer.parseInt(splitItem), "true");
+						featureMap.put(Integer.parseInt(splitItem), true);
 					}
 				}
 			}
