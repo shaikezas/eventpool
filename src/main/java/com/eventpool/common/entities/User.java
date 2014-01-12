@@ -138,7 +138,7 @@ public class User extends IdEntity{
 	private Integer totalPoints;
 
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "MEMBERSHIP_TYPE", insertable=false,updatable=false)
 	private MemberShip memberShip;
 	
