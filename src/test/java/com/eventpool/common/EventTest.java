@@ -574,7 +574,7 @@ public class EventTest extends BaseTest{
     @Transactional(readOnly=true)
     public void testUser(){
     	User user = userRepository.findOne(1L);
-    	log.info("user"+user.getMemberShip());
+    	//log.info("user"+user.getMemberShip());
     }
     
     @Test

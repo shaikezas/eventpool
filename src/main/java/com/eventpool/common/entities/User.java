@@ -138,10 +138,10 @@ public class User extends IdEntity{
 	private Integer totalPoints;
 
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+/*	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "MEMBERSHIP_TYPE", insertable=false,updatable=false)
 	private MemberShip memberShip;
-	
+*/	
 	@Column(name = "CREATED_DATE", nullable = false)
 	private Date createdDate = new Date();
 
@@ -344,14 +344,14 @@ public class User extends IdEntity{
 			this.memberShipExp = memberShipExp;
 		}
 
-		public MemberShip getMemberShip() {
+/*		public MemberShip getMemberShip() {
 			return memberShip;
 		}
 
 		public void setMemberShip(MemberShip memberShip) {
 			this.memberShip = memberShip;
 		}
-
+*/
 		public Integer getTotalPoints() {
 			return totalPoints;
 		}
