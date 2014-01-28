@@ -210,7 +210,7 @@
 <div ng-repeat="package in packages">
     <div class="plan">
         <h3>{{package.planName}}<span>{{package.currency}} {{package.price}}</span></h3>
-        <a class="signup" href="#pricing/{{package.eventUrl}}">Book Now</a>         
+        <a class="signup" href="#event/{{package.eventUrl}}">Book Now</a>         
         <ul>
              <li ><span ng-show="package.featureMap['1']==true">TRUE</span><span ng-show="package.featureMap['1']!=true">FALSE</span></li>
             <li ><span ng-show="package.featureMap['2']==true">TRUE</span><span ng-show="package.featureMap['2']!=true">FALSE</span>	</li>
