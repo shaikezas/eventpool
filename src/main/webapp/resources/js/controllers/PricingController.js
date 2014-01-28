@@ -25,6 +25,20 @@ function PricingController ($scope, $http,$rootScope,currentuser,resetSrv,$route
 	
 	 $scope.event = {};
 	 $scope.totalAmount  = 0;
+	 $scope.enableBookTicket = true;
+	 $scope.atleastOneTktSelected = function() {
+	    	var tickets = $scope.event.tickets;
+	    	var totalTkts = 0;
+	    	for (var i=0;i<tickets.length;i++) 	{    		
+	    		totalTkts = parseInt(totalTkts) + parseInt(tickets[i].selectedQty);
+	    	}
+	    	if(totalTkts > 0){
+	    	$scope.enableBookTicket = false;
+	    	}
+	    	else {
+	    		$scope.enableBookTicket = true;
+	    	}
+	    }
     $scope.getcurrentuser = function(){
        	
        	if ($rootScope.user == undefined) {
