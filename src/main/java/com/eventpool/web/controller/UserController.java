@@ -84,6 +84,7 @@ public class UserController {
     	System.out.println("create User");
     	User user = userService.getCurrentUser();
     	mapper.mapUserForm(userForm, user);
+    	user.setUserName(user.getFname()+" "+user.getLname());
     	ResultStatus status = userService.updateUser(user);
     	if(status.equals(ResultStatus.SUCCESS)){
     		List<String> toList = new ArrayList<String>();
