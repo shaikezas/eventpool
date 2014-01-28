@@ -32,6 +32,7 @@ import com.eventpool.common.entities.Address;
 import com.eventpool.common.entities.Order;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketRegister;
+import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.exceptions.EventNotFoundException;
 import com.eventpool.common.exceptions.NoTicketInventoryAvailableException;
@@ -42,8 +43,10 @@ import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.common.repositories.OrderRepository;
 import com.eventpool.common.repositories.TicketRegisterRepository;
+import com.eventpool.common.repositories.UserRepository;
 import com.eventpool.common.type.CurrencyType;
 import com.eventpool.common.type.EventInfoType;
+import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.OrderStatus;
 import com.eventpool.common.type.PaymentStatus;
 import com.eventpool.event.service.impl.EventSettingsService;
@@ -92,8 +95,11 @@ public class OrderServiceImpl implements OrderService {
 	@Resource
     private EntityUtilities  entityUtilities;
 	
-	 @Autowired
-	    private UserService userService;
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	private UserService userService;
 
 	private static final Logger log = LoggerFactory
 			.getLogger(OrderServiceImpl.class);
@@ -130,11 +136,16 @@ public class OrderServiceImpl implements OrderService {
 		Order order = orderRepository.findOne(orderId);
 		Boolean validTicketRegister = Boolean.TRUE;
 		Double grossAmount = order.getGrossAmount();
+		EventType eventType = null;
+		Integer qty = 0;
 		if((order.getToken()!=null && order.getToken().equals(token)) || (grossAmount!=null && grossAmount.compareTo(0.0)==0)){
 			for (Suborder suborder : order.getSuborders()) {
 				SuborderDTO suborderDTO = new SuborderDTO();
 				eventpoolMapper.mapSuborderDTO(suborder, suborderDTO);
 				validTicketRegister = validateTicketRegister(suborderDTO);
+				TicketSnapShot ticketSnapShot = suborder.getTicketSnapShot();
+				eventType = ticketSnapShot.getEvent().getEventType();
+				qty+=ticketSnapShot.getQuantity();
 				if(!validTicketRegister){
 					break;
 				}
@@ -154,6 +165,14 @@ public class OrderServiceImpl implements OrderService {
 				order.setStatus(OrderStatus.SUCCESS);
 				order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
 				orderRepository.save(order);
+				if(eventType!=null && eventType.compareTo(EventType.PACKAGE)==0){
+					Long userId = userService.getCurrentUser().getId();
+				 	User user = userRepository.findOne(userId);
+				 	if(qty!=null){
+				    	user.setTotalPoints(user.getTotalPoints()+qty);
+				    	userRepository.save(user);
+				 	}
+				}
 				return getOrderDTO(order);
 			}
 		}else{
