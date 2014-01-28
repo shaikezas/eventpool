@@ -47,9 +47,9 @@ public class PricingController extends BaseController{
 	public @ResponseBody List<PackageDTO> getPackages(HttpServletRequest httpRequest) throws NoTicketInventoryBlockedException {
 		
     	String currency = httpRequest.getParameter("currency");
-    	if(currency!=null && !currency.equals("undefined")){
-    		return pricingService.getMembershipPlan(currency);
+    	if(currency==null || currency.length()<=0  || currency.equals("undefined")){
+    		currency = "USD";
     	}
-    	return null;
+    		return pricingService.getMembershipPlan(currency);
 	 }
 }

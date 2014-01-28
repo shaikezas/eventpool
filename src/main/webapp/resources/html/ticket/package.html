@@ -212,16 +212,16 @@
         <h3>{{package.planName}}<span>{{package.currency}} {{package.price}}</span></h3>
         <a class="signup" href="#pricing/{{package.eventUrl}}">Book Now</a>         
         <ul>
-             <li >{{package.featureMap['1']}}</li>
-            <li >{{package.featureMap['2'] }}	</li>
-            <li >{{package.featureMap['3'] }}	</li>
-            <li >{{package.featureMap['4'] }}	</li>
-            <li >{{package.featureMap['5'] }}	</li>
-            <li >{{package.featureMap['6'] }}	</li>
-            <li >{{package.featureMap['7'] }}	</li>
-            <li >{{package.featureMap['8'] }}	</li>
-            <li >{{package.featureMap['9'] }}	</li>
-            <li >{{package.featureMap['10'] }}	</li>
+             <li ><span ng-show="package.featureMap['1']==true">TRUE</span><span ng-show="package.featureMap['1']!=true">FALSE</span></li>
+            <li ><span ng-show="package.featureMap['2']==true">TRUE</span><span ng-show="package.featureMap['2']!=true">FALSE</span>	</li>
+            <li ><span ng-show="package.featureMap['3']==true">TRUE</span><span ng-show="package.featureMap['3']!=true">FALSE</span>	</li>
+            <li ><span ng-show="package.featureMap['4']==true">TRUE</span><span ng-show="package.featureMap['4']!=true">FALSE</span>	</li>
+            <li ><span ng-show="package.featureMap['5']==true">TRUE</span><span ng-show="package.featureMap['5']!=true">FALSE</span>	</li>
+            <li ><span ng-show="package.featureMap['6']==true">TRUE</span><span ng-show="package.featureMap['6']!=true">FALSE</span></li>
+            <li ><span ng-show="package.featureMap['7']==true">TRUE</span><span ng-show="package.featureMap['7']!=true">FALSE</span></li>
+            <li ><span ng-show="package.featureMap['8']==true">TRUE</span><span ng-show="package.featureMap['8']!=true">FALSE</span></li>
+            <li ><span ng-show="package.featureMap['9']==true">TRUE</span><span ng-show="package.featureMap['9']!=true">FALSE</span>	</li>
+            <li ><span ng-show="package.featureMap['10']==true">TRUE</span><span ng-show="package.featureMap['10']!=true">FALSE</span>	</li>
         </ul> 
     </div>
     </div>

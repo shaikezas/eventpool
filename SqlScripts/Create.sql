@@ -385,6 +385,7 @@ CREATE TABLE MEMBERSHIP_PLAN (
   `EVENT_URL` varchar(256) default NULL,
   `CURRENCY` char(5) default NULL,
   `SETTINGS` varchar(1000) default NULL,
+  `FEE` decimal(10,2) NULL,
   `FEATURES` varchar(100) default NULL,
   `COUNTRY_ID` smallint(6) default NULL,
   `CREATED_DATE` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
