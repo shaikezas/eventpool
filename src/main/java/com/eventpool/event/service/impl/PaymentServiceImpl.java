@@ -70,6 +70,7 @@ public class PaymentServiceImpl implements PaymentService {
 		//fromValue("Sale"));
 		double totalamount=0;
 		List<PayPalItemDTO> payPalItemDTOs = payPalDTO.getPayPalItemDTOs();
+		List<PaymentDetailsItemType> lineItems = new ArrayList<PaymentDetailsItemType>();
 		if(payPalItemDTOs!=null && payPalItemDTOs.size()>0){
 			for(PayPalItemDTO palItemDTO:payPalItemDTOs){
 				PaymentDetailsItemType item = new PaymentDetailsItemType();
@@ -83,7 +84,6 @@ public class PaymentServiceImpl implements PaymentService {
 				item.setQuantity(itemQuantity);//itemQuantity
 				item.setName(palItemDTO.getItemName());
 				item.setAmount(amt);
-				List<PaymentDetailsItemType> lineItems = new ArrayList<PaymentDetailsItemType>();
 				lineItems.add(item);
 				paymentDetails.setPaymentDetailsItem(lineItems);
 				totalamount+=doubleAmount*itemQuantity;
