@@ -3,6 +3,7 @@ package com.eventpool.order.service;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -241,7 +242,8 @@ public class OrderServiceImpl implements OrderService {
 
 		OrderRegisterForm orderRegisterForm = createOrderRegisterForm(
 				ticketRegisters, eventRegister);
-		orderRegisterForm.setRegistrationLimit(eventRegister.getRegistrationLimit());
+		orderRegisterForm.setRegistrationLimit(eventRegister.getRegistrationLimit()*60);
+		orderRegisterForm.setStartTime(new Date());
 		return orderRegisterForm;
 	}
 

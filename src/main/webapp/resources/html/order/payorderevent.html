@@ -49,8 +49,8 @@
 				
 				<form class="form-horizontal" name="ticketInfoForm" id="ticketInforFormId">   
 							  <h2 ng-show="orderRegister.registrationLimit!=null">
-							  <timer interval="1000" countdown="orderRegister.registrationLimit*60">{{minutes}} :{{seconds}}
-							  </timer></h2> 
+							  <timer interval="1000" countdown="orderRegister.timeLeft">{{minutes}} :{{seconds}}
+							  </timer>Minutes.</h2> 
 							<h4>Ticket Buyer</h4>
 					
 						<div class="control-group">

@@ -1,5 +1,6 @@
 package com.eventpool.web.forms;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.Size;
@@ -37,6 +38,10 @@ public class OrderRegisterForm {
 	private String organizerName;
 	
 	private int totalTickets;
+	
+	private Date startTime;
+	
+	private int timeLeft;
 
 	private List<TicketRegisterDTO> ticketRegisters;
 
@@ -227,6 +232,22 @@ public class OrderRegisterForm {
 
 	public void setOid(Long oid) {
 		this.oid = oid;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public int getTimeLeft() {
+		return  registrationLimit -(int) (new Date().getTime()/1000 - startTime.getTime()/1000);
+	}
+
+	public void setTimeLeft(int timeLeft) {
+		this.timeLeft = timeLeft;
 	}
 
 }
