@@ -156,7 +156,7 @@ public class InvoiceService {
     public void generateInvoice(Suborder suborder) throws FileNotFoundException, IOException, DocumentException, Exception{
     	Invoice invoice = convertToInvoice(suborder);
     	invoiceRepository.save(invoice);
-    	sendInvoice(invoice);
+    	//sendInvoice(invoice);
     }
     
     public InvoiceDTO viewInvoice(Long suborderId,Long createdBy){

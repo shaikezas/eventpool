@@ -163,7 +163,7 @@ public class OrderServiceImpl implements OrderService {
 			
 				for(Suborder suborder :  order.getSuborders()){
 					suborder.setStatus(OrderStatus.SUCCESS);
-					//invoiceService.generateInvoice(suborder);
+					invoiceService.generateInvoice(suborder);
 				}
 				order.setStatus(OrderStatus.SUCCESS);
 				order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
