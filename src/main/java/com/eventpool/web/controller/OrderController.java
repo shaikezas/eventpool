@@ -116,7 +116,9 @@ public class OrderController {
 	    			//retry
 	    		}
 	    		if(ack==AckCodeType.SUCCESS){
-	    			return orderService.postOrder(Long.parseLong(oid), token, payerId);
+	    			OrderDTO orderDTO = orderService.postOrder(Long.parseLong(oid), token, payerId);
+	    			logger.info("successfully processed order.");
+	    			return orderDTO;
 	    		}else if(ack==AckCodeType.FAILURE){
 	    			//
 	    		}else if(ack==AckCodeType.SUCCESSWITHWARNING){

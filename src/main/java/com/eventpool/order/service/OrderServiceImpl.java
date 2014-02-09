@@ -3,6 +3,7 @@ package com.eventpool.order.service;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -59,6 +60,7 @@ import com.eventpool.web.controller.EventService;
 import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.OrderRegisterForm;
 import com.eventpool.web.forms.TicketRegisterForm;
+import com.google.common.util.concurrent.DaemonThreadFactory;
 
 @SuppressWarnings("rawtypes")
 @Transactional(value = "transactionManager", propagation = REQUIRED)
@@ -133,6 +135,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public OrderDTO postOrder(Long orderId,String token,String payerId) throws Exception{
+		Date start = new Date();
 		Order order = orderRepository.findOne(orderId);
 		Boolean validTicketRegister = Boolean.TRUE;
 		Double grossAmount = order.getGrossAmount();
@@ -160,7 +163,7 @@ public class OrderServiceImpl implements OrderService {
 			
 				for(Suborder suborder :  order.getSuborders()){
 					suborder.setStatus(OrderStatus.SUCCESS);
-					invoiceService.generateInvoice(suborder);
+					//invoiceService.generateInvoice(suborder);
 				}
 				order.setStatus(OrderStatus.SUCCESS);
 				order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
@@ -173,7 +176,10 @@ public class OrderServiceImpl implements OrderService {
 				    	userRepository.save(user);
 				 	}
 				}
-				return getOrderDTO(order);
+				 OrderDTO orderDTO = getOrderDTO(order);
+				Date end = new Date();
+				log.info(" Time taken for order processing"+(end.getTime()-start.getTime()));
+				return orderDTO;
 			}
 		}else{
 			releaseInventory(orderId);
