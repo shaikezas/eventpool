@@ -247,7 +247,8 @@ public class OrderServiceImpl implements OrderService {
 
 		OrderRegisterForm orderRegisterForm = createOrderRegisterForm(
 				ticketRegisters, eventRegister);
-		orderRegisterForm.setRegistrationLimit(eventRegister.getRegistrationLimit());
+		orderRegisterForm.setRegistrationLimit(eventRegister.getRegistrationLimit()*60);
+		orderRegisterForm.setStartTime(new Date());
 		return orderRegisterForm;
 	}
 

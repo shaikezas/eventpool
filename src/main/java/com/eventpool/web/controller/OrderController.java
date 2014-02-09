@@ -170,6 +170,7 @@ public class OrderController {
 		    	logger.info("could not created order");
 			  //return new ResponseMessage(ResponseMessage.Type.error, "Failed to create a order");
 			}
+		    logger.info("TimeLeft - "+orderRegisterForm.getTimeLeft());
 			return orderRegisterForm;
 			//new ResponseMessage(ResponseMessage.Type.success, "Successfully created the order, your orderId is :"+order.getId());
 	    }
