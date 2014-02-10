@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.slf4j.Logger;
@@ -62,6 +63,18 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Value("$EVENT_POOL{acct1.Signature}")
 	private String signature;
+	
+	PayPalAPIInterfaceServiceService service = null;
+	@PostConstruct
+	public void init(){
+		Map<String, String> sdkConfig = new HashMap<String, String>();
+		sdkConfig.put("mode", payMode);
+		sdkConfig.put("acct1.UserName", payUserName);
+		sdkConfig.put("acct1.Password",password);
+		sdkConfig.put("acct1.Signature",signature);
+
+		service =  new PayPalAPIInterfaceServiceService(sdkConfig);
+	}
 
 	@Override
 	public String initPayment(PayPalDTO payPalDTO) {
@@ -154,13 +167,8 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public AckCodeType getPaymentDetails(String token){
-		Map<String, String> sdkConfig = new HashMap<String, String>();
-		sdkConfig.put("mode", payMode);
-		sdkConfig.put("acct1.UserName", payUserName);
-		sdkConfig.put("acct1.Password",password);
-		sdkConfig.put("acct1.Signature",signature);
 		
-		PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(sdkConfig);
+		
 		GetExpressCheckoutDetailsReq getExpressCheckoutDetailsReq = new GetExpressCheckoutDetailsReq();
 		GetExpressCheckoutDetailsRequestType getExpressCheckoutDetailsRequest = new GetExpressCheckoutDetailsRequestType();
 		getExpressCheckoutDetailsRequest.setToken(token);

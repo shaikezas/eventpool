@@ -102,30 +102,31 @@ public class OrderController {
     @RequestMapping(value = "/success", method = RequestMethod.GET)
   	public @ResponseBody OrderDTO successOrder(HttpServletRequest request)
     {
+    	
     	String oid = request.getParameter("oid");
     	String token = request.getParameter("token");
     	String payerId = request.getParameter("PayerID");
     	
-    	System.out.println("Oid - "+oid);
-    	System.out.println("Token - "+token);
-    	System.out.println("PayerId - "+payerId);
     	try {
     		if(token!=null && !token.equalsIgnoreCase("undefined")){
-	    		AckCodeType ack = paymentService.getPaymentDetails(token);
-	    		if(ack == null ){
+    			Date start = new Date();
+	    		//AckCodeType ack = paymentService.getPaymentDetails(token);
+	    		//if(ack == null ){
 	    			//retry
-	    		}
-	    		if(ack==AckCodeType.SUCCESS){
+	    		//}
+	    		//if(ack==AckCodeType.SUCCESS){
 	    			OrderDTO orderDTO = orderService.postOrder(Long.parseLong(oid), token, payerId);
 	    			logger.info("successfully processed order.");
+	    			Date end = new Date();
+	    			logger.info("TIme taken for order procesing"+(end.getTime()-start.getTime()));
 	    			return orderDTO;
-	    		}else if(ack==AckCodeType.FAILURE){
+	    		//}else if(ack==AckCodeType.FAILURE){
 	    			//
-	    		}else if(ack==AckCodeType.SUCCESSWITHWARNING){
+	    		//}else if(ack==AckCodeType.SUCCESSWITHWARNING){
 	    			//
-	    		}else{
+	    		//}else{
 	    			
-	    		}
+	    		//}
     		}else{
     			return orderService.postOrder(Long.parseLong(oid), token, payerId);
     		}
@@ -137,7 +138,7 @@ public class OrderController {
 			logger.error(" unable to complete the order process",e);
 			return null;
 		}
-    	return null;
+    	//return null;
     }
     @RequestMapping(value = "/failed", method = RequestMethod.GET)
   	public @ResponseBody ResponseMessage failedOrder(HttpServletRequest request)
