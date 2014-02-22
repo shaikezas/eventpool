@@ -342,9 +342,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         		{
         			$location.url('myevents');
         		}
-        	/*else {
+        	else {
         		$scope.disabled = false;
-        	}*/
+        	}
         }).error(function() {
         	$scope.disabled = false;
         });
@@ -579,33 +579,33 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	$scope.saleendafterstartdate=false;
     	if(angular.isDefined($scope.event.tickets)) {
     	var tickets = $scope.event.tickets;
-    	if(angular.isDefined($scope.event.startDate)){
-    		var millSecs = (new Date($scope.event.startDate)).getTime();
+    	if(angular.isDefined($scope.event.endDate)){
+    		var millSecs = (new Date($scope.event.endDate)).getTime();
 			millSecs = millSecs - 3600000;
-			var sEnd = new Date(millSecs);
+			var eventEndDate = new Date(millSecs);
     		for (var i=0;i<tickets.length;i++) 	{
     			if(angular.isUndefined(tickets[i].saleStart)){
                   	 tickets[i].saleStart= moment().format("DD-MMM-YYYY HH:mm");
           			}
     			if(angular.isUndefined(tickets[i].saleEnd)){
-            	 tickets[i].saleEnd= moment(sEnd).format("DD-MMM-YYYY HH:mm"); 
+            	 tickets[i].saleEnd= moment(eventEndDate).format("DD-MMM-YYYY HH:mm"); 
     			}
     		}
     	}
     }
         if(angular.isDefined($scope.event.tickets)){
         	var tickets = $scope.event.tickets;
-        	var eventStartDate = new Date($scope.event.startDate);
+        	var eventEndDate = new Date($scope.event.endDate);
         	for (var i=0;i<tickets.length;i++) 	{
         	if(angular.isDefined(tickets[i].saleEnd)){              	
             	var saleEnd = new Date(tickets[i].saleEnd);
-            	if(eventStartDate.getTime()<saleEnd.getTime()){
+            	if(eventEndDate.getTime()<saleEnd.getTime()){
             		$scope.saleendaftereventstartdate=true;
             	}
             }
         }
         	if($scope.saleendaftereventstartdate){
-      	      $.bootstrapGrowl("Ticket Sale End On should not be after Event Start date & time.", {
+      	      $.bootstrapGrowl("Ticket Sale End On should not be after Event End date & time.", {
                     type: 'error',
                     align: 'center',
                     width: 'auto',
