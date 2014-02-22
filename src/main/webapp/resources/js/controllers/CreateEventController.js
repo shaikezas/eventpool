@@ -243,10 +243,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
           console.log('files:', element.files);
           // Turn the FileList object into an Array
             $scope.files = []
-            for (var i = 0; i < element.files.length; i++) {
-              $scope.files[0]=element.files[i];
-              $element.files[i].val(null);
-            }
+            $scope.files[0]=element.files[0];
+           
           });
         };
         
@@ -291,11 +289,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         $scope.$apply(function(scope) {
           console.log('files:', element.files);
           // Turn the FileList object into an Array
-            $scope.files = []
-            for (var i = 0; i < element.files.length; i++) {
-              $scope.files[1]=element.files[i];
-              $element.files[i].val(null);
-            }
+            $scope.files = [];
+            $scope.files[1]=element.files[0];
           });
         };
         
