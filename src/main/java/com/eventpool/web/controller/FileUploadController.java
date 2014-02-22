@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
+import com.eventpool.common.image.ImageProcessor;
 import com.eventpool.common.image.SaveImage;
 import com.eventpool.common.module.EventpoolMapper;
 import com.eventpool.web.domain.PhotoWeb;
@@ -43,6 +44,9 @@ public class FileUploadController {
 	private final int PROMOTION_MIN_WIDTH = 240;
 	private final int PROMOTION_MIN_HEIGHTH = 135;
 
+	@Resource
+	ImageProcessor imageProcessor;
+	
 	@RequestMapping(value = "/banner", method = RequestMethod.POST)
     public @ResponseBody
     UploadedFileResponse uploadBanner(@RequestParam("file") MultipartFile fileupload) {
@@ -54,7 +58,7 @@ public class FileUploadController {
     	try {
 			//fileupload.transferTo(file);
     		String error = null;
-    		BufferedImage bannerImage = ImageIO.read(fileupload.getInputStream());
+    		BufferedImage bannerImage = imageProcessor.getSourceImage(fileupload.getInputStream());
     		int width = bannerImage.getWidth();
     		int height = bannerImage.getHeight();
     		
@@ -99,7 +103,7 @@ public class FileUploadController {
     	try {
 			//fileupload.transferTo(file);
     		String error = null;
-    		BufferedImage bannerImage = ImageIO.read(fileupload.getInputStream());
+    		BufferedImage bannerImage = imageProcessor.getSourceImage(fileupload.getInputStream());
     		int width = bannerImage.getWidth();
     		int height = bannerImage.getHeight();
     		
@@ -145,7 +149,7 @@ public class FileUploadController {
     	try {
 			//fileupload.transferTo(file);
     		String error = null;
-    		BufferedImage bannerImage = ImageIO.read(file.getInputStream());
+    		BufferedImage bannerImage = imageProcessor.getSourceImage(file.getInputStream());
     		int width = bannerImage.getWidth();
     		int height = bannerImage.getHeight();
     		
@@ -193,7 +197,8 @@ public class FileUploadController {
     	try {
 			//fileupload.transferTo(file);
     		String error = null;
-    		BufferedImage bannerImage = ImageIO.read(file.getInputStream());
+    		BufferedImage bannerImage = imageProcessor.getSourceImage(file.getInputStream());
+    		//BufferedImage bannerImage = ImageIO.read(file.getInputStream());
     		int width = bannerImage.getWidth();
     		int height = bannerImage.getHeight();
     		
