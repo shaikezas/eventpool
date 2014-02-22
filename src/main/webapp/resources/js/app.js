@@ -136,6 +136,10 @@ App.run(function ($rootScope, $http, base64) {
     $rootScope.$on('event:loginRequired', function () {
         $('#login').modal('show');
     });
+    
+    $rootScope.$on('event:signupRequired', function () {
+        $('#signup').modal('show');
+    });
 
     /**
      * On 'event:loginConfirmed', resend all the 401 requests.

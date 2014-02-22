@@ -498,15 +498,17 @@ tr:nth-child(odd) {background:#fff}
 
 /* Login View Start */
 .newModel{
-	width: 550px;
+	width: 350px;
 }
 .userLogin{
-	width: 45%;
-	float: left;
+	 width: 75%;
+	 margin:auto;
+	/*float: left; */
 }
 .newUserLogin{
-	width: 48%;
-	float: right;
+	 width: 75%;
+	 margin:auto;
+	/*float: right; */
 }
 
 .newModel label{

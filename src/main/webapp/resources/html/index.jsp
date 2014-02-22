@@ -55,7 +55,7 @@
 				        
 				     	<div class="modal-header">
 				            <a class="close" data-dismiss="modal" ng-click="cancel()"></a>
-				            <h3 class="panel-title">Sign In Or Create A New Account</h3>
+				            <h3 class="panel-title">Sign In </h3>
 				        </div>
 				     
 				     <!-- Old User Login Start -->
@@ -68,7 +68,7 @@
 							<form class="form-horizontal" name="userForm">
 				         
 								  <fieldset>
-								   		<legend ng-style="{color:'blue'}">Sign in</legend>
+								   		
 								    	<label for="username">Email <span ng-style="{color:'red'}">*</span></label>
 								    	<input id="username" ng-model="username" type="email" name="username" required />
 				                         <div  ng-style="{color:'red'}">
@@ -99,9 +99,14 @@
 						
 						</div></div> 
 						<!-- Old User Login End -->
-					
+						</div>
+					<div class="modal newModel" style="display: none" id="signup">
 					
 						<!-- New User Login End -->
+						<div class="modal-header">
+				            <a class="close" data-dismiss="modal" ng-click="cancel()"></a>
+				            <h3 class="panel-title">Sign up</h3>
+				        </div>
 						<div class="newUserLogin"> 
 							
 							<div class="modal-body">
@@ -116,7 +121,7 @@
 							</style>
 							<form name="signupForm">
 							  <fieldset>
-							    <legend ng-style="{color:'blue'}">Sign up</legend>
+							    
 							    <label for="firstName">First Name</label>
 								<input id="firstName" type="text" ng-model="signupuserform.fname" name="firstName"/>
 								
