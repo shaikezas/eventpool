@@ -48,12 +48,12 @@ public class ImageProcessor {
 	public ImageProcessor() {
 		// TODO Auto-generated constructor stub
 	}
-	protected BufferedImage getSourceImage(String resource) throws Exception{
+	public BufferedImage getSourceImage(String resource) throws Exception{
 		URL url = new URL(resource);		
 		return getSourceImage(url);
 	}
 	
-	protected BufferedImage getSourceImage(InputStream inStream) throws IOException{
+	public BufferedImage getSourceImage(InputStream inStream) throws IOException{
 		BufferedImage srcImage = null;
 		srcImage = ImageIO.read(inStream);
 		try{
