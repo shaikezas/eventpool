@@ -43,7 +43,7 @@ public class EventForm  {
 	@NotNull(message="please enter city id.")
 	private Integer cityId;
 	private String mapUrl;
-	@Size(max=6,message="please enter zipcode less than 6 characters.")
+	@Size(max=15,message="please enter zipcode less than 6 characters.")
 	private String zipCode;
 	private String phoneNumber;
 	private String fax;
