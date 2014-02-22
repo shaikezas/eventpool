@@ -272,17 +272,18 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
  		        ).error();
  		  $scope.event.upload=false;
  		  $scope.apply();
- 	}
+ 	};
 
     $scope.uploadWaitBanner = function(){
     	$scope.event.upload=true;
  	   $scope.apply();
-    }
+    };
+    
     $scope.removeBanner = function() {
     	$scope.event.bannerFile="";
     	$scope.files[0]=null;
     	$scope.apply();
-    }
+    };
 
     
     $scope.choosePromotion = function(element) {
@@ -317,13 +318,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
  		        
  		        ).error();
  		   $scope.apply();
- 	}
+ 	};
 
     $scope.removePromotion = function() {
     	$scope.event.promotionFile="";
     	$scope.files[1]=null;
     	$scope.apply();
-    }
+    };
 
 /////// end of file uploads
     
