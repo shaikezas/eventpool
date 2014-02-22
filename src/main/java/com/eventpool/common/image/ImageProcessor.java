@@ -55,7 +55,6 @@ public class ImageProcessor {
 	
 	public BufferedImage getSourceImage(InputStream inStream) throws IOException{
 		BufferedImage srcImage = null;
-		OutputStream outStream = null;
 		srcImage = getImage(inStream);
 		return srcImage;
 	}
@@ -83,6 +82,7 @@ public class ImageProcessor {
 			}
 			
 		}catch (IIOException iio) {
+			logger.info("error in upload",iio);
 			String fileName = UUID.randomUUID().toString();
 			outStream = new FileOutputStream(fileName);  
 			byte[] buffer = new byte[4096];  
@@ -97,6 +97,7 @@ public class ImageProcessor {
 				logger.error("Not able to process image with JpegReader",e);
 			}
 		}catch(IllegalArgumentException iae){
+			logger.info("error in upload",iae);
 			String fileName = UUID.randomUUID().toString();
 			outStream = new FileOutputStream(fileName);  
 			byte[] buffer = new byte[4096];  
