@@ -242,7 +242,6 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         $scope.$apply(function(scope) {
           console.log('files:', element.files);
           // Turn the FileList object into an Array
-            $scope.files = []
             $scope.files[0]=element.files[0];
            
           });
@@ -341,9 +340,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         		{
         			$location.url('myevents');
         		}
-        	else {
+        	/*else {
         		$scope.disabled = false;
-        	}
+        	}*/
         }).error(function() {
         	$scope.disabled = false;
         });
