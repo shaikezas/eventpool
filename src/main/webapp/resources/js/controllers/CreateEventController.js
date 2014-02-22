@@ -242,6 +242,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         $scope.$apply(function(scope) {
           console.log('files:', element.files);
           // Turn the FileList object into an Array
+          $scope.files = [];
             $scope.files[0]=element.files[0];
            
           });
@@ -309,7 +310,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
  		        	if(data.status == true) {
  		        		$scope.event.promotionFile= data.filesuploaded[0].uniqueid;
  	        		} else {
- 	        			alert("Error in file upload "+data.result.error);
+ 	        			alert("Error in file upload "+data.error);
  	        		}
  		        	
  		        }
