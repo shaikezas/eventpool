@@ -75,22 +75,22 @@ public class ImageProcessor {
 			) throws IOException, FileNotFoundException {
 		OutputStream outStream;
 		BufferedImage srcImage = null;
+		String fileName = UUID.randomUUID().toString();
+		outStream = new FileOutputStream(fileName);  
+		byte[] buffer = new byte[4096];  
+		int bytesRead;  
+		while ((bytesRead = inStream.read(buffer)) != -1) {  
+			outStream.write(buffer, 0, bytesRead);  
+		}  
+		File file = new File(fileName);
 		try{
-			srcImage = ImageIO.read(inStream);
+			srcImage = ImageIO.read(file);
 			if(srcImage == null){
 				throw new IOException("Error in getting imageSource for url = " );
 			}
 			
 		}catch (IIOException iio) {
 			logger.info("error in upload",iio);
-			String fileName = UUID.randomUUID().toString();
-			outStream = new FileOutputStream(fileName);  
-			byte[] buffer = new byte[4096];  
-			int bytesRead;  
-			while ((bytesRead = inStream.read(buffer)) != -1) {  
-				outStream.write(buffer, 0, bytesRead);  
-			}  
-			File file = new File(fileName);
 			try {
 				srcImage = jpegReader.readImage(file);
 			} catch (ImageReadException e) {
@@ -98,14 +98,6 @@ public class ImageProcessor {
 			}
 		}catch(IllegalArgumentException iae){
 			logger.info("error in upload",iae);
-			String fileName = UUID.randomUUID().toString();
-			outStream = new FileOutputStream(fileName);  
-			byte[] buffer = new byte[4096];  
-			int bytesRead;  
-			while ((bytesRead = inStream.read(buffer)) != -1) {  
-				outStream.write(buffer, 0, bytesRead);  
-			}  
-			File file = new File(fileName);
 			com.sun.image.codec.jpeg.JPEGImageDecoder decoder = com.sun.image.codec.jpeg.JPEGCodec.createJPEGDecoder(new FileInputStream(fileName));
     		srcImage = decoder.decodeAsBufferedImage();
 		}
