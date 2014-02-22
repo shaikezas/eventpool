@@ -7,23 +7,31 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
+import java.util.UUID;
 
+import javax.imageio.IIOException;
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.FileImageOutputStream;
 
+import org.apache.sanselan.ImageReadException;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+
 
 @Component
 public class ImageProcessor {
@@ -34,6 +42,8 @@ public class ImageProcessor {
 	
 	//@Value("${image-connection-timeout}")
 	private int connectionTimeout=2*60*1000;
+	
+	JpegReader jpegReader = new JpegReader();
 	
 	public ImageProcessor() {
 		// TODO Auto-generated constructor stub
@@ -62,6 +72,7 @@ public class ImageProcessor {
 		URLConnection conn = null;
 		InputStream inStream = null;
 		BufferedImage srcImage = null;
+		OutputStream outStream = null;
 		try{
 			conn = url.openConnection();
 			conn.setConnectTimeout(connectionTimeout);
@@ -71,7 +82,42 @@ public class ImageProcessor {
 			if(srcImage == null){
 				throw new IOException("Error in getting imageSource for url = " + url.toString());
 			}
-		}finally{
+			
+		}catch (IIOException iio) {
+			conn = url.openConnection();
+			conn.setConnectTimeout(connectionTimeout);
+			conn.setReadTimeout(readTimeout);
+			inStream = conn.getInputStream();
+			String fileName = UUID.randomUUID().toString();
+			outStream = new FileOutputStream(fileName);  
+			byte[] buffer = new byte[4096];  
+			int bytesRead;  
+			while ((bytesRead = inStream.read(buffer)) != -1) {  
+				outStream.write(buffer, 0, bytesRead);  
+			}  
+			File file = new File(fileName);
+			try {
+				srcImage = jpegReader.readImage(file);
+			} catch (ImageReadException e) {
+				logger.error("Not able to process image with JpegReader",e);
+			}
+		}catch(IllegalArgumentException iae){
+			conn = url.openConnection();
+			conn.setConnectTimeout(connectionTimeout);
+			conn.setReadTimeout(readTimeout);
+			inStream = conn.getInputStream();
+			String fileName = UUID.randomUUID().toString();
+			outStream = new FileOutputStream(fileName);  
+			byte[] buffer = new byte[4096];  
+			int bytesRead;  
+			while ((bytesRead = inStream.read(buffer)) != -1) {  
+				outStream.write(buffer, 0, bytesRead);  
+			}  
+			File file = new File(fileName);
+			com.sun.image.codec.jpeg.JPEGImageDecoder decoder = com.sun.image.codec.jpeg.JPEGCodec.createJPEGDecoder(new FileInputStream(fileName));
+    		srcImage = decoder.decodeAsBufferedImage();
+		}
+		finally{
 			if(inStream != null){
 				inStream.close();
 			}
