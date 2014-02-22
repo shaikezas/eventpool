@@ -55,12 +55,39 @@ public class ImageProcessor {
 	
 	public BufferedImage getSourceImage(InputStream inStream) throws IOException{
 		BufferedImage srcImage = null;
+		OutputStream outStream = null;
 		srcImage = ImageIO.read(inStream);
 		try{
 			if(srcImage == null){
 				throw new IOException("Error in getting imageSource for input stream");
 		    }
-		}finally{
+		}catch (IIOException iio) {
+			String fileName = UUID.randomUUID().toString();
+			outStream = new FileOutputStream(fileName);  
+			byte[] buffer = new byte[4096];  
+			int bytesRead;  
+			while ((bytesRead = inStream.read(buffer)) != -1) {  
+				outStream.write(buffer, 0, bytesRead);  
+			}  
+			File file = new File(fileName);
+			try {
+				srcImage = jpegReader.readImage(file);
+			} catch (ImageReadException e) {
+				logger.error("Not able to process image with JpegReader",e);
+			}
+		}catch(IllegalArgumentException iae){
+			String fileName = UUID.randomUUID().toString();
+			outStream = new FileOutputStream(fileName);  
+			byte[] buffer = new byte[4096];  
+			int bytesRead;  
+			while ((bytesRead = inStream.read(buffer)) != -1) {  
+				outStream.write(buffer, 0, bytesRead);  
+			}  
+			File file = new File(fileName);
+			com.sun.image.codec.jpeg.JPEGImageDecoder decoder = com.sun.image.codec.jpeg.JPEGCodec.createJPEGDecoder(new FileInputStream(fileName));
+    		srcImage = decoder.decodeAsBufferedImage();
+		}
+		finally{
 			if(inStream != null){
 				inStream.close();
 			}
