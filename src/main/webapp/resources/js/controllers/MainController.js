@@ -29,6 +29,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      $scope.signin = function () {
          $scope.$emit('event:loginRequest', $scope.username, $scope.password);
          $('#login').modal('hide');
+         $('#signup').modal('hide');
      };
      
   
@@ -84,6 +85,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $('#forgot').modal('hide');
     			 resetSrv.forgotPassword($scope.usermail).success(function() {
     				 $('#login').modal('hide');
+    				 $('#signup').modal('hide');
     		        }).error(function() {
     		        	alert("Password not reset properly.");
     		        });
@@ -94,7 +96,10 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 $scope.$emit('event:loginRequired');
      };
      
-     
+     $scope.signupuser = function () {
+    	 $scope.resetsignform();
+    	 $scope.$emit('event:signupRequired');
+     };
      
      $scope.resetsignform = function(){
     	 $scope.signupuserform.fname="";    	 
@@ -127,6 +132,7 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
     	 signupmessage = "";
          message = "";
          $('#login').modal('hide');
+         $('#signup').modal('hide');
     	 $location.url('home');
      }
      
