@@ -140,7 +140,7 @@ public class FileUploadController {
 	@RequestMapping(value = "/image", method = RequestMethod.POST)
     public @ResponseBody
     UploadedFileResponse uploadFormData(HttpServletRequest request) {
-		
+		logger.info("in file upload:");
 		DefaultMultipartHttpServletRequest defaultMultipartHttpServletRequest = (DefaultMultipartHttpServletRequest)request;
 		MultipartFile file = defaultMultipartHttpServletRequest.getFile("banner");
     	UploadedFileResponse response = new UploadedFileResponse();
@@ -189,11 +189,13 @@ public class FileUploadController {
 	@RequestMapping(value = "/promo", method = RequestMethod.POST)
     public @ResponseBody
     UploadedFileResponse uploadPromotion(HttpServletRequest request) {
+		logger.info("in file upload:");
 		DefaultMultipartHttpServletRequest defaultMultipartHttpServletRequest = (DefaultMultipartHttpServletRequest)request;
 		MultipartFile file = defaultMultipartHttpServletRequest.getFile("promotion");
 		UploadedFileResponse response = new UploadedFileResponse();
     	response.setStatus(true);
     	String saveInSourceLocation = "";
+    	
     	try {
 			//fileupload.transferTo(file);
     		String error = null;
