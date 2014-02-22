@@ -174,6 +174,10 @@ public class FileUploadController {
 			response.setStatus(false);
 			response.setError("unable to upload. Please try new image.");
 			logger.info("File uploaded error:",e);
+		}catch (Exception e) {
+			response.setStatus(false);
+			response.setError("unable to upload. Please try new image.");
+			logger.info("File uploaded error:",e);
 		}
     	
     	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
@@ -226,7 +230,12 @@ public class FileUploadController {
 			response.setStatus(false);
 			response.setError("unable to upload. Please try new image.");
 			logger.info("File uploaded error:",e);
+		} catch (Exception e) {
+			response.setStatus(false);
+			response.setError("unable to upload. Please try new image.");
+			logger.info("File uploaded error:",e);
 		}
+    	
     	List<PhotoWeb> photosData = new ArrayList<PhotoWeb>();
     	PhotoWeb photo = new PhotoWeb();
     	photo.setUniqueid(saveInSourceLocation);
