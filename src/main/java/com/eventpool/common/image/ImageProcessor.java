@@ -56,7 +56,7 @@ public class ImageProcessor {
 	public BufferedImage getSourceImage(InputStream inStream) throws IOException{
 		BufferedImage srcImage = null;
 		OutputStream outStream = null;
-		getImage(inStream, srcImage);
+		srcImage = getImage(inStream);
 		return srcImage;
 	}
 	
@@ -69,12 +69,13 @@ public class ImageProcessor {
 		conn.setConnectTimeout(connectionTimeout);
 		conn.setReadTimeout(readTimeout);
 		inStream = conn.getInputStream();
-		srcImage = getImage(inStream, srcImage);
+		srcImage = getImage(inStream);
 		return srcImage;
 	}
-	private BufferedImage getImage(InputStream inStream,
-			BufferedImage srcImage) throws IOException, FileNotFoundException {
+	private BufferedImage getImage(InputStream inStream
+			) throws IOException, FileNotFoundException {
 		OutputStream outStream;
+		BufferedImage srcImage = null;
 		try{
 			srcImage = ImageIO.read(inStream);
 			if(srcImage == null){
