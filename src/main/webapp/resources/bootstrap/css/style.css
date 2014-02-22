@@ -623,6 +623,7 @@ tr:nth-child(odd) {background:#fff}
 	padding: 115px 10px 10px 10px!important;
 	background: #fff;
 	border-radius:0px 0px 4px 4px;
+	min-height: 400px;
 }
 
 
