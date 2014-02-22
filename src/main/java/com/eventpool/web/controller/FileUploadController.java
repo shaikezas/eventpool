@@ -141,13 +141,14 @@ public class FileUploadController {
     public @ResponseBody
     UploadedFileResponse uploadFormData(HttpServletRequest request) {
 		logger.info("in file upload:");
-		DefaultMultipartHttpServletRequest defaultMultipartHttpServletRequest = (DefaultMultipartHttpServletRequest)request;
-		MultipartFile file = defaultMultipartHttpServletRequest.getFile("banner");
     	UploadedFileResponse response = new UploadedFileResponse();
-    	response.setStatus(true);
     	String saveInSourceLocation = "";
     	try {
-			//fileupload.transferTo(file);
+    		DefaultMultipartHttpServletRequest defaultMultipartHttpServletRequest = (DefaultMultipartHttpServletRequest)request;
+    		MultipartFile file = defaultMultipartHttpServletRequest.getFile("banner");
+        	response.setStatus(true);
+
+    		//fileupload.transferTo(file);
     		String error = null;
     		BufferedImage bannerImage = imageProcessor.getSourceImage(file.getInputStream());
     		int width = bannerImage.getWidth();
@@ -190,14 +191,16 @@ public class FileUploadController {
     public @ResponseBody
     UploadedFileResponse uploadPromotion(HttpServletRequest request) {
 		logger.info("in file upload:");
-		DefaultMultipartHttpServletRequest defaultMultipartHttpServletRequest = (DefaultMultipartHttpServletRequest)request;
-		MultipartFile file = defaultMultipartHttpServletRequest.getFile("promotion");
+
 		UploadedFileResponse response = new UploadedFileResponse();
-    	response.setStatus(true);
     	String saveInSourceLocation = "";
     	
     	try {
-			//fileupload.transferTo(file);
+    		DefaultMultipartHttpServletRequest defaultMultipartHttpServletRequest = (DefaultMultipartHttpServletRequest)request;
+    		MultipartFile file = defaultMultipartHttpServletRequest.getFile("promotion");
+        	response.setStatus(true);
+
+    		//fileupload.transferTo(file);
     		String error = null;
     		BufferedImage bannerImage = imageProcessor.getSourceImage(file.getInputStream());
     		//BufferedImage bannerImage = ImageIO.read(file.getInputStream());
