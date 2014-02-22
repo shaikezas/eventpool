@@ -56,42 +56,7 @@ public class ImageProcessor {
 	public BufferedImage getSourceImage(InputStream inStream) throws IOException{
 		BufferedImage srcImage = null;
 		OutputStream outStream = null;
-		srcImage = ImageIO.read(inStream);
-		try{
-			if(srcImage == null){
-				throw new IOException("Error in getting imageSource for input stream");
-		    }
-		}catch (IIOException iio) {
-			String fileName = UUID.randomUUID().toString();
-			outStream = new FileOutputStream(fileName);  
-			byte[] buffer = new byte[4096];  
-			int bytesRead;  
-			while ((bytesRead = inStream.read(buffer)) != -1) {  
-				outStream.write(buffer, 0, bytesRead);  
-			}  
-			File file = new File(fileName);
-			try {
-				srcImage = jpegReader.readImage(file);
-			} catch (ImageReadException e) {
-				logger.error("Not able to process image with JpegReader",e);
-			}
-		}catch(IllegalArgumentException iae){
-			String fileName = UUID.randomUUID().toString();
-			outStream = new FileOutputStream(fileName);  
-			byte[] buffer = new byte[4096];  
-			int bytesRead;  
-			while ((bytesRead = inStream.read(buffer)) != -1) {  
-				outStream.write(buffer, 0, bytesRead);  
-			}  
-			File file = new File(fileName);
-			com.sun.image.codec.jpeg.JPEGImageDecoder decoder = com.sun.image.codec.jpeg.JPEGCodec.createJPEGDecoder(new FileInputStream(fileName));
-    		srcImage = decoder.decodeAsBufferedImage();
-		}
-		finally{
-			if(inStream != null){
-				inStream.close();
-			}
-		}
+		getImage(inStream, srcImage);
 		return srcImage;
 	}
 	
@@ -100,21 +65,23 @@ public class ImageProcessor {
 		InputStream inStream = null;
 		BufferedImage srcImage = null;
 		OutputStream outStream = null;
+		conn = url.openConnection();
+		conn.setConnectTimeout(connectionTimeout);
+		conn.setReadTimeout(readTimeout);
+		inStream = conn.getInputStream();
+		srcImage = getImage(inStream, srcImage);
+		return srcImage;
+	}
+	private BufferedImage getImage(InputStream inStream,
+			BufferedImage srcImage) throws IOException, FileNotFoundException {
+		OutputStream outStream;
 		try{
-			conn = url.openConnection();
-			conn.setConnectTimeout(connectionTimeout);
-			conn.setReadTimeout(readTimeout);
-			inStream = conn.getInputStream();
 			srcImage = ImageIO.read(inStream);
 			if(srcImage == null){
-				throw new IOException("Error in getting imageSource for url = " + url.toString());
+				throw new IOException("Error in getting imageSource for url = " );
 			}
 			
 		}catch (IIOException iio) {
-			conn = url.openConnection();
-			conn.setConnectTimeout(connectionTimeout);
-			conn.setReadTimeout(readTimeout);
-			inStream = conn.getInputStream();
 			String fileName = UUID.randomUUID().toString();
 			outStream = new FileOutputStream(fileName);  
 			byte[] buffer = new byte[4096];  
@@ -129,10 +96,6 @@ public class ImageProcessor {
 				logger.error("Not able to process image with JpegReader",e);
 			}
 		}catch(IllegalArgumentException iae){
-			conn = url.openConnection();
-			conn.setConnectTimeout(connectionTimeout);
-			conn.setReadTimeout(readTimeout);
-			inStream = conn.getInputStream();
 			String fileName = UUID.randomUUID().toString();
 			outStream = new FileOutputStream(fileName);  
 			byte[] buffer = new byte[4096];  
