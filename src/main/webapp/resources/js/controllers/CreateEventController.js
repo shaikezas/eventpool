@@ -342,9 +342,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
         		{
         			$location.url('myevents');
         		}
-        	/*else {
+        	else {
         		$scope.disabled = false;
-        	}*/
+        	}
         }).error(function() {
         	$scope.disabled = false;
         });
