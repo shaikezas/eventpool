@@ -8,6 +8,8 @@ import java.awt.image.ColorConvertOp;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -128,7 +130,13 @@ public class JpegReader {
 
     public static BufferedImage convertCmykToRgb(Raster cmykRaster, ICC_Profile cmykProfile) throws IOException {
         if (cmykProfile == null){
-            cmykProfile = ICC_Profile.getInstance("ISOcoated_v2_300_eci.icc");
+        	FileInputStream fis = null;
+            File f = new File("ISOcoated_v2_300_eci.icc");
+            if (f != null) {
+                fis = new FileInputStream(f);
+            }
+            if(fis==null) throw new FileNotFoundException("ISO file not found");
+            cmykProfile = ICC_Profile.getInstance(fis);
         	//cmykProfile = ICC_Profile.getInstance("C:/Users/e.ramulu/Desktop/Assignment/AdobeICCProfilesWin_end-user/Adobe ICC Profiles (end-user)/CMYK Profiles/JapanColor2001Coated.icc");
         }
         
@@ -140,5 +148,14 @@ public class JpegReader {
         cmykToRgb.filter(cmykRaster, rgbRaster);
         return rgbImage;
     }
+    
+    public static void main(String[] args) {
+		try {
+			convertCmykToRgb(null, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 
