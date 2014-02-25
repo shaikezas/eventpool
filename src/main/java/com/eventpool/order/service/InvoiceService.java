@@ -27,7 +27,6 @@ import com.eventpool.common.entities.Invoice;
 import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.module.DateCustomConverter;
-import com.eventpool.common.module.EmailAttachment;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.repositories.EventRepository;
@@ -35,6 +34,9 @@ import com.eventpool.common.repositories.InvoiceRepository;
 import com.eventpool.common.repositories.SuborderRepository;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
+import com.zeoevent.zeomail.dto.EmailAttachment;
+import com.zeoevent.zeomail.dto.MailDTO;
+import com.zeoevent.zeomail.service.MailService;
 
 @Transactional
 @Component
@@ -54,14 +56,14 @@ public class InvoiceService {
     EventRepository eventRepository;
     
     @Resource
-    HtmlEmailService htmlEmailService;
+    MailService mailservice;
     
     @Resource
     private EntityUtilities  entityUtilities;
     
-    public Boolean sendInvoice(Invoice invoice)  {
+    public void sendInvoice(Invoice invoice)  {
     	if(invoice==null){
-    		return false;
+    		return;
     	}
     	logger.info("Sending mail to :"+invoice.getBuyerMail());
     	ByteArrayOutputStream invoiceAttachemnt = null;
@@ -82,8 +84,12 @@ public class InvoiceService {
     	EmailAttachment attachment = new EmailAttachment();
     	attachment.setAttachment(invoiceAttachemnt);
     	attachment.setAttachmentName(invoice.getEventName()+"-"+invoice.getId()+".pdf");
-    	return htmlEmailService.sendMail(toList,"Invoice","Please find the attached invoice",null,attachment);
-    	
+    	MailDTO mailDTO = new MailDTO();
+    	mailDTO.setToList(toList);
+    	mailDTO.setBody("Please find the attached invoice");
+    	mailDTO.setSubject("Invoice");
+    	mailDTO.setAttachment(attachment);
+    	mailservice.push(mailDTO);
     }
     public ByteArrayOutputStream generateInvoice(Invoice invoice) throws FileNotFoundException, IOException, DocumentException, Exception {
      logger.info("Generating invoice for registrationId :"+invoice.getId());
@@ -156,7 +162,7 @@ public class InvoiceService {
     public void generateInvoice(Suborder suborder) throws FileNotFoundException, IOException, DocumentException, Exception{
     	Invoice invoice = convertToInvoice(suborder);
     	invoiceRepository.save(invoice);
-    	//sendInvoice(invoice);
+    	sendInvoice(invoice);
     }
     
     public InvoiceDTO viewInvoice(Long suborderId,Long createdBy){
@@ -171,9 +177,9 @@ public class InvoiceService {
     	return invoice;
     }
     
-    public Boolean sendInvoiceToMail(Long suborderId,Long createdBy) throws FileNotFoundException, IOException, DocumentException, Exception{
+    public void sendInvoiceToMail(Long suborderId,Long createdBy) throws FileNotFoundException, IOException, DocumentException, Exception{
     	Invoice invoice = invoiceRepository.findBySuborderIdAndCreatedBy(suborderId, createdBy);
-    	return sendInvoice(invoice);
+    	sendInvoice(invoice);
     }
     
     private InvoiceDTO convertToDTO(Invoice invoice){

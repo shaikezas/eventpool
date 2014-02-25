@@ -6,6 +6,15 @@
   <packaging>war</packaging>
 	  
 	<repositories>
+		<repository>
+			<id>releases</id>
+			<url>http://zeoevent.com:8082/nexus/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>snapshots</id>
+			<url>http://zeoevent.com:8082/nexus/content/repositories/snapshots</url>
+		</repository>
+		
 	  <repository>
 	    <id>The Buzz Media Maven Repository</id>
 	    <url>http://maven.thebuzzmedia.com</url>
@@ -19,6 +28,7 @@
         <activemq.version>5.5.1</activemq.version>
 	</properties>
   <dependencies>
+
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -217,7 +227,11 @@
 			<artifactId>sanselan</artifactId>
 			<version>0.97-incubator</version>
 		</dependency>
-	    
+		<dependency>
+	    	<groupId>com.zeoevent</groupId>
+  			<artifactId>zeomail</artifactId>
+  			<version>0.0.2-SNAPSHOT</version>
+  		</dependency>
   </dependencies>
     <build>
         <finalName>${app}</finalName>

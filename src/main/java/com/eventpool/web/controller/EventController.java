@@ -316,12 +316,12 @@ public class EventController {
 
     @RequestMapping(value = "/myevent/send/{suborderid}", method = RequestMethod.GET)
     public @ResponseBody ResponseMessage sendTicket(@PathVariable("suborderid") Long suborderId) throws Exception {
-    	 Boolean sendTicket = invoiceService.sendInvoiceToMail(suborderId,userService.getCurrentUser().getId());
-    	 if(sendTicket){
-    		return new ResponseMessage(ResponseMessage.Type.success, "Successfully send ticket");
-    	 }else{
-    		return  new ResponseMessage(ResponseMessage.Type.error, "Failed to send ticket");
-    	 }
+    	 invoiceService.sendInvoiceToMail(suborderId,userService.getCurrentUser().getId());
+    	 //if(sendTicket){
+    	 return new ResponseMessage(ResponseMessage.Type.success, "Successfully send ticket");
+    	 //}else{
+    		//return  new ResponseMessage(ResponseMessage.Type.error, "Failed to send ticket");
+    	 //}
     }
 
  /*   @RequestMapping(value = "/myevent/removeAllEvents", method = RequestMethod.DELETE)
