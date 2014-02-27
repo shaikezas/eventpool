@@ -8,7 +8,10 @@ import java.awt.image.ColorConvertOp;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -128,7 +131,14 @@ public class JpegReader {
 
     public static BufferedImage convertCmykToRgb(Raster cmykRaster, ICC_Profile cmykProfile) throws IOException {
         if (cmykProfile == null){
-            cmykProfile = ICC_Profile.getInstance("ISOcoated_v2_300_eci.icc");
+        	FileInputStream fis = null;
+        	InputStream resourceAsStream = JpegReader.class.getClassLoader().getResourceAsStream("ISOcoated_v2_300_eci.icc");
+           /* File f = new File(resourceAsStream);
+            if (f != null) {
+                fis = new FileInputStream(f);
+            }*/
+            if(resourceAsStream==null) throw new FileNotFoundException("ISO file not found");
+            cmykProfile = ICC_Profile.getInstance(resourceAsStream);
         	//cmykProfile = ICC_Profile.getInstance("C:/Users/e.ramulu/Desktop/Assignment/AdobeICCProfilesWin_end-user/Adobe ICC Profiles (end-user)/CMYK Profiles/JapanColor2001Coated.icc");
         }
         
@@ -140,5 +150,14 @@ public class JpegReader {
         cmykToRgb.filter(cmykRaster, rgbRaster);
         return rgbImage;
     }
+    
+    public static void main(String[] args) {
+		try {
+			convertCmykToRgb(null, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 
