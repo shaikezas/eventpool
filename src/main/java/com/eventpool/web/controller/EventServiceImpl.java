@@ -152,8 +152,12 @@ public class EventServiceImpl implements EventService {
 		EventDTO eventDTO = eventApi.getEvenDTO(eventId);
 		eventDTO.setId(null);
 		eventDTO.setStatus(EventStatus.DRAFT);
-		eventDTO.setPublish(Boolean.FALSE);
+		eventDTO.setPublish(Boolean.FALSE);		
 		eventDTO.setTitle("Copy of "+ eventDTO.getTitle());
+		int length = eventDTO.getTitle().length();
+		if(length > 256) {
+			eventDTO.setTitle(eventDTO.getTitle().substring(0, 255));
+		}
 		eventDTO.setClassificationType(1);
 		eventDTO.setPublishDate(null);
 		eventDTO.setEventUrl(null);

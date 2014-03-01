@@ -122,7 +122,7 @@ h4{
 .eventDetails li {
 	border-bottom: 1px dotted #ccc;
 	padding:5px 0px ;
-	height: 20px;
+	min-height: 20px;
 }
 .addressCont{
 	height: 60px !important;
