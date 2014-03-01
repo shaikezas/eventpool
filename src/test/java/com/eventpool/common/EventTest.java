@@ -2,7 +2,6 @@ package com.eventpool.common;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +34,6 @@ import com.eventpool.common.module.CategoryTree;
 import com.eventpool.common.module.CommonUtils;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
-import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.IPLocation;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.UserRepository;
@@ -54,7 +52,6 @@ import com.eventpool.event.service.impl.TicketAttendeeDTO;
 import com.eventpool.event.service.impl.TicketBuyerDTO;
 import com.eventpool.order.service.OrderService;
 import com.eventpool.order.service.PaymentService;
-import com.eventpool.web.controller.EventSearchRecord;
 import com.eventpool.web.controller.EventService;
 import com.eventpool.web.controller.SearchController;
 import com.eventpool.web.controller.SearchQueryResponse;
@@ -270,16 +267,6 @@ public class EventTest extends BaseTest{
     	
     	int size = entityUtilities.getActiveCountryMap().size();
     	System.out.println(" Actvie Country Size "+size);
-    }
-    
-    @Resource
-    HtmlEmailService htmlEmailService;
-    @Test
-    public void sendMail(){
-    	List<String> toList = new ArrayList<String>();
-    	toList.add("ramuenugurthi@gmail.com");
-    	
-    	htmlEmailService.sendMail(null,"subject","body",toList,null);
     }
     
     @Resource
