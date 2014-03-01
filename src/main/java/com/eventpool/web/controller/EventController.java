@@ -65,6 +65,8 @@ import com.eventpool.web.forms.MyEventForm;
 import com.eventpool.web.forms.SubOrderForm;
 import com.eventpool.web.forms.TicketForm;
 import com.google.gson.Gson;
+import com.zeoevent.zeomail.dto.MailDTO;
+import com.zeoevent.zeomail.service.MailService;
 
 /**
  * Created with IntelliJ IDEA.
@@ -111,6 +113,10 @@ public class EventController {
     @Resource
     private DTOValidator dtoValidator;
     
+    @Resource
+    private MailService mailService;
+
+    
     @RequestMapping(value = "/myevent/addevent", method = RequestMethod.POST)
     public @ResponseBody ResponseMessage  addEvent(@RequestBody EventForm event) throws Exception {
     	try {
@@ -155,6 +161,13 @@ public class EventController {
  			String subject = eventDTO.getEventUrl();
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
+ 			
+			MailDTO mailDTO = new MailDTO();
+ 			mailDTO.setSubject(subject);
+ 			mailDTO.setToList(toList);
+ 			mailDTO.setBody(subject);
+    		mailService.push(mailDTO);
+
  			//htmlEmailService.sendMail(toList, subject, subject+eventMsg, null,null);
  			return new ResponseMessage(ResponseMessage.Type.success, eventMsg);
  		} catch (Exception e) {
@@ -573,6 +586,14 @@ public class EventController {
     			
     		}
     		}
+    	
+			MailDTO mailDTO = new MailDTO();
+			mailDTO.setSubject(subject);
+			mailDTO.setToList(toList);
+			mailDTO.setBody(subject);
+			mailDTO.setCcList(ccList);
+			mailService.push(mailDTO);
+
     	//htmlEmailService.sendMail(toList, subject, message, ccList, attachment);
     	
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully sent the mail.");

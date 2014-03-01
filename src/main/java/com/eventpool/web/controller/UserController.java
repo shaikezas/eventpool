@@ -25,6 +25,9 @@ import com.eventpool.web.domain.ResultStatus;
 import com.eventpool.web.domain.UserService;
 import com.eventpool.web.forms.SignupForm;
 import com.eventpool.web.forms.UserForm;
+import com.zeoevent.zeomail.dto.MailDTO;
+import com.zeoevent.zeomail.service.HtmlEmailService;
+import com.zeoevent.zeomail.service.MailService;
 
 @Controller
 public class UserController {
@@ -36,6 +39,9 @@ public class UserController {
     
     @Resource
     private EntityUtilities  entityUtilities;
+    
+    @Resource
+    private MailService mailService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
@@ -86,7 +92,11 @@ public class UserController {
     		List<String> toList = new ArrayList<String>();
     		String subject = "Successfully updated user.";
  			toList.add(user.getEmail());
-    		//htmlEmailService.sendMail(toList, subject, subject, null,null);
+ 			MailDTO mailDTO = new MailDTO();
+ 			mailDTO.setSubject(subject);
+ 			mailDTO.setToList(toList);
+ 			mailDTO.setBody(subject);
+    		mailService.push(mailDTO);
     		return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated user");
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to update user");
@@ -104,7 +114,11 @@ public class UserController {
     		List<String> toList = new ArrayList<String>();
     		String subject = "Password updated successfully.";
  			toList.add(user.getEmail());
-    		//htmlEmailService.sendMail(toList, subject, subject, null,null);
+			MailDTO mailDTO = new MailDTO();
+ 			mailDTO.setSubject(subject);
+ 			mailDTO.setToList(toList);
+ 			mailDTO.setBody(subject);
+    		mailService.push(mailDTO);
     		return new ResponseMessage(ResponseMessage.Type.success, subject);
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
@@ -127,7 +141,12 @@ public class UserController {
     		String body = "New password : "+tmpPassword;
     		List<String> toList = new ArrayList<String>();
  			toList.add(email);
-    		//htmlEmailService.sendMail(toList, subject, body, null,null);
+			MailDTO mailDTO = new MailDTO();
+ 			mailDTO.setSubject(subject);
+ 			mailDTO.setToList(toList);
+ 			mailDTO.setBody(subject);
+    		mailService.push(mailDTO);
+
     		return new ResponseMessage(ResponseMessage.Type.success, subject);
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
