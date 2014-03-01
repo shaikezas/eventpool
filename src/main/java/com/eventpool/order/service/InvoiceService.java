@@ -81,7 +81,10 @@ public class InvoiceService {
     	List<String> toList = new ArrayList<String>();
     	toList.add(buyerMail);
     	EmailAttachment attachment = new EmailAttachment();
-    	attachment.setAttachment(invoiceAttachemnt);
+    	//attachment.setAttachment(invoiceAttachemnt);
+    	if(invoiceAttachemnt!=null){
+    		attachment.setBytes(invoiceAttachemnt.toByteArray());
+    	}
     	attachment.setAttachmentName(invoice.getEventName()+"-"+invoice.getId()+".pdf");
     	MailDTO mailDTO = new MailDTO();
     	mailDTO.setToList(toList);
