@@ -43,7 +43,6 @@ import com.eventpool.common.module.EmailAttachment;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventPoolConstants;
 import com.eventpool.common.module.EventpoolMapper;
-import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.type.EventStatus;
 import com.eventpool.common.type.EventType;
 import com.eventpool.common.type.OrderStatus;
@@ -101,9 +100,6 @@ public class EventController {
     private DateCustomConverter dateConverter;
 
     @Resource
-    private HtmlEmailService htmlEmailService;
-    
-    @Resource
     private EntityUtilities  entityUtilities;
     
     @Resource
@@ -159,7 +155,7 @@ public class EventController {
  			String subject = eventDTO.getEventUrl();
  			List<String> toList = new ArrayList<String>();
  			toList.add(email);
- 			htmlEmailService.sendMail(toList, subject, subject+eventMsg, null,null);
+ 			//htmlEmailService.sendMail(toList, subject, subject+eventMsg, null,null);
  			return new ResponseMessage(ResponseMessage.Type.success, eventMsg);
  		} catch (Exception e) {
  			logger.error("exception while saving event",e);
@@ -577,7 +573,7 @@ public class EventController {
     			
     		}
     		}
-    	htmlEmailService.sendMail(toList, subject, message, ccList, attachment);
+    	//htmlEmailService.sendMail(toList, subject, message, ccList, attachment);
     	
     	return new ResponseMessage(ResponseMessage.Type.success, "Successfully sent the mail.");
     }

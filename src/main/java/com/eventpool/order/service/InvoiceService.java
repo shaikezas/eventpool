@@ -28,7 +28,6 @@ import com.eventpool.common.entities.Suborder;
 import com.eventpool.common.entities.TicketSnapShot;
 import com.eventpool.common.module.DateCustomConverter;
 import com.eventpool.common.module.EntityUtilities;
-import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.repositories.EventRepository;
 import com.eventpool.common.repositories.InvoiceRepository;
 import com.eventpool.common.repositories.SuborderRepository;

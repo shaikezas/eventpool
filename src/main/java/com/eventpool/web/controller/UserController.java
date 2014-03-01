@@ -19,7 +19,6 @@ import com.eventpool.common.dto.Region;
 import com.eventpool.common.entities.User;
 import com.eventpool.common.module.EntityUtilities;
 import com.eventpool.common.module.EventpoolMapper;
-import com.eventpool.common.module.HtmlEmailService;
 import com.eventpool.common.module.PasswordGenerator;
 import com.eventpool.web.domain.ResponseMessage;
 import com.eventpool.web.domain.ResultStatus;
@@ -34,9 +33,6 @@ public class UserController {
     
     @Autowired
     private EventpoolMapper  mapper;
-    
-    @Resource
-    private HtmlEmailService htmlEmailService;
     
     @Resource
     private EntityUtilities  entityUtilities;
@@ -90,7 +86,7 @@ public class UserController {
     		List<String> toList = new ArrayList<String>();
     		String subject = "Successfully updated user.";
  			toList.add(user.getEmail());
-    		htmlEmailService.sendMail(toList, subject, subject, null,null);
+    		//htmlEmailService.sendMail(toList, subject, subject, null,null);
     		return new ResponseMessage(ResponseMessage.Type.success, "Successfully updated user");
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to update user");
@@ -108,7 +104,7 @@ public class UserController {
     		List<String> toList = new ArrayList<String>();
     		String subject = "Password updated successfully.";
  			toList.add(user.getEmail());
-    		htmlEmailService.sendMail(toList, subject, subject, null,null);
+    		//htmlEmailService.sendMail(toList, subject, subject, null,null);
     		return new ResponseMessage(ResponseMessage.Type.success, subject);
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
@@ -131,7 +127,7 @@ public class UserController {
     		String body = "New password : "+tmpPassword;
     		List<String> toList = new ArrayList<String>();
  			toList.add(email);
-    		htmlEmailService.sendMail(toList, subject, body, null,null);
+    		//htmlEmailService.sendMail(toList, subject, body, null,null);
     		return new ResponseMessage(ResponseMessage.Type.success, subject);
     	}
         return new ResponseMessage(ResponseMessage.Type.error, "Failed to reset password.");
