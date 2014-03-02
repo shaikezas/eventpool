@@ -4,10 +4,6 @@
 
 <div class="eventCont">
 	
-	
-	
-	
-	
 	<h1 class="headerContainerEvent">{{event.title}}</h1>
 	<div class="eventBanners" ng-show="event.banner!=null">
 		<img ng-src="{{event.banner}}"/>  
@@ -103,6 +99,7 @@
 			<div class="filterControlRight">
 
 				<ul class="eventDetails eventDetailsIcon">
+				    <li> Status: {{event.status}}</li>
 					<li><i class="iconCalanderStart"></i> <span>Start
 							Date:</span> {{event.startDate}}</li>
 					<li><i class="iconCalanderEnd"></i> <span>End Date:</span>

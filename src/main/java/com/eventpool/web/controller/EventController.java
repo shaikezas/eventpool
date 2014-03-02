@@ -358,6 +358,7 @@ public class EventController {
         	form.setStateName(region.getStateName());
         	form.setCountryName(region.getCountryName());
         	}
+    	form.setStatus(eventDTO.getStatus().getDescription());
     	return form;
     }
     
@@ -375,6 +376,7 @@ public class EventController {
     			form.setRegistrationLimit(infoService.getEventOrderSettings(eventDTO).getRegistrationLimit());
     		}
     	}
+    	form.setStatus(eventDTO.getStatus().getDescription());
     	List<Integer> indexes = new ArrayList<Integer>();
     	List<TicketForm> tickets = form.getTickets();
     	List<Boolean> soldOut = new ArrayList<Boolean>();
