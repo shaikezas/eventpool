@@ -36,12 +36,17 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
      
      $scope.login = function () {
     	 $scope.usernameReq = $scope.userForm.username.$error.required;
-    	 $scope.passwordRequired = $scope.userForm.password.$error.required;
+    	 $scope.password = $("#password").val();
+    	 if($scope.password !=null || $scope.password != '')
+    		 $scope.passwordRequired = false;
+    	 else
+    		 $scope.passwordRequired = $scope.userForm.password.$error.required;
     	 $scope.validEmail = $scope.userForm.username.$error.email; 
     	 if($scope.userForm.$invalid){
     		 return ;
     	 }
-    	 $scope.signin();    	 
+    	 $scope.signin();
+    	 
      };
      $scope.signup = function () {
     	 $scope.newUserEmailReq = $scope.signupForm.newUserEmail.$error.required;    	 

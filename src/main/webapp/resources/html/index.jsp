@@ -65,7 +65,7 @@
 				        		 <button type="button" class="close" ng-click="access().show=false;usernameReq=false;passwordRequired=false;validEmail=false">x</button>
 				        		 <msg>{{access().text}}</msg>
 				    			</div>
-							<form class="form-horizontal" name="userForm">
+							<form class="form-horizontal" name="userForm" >
 				         
 								  <fieldset>
 								   		
