@@ -70,14 +70,14 @@
 								  <fieldset>
 								   		
 								    	<label for="username">Email <span ng-style="{color:'red'}">*</span></label>
-								    	<input id="username" ng-model="username" type="email" name="username" required />
+								    	<input id="username" ng-model="username" type="email" name="username" required autocomplete="on"/>
 				                         <div  ng-style="{color:'red'}">
 											<span ng-show="usernameReq" ng-style="{color:'red'}">Email is required.</span>
 											<span ng-show="validEmail" ng-style="{color:'red'}">Enter valid email address.</span>
 				                		</div>
 								   
 								   		<label for="password">Password <span ng-style="{color:'red'}">*</span></label>
-								 		<input type="password" id="password" name="password" ng-model="password" required ng-enter="login()"/>
+								 		<input type="password" id="password" name="password" ng-model="password" required ng-enter="login()" autocomplete="on"/>
 					                     <div  ng-show="passwordRequired" ng-style="{color:'red'}">Password is Required.
 											<!-- <span ng-show="userForm.password.$error.required" ng-style="{color:'red'}">Password is required.</span> -->
 					               		 </div>					               		 

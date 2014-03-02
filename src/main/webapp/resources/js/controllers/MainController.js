@@ -35,7 +35,11 @@ function MainController($scope,$http, $route,$rootScope, $routeParams,$location,
   
      
      $scope.login = function () {
-    	 $scope.usernameReq = $scope.userForm.username.$error.required;
+    	 $scope.username = $("#username").val();
+    	 if($scope.username !=null || $$scope.username != '')
+    		 $scope.usernameReq = false;
+    	 else
+    		 $scope.usernameReq = $scope.userForm.username.$error.required;
     	 $scope.password = $("#password").val();
     	 if($scope.password !=null || $scope.password != '')
     		 $scope.passwordRequired = false;
