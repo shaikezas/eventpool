@@ -36,7 +36,10 @@
 			
 			<span class="span3">			
 			<br/>
-            <div>Event Url: <a href="{{eventpageurl}}" target="_blank">{{eventpageurl}}</a></div>
+			<form class="form-horizontal" class="row-fluid">
+            <div class="floatLeft">Event Url: <a href="{{eventpageurl}}" target="_blank">{{eventpageurl}}</a></div>
+            <div class="floatRight"><h1>{{event.status}}</h1></div>
+            </form>
 			<div ng-include src="template"></div>
 			</span>
 
