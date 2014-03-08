@@ -465,11 +465,14 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     		if( $scope.venueForm.$invalid){
     			$("#venueId").addClass("activeAlert");
     		}
+    		
+    		if($scope.tktForm.$invalid){
+    			$("#ticketId").addClass("activeAlert");
+    		}
     		$scope.disabled = false;
-                $.bootstrapGrowl("Please fill required fields in one of the tabs. Please fill. Event Venue Information Tab.", {
+                $.bootstrapGrowl("Please fill required fields in one of the tabs.", {
                     type: 'error',
                     align: 'center',
-                    offset: {from: 'top', amount: 200}, // 'top', or 'bottom'
                     width: 'auto',
                     delay: 100000,
                     allow_dismiss: true

@@ -4,10 +4,10 @@ package com.eventpool.common.type;
 public enum EventStatus {
   
 
-  OPEN("Open"),
-  CLOSED("Closed"),
-  CANCELLED("Cancelled"),
-  DRAFT("Draft");
+  OPEN("OPEN"),
+  CLOSED("CLOSED"),
+  CANCELLED("CANCELLED"),
+  DRAFT("DRAFT");
   
 
   private String description;

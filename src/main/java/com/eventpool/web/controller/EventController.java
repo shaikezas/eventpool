@@ -327,7 +327,7 @@ public class EventController {
     public @ResponseBody ResponseMessage sendTicket(@PathVariable("suborderid") Long suborderId) throws Exception {
     	 invoiceService.sendInvoiceToMail(suborderId,userService.getCurrentUser().getId());
     	 //if(sendTicket){
-    	 return new ResponseMessage(ResponseMessage.Type.success, "Successfully send ticket");
+    	 return new ResponseMessage(ResponseMessage.Type.success, "Successfully sent mail");
     	 //}else{
     		//return  new ResponseMessage(ResponseMessage.Type.error, "Failed to send ticket");
     	 //}
