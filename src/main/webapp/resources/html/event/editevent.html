@@ -28,7 +28,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="eventTitle">Event Title :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input class="span5" type="text" id="eventTitle" ng-disabled="event.isPublish" name="eName" ng-model="event.title" placeholder="Title" required >
+							      <input class="span5" type="text" maxlength="256" id="eventTitle" ng-disabled="event.isPublish" name="eName" ng-model="event.title" placeholder="Title" required >
 							      <span ng-show="nameRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
@@ -37,7 +37,7 @@
 							    <label class="control-label" for="description">Description :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
 							      <!-- <textarea id="description" name="description" required ng-model="event.description" placeholder="Description" required></textarea> -->
-							      <textarea id="rteDesc" ck-editor name="description" placeholder="RTE" ng-model="event.description" required></textarea>
+							      <textarea id="rteDesc" ck-editor name="description" maxlength="1000" placeholder="RTE" ng-model="event.description" required></textarea>
 							      <span ng-show="descRequired" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>
@@ -171,7 +171,7 @@
 							  <div class="control-group">
 							    <label class="control-label" for="venueTitle">Venue Title :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input class="span5" type="text" name="venueName" id="eventVenueName" ng-model="event.venueName" required min="6" >
+							      <input class="span5" maxlength="256" type="text" name="venueName" id="eventVenueName" ng-model="event.venueName" required min="6" >
 							      <span ng-show="venueNameReq" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>	
@@ -180,7 +180,7 @@
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress1">Venue Address1 :<span ng-style="{color:'red'}">*</span></label>
 								    <div class="controls">
-								      <textarea class="span5" id="venueAddress1" name="venueAddress1" rows="3" ng-model="event.address1" required ></textarea>
+								      <textarea class="span5" id="venueAddress1" maxlength="256" name="venueAddress1" rows="3" ng-model="event.address1" required ></textarea>
 								      <span ng-show="venueAdd1Req" ng-style="{color:'red'}">Required.</span>
 								    </div>
 								  </div>
@@ -188,7 +188,7 @@
 								  <div class="control-group">
 								    <label class="control-label" for="venueAddress2">Venue Address2 :</label>
 								    <div class="controls">
-								      <textarea class="span5" id="venueAddress2" name="venueAddress2" rows="3" ng-model="event.address2" ></textarea>
+								      <textarea class="span5" id="venueAddress2" maxlength="256" name="venueAddress2" rows="3" ng-model="event.address2" ></textarea>
 								    </div>
 								  </div>								  
 							  
@@ -253,7 +253,7 @@
 				           <div class="control-group"> <!-- ng-show="showOrgName" -->
 							    <label class="control-label" for="organizerName">Organizer Name :<!-- <span ng-style="{color:'red'}">*</span> --></label>
 							    <div class="controls">
-							      <input class="span5" type="text" name="orgName" id="organizerName" ng-model="event.organizerName">
+							      <input class="span5" type="text" maxlength="128" name="orgName" id="organizerName" ng-model="event.organizerName">
 							      <span ng-show="orgNameReq" ng-style="{color:'red'}">Required.</span>
 							    </div>
 							  </div>							  
@@ -261,7 +261,7 @@
 								  <div class="control-group"> <!--  ng-show="showOrgDesc" -->
 								    <label class="control-label" for="organizerDescription">Organizer Description :</label>
 								    <div class="controls">
-								      <textarea class="span5" id="organizerDescription" rows="3" ng-model="event.organizerDescription" ></textarea>
+								      <textarea class="span5" id="organizerDescription" maxlength="1000" rows="3" ng-model="event.organizerDescription" ></textarea>
 								    </div>
 								  </div>
 							  
@@ -309,11 +309,11 @@
 								      <tbody>
 								        <tr>
 								          <td> 
-								          	<input name="name" type="text" ng-model="ticket.name" required> 
+								          	<input name="name" maxlength="128" type="text" ng-model="ticket.name" required> 
 								            <span ng-show="tktrowform.name.$dirty && tktrowform.name.$invalid" ng-style="{color:'red'}">Required.</span>
 								          </td> 
 								          <td> 
-								            <input name="quantity" class="quant" type="number" min="1" ng-model="ticket.quantity" required ><br/>
+								            <input name="quantity" maxlength="10" class="quant" type="number" min="1" ng-model="ticket.quantity" required ><br/>
 								            <span ng-show="tktrowform.quantity.$dirty && tktrowform.quantity.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 								          </td>
 								          <td>
@@ -335,7 +335,7 @@
  				          		 <div class="control-group">
  								    <label class="control-label" for="ticketDescription">Ticket Description :</label>
 								    <div class="controls">
-								      <textarea id="ticketDescription" rows="3" ng-model="ticket.description" ></textarea>
+								      <textarea id="ticketDescription" maxlength="256" rows="3" ng-model="ticket.description" ></textarea>
 								    </div>
 								 </div>
  							   	 <div class="control-group">
@@ -362,14 +362,14 @@
 							    <div class="control-group">
 							    	<label class="control-label" for="minQty">Min Qty For Order :<span ng-style="{color:'red'}">*</span></label>
 							    	<div class="controls">
-							      	<input name="minqty" type="number" min="1" id="ticketMinQty" ng-model="ticket.minQty" required><br/>
+							      	<input name="minqty" type="number" min="1" maxlength="10" id="ticketMinQty" ng-model="ticket.minQty" required><br/>
 							      	<span ng-show="tktrowform.minqty.$dirty && tktrowform.minqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 							    </div>
 							  </div>							  
 							  <div class="control-group">
 							    <label class="control-label" for="tcktMaxQty">Max Qty For Order :<span ng-style="{color:'red'}">*</span></label>
 							    <div class="controls">
-							      <input name="maxqty" type="number" min="1" id="tcktMaxQty" ng-model="ticket.maxQty" required><br/>
+							      <input name="maxqty" type="number" min="1" maxlength="10" id="tcktMaxQty" ng-model="ticket.maxQty" required><br/>
 							      <span ng-show="tktrowform.maxqty.$dirty && tktrowform.maxqty.$invalid" ng-style="{color:'red'}">Enter a number greater than 0.</span>
 							    </div>
 							  </div>
