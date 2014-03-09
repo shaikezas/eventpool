@@ -420,6 +420,13 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     		$scope.venueForm.$invalid = true;
     	}
     }
+    
+    function convertDate(dateValue){
+    	var startDateArr = dateValue.split(" ");
+    	var temp = startDateArr[0].replace(/-/g,"/");
+    	var evntDate = temp + " " + startDateArr[1];
+    	return evntDate;
+    }
     $scope.validations = function() {	   
     	$("#eventId").removeClass("activeAlert");
     	$("#venueId").removeClass("activeAlert");
@@ -437,9 +444,9 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	if(angular.isUndefined($scope.event.cityName) || $scope.event.cityName==null){
     		$scope.citryReq = true;
     	}
-    	if(angular.isDefined($scope.event.startDate)&&angular.isDefined($scope.event.endDate)){
-      	var startDate = new Date($scope.event.startDate);
-    	var endDate = new Date($scope.event.endDate);
+    	if(angular.isDefined($scope.event.startDate)&&angular.isDefined($scope.event.endDate)){    	    	
+      	var startDate = new Date(convertDate($scope.event.startDate));
+    	var endDate = new Date(convertDate($scope.event.endDate));
     	if(startDate.getTime()>endDate.getTime()){
     		$scope.stopSubmitAction=true;
 //    		$scope.startDateBeforeEndDate = true;
@@ -479,6 +486,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
                 });
              }
     }
+    
+    
     
 
     $scope.cityFormatResult = function(cityinfo) {
