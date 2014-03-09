@@ -592,7 +592,7 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	if(angular.isDefined($scope.event.tickets)) {
     	var tickets = $scope.event.tickets;
     	if(angular.isDefined($scope.event.endDate)){
-    		var millSecs = (new Date($scope.event.endDate)).getTime();
+    		var millSecs = (new Date(convertDate($scope.event.endDate))).getTime();
 			millSecs = millSecs - 3600000;
 			var eventEndDate = new Date(millSecs);
     		for (var i=0;i<tickets.length;i++) 	{
@@ -607,10 +607,10 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     }
         if(angular.isDefined($scope.event.tickets)){
         	var tickets = $scope.event.tickets;
-        	var eventEndDate = new Date($scope.event.endDate);
+        	var eventEndDate = new Date(convertDate($scope.event.endDate));
         	for (var i=0;i<tickets.length;i++) 	{
         	if(angular.isDefined(tickets[i].saleEnd)){              	
-            	var saleEnd = new Date(tickets[i].saleEnd);
+            	var saleEnd = new Date(convertDate(tickets[i].saleEnd));
             	if(eventEndDate.getTime()<saleEnd.getTime()){
             		$scope.saleendaftereventstartdate=true;
             	}
@@ -634,8 +634,8 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	var tickets = $scope.event.tickets;
     	for (var i=0;i<tickets.length;i++) 	{
     	if(angular.isDefined(tickets[i].saleEnd)&&angular.isDefined(tickets[i].saleStart)){
-          	var saleStart = new Date(tickets[i].saleStart);
-        	var saleEnd = new Date(tickets[i].saleEnd);
+          	var saleStart = new Date(convertDate(tickets[i].saleStart));
+        	var saleEnd = new Date(convertDate(tickets[i].saleEnd));
         	if(saleStart.getTime()>saleEnd.getTime()){
         		$scope.saleendafterstartdate=true;
         	}
@@ -655,7 +655,34 @@ var CreateEventController = function($scope, $http,search,subcategories,categori
     	}
     }
     }
-
+      if(angular.isDefined($scope.event.tickets)){
+        var isvalid = true;
+        var tkts = [];
+    	var tickets = $scope.event.tickets;
+      	for (var i=0;i<tickets.length;i++) 	{
+      		if(angular.isDefined(tickets[i].minQty)&&angular.isDefined(tickets[i].maxQty)){
+      			var min = tickets[i].minQty;
+      			var max = tickets[i].maxQty;
+      			if(min > max){
+      				isvalid = false;
+      				tkts.push(tickets[i].name);
+      			}
+      		}
+      		
+      	}
+      }
+      if(isvalid == false){
+  	      $.bootstrapGrowl("Ticket max qty should not be less than min qty for tickets : " + tkts, {
+              type: 'error',
+              align: 'center',
+              width: 'auto',
+              delay: 10000,
+              allow_dismiss: true
+          });
+	    $("#ticketId").addClass("activeAlert");
+		$scope.disabled = false;
+		$scope.stopSubmitAction=true;
+      }
       
     }
 
