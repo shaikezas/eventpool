@@ -24,7 +24,7 @@
 		<app>zeoevent</app>
 		<commons-fileupload-version>1.2.1</commons-fileupload-version>
         <commons-io-version>2.0.1</commons-io-version>
-        <camel.version>2.9.2</camel.version>	
+        <camel.version>2.24.2</camel.version>	
         <activemq.version>5.5.1</activemq.version>
 	</properties>
   <dependencies>
